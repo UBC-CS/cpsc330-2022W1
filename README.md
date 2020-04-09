@@ -49,7 +49,7 @@ Note: links to YouTube videos may have start times embedded in them. You may wan
 | 20 | Mar 26 | [Miscellaneous leftovers](lectures/20_miscellaneous-leftovers.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/60589c9dd4754a26a9afff38a9cf005a) | new 
 | 21 | Mar 31 | [Communicating your results](lectures/21_communication.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/108b7c5aa8894f0eb4a6f800c0fc3477); [Communication in Data Science](https://ubc-mds.github.io/2017-11-10-DSCI-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 videos, 37 min total) |  new
 | 22 | Apr 2 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/2ef8102498bf4ecfa8a6a0568e6e68d8); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
-| 23 | Apr 7 | Ethics, course conclusion | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
+| 23 | Apr 7 | [Ethics, course conclusion](lectures/23_ethics-conclusion.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/cd03aa5e3fef48518ddfd44103ac172f); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 
 ## Homework schedule
 
@@ -62,5 +62,5 @@ Note: links to YouTube videos may have start times embedded in them. You may wan
 | hw5 | ~~Thursday, Feb 27~~ Friday, Feb 28 at 6pm |
 | hw6 | Sunday, Mar 15 at 6pm |
 | hw7 | Sunday, Mar 29 at 6pm |
-| hw8 | Thursday, April 9 at 6pm |
+| hw8 | Thursday, April 9 at 6pm, with [possible 24 hr extension](https://piazza.com/class/k1gx4b3djbv3ph?cid=367) |
 
