@@ -15,8 +15,9 @@
 
 * [Piazza](https://piazza.com/class/k1gx4b3djbv3ph)
 * [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
+* [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ); [what just happened?](https://en.wikipedia.org/wiki/Rickrolling)
 
-## TENTATIVE lecture schedule
+## Lecture schedule
 
 Note: links to YouTube videos may have start times embedded in them. You may want to watch them at 1.25x. You can skip the videos if you have already taken CPSC 340.
 
@@ -29,7 +30,7 @@ Note: links to YouTube videos may have start times embedded in them. You may wan
 | 5 | Jan 21 | [Logistic regression, feature extraction](lectures/05_countvec-and-logreg.ipynb) | no video | less depth on log reg, more on features
 | 6 | Jan 23 | [Feature preprocessing, SVMs, random forests](lectures/06_feature-preprocessing.ipynb) | no video  | more depth on features, less on SVM/RF
 | 7 | Jan 28 | [Model comparisons, EDA, missing data, baselines](lectures/07_census-data.ipynb) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf), [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/) | more depth
-| 8 | Jan 30 | [Evaluation metrics for binary classification, hyperparameter optimization](lectures/08_metrics-binary-class.ipynb) | Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
+| 8 | Jan 30 | [Evaluation metrics for binary classification, hyperparameter optimization](lectures/08_classification-metrics-hyperopt.ipynb) | Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Feb 4 | [Regression](lectures/09_regression-housing-data.ipynb) | |  more depth on error metrics
 | 10 | Feb 6 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
 | 11 | Feb 11 | [Ensembles, midterm review](lectures/11_ensembles-review.ipynb) |  | n/a
@@ -40,38 +41,17 @@ Note: links to YouTube videos may have start times embedded in them. You may wan
 | 13 | Feb 27 | [Natural language processing](lectures/13_natural-language-processing.ipynb) |  |  new
 | 14 | Mar 3 | [Neural networks & computer vision](lectures/14_neural-nets-computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
 | 15 | Mar 5 | [Nearest neighbours, product similarity](lectures/15_nearest-neighbours.ipynb) | | less depth
-| 16 | Mar 10 | [Time series data](lectures/16_time-series-data.ipynb) | | new 
+| 16 | Mar 10 | [Time series data](lectures/16_time-series-data.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
+| 17 | Mar 12 | [Survival analysis](lectures/17_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survival-analysis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
+| 18 | Mar 17 | [Clustering](lectures/18_clustering.ipynb) | lecture recording [here](https://ca.bbcollab.com/collab/ui/session/playback/load/2236b6e36c9b4d2e8da9e3c7503e63b3) | less depth
+|    | Mar 19 | _class cancelled_ | | 
+| 19 | Mar 24 | [Outliers](lectures/19_outliers.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/8ea3c694cafd4ea4976421d712e5c5c7) | different angle
+| 20 | Mar 26 | [Miscellaneous leftovers](lectures/20_miscellaneous-leftovers.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/60589c9dd4754a26a9afff38a9cf005a) | new 
+| 21 | Mar 31 | [Communicating your results](lectures/21_communication.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/108b7c5aa8894f0eb4a6f800c0fc3477); [Communication in Data Science](https://ubc-mds.github.io/2017-11-10-DSCI-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 videos, 37 min total) |  new
+| 22 | Apr 2 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/2ef8102498bf4ecfa8a6a0568e6e68d8); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
+| 23 | Apr 7 | Ethics, course conclusion | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 
-Topics that will hopefully fit in somewhere:
-
-- Outliers: detection, X vs. y, implications for preprocessing (0.5-1 class)
-- Feature engineering(?) for time series/other data, multi-class classification, combining multiple tables (0-1 class)
-- Time series data (1 class)
-- Survival analysis (1 class)
-- Unsupervised learning: clustering, network data (1-2 classes)
-- Open source software, licenses, technical debt (0-1 classes)
-- Deploying a trained model (0-1 classes)
-- Communicating your results in writing/viz (1-2 classes)
-- Fairness and ethics (0-1 classes) - can someone find a guest lecturer?
-- LightGBM and other models / model comparison (0-1 classes)
-
-The rest of the table:
-
-| # | Date | Topic | Related readings and links | vs. CPSC 340 |
-|---|--------|--------|---------------------------|--------------------|
-| 17 | Mar 12 | ? | | new
-| 18 | Mar 17 | ? | | new
-| 19 | Mar 19 | ? | | new
-| 20 | Mar 24 | ? | | new
-| 21 | Mar 26 | ? | | new 
-| 22 | Mar 31 | ? | |  new
-| 23 | Apr 2 | ? | | new
-| 24 | Apr 7 | Review/conclusion | | n/a
-
-
-## TENTATIVE homework schedule
-
-Homework is due every Saturday at 6pm unless otherwise noted. 
+## Homework schedule
 
 |  #  | Deadline |
 |-----|------|
@@ -81,6 +61,6 @@ Homework is due every Saturday at 6pm unless otherwise noted.
 | hw4 | Sunday, Feb 9 at 6pm |
 | hw5 | ~~Thursday, Feb 27~~ Friday, Feb 28 at 6pm |
 | hw6 | Sunday, Mar 15 at 6pm |
-| hw7 | TBD |
-| hw8 | TBD |
-| hw9 | TBD |
+| hw7 | Sunday, Mar 29 at 6pm |
+| hw8 | Thursday, April 9 at 6pm |
+
