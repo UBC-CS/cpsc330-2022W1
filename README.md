@@ -1,25 +1,13 @@
-# CPSC 330: Applied Machine Learning (2019W2)
+# CPSC 330: Applied Machine Learning
 
-## Important documents
+In this repository you will find the course materials from the inaugural offering for CPSC 330: Applied Machine Learning at the University of British Columbia, which took place Jan-Apr 2020. I learned many lessons during the first run, so these materials definitely represent a work in progress. 
 
-* [administrative info](docs/course_info.md)
-* [CPSC 330 vs. CPSC 340](docs/330_vs_340.md)
-* [homework submission instructions](docs/homework_instructions.md)
-* [textbooks and online resources](docs/resources.md)
-* [grading policies](docs/grades.md)
-* [git info](docs/git_installation.md)
-* [Python info](docs/python_info.md)
-* [how to ask for help](docs/asking_for_help.md)
+Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
-## External links
+Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatkar](https://kvarada.github.io/) for significant contributions to the course materials.
 
-* [Piazza](https://piazza.com/class/k1gx4b3djbv3ph)
-* [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
-* [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ); [what just happened?](https://en.wikipedia.org/wiki/Rickrolling)
 
 ## Lecture schedule
-
-Note: links to YouTube videos may have start times embedded in them. You may want to watch them at 1.25x. You can skip the videos if you have already taken CPSC 340.
 
 | # | Date | Topic | Related readings and links | vs. CPSC 340 |
 |---|--------|--------|---------------------------|--------------------|
@@ -51,16 +39,6 @@ Note: links to YouTube videos may have start times embedded in them. You may wan
 | 22 | Apr 2 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/2ef8102498bf4ecfa8a6a0568e6e68d8); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
 | 23 | Apr 7 | [Ethics, course conclusion](lectures/23_ethics-conclusion.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/cd03aa5e3fef48518ddfd44103ac172f); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 
-## Homework schedule
+## Homework
 
-|  #  | Deadline |
-|-----|------|
-| hw1 | Saturday, Jan 11 at 6pm |
-| hw2 | Saturday, Jan 18 at 6pm |
-| hw3 | Sunday, Jan 26 at 6pm |
-| hw4 | Sunday, Feb 9 at 6pm |
-| hw5 | ~~Thursday, Feb 27~~ Friday, Feb 28 at 6pm |
-| hw6 | Sunday, Mar 15 at 6pm |
-| hw7 | Sunday, Mar 29 at 6pm |
-| hw8 | Thursday, April 9 at 6pm, with [possible 24 hr extension](https://piazza.com/class/k1gx4b3djbv3ph?cid=367) |
-
+See [here](https://github.com/UBC-CS/cpsc330/tree/master/hw).
