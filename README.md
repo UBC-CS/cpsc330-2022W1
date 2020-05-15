@@ -10,7 +10,7 @@ Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatka
 ## Lecture schedule
 
 | #  | Topic | Related readings and links | vs. CPSC 340 |
-|---|--------|--------|---------------------------|--------------------|
+|--- |-------|---------------------------|--------------------|
 | 1 | [Course intro, Python](lectures/01_syllabus-and-python.ipynb) | Python [videos](https://www.youtube.com/playlist?list=53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) |   n/a
 | 2 | [More Python: numpy and pandas](lectures/02_numpy-pandas.ipynb) | [Numpy quickstart tutorial](https://docs.scipy.org/doc/numpy/user/quickl), [Learn python3 in Y minutes](https://learnxinyminutes.com/docs/python3/) |  new
 | 3 | [Decision trees](lectures/03_decision-trees.ipynb) | **Assumed preparation**: [Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
