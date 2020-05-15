@@ -31,13 +31,13 @@ Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatka
 | 15 | Mar 5 | [Nearest neighbours, product similarity](lectures/15_nearest-neighbours.ipynb) | | less depth
 | 16 | Mar 10 | [Time series data](lectures/16_time-series-data.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
 | 17 | Mar 12 | [Survival analysis](lectures/17_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survival-analysis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
-| 18 | Mar 17 | [Clustering](lectures/18_clustering.ipynb) | lecture recording [here](https://ca.bbcollab.com/collab/ui/session/playback/load/2236b6e36c9b4d2e8da9e3c7503e63b3) | less depth
+| 18 | Mar 17 | [Clustering](lectures/18_clustering.ipynb) | | less depth
 |    | Mar 19 | _class cancelled_ | | 
 | 19 | Mar 24 | [Outliers](lectures/19_outliers.ipynb) |  | different angle
-| 20 | Mar 26 | [Miscellaneous leftovers](lectures/20_miscellaneous-leftovers.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/60589c9dd4754a26a9afff38a9cf005a) | new 
-| 21 | Mar 31 | [Communicating your results](lectures/21_communication.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/108b7c5aa8894f0eb4a6f800c0fc3477); [Communication in Data Science](https://ubc-mds.github.io/2017-11-10-DSCI-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 videos, 37 min total) |  new
-| 22 | Apr 2 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/2ef8102498bf4ecfa8a6a0568e6e68d8); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
-| 23 | Apr 7 | [Ethics, course conclusion](lectures/23_ethics-conclusion.ipynb) | lecture recording [here](https://ca-lti.bbcollab.com/recording/cd03aa5e3fef48518ddfd44103ac172f); [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
+| 20 | Mar 26 | [Miscellaneous leftovers](lectures/20_miscellaneous-leftovers.ipynb) |  | new 
+| 21 | Mar 31 | [Communicating your results](lectures/21_communication.ipynb) |  [Communication in Data Science](https://ubc-mds.github.io/2017-11-10-DSCI-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 videos, 37 min total) |  new
+| 22 | Apr 2 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
+| 23 | Apr 7 | [Ethics, course conclusion](lectures/23_ethics-conclusion.ipynb) |  [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 
 ## Homework
 
