@@ -25,7 +25,7 @@ Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatka
 | 13 | [Natural language processing](lectures/13_natural-language-processing.ipynb) |  |  new
 | 14 | [Neural networks & computer vision](lectures/14_neural-nets-computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
 | 15 | [Nearest neighbours, product similarity](lectures/15_nearest-neighbours.ipynb) | | less depth
-| 16 | [Time series data](lectures/16_time-series-data.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5w | new 
+| 16 | [Time series data](lectures/16_time-series-data.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5w) | new 
 | 17 | [Survival analysis](lectures/17_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 18 | [Clustering](lectures/18_clustering.ipynb) | | less depth
 | 19 | [Outliers](lectures/19_outliers.ipynb) |  | different angle
