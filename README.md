@@ -4,7 +4,6 @@ This is the course homepage for CPSC 330: Applied Machine Learning at the Univer
 
 Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
-Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatkar](https://kvarada.github.io/) for significant contributions to the course materials.
 
 ## Important documents
 
@@ -16,6 +15,7 @@ Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatka
 * [git info](docs/git_installation.md)
 * [Python info](docs/python_info.md)
 * [how to ask for help](docs/asking_for_help.md)
+* [past exams (for practice)](exams/)
 
 ## External links
 
@@ -59,9 +59,9 @@ Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatka
 
 See [here](https://github.com/UBC-CS/cpsc330/tree/master/hw).
 
-## Exams
+## Attribution
 
-See [here](https://github.com/UBC-CS/cpsc330/tree/master/exams).
+Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatkar](https://kvarada.github.io/) for significant contributions to the course materials.
 
 ## License
 
