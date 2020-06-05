@@ -19,7 +19,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 ## External links
 
-* [Piazza](https://piazza.com/class/k1gx4b3djbv3ph)
+* [Piazza](https://piazza.com/class/kb2e6nwu3uj23)
 * [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
 * [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
