@@ -40,7 +40,7 @@ Open the terminal and install git using your system package manager. For example
 sudo apt-get install git
 ```
 
-should do the trick on Ubuntu 14.04.
+should do the trick on Ubuntu.
 
 #### Windows Users
 
@@ -81,7 +81,7 @@ something out of the git history, but it's not fun and uses more advanced git fe
 
 ### Finding my repositories
 
-Probably the easiest way to find a repository is to use the search tool from [the cpsc330-2019w-t2 Organization homepage](https://github.students.cs.ubc.ca/cpsc330-2019w-t2).
+Probably the easiest way to find a repository is to use the search tool from [the cpsc330-2020w-t1 Organization homepage](https://github.students.cs.ubc.ca/cpsc330-2020w-t1).
 
 ### Submission
 We anticipate that you will clone your assignment repo and do your work from

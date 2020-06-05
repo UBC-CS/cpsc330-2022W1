@@ -33,7 +33,7 @@ Aside from all the standard UBC policies and guidelines, here are some additiona
   - If you want the course staff to review/help debug your code, open an Issue in your personal homework repository (e.g., `hw1_goatcabin`)
   - If you have a question/concern about your grades, open an Issue in your personal homework repository (e.g., `hw1_goatcabin`)
 - Tag the appropriate people
-  - For questions about your code, tag `@cpsc330-2019w-t2/staff` in your issue's text; **otherwise, we will not be notified and won't see it**.
+  - For questions about your code, tag `@cpsc330-2020w-t1/staff` in your issue's text; **otherwise, we will not be notified and won't see it**.
   - For questions about your grade, check Piazza to see if we posted a list of who graded which questions. If so, tag just the person who graded it. If you don't get a timely response (a couple days), then post a reminder and tag the instructor (`@mgelbart`). Again, **if no one is tagged then no one will see your message**.
 - Try to make the error reproducible and understandable
   - Include the exact command you used to run the code.

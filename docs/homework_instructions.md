@@ -8,7 +8,7 @@ that we generate for each student. For example,
 if your id is `goatcabin` then for assignment 1 there will be a repository called
 `hw1_goatcabin`. The assignment will ship with the necessary code/data.
 
-If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc330-2019w-t2) you will see a list of all repositories that you have access to.
+If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc330-2020w-t1) you will see a list of all repositories that you have access to.
 
 ## Homework submission instructions
 
@@ -59,7 +59,7 @@ Note: our primitive (but steadily improving) system currently doesn't support ch
 
 ## Late submissions
 
-**Late assignments**. Late submissions will not be accepted. There will be no exceptions made, including illness, so try to start early on your assignments. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutons are posted. Admittedly there will be a handful of unfortunate situations where someone loses marks due to an unforeseeable circumstance. I do not like this, but I believe the overall policy is best for the class as a whole.
+**Late assignments**. Late submissions will not be accepted. There will be no exceptions made, including illness, so try to start early on your assignments. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. Admittedly there will be a handful of unfortunate situations where someone loses marks due to an unforeseeable circumstance. I do not like this, but I believe the overall policy is best for the class as a whole.
 
 ## Updates to assignments
 

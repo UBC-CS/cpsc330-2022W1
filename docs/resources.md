@@ -2,7 +2,27 @@
 
 #### Python
 
-* [Think Python](http://greenteapress.com/thinkpython/html/index.html) textbook
+Hands-on tutorials:
+- <https://swcarpentry.github.io/python-novice-inflammation/>
+- <https://www.codecademy.com/learn/python>
+- <https://www.datacamp.com>
+
+Python cheat sheet:
+- <https://learnxinyminutes.com/docs/python3/>
+
+Numpy notes:
+- <https://engineering.ucsb.edu/~shell/che210d/numpy.pdf>
+- <http://www.cs.ubc.ca/~pcarter/cs189/cs189_ch7.html>
+
+Books:
+- <http://greenteapress.com/wp/think-python-2e/>
+
+Courses:
+- <https://www.coursera.org/learn/python>
+- <https://www.udacity.com/course/programming-foundations-with-python--ud036>
+- <https://www.coursera.org/learn/python-programming-introduction>
+- <https://www.coursera.org/learn/python-data-analysis>
+- <https://www.coursera.org/learn/principles-of-computing-1>
 
 #### Online courses
 

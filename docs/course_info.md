@@ -6,20 +6,17 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 ## Class meetings
 
-**Lectures** (attend both of these):
+**Lectures**:
 
 | Day  | Time   | Room |
 |----------|--------|------|
-| Tue  | 11-12:30  | Hennings 202 |
-| Thu | 11-12:30 | Hennings 201  |
+| Tue/Thu  | 11-12:30  | online - access Collaborate Ultra through Canvas |
 
 **Tutorials** (choose one of these):
 
 | Section  | Time   | Room |
 |----------|--------|------|
-| T2A | Fri 11-12  | ORCH 4074 |
-| T2B  | Fri 1-2 | ORCH 4074 |
-| T2C | Fri 2-3 | ORCH 3074 |
+
 
 **Office hours**: See the [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html).
 
@@ -29,10 +26,10 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 **Teaching Assistants**:
 
-- Yuxi Feng
-- Dylan Green
-- Jonathan Griffin
-- Nam Hee Gordon Kim
+- TBD
+- TBD
+- TBD
+- TBD
 
 ## Registration
 
@@ -45,20 +42,13 @@ Once the general seats are taken, the only way to register for the course is to 
 
 ## Grading
  
-**Note: the grading scheme was changed on March 24, 2020 based on a directive from the Dean of Science for all Faculty of Science courses.**  For more information, see [this Piazza post](https://piazza.com/class/k1gx4b3djbv3ph?cid=319).
+The grading scheme for the course is as follows:
 
-The **updated** grading scheme for the course is as follows:
-
-| Component  | Weight (Option 1) | Weight (Option 2) |
-|-------------|-----------------|-------------------|
-| Assignments |      30%        |        45%        |
-| Midterm     |     20%         |        30%        |
-| Final       |     30%         |        5%         |
-| Participation  |      20%        |       20%         |
-
-Your final course grade will be the higher of your final grade under Option 1 and your final grade under Option 2. You do not need to contact me to specify the option you are choosing.
-
-This next part remains unchanged:
+| Component   | Weight          |
+|-------------|-----------------|
+| Assignments |     30%         |
+| Midterm     |     20%         |
+| Final       |     50%         |
 
 The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized in case, for example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade.
 
@@ -66,13 +56,13 @@ For the full policy on grades, see [this document](grades.md).
 
 ## Midterm
 
-The midterm exam will take place on **Thursday, Feb 13 in class from 11:05am to 12:20pm** (75 minutes). The exam is closed book except for one double-sided "cheat sheet" on letter-size paper. The notes need not be handwritten or even written by yourself (i.e., you can share).
+The midterm exam will take place on **TBD**. TENTATIVE PLAN, SUBJECT TO CHANGE: The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
 
 **Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, you must provide a justified and documented reason to the instructor. If you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
 
 ## Final exam
 
-The final exam will take place on **Friday, April 24, 2020 at 12:00-2:30pm** Pacific Daylight Time. ~~The exam is closed book except for two double-sided "cheat sheet" on letter-size paper. The notes don't have to be handwritten or even written by yourself (i.e., you can share).~~ The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
+The final exam will take place on **TBD** Pacific Time. TENTATIVE PLAN, SUBJECT TO CHANGE: The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
 
 ## Code of conduct
 
