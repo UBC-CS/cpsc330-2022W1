@@ -6,22 +6,6 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatkar](https://kvarada.github.io/) for significant contributions to the course materials.
 
-## Important documents
-
-* [administrative info](docs/course_info.md)
-* [CPSC 330 vs. CPSC 340](docs/330_vs_340.md)
-* [homework submission instructions](docs/homework_instructions.md)
-* [textbooks and online resources](docs/resources.md)
-* [grading policies](docs/grades.md)
-* [git info](docs/git_installation.md)
-* [Python info](docs/python_info.md)
-* [how to ask for help](docs/asking_for_help.md)
-
-## External links
-
-* [Piazza](https://piazza.com/class/k1gx4b3djbv3ph)
-* [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
-* [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
 ## Lecture schedule
 
