@@ -55,10 +55,6 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 26 | Dec 3 | | | 
 | 27 | Dec 8 | | |
 
-## Homework
-
-See [here](https://github.com/UBC-CS/cpsc330/tree/master/hw).
-
 ## Attribution
 
 Thank you to [Tomas Beuzen](https://tomasbeuzen.github.io/) and [Varada Kolhatkar](https://kvarada.github.io/) for significant contributions to the course materials.

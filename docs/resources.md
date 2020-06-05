@@ -1,5 +1,9 @@
 ## Reference Material
 
+#### A related course
+
+[COMS W4995 Applied Machine Learning](https://www.cs.columbia.edu/~amueller/comsw4995s20/schedule/) by Andreas Müller, Columbia University.
+
 #### Python
 
 Hands-on tutorials:
