@@ -23,7 +23,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 * [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
 * [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-## Assumed prerequisite knowledge
+## Assumed prerequisite knowledge (move to lecture 1)
 
 - Basic Python programming
 - Numpy
@@ -60,7 +60,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 18 | Nov 10 | [Survival analysis](lectures/17_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 19 | Nov 12 | [Clustering](lectures/18_clustering.ipynb) | | less depth
 | 20 | Nov 17 | [Outliers](lectures/19_outliers.ipynb) |  | different angle
-| 21 | Nov 19 | Model deployment | | new 
+| 21 | Nov 19 | Model deployment (or move to Dec 1) | | new 
 | 22 | Nov 24 | [Communicating your results](lectures/21_communication.ipynb) |  [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
 | 23 | Nov 26 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
 | 24 | Dec 1 | [Ethics](lectures/23_ethics-conclusion.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
