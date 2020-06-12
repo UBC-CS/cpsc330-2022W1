@@ -41,9 +41,9 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |--- |-------|--------|---------------------------|--------------------|
 | 1 | Sep 8 | [Course intro](lectures/01_syllabus-and-python.ipynb) ||   n/a
 | 2 | Sep 10 | [Decision trees](lectures/03_decision-trees.ipynb) | **Assumed preparation**: [Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
-| 3 | Sep 15 | [Fundamentals of learning](lectures/04_fundamentals-of-learning.ipynb) | **Assumed preparation**: <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
-| 4 | Sep 17 | baselines, k-nearest neighbours, transforming numeric features | | 
-| 5 | Sep 22 | Encoding categorical variables | | 
+| 3 | Sep 15 | [Fundamentals of learning](lectures/04_fundamentals-of-learning.ipynb) (and the Golden Rule) | **Assumed preparation**: <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
+| 4 | Sep 17 | baselines, k-nearest neighbours, transforming numeric features (and the Golden Rule) | | 
+| 5 | Sep 22 | Encoding categorical variables (and the Golden Rule) | | 
 | 6 | Sep 24 | Pipelines and the Golden Rule; hyperparameter optimization | |
 | 7 | Sep 29 | [Model comparisons, EDA, missing data](lectures/07_census-data.ipynb) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf), [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/) | more depth
 | 8 |  Oct 1 | [Logistic regression (binary and multi-class), `CountVectorizer`, `predict_proba`](lectures/05_countvec-and-logreg.ipynb) | no video | less depth on log reg, more on features
