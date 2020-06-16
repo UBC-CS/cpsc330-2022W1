@@ -5,35 +5,14 @@ This is the course homepage for CPSC 330: Applied Machine Learning at the Univer
 Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 
-## Important documents
+## Important links
 
-* [administrative info](docs/course_info.md)
-* [CPSC 330 vs. CPSC 340](docs/330_vs_340.md)
-* [homework submission instructions](docs/homework_instructions.md)
-* [textbooks and online resources](docs/resources.md)
-* [grading policies](docs/grades.md)
-* [git info](docs/git_installation.md)
-* [Python info](docs/python_info.md)
-* [how to ask for help](docs/asking_for_help.md)
-* [past exams (for practice)](exams/)
-
-## External links
-
+* [course administrative info](docs/course_info.md)
+* [other course documents](docs)
+* [past exams](exams/)
 * [Piazza](https://piazza.com/class/kb2e6nwu3uj23)
 * [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
-* [other relevant content](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 
-## Assumed prerequisite knowledge (move to lecture 1)
-
-- Basic Python programming
-- Numpy
-- Pandas 
-- Sparse matrices
-- Python [videos](https://www.youtube.com/playlist?list=53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) 
-- [More Python: numpy and pandas](lectures/02_numpy-pandas.ipynb) 
-- [Numpy quickstart tutorial](https://docs.scipy.org/doc/numpy/user/quickl)
-- [Learn python3 in Y minutes](https://learnxinyminutes.com/docs/python3/)
-- https://github.com/UBC-CS/cpsc330/blob/master/lectures/02_numpy-pandas.ipynb
 
 ## Lecture schedule
 
