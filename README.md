@@ -20,7 +20,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |--- |-------|--------|---------------------------|--------------------|
 | 1 | Sep 8 | [Course intro](lectures/01_syllabus-and-python.ipynb) ||   n/a
 | 2 | Sep 10 | [Decision trees](lectures/03_decision-trees.ipynb) | **Assumed preparation**: [Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
-| 3 | Sep 15 | [Fundamentals of learning](lectures/04_fundamentals-of-learning.ipynb) (and the Golden Rule) | **Assumed preparation**: <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
+| 3 | Sep 15 | [The fundamental tradeoff of ML](lectures/04_fundamentals-of-learning.ipynb) (and the Golden Rule) | **Assumed preparation**: <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
 | 4 | Sep 17 | baselines, k-nearest neighbours, transforming numeric features (and the Golden Rule) | | 
 | 5 | Sep 22 | Encoding categorical variables (and the Golden Rule) | | 
 | 6 | Sep 24 | Pipelines (and the Golden Rule); hyperparameter optimization | |
