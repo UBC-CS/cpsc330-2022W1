@@ -24,6 +24,7 @@ Courses:
 - <https://www.coursera.org/learn/python-programming-introduction>
 - <https://www.coursera.org/learn/python-data-analysis>
 - <https://www.coursera.org/learn/principles-of-computing-1>
+- <https://github.com/dabeaz-course/practical-python/blob/main/README.md>
 
 #### Online courses
 
