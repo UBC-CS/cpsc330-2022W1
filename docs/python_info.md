@@ -6,4 +6,4 @@ We recommend the Anaconda Python distribution because it comes bundled with a bu
 
 If you don't want to use Anaconda, you can install the individual packages with `pip`. The annoying thing about Python is that the name of the package doesn't necessarily match the name in the code. For example if you see `import sklearn` in the code, you might (naively believing that we live in a sane world) try `pip install sklearn` but in fact it should be `pip install scikit-learn`. (Also, `pip` should be installing packages for Python 3 by default, but if you have both Python 2 and 3 installed with Python 2 as your default, you may need to use `pip3` in place of `pip`.)
 
-For resources on learning Python, see the [resources page](resources.md) and [here](https://github.com/UBC-CS/cpsc330/blob/master/docs/python_reference.ipynb).
+For resources on learning Python, see the [resources page](resources.md).

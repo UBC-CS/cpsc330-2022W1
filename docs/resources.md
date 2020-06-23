@@ -6,6 +6,10 @@
 
 ### Python resources
 
+Mike's resources:
+- Python [videos](https://www.youtube.com/playlist?list=53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) from DSCI 511
+- [Old CPSC 330 notes on Python](python_notes.ipynb)
+
 Hands-on tutorials:
 - <https://swcarpentry.github.io/python-novice-inflammation/>
 - <https://www.codecademy.com/learn/python>
@@ -15,7 +19,9 @@ Hands-on tutorials:
 Python cheat sheet:
 - <https://learnxinyminutes.com/docs/python3/>
 
+
 Numpy notes:
+- [Numpy quickstart tutorial](https://docs.scipy.org/doc/numpy/user/quickl)
 - <https://engineering.ucsb.edu/~shell/che210d/numpy.pdf>
 - <http://www.cs.ubc.ca/~pcarter/cs189/cs189_ch7.html>
 
