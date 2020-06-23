@@ -9,6 +9,7 @@
 Hands-on tutorials:
 - <https://swcarpentry.github.io/python-novice-inflammation/>
 - <https://www.codecademy.com/learn/python>
+- <http://dataquest.io/>
 - <https://www.datacamp.com>
 
 Python cheat sheet:
