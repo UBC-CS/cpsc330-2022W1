@@ -45,6 +45,14 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 24 | Dec 1 | [Ethics](lectures/24_ethics.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 | 25 | Dec 3 | [Leftovers; Conclusion](https://github.com/UBC-CS/cpsc330/blob/master/lectures/25_leftovers-conclusion.ipynb) |   | 
 
+## Homework schedule
+
+| #  | Due Date  | Topic | Associated lectures | 
+|--- |-----------|-------|---------------------|
+| 1  | Mon Sep 14 | numpy/pandas |   n/a      |
+| 2  | Mon Sep 21 | TBD |   2, 3, 4      |
+
+
 
 ## Attribution
 
