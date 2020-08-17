@@ -73,3 +73,17 @@ The final exam will take place on **TBD** Pacific Time. TENTATIVE PLAN, SUBJECT 
 - Do not photograph or record lectures (audio or video) without permission.
 - If you commit to working with a partner on an assignment, do your fair share of the work.
 - If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!
+
+## A note on COVID-19
+
+We're working together on this course during a global pandemic. Everyone is struggling to some extent. If you tell me you're having trouble, I'm not going to judge you or think less of you. I hope you'll extend me the same grace! 
+
+Here are some ground rules:
+
+- You never owe me personal information about any aspect of your health.
+- However, you're always welcome to talk to me about things you're going through.
+- If I can't help you, I might know someone who can.
+- If you need extra help, I'm here to work with you. We're in this together.
+
+Credit: adapted from [here](https://twitter.com/ProfChrisMJones/status/1282036533562834944).
+
