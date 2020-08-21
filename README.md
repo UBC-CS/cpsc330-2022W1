@@ -16,6 +16,8 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 ## Lecture schedule
 
+Lecture Zoom link: https://ubc.zoom.us/j/68297919419
+
 | #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|---------------------------|--------------------|
 | 1 | Sep 8 | [Course intro](lectures/01_intro.ipynb) ||   n/a
