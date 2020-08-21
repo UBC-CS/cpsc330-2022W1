@@ -14,7 +14,7 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 **Tutorials** (choose one of these):
 
-| Section  | Time          | Location |
+| Section  | Time          | Location  |
 |----------|---------------|-----------|
 | T1A    | Fri 10:00-10:50 |     |
 | T1B    | Fri 11:00-11:50 |     |
