@@ -29,10 +29,11 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 **Teaching Assistants**:
 
-- TBD
-- TBD
-- TBD
-- TBD
+- Austin Beauchamp
+- Qianqian Feng
+- Yuxi Feng
+- Kattie Sepehri
+- Daisy Zhang
 
 ## Registration
 
