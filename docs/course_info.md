@@ -21,11 +21,11 @@ Application of machine learning tools, with an emphasis on solving practical pro
 | T1C    | Fri 12:00-12:50 |     |
 | T1D    | Thu 17:00-17:50 |     |
 
-**Office hours**: See the [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html).
+**Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
 
 ## Teaching Team
 
-**Instructor**: [Mike Gelbart](http://www.cs.ubc.ca/~mgelbart/)
+**Instructor**: [Mike Gelbart](https://www.mikegelbart.com/)
 
 **Teaching Assistants**:
 
