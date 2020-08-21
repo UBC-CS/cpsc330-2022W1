@@ -8,15 +8,18 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 **Lectures**:
 
-| Day  | Time   | Room |
+| Day  | Time   | Location |
 |----------|--------|------|
-| Tue/Thu  | 11-12:30  | online - access Collaborate Ultra through Canvas |
+| Tue/Thu  | 11:00-12:20  | [online via Zoom](https://ubc.zoom.us/j/68297919419) |
 
 **Tutorials** (choose one of these):
 
-| Section  | Time   | Room |
-|----------|--------|------|
-
+| Section  | Time          | Location |
+|----------|---------------|-----------|
+| T1A    | Fri 10:00-10:50 |     |
+| T1B    | Fri 11:00-11:50 |     |
+| T1C    | Fri 12:00-12:50 |     |
+| T1D    | Thu 17:00-17:50 |     |
 
 **Office hours**: See the [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html).
 
