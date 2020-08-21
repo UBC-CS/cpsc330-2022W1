@@ -11,7 +11,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 * [other course documents](docs)
 * [past exams](exams/)
 * [Piazza](https://piazza.com/class/kb2e6nwu3uj23)
-* [office hours calendar](http://www.cs.ubc.ca/~mgelbart/calendar.html)
+* [class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 
 
 ## Lecture schedule
