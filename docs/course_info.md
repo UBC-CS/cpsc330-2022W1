@@ -42,9 +42,9 @@ Once the general seats are taken, the only way to register for the course is to 
 
 **Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). I was told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
 
-In practice, the prerequisistes are a familiarity with Python programming.
+In practice, the prerequisiste is familiarity with Python programming.
 
-**Auditing**: if the course is full, we cannot accommodate auditors. If there is space and you would like to audit the course, please contact the instructor.
+**Auditing**: if the course is full, we cannot accommodate official auditors. If there is space and you would like to audit the course, please contact the instructor. All UBC students are welcome to audit the course unofficially.
 
 ## Grading
  
