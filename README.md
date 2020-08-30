@@ -16,7 +16,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 ## Lecture schedule
 
-Lecture Zoom link: https://ubc.zoom.us/j/68297919419
+The lectures will be on Zoom. They can be joined through Canvas [here](https://canvas.ubc.ca/courses/53561/external_tools/15408). If you would like to join the lectures but cannot login to Canvas (presumably because you're not enrolled in the course) please email Mike and I will give you the link.
 
 | #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|---------------------------|--------------------|
