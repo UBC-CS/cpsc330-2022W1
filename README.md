@@ -1,4 +1,4 @@
-# CPSC 330: Applied Machine Learning
+# UBC CPSC 330: Applied Machine Learning (2020W1)
 
 This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2020). An earlier version from Jan-Apr 2020 can be found [here](https://github.com/UBC-CS/cpsc330/tree/1.0).
 
