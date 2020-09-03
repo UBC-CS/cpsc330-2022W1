@@ -22,8 +22,8 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 |--- |-------|--------|---------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
 | 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
-| 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) | **Assumed preparation**: [Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
-| 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | **Assumed preparation**: <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
+| 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) |[Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
+| 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | <ul><li>[Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min) <li>[part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min)</ul> |
 | 4 | Sep 22 | [k-nearest neighbours, transforming numeric features](lectures/04_knn-scaling.ipynb) (and the Golden Rule) | | 
 | 5 | Sep 24 | [Encoding categorical variables](lectures/05_categorical-variables.ipynb) (and the Golden Rule) | | 
 | 6 | Sep 29 | [Hyperparameter optimization, pipelines](lectures/06_hyperopt-pipelines.ipynb) (and the Golden Rule) | |
