@@ -10,7 +10,7 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 | Day  | Time   | Location |
 |----------|--------|------|
-| Tue/Thu  | 11:00-12:20  | [online via Zoom](https://ubc.zoom.us/j/68297919419) |
+| Tue/Thu  | 11:00-12:20  | [online via Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408) |
 
 **Tutorials** (choose one of these):
 
