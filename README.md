@@ -7,7 +7,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 ## Important links
 
-* [course administrative info](docs/course_info.md)
+* [syllabus / administrative info](docs/course_info.md)
 * [other course documents](docs)
 * [past exams](exams/)
 * [Piazza](https://piazza.com/class/kb2e6nwu3uj23)
