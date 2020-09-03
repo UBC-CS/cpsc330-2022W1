@@ -10,16 +10,16 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 | Day  | Time   | Location |
 |----------|--------|------|
-| Tue/Thu  | 11:00-12:20  | [online via Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408) |
+| Tue/Thu  | 11:00-12:20  | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408) |
 
 **Tutorials** (choose one of these):
 
 | Section  | Time          | Location  |
 |----------|---------------|-----------|
-| T1A    | Fri 10:00-10:50 |     |
-| T1B    | Fri 11:00-11:50 |     |
-| T1C    | Fri 12:00-12:50 |     |
-| T1D    | Thu 17:00-17:50 |     |
+| T1A    | Fri 10:00-10:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1B    | Fri 11:00-11:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1C    | Fri 12:00-12:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1D    | Thu 17:00-17:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
 
 **Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
 
