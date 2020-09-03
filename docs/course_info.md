@@ -78,7 +78,7 @@ The final exam will take place on **TBD** Pacific Time. TENTATIVE PLAN, SUBJECT 
 - If you commit to working with a partner on an assignment, do your fair share of the work.
 - If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!
 
-## A note on COVID-19
+## A note on COVID-19 from me
 
 We're working together on this course during a global pandemic. Everyone is struggling to some extent. If you tell me you're having trouble, I'm not going to judge you or think less of you. I hope you'll extend me the same grace! 
 
@@ -90,4 +90,8 @@ Here are some ground rules:
 - If you need extra help, I'm here to work with you. We're in this together.
 
 Credit: adapted from [here](https://twitter.com/ProfChrisMJones/status/1282036533562834944).
+
+## A note on online learning from the UBC provost's office
+
+During this pandemic, the shift to online learning has greatly altered teaching and studying at UBC, including changes to health and safety considerations. Keep in mind that some UBC courses might cover topics that are censored or considered illegal by non-Canadian governments. This may include, but is not limited to, human rights, representative government, defamation, obscenity, gender or sexuality, and historical or current geopolitical controversies. If you are a student living abroad, you will be subject to the laws of your local jurisdiction, and your local authorities might limit your access to course material or take punitive action against you. UBC is strongly committed to academic freedom, but has no control over foreign authorities (please visit http://www.calendar.ubc.ca/vancouver/index.cfm?tree=3,33,86,0 for an articulation of the values of the University conveyed in the Senate Statement on Academic Freedom). Thus, we recognize that students will have legitimate reason to exercise caution in studying certain subjects. If you have concerns regarding your personal situation, consider postponing taking a course with manifest risks, until you are back on campus or reach out to your academic advisor to find substitute courses. For further information and support, please visit: http://academic.ubc.ca/support-resources/freedom-expression.
 
