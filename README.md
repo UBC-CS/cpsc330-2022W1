@@ -32,6 +32,8 @@ Needs to go somewhere:
 
 |  | | [Our first end-to-end analysis](lectures/07_end-to-end.ipynb) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf), [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/) | 
 
+| #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
+|--- |-------|--------|---------------------------|--------------------|
 | 7 |  Oct 1 | [Logistic regression (binary and multi-class), `CountVectorizer`, `predict_proba`](lectures/08_logreg-countvec-proba.ipynb) | no video | less depth on log reg, more on features
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb) | Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
