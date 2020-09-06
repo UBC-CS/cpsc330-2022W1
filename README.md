@@ -25,10 +25,10 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 |   |        |       | Dataset of the week: predicting voting in US cities | 
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) |[Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | [Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min), [part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min) |
-|   |         |      | Dataset of the week: sentiment analysis of movie reviews | 
+|   |         |      | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
 | 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) (and the Golden Rule) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | 
 | 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) (and the Golden Rule) | | 
-|    |        |      | Dataset of the week: Predicting income from census data | |
+|    |        |      | Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | |
 |6 | Sep 29 | [Encoding categorical variables](lectures/06_categorical-variables.ipynb) (and the Golden Rule) | |
 | 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) | no video | less depth on log reg, more on features
 |    |        |       | Dataset of the week: detecting credit card fraud  | 
