@@ -55,8 +55,9 @@ The grading scheme for the course is as follows:
 
 | Component   | Weight          |
 |-------------|-----------------|
+| Syllabus quiz |  1%           |
 | Assignments |     30%         |
-| Midterm     |     20%         |
+| Midterm     |     19%         |
 | Final       |     50%         |
 
 The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized in case, for example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade.
