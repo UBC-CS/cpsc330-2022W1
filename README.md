@@ -33,7 +33,7 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 | 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) | no video | less depth on log reg, more on features
 |    |        |       | Dataset of the week: detecting credit card fraud  | 
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
-| 9 | Oct 8 | [Ensembles](lectures/9_ensembles.ipynb) |  | n/a
+| 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) |  | n/a
 |    |        |         | Dataset of the week: predicting housing prices |
 | 10 | Oct 13 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
 | 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth on error metrics
