@@ -38,7 +38,9 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 ## Registration
 
-**Waitlists**: The general seats available in this class usually fill up very quickly. 
+**Waitlists**: _Update 2020-09-06:_ We recently moved everyone from the waitlist into the course. If you registered on the waitlist since then, the chances are low that you will make it into the course.
+
+The general seats available in this class usually fill up very quickly. 
 Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. I have no control over the situation and I cannot help you bypass the waitlist list.
 
 **Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). I was told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
