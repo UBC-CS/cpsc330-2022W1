@@ -33,23 +33,24 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 | 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) | no video | less depth on log reg, more on features
 |    |        |       | Dataset of the week: detecting credit card fraud  | 
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
-| 9 | Oct 8 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
-| 10 | Oct 13 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth on error metrics
-| 11 | Oct 15 | [Ensembles](lectures/12_ensembles.ipynb) |  | n/a
-|    | Oct 20 | MIDTERM | |
-| 12 | Oct 22 | [Feature engineering, feature selection](lectures/13_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | feature engineering is new, less depth on feature selection
-| 13 | Oct 27 | [Natural language processing](lectures/14_natural-language-processing.ipynb) |  |  new
-| 14 | Oct 29 | [Neural networks & computer vision](lectures/15_computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
-| 15 | Nov 3 | [Nearest neighbours for product similarity](lectures/16_nearest-neighbours.ipynb) | | less depth
-| 16 | Nov 5 | [Time series data](lectures/17_time-series.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
-| 17 | Nov 10 | [Survival analysis](lectures/18_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
-| 18 | Nov 12 | [Clustering](lectures/19_clustering.ipynb) | | less depth
-| 19 | Nov 17 | [Outliers](lectures/20_outliers.ipynb) |  | different angle
+| 9 | Oct 8 | [Ensembles](lectures/9_ensembles.ipynb) |  | n/a
+|    |        |         | Dataset of the week: predicting housing prices |
+| 10 | Oct 13 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
+| 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth on error metrics
+| 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | feature engineering is new, less depth on feature selection
+|    | Oct 22 | MIDTERM | |
+| 13 | Oct 27 | [Natural language processing](lectures/13_natural-language-processing.ipynb) |  |  new
+| 14 | Oct 29 | [Neural networks & computer vision](lectures/14_computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
+| 15 | Nov 3 | [Nearest neighbours for product similarity](lectures/15_nearest-neighbours.ipynb) | | less depth
+| 16 | Nov 5 | [Time series data](lectures/16_time-series.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
+| 17 | Nov 10 | [Survival analysis](lectures/17_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
+| 18 | Nov 12 | [Clustering](lectures/18_clustering.ipynb) | | less depth
+| 19 | Nov 17 | [Outliers](lectures/19_outliers.ipynb) |  | different angle
 | 20 | Nov 19 | Model deployment (or move to Dec 1) | | new 
-| 21 | Nov 24 | [Communicating your results](lectures/22_communication.ipynb) |  [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
-| 22 | Nov 26 | [Communicating your results, continued](lectures/23_communication-continued.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
-| 23 | Dec 1 | [Ethics](lectures/24_ethics.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
-| 24 | Dec 3 | [Leftovers; Conclusion](https://github.com/UBC-CS/cpsc330/blob/master/lectures/25_leftovers-conclusion.ipynb) |   | 
+| 21 | Nov 24 | [Communicating your results](lectures/21_communication.ipynb) |  [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
+| 22 | Nov 26 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
+| 23 | Dec 1 | [Ethics](lectures/23_ethics.ipynb) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
+| 24 | Dec 3 | [Leftovers; Conclusion](lectures/24_leftovers-conclusion.ipynb) |   | 
 
 ## Homework schedule
 
