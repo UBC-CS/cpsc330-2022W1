@@ -32,6 +32,7 @@ Application of machine learning tools, with an emphasis on solving practical pro
 - Austin Beauchamp
 - Qianqian Feng
 - Yuxi Feng
+- Ammarah Kaderdina
 - Kattie Sepehri
 - Daisy Zhang
 
