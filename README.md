@@ -22,20 +22,17 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 |--- |-------|--------|---------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
 | 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
+|   |        | Dataset of the week: predicting voting in US cities | |
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) |[Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | [Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min), [part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min) |
-| 4 | Sep 22 | [k-nearest neighbours, transforming numeric features](lectures/04_knn-scaling.ipynb) (and the Golden Rule) | | 
-| 5 | Sep 24 | [Encoding categorical variables](lectures/05_categorical-variables.ipynb) (and the Golden Rule) | | 
-| 6 | Sep 29 | [Hyperparameter optimization, pipelines](lectures/06_hyperopt-pipelines.ipynb) (and the Golden Rule) | |
-
-Needs to go somewhere:
-
-|  | | [Our first end-to-end analysis](lectures/07_end-to-end.ipynb) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf), [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/) | 
-
-| #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
-|--- |-------|--------|---------------------------|--------------------|
-| 7 |  Oct 1 | [Logistic regression (binary and multi-class), `CountVectorizer`, `predict_proba`](lectures/08_logreg-countvec-proba.ipynb) | no video | less depth on log reg, more on features
-| 8 | Oct 6 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb) | Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
+|   |         | Dataset of the week: sentiment analysis of movie reviews | |
+| 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) (and the Golden Rule) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | 
+| 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) (and the Golden Rule) | | 
+|    |        | Dataset of the week: Predicting income from census data | | 
+|6 | Sep 29 | [Encoding categorical variables](lectures/06_categorical-variables.ipynb) (and the Golden Rule) | |
+| 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) | no video | less depth on log reg, more on features
+|    |        | Dataset of the week: detecting credit card fraud  | |
+| 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
 | 10 | Oct 13 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth on error metrics
 | 11 | Oct 15 | [Ensembles](lectures/12_ensembles.ipynb) |  | n/a
@@ -43,7 +40,7 @@ Needs to go somewhere:
 | 12 | Oct 22 | [Feature engineering, feature selection](lectures/13_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | feature engineering is new, less depth on feature selection
 | 13 | Oct 27 | [Natural language processing](lectures/14_natural-language-processing.ipynb) |  |  new
 | 14 | Oct 29 | [Neural networks & computer vision](lectures/15_computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
-| 15 | Nov 3 | [Nearest neighbours for product similarity](lectures/16_similar-items.ipynb) | | less depth
+| 15 | Nov 3 | [Nearest neighbours for product similarity](lectures/16_nearest-neighbours.ipynb) | | less depth
 | 16 | Nov 5 | [Time series data](lectures/17_time-series.ipynb) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
 | 17 | Nov 10 | [Survival analysis](lectures/18_survival-analysis.ipynb) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 18 | Nov 12 | [Clustering](lectures/19_clustering.ipynb) | | less depth
