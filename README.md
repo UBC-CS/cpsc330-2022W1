@@ -22,7 +22,7 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 |--- |-------|--------|---------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
 | 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
-|   |        |       | Dataset of the week: predicting voting in US cities | 
+|   |        |       | Dataset of the week: student-generated dataset! | 
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) |[Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | [Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min), [part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min) |
 |   |         |      | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
