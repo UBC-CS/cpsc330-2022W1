@@ -10,16 +10,16 @@ Application of machine learning tools, with an emphasis on solving practical pro
 
 | Day  | Time   | Location |
 |----------|--------|------|
-| Tue/Thu  | 11:00-12:20  | [online via Zoom](https://ubc.zoom.us/j/68297919419) |
+| Tue/Thu  | 11:00-12:20  | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408) |
 
 **Tutorials** (choose one of these):
 
 | Section  | Time          | Location  |
 |----------|---------------|-----------|
-| T1A    | Fri 10:00-10:50 |     |
-| T1B    | Fri 11:00-11:50 |     |
-| T1C    | Fri 12:00-12:50 |     |
-| T1D    | Thu 17:00-17:50 |     |
+| T1A    | Fri 10:00-10:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1B    | Fri 11:00-11:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1C    | Fri 12:00-12:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+| T1D    | Thu 17:00-17:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
 
 **Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
 
@@ -32,12 +32,15 @@ Application of machine learning tools, with an emphasis on solving practical pro
 - Austin Beauchamp
 - Qianqian Feng
 - Yuxi Feng
+- Ammarah Kaderdina
 - Kattie Sepehri
 - Daisy Zhang
 
 ## Registration
 
-**Waitlists**: The general seats available in this class usually fill up very quickly. 
+**Waitlists**: _Update 2020-09-06:_ We recently moved everyone from the waitlist into the course. If you registered on the waitlist since then, the chances are low that you will make it into the course.
+
+The general seats available in this class usually fill up very quickly. 
 Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. I have no control over the situation and I cannot help you bypass the waitlist list.
 
 **Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). I was told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
@@ -78,7 +81,7 @@ The final exam will take place on **TBD** Pacific Time. TENTATIVE PLAN, SUBJECT 
 - If you commit to working with a partner on an assignment, do your fair share of the work.
 - If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!
 
-## A note on COVID-19
+## A note on COVID-19 from me
 
 We're working together on this course during a global pandemic. Everyone is struggling to some extent. If you tell me you're having trouble, I'm not going to judge you or think less of you. I hope you'll extend me the same grace! 
 
@@ -90,4 +93,8 @@ Here are some ground rules:
 - If you need extra help, I'm here to work with you. We're in this together.
 
 Credit: adapted from [here](https://twitter.com/ProfChrisMJones/status/1282036533562834944).
+
+## A note on online learning from the UBC provost's office
+
+During this pandemic, the shift to online learning has greatly altered teaching and studying at UBC, including changes to health and safety considerations. Keep in mind that some UBC courses might cover topics that are censored or considered illegal by non-Canadian governments. This may include, but is not limited to, human rights, representative government, defamation, obscenity, gender or sexuality, and historical or current geopolitical controversies. If you are a student living abroad, you will be subject to the laws of your local jurisdiction, and your local authorities might limit your access to course material or take punitive action against you. UBC is strongly committed to academic freedom, but has no control over foreign authorities (please visit http://www.calendar.ubc.ca/vancouver/index.cfm?tree=3,33,86,0 for an articulation of the values of the University conveyed in the Senate Statement on Academic Freedom). Thus, we recognize that students will have legitimate reason to exercise caution in studying certain subjects. If you have concerns regarding your personal situation, consider postponing taking a course with manifest risks, until you are back on campus or reach out to your academic advisor to find substitute courses. For further information and support, please visit: http://academic.ubc.ca/support-resources/freedom-expression.
 
