@@ -2,7 +2,7 @@
 
 All assignments will be submitted via [github.students.cs.ubc.ca](https://github.students.cs.ubc.ca/).
 
-### Student repositories
+## Student repositories
 For every assignment, we will create a repository (repo) for each student. The repository will be named based on an internal ID
 that we generate for each student. For example, 
 if your id is `goatcabin` then for assignment 1 there will be a repository called
@@ -10,11 +10,13 @@ if your id is `goatcabin` then for assignment 1 there will be a repository calle
 
 If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc330-2020w-t1) you will see a list of all repositories that you have access to.
 
-## Homework submission instructions
+## How to submit
 
 Your assignment-specific GitHub repository is your place to work on your assignment. You can use it to keep a backup, version control your work,
 collaborate with others, show unfinished work to instructors, etc. However, your final submission will be an HTML file to Canvas. We are providing you with a script to automatically submit to Canvas from your Jupyter notebook. This will be included at the bottom of each assignment notebook. It is your responsibility
 to convert your notebook to HTML and submit it to Canvas. Once you submit to Canvas, you should go to Canvas and ensure your assignment is there as expected.
+
+## Other submission instructions
 
 #### Datasets
 
@@ -52,7 +54,7 @@ Note: our primitive system currently doesn't support changing partners. So, plea
 
 ## Late submissions
 
-**Late assignments**. Late submissions will not be accepted. There will be no exceptions made, including illness, so try to start early on your assignments. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. Admittedly there will be a handful of unfortunate situations where someone loses marks due to an unforeseeable circumstance. I do not like this, but I believe the overall policy is best for the class as a whole.
+Late submissions will not be accepted. There will be no exceptions made, including illness, so try to start early on your assignments. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. Admittedly there will be a handful of unfortunate situations where someone loses marks due to an unforeseeable circumstance. I do not like this, but I believe the overall policy is best for the class as a whole.
 
 ## Updates to assignments
 
