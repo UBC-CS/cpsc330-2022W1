@@ -23,21 +23,21 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
 | 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
 |   |        |       | Dataset of the week: predicting whether CPSC 330 students like cilantro | 
-| 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) |[Decision tree video](https://youtu.be/WYDPYIe3RpQ?t=230) until 26:30, and then continue from 36:35 onwards. | less math
-| 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) | [Fundamentals of learning video](http.be/dPm-KTrJlFU?t=183) (47 min), [part of the KNN video](https://youtu.be/JRF6oELLn0M?t=1248) **up to 29:00** on cross-validation (8 min) |
+| 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb)  | | less depth |
+| 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) |  | similar |
 |   |         |      | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
-| 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) (and the Golden Rule) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | 
-| 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) (and the Golden Rule) | | 
+| 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) (and the Golden Rule) | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | less depth |
+| 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) (and the Golden Rule) | | more depth | 
 |    |        |      | Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | |
-|6 | Sep 29 | [Encoding categorical variables](lectures/06_categorical-variables.ipynb) (and the Golden Rule) | |
-| 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) | no video | less depth on log reg, more on features
+|6 | Sep 29 | [Encoding categorical variables](lectures/06_categorical-variables.ipynb) (and the Golden Rule) | | more depth |
+| 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) |  | more depth
 |    |        |       | Dataset of the week: detecting credit card fraud  | 
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
-| 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) |  | n/a
+| 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) |  | similar |
 |    |        |         | Dataset of the week: predicting housing prices |
 | 10 | Oct 13 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
-| 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth on error metrics
-| 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | feature engineering is new, less depth on feature selection
+| 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth
+| 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | more on feature engineering, less on feature selection
 |    | Oct 22 | MIDTERM | [study materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ) |
 | 13 | Oct 27 | [Natural language processing](lectures/13_natural-language-processing.ipynb) |  |  new
 | 14 | Oct 29 | [Neural networks & computer vision](lectures/14_computer-vision.ipynb) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
