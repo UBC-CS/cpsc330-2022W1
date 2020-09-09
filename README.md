@@ -54,10 +54,10 @@ The lectures will be on Zoom. They can be joined through Canvas [here](https://c
 
 ## Homework schedule
 
-| #  | Due Date  | Topic | Associated lectures | 
-|--- |-----------|-------|---------------------|
-| 1  | Mon Sep 14 | numpy/pandas |   n/a      |
-| 2  | Mon Sep 21 | TBD |   2, 3, 4      |
+| #  | Due Date  | Associated lectures | 
+|--- |-----------|---------------------|
+| 1  | Tue Sep 15 11:59pm |    prerequisites      |
+| 2  | Mon Sep 21 11:59pm |   2, 3      |
 
 
 ## Attribution
