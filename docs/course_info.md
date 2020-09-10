@@ -64,11 +64,15 @@ The plan is that most of the assignments will contribute equally towards the ove
 
 For the full policy on grades, see [this document](grades.md).
 
+## Academic concessions
+
+UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf) for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include “a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend.” If you would like to request an academic concession, please fill out the [academic concession form](https://github.com/UBC-CS/cpsc330/blob/master/docs/ConcessionForm.pdf) and email it to the instructor as soon as possible. You may be asked for futher documentation. The instructor will evaluate the situation and make a decision on whether to grant the concession and, if so, how to proceed.
+
 ## Midterm
 
 The midterm exam will take place on **TBD**. TENTATIVE PLAN, SUBJECT TO CHANGE: The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
 
-**Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, you must provide a justified and documented reason to the instructor. If you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
+**Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, or anticipate missing the midterm exam, please see the Academic concessions section above. In most cases, if you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
 
 ## Final exam
 
