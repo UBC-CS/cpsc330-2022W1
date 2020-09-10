@@ -42,7 +42,7 @@ In most assignments, you will be asked to produce plots/figures. When including 
 - Regardless of your image formats, all text must be big enough to read without straining or zooming. Please be careful about this for axis labels, legends, titles, etc. Avoid tiny text!
 
 ## Groups
-You must work alone for Assignment 1. For Assignment 2 onwards, you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must request the partnership **before the assignment is released** (no exceptions!) by **following TBD instructions**.  At present, only one person needs to do this to create the team, although we can revisit this is the system is abused. 
+You must work alone for Assignment 1. For Assignment 2 onwards (assuming technical issues can be solved - TBD), you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must request the partnership **before the assignment is released** (no exceptions!) by **following TBD instructions**.  At present, only one person needs to do this to create the team, although we can revisit this is the system is abused. 
 
 The assignments will probably be released shortly after the previous assignment is due. So, to partner up with someone for hw2, we suggest specifying the partnership by the day hw1 is due. You can specify your partner as early as you want, so for example it's fine to do this for all assignments at the beginning of the course, if you know who your partner will be for all of them.
 
