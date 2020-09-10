@@ -54,7 +54,9 @@ Note: our primitive system currently doesn't support changing partners. So, plea
 
 ## Late submissions
 
-Late submissions will not be accepted. There will be no exceptions made, including illness, so try to start early on your assignments. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. Admittedly there will be a handful of unfortunate situations where someone loses marks due to an unforeseeable circumstance. I do not like this, but I believe the overall policy is best for the class as a whole.
+By default late submissions will not be accepted. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.
+
+_In exceptional circumstances_ a late submission may be accepted per UBC's [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf). 
 
 ## Updates to assignments
 
