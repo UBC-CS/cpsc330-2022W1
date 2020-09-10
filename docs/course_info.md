@@ -64,6 +64,8 @@ The plan is that most of the assignments will contribute equally towards the ove
 
 For the full policy on grades, see [this document](grades.md).
 
+For the grading scheme I wish we could use, see [here](https://youtu.be/HdHlfiOAJyE?t=3771).
+
 ## Academic concessions
 
 UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf) for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include “a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend.” If you would like to request an academic concession, please fill out the [academic concession form](https://github.com/UBC-CS/cpsc330/blob/master/docs/ConcessionForm.pdf) and email it to the instructor as soon as possible. You may be asked for futher documentation. The instructor will evaluate the situation and make a decision on whether to grant the concession and, if so, how to proceed.
