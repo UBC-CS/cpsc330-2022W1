@@ -1,6 +1,6 @@
 ## Homework info & submission guidelines
 
-All assignments will be submitted via [github.students.cs.ubc.ca](https://github.students.cs.ubc.ca/).
+To find your assignments, go to https://github.students.cs.ubc.ca/cpsc330-2020w-t1.
 
 ## Student repositories
 For every assignment, we will create a repository (repo) for each student. The repository will be named based on an internal ID
@@ -12,9 +12,7 @@ If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc3
 
 ## How to submit
 
-Your assignment-specific GitHub repository is your place to work on your assignment. You can use it to keep a backup, version control your work,
-collaborate with others, show unfinished work to instructors, etc. However, your final submission will be an HTML file to Canvas. We are providing you with a script to automatically submit to Canvas from your Jupyter notebook. This will be included at the bottom of each assignment notebook. It is your responsibility
-to convert your notebook to HTML and submit it to Canvas. Once you submit to Canvas, you should go to Canvas and ensure your assignment is there as expected.
+We anticipate that you will clone your homework-specific repository and do your work from within there. GitHub provides you with a backup, version control for your work, a way to collaborate with others, to show unfinished work to instructors and ask for help, etc. To submit your homework you must both push your work to https://github.students.cs.ubc.ca/ **and submit your rendered HTML file to Canvas** where it will be graded. Your assignment will come bundled (at the very bottom of the notebook) with a short script to render to HTML and push your work to Canvas. Once you submit to Canvas, you should go to Canvas and ensure your assignment is there as expected. It is your responsibility to make sure your assignment is submitted to both places and failure to do so will result in a deduction of marks.
 
 ## Other submission instructions
 
