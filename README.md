@@ -23,7 +23,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|---------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
-| 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
+| 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) [[recording](https://www.dropbox.com/s/3rol8k4ztd61zzq/CPSC-330_Lecture-1_2020-09-10.mp4?dl=0)] ||   n/a
 |   |        |       | Dataset of the week: predicting whether CPSC 330 students like cilantro | 
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb)  | | less depth |
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) |  | similar |
