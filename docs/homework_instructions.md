@@ -1,6 +1,6 @@
 ## Homework info & submission guidelines
 
-All assignments will be submitted via [github.students.cs.ubc.ca](https://github.students.cs.ubc.ca/).
+To find your assignments, go to https://github.students.cs.ubc.ca/cpsc330-2020w-t1.
 
 ## Student repositories
 For every assignment, we will create a repository (repo) for each student. The repository will be named based on an internal ID
