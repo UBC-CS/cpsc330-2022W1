@@ -67,21 +67,14 @@ to authenticate separately to interact with GitHub through command-line git. The
  
 To use a personal access token, go [here](https://github.students.cs.ubc.ca/settings/tokens). Click "Generate new token", check the "repo" box, and then press the green "Generate token" button. You'll be given a new token. Save that and treat it securely (as you would a password). 
 
-If you take this approach, then when cloning your repository, make sure you get the clone url that starts with `https://github.students.cs.ubc.ca` not the one that starts with `git@github.students.cs.ubc.ca`: 
-
-<img src="img/clone_https.png" width="40%">
-
-When you try to clone, you will be prompted for a username and password. Enter your CWL username as the username and your token as the password.
+If you take this approach, then when cloning your repository, make sure you get the clone url that starts with `https://github.students.cs.ubc.ca` not the one that starts with `git@github.students.cs.ubc.ca`. When you try to clone, you will be prompted for a username and password. Enter your CWL username as the username and your token as the password.
 
 
 #### Approach 2: SSH keys (more work up front, potentially more convenient in the long term)
 
 Instructions for setting up SSH keys with GitHub can be found [here](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh). Please keep in mind that you'll need to add your keys to github.students.cs.ubc.ca - specifically, [here](https://github.students.cs.ubc.ca/settings/ssh) - rather than to github.com. 
 
-If you take this approach, then when cloning your repository, make sure you get the clone url that starts with `git@github.students.cs.ubc.ca`, not the one that starts with `https://github.students.cs.ubc.ca`:
-
-<img src="img/clone_ssh.png" width="40%">
-
+If you take this approach, then when cloning your repository, make sure you get the clone url that starts with `git@github.students.cs.ubc.ca`, not the one that starts with `https://github.students.cs.ubc.ca`.
 
 # Who can see my repos?
 
