@@ -12,7 +12,9 @@ If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc3
 
 ## How to submit
 
-We anticipate that you will clone your homework-specific repository and do your work from within there. GitHub provides you with a backup, version control for your work, a way to collaborate with others, to show unfinished work to instructors and ask for help, etc. To submit your homework you must both push your work to https://github.students.cs.ubc.ca/ **and submit your rendered HTML file to Canvas** where it will be graded. Your assignment will come bundled (at the very bottom of the notebook) with a short script to render to HTML and push your work to Canvas. Once you submit to Canvas, you should go to Canvas and ensure your assignment is there as expected. It is your responsibility to make sure your assignment is submitted to both places and failure to do so will result in a deduction of marks.
+We anticipate that you will clone your homework-specific repository and do your work from within there. GitHub provides you with a backup, version control for your work, a way to collaborate with others, to show unfinished work to instructors and ask for help, etc. To submit your homework you must both push your work to https://github.students.cs.ubc.ca/ **and submit your rendered HTML file to Canvas** where it will be graded. Your assignment will come bundled (at the very bottom of the notebook) with a short script to render to HTML and push your work to Canvas. To use that script, you will need to create a Canvas token. For a demo on how to do that, see [this video](https://drive.google.com/file/d/1touljci-tGXxBq4lhW1hnlr04-tQ8zMo/view) by my colleague Tomas Beuzen (his video is for another course, but the basic idea is the same).
+
+Once you submit to Canvas, you should go to Canvas and ensure your assignment is there as expected. It is your responsibility to make sure your assignment is submitted to both places and failure to do so will result in a deduction of marks.
 
 ## Other submission instructions
 
