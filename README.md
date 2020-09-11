@@ -16,12 +16,14 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 ## Lecture schedule
 
-The lectures will be on Zoom. They can be joined through Canvas [here](https://canvas.ubc.ca/courses/53561/external_tools/15408). If you would like to join the lectures but cannot login to Canvas (presumably because you're not enrolled in the course) please email Mike and I will give you the link.
+**Live lectures**: The lectures will be on Zoom. They can be joined through Canvas [here](https://canvas.ubc.ca/courses/53561/external_tools/15408). If you would like to join the lectures but cannot login to Canvas (presumably because you're not enrolled in the course) please email Mike and I will give you the link.
+
+**Lecture recordings**: The lecture recordings can be accessed through the same Zoom page on Canvas [here](https://canvas.ubc.ca/courses/53561/external_tools/15408). From this page, navigate to the "Cloud Recordings" tab and you should see them there. The same lecture recordings will be posted here embedded in the schedule below.
 
 | #  | Date  | Topic | Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|---------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | |
-| 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) ||   n/a
+| 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) [[recording](https://www.dropbox.com/s/3rol8k4ztd61zzq/CPSC-330_Lecture-1_2020-09-10.mp4?dl=0)] ||   n/a
 |   |        |       | Dataset of the week: predicting whether CPSC 330 students like cilantro | 
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb)  | | less depth |
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) (and the Golden Rule) |  | similar |
