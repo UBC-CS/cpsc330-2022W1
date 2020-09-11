@@ -7,7 +7,7 @@
 ### Python resources
 
 Mike's resources:
-- Python [videos](https://www.youtube.com/playlist?list=53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) from DSCI 511
+- Python [videos](https://www.youtube.com/playlist?list=PLWmXHcz_53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) from DSCI 511
 - [Old CPSC 330 notes on Python](python_notes.ipynb)
 
 Hands-on tutorials:
