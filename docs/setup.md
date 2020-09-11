@@ -84,5 +84,8 @@ jupyter labextension update --all
 jupyter lab build
 ```
 
+### Git
+
+Please also see the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md) as you will need git as well for the course.
 
 		
