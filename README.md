@@ -10,7 +10,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 * [syllabus / administrative info](docs/course_info.md)
 * [other course documents](docs)
 * [past exams](exams/)
-* [Piazza](https://piazza.com/class/kb2e6nwu3uj23)
+* [Piazza](https://piazza.com/class/kb2e6nwu3uj23) (this is where all announcements will be made)
 * [class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Zoom links on Canvas](https://canvas.ubc.ca/courses/53561/external_tools/15408)
 
