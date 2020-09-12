@@ -64,7 +64,7 @@ A virtual environment is a Python environment such that the Python interpreter, 
 		```
 		If you happen to use csh or fish shell, source the corresponding activate file. 
 		After a successful activation, something like `(cpsc330env)` should show up in the terminal.
-	5. Download [requirement.txt](requirement.txt) and put it in your working directory. Then install the dependencies listed with
+	5. Download [requirements.txt](requirements.txt) and put it in your working directory. Then install the dependencies listed with
 		```
 		pip install -r requirements.txt
 		```
