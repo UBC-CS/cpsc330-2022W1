@@ -75,8 +75,14 @@ A virtual environment is a Python environment such that the Python interpreter, 
 		```
 	For more information on `virtualenv`, see [here](https://virtualenv.pypa.io/en/latest/index.html).
 
-### Steps to enable canvas utitlity
+### Additional steps to enable canvas utitlity
 
+1. Nodejs
+If you've set up the virtual environment with virtualenv, first install nodejs from [here](https://nodejs.org/en/download/)
+
+If you've set up the virtual environment with conda, nodejs should already be installed.
+
+2. jupyter labextension
 Activate the virtual environment, then run the following commands
 ```
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
