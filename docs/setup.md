@@ -33,6 +33,9 @@ A virtual environment is a Python environment such that the Python interpreter, 
 		```
 		After a successful activation, something like `(cpsc330env)` should show up in the terminal.
 	5. We are all set! You can now run homework and lecture materials within the virtual environment.
+		```
+		jupyter lab
+		```
 	6. To deactivate the environment, run
 		```
 		conda deactivate
@@ -68,8 +71,14 @@ A virtual environment is a Python environment such that the Python interpreter, 
 		```
 		pip install -r requirements.txt
 		```
-	6. We are all set! You can now run homework and lecture materials within the virtual environment.
-	7. To deactivate the virtual environment, run
+	6. A few more dependencies that we'll need to install manually
+		- Install `nodejs` from [here](https://nodejs.org/en/download/)
+		- Install `graphviz` from [here](https://graphviz.org/download/)
+	7. We are all set! You can now run homework and lecture materials within the virtual environment.
+		```
+		jupyter lab
+		```
+	8. To deactivate the virtual environment, run
 		```
 		deactivate
 		```
@@ -77,12 +86,6 @@ A virtual environment is a Python environment such that the Python interpreter, 
 
 ### Additional steps to enable canvas utitlity
 
-1. Nodejs
-If you've set up the virtual environment with virtualenv, first install nodejs from [here](https://nodejs.org/en/download/)
-
-If you've set up the virtual environment with conda, nodejs should already be installed.
-
-2. jupyter labextension
 Activate the virtual environment, then run the following commands
 ```
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
