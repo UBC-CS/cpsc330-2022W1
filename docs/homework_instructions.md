@@ -46,7 +46,12 @@ You must work alone for Assignment 1. For Assignment 2 onwards, you may work wit
 
 1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). Do all your work together in that one repository and ignore the other one.
 2. To be completed by the person whose repository you are using: go to the Settings tab in GitHub, then Collaborators & teams, then search your partner's CWL username and add them as a collaborator with Write or Admin access (not Read) so that they can push to the repository. 
-3. (optional) From the repository's Settings tab, rename the repository to `hw2_yourCWL_theirCWL`.
+
+Please do **not** rename your repository. 
+
+As usual, push your work to GitHub.
+
+When it comes time to submit Canvas, only the "primary" partner (whose repository you are using) needs to submit.
 
 This system requires a certain level of trust and professionalism, because the parter(s) with Admin access could remove the other person at any time. If the system is abused, we may stop allowing partners for any future assignments.
 
