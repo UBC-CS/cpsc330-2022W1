@@ -42,15 +42,13 @@ In most assignments, you will be asked to produce plots/figures. When including 
 - Regardless of your image formats, all text must be big enough to read without straining or zooming. Please be careful about this for axis labels, legends, titles, etc. Avoid tiny text!
 
 ## Groups
-You must work alone for Assignment 1. For Assignment 2 onwards (assuming technical issues can be solved - TBD), you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must request the partnership **before the assignment is released** (no exceptions!) by **following TBD instructions**.  At present, only one person needs to do this to create the team, although we can revisit this is the system is abused. 
+You must work alone for Assignment 1. For Assignment 2 onwards, you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must follow these instructions:
 
-The assignments will probably be released shortly after the previous assignment is due. So, to partner up with someone for hw2, we suggest specifying the partnership by the day hw1 is due. You can specify your partner as early as you want, so for example it's fine to do this for all assignments at the beginning of the course, if you know who your partner will be for all of them.
+1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). Do all your work together in that one repository and ignore the other one.
+2. To be completed by the person whose repository you are using: go to the Settings tab in GitHub, then Collaborators & teams, then search your partner's CWL username and add them as a collaborator with Write or Admin access (not Read) so that they can push to the repository. 
+3. (optional) From the repository's Settings tab, rename the repository to `hw2_yourCWL_theirCWL`.
 
-If you did this successfully, then a single repository will be created for both of you to work on. For example, if your username is `goatcabin` and your partner's username is `rhomboid` then your joint hw1 repository will be named `hw1_goatcabin_rhomboid` (or `hw1_rhomboid_goatcabin`) and you will both have write access to it. If something went wrong and you got individual repositories named `hw1_goatcabin` and `hw1_rhomboid` even though you followed all the above instructions, please contact the instructor.
-
-Suggestion: if you've never used git/GitHub and/or Python before, try to find a partner who has, especially for the early assignments when these tools are new to you.
-
-Note: our primitive system currently doesn't support changing partners. So, please be sure before you make a request.
+This system requires a certain level of trust and professionalism, because the parter(s) with Admin access could remove the other person at any time. If the system is abused, we may stop allowing partners for any future assignments.
 
 ## Late submissions
 
