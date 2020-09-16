@@ -66,5 +66,5 @@ _In exceptional circumstances_ a late submission may be accepted with an academi
 If there are errors or other changes that need to be made to an assignment, I will announce them in a pinned Piazza post.
 
 ## Citing sources
-If you use information from students outside your group or from online sources _including code snippets from Stack Overflow_, cite this at the start of each question. **You will receive a mark of 0 for the assignment (and possibly other consequences) if you are found copying from other sources without citation**.
+If you use information from students outside your group or from online sources _including code snippets from Stack Overflow_ or lecture notes, cite this at the start of each question. **You will receive a mark of 0 for the assignment (and possibly other consequences) if you are found copying from other sources without citation**.
 
