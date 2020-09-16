@@ -46,7 +46,7 @@ You must work alone for Assignment 1. For Assignment 2 onwards, you may work wit
 
 **The GitHub part**
 
-1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). Do all your work together in that one repository and ignore the other one.
+1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). You'll do all your work together in that one repository and ignore the other one.
 2. The person whose repository you are using needs to go to the Settings tab in GitHub, then Collaborators & teams, then search your partner's CWL username and add them as a collaborator with Write or Admin access (not Read) so that they can push to the repository. 
 
 Note: This system requires a certain level of trust and professionalism, because the parter(s) with Admin access could remove the other person at any time. If the system is abused, we may stop allowing partners for any future assignments. Please do not use your Admin powers for anything confusing such as renaming your repository.
@@ -60,8 +60,9 @@ Note: I realize this is a horribly bad interface but I think this solution will 
 
 **Submission**
 
-1. As usual, push your work to GitHub.
-2. When it comes time to submit Canvas, only one of you needs to submit. For now, please have this be the "primary" partner (whose repository you are using). I don't think this is necessary but it's a helpful safeguard while we test-drive this workflow on hw2.
+1. Make sure you've done all the above steps.
+2. As usual, push your work to GitHub as you work on the assignment.
+3. When it comes time to submit Canvas, only one of you needs to submit. For now, please have this be the "primary" partner (whose repository you are using). I don't think this is necessary but it's a helpful safeguard while we test-drive this workflow on hw2.
 
 
 ## Late submissions
