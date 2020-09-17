@@ -54,7 +54,9 @@ Note: This system requires a certain level of trust and professionalism, because
 **The Canvas part**
 
 1. One of you (either one, but make sure you know who is doing it) needs to go to the course on Canvas, and select People on the left sidebar. There should be a tab for the particular assignment, e.g. `hw2_groups` for hw2. Go to that tab. 
-2. Search for your partner's name to find their group, and select "SWITCH TO" to switch to their group. (Note: apparently the search doesn't work very well, so you may need to try their first name, or last name, etc.)
+2. Search for your partner's name to find their group, and select "SWITCH TO" to switch to their group. 
+
+Note: apparently the search doesn't work very well, so you may need to try their first name, or last name, etc. If you can't find your partner by searching, an alternative is to see what group you are in and let them know. You can do this either by searching your own name or going to the Groups tab at the far left of the Canvas window.
 
 Note: I realize this is a horribly bad interface but I think this solution will actually be more convenient for students than the old solution because it allows you to decide on partership after the assignment is released. In the old system students had to declare partnerships in advance and it caused a lot of chaos. Just make sure you do all the steps before submitting anything.
 
