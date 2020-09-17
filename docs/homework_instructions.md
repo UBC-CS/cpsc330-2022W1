@@ -41,19 +41,31 @@ In most assignments, you will be asked to produce plots/figures. When including 
 - All figures must have some accompanying text explaining what the figure is about. You can do this by putting a figure title in the image itself (such as, "Training error vs. k") or you can use LaTeX to add figure captions that appear underneath the figure.
 - Regardless of your image formats, all text must be big enough to read without straining or zooming. Please be careful about this for axis labels, legends, titles, etc. Avoid tiny text!
 
-## Groups
-You must work alone for Assignment 1. For Assignment 2 onwards, you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must follow these instructions:
+## Partners
+You must work alone for Assignment 1. For Assignment 2 onwards, you may work with a partner or work alone. You can make this decision independently for each assignment. To work with a partner, you must follow these instructions before you get started.
 
-1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). Do all your work together in that one repository and ignore the other one.
-2. To be completed by the person whose repository you are using: go to the Settings tab in GitHub, then Collaborators & teams, then search your partner's CWL username and add them as a collaborator with Write or Admin access (not Read) so that they can push to the repository. 
+**The GitHub part**
 
-Please do **not** rename your repository. 
+1. Agree with your partner on which repository you want to work in, e.g. `hw2_yourCWL` vs. `hw2_theirCWL` (it makes no difference, but make sure you both know which one you're using). You'll do all your work together in that one repository and ignore the other one.
+2. The person whose repository you are using needs to go to the Settings tab in GitHub, then Collaborators & teams, then search your partner's CWL username and add them as a collaborator with Write or Admin access (not Read) so that they can push to the repository. 
 
-As usual, push your work to GitHub.
+Note: This system requires a certain level of trust and professionalism, because the parter(s) with Admin access could remove the other person at any time. If the system is abused, we may stop allowing partners for any future assignments. Please do not use your Admin powers for anything confusing such as renaming your repository.
 
-When it comes time to submit Canvas, only the "primary" partner (whose repository you are using) needs to submit.
+**The Canvas part**
 
-This system requires a certain level of trust and professionalism, because the parter(s) with Admin access could remove the other person at any time. If the system is abused, we may stop allowing partners for any future assignments.
+1. One of you (either one, but make sure you know who is doing it) needs to go to the course on Canvas, and select People on the left sidebar. There should be a tab for the particular assignment, e.g. `hw2_groups` for hw2. Go to that tab. 
+2. Search for your partner's name to find their group, and select "SWITCH TO" to switch to their group. 
+
+Note: apparently the search doesn't work very well, so you may need to try their first name, or last name, etc. If you can't find your partner by searching, an alternative is to see what group you are in and let them know. You can do this either by searching your own name or going to the Groups tab at the far left of the Canvas window.
+
+Note: I realize this is a horribly bad interface but I think this solution will actually be more convenient for students than the old solution because it allows you to decide on partership after the assignment is released. In the old system students had to declare partnerships in advance and it caused a lot of chaos. Just make sure you do all the steps before submitting anything.
+
+**Submission**
+
+1. Make sure you've done all the above steps.
+2. As usual, push your work to GitHub as you work on the assignment.
+3. When it comes time to submit Canvas, only one of you needs to submit. For now, please have this be the "primary" partner (whose repository you are using). I don't think this is necessary but it's a helpful safeguard while we test-drive this workflow on hw2.
+
 
 ## Late submissions
 
