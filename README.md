@@ -36,7 +36,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |    |        |       | Dataset of the week: detecting credit card fraud  | 
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), Optional watching: [video: precision and recall](https://youtu.be/3SD6fgNGZSo?t=214) (until 8:29), [video: ensembles](https://youtu.be/3SD6fgNGZSo?t=1386) (until 37:48), then continuing the same video until 46:33 for random forests; [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) |  | similar |
-|    |        |         | Dataset of the week: predicting housing prices |
+|    |        |         | Dataset of the week: [predicting housing prices](https://www.kaggle.com/c/home-data-for-ml-course/) |
 | 10 | Oct 13 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb)  |  | more depth on feature importances, less on linear regression
 | 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | |  more depth
 | 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | more on feature engineering, less on feature selection
