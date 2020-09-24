@@ -24,7 +24,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |--- |-------|--------|----------|-------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | | |
 | 1 | Sep 10 | [Course intro](lectures/01_intro.ipynb) | [recording](https://www.dropbox.com/s/3rol8k4ztd61zzq/CPSC-330_Lecture-1_2020-09-10.mp4?dl=0) ||   n/a
-|   |        |     |  | Dataset of the week: predicting whether CPSC 330 students like cilantro | 
+|   |        |     |  | Dataset of the week: [which CPSC 330 students like cilantro?](https://github.com/UBC-CS/cpsc330/blob/master/lectures/data/330-students-cilantro.csv) | 
 | 2 | Sep 15 | [Decision trees](lectures/02_decision-trees.ipynb) | [recording](https://ubc.zoom.us/rec/share/ieAgJaUW_SoOA6D9gU3zKjeeh4qpUFb2U1K2W30woNe9-mpHvRk2tZuGUL_PqA19._rj95En4-zj3UNc4) pw `!?3niNc^` | | less depth |
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) | [recording](https://ubc.zoom.us/rec/share/IfGQAGNokar3X9_ERd26bV6-ZqzU4S3lK7gwtkCUxLW5fksAbh119vx1-TDqqhES.MtCzr-zV6lrPuvsc) pw `90p@qbt4` | [About Train, Validation and Test sets](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7) | similar |
 |   |         |   |   | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
