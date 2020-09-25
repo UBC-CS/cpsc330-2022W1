@@ -30,6 +30,11 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |   |         |   |   | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
 | 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) | [recording](https://ubc.zoom.us/rec/share/xTVTgILLD2ATXf4WJ4bEgjaVwe2f2q8_3YWzAD58oCvEfaoHzwqAeIkvARPThhPE.saNAIFN0VYwjaCYm) pw `ZsJZ#e29` | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | less depth |
 | 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) | [recording](https://ubc.zoom.us/rec/share/ftSb66tJ7mE7elR8ifjTt7-7zJEb154u0wFZNKbEMCsiscIRYJfwWGt5fOLEzm_U.BmhjY_xrAbV1Po4g) pw `pT2QVE*#` and [supplemental screencast](https://www.dropbox.com/s/i9tt6bmxju3ioj3/BayesOpt.mp4?dl=0) | | more depth | 
+
+Below this point is the schedule for future lectures (not yet updated for 2020W1)
+
+| #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
+|--- |-------|--------|----------|-------------------------|--------------------|
 |    |        |   |   | Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | |
 |6 | Sep 29 | [Encoding categorical variables](lectures/06_categorical-variables.ipynb)  | | | more depth |
 | 7 |  Oct 1 | [missing data, transforming numeric features](lectures/07_missingness-scaling.ipynb) |  |  | more depth
