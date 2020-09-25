@@ -7,6 +7,8 @@
 ### Python resources
 
 Mike's resources:
+
+- Interactive pandas/Python lessons created by Mike and two colleagues: https://prog-learn.mds.ubc.ca/
 - Python [videos](https://www.youtube.com/playlist?list=PLWmXHcz_53Q26aQzhknaT3zwWvl7w8wQE) and [notebooks](https://github.com/UBC-MDS/DSCI_511_prog-dsci) from DSCI 511
 - [Old CPSC 330 notes on Python](python_notes.ipynb)
 
