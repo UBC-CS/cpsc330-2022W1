@@ -29,7 +29,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 3 | Sep 17 | [The fundamental tradeoff of ML](lectures/03_fundamental-tradeoff.ipynb) | [recording](https://ubc.zoom.us/rec/share/IfGQAGNokar3X9_ERd26bV6-ZqzU4S3lK7gwtkCUxLW5fksAbh119vx1-TDqqhES.MtCzr-zV6lrPuvsc) pw `90p@qbt4` | [About Train, Validation and Test sets](https://towardsdatascience.com/train-validation-and-test-sets-72cb40cba9e7) | similar |
 |   |         |   |   | Dataset of the week: [sentiment analysis of movie reviews](https://www.kaggle.com/utathya/imdb-review-dataset) | 
 | 4 | Sep 22 | [Logistic regression, word counts, `predict_proba`](lectures/04_logreg-countvec-proba.ipynb) | [recording](https://ubc.zoom.us/rec/share/xTVTgILLD2ATXf4WJ4bEgjaVwe2f2q8_3YWzAD58oCvEfaoHzwqAeIkvARPThhPE.saNAIFN0VYwjaCYm) pw `ZsJZ#e29` | [Meaningless comparisons lead to false optimism in medical machine learning](https://arxiv.org/pdf/1707.06289.pdf) | less depth |
-| 5 | Sep 24 | [Hyperparameter optimization, pipelines](lectures/05_hyperopt-pipelines.ipynb) | [recording](https://ubc.zoom.us/rec/share/ftSb66tJ7mE7elR8ifjTt7-7zJEb154u0wFZNKbEMCsiscIRYJfwWGt5fOLEzm_U.BmhjY_xrAbV1Po4g) pw `pT2QVE*#` and [supplemental screencast](https://www.dropbox.com/s/i9tt6bmxju3ioj3/BayesOpt.mp4?dl=0) | | more depth | 
+| 5 | Sep 24 | [Pipelines & hyperparameter optimization](lectures/05_hyperopt-pipelines.ipynb) | [recording](https://ubc.zoom.us/rec/share/ftSb66tJ7mE7elR8ifjTt7-7zJEb154u0wFZNKbEMCsiscIRYJfwWGt5fOLEzm_U.BmhjY_xrAbV1Po4g) pw `pT2QVE*#` and [supplemental screencast](https://www.dropbox.com/s/i9tt6bmxju3ioj3/BayesOpt.mp4?dl=0) | | more depth | 
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
