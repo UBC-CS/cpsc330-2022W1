@@ -37,7 +37,7 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 |--- |-------|--------|----------|-------------------------|--------------------|
 |    |        |    Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | | | |
 |6 | Sep 29 | [Optimization bias & encoding categorical variables](lectures/06_optimization-bias-categoricals.ipynb)  | | | more depth |
-| 7 |  Oct 1 | [EDA, missing data, scaling numeric features](lectures/07_eda-missingness-scaling.ipynb) |  |  | more depth
+| 7 |  Oct 1 | [EDA, missing data, scaling numeric features](lectures/07_missingness-scaling.ipynb) |  |  | more depth
 |    |        |       Dataset of the week: detecting credit card fraud  | | |
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | | | similar |
