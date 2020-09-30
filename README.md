@@ -32,12 +32,12 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 5 | Sep 24 | [Pipelines & hyperparameter optimization](lectures/05_hyperopt-pipelines.ipynb) | [recording](https://ubc.zoom.us/rec/share/ftSb66tJ7mE7elR8ifjTt7-7zJEb154u0wFZNKbEMCsiscIRYJfwWGt5fOLEzm_U.BmhjY_xrAbV1Po4g) pw `pT2QVE*#` and [supplemental screencast](https://www.dropbox.com/s/i9tt6bmxju3ioj3/BayesOpt.mp4?dl=0) | | more depth | 
 |    |        |    Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | | | |
 |6 | Sep 29 | [Optimization bias & encoding categorical variables](lectures/06_optimization-bias-categoricals.ipynb)  | [recording](https://ubc.zoom.us/rec/share/a48aAcfYHU2Cdt3E2ZN6HrGhQXxg0oSF7ux89a5YMb5Yl_2iiWSfc4mVWlp2reZf.LBVsW07isCcBWqbI) pw `3J10UiO.` | | more depth |
+| 7 |  Oct 1 | [Imputation, scaling numeric features, `ColumnTransformer`](lectures/07_missingness-scaling.ipynb) |  |  | more depth
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 7 |  Oct 1 | [EDA, missing data, scaling numeric features](lectures/07_missingness-scaling.ipynb) |  |  | more depth
 |    |        |       Dataset of the week: detecting credit card fraud  | | |
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | | | similar |
