@@ -32,7 +32,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 5 | Sep 24 | [Pipelines & hyperparameter optimization](lectures/05_hyperopt-pipelines.ipynb) | [recording](https://ubc.zoom.us/rec/share/ftSb66tJ7mE7elR8ifjTt7-7zJEb154u0wFZNKbEMCsiscIRYJfwWGt5fOLEzm_U.BmhjY_xrAbV1Po4g) pw `pT2QVE*#` and [supplemental screencast](https://www.dropbox.com/s/i9tt6bmxju3ioj3/BayesOpt.mp4?dl=0) | | more depth | 
 |    |        |    Dataset of the week: [Predicting income from census data](https://www.kaggle.com/uciml/adult-census-income) | | | |
 |6 | Sep 29 | [Optimization bias & encoding categorical variables](lectures/06_optimization-bias-categoricals.ipynb)  | [recording](https://ubc.zoom.us/rec/share/a48aAcfYHU2Cdt3E2ZN6HrGhQXxg0oSF7ux89a5YMb5Yl_2iiWSfc4mVWlp2reZf.LBVsW07isCcBWqbI) pw `3J10UiO.` | | more depth |
-| 7 |  Oct 1 | [Imputation, scaling numeric features, `ColumnTransformer`](lectures/07_missingness-scaling.ipynb) |  |  | more depth
+| 7 |  Oct 1 | [Imputation, scaling numeric features, `ColumnTransformer`](lectures/07_missingness-scaling.ipynb) | [recording](https://ubc.zoom.us/rec/share/B0b9mHRa-CEqyVjfD8Jdh9taClf-gPiduRYcQMe9v9_V9-zewMn4B_MpbzXeOPEL.wrlH68yTcewU0zZC) pw `b.+DFR47`  |  | more depth
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
