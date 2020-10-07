@@ -53,10 +53,10 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 | 17 | Nov 10 | [Survival analysis](lectures/17_survival-analysis.ipynb) | | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 18 | Nov 12 | [Clustering](lectures/18_clustering.ipynb) | | | less depth
 | 19 | Nov 17 | [Outliers](lectures/19_outliers.ipynb) | | | different angle
-| 20 | Nov 19 | Model deployment (or move to Dec 1) | | | new 
-| 21 | Nov 24 | [Communicating your results](lectures/21_communication.ipynb) | | [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
-| 22 | Nov 26 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
-| 23 | Dec 1 | [Ethics](lectures/23_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
+| 20 | Nov 19 | [Communicating your results](lectures/21_communication.ipynb) | | [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
+| 21 | Nov 24 | [Communicating your results, continued](lectures/22_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
+| 22 | Nov 26 | [Ethics](lectures/23_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
+| 23 | Dec 1| Model deployment  | | | new 
 | 24 | Dec 3 | [Leftovers; Conclusion](lectures/24_leftovers-conclusion.ipynb) | |  | 
 
 ## Homework schedule
