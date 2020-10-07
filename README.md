@@ -65,6 +65,13 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 |--- |-----------|---------------------|
 | 1  | Tue Sep 15 11:59pm |    prerequisites      |
 | 2  | Mon Sep 21 11:59pm |   2, 3      |
+| 3  | Mon Sep 28 11:59pm |   4, 5      |
+| 4  | Mon Oct 12 11:59pm |   6-9      |
+| 5  | Mon Oct 19 11:59pm |   9-11      |
+| 6  | Mon Nov 9 11:59pm |   12-15      |
+| 7  | Mon Nov 16 11:59pm |   16-18      |
+| 8  | Mon Nov 23 11:59pm |   whole course      |
+| 9  | Mon Nov 30 11:59pm |   20-22    |
 
 
 ## Attribution
