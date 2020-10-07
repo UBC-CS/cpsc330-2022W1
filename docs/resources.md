@@ -1,6 +1,6 @@
 # Reference Material
 
-### Recommended companion materials
+### Relevant companion materials
 
 There are a lot of good materials created by Andreas Müller, one of the core developers of scikit-learn:
 
