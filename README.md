@@ -35,12 +35,12 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 7 |  Oct 1 | [Imputation, scaling numeric features, `ColumnTransformer`](lectures/07_missingness-scaling.ipynb) | [recording](https://ubc.zoom.us/rec/share/B0b9mHRa-CEqyVjfD8Jdh9taClf-gPiduRYcQMe9v9_V9-zewMn4B_MpbzXeOPEL.wrlH68yTcewU0zZC) pw `b.+DFR47`  |  | more depth
 |    |        |       Dataset of the week: [detecting credit card fraud](https://www.kaggle.com/mlg-ulb/creditcardfraud)  | | |
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [recording](https://www.dropbox.com/s/yw0uq4mxrnb6x13/08_2020-10-06.mp4?dl=0) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
+| 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | | | similar |
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | | | similar |
 |    |        |         | Dataset of the week: [predicting housing prices](https://www.kaggle.com/c/home-data-for-ml-course/) |
 | 10 | Oct 13 | [Linear regression, feature importances](lectures/10_feature-importances.ipynb) | |  | more depth on feature importances, less on linear regression
 | 11 | Oct 15 | [Evaluation metrics for regression](lectures/11_regression-metrics.ipynb) | | |  more depth
