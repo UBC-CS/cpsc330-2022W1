@@ -36,14 +36,14 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 |    |        |       Dataset of the week: [detecting credit card fraud](https://www.kaggle.com/mlg-ulb/creditcardfraud)  | | |
 | 8 | Oct 6 | [Evaluation metrics for classification](lectures/08_classification-metrics.ipynb) | [recording](https://www.dropbox.com/s/yw0uq4mxrnb6x13/08_2020-10-06.mp4?dl=0) | [Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules](https://www.fharrell.com/post/class-damage/), [Classification vs. Prediction](https://www.fharrell.com/post/classification/) | more depth
 | 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | [recording](https://www.dropbox.com/s/ewzghom1h5h9kwx/lec09_2020-10-08.mp4?dl=0) | | similar |
+|    |        |         | Dataset of the week: [predicting housing prices](https://www.kaggle.com/c/home-data-for-ml-course/) |
+| 10 | Oct 13 | [Linear regression, regression metrics](lectures/10_regression-metrics.ipynb) | |  | more depth on metrics, less on linear regression
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-|    |        |         | Dataset of the week: [predicting housing prices](https://www.kaggle.com/c/home-data-for-ml-course/) |
-| 10 | Oct 13 | [Linear regression, regression metrics](lectures/10_regression-metrics.ipynb) | |  | more depth on feature importances, less on linear regression
-| 11 | Oct 15 | [Prediction intervals, feature importances](lectures/11_feature-importances.ipynb) | | |  more depth
+| 11 | Oct 15 | [Prediction intervals, feature importances](lectures/11_feature-importances.ipynb) | | | new
 | 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | more on feature engineering, less on feature selection
 |    | Oct 22 | MIDTERM | [study materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ) | |
 | 13 | Oct 27 | [Natural language processing](lectures/13_natural-language-processing.ipynb) | | |  new
