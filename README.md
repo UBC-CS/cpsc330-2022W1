@@ -38,7 +38,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 9 | Oct 8 | [Ensembles](lectures/09_ensembles.ipynb) | [recording](https://www.dropbox.com/s/ewzghom1h5h9kwx/lec09_2020-10-08.mp4?dl=0) | | similar |
 |    |        |         | Dataset of the week: [predicting housing prices](https://www.kaggle.com/c/home-data-for-ml-course/) |
 | 10 | Oct 13 | [Linear regression, regression metrics](lectures/10_regression-metrics.ipynb) | [recording part 1](https://www.dropbox.com/s/jkydpcvr2dyf8uf/lecture10.mp4?dl=0), [recording part 2](https://www.dropbox.com/s/414dedx4f10cpl3/lecture10_part2.mp4?dl=0) |  | more depth on metrics, less on linear regression
-| 11 | Oct 15 | [Prediction intervals, feature importances](lectures/11_feature-importances.ipynb) | | | new
+| 11 | Oct 15 | [Prediction intervals, feature importances](lectures/11_feature-importances.ipynb) | [recording](https://www.dropbox.com/s/uzn8c5j966lv3v6/lecture11.mp4?dl=0) | | new
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
