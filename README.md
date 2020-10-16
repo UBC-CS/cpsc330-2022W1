@@ -44,7 +44,7 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 12 | Oct 20 | [Feature engineering, feature selection](lectures/12_feature-engineering-selection.ipynb) | | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | more on feature engineering, less on feature selection
+| 12 | Oct 20 | [Feature selection, midterm review](lectures/12_feature-selection-and-review.ipynb) | | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | less depth
 |    | Oct 22 | MIDTERM | [study materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ) | |
 | 13 | Oct 27 | [Natural language processing](lectures/13_natural-language-processing.ipynb) | | |  new
 | 14 | Oct 29 | [Neural networks & computer vision](lectures/14_computer-vision.ipynb) | | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
