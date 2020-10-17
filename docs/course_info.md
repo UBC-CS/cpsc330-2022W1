@@ -72,13 +72,13 @@ UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc
 
 ## Midterm
 
-The midterm exam will take place on or around October 22, 2020 (depending on the format). The TENTATIVE PLAN is: The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
+The midterm exam will take place on October 22, 2020 during class time. The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be on Canvas and you will have 75 minutes to complete it.
 
 **Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, or anticipate missing the midterm exam, please see the Academic concessions section above. In most cases, if you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
 
 ## Final exam
 
-The final exam will take place on **TBD** Pacific Time. TENTATIVE PLAN, SUBJECT TO CHANGE: The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distribution via GitHub in the same way as assignments.
+The final exam will be take-home and will be held before or during the exam period. The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. The exam will be distributed via GitHub in the same way as assignments.
 
 ## Code of conduct
 
