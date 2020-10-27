@@ -41,12 +41,12 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 11 | Oct 15 | [Prediction intervals, feature importances](lectures/11_feature-importances.ipynb) | [recording](https://www.dropbox.com/s/uzn8c5j966lv3v6/lecture11.mp4?dl=0) | | new
 | 12 | Oct 20 | [Feature selection, midterm review](lectures/12_feature-selection-and-review.ipynb) | [screencast](https://www.dropbox.com/s/da7lx8kdzxfmna2/lecture12.mp4?dl=0) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | less depth
 |    | Oct 22 | MIDTERM | [study materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ) | |
+| 13 | Oct 27 | [Neural networks & computer vision](lectures/13_computer-vision.ipynb) | | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 13 | Oct 27 | [Neural networks & computer vision](lectures/13_computer-vision.ipynb) | | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
 | 14 | Oct 29 | [Nearest neighbours for product similarity](lectures/14_nearest-neighbours.ipynb) | | | less depth
 | 15 | Nov 3 | [Feature engineering, embeddings](lectures/15_feature-engineering-embeddings.ipynb) | | |  new
 | 16 | Nov 5 | [Time series data](lectures/16_time-series.ipynb) | | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
