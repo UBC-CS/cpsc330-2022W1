@@ -42,7 +42,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 12 | Oct 20 | [Feature selection, midterm review](lectures/12_feature-selection-and-review.ipynb) | [screencast](https://www.dropbox.com/s/da7lx8kdzxfmna2/lecture12.mp4?dl=0) | [Feature selection article](https://towardsdatascience.com/featuion-techniques-in-machine-learning-with-python-f24e7da3f36e) | less depth
 |    | Oct 22 | MIDTERM | [study materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ) | |
 | 13 | Oct 27 | [Neural networks & computer vision](lectures/13_computer-vision.ipynb) | [recording](https://www.dropbox.com/s/lyl9f6k8k2sqkkt/lecture13.mp4?dl=0) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
-| 14 | Oct 29 | [Distances and neighbours](lectures/14_distances-neighbours.ipynb) | | | less depth
+| 14 | Oct 29 | [Distances and neighbours](lectures/14_distances-neighbours.ipynb) | [recording](https://www.dropbox.com/s/62qgg4cnk0fbcqv/lecture14.mp4?dl=0) | | less depth
 | 15 | Nov 3 | [Text data](lectures/15_nlp.ipynb) | | |  new
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
