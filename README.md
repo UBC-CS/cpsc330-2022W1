@@ -44,7 +44,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 13 | Oct 27 | [Neural networks & computer vision](lectures/13_computer-vision.ipynb) | [recording](https://www.dropbox.com/s/lyl9f6k8k2sqkkt/lecture13.mp4?dl=0) | [But what _is_ a Neural Network?](https://www.youtube.com/wrcAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | less depth
 | 14 | Oct 29 | [Distances and neighbours](lectures/14_distances-neighbours.ipynb) | [recording](https://www.dropbox.com/s/62qgg4cnk0fbcqv/lecture14.mp4?dl=0) | | less depth
 | 15 | Nov 3 | [Text data](lectures/15_nlp.ipynb) | [recording](https://www.dropbox.com/s/m8nvih2aoyxjisj/lecture15.mp4?dl=0) - note: unfortunately the first 9 min of the recording was corrupted | |  new
-| 16 | Nov 5 | [Outliers](lectures/16_outliers.ipynb) | | | different
+| 16 | Nov 5 | [Outliers](lectures/16_outliers.ipynb) | [recording](https://www.dropbox.com/s/tdk4d9ovijgve7m/lecture16.mp4?dl=0) | | different
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
