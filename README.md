@@ -45,7 +45,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 14 | Oct 29 | [Distances and neighbours](lectures/14_distances-neighbours.ipynb) | [recording](https://www.dropbox.com/s/62qgg4cnk0fbcqv/lecture14.mp4?dl=0) | | less depth
 | 15 | Nov 3 | [Text data](lectures/15_nlp.ipynb) | [recording](https://www.dropbox.com/s/m8nvih2aoyxjisj/lecture15.mp4?dl=0) - note: unfortunately the first 9 min of the recording was corrupted | |  new
 | 16 | Nov 5 | [Outliers](lectures/16_outliers.ipynb) | [recording](https://www.dropbox.com/s/tdk4d9ovijgve7m/lecture16.mp4?dl=0) | | different
-| 17 | Nov 10 | [Time series data](lectures/17_time-series.ipynb) | | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
+| 17 | Nov 10 | [Time series data](lectures/17_time-series.ipynb) | [recording](https://www.dropbox.com/s/c4517kewml3ly2b/lecture17.mp4?dl=0) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
