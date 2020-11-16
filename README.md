@@ -53,7 +53,7 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
 | 19 | Nov 17 | [Clustering](lectures/19_clustering.ipynb) | | | less depth
-| 20 | Nov 19 | [Communicating your results](lectures/20_communication.ipynb) | | [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 video total) |  new
+| 20 | Nov 19 | [Communicating your results](lectures/20_communication.ipynb) | | [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post; [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 short videos, 37 min) |  new
 | 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 | 23 | Dec 1| [Model deployment](lectures/23_deployment.ipynb)  | | | new 
