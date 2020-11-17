@@ -46,7 +46,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 15 | Nov 3 | [Text data](lectures/15_nlp.ipynb) | [recording](https://www.dropbox.com/s/m8nvih2aoyxjisj/lecture15.mp4?dl=0) - note: unfortunately the first 9 min of the recording was corrupted | |  new
 | 16 | Nov 5 | [Outliers](lectures/16_outliers.ipynb) | [recording](https://www.dropbox.com/s/tdk4d9ovijgve7m/lecture16.mp4?dl=0) | | different
 | 17 | Nov 10 | [Time series data](lectures/17_time-series.ipynb) | [recording](https://www.dropbox.com/s/c4517kewml3ly2b/lecture17.mp4?dl=0) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
-| 18 | Nov 12 | [Survival analysis](lectures/18_survival-analysis.ipynb) | | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
+| 18 | Nov 12 | [Survival analysis](lectures/18_survival-analysis.ipynb) | [recording](https://www.dropbox.com/s/0r60i7ncqnfr43z/lecture18.mp4?dl=0) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 19 | Nov 17 | [Clustering](lectures/19_clustering.ipynb) | | | less depth
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
