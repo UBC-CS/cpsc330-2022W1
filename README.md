@@ -48,12 +48,12 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 17 | Nov 10 | [Time series data](lectures/17_time-series.ipynb) | [recording](https://www.dropbox.com/s/c4517kewml3ly2b/lecture17.mp4?dl=0) | Humour: [The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new 
 | 18 | Nov 12 | [Survival analysis](lectures/18_survival-analysis.ipynb) | [recording](https://www.dropbox.com/s/0r60i7ncqnfr43z/lecture18.mp4?dl=0) | [Calling Bullshit video 4.1](https://www.youtube.com/watch?v=ITWQ5psx9Sw&list=D1Sje5jWxt-4CSZD7bUI4gSPS&index=19&t=0s), [Medium article](https://towardsdatascience.com/survisis-intuition-implementation-in-python-504fde4fcf8e) (contains some math) | new
 | 19 | Nov 17 | [Clustering](lectures/19_clustering.ipynb) | | | less depth
+| 20 | Nov 19 | [Communicating your results](lectures/20_communication.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 short videos, 37 min total); [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post |  new
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 20 | Nov 19 | [Communicating your results](lectures/20_communication.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 short videos, 37 min total); [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post |  new
 | 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 | 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | | | new 
