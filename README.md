@@ -54,7 +54,7 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total) | new
+| 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total); [Can you read graphs? Because I can't.](https://www.youtube.com/watch?v=vbDObzI-CTc) by Sabrina (7 min) | new
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 | 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | | | new 
 | 24 | Dec 3 | [Model deployment; Conclusion](lectures/24_leftovers-conclusion.ipynb) | |  | 
