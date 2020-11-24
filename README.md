@@ -50,12 +50,12 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 19 | Nov 17 | [Clustering](lectures/19_clustering.ipynb) | [recording](https://www.dropbox.com/s/qpny73gfskmav8o/lecture19.mp4?dl=0) | | less depth
 | 20 | Nov 19 | [Communicating your results](lectures/20_communication.ipynb) | [recording](https://www.dropbox.com/s/baf07py0fmdqx5v/lecture20.mp4?dl=0) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 1 (5 short videos, 37 min total); [Communication in Data Science](https://ubc-mds.github.io/2017-I-542-communication/) blog post |  new
 |    |  Nov 19 | [Bonus material: SGD for big datasets](lectures/bonus_sgd.ipynb) | [recording](https://www.dropbox.com/s/ro3a2fkv9vdknga/lecture20bonus.mp4?dl=0) | | less depth
+| 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total); [Can you read graphs? Because I can't.](https://www.youtube.com/watch?v=vbDObzI-CTc) by Sabrina (7 min) | new
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
 
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
-| 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total); [Can you read graphs? Because I can't.](https://www.youtube.com/watch?v=vbDObzI-CTc) by Sabrina (7 min) | new
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
 | 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | | | new 
 | 24 | Dec 3 | [Model deployment; Conclusion](lectures/24_leftovers-conclusion.ipynb) | |  | 
