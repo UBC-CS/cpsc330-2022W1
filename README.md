@@ -57,7 +57,7 @@ Below this point is the schedule for future lectures (not yet updated for 2020W1
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total) | new
-| 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | | | new 
+| 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | recording will be available on Canvas only | | new 
 | 24 | Dec 3 | [Model deployment; Conclusion](lectures/24_leftovers-conclusion.ipynb) | |  | 
 
 ## Homework schedule
