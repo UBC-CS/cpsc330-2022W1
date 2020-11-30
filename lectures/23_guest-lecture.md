@@ -23,3 +23,4 @@ and taught in the Cognitive Systems Program during that time.
 Prior to philosophy, he did a bachelor's degree in electrical and biomedical engineering at McMaster University, 
 and a master’s in medical biophysics at the University of Toronto.
 
+Today's class will be recorded but will only be available privately via Canvas. 
