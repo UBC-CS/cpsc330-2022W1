@@ -56,12 +56,6 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | [recording](https://www.dropbox.com/s/ffq5kniwqv3vhyh/lecture22.mp4?dl=0) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total); Humour: [Game of Thrones deepfake video](https://www.youtube.com/watch?v=4GdWD0yxvqw) | new
 |    | Nov 26 | [Bonus material: combining multiple tables](lectures/bonus_multiple_tables.ipynb)  | [recording](https://www.dropbox.com/s/waspepqegnklq58/lecture22bonus.mp4?dl=0) | | new 
 | 23 | Dec 1| [Ethics continued](lectures/23_guest-lecture.md): guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | recording will be available on Canvas only | | new 
-
-
-Below this point is the schedule for future lectures (not yet updated for 2020W1)
-
-| #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
-|--- |-------|--------|----------|-------------------------|--------------------|
 | 24 | Dec 3 | [Model deployment; Conclusion](lectures/24_leftovers-conclusion.ipynb) | |  | 
 
 ## Homework schedule

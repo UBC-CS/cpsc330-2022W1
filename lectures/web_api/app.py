@@ -33,6 +33,7 @@ def index():
 # 5. define a new route which will accept POST requests and return our model predictions
 @app.route('/predict', methods=['POST'])
 def abalone_prediction():
+
     content = request.json
     results = return_prediction(model, content)
     return jsonify(results)
