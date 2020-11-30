@@ -20,6 +20,8 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 
 **Lecture recordings**: The lecture recordings can be accessed through the same Zoom page on Canvas [here](https://canvas.ubc.ca/courses/53561/external_tools/15408). From this page, navigate to the "Cloud Recordings" tab and you should see them there. The same lecture recordings will be posted here embedded in the schedule below.
 
+**Update**: the videos are now available as a YouTube playlist [here](https://www.youtube.com/playlist?list=PLWmXHcz_53Q2BXsWviGgEqdlSHmfsjSzC).
+
 | #  | Date  | Topic | Recording |  Related readings and links | vs. CPSC 340 |
 |--- |-------|--------|----------|-------------------------|--------------------|
 |   |  Sep 8 | _UBC Imagine Day - no class_ | | |
