@@ -55,7 +55,7 @@ Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
 | 21 | Nov 24 | [Communicating your results, continued](lectures/21_communication-continued.ipynb) | [recording](https://www.dropbox.com/s/mi4hchlw6es8n5r/lecture21.mp4?dl=0) | [Calling BS videos](https://www.youtube.com/playlist?list=D1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total); [Can you read graphs? Because I can't.](https://www.youtube.com/watch?v=vbDObzI-CTc) by Sabrina (7 min) | new
 | 22 | Nov 26 | [Ethics](lectures/22_ethics.ipynb) | [recording](https://www.dropbox.com/s/ffq5kniwqv3vhyh/lecture22.mp4?dl=0) | [Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total); Humour: [Game of Thrones deepfake video](https://www.youtube.com/watch?v=4GdWD0yxvqw) | new
 |    | Nov 26 | [Bonus material: combining multiple tables](lectures/bonus_multiple_tables.ipynb)  | [recording](https://www.dropbox.com/s/waspepqegnklq58/lecture22bonus.mp4?dl=0) | | new 
-| 23 | Dec 1| Ethics continued: guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | recording will be available on Canvas only | | new 
+| 23 | Dec 1| [Ethics continued](lectures/23_guest_lecture.md): guest lecture by [Sina Fazelpour](https://sinafazelpour.com/)  | recording will be available on Canvas only | | new 
 
 
 Below this point is the schedule for future lectures (not yet updated for 2020W1)
