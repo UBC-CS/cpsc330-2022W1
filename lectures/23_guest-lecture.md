@@ -7,7 +7,7 @@
   - Some parts removed: announcements, breaks, activities, Zoom crashes.
 - hw9 deadline passed - no more assignments!
 - I haven't started yet on making the final exam, but see https://piazza.com/class/kb2e6nwu3uj23?cid=429 for the format.
-  - Once the exam launches on Dec 8 at 2:30pm, Piazza will be closed for public questions (except announcements by me), but you can ask questions privately.
+  - Once the exam launches on Dec 8 at 3:30pm, Piazza will be closed for public questions (except announcements by me), but you can ask questions privately.
 - Next class (Thursday) is the last lecture.
 - We'll run tutorials this week as usual.
 - Extra office hours for next week added to the calendar.
