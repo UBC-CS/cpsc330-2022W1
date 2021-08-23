@@ -1,8 +1,8 @@
-# UBC CPSC 330: Applied Machine Learning (2020W1)
+# UBC CPSC 330: Applied Machine Learning (2021W1)
 
-This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2020). An earlier version from Jan-Apr 2020 can be found [here](https://github.com/UBC-CS/cpsc330/tree/1.0).
+This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. This course was designed by [Mike Gelbart](https://www.mikegelbart.com/) and first taught in Spring 2020. If you are looking for the course materials corresponding to the [CPSC 330 YouTube lectures](https://www.youtube.com/playlist?list=PLWmXHcz_53Q2BXsWviGgEqdlSHmfsjSzC) please see the version taught by Mike in Fall 2020, which can be found [here](https://github.com/UBC-CS/cpsc330/tree/2.0). 
 
-Instructor: [Mike Gelbart](https://www.mikegelbart.com/)
+You are looking at the current version (Sep-Dec 2021) taught by [Varada Kolhatkar](https://kvarada.github.io/). 
 
 
 ## Important links
