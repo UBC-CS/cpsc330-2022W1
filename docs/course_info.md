@@ -16,13 +16,7 @@ Application of machine learning tools, with an emphasis on solving practical pro
 | Tue/Thu  | 11:00-12:20  | DMP 110 |
 
 **Tutorials** (choose one of these):
-
-| Section  | Time          | Location  |
-|----------|---------------|-----------|
-| T1A    | Fri 10:00-10:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
-| T1B    | Fri 11:00-11:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
-| T1C    | Fri 12:00-12:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
-| T1D    | Thu 17:00-17:50 | [Zoom](https://canvas.ubc.ca/courses/53561/external_tools/15408)    |
+TBD 
 
 **Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
 
@@ -86,21 +80,5 @@ The final exam will be held during the exam period. The exam is open book, meani
 - Do not photograph or record lectures (audio or video) without permission.
 - If you commit to working with a partner on an assignment, do your fair share of the work.
 - If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!
-
-## A note on COVID-19 from me
-
-We're working together on this course during a global pandemic. Everyone is struggling to some extent. If you tell me you're having trouble, I'm not going to judge you or think less of you. I hope you'll extend me the same grace! 
-
-Here are some ground rules:
-
-- If you are unable to submit a deliverable on time, please reach out **before** the deliverable is due.
-- If you need extra support, the teaching team is here to work with you. Our goal is to help each of you succeed in the course.
-- You never owe me personal information about any aspect of your health. 
-- However, you're always welcome to talk to me about things you're going through. 
-- If I am unable to help you, I might know someone who can. UBC has some [great student support resources](https://students.ubc.ca/support).
-
-Credit: adapted from [here](https://twitter.com/ProfChrisMJones/status/1282036533562834944).
-
-## A note on learning during pandemic from the UBC provost's office
 
 
