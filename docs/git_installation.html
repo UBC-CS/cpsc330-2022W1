@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What are git and GitHub? &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="course_info.html">
+   Course information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asking_for_help.html">
+   How to ask for help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="homework_instructions.html">
+   Homework info &amp; submission guidelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="330_vs_340.html">
+   CPSC 330 vs. CPSC 340
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   Reference Material
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/git_installation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   What are git and GitHub?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github-desktop">
+   GitHub Desktop
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-git">
+   Command-line git
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up">
+     Setting up
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mac-users">
+       Mac Users
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ubuntu-users">
+       Ubuntu Users
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#windows-users">
+       Windows Users
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-your-git-installation">
+     Testing your git installation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-git">
+     Learning git
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#authentication">
+   Authentication
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approach-1-personal-access-tokens-easier-up-front-try-this-if-you-re-new">
+     Approach 1: Personal access tokens (easier up front, try this if you’re new)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approach-2-ssh-keys-more-work-up-front-potentially-more-convenient-in-the-long-term">
+     Approach 2: SSH keys (more work up front, potentially more convenient in the long term)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-can-see-my-repos">
+   Who can see my repos?
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assignment-repo">
+     Assignment repo
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grades-repo">
+     Grades repo
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#past-commits">
+     Past commits
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-my-repositories">
+     Finding my repositories
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#submission">
+     Submission
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grades">
+     Grades
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="what-are-git-and-github">
+<h1>What are git and GitHub?<a class="headerlink" href="#what-are-git-and-github" title="Permalink to this headline">¶</a></h1>
+<p>GitHub uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Git">git version control system</a>. Roughly speaking, git is the system that
+takes care of different versions of your files and merging together changes from different collaborators (and much more!).
+git is <a class="reference external" href="https://en.wikipedia.org/wiki/Free_software">free software</a>.</p>
+<p>GitHub is a corporation and the name of the corporation’s product. Their site github.com provides servers that host git
+repositories. This serves as a central place that different collaborators all sync up with.</p>
+<p>GitHub Enterprise is a product
+that allows the GitHub software to be installed on the customer’s own servers. UBC has done this so that all the data remains
+in Canada. Hence https://github.students.cs.ubc.ca/.</p>
+</div>
+<div class="section" id="github-desktop">
+<h1>GitHub Desktop<a class="headerlink" href="#github-desktop" title="Permalink to this headline">¶</a></h1>
+<p>The instructions below pertain to using git from the command line. For those who are less comfortable with this sort of thing, I was told that <a class="reference external" href="https://desktop.github.com/">GitHub Desktop</a> makes things a lot easier. So, feel free to try this route instead of the instructions below.</p>
+</div>
+<div class="section" id="command-line-git">
+<h1>Command-line git<a class="headerlink" href="#command-line-git" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setting-up">
+<h2>Setting up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h2>
+<p>GitHub is a web-based application and does not require set-up. However, you will be working on your homework locally
+and therefore need git installed locally.</p>
+<div class="section" id="mac-users">
+<h3>Mac Users<a class="headerlink" href="#mac-users" title="Permalink to this headline">¶</a></h3>
+<p>Open Terminal (Applications –&gt; Utilities folder or search with Spotlight). From the terminal, run the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xcode</span><span class="o">-</span><span class="n">select</span> <span class="o">--</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>This will install git and many other very useful applications as well (including Make).</p>
+</div>
+<div class="section" id="ubuntu-users">
+<h3>Ubuntu Users<a class="headerlink" href="#ubuntu-users" title="Permalink to this headline">¶</a></h3>
+<p>Open the terminal and install git using your system package manager. For example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+</pre></div>
+</div>
+<p>should do the trick on Ubuntu.</p>
+</div>
+<div class="section" id="windows-users">
+<h3>Windows Users<a class="headerlink" href="#windows-users" title="Permalink to this headline">¶</a></h3>
+<p>Go to http://git-scm.com. Click on the download link, and accept all defaults in the installation process.
+Installing git will also install for you a minimal UNIX environment with a bash shell and terminal window.</p>
+</div>
+</div>
+<div class="section" id="testing-your-git-installation">
+<h2>Testing your git installation<a class="headerlink" href="#testing-your-git-installation" title="Permalink to this headline">¶</a></h2>
+<p>Open your Terminal (or Git for Windows) and run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">--version</span></code>.<br />
+If you are returned the version of git, it means your install was successful!</p>
+</div>
+<div class="section" id="learning-git">
+<h2>Learning git<a class="headerlink" href="#learning-git" title="Permalink to this headline">¶</a></h2>
+<p>There are many free online resources for learning git. One possibility is the <a class="reference external" href="https://swcarpentry.github.io/git-novice/">Software Carpentry git tutorial</a>.</p>
+</div>
+</div>
+<div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>For viewing GitHub content in your web browser, you login with your CWL credentials through the browser. However, you need
+to authenticate separately to interact with GitHub through command-line git. There are two ways to authenticate, described below.</p>
+<div class="section" id="approach-1-personal-access-tokens-easier-up-front-try-this-if-you-re-new">
+<h2>Approach 1: Personal access tokens (easier up front, try this if you’re new)<a class="headerlink" href="#approach-1-personal-access-tokens-easier-up-front-try-this-if-you-re-new" title="Permalink to this headline">¶</a></h2>
+<p>To use a personal access token, go <a class="reference external" href="https://github.students.cs.ubc.ca/settings/tokens">here</a>. Click “Generate new token”, check the “repo” box, and then press the green “Generate token” button. You’ll be given a new token. Save that and treat it securely (as you would a password).</p>
+<p>If you take this approach, then when cloning your repository, make sure you get the clone url that starts with <code class="docutils literal notranslate"><span class="pre">https://github.students.cs.ubc.ca</span></code> not the one that starts with <code class="docutils literal notranslate"><span class="pre">git&#64;github.students.cs.ubc.ca</span></code>. When you try to clone, you will be prompted for a username and password. Enter your CWL username as the username and your token as the password.</p>
+</div>
+<div class="section" id="approach-2-ssh-keys-more-work-up-front-potentially-more-convenient-in-the-long-term">
+<h2>Approach 2: SSH keys (more work up front, potentially more convenient in the long term)<a class="headerlink" href="#approach-2-ssh-keys-more-work-up-front-potentially-more-convenient-in-the-long-term" title="Permalink to this headline">¶</a></h2>
+<p>Instructions for setting up SSH keys with GitHub can be found <a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">here</a>. Please keep in mind that you’ll need to add your keys to github.students.cs.ubc.ca - specifically, <a class="reference external" href="https://github.students.cs.ubc.ca/settings/ssh">here</a> - rather than to github.com.</p>
+<p>If you take this approach, then when cloning your repository, make sure you get the clone url that starts with <code class="docutils literal notranslate"><span class="pre">git&#64;github.students.cs.ubc.ca</span></code>, not the one that starts with <code class="docutils literal notranslate"><span class="pre">https://github.students.cs.ubc.ca</span></code>.</p>
+</div>
+</div>
+<div class="section" id="who-can-see-my-repos">
+<h1>Who can see my repos?<a class="headerlink" href="#who-can-see-my-repos" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="assignment-repo">
+<h2>Assignment repo<a class="headerlink" href="#assignment-repo" title="Permalink to this headline">¶</a></h2>
+<p>Your homework repo is only visible to you and the course staff, plus your partner if you are working with one.</p>
+</div>
+<div class="section" id="grades-repo">
+<h2>Grades repo<a class="headerlink" href="#grades-repo" title="Permalink to this headline">¶</a></h2>
+<p>Your grades repo will be visible only to yourself and the course staff.</p>
+</div>
+<div class="section" id="past-commits">
+<h2>Past commits<a class="headerlink" href="#past-commits" title="Permalink to this headline">¶</a></h2>
+<p>Although only the final version will be graded, <em>all</em> of your commits will be viewable, so don’t commit something
+private (like your email password) to your homework repo. Committing something and then removing it
+with another commit doesn’t remove it from the git history! It is theoretically possible to pull all traces of
+something out of the git history, but it’s not fun and uses more advanced git features.</p>
+</div>
+<div class="section" id="finding-my-repositories">
+<h2>Finding my repositories<a class="headerlink" href="#finding-my-repositories" title="Permalink to this headline">¶</a></h2>
+<p>Probably the easiest way to find a repository is to use the search tool from <a class="reference external" href="https://github.students.cs.ubc.ca/cpsc330-2020w-t1">the cpsc330-2020w-t1 Organization homepage</a>.</p>
+</div>
+<div class="section" id="submission">
+<h2>Submission<a class="headerlink" href="#submission" title="Permalink to this headline">¶</a></h2>
+<p>We anticipate that you will clone your assignment repo and do your work from
+within there. When you push something back to github.students.cs.ubc.ca then you have submitted the assignment.
+You can push changes as many times as you want before the deadline; only the final version will be graded (but see <a class="reference external" href="homework_instructions.md#past-commits">below</a> on past commits).</p>
+</div>
+<div class="section" id="grades">
+<h2>Grades<a class="headerlink" href="#grades" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the lab-specific repos, you will each have a private repository that will serve as
+an inbox for all your grade-related discussions. This repository will be named <code class="docutils literal notranslate"><span class="pre">goatcabin_grades</span></code> if your username is <code class="docutils literal notranslate"><span class="pre">goatcabin</span></code>. There will be an announcement when grades are released.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

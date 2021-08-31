@@ -1,0 +1,4964 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPSC 330 Python notes &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="course_info.html">
+   Course information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="asking_for_help.html">
+   How to ask for help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="homework_instructions.html">
+   Homework info &amp; submission guidelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="330_vs_340.html">
+   CPSC 330 vs. CPSC 340
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resources.html">
+   Reference Material
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/docs/python_notes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/docs/python_notes.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-this-document">
+   About this document
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-with-matplotlib">
+   Plotting with matplotlib
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-arrays">
+   Numpy arrays
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-array-shapes">
+   Numpy array shapes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#broadcasting-in-numpy">
+   Broadcasting in numpy
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slowest-method-nested-loop">
+     Slowest method: nested loop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#faster-method-vectorize-the-loop-over-rows">
+     Faster method: vectorize the loop over rows
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#no-loop-method-make-them-the-same-size-and-multiply-element-wise">
+     No-loop method: make them the same size, and multiply element-wise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fastest-method-broadcasting">
+     Fastest method: broadcasting
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-can-we-use-broadcasting">
+     When can we use broadcasting?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-pandas">
+   Introduction to pandas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-series">
+     Pandas Series
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pandas-dataframes">
+   Pandas DataFrames
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#indexing-dataframes">
+     Indexing Dataframes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#notation">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         []
+        </span>
+       </code>
+       notation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indexing-cheatsheet">
+       Indexing cheatsheet
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-from-csv">
+     Reading from .csv
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-from-url">
+     Reading from url
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-from-other-formats">
+     Reading from other formats
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe-summaries">
+     Dataframe summaries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#renaming-columns-with-df-rename">
+     Renaming columns with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       df.rename()
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#note">
+       NOTE:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-removing-columns-with-and-drop">
+     Adding/removing columns with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       []
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       drop()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-removing-rows-with-and-drop">
+     Adding/removing rows with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       []
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       drop()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sorting-a-dataframe-with-df-sort-values">
+     Sorting a dataframe with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       df.sort_values()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filtering-a-dataframe-with-and-df-query">
+     Filtering a dataframe with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       []
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       df.query()
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-functions-to-a-dataframe-with-df-apply-and-df-applymap">
+     Applying functions to a dataframe with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       df.apply()
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       df.applymap()
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cpsc-330-python-notes">
+<h1>CPSC 330 Python notes<a class="headerlink" href="#cpsc-330-python-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-this-document">
+<h2>About this document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h2>
+<p>This document contains some Python lecture materials from the 1st offering of CPSC 330. I have decided to stop allocated lecture time to this topic and instead have this as reference material.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-with-matplotlib">
+<h2>Plotting with matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a> as our plotting library.</p></li>
+<li><p>For those familiar with MATLAB, this package is based on MATLAB plotting.</p></li>
+<li><p>To use matplotlib, we first import it:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We can now use functions in <code class="docutils literal notranslate"><span class="pre">plt</span></code> to plot things:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12ccad610&gt;]
+</pre></div>
+</div>
+<img alt="../_images/python_notes_7_1.png" src="../_images/python_notes_7_1.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>You will often see me put a semicolon at the end of a line.</p></li>
+<li><p>This is only relevant to Jupyter; it suppresses the line of “output”..</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_notes_9_0.png" src="../_images/python_notes_9_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://github.students.cs.ubc.ca/cpsc330-2019w-t2/home/blob/master/docs/homework_instructions.md#figures">homework instructions document</a> includes a section on figures.</p></li>
+<li><p>At a minimum, you should have axis labels for <em>every</em> figure out submit.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;the independent variable&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;the dependent variable&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_notes_11_0.png" src="../_images/python_notes_11_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>If you are plotting multiple curves, make sure you include a legend!</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label is y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;the independent variable&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;the dependent variables&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/python_notes_13_0.png" src="../_images/python_notes_13_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>You will likely need to visit the <a class="reference external" href="https://matplotlib.org/api/pyplot_api.html">matplotlib.pyplot documentation</a> when trying to do other things.</p></li>
+<li><p>When you save an <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file, the output, including plots, is stored in the file.</p>
+<ul>
+<li><p>This is a hassle for git.</p></li>
+<li><p>But it’s also convenient.</p></li>
+<li><p>This is how you will submit plots.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="numpy-arrays">
+<h2>Numpy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h2>
+<p>Basic numpy is covered in the posted videos, you are expected to have a basic knowledge of numpy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 0., 0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">+</span><span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.72161025, 0.33910081, 0.95926585],
+       [0.80044837, 0.5421424 , 0.94683783]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3391008060613441
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numpy-array-shapes">
+<h2>Numpy array shapes<a class="headerlink" href="#numpy-array-shapes" title="Permalink to this headline">¶</a></h2>
+<p><strong>One of the most confusing things about numpy:</strong> what I call a “1-D array” can have 3 possible shapes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;size:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ndim:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape:&quot;</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1. 1. 1. 1. 1.]
+size: 5
+ndim: 1
+shape: (5,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;size:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ndim:&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape:&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 1. 1. 1. 1.]]
+size: 5
+ndim: 2
+shape: (1, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;size:&quot;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ndim:&quot;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shape:&quot;</span><span class="p">,</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.]
+ [1.]
+ [1.]
+ [1.]
+ [1.]]
+size: 5
+ndim: 2
+shape: (5, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="broadcasting-in-numpy">
+<h2>Broadcasting in numpy<a class="headerlink" href="#broadcasting-in-numpy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Arrays with different sizes cannot be directly used in arithmetic operations.</p></li>
+<li><p>Broadcasting describes how numpy treats arrays with different shapes during arithmetic operations.</p></li>
+<li><p>The idea is to <strong>vectorize</strong> operations to avoid loops and speed up the code.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Example: I sell pies on the weekends.</p></li>
+<li><p>I sell 3 types of pies at different prices, and I sold the following number of each pie last weekend.</p></li>
+<li><p>I want to know how much money I made per pie type per day.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pies.png"><img alt="../_images/pies.png" src="../_images/pies.png" style="width: 500px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pie cost:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cost</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">sales</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pie sales (#):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pie cost:
+[[20]
+ [15]
+ [25]]
+
+Pie sales (#):
+[[2 3 1]
+ [6 3 3]
+ [5 3 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>How can we multiply these two arrays together?</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/pies_loop.png"><img alt="../_images/pies_loop.png" src="../_images/pies_loop.png" style="width: 500px;" /></a>
+<div class="section" id="slowest-method-nested-loop">
+<h3>Slowest method: nested loop<a class="headerlink" href="#slowest-method-nested-loop" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">total</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">sales</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+<span class="n">total</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 40.,  60.,  20.],
+       [ 90.,  45.,  45.],
+       [125.,  75., 125.]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="faster-method-vectorize-the-loop-over-rows">
+<h3>Faster method: vectorize the loop over rows<a class="headerlink" href="#faster-method-vectorize-the-loop-over-rows" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">total</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span> <span class="o">*</span> <span class="n">sales</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span>
+<span class="n">total</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 40.,  60.,  20.],
+       [ 90.,  45.,  45.],
+       [125.,  75., 125.]])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="no-loop-method-make-them-the-same-size-and-multiply-element-wise">
+<h3>No-loop method: make them the same size, and multiply element-wise<a class="headerlink" href="#no-loop-method-make-them-the-same-size-and-multiply-element-wise" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="../_images/pies_broadcast.png"><img alt="../_images/pies_broadcast.png" src="../_images/pies_broadcast.png" style="width: 700px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_rep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">cost</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cost_rep</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[20, 20, 20],
+       [15, 15, 15],
+       [25, 25, 25]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost_rep</span> <span class="o">*</span> <span class="n">sales</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 40,  60,  20],
+       [ 90,  45,  45],
+       [125,  75, 125]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>What is <code class="docutils literal notranslate"><span class="pre">np.newaxis?</span></code></p></li>
+<li><p>It changes the shape:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># the name thing</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fastest-method-broadcasting">
+<h3>Fastest method: broadcasting<a class="headerlink" href="#fastest-method-broadcasting" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">sales</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 40,  60,  20],
+       [ 90,  45,  45],
+       [125,  75, 125]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>numpy does the equivalent of <code class="docutils literal notranslate"><span class="pre">np.repeat()</span></code> for you - no need to do it explicitly</p></li>
+<li><p>It is debatable whether this code is more readable, but it is definitely faster.</p></li>
+</ul>
+</div>
+<div class="section" id="when-can-we-use-broadcasting">
+<h3>When can we use broadcasting?<a class="headerlink" href="#when-can-we-use-broadcasting" title="Permalink to this headline">¶</a></h3>
+<p>Say we want to broadcast the following two arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1., 1., 1., 1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(5,)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>The broadcast will fail because the arrays are not compatible…</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_7749</span><span class="o">/</span><span class="mf">1055238803.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
+
+<span class="ne">ValueError</span>: operands could not be broadcast together with shapes (3,) (5,) 
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We can facilitate this broadcast by adding a dimension using <code class="docutils literal notranslate"><span class="pre">np.newaxis</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np.newaxis</span></code> increases the dimension of an array by one dimension.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">=</span> <span class="n">arr1</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span> <span class="o">=</span> <span class="n">arr2</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 5)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., 1., 1.],
+       [2., 2., 2., 2., 2.],
+       [3., 3., 3., 3., 3.]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>the opposite, reducing a dimension, can be achieved by <code class="docutils literal notranslate"><span class="pre">np.squeeze()</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr1</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The rules of broadcasting:</p>
+<ul class="simple">
+<li><p>NumPy compares arrays one dimension at a time. It starts with the trailing dimensions, and works its way to the first dimensions.</p></li>
+<li><p>dimensions are compatible if:</p>
+<ul>
+<li><p><strong>they are equal</strong>, or</p></li>
+<li><p><strong>one of them is 1</strong>.</p></li>
+</ul>
+</li>
+<li><p>Use the code below to test out array compatibitlity</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of a is: </span><span class="si">{</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of b is: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of a + b is: </span><span class="si">{</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ERROR: arrays are NOT broadcast compatible!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of a is: (5, 1)
+The shape of b is: (1, 3)
+The shape of a + b is: (5, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-to-pandas">
+<h2>Introduction to pandas<a class="headerlink" href="#introduction-to-pandas" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The most popular Python library for tabular data structures</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pandas-series">
+<h3>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A Series is like a NumPy array but with labels</p></li>
+<li><p>1-dimensional</p></li>
+<li><p>Can be created from a list, ndarray or dictionary using <code class="docutils literal notranslate"><span class="pre">pd.Series()</span></code></p></li>
+<li><p>Labels may be integers or strings</p></li>
+</ul>
+<p>Here are two series of gold medal counts for the 2012 and 2016 Olympics:</p>
+<a class="reference internal image-reference" href="../_images/series.png"><img alt="../_images/series.png" src="../_images/series.png" style="width: 400px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Series([], dtype: float64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">46</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+               <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span><span class="s1">&#39;CHN&#39;</span><span class="p">,</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span><span class="s1">&#39;RUS&#39;</span><span class="p">,</span><span class="s1">&#39;GER&#39;</span><span class="p">])</span>
+<span class="n">s1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    38
+GBR    29
+RUS    19
+GER    17
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">46</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">],</span>
+               <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">])</span>
+<span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    26
+GBR    27
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Like ndarrays we use square brackets <code class="docutils literal notranslate"><span class="pre">[]</span></code> to index a series</p></li>
+<li><p>BUT, Series can be indexed by an integer location <strong>OR</strong> a label</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    38
+GBR    29
+RUS    19
+GER    17
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>46
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span><span class="p">[</span><span class="s2">&quot;USA&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>46
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span><span class="p">[</span><span class="s2">&quot;USA&quot;</span><span class="p">:</span><span class="s2">&quot;RUS&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    38
+GBR    29
+RUS    19
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Do we expect these two series to be compatible for broadcasting?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    38
+GBR    29
+RUS    19
+GER    17
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    26
+GBR    27
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of s1 is: </span><span class="si">{</span><span class="n">s1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The shape of s2 is: </span><span class="si">{</span><span class="n">s2</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The shape of s1 is: (5,)
+The shape of s2 is: (3,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CHN    64.0
+GBR    56.0
+GER     NaN
+RUS     NaN
+USA    92.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Unlike ndarrays operations between Series (+, -, /, *) align values based on their <strong>LABELS</strong></p></li>
+<li><p>The result index will be the <strong><em>sorted union</em></strong> of the two indexes</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pandas-dataframes">
+<h2>Pandas DataFrames<a class="headerlink" href="#pandas-dataframes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The primary Pandas data structure</p></li>
+<li><p>Really just a bunch of Series (with the same index labels) stuck together</p></li>
+<li><p>Made using <code class="docutils literal notranslate"><span class="pre">pd.DataFrame()</span></code></p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/dataframe.png"><img alt="../_images/dataframe.png" src="../_images/dataframe.png" style="width: 600px;" /></a>
+<p>Creating a DataFrame with a numpy array</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">46</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">38</span><span class="p">,</span> <span class="mi">26</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">29</span><span class="p">,</span> <span class="mi">27</span><span class="p">]])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2012&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>(optional) Creating a DataFrame with a dictionary</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;2012&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">46</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">29</span><span class="p">],</span>
+     <span class="s1">&#39;2016&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">46</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">]}</span>
+<span class="n">i</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;CHN&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="indexing-dataframes">
+<h3>Indexing Dataframes<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>There are three main ways to index a DataFrame:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> (slice for rows, label for columns)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.loc[]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.iloc[]</span></code></p></li>
+</ol>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="notation">
+<h4><code class="docutils literal notranslate"><span class="pre">[]</span></code> notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>you can index columns by single labels or lists of labels</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;2012&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>USA    46
+CHN    38
+GBR    29
+Name: 2012, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;2012&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">([</span><span class="s1">&#39;2012&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>list
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;2012&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>(optional) you can also index rows with <code class="docutils literal notranslate"><span class="pre">[]</span></code>, but you can only index rows with slices</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;CHN&quot;</span><span class="p">:</span><span class="s2">&quot;GBR&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df[&quot;USA&quot;] # doesn&#39;t work</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[:</span><span class="s2">&quot;USA&quot;</span><span class="p">]</span> <span class="c1"># does work</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>this is a little unintuitive, so pandas created two other ways to index a dataframe:</p></li>
+<li><p>for indexing with integers: <code class="docutils literal notranslate"><span class="pre">df.iloc[]</span></code></p></li>
+<li><p>for indexing with labels: <code class="docutils literal notranslate"><span class="pre">df.loc[]</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+      <th>2016</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>38</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2012    38
+2016    26
+Name: CHN, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;CHN&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2012    38
+2016    26
+Name: CHN, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;2016&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>27
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;2012&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2012</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>GBR</th>
+      <td>29</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;USA&#39;, &#39;CHN&#39;, &#39;GBR&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;2012&#39;, &#39;2016&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df.loc[df.index[0], &#39;2016&#39;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#df.loc[&#39;USA&#39;, df.columns[0]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indexing-cheatsheet">
+<h4>Indexing cheatsheet<a class="headerlink" href="#indexing-cheatsheet" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> accepts slices for row indexing or labels (single or list) for column indexing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.iloc[]</span></code> accepts integers for row/column indexing, and can be single values or lists</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.loc[]</span></code> accepts labels for row/column indexing, and can be single values or lists</p></li>
+<li><p>for integer row/named column: <code class="docutils literal notranslate"><span class="pre">df.loc[df.index[#],</span> <span class="pre">'labels']</span></code></p></li>
+<li><p>for named row/integer column: <code class="docutils literal notranslate"><span class="pre">df.loc['labels',</span> <span class="pre">df.columns[#]]</span></code></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reading-from-csv">
+<h3>Reading from .csv<a class="headerlink" href="#reading-from-csv" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Most of the time you will be loading .csv files for use in pandas using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code></p></li>
+<li><p>Example dataset: a colleague’s cycling commute to/from UBC everyday</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data/cycling_data.csv&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-09-10 00:13:04</th>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>2019-09-10 13:52:18</th>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2019-09-11 00:23:50</th>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>2019-09-11 14:06:19</th>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>2019-09-12 00:28:05</th>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="reading-from-url">
+<h3>Reading from url<a class="headerlink" href="#reading-from-url" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>you may also want to read directly from an url at times</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> accepts urls as input</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/TomasBeuzen/toy-datasets/master/wine_1.csv&#39;</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bottle</th>
+      <th>Grape</th>
+      <th>Origin</th>
+      <th>Alcohol</th>
+      <th>pH</th>
+      <th>Colour</th>
+      <th>Aroma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Chardonnay</td>
+      <td>Australia</td>
+      <td>14.23</td>
+      <td>3.51</td>
+      <td>White</td>
+      <td>Floral</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Pinot Grigio</td>
+      <td>Italy</td>
+      <td>13.20</td>
+      <td>3.30</td>
+      <td>White</td>
+      <td>Fruity</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Pinot Blanc</td>
+      <td>France</td>
+      <td>13.16</td>
+      <td>3.16</td>
+      <td>White</td>
+      <td>Citrus</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Shiraz</td>
+      <td>Chile</td>
+      <td>14.91</td>
+      <td>3.39</td>
+      <td>Red</td>
+      <td>Berry</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Malbec</td>
+      <td>Argentina</td>
+      <td>13.83</td>
+      <td>3.28</td>
+      <td>Red</td>
+      <td>Fruity</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="reading-from-other-formats">
+<h3>Reading from other formats<a class="headerlink" href="#reading-from-other-formats" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_excel()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_html()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.read_json()</span></code></p></li>
+<li><p>etc</p></li>
+</ul>
+</div>
+<div class="section" id="dataframe-summaries">
+<h3>Dataframe summaries<a class="headerlink" href="#dataframe-summaries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 33 entries, 0 to 32
+Data columns (total 6 columns):
+Date        33 non-null object
+Name        33 non-null object
+Type        33 non-null object
+Time        33 non-null int64
+Distance    31 non-null float64
+Comments    33 non-null object
+dtypes: float64(1), int64(1), object(4)
+memory usage: 1.7+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>33</td>
+      <td>33</td>
+      <td>33</td>
+      <td>33.000000</td>
+      <td>31.000000</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>33</td>
+      <td>2</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>26 Sep 2019, 13:42:43</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>17</td>
+      <td>33</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3512.787879</td>
+      <td>12.667419</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8003.309233</td>
+      <td>0.428618</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1712.000000</td>
+      <td>11.790000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1863.000000</td>
+      <td>12.480000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2118.000000</td>
+      <td>12.620000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2285.000000</td>
+      <td>12.750000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>48062.000000</td>
+      <td>14.570000</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="renaming-columns-with-df-rename">
+<h3>Renaming columns with <code class="docutils literal notranslate"><span class="pre">df.rename()</span></code><a class="headerlink" href="#renaming-columns-with-df-rename" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>we can rename specific columns using <code class="docutils literal notranslate"><span class="pre">df.rename()</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Comments&quot;</span><span class="p">:</span> <span class="s2">&quot;Notes&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Comments&#39;: &#39;Notes&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">({</span><span class="s2">&quot;Comments&quot;</span><span class="p">:</span> <span class="s2">&quot;Notes&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comments&quot;</span><span class="p">:</span> <span class="s2">&quot;Notes&quot;</span><span class="p">})</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>there are two options for making permanent dataframe changes:</p>
+<ul>
+<li><ol class="simple">
+<li><p>set the argument <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">df.rename(...,</span> <span class="pre">inplace=True)</span></code></p></li>
+</ol>
+</li>
+<li><ol class="simple">
+<li><p>re-assign, e.g., <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df.rename(...)</span></code></p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comments&quot;</span><span class="p">:</span> <span class="s2">&quot;Notes&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># inplace</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Comments&quot;</span><span class="p">:</span> <span class="s2">&quot;Notes&quot;</span><span class="p">})</span> <span class="c1"># re-assign</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="note">
+<h4>NOTE:<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>the pandas team discourages the use of <code class="docutils literal notranslate"><span class="pre">inplace</span></code> for a <a class="reference external" href="https://www.youtube.com/watch?v=hK6o_TDXXN8&amp;t=700">few reasons</a></p></li>
+<li><p>mostly because not all functions have the argument, hides memory copying, leads to hard-to-find bugs</p></li>
+<li><p>it is recommend to <strong>re-assign</strong> (method 2 above)</p></li>
+</ul>
+<ul class="simple">
+<li><p>we can also change all columns at once using a list</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">,</span> <span class="s1">&#39;col3&#39;</span><span class="p">,</span> <span class="s1">&#39;col4&#39;</span><span class="p">,</span> <span class="s1">&#39;col5&#39;</span><span class="p">,</span> <span class="s1">&#39;col6&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col1</th>
+      <th>col2</th>
+      <th>col3</th>
+      <th>col4</th>
+      <th>col5</th>
+      <th>col6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-removing-columns-with-and-drop">
+<h3>Adding/removing columns with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-columns-with-and-drop" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>adding a single column</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Speed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.14159265358979323</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+      <td>3.141593</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+      <td>3.141593</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+      <td>3.141593</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+      <td>3.141593</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+      <td>3.141593</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>dropping a column</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Speed&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>we can also add/drop multiple columns at a time</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="adding-removing-rows-with-and-drop">
+<h3>Adding/removing rows with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-rows-with-and-drop" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>4 Oct 2019, 01:08:08</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1870</td>
+      <td>12.63</td>
+      <td>Very tired, riding into the wind</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>9 Oct 2019, 13:55:40</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2149</td>
+      <td>12.70</td>
+      <td>Really cold! But feeling good</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>10 Oct 2019, 00:10:31</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1841</td>
+      <td>12.59</td>
+      <td>Feeling good after a holiday break!</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">last_row</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">last_row</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date                            11 Oct 2019, 00:16:57
+Name                                   Afternoon Ride
+Type                                             Ride
+Time                                             1843
+Distance                                        11.79
+Comments    Bike feeling tight, needs an oil and pump
+Name: 32, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(optional) We can add the row to the end of the dataframe using <code class="docutils literal notranslate"><span class="pre">df.append()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">last_row</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29</th>
+      <td>9 Oct 2019, 13:55:40</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2149</td>
+      <td>12.70</td>
+      <td>Really cold! But feeling good</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>10 Oct 2019, 00:10:31</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1841</td>
+      <td>12.59</td>
+      <td>Feeling good after a holiday break!</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(34, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>but now we have the index label <code class="docutils literal notranslate"><span class="pre">32</span></code> occurring twice (that can be bad! Why?)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">33</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>4 Oct 2019, 01:08:08</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1870</td>
+      <td>12.63</td>
+      <td>Very tired, riding into the wind</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>9 Oct 2019, 13:55:40</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2149</td>
+      <td>12.70</td>
+      <td>Really cold! But feeling good</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>10 Oct 2019, 00:10:31</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1841</td>
+      <td>12.59</td>
+      <td>Feeling good after a holiday break!</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>we need can set <code class="docutils literal notranslate"><span class="pre">ignore_index=True</span></code> to avoid duplicate index labels</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">last_row</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29</th>
+      <td>9 Oct 2019, 13:55:40</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2149</td>
+      <td>12.70</td>
+      <td>Really cold! But feeling good</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>10 Oct 2019, 00:10:31</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1841</td>
+      <td>12.59</td>
+      <td>Feeling good after a holiday break!</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">33</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>28</th>
+      <td>4 Oct 2019, 01:08:08</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1870</td>
+      <td>12.63</td>
+      <td>Very tired, riding into the wind</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>9 Oct 2019, 13:55:40</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2149</td>
+      <td>12.70</td>
+      <td>Really cold! But feeling good</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>10 Oct 2019, 00:10:31</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1841</td>
+      <td>12.59</td>
+      <td>Feeling good after a holiday break!</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>11 Oct 2019, 00:16:57</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1843</td>
+      <td>11.79</td>
+      <td>Bike feeling tight, needs an oil and pump</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="sorting-a-dataframe-with-df-sort-values">
+<h3>Sorting a dataframe with <code class="docutils literal notranslate"><span class="pre">df.sort_values()</span></code><a class="headerlink" href="#sorting-a-dataframe-with-df-sort-values" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>27 Sep 2019, 01:00:18</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1712</td>
+      <td>12.47</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>3 Oct 2019, 00:45:22</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1724</td>
+      <td>12.52</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1 Oct 2019, 00:15:07</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1732</td>
+      <td>NaN</td>
+      <td>Legs feeling strong!</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2 Oct 2019, 00:13:09</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1756</td>
+      <td>NaN</td>
+      <td>A little tired today but good weather</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>25 Sep 2019, 00:07:21</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1775</td>
+      <td>12.10</td>
+      <td>Feeling really tired</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>use the <code class="docutils literal notranslate"><span class="pre">ascending</span></code> argument to specify sort order as ascending or descending</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>19 Sep 2019, 00:30:01</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>48062</td>
+      <td>12.48</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>20 Sep 2019, 01:02:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2961</td>
+      <td>12.81</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>18 Sep 2019, 13:49:53</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2903</td>
+      <td>14.57</td>
+      <td>Raining today</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>10 Oct 2019, 13:47:14</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2463</td>
+      <td>12.79</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>(optional) we can sort by multiple columns in succession by passing in lists</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Time&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>19 Sep 2019, 00:30:01</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>48062</td>
+      <td>12.48</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>20 Sep 2019, 01:02:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2961</td>
+      <td>12.81</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>18 Sep 2019, 00:15:52</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2101</td>
+      <td>12.48</td>
+      <td>Pumped up tires</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>24 Sep 2019, 00:35:42</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2076</td>
+      <td>12.47</td>
+      <td>Oiled chain, bike feels smooth</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>we can sort a dataframe back to it’s orginal state (based on index) using <code class="docutils literal notranslate"><span class="pre">df.sort_index()</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="filtering-a-dataframe-with-and-df-query">
+<h3>Filtering a dataframe with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">df.query()</span></code><a class="headerlink" href="#filtering-a-dataframe-with-and-df-query" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>we’ve already seen how to filter a dataframe using <code class="docutils literal notranslate"><span class="pre">[]</span></code>, <code class="docutils literal notranslate"><span class="pre">.loc</span></code> and <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> notation</p></li>
+<li><p>but what if we want more control?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.query()</span></code> is a powerful tool for filtering data</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df.query()</span></code> accepts a string expression to evaluate, using it’s own syntax</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Time &gt; 2500 and Distance &lt; 13&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>19 Sep 2019, 00:30:01</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>48062</td>
+      <td>12.48</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>20 Sep 2019, 01:02:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2961</td>
+      <td>12.81</td>
+      <td>Feeling good</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2500</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Distance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">13</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>10</th>
+      <td>19 Sep 2019, 00:30:01</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>48062</td>
+      <td>12.48</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>20 Sep 2019, 01:02:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2961</td>
+      <td>12.81</td>
+      <td>Feeling good</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>we can refer to variables in the environment by prefixing them with an <code class="docutils literal notranslate"><span class="pre">&#64;</span></code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thresh</span> <span class="o">=</span> <span class="mi">2800</span>
+<span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;Time &gt; @thresh&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>18 Sep 2019, 13:49:53</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2903</td>
+      <td>14.57</td>
+      <td>Raining today</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>19 Sep 2019, 00:30:01</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>48062</td>
+      <td>12.48</td>
+      <td>Feeling good</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>20 Sep 2019, 01:02:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2961</td>
+      <td>12.81</td>
+      <td>Feeling good</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="applying-functions-to-a-dataframe-with-df-apply-and-df-applymap">
+<h3>Applying functions to a dataframe with <code class="docutils literal notranslate"><span class="pre">df.apply()</span></code> and <code class="docutils literal notranslate"><span class="pre">df.applymap()</span></code><a class="headerlink" href="#applying-functions-to-a-dataframe-with-df-apply-and-df-applymap" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>many common functions are built into Pandas as dataframe methods</p></li>
+<li><p>e.g., <code class="docutils literal notranslate"><span class="pre">df.mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.round()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.min()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.max()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.sum()</span></code>, etc.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Time</th>
+      <th>Distance</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10 Sep 2019, 00:13:04</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>2084</td>
+      <td>12.62</td>
+      <td>Rain</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10 Sep 2019, 13:52:18</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2531</td>
+      <td>13.03</td>
+      <td>rain</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11 Sep 2019, 00:23:50</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1863</td>
+      <td>12.52</td>
+      <td>Wet road but nice weather</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11 Sep 2019, 14:06:19</td>
+      <td>Morning Ride</td>
+      <td>Ride</td>
+      <td>2192</td>
+      <td>12.84</td>
+      <td>Stopped for photo of sunrise</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12 Sep 2019, 00:28:05</td>
+      <td>Afternoon Ride</td>
+      <td>Ride</td>
+      <td>1891</td>
+      <td>12.48</td>
+      <td>Tired by the end of the week</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time        3512.787879
+Distance      12.667419
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date                         1 Oct 2019, 00:15:07
+Name                               Afternoon Ride
+Type                                         Ride
+Time                                         1712
+Distance                                    11.79
+Comments    A little tired today but good weather
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date        9 Oct 2019, 13:55:40
+Name                Morning Ride
+Type                        Ride
+Time                       48062
+Distance                   14.57
+Comments                 raining
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Date        10 Sep 2019, 00:13:0410 Sep 2019, 13:52:1811 S...
+Name        Afternoon RideMorning RideAfternoon RideMornin...
+Type        RideRideRideRideRideRideRideRideRideRideRideRi...
+Time                                                   115922
+Distance                                               392.69
+Comments    RainrainWet road but nice weatherStopped for p...
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>however there will be times when you want to apply a non-built in function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df.apply()</span></code> applies a function column-wise or row-wise</p></li>
+<li><p>the function must be able to operate over an entire row or column at a time</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Distance&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>Distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2084</td>
+      <td>12.62</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2531</td>
+      <td>13.03</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1863</td>
+      <td>12.52</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2192</td>
+      <td>12.84</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1891</td>
+      <td>12.48</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9092974268256817
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>you may use functions from other packages, such as numpy</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="s1">&#39;Distance&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>Distance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.901866</td>
+      <td>0.053604</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.901697</td>
+      <td>0.447197</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.035549</td>
+      <td>-0.046354</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.739059</td>
+      <td>0.270228</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.236515</td>
+      <td>-0.086263</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>or make your own custom function</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>34.733333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>42.183333</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>31.050000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36.533333</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>31.516667</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">df.applymap()</span></code> for functions that accept and return a scalar</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 33 entries, 0 to 32
+Data columns (total 6 columns):
+Date        33 non-null object
+Name        33 non-null object
+Type        33 non-null object
+Time        33 non-null int64
+Distance    31 non-null float64
+Comments    33 non-null object
+dtypes: float64(1), int64(1), object(4)
+memory usage: 1.7+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># this function only accepts a single value, so this will fail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">129</span><span class="o">-</span><span class="mi">7</span><span class="n">c9875858560</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">float</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="c1"># this function only accepts a single value, so this will fail</span>
+
+<span class="ne">TypeError</span>: float() argument must be a string or a number, not &#39;list&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># fails</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">130</span><span class="o">-</span><span class="mi">4550</span><span class="n">bed00aba</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># fails</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">apply</span><span class="nt">(self, func, axis, broadcast, raw, reduce, result_type, args, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6926</span>             <span class="n">kwds</span><span class="o">=</span><span class="n">kwds</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">6927</span>         <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">6928</span>         <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">6929</span> 
+<span class="g g-Whitespace">   </span><span class="mi">6930</span>     <span class="k">def</span> <span class="nf">applymap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/apply.py</span> in <span class="ni">get_result</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">184</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_raw</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> 
+<span class="ne">--&gt; </span><span class="mi">186</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_standard</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span> 
+<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="k">def</span> <span class="nf">apply_empty_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/apply.py</span> in <span class="ni">apply_standard</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span> 
+<span class="g g-Whitespace">    </span><span class="mi">291</span>         <span class="c1"># compute the result using the series generator</span>
+<span class="ne">--&gt; </span><span class="mi">292</span>         <span class="bp">self</span><span class="o">.</span><span class="n">apply_series_generator</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span> 
+<span class="g g-Whitespace">    </span><span class="mi">294</span>         <span class="c1"># wrap results</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/apply.py</span> in <span class="ni">apply_series_generator</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>             <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">series_gen</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">321</span>                     <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>                     <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/series.py</span> in <span class="ni">wrapper</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>             <span class="k">return</span> <span class="n">converter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="ne">--&gt; </span><span class="mi">131</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;cannot convert the series to &quot;</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">converter</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> 
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="n">wrapper</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="s2">&quot;__</span><span class="si">{name}</span><span class="s2">__&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">converter</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: (&quot;cannot convert the series to &lt;class &#39;float&#39;&gt;&quot;, &#39;occurred at index Time&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_float_1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># works with applymap</span>
+<span class="n">df_float_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2084.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2531.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1863.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2192.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1891.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>however, if you’re applying an in-built function, there’s often another (vectorized) way…</p></li>
+<li><p>from <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.applymap.html">Pandas docs</a> “<em>Note that a vectorized version of func often exists, which will be much faster.</em>”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_float_2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Time&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># alternatively, use astype</span>
+<span class="n">df_float_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2084.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2531.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1863.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2192.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1891.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using vectorized .astype</span>
+<span class="o">%</span><span class="k">timeit</span> df[[&#39;Time&#39;]].astype(float)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>948 µs ± 37.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># using element-wise .applymap</span>
+<span class="o">%</span><span class="k">timeit</span> df[[&#39;Time&#39;]].applymap(float)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.53 ms ± 85.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
