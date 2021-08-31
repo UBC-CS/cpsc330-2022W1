@@ -68,7 +68,7 @@ Instructor: Varada Kolhatkar
 
 
 ## Homework schedule
-
+TBD
 
 ## Working during the COVID-19 global pandemic
 
