@@ -1,4 +1,4 @@
-## Homework info & submission guidelines
+# Homework info & submission guidelines
 
 To find your assignments, go to https://github.students.cs.ubc.ca/cpsc330-2020w-t1.
 
