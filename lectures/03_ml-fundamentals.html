@@ -259,10 +259,15 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#big-picture-and-motivation">
-   Big picture and motivation
+  <a class="reference internal nav-link" href="#generalization">
+   Generalization
   </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#big-picture-and-motivation">
+     Big picture and motivation
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#model-complexity-and-training-error">
      Model complexity and training error
@@ -273,16 +278,9 @@
      🤔 Eva’s questions
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generalization-and-data-splitting">
-   2.1 Generalization and data splitting
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fundamental-goal-of-ml">
-     Fundamental goal of ML
+    <a class="reference internal nav-link" href="#generalization-fundamental-goal-of-ml">
+     Generalization: Fundamental goal of ML
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -295,6 +293,13 @@
      Training error vs. Generalization error
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-splitting">
+   Data Splitting
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-to-approximate-generalization-error">
      How to approximate generalization error?
@@ -368,7 +373,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cross-validation">
-   2.2 Cross-validation
+   Cross-validation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -579,16 +584,19 @@
 </ul>
 <p><br><br><br><br></p>
 </div>
+<div class="section" id="generalization">
+<h2>Generalization<a class="headerlink" href="#generalization" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="big-picture-and-motivation">
-<h2>Big picture and motivation<a class="headerlink" href="#big-picture-and-motivation" title="Permalink to this headline">¶</a></h2>
+<h3>Big picture and motivation<a class="headerlink" href="#big-picture-and-motivation" title="Permalink to this headline">¶</a></h3>
 <p>In machine learning, we want to glean information from labeled data so that we can label <strong>new unlabeled</strong> data. For example, suppose we want to build a spam filtering system.  We will take a large number of spam/non-spam messages from the past, learn patterns associated with spam/non-spam from them, and predict whether <strong>a new incoming message</strong> in someone’s inbox is spam or non-spam based on these patterns.</p>
 <p>So we want to learn from the past but ultimately we want to apply it on the future email messages.</p>
 <p><img alt="" src="../_images/eva-think.png" /></p>
 <p><strong>How can we generalize from what we’ve seen to what we haven’t seen?</strong></p>
 <p>In this lecture, we’ll see how machine learning tackles this question.</p>
+</div>
 <div class="section" id="model-complexity-and-training-error">
 <h3>Model complexity and training error<a class="headerlink" href="#model-complexity-and-training-error" title="Permalink to this headline">¶</a></h3>
-<p>In the last lecture we looked at decision boundaries, a way to visualize what sort of examples will be classified as positive and negative.</p>
+<p>In the last lecture, we looked at decision boundaries, a way to visualize what sort of examples will be classified as positive and negative.</p>
 <p>Let’s examine how does the decision boundary change for different tree depths.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -752,8 +760,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s consiser a subset of the data with only two features</span>
-<span class="n">X_subset</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="s2">&quot;quiz1&quot;</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_subset</span> <span class="o">=</span> <span class="n">X</span><span class="p">[[</span><span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="s2">&quot;quiz1&quot;</span><span class="p">]]</span> <span class="c1"># Let&#39;s consider a subset of the data for visualization</span>
 <span class="n">X_subset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -829,7 +836,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.286
 </pre></div>
 </div>
-<img alt="../_images/03_ml-fundamentals_15_1.png" src="../_images/03_ml-fundamentals_15_1.png" />
+<img alt="../_images/03_ml-fundamentals_17_1.png" src="../_images/03_ml-fundamentals_17_1.png" />
 </div>
 </div>
 <p>In the following model, this decision boundary is created by asking two questions.</p>
@@ -850,7 +857,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.190
 </pre></div>
 </div>
-<img alt="../_images/03_ml-fundamentals_18_1.png" src="../_images/03_ml-fundamentals_18_1.png" />
+<img alt="../_images/03_ml-fundamentals_19_1.png" src="../_images/03_ml-fundamentals_19_1.png" />
 </div>
 </div>
 <p>Let’s look at the decision boundary with depth = 4.</p>
@@ -871,7 +878,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.048
 </pre></div>
 </div>
-<img alt="../_images/03_ml-fundamentals_20_1.png" src="../_images/03_ml-fundamentals_20_1.png" />
+<img alt="../_images/03_ml-fundamentals_21_1.png" src="../_images/03_ml-fundamentals_21_1.png" />
 </div>
 </div>
 <p>Let’s look at the decision boundary with depth = 6.</p>
@@ -892,7 +899,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error:   0.000
 </pre></div>
 </div>
-<img alt="../_images/03_ml-fundamentals_22_1.png" src="../_images/03_ml-fundamentals_22_1.png" />
+<img alt="../_images/03_ml-fundamentals_23_1.png" src="../_images/03_ml-fundamentals_23_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -909,11 +916,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_23_0.png" src="../_images/03_ml-fundamentals_23_0.png" />
+<img alt="../_images/03_ml-fundamentals_24_0.png" src="../_images/03_ml-fundamentals_24_0.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>Our model has 0% error for max depths &gt;= 6!!</p></li>
+<li><p>Our model has 0% error for depths &gt;= 6!!</p></li>
 <li><p>But it’s also becoming more and more specific and sensitive to the training data.</p></li>
 <li><p>Is it good or bad?</p></li>
 </ul>
@@ -923,6 +930,8 @@
 <p><img alt="" src="../_images/eva-think.png" /></p>
 <p>At this point Eva is wondering about the following questions.</p>
 <ul class="simple">
+<li><p>How to pick the best depth?</p></li>
+<li><p>How can we make sure that the model we have built would do reasonably well on new data in the wild when it’s deployed?</p></li>
 <li><p>Which of the following rules learned by the decision tree algorithm are likely to generalize better to new data?</p></li>
 </ul>
 <blockquote>
@@ -931,18 +940,11 @@
 <blockquote>
 <div><p>Rule 2: If lab3 &gt; 83.5 and quiz1 &lt;= 83.5 and lab2 &lt;= 88 then quiz2 grade is A+</p>
 </div></blockquote>
-<ul class="simple">
-<li><p>How can we make sure that the model we have built would do reasonably well on new data in the wild when it’s deployed?</p></li>
-<li><p>How to pick the best model?</p></li>
-</ul>
 <p>To better understand the material in the next sections, think about these questions on your own or discuss them with your friend/neighbour before proceeding.</p>
 <p><br><br><br><br></p>
 </div>
-</div>
-<div class="section" id="generalization-and-data-splitting">
-<h2>2.1 Generalization and data splitting<a class="headerlink" href="#generalization-and-data-splitting" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fundamental-goal-of-ml">
-<h3>Fundamental goal of ML<a class="headerlink" href="#fundamental-goal-of-ml" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="generalization-fundamental-goal-of-ml">
+<h3>Generalization: Fundamental goal of ML<a class="headerlink" href="#generalization-fundamental-goal-of-ml" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p><strong>To generalize beyond what we see in the training examples</strong></p>
 </div></blockquote>
@@ -950,23 +952,25 @@
 <ul class="simple">
 <li><p>Example: Imagine that a learner sees the following images and corresponding labels.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/generalization-train.png"><img alt="generalization" class="bg-primary mb-1 align-center" src="../_images/generalization-train.png" style="width: 600px;" /></a>
-<!-- <img src='img/generalization-train.png' width="600" height="600" /> --></div>
+<!-- ![](img/generalization-train.png) -->
+<center>
+<img src='img/generalization-train.png' width="600" height="600" />
+</center>    </div>
 <div class="section" id="generalizing-to-unseen-data">
 <h3>Generalizing to unseen data<a class="headerlink" href="#generalizing-to-unseen-data" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Now the learner is presented with new images (1 to 4) for prediction.</p></li>
 <li><p>What prediction would you expect for each image?</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/generalization-predict.png"><img alt="generalization" class="bg-primary mb-1 align-center" src="../_images/generalization-predict.png" style="width: 1000px;" /></a>
-<!-- <img src='img/generalization-predict.png' width="1000" height="1000" /> -->
-<ul class="simple">
+<!-- ![](img/generalization-predict.png) -->
+<center>
+<img src='img/generalization-predict.png' width="1000" height="1000" />
+</center>    <ul class="simple">
 <li><p>Goal: We want the learner to be able to generalize beyond what it has seen in the training data.</p></li>
 <li><p>But these new examples should be representative of the training data. That is they should have the same characteristics as the training data.</p></li>
 <li><p>In this example, we would like the leaner to be able to predict labels for test examples 1, 2, and 3 accurately. Although 2, 3 don’t exactly occur in the training data, they are very much similar to the images in the training data. That said, is it fair to expect the learner to label image 4 correctly?</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/generalization-predict.png"><img alt="generalization" class="bg-primary mb-1 align-center" src="../_images/generalization-predict.png" style="width: 800px;" /></a>
-<!-- <img src='img/generalization-predict.png' width="800" height="800" /> --></div>
+</div>
 <div class="section" id="training-error-vs-generalization-error">
 <h3>Training error vs. Generalization error<a class="headerlink" href="#training-error-vs-generalization-error" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -982,8 +986,11 @@
 </ul>
 </li>
 </ul>
-<p><br><br></p>
+<p><br><br><br><br></p>
 </div>
+</div>
+<div class="section" id="data-splitting">
+<h2>Data Splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="how-to-approximate-generalization-error">
 <h3>How to approximate generalization error?<a class="headerlink" href="#how-to-approximate-generalization-error" title="Permalink to this headline">¶</a></h3>
 <p>A common way is <strong>data splitting</strong>.</p>
@@ -998,7 +1005,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scikit-learn train_test_split</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html&quot;</span>
-<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=650&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=800&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1007,7 +1014,7 @@
   warnings.warn(&quot;Consider using IPython.display.IFrame instead&quot;)
 </pre></div>
 </div>
-<div class="output text_html"><iframe src=https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html width=1000 height=650></iframe></div></div>
+<div class="output text_html"><iframe src=https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html width=1000 height=800></iframe></div></div>
 </div>
 <ul class="simple">
 <li><p>We can pass <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> or a dataframe with both <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> in it.</p></li>
@@ -1021,15 +1028,22 @@
 <li><p>The data is shuffled before splitting.</p></li>
 <li><p>Usually when we do machine learning we split the data before doing anything and put the test data in an imaginary chest lock.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/train-test-split.png"><img alt="train-test-split" class="bg-primary mb-1 align-center" src="../_images/train-test-split.png" style="width: 1500px;" /></a>
-<!-- <img src='img/train-test-split.png' width="1500" height="1500" /> --><div class="cell docutils container">
+<!-- ![](img/train-test-split.png) -->
+<a class="reference internal image-reference" href="../_images/train-test-split.png"><img alt="../_images/train-test-split.png" src="../_images/train-test-split.png" style="width: 1500px; height: 1500px;" /></a>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s demonstrate this with the canada usa cities data</span>
 <span class="c1"># The data is available in the data directory</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/canada_usa_cities.csv&quot;</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
-<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
 </pre></div>
 </div>
 </div>
@@ -1286,7 +1300,7 @@ Name: country, Length: 209, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_42_0.png" src="../_images/03_ml-fundamentals_42_0.png" />
+<img alt="../_images/03_ml-fundamentals_47_0.png" src="../_images/03_ml-fundamentals_47_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1298,19 +1312,19 @@ Name: country, Length: 209, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_43_0.svg" src="../_images/03_ml-fundamentals_43_0.svg" /></div>
+<img alt="../_images/03_ml-fundamentals_48_0.svg" src="../_images/03_ml-fundamentals_48_0.svg" /></div>
 </div>
+<p>Let’s examine the train and test accuracies with the split now.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s examine the train and test accuracies with the split now.</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train accuracy:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train accuracy:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test accuracy:   </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train accuracy:   1.000
-Test accuracy:   0.762
+Test accuracy:   0.738
 </pre></div>
 </div>
 </div>
@@ -1322,7 +1336,7 @@ Test accuracy:   0.762
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_45_0.png" src="../_images/03_ml-fundamentals_45_0.png" />
+<img alt="../_images/03_ml-fundamentals_51_0.png" src="../_images/03_ml-fundamentals_51_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1352,11 +1366,17 @@ Test accuracy:   0.762
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_46_0.png" src="../_images/03_ml-fundamentals_46_0.png" />
+<img alt="../_images/03_ml-fundamentals_52_0.png" src="../_images/03_ml-fundamentals_52_0.png" />
 </div>
 </div>
 <ul class="simple">
-<li><p>Useful arguments of <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>: <code class="docutils literal notranslate"><span class="pre">test_size</span></code>, <code class="docutils literal notranslate"><span class="pre">train_size</span></code>, <code class="docutils literal notranslate"><span class="pre">random_state</span></code></p></li>
+<li><p>Useful arguments of <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="test-size-train-size-arguments">
@@ -1392,8 +1412,9 @@ Test accuracy:   0.762
 <li><p>Some of you may have heard of “validation” data.</p></li>
 <li><p>Sometimes it’s a good idea to have a separate data for hyperparameter tuning.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/train-valid-test-split.png"><img alt="train-valid-test-split" class="bg-primary mb-1 align-center" src="../_images/train-valid-test-split.png" style="width: 1500px;" /></a>
-<!-- <img src='img/train-valid-test-split.png' width="1500" height="1500" /> --><ul class="simple">
+<!-- ![](img/train-valid-test-split.png) -->
+<a class="reference internal image-reference" href="../_images/train-valid-test-split.png"><img alt="../_images/train-valid-test-split.png" src="../_images/train-valid-test-split.png" style="width: 1500px; height: 1500px;" /></a>
+<ul class="simple">
 <li><p>We will try to use “validation” to refer to data where we have access to the target values.</p>
 <ul>
 <li><p>But, unlike the training data, we only use this for hyperparameter tuning and model assessment; we don’t pass these into <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
@@ -1461,7 +1482,7 @@ Test accuracy:   0.762
 </div>
 </div>
 <div class="section" id="cross-validation">
-<h2>2.2 Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
+<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="problems-with-single-train-validation-split">
 <h3>Problems with single train/validation split<a class="headerlink" href="#problems-with-single-train-validation-split" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -1469,8 +1490,9 @@ Test accuracy:   0.762
 <li><p>If your dataset is small you might end up with a tiny training and/or validation set.</p></li>
 <li><p>You might be unlucky with your splits such that they don’t align well or don’t well represent your test data.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/train-valid-test-split.png"><img alt="train-valid-test-split" class="bg-primary mb-1 align-center" src="../_images/train-valid-test-split.png" style="width: 1500px;" /></a>
-<!-- <img src='img/train-valid-test-split.png' width="1500" height="1500" /> --></div>
+<!-- ![](img/train-valid-test-split.png) -->
+<a class="reference internal image-reference" href="../_images/train-valid-test-split.png"><img alt="../_images/train-valid-test-split.png" src="../_images/train-valid-test-split.png" style="width: 1500px; height: 1500px;" /></a>
+</div>
 <div class="section" id="cross-validation-to-the-rescue">
 <h3>Cross-validation to the rescue!!<a class="headerlink" href="#cross-validation-to-the-rescue" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -1479,8 +1501,9 @@ Test accuracy:   0.762
 <li><p>Each “fold” gets a turn at being the validation set.</p></li>
 <li><p>Note that cross-validation doesn’t shuffle the data; it’s done in <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code>.</p></li>
 </ul>
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/cross-validation.png"><img alt="train-valid-test-split" class="bg-primary mb-1 align-center" src="../_images/cross-validation.png" style="width: 1500px;" /></a>
-<!-- <img src='img/cross-validation.png' width="1500"> --><ul class="simple">
+<!-- ![](img/cross-validation.png) -->
+<a class="reference internal image-reference" href="../_images/cross-validation.png"><img alt="../_images/cross-validation.png" src="../_images/cross-validation.png" style="width: 1500px;" /></a>
+<ul class="simple">
 <li><p>Each fold gives a score and we usually average our <span class="math notranslate nohighlight">\(k\)</span> results.</p></li>
 <li><p>It’s better to examine the variation in the scores across folds.</p></li>
 <li><p>Gives a more <strong>robust</strong> measure of error on unseen data.</p></li>
@@ -1574,71 +1597,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001502</td>
-      <td>0.000876</td>
+      <td>0.001466</td>
+      <td>0.000843</td>
       <td>0.764706</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001179</td>
-      <td>0.000817</td>
+      <td>0.001146</td>
+      <td>0.000784</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001207</td>
-      <td>0.000858</td>
+      <td>0.001140</td>
+      <td>0.000784</td>
       <td>0.705882</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001177</td>
-      <td>0.000814</td>
+      <td>0.001131</td>
+      <td>0.000782</td>
       <td>0.941176</td>
       <td>0.900000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001182</td>
-      <td>0.000850</td>
+      <td>0.001131</td>
+      <td>0.000781</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.001237</td>
-      <td>0.000877</td>
+      <td>0.001128</td>
+      <td>0.000784</td>
       <td>0.823529</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.001181</td>
-      <td>0.000809</td>
+      <td>0.001131</td>
+      <td>0.000778</td>
       <td>0.705882</td>
       <td>0.920000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.001272</td>
-      <td>0.000820</td>
+      <td>0.001127</td>
+      <td>0.000775</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.001177</td>
-      <td>0.000802</td>
+      <td>0.001119</td>
+      <td>0.000769</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.001162</td>
-      <td>0.000800</td>
+      <td>0.001111</td>
+      <td>0.000768</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
@@ -1677,11 +1700,11 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.001228</td>
+      <td>0.001163</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.000832</td>
+      <td>0.000785</td>
     </tr>
     <tr>
       <th>test_score</th>
@@ -1710,7 +1733,7 @@ Standard deviation of cross-validation score = 0.09
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_71_0.png" src="../_images/03_ml-fundamentals_71_0.png" />
+<img alt="../_images/03_ml-fundamentals_77_0.png" src="../_images/03_ml-fundamentals_77_0.png" />
 </div>
 </div>
 </div>
@@ -1782,71 +1805,71 @@ c. What do you think are the advantages and disadvantages of cross-validation?</
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001410</td>
-      <td>0.000849</td>
-      <td>0.937500</td>
+      <td>0.001587</td>
+      <td>0.000833</td>
+      <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001205</td>
-      <td>0.000818</td>
+      <td>0.001258</td>
+      <td>0.000803</td>
       <td>0.875000</td>
       <td>0.992857</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001187</td>
-      <td>0.000808</td>
+      <td>0.001166</td>
+      <td>0.000798</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.001186</td>
-      <td>0.000805</td>
+      <td>0.000802</td>
       <td>0.687500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001202</td>
-      <td>0.000800</td>
+      <td>0.001162</td>
+      <td>0.000791</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.001161</td>
-      <td>0.000795</td>
+      <td>0.001168</td>
+      <td>0.000792</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.001172</td>
-      <td>0.000800</td>
+      <td>0.001208</td>
+      <td>0.000799</td>
       <td>0.866667</td>
       <td>0.985816</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.001174</td>
-      <td>0.000801</td>
+      <td>0.001182</td>
+      <td>0.000790</td>
       <td>0.600000</td>
       <td>0.992908</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.001170</td>
-      <td>0.000793</td>
+      <td>0.001165</td>
+      <td>0.000787</td>
       <td>0.666667</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.001155</td>
-      <td>0.000818</td>
+      <td>0.001192</td>
+      <td>0.000804</td>
       <td>0.733333</td>
       <td>1.000000</td>
     </tr>
@@ -1913,7 +1936,7 @@ c. What do you think are the advantages and disadvantages of cross-validation?</
       <td>0.001 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
       <td>0.788 (+/- 0.055)</td>
-      <td>0.992 (+/- 0.014)</td>
+      <td>0.994 (+/- 0.014)</td>
     </tr>
   </tbody>
 </table>
@@ -2003,7 +2026,7 @@ Validation error:   0.212
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train error:   0.000
-Validation error:   0.220
+Validation error:   0.207
 </pre></div>
 </div>
 </div>
@@ -2036,7 +2059,7 @@ Validation error:   0.220
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03_ml-fundamentals_90_0.png" src="../_images/03_ml-fundamentals_90_0.png" />
+<img alt="../_images/03_ml-fundamentals_95_0.png" src="../_images/03_ml-fundamentals_95_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2201,72 +2224,72 @@ Validation error:   0.220
     </tr>
     <tr>
       <th>8</th>
-      <td>0.976510</td>
+      <td>0.977219</td>
       <td>0.787083</td>
       <td>0.096203</td>
-      <td>0.015249</td>
+      <td>0.015170</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.988612</td>
-      <td>0.767500</td>
-      <td>0.105636</td>
+      <td>0.780417</td>
+      <td>0.087778</td>
       <td>0.010646</td>
     </tr>
     <tr>
       <th>10</th>
       <td>0.997867</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.780000</td>
+      <td>0.106520</td>
       <td>0.004547</td>
     </tr>
     <tr>
       <th>11</th>
       <td>0.999291</td>
-      <td>0.786667</td>
-      <td>0.091965</td>
+      <td>0.773750</td>
+      <td>0.109878</td>
       <td>0.002128</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1.000000</td>
-      <td>0.773750</td>
-      <td>0.109878</td>
+      <td>0.786667</td>
+      <td>0.091965</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1.000000</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.780000</td>
+      <td>0.106520</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>14</th>
+      <td>1.000000</td>
+      <td>0.792917</td>
+      <td>0.099566</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>15</th>
       <td>1.000000</td>
       <td>0.786667</td>
       <td>0.103930</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>16</th>
       <td>1.000000</td>
       <td>0.780417</td>
       <td>0.096268</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>16</th>
-      <td>1.000000</td>
-      <td>0.786667</td>
-      <td>0.091965</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
       <th>17</th>
       <td>1.000000</td>
-      <td>0.786250</td>
-      <td>0.113515</td>
+      <td>0.780417</td>
+      <td>0.096268</td>
       <td>0.000000</td>
     </tr>
     <tr>
@@ -2279,36 +2302,36 @@ Validation error:   0.220
     <tr>
       <th>19</th>
       <td>1.000000</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.780000</td>
+      <td>0.117005</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>20</th>
       <td>1.000000</td>
-      <td>0.773750</td>
-      <td>0.109878</td>
+      <td>0.786667</td>
+      <td>0.103930</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>21</th>
       <td>1.000000</td>
-      <td>0.792917</td>
-      <td>0.099566</td>
+      <td>0.786667</td>
+      <td>0.091965</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>22</th>
       <td>1.000000</td>
-      <td>0.773750</td>
-      <td>0.109878</td>
+      <td>0.780417</td>
+      <td>0.096268</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>23</th>
       <td>1.000000</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.780000</td>
+      <td>0.117005</td>
       <td>0.000000</td>
     </tr>
     <tr>
@@ -2321,36 +2344,36 @@ Validation error:   0.220
     <tr>
       <th>25</th>
       <td>1.000000</td>
-      <td>0.786667</td>
-      <td>0.103930</td>
+      <td>0.773750</td>
+      <td>0.109878</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>26</th>
       <td>1.000000</td>
       <td>0.786667</td>
-      <td>0.103930</td>
+      <td>0.091965</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>27</th>
       <td>1.000000</td>
-      <td>0.786667</td>
-      <td>0.091965</td>
+      <td>0.780417</td>
+      <td>0.096268</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>28</th>
       <td>1.000000</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.786667</td>
+      <td>0.103930</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>29</th>
       <td>1.000000</td>
-      <td>0.780417</td>
-      <td>0.096268</td>
+      <td>0.792917</td>
+      <td>0.099566</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -2367,7 +2390,7 @@ Validation error:   0.220
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;depth&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/03_ml-fundamentals_99_1.png" src="../_images/03_ml-fundamentals_99_1.png" />
+<img alt="../_images/03_ml-fundamentals_104_1.png" src="../_images/03_ml-fundamentals_104_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
