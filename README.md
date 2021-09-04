@@ -1,6 +1,6 @@
 # UBC CPSC 330: Applied Machine Learning (2021W1)
 
-This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2021). An earlier version from Sep-Dec 2020 can be found [here](https://github.com/UBC-CS/cpsc330/tree/2.0).
+This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2021). An earlier version from Sep-Dec 2020 can be found [here](https://github.com/UBC-CS/cpsc330/tree/v2.0).
 
 Instructor: Varada Kolhatkar
 
@@ -8,9 +8,10 @@ Instructor: Varada Kolhatkar
 
 * [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html)
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
+* [Canvas link](https://canvas.ubc.ca/courses/78046)
 * [Class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Syllabus / administrative info](docs/course_info.md)
-* [Piazza](https://piazza.com/class/kb2e6nwu3uj23) (this is where all announcements will be made)
+* [Piazza via Canvas](https://canvas.ubc.ca/courses/78046/modules/items/3634961) (this is where all announcements will be made)
 * [Other course documents](docs)
 * [Past exams](exams/)
 
