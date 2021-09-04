@@ -8,9 +8,10 @@ Instructor: Varada Kolhatkar
 
 * [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html)
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
+* [Canvas link](https://canvas.ubc.ca/courses/78046)
 * [Class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Syllabus / administrative info](docs/course_info.md)
-* [Piazza](https://piazza.com/class/kb2e6nwu3uj23) (this is where all announcements will be made)
+* [Piazza via Canvas](https://canvas.ubc.ca/courses/78046/modules/items/3634961) (this is where all announcements will be made)
 * [Other course documents](docs)
 * [Past exams](exams/)
 
