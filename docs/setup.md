@@ -1,100 +1,108 @@
 # Programming environment
 
-## Python
-We will be using Python for this course because it is open source and widely used in machine learning and data science.  We will use Python 3 (in particular 3.7 or 3.8). **Python 2 is not supported in this course.**
+## Python and Conda
 
-We recommend the Anaconda Python distribution because it comes bundled with a bunch of useful packages (NumPy, SciPy, scikit-learn, Jupyter notebook) pre-installed. You can [download Anaconda from their website](https://www.anaconda.com/download/) for free.
+We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.9). **Python 2 is not supported in this course.**
 
-For resources on learning Python, see the [resources page](resources.md).
+We recommend the Miniconda Python distribution because it comes bundled with a bunch of useful packages (NumPy, SciPy, scikit-learn, Jupyter notebook) pre-installed. You can [download Miniconda from their website](https://docs.conda.io/en/latest/miniconda.html) that is suitable for your operating system. For example, I downloaded [Miniconda3 MaxOSX 64-bit pkg](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg) on my macOS.  
 
+To make sure that miniconda and correctly installed, follow the instructions below based on your operating system. 
+
+### macOS
+
+After installation, go to spotlight search on your macbook and type "terminal" and go to this program. If you already have terminal open,  restart it. If the installation was successful, you will see (base) prepending to your prompt string. For example, here is how the terminal prompt looks like on my macbook. 
+
+> ```(base) kvarada@CPSC-W-KVARADA01:~$```
+
+To confirm that conda is working, you can ask it which version was installed:
+
+> ```conda --version```
+
+which should return something like: 
+
+> ```conda 4.10.3```
+
+Now, type 
+
+> ```python --version``` 
+
+which should return Python 3.9.0 or greater. 
+
+
+### Windows
+
+After installation, open the Start Menu and search for the program called “Anaconda Prompt (miniconda3)”. When this opens you will see a prompt similar to 
+
+> ```(base) C:\Users\your_name```. 
+
+Type the following to check that your Python installation is working:
+
+> ```python --version```
+
+which should return Python 3.9.0 or greater. 
+
+_Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.9._
+
+
+## Installing Python packages
+
+`conda` installs Python packages from different online repositories which are called "channels". A package needs to go through thorough testing before it is included in the default channel, which is good for stability, but also means that new versions will be delayed and fewer packages are available overall. There is a community-driven effort called the [conda-forge](https://conda-forge.org/), which provides more up to date packages. To enable us to access the most up to date version of the Python packages we are going to use, we will add the more up to date channel. To add the conda-forge channel by typing the following in the terminal:
+
+> ```conda config --add channels conda-forge```
+
+## JupyterLab
+
+We will be using [JupyterLab](https://jupyter.org/) as our main coding environment and `pandas` is one of the key data analyses packages. Install them via the following commands:
+
+> ```conda install pandas jupyterlab jupyterlab-spellchecker```
+
+For other packages we need for the course, we'll creating a `conda` virtual environment. (See the instructions in the next section.)
 
 ## Virtual environment
 
 ### What and Why
 A virtual environment is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system. ([https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html)) For example, you may want a certain version of tensorflow for one project but another version for a different project. Virtual environments helps us to build environment isolation between different projects and make sure any change to dependencies affects only the projects that need it.
 
-### Setting up a virtual environment
-- **Option 1: Conda environments (preferred)**
-	1. Make sure that `conda` is installed by running
-		```
-		conda env list
-		```
-		You should see a list of environments as the output. If Anaconda/Miniconda is not installed, you can download Anaconda from [here](https://www.anaconda.com/download/) or Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html)
-	2. Download [cpsc330env.yml](cpsc330env.yml) and put it in your working directory
-	3. Create an environment by
-		```
-		conda env create -f cpsc330env.yml
-		```
-		which allows `conda` to download the dependencies needed for this course and put them in a virtual environment named `cpsc330env`.
-		You can check that the environemnt is installed successfully by running `conda env list` again. `cpsc330env` should show up in the output.
-	4. Activate the environment with
-		```
-		conda activate cpsc330env
-		```
-		After a successful activation, something like `(cpsc330env)` should show up in the terminal.
-	5. We are all set! You can now run homework and lecture materials within the virtual environment.
-		```
-		jupyter lab
-		```
-	6. To deactivate the environment, run
-		```
-		conda deactivate
-		```
-	For more information on conda environments, see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
-	
-- **Option 2: `Virtualenv`**
-	1. You can choose this option if your have python version 3.7.x or 3.8.x installed on your system. To find out, run
-		```
-		python3 --version
-		```
-	2. Install `Virtualenv` with
-		```
-		python3 -m pip install --user virtualenv
-		```
-	3. Navigate to your working directory and create new virtual environment with
-		```
-		virtualenv -p python3 cpsc330env
-		```
-		This will create a folder in your current directory that stores all the packages for this virtual environment.
-	4. Activate the environment
-		OS X/Linux:
-		```
-		source cpsc330env/bin/activate
-		```
-		Windows:
-		```
-		cpsc330env\Scripts\activate
-		```
-		If you happen to use csh or fish shell, source the corresponding activate file. 
-		After a successful activation, something like `(cpsc330env)` should show up in the terminal.
-	5. Download [requirements.txt](requirements.txt) and put it in your working directory. Then install the dependencies listed with
-		```
-		pip install -r requirements.txt
-		```
-	6. A few more dependencies that we'll need to install manually
-		- Install `nodejs` from [here](https://nodejs.org/en/download/)
-		- Install `graphviz` from [here](https://graphviz.org/download/)
-	7. We are all set! You can now run homework and lecture materials within the virtual environment.
-		```
-		jupyter lab
-		```
-	8. To deactivate the virtual environment, run
-		```
-		deactivate
-		```
-	For more information on `virtualenv`, see [here](https://virtualenv.pypa.io/en/latest/index.html).
+### Setting up a virtual environment: Conda environments
 
-### Additional steps to enable canvas utitlity
+1. Make sure that `conda` is installed by running
+    ```
+    conda env list
+    ```
+    You should see a list of environments as the output. If Anaconda/Miniconda is not installed, you can download Anaconda from [here](https://www.anaconda.com/download/) or Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html)
+2. Download [cpsc330env.yml](cpsc330env.yml) and put it in your working directory
+3. Create an environment by
+    ```
+    conda env create -f cpsc330env.yml
+    ```
+    which allows `conda` to download the dependencies needed for this course and put them in a virtual environment named `cpsc330env`.
+    You can check that the environemnt is installed successfully by running `conda env list` again. `cpsc330` should show up in the output.
+4. Activate the environment with
+    ```
+    conda activate cpsc330
+    ```
+    After a successful activation, something like `(cpsc330env)` should show up in the terminal.
+5. To deactivate the environment, run
+    ```
+    conda deactivate
+    ```    
+6. We are all set! When you want to run the lecture materials or work on your homework, start Jupyter Lab from your base environment, as shown below.
 
-Activate the virtual environment, then run the following commands
-```
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension update --all 
-jupyter lab build
-```
+> ```(base) kvarada@CPSC-W-KVARADA01:~$ jupyter lab```
 
-### Git
+Jupyter Lab will be opened in your default browser. Navigate to the appropriate notebook in Jupyter Lab. When you open the notebook you can select `cpsc330` `conda` kernel (the `conda` environment we created before for the notebook). 
 
-Please also see the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md) as you will need git as well for the course.
+![](../lectures/img/conda-kernel.png)
+
+![](../lectures/img/conda-env.png)
+    
+For more information on conda environments, see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+
+### (Optional) Git 
+
+Most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private Git repository for your homework assignments, especially if you plan to collaborate with your classmates. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md)
 
 		
+## Credit
+
+These installation instructions are based on [the MDS software installation instructions](https://ubc-mds.github.io/resources_pages/installation_instructions/).
