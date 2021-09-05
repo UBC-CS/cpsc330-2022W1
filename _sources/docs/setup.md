@@ -1,4 +1,4 @@
-# Programming environment
+# Setting up coding environment
 
 ## Python and Conda
 
@@ -6,25 +6,33 @@ We will be using Python for this course because it is open source and widely use
 
 We recommend the Miniconda Python distribution because it comes bundled with a bunch of useful packages (NumPy, SciPy, scikit-learn, Jupyter notebook) pre-installed. You can [download Miniconda from their website](https://docs.conda.io/en/latest/miniconda.html) that is suitable for your operating system. For example, I downloaded [Miniconda3 MaxOSX 64-bit pkg](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg) on my macOS.  
 
-To make sure that miniconda and correctly installed, follow the instructions below based on your operating system. 
+To make sure that miniconda and Python are correctly installed, follow the instructions below based on your operating system. 
 
 ### macOS
 
 After installation, go to spotlight search on your macbook and type "terminal" and go to this program. If you already have terminal open,  restart it. If the installation was successful, you will see (base) prepending to your prompt string. For example, here is how the terminal prompt looks like on my macbook. 
 
-> ```(base) kvarada@CPSC-W-KVARADA01:~$```
+```
+(base) kvarada@CPSC-W-KVARADA01:~$
+```
 
 To confirm that conda is working, you can ask it which version was installed:
 
-> ```conda --version```
+```
+conda --version
+```
 
 which should return something like: 
 
-> ```conda 4.10.3```
+```
+conda 4.10.3
+```
 
 Now, type 
 
-> ```python --version``` 
+```
+python --version
+``` 
 
 which should return Python 3.9.0 or greater. 
 
@@ -33,11 +41,15 @@ which should return Python 3.9.0 or greater.
 
 After installation, open the Start Menu and search for the program called “Anaconda Prompt (miniconda3)”. When this opens you will see a prompt similar to 
 
-> ```(base) C:\Users\your_name```. 
+```
+(base) C:\Users\your_name
+```
 
 Type the following to check that your Python installation is working:
 
-> ```python --version```
+```
+python --version
+```
 
 which should return Python 3.9.0 or greater. 
 
@@ -48,20 +60,24 @@ _Note: If instead you see Python 2.7.X you installed the wrong version. Uninstal
 
 `conda` installs Python packages from different online repositories which are called "channels". A package needs to go through thorough testing before it is included in the default channel, which is good for stability, but also means that new versions will be delayed and fewer packages are available overall. There is a community-driven effort called the [conda-forge](https://conda-forge.org/), which provides more up to date packages. To enable us to access the most up to date version of the Python packages we are going to use, we will add the more up to date channel. To add the conda-forge channel by typing the following in the terminal:
 
-> ```conda config --add channels conda-forge```
+```
+conda config --add channels conda-forge
+```
 
 ## JupyterLab
 
 We will be using [JupyterLab](https://jupyter.org/) as our main coding environment and `pandas` is one of the key data analyses packages. Install them via the following commands:
 
-> ```conda install pandas jupyterlab jupyterlab-spellchecker```
+```
+conda install pandas jupyterlab jupyterlab-spellchecker nb_conda_kernels
+```
 
-For other packages we need for the course, we'll creating a `conda` virtual environment. (See the instructions in the next section.)
+For other packages we need for the course, we will be creating a `conda` virtual environment. (See the instructions in the next section.)
 
 ## Virtual environment
 
 ### What and Why
-A virtual environment is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system. ([https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html)) For example, you may want a certain version of tensorflow for one project but another version for a different project. Virtual environments helps us to build environment isolation between different projects and make sure any change to dependencies affects only the projects that need it.
+[A virtual environment](https://docs.python.org/3/library/venv.html) is a Python environment such that the Python interpreter, libraries and scripts installed into it are isolated from those installed in other virtual environments, and (by default) any libraries installed in a “system” Python, i.e., one which is installed as part of your operating system.  For example, you may want a certain version of tensorflow for one project but another version for a different project. Virtual environments helps us to build environment isolation between different projects and make sure any change to dependencies affects only the projects that need it.
 
 ### Setting up a virtual environment: Conda environments
 
@@ -69,13 +85,13 @@ A virtual environment is a Python environment such that the Python interpreter, 
     ```
     conda env list
     ```
-    You should see a list of environments as the output. If Anaconda/Miniconda is not installed, you can download Anaconda from [here](https://www.anaconda.com/download/) or Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html)
+    You should see a list of environments as the output. If Miniconda is not installed, you can download Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html).  
 2. Download [cpsc330env.yml](cpsc330env.yml) and put it in your working directory
-3. Create an environment by
+3. Create an environment by 
     ```
     conda env create -f cpsc330env.yml
     ```
-    which allows `conda` to download the dependencies needed for this course and put them in a virtual environment named `cpsc330env`.
+    which allows `conda` to download the dependencies needed for this course and put them in a virtual environment named `cpsc330`.
     You can check that the environemnt is installed successfully by running `conda env list` again. `cpsc330` should show up in the output.
 4. Activate the environment with
     ```
@@ -90,7 +106,7 @@ A virtual environment is a Python environment such that the Python interpreter, 
 
 > ```(base) kvarada@CPSC-W-KVARADA01:~$ jupyter lab```
 
-Jupyter Lab will be opened in your default browser. Navigate to the appropriate notebook in Jupyter Lab. When you open the notebook you can select `cpsc330` `conda` kernel (the `conda` environment we created before for the notebook). 
+Jupyter Lab will be opened in your default browser. Navigate to the appropriate notebook in Jupyter Lab. When you open the notebook, you should see our newly created `conda` environment `cpsc330` there. See the screenshots below. Select `cpsc330` as the preferred kernel. 
 
 ![](../lectures/img/conda-kernel.png)
 
