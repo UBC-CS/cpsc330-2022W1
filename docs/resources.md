@@ -41,6 +41,7 @@ Courses:
 
 ### Online courses
 
+*[Introduction to Machine Learning](https://ml-learn.mds.ubc.ca/) by Key Capabilities for Data Science program*
 * [Machine Learning](https://www.coursera.org/learn/machine-learning) (Andrew Ng's famous Coursera course)
 * [Foundations of Machine Learning](https://bloomberg.github.io/foml/#home) online course from Bloomberg.
 * [Elements of AI](https://www.elementsofai.com/)

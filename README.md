@@ -11,7 +11,7 @@ Instructor: Varada Kolhatkar
 * [Canvas link](https://canvas.ubc.ca/courses/78046)
 * [Class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Syllabus / administrative info](docs/course_info.md)
-* [Piazza via Canvas](https://canvas.ubc.ca/courses/78046/modules/items/3634961) (this is where all announcements will be made)
+* [Piazza](https://piazza.com/class/kt60nrdhu53454) (this is where all announcements will be made)
 * [Other course documents](docs)
 * [Past exams](exams/)
 
