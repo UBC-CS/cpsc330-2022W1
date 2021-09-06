@@ -15,8 +15,15 @@ Application of machine learning tools, with an emphasis on solving practical pro
 |----------|--------|------|
 | Tue/Thu  | 11:00-12:20  | DMP 110 |
 
-**Tutorials** (choose one of these):
-TBD 
+**Tutorials**:
+The tutorials for this class will be run by the TAs and will  be in the office hour format. We are planning to have at least one tutorial on Zoom each week to support hybrid learning. (We will decide this based on Piazza poll.) 
+
+| Day  | Time   | Location |
+|----------|--------|------|
+| Friday  | 10:00-11:00 | Neville Scarfe #1328 |
+| Friday  | 11:00-1:00  | Neville Scarfe #1328 |
+| Friday  | 14:00-15:00 | Neville Scarfe #1328 |
+
 
 **Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
 
@@ -27,33 +34,33 @@ TBD
 **Teaching Assistants**:
 - Gaurav Bhatt
 - Brianna Dungate 
-- Reis Guerra Rubia
+- Rubia Guerra
 
 ## Registration
 
 **Waitlists**:
 
 The general seats available in this class usually fill up very quickly. 
-Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. I have no control over the situation and I cannot help you bypass the waitlist.
+Once the general seats are taken, the only way to register for the course is to sign up for the waiting list. For questions about the waiting list policies, see [here](https://www.cs.ubc.ca/students/undergrad/courses/waitlists). You should sign up for the waiting list even if it is long; a lot of students tend to drop courses. Signing up for the waiting list also makes it more likely that we will open up extra sessions, expand class sizes, or offer additional courses on these topics. I have no control over the situation and I cannot help you bypass the waiting list.
 
 **Prerequisites**: The official prerequisites can be found [here](https://courses.students.ubc.ca/cs/courseschedule?tname=subj-course&course=330&campuscd=UBC&dept=CPSC&pname=subjarea). If you do not meet the prerequisites, see [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/prerequisites) and [here](https://www.cs.ubc.ca/students/undergrad/courses-deadlines/rules-about-cpsc-appeals-undergraduate-students). I was told that students should not visit the front desk in the CS main office about prerequisite issues, because the folks at the front desk do not have the authority to resolve prerequisite issues.
 
 In practice, the prerequisite is familiarity with Python programming.
 
-**Auditing**: if the course is full, we cannot accommodate official auditors. If there is space and you would like to audit the course, please contact the instructor. All UBC students are welcome to audit the course unofficially.
+**Auditing**: If the course is full, we cannot accommodate official auditors. If there is space and you would like to audit the course, please contact the instructor. All UBC students are welcome to audit the course unofficially.
 
 ## Grading
  
 The grading scheme for the course is as follows:
 
-| Component   | Weight          |
-|-------------|-----------------|
-| Syllabus quiz |  1%           |
-| Assignments |     30%         |
-| Midterm     |     19%         |
-| Final       |     50%         |
+| Component   | Weight          | Location   |
+|-------------|-----------------|------------|
+| Syllabus quiz |  1%           | Canvas     | 
+| Assignments |     30%         | Gradescope |
+| Midterm     |     19%         | Canvas     |
+| Final       |     50%         | Canvas     |
 
-The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized in case, for example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. 
+The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. 
 
 For the full policy on grades, see [this document](grades.md).
 

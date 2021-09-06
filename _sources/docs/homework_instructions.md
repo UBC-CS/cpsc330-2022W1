@@ -1,6 +1,8 @@
 # Homework info & submission guidelines
 
-To find your assignments, go to https://github.students.cs.ubc.ca/cpsc330-2020w-t1.
+You will be submitting your homework assignments on Gradescope. Check out Gradescope Student Guide: https://lthub.ubc.ca/guides/gradescope-student-guide/. 
+
+To find your assignments, go to 
 
 ## Student repositories
 For every assignment, we will create a repository (repo) for each student. The repository will be named based on an internal ID

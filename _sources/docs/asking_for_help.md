@@ -1,6 +1,7 @@
 # How to ask for help
 
-We will use [Piazza](https://piazza.com/ubc.ca/) for general questions and [GitHub Issues](https://guides.github.com/features/issues/) for questions about your specific code (or grades).
+We will use [Piazza](https://piazza.com/ubc.ca/) for general questions as well as your specific questions about grades.
+
 Aside from all the standard UBC policies and guidelines, here are some additional points about how you're expected to use these platforms.
 
 #### General Q&A guidelines
@@ -16,7 +17,7 @@ Aside from all the standard UBC policies and guidelines, here are some additiona
    - Read all the instructions before asking for help. Don’t ask questions whose answers are on the course website or homework instructions or on the first page of a Google search. These questions take time away from other instructional activities.
    - Don’t ask for help after being stuck for only 10 seconds. Make a reasonable effort to solve your problem.
    - On the other hand, don’t wait until after 5 hours of painful debugging before asking a question. At some point, this just becomes time wasted. This can be exceptionally frustrating if it turns out there was a bug in the assignment (it happens!).
-   - **As a very rough general guideline, try to work on something for 10-30 minutes and then ask for help.**
+   - **As a very rough general guideline, try to work on something for 20-30 minutes and then ask for help.**
 
 #### Piazza-specific guidelines
 
