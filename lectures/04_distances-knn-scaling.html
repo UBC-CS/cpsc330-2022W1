@@ -1,0 +1,1828 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 4: Distances, \(k\)-nearest neighbours, Imputation, Scaling &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/course_info.html">
+   Course information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/asking_for_help.html">
+   How to ask for help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/setup.html">
+   Setting up coding environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/homework_instructions.html">
+   Homework info &amp; submission guidelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/330_vs_340.html">
+   CPSC 330 vs. CPSC 340
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/resources.html">
+   Reference Material
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lectures/04_distances-knn-scaling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/lectures/04_distances-knn-scaling.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-learning-objectives">
+   Lecture learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-and-big-picture-a-name-1-a">
+   Motivation and big picture
+   <a name="1">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analogy-based-models">
+     Analogy-based models
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analogy-based-algorithms-in-practice">
+     Analogy-based algorithms in practice
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-idea-of-k-nearest-neighbours-algorithm">
+     General idea of
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -nearest neighbours algorithm
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distances">
+   Distances
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geometric-view-of-tabular-data-and-dimensions">
+     Geometric view of tabular data and dimensions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-vectors">
+     Feature vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dimensions-in-ml-problems">
+     Dimensions in ML problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Feature vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarity-between-examples">
+     Similarity between examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distance-between-vectors">
+     Distance between vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#euclidean-distance">
+     Euclidean distance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-nearest-neighbour">
+     Finding the nearest neighbour
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question">
+     Question
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-the-distances-to-a-query-point">
+     Finding the distances to a query point
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-nearest-neighbours-k-nns">
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours (
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -NNs)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions">
+     Questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-n-neighbors">
+     Choosing
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_neighbors
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-choose-n-neighbors">
+     How to choose
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_neighbors
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#question-for-you">
+     Question for you
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-useful-arguments-of-kneighborsclassifier">
+     Other useful arguments of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KNeighborsClassifier
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-with-k-nearest-neighbours-k-nns">
+     Regression with
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -nearest neighbours (
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -NNs)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#score-method-for-regression">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       score
+      </span>
+     </code>
+     method for regression
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-weighted-distances">
+     Using weighted distances
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary-of-k-nn-for-supervised-learning">
+       Summary of
+       <span class="math notranslate nohighlight">
+        \(k\)
+       </span>
+       -NN for supervised learning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametric-vs-non-parametric">
+     Parametric vs non parametric
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#curse-of-dimensionality">
+     Curse of dimensionality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-nn-true-false-questions">
+     <span class="math notranslate nohighlight">
+      \(k\)
+     </span>
+     -NN True/False questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machines-svms-with-rbf-kernel">
+   Support Vector Machines (SVMs) with RBF kernel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#support-vectors">
+     Support vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Support vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameters-of-svm">
+     Hyperparameters of SVM
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relation-of-gamma-and-the-fundamental-trade-off">
+     Relation of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       gamma
+      </span>
+     </code>
+     and the fundamental trade-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relation-of-c-and-the-fundamental-trade-off">
+     Relation of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       C
+      </span>
+     </code>
+     and the fundamental trade-off
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svm-rbf-true-false-questions">
+     SVM RBF True/False questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#search-over-multiple-hyperparameters">
+     Search over multiple hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-on-rbf-svm-and-interpretation-of-gamma-and-c-in-573">
+     More on RBF SVM and interpretation of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       gamma
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       C
+      </span>
+     </code>
+     in 573!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svm-regressor">
+     SVM Regressor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary">
+     Summary
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#revisit-lecture-learning-objectives">
+   Revisit: Lecture learning objectives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-group-discussion">
+     Questions for group discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#knn-practice-question">
+     KNN practice question
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><img alt="" src="../_images/330-banner.png" /></p>
+<div class="section" id="lecture-4-distances-k-nearest-neighbours-imputation-scaling">
+<h1>Lecture 4: Distances, <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours, Imputation, Scaling<a class="headerlink" href="#lecture-4-distances-k-nearest-neighbours-imputation-scaling" title="Permalink to this headline">¶</a></h1>
+<p>UBC 2020-21</p>
+<p>Instructor: Varada Kolhatkar</p>
+<div class="section" id="lecture-learning-objectives">
+<h2>Lecture learning objectives<a class="headerlink" href="#lecture-learning-objectives" title="Permalink to this headline">¶</a></h2>
+<p>From this lecture, you will be able to</p>
+<ul class="simple">
+<li><p>explain the notion of similarity-based algorithms;</p></li>
+<li><p>broadly describe how <span class="math notranslate nohighlight">\(k\)</span>-NNs use distances;</p></li>
+<li><p>discuss the effect of using a small/large value of the hyperparameter <span class="math notranslate nohighlight">\(k\)</span> when using the <span class="math notranslate nohighlight">\(k\)</span>-NN algorithm;</p></li>
+<li><p>describe the problem of curse of dimensionality;</p></li>
+<li><p>explain the general idea of SVMs with RBF kernel;</p></li>
+<li><p>broadly describe the relation of <code class="docutils literal notranslate"><span class="pre">gamma</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> hyperparameters of SVMs with the fundamental tradeoff.</p></li>
+</ul>
+</div>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">IPython</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">mglearn</span>
+<span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interactive</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="motivation-and-big-picture-a-name-1-a">
+<h2>Motivation and big picture <a name="1"></a><a class="headerlink" href="#motivation-and-big-picture-a-name-1-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="analogy-based-models">
+<h3>Analogy-based models<a class="headerlink" href="#analogy-based-models" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Suppose you are given the following training examples with corresponding labels and are asked to label a given test example.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/knn-motivation.png"><img alt="../_images/knn-motivation.png" src="../_images/knn-motivation.png" style="width: 1500px;" /></a>
+<p><a class="reference external" href="https://vipl.ict.ac.cn/en/database.php">source</a></p>
+<ul class="simple">
+<li><p>An intuitive way to classify the test example is by finding the most “similar” example(s) from the training set and using that label for the test example.</p></li>
+</ul>
+</div>
+<div class="section" id="analogy-based-algorithms-in-practice">
+<h3>Analogy-based algorithms in practice<a class="headerlink" href="#analogy-based-algorithms-in-practice" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.hertasecurity.com/en">Herta’s High-tech Facial Recognition</a></p>
+<ul>
+<li><p>Feature vectors for human faces</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-NN to identify which face is on their watch list</p></li>
+</ul>
+</li>
+<li><p>Recommendation systems</p></li>
+</ul>
+</div>
+<div class="section" id="general-idea-of-k-nearest-neighbours-algorithm">
+<h3>General idea of <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours algorithm<a class="headerlink" href="#general-idea-of-k-nearest-neighbours-algorithm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Consider the following toy dataset with two classes.</p>
+<ul>
+<li><p>blue circles <span class="math notranslate nohighlight">\(\rightarrow\)</span> class 0</p></li>
+<li><p>red triangles <span class="math notranslate nohighlight">\(\rightarrow\)</span> class 1</p></li>
+<li><p>green stars <span class="math notranslate nohighlight">\(\rightarrow\)</span> test examples</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">make_forge</span><span class="p">()</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">8.2</span><span class="p">,</span> <span class="mf">3.66214339</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.9</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">],</span> <span class="p">[</span><span class="mf">11.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/deprecation.py:86: FutureWarning: Function make_blobs is deprecated; Please import make_blobs directly from scikit-learn
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_train_test_points</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_distances-knn-scaling_10_0.png" src="../_images/04_distances-knn-scaling_10_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Given a new data point, predict the class of the data point by finding the “closest” data point in the training set, i.e., by finding its “nearest neighbour” or majority vote of nearest neighbours.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n_neighbors</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">plot_knn_clf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
+
+<span class="n">interact</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "66e2dd1f9e714861bc8a08370d32db9d"}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.f(n_neighbors)&gt;
+</pre></div>
+</div>
+<img alt="../_images/04_distances-knn-scaling_13_2.png" src="../_images/04_distances-knn-scaling_13_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_knn_clf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_distances-knn-scaling_14_0.png" src="../_images/04_distances-knn-scaling_14_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_knn_clf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_distances-knn-scaling_15_0.png" src="../_images/04_distances-knn-scaling_15_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="distances">
+<h2>Distances<a class="headerlink" href="#distances" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="geometric-view-of-tabular-data-and-dimensions">
+<h3>Geometric view of tabular data and dimensions<a class="headerlink" href="#geometric-view-of-tabular-data-and-dimensions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>To understand analogy-based algorithms it’s useful to think of data as points in a high dimensional space.</p></li>
+<li><p>Our <code class="docutils literal notranslate"><span class="pre">X</span></code> represents the the problem in terms of relevant <strong>features</strong> (<span class="math notranslate nohighlight">\(d\)</span>) with one dimension for each <strong>feature</strong> (column).</p></li>
+<li><p>Examples are <strong>points in a <span class="math notranslate nohighlight">\(d\)</span>-dimensional space</strong>.</p></li>
+</ul>
+<p>How many dimensions (features) are there in the cities data?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cities_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/canada_usa_cities.csv&quot;</span><span class="p">)</span>
+<span class="n">X_cities</span> <span class="o">=</span> <span class="n">cities_df</span><span class="p">[[</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">]]</span>
+<span class="n">y_cities</span> <span class="o">=</span> <span class="n">cities_df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4563</span><span class="o">/</span><span class="mf">1417737028.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">);</span>
+
+<span class="ne">AttributeError</span>: &#39;numpy.ndarray&#39; object has no attribute &#39;iloc&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Recall the <a class="reference external" href="https://www.kaggle.com/geomack/spotifyclassification/home">Spotify Song Attributes</a> dataset from homework 1.</p></li>
+<li><p>How many dimensions (features) we used in the homework?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/spotify.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;song_title&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of features in the Spotify dataset: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">X_spotify</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">X_spotify</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-vectors">
+<h3>Feature vectors<a class="headerlink" href="#feature-vectors" title="Permalink to this headline">¶</a></h3>
+<dl class="simple myst">
+<dt><strong>Feature vector</strong></dt><dd><p>is composed of feature values associated with an example.</p>
+</dd>
+</dl>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;An example feature vector from the cities dataset: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;An example feature vector from the Spotify dataset: </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_spotify</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dimensions-in-ml-problems">
+<h3>Dimensions in ML problems<a class="headerlink" href="#dimensions-in-ml-problems" title="Permalink to this headline">¶</a></h3>
+<p>In ML, usually we deal with high dimensional problems where examples are hard to visualize.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d \approx 20\)</span> is considered low dimensional</p></li>
+<li><p><span class="math notranslate nohighlight">\(d \approx 1000\)</span> is considered medium dimensional</p></li>
+<li><p><span class="math notranslate nohighlight">\(d \approx 100,000\)</span> is considered high dimensional</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Feature vectors<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="simple myst">
+<dt><strong>Feature vector</strong></dt><dd><p>is composed of feature values associated with an example.</p>
+</dd>
+</dl>
+<p>Some example feature vectors are shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_cities</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])</span>
+<span class="n">two_cities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">canada</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">canada</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">usa</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">usa</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">two_cities</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">two_cities</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="similarity-between-examples">
+<h3>Similarity between examples<a class="headerlink" href="#similarity-between-examples" title="Permalink to this headline">¶</a></h3>
+<p>Let’s take 2 points (two feature vectors) from the cities dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s take 2 points (two feature vectors) from the cities dataset.</span>
+<span class="n">two_cities</span> <span class="o">=</span> <span class="n">X_cities</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">two_cities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">X_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_cities</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span>
+<span class="n">mglearn</span><span class="o">.</span><span class="n">discrete_scatter</span><span class="p">(</span><span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span><span class="n">markers</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="distance-between-vectors">
+<h3>Distance between vectors<a class="headerlink" href="#distance-between-vectors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For the cities at the two big circles, what is the <em>distance</em> between them?</p></li>
+<li><p>A common way to calculate the distance between vectors is calculating the <strong>Euclidean distance</strong>.</p></li>
+<li><p>The euclidean distance between vectors <span class="math notranslate nohighlight">\(u = &lt;u_1, u_2, \dots, u_n&gt;\)</span> and <span class="math notranslate nohighlight">\(v = &lt;v_1, v_2, \dots, v_n&gt;\)</span> is defined as:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[distance(u, v) = \sqrt{\sum_{i =1}^{n} (u_i - v_i)^2}\]</div>
+<p>The two sampled points are shown as big black circles.</p>
+</div>
+<div class="section" id="euclidean-distance">
+<h3>Euclidean distance<a class="headerlink" href="#euclidean-distance" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_cities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Subtract the two cities</p></li>
+<li><p>Square the difference</p></li>
+<li><p>Sum them up</p></li>
+<li><p>Take the square root</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subtract the two cities</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Subtract the cities: </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="c1"># Squared sum of the difference</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Sum of squares: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="c1"># Take the square root</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Euclidean distance between cities: </span><span class="si">%0.4f</span><span class="s2">&quot;</span>
+    <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">two_cities</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_cities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Euclidean distance using sklearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">euclidean_distances</span>
+
+<span class="n">euclidean_distances</span><span class="p">(</span><span class="n">two_cities</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> supports a number of other <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.DistanceMetric.html">distance metrics</a>.</p>
+</div>
+<div class="section" id="finding-the-nearest-neighbour">
+<h3>Finding the nearest neighbour<a class="headerlink" href="#finding-the-nearest-neighbour" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Let’s look at distances from all cities to all other cities</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">train_df</span><span class="p">[[</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">]])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All distances: </span><span class="si">%s</span><span class="se">\n\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dists</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dists</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the distances between City 0 and some other cities.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature vector for city 0: </span><span class="se">\n</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distances from city 0 to the first 5 cities: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">5</span><span class="p">]))</span>
+<span class="c1"># We can find the closest city with `np.argmin`:</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;The closest city from city 0 is: </span><span class="si">%d</span><span class="s2"> </span><span class="se">\n\n</span><span class="s2">with feature vector: </span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">train_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">157</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ok, so the closest city to City 0 is City 157.</p>
+</div>
+<div class="section" id="question">
+<h3>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Why did we set the diagonal entries to infinity before finding the closest city?</p></li>
+</ul>
+</div>
+<div class="section" id="finding-the-distances-to-a-query-point">
+<h3>Finding the distances to a query point<a class="headerlink" href="#finding-the-distances-to-a-query-point" title="Permalink to this headline">¶</a></h3>
+<p>We can also find the distances to a new “test” or “query” city:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s find a city that&#39;s closest to the a query city</span>
+<span class="n">query_point</span> <span class="o">=</span> <span class="p">[[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="mi">25</span><span class="p">]]</span>
+<span class="n">dists</span> <span class="o">=</span> <span class="n">euclidean_distances</span><span class="p">(</span><span class="n">train_df</span><span class="p">[[</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="s2">&quot;latitude&quot;</span><span class="p">]],</span> <span class="n">query_point</span><span class="p">)</span>
+<span class="n">dists</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The query point is closest to</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;The query point </span><span class="si">%s</span><span class="s2"> is closest to the city with index </span><span class="si">%d</span><span class="s2"> and the distance between them is: </span><span class="si">%0.4f</span><span class="s2">&quot;</span>
+    <span class="o">%</span> <span class="p">(</span><span class="n">query_point</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists</span><span class="p">),</span> <span class="n">dists</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">dists</span><span class="p">)])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</div>
+</div>
+<div class="section" id="k-nearest-neighbours-k-nns">
+<h2><span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours (<span class="math notranslate nohighlight">\(k\)</span>-NNs)<a class="headerlink" href="#k-nearest-neighbours-k-nns" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_cities</span><span class="p">():</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">canada</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">canada</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">usa</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">usa</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">one_city</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">one_city</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Canada&quot;</span><span class="p">,</span> <span class="s2">&quot;USA&quot;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">small_cities</span> <span class="o">=</span> <span class="n">cities_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">one_city</span> <span class="o">=</span> <span class="n">small_cities</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">44</span><span class="p">)</span>
+<span class="n">small_train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">small_cities</span><span class="p">,</span> <span class="n">one_city</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">canada</span> <span class="o">=</span> <span class="n">small_cities</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;country == &quot;Canada&quot;&#39;</span><span class="p">)</span>
+<span class="n">usa</span> <span class="o">=</span> <span class="n">small_cities</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;country == &quot;USA&quot;&#39;</span><span class="p">)</span>
+<span class="n">plot_cities</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we want to predict the class of the black point.</p>
+<ul class="simple">
+<li><p>An intuitive way to do this is predict the same label as the “closest” point (<span class="math notranslate nohighlight">\(k = 1\)</span>) (1-nearest neighbour)</p></li>
+<li><p>We would predict a target of <strong>USA</strong> (blue) in this case.</p></li>
+</ul>
+<p>How about using <span class="math notranslate nohighlight">\(k &gt; 1\)</span> to get a more robust estimate?</p>
+<ul class="simple">
+<li><p>For example, we could also use the 3 closest points (<em>k</em> = 3) and let them <strong>vote</strong> on the correct class.</p></li>
+<li><p>The <strong>Canada</strong> class (red) would win in this case.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">small_train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">small_train_df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+
+<span class="n">k_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_values</span><span class="p">:</span>
+    <span class="n">neigh</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">neigh</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Prediction of the black dot with </span><span class="si">%d</span><span class="s2"> neighbours: </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">neigh</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_city</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])))</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Is it a good or a bad idea to consider an odd number for <span class="math notranslate nohighlight">\(k\)</span>? Why or why not?</p></li>
+<li><p>Try different values of <span class="math notranslate nohighlight">\(k\)</span> in the above code.</p></li>
+</ul>
+</div>
+<div class="section" id="choosing-n-neighbors">
+<h3>Choosing <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code><a class="headerlink" href="#choosing-n-neighbors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The primary hyperparameter of the model is <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> (<span class="math notranslate nohighlight">\(k\)</span>) which decides how many neighbours should vote during prediction?</p></li>
+<li><p>What happens when we play around with <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>?</p></li>
+<li><p>Are we more likely to overfit with a low <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> or a high <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>?</p></li>
+<li><p>Let’s examine the effect of the hyperparameter on our cities data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">cities_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">cities_df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+
+<span class="c1"># split into train and test sets</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">knn1</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn1</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">knn100</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn100</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">knn1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;n_neighbors = 1&quot;</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">knn1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;n_neighbors = 100&quot;</span><span class="p">)</span>
+<span class="n">knn100</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">knn100</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">ticks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-choose-n-neighbors">
+<h3>How to choose <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>?<a class="headerlink" href="#how-to-choose-n-neighbors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> is a hyperparameter</p></li>
+<li><p>We can use hyperparameter optimization to choose <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;mean_train_score&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;mean_cv_score&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;std_cv_score&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;std_train_score&quot;</span><span class="p">:</span> <span class="p">[],</span>
+<span class="p">}</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">]:</span>
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;mean_cv_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]))</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;mean_train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]))</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;std_cv_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+    <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;std_train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;n_neighbors&quot;</span><span class="p">)</span>
+<span class="n">results_df</span><span class="p">[[</span><span class="s2">&quot;mean_train_score&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_cv_score&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_results_df</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;mean_cv_score&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sorted_results_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test accuracy: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-for-you">
+<h3>Question for you<a class="headerlink" href="#question-for-you" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Why do we have to treat <span class="math notranslate nohighlight">\(k\)</span> as a hyperparameter rather than a parameter?</p></li>
+</ul>
+</div>
+<div class="section" id="other-useful-arguments-of-kneighborsclassifier">
+<h3>Other useful arguments of <code class="docutils literal notranslate"><span class="pre">KNeighborsClassifier</span></code><a class="headerlink" href="#other-useful-arguments-of-kneighborsclassifier" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">weights</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> When predicting label, you can assign higher weight to the examples which are closer to the query example.</p></li>
+<li><p>Exercise for you: Play around with this argument. Do you get a better validation score?</p></li>
+</ul>
+</div>
+<div class="section" id="regression-with-k-nearest-neighbours-k-nns">
+<h3>Regression with <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours (<span class="math notranslate nohighlight">\(k\)</span>-NNs)<a class="headerlink" href="#regression-with-k-nearest-neighbours-k-nns" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Can we solve regression problems with <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours algorithm?</p></li>
+<li><p>In <span class="math notranslate nohighlight">\(k\)</span>-NN regression we take the average of the <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours.</p></li>
+<li><p>We can also have weighted regression.</p></li>
+</ul>
+<p>See an example of regression in the lecture notes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">X</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
+<span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X_train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y_train&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+
+<span class="n">knnr</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">)</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">knnr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="score-method-for-regression">
+<h3><code class="docutils literal notranslate"><span class="pre">score</span></code> method for regression<a class="headerlink" href="#score-method-for-regression" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knnr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span>
+<span class="p">)</span>  <span class="c1"># Returns the coefficient of determination R^2 of the prediction (not accuracy!)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And with <span class="math notranslate nohighlight">\(k=10\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knnr</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">)</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">knnr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;feature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knnr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-weighted-distances">
+<h3>Using weighted distances<a class="headerlink" href="#using-weighted-distances" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knnr</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">)</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">knnr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="summary-of-k-nn-for-supervised-learning">
+<h4>Summary of <span class="math notranslate nohighlight">\(k\)</span>-NN for supervised learning<a class="headerlink" href="#summary-of-k-nn-for-supervised-learning" title="Permalink to this headline">¶</a></h4>
+<p>Pros:</p>
+<ul class="simple">
+<li><p>Easy to understand, interpret.</p></li>
+<li><p>Simple hyperparameter <span class="math notranslate nohighlight">\(k\)</span> (<code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>) controlling the fundamental tradeoff.</p></li>
+<li><p>Can learn very complex functions given enough data.</p></li>
+<li><p>Lazy learning: Takes no time to <code class="docutils literal notranslate"><span class="pre">fit</span></code></p></li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li><p>Can be potentially be VERY slow during prediction time, especially when the training set is very large.</p></li>
+<li><p>Often not that great test accuracy compared to the modern approaches.</p></li>
+<li><p>It does not work well on datasets with many features or where most feature values are 0 most of the time (sparse datasets).</p></li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title">Attention</p>
+<p>For regular <span class="math notranslate nohighlight">\(k\)</span>-NN for supervised learning (not with sparse matrices), you should scale your features. We’ll be looking into it soon.</p>
+</div>
+</div>
+</div>
+<div class="section" id="parametric-vs-non-parametric">
+<h3>Parametric vs non parametric<a class="headerlink" href="#parametric-vs-non-parametric" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>You might see a lot of definitions of these terms.</p></li>
+<li><p>A simple way to think about this is:</p>
+<ul>
+<li><p>do you need to store at least <span class="math notranslate nohighlight">\(O(n)\)</span> worth of stuff to make predictions? If so, it’s non-parametric.</p></li>
+</ul>
+</li>
+<li><p>Non-parametric example: <span class="math notranslate nohighlight">\(k\)</span>-NN is a classic example of non-parametric models.</p></li>
+<li><p>Parametric example: decision stump</p></li>
+<li><p>If you want to know more about this, find some reading material <a class="reference external" href="https://www.cs.ubc.ca/~schmidtm/Courses/340-F16/L6.pdf">here</a>, <a class="reference external" href="http://mlss.tuebingen.mpg.de/2015/slides/ghahramani/gp-neural-nets15.pdf">here</a>, and <a class="reference external" href="https://machinelearningmastery.com/parametric-and-nonparametric-machine-learning-algorithms/">here</a>.</p></li>
+<li><p>By the way, the terms “parametric” and “non-paramteric” are often used differently by statisticians, see <a class="reference external" href="https://help.xlstat.com/s/article/what-is-the-difference-between-a-parametric-and-a-nonparametric-test?language=en_US">here</a> for more…</p></li>
+</ul>
+</div>
+<div class="section" id="curse-of-dimensionality">
+<h3>Curse of dimensionality<a class="headerlink" href="#curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Affects all learners but especially bad for nearest-neighbour.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-NN usually works well when the number of dimensions <span class="math notranslate nohighlight">\(d\)</span> is small but things fall apart quickly as <span class="math notranslate nohighlight">\(d\)</span> goes up.</p></li>
+<li><p>If there are many irrelevant attributes, <span class="math notranslate nohighlight">\(k\)</span>-NN is hopelessly confused because all of them contribute to finding similarity between examples.</p></li>
+<li><p>With enough irrelevant attributes the accidental similarity swamps out meaningful similarity and <span class="math notranslate nohighlight">\(k\)</span>-NN is no better than random guessing.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+
+<span class="n">nfeats_accuracy</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nfeats&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;dummy_valid_accuracy&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;KNN_valid_accuracy&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="k">for</span> <span class="n">n_feats</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="n">n_feats</span><span class="p">,</span> <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
+    <span class="p">)</span>
+    <span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">)</span>
+    <span class="n">dummy_scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">dummy</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">nfeats_accuracy</span><span class="p">[</span><span class="s2">&quot;nfeats&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n_feats</span><span class="p">)</span>
+    <span class="n">nfeats_accuracy</span><span class="p">[</span><span class="s2">&quot;KNN_valid_accuracy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]))</span>
+    <span class="n">nfeats_accuracy</span><span class="p">[</span><span class="s2">&quot;dummy_valid_accuracy&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dummy_scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">nfeats_accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="k-nn-true-false-questions">
+<h3><span class="math notranslate nohighlight">\(k\)</span>-NN True/False questions<a class="headerlink" href="#k-nn-true-false-questions" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Unlike with decision trees, with <span class="math notranslate nohighlight">\(k\)</span>-NNs most of the work is done at the <code class="docutils literal notranslate"><span class="pre">predict</span></code> stage.</p></li>
+<li><p>With <span class="math notranslate nohighlight">\(k\)</span>-NN, setting the hyperparameter <span class="math notranslate nohighlight">\(k\)</span> to larger values typically reduces training error.</p></li>
+<li><p><span class="math notranslate nohighlight">\(k\)</span>-NN may perform poorly in high-dimensional space (say, <em>d</em> &gt; 100).</p></li>
+<li><p>Similar to decision trees, <span class="math notranslate nohighlight">\(k\)</span>-NNs finds a small set of good features.</p></li>
+</ol>
+<p><br><br></p>
+</div>
+</div>
+<div class="section" id="support-vector-machines-svms-with-rbf-kernel">
+<h2>Support Vector Machines (SVMs) with RBF kernel<a class="headerlink" href="#support-vector-machines-svms-with-rbf-kernel" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Very high-level overview</p></li>
+<li><p>Our goals here are</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s SVM model.</p></li>
+<li><p>Explain the similarities and differences between <span class="math notranslate nohighlight">\(k\)</span>-NNs and SVMs with RBF kernel</p></li>
+<li><p>Explain the notion of support vectors</p></li>
+<li><p>Explain how <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> hyperparameters control the fundamental tradeoff</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Another popular similarity-based algorithm is Support Vector Machines (SVM with RBFs)</p></li>
+<li><p>Superficially, SVMs are more like weighted <span class="math notranslate nohighlight">\(k\)</span>-NNs.</p>
+<ul>
+<li><p>The decision boundary is defined by <strong>a set of positive and negative examples</strong> and <strong>their weights</strong> together with <strong>their similarity measure</strong>.</p></li>
+<li><p>A test example is a positive if on average it looks more like positive examples than the negative examples.</p></li>
+</ul>
+</li>
+<li><p>The primary difference between <span class="math notranslate nohighlight">\(k\)</span>-NNs and SVMs is that</p>
+<ul>
+<li><p>Unlike <span class="math notranslate nohighlight">\(k\)</span>-NNs, SVMs only remember the key examples (support vectors). So it’s more efficient than <span class="math notranslate nohighlight">\(k\)</span>-NN.</p></li>
+<li><p>SVMs use a different similarity metric which is called a “kernel” in SVM land. A popular kernel is Radial Basis Functions (RBFs)</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cities_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">canada</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;country == &quot;Canada&quot;&#39;</span><span class="p">)</span>
+<span class="n">usa</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;country == &quot;USA&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">canada</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">canada</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">usa</span><span class="p">[</span><span class="s2">&quot;longitude&quot;</span><span class="p">],</span> <span class="n">usa</span><span class="p">[</span><span class="s2">&quot;latitude&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;longitude&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split into training/validation and testing set</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]),</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean validation score </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">])))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># Ignore gamma for now</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean validation score </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">])))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can think of SVM with RBF kernel as &quot;smooth KNN&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SVC&quot;</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KNN with k = 5&quot;</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">knn</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;KNN test score: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SVM test score: </span><span class="si">%0.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="support-vectors">
+<h3>Support vectors<a class="headerlink" href="#support-vectors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Each training example either is or isn’t a “support vector”.</p>
+<ul>
+<li><p>This gets decided during <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Main insight: the decision boundary only depends on the support vectors.</strong></p></li>
+<li><p>Let’s look at the support vectors.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+
+<span class="c1"># Let&#39;s generate some fake data</span>
+<span class="c1"># generate blobs with fixed random generator</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">n_classes</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s train an SVM classifier.</span>
+<span class="n">svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SVM&quot;</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># How do we access support vectors</span>
+<span class="n">sv</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">support_</span>
+<span class="n">not_sv</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">sv</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Support vectors: &quot;</span><span class="p">,</span> <span class="n">sv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Non support vectors: &quot;</span><span class="p">,</span> <span class="n">not_sv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">svm</span><span class="o">.</span><span class="n">support_vectors_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="c1"># The support vectors (SVs) are shown in yellow.</span>
+<span class="c1"># These are the example that &quot;support&quot; the boundary.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Support vectors<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Note that the number of support vectors is smaller compared to the training set.</p>
+<ul>
+<li><p>Makes a big difference on large datasets.</p></li>
+</ul>
+</li>
+<li><p>What happens if we delete all non-support vector? Would the decision boundary change?</p></li>
+<li><p>What happens if we delete a support vector? Would the decision boundary change?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s try removing all other examples, keeping only the SVs.</span>
+<span class="c1"># remove all non-support vectors</span>
+<span class="n">X_only_SVs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">not_sv</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">y_only_SVs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_toy</span><span class="p">,</span> <span class="n">not_sv</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">svm_only_SVs</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svm_only_SVs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_only_SVs</span><span class="p">,</span> <span class="n">y_only_SVs</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">svm</span><span class="o">.</span><span class="n">support_vectors_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_only_SVs</span><span class="p">,</span> <span class="n">y_only_SVs</span><span class="p">,</span> <span class="n">svm_only_SVs</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">svm_only_SVs</span><span class="o">.</span><span class="n">support_vectors_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span>
+    <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;SVs only&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_remove_SV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">sv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">y_remove_SV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">y_toy</span><span class="p">,</span> <span class="n">sv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">svm_remove_SV</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">svm_remove_SV</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_remove_SV</span><span class="p">,</span> <span class="n">y_remove_SV</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_toy</span><span class="p">,</span> <span class="n">y_toy</span><span class="p">,</span> <span class="n">svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">svm</span><span class="o">.</span><span class="n">support_vectors_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Original&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_remove_SV</span><span class="p">,</span> <span class="n">y_remove_SV</span><span class="p">,</span> <span class="n">svm_remove_SV</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">svm_remove_SV</span><span class="o">.</span><span class="n">support_vectors_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span>
+    <span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">s</span><span class="o">=</span><span class="mi">120</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;With one SV removed&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hyperparameters-of-svm">
+<h3>Hyperparameters of SVM<a class="headerlink" href="#hyperparameters-of-svm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Key hyperparameters of <code class="docutils literal notranslate"><span class="pre">rbf</span></code> SVM are</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gamma</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+</ul>
+</li>
+<li><p>We are not equipped to understand the meaning of these parameters at this point but you are expected to describe their relation to the fundamental tradeoff.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/svm/plot_rbf_parameters.html"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s explanation of RBF SVM parameters</a>.</p>
+</div>
+<div class="section" id="relation-of-gamma-and-the-fundamental-trade-off">
+<h3>Relation of <code class="docutils literal notranslate"><span class="pre">gamma</span></code> and the fundamental trade-off<a class="headerlink" href="#relation-of-gamma-and-the-fundamental-trade-off" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gamma</span></code> controls the complexity (fundamental trade-off), just like other hyperparameters we’ve seen.</p>
+<ul>
+<li><p>larger <code class="docutils literal notranslate"><span class="pre">gamma</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> more complex</p></li>
+<li><p>smaller <code class="docutils literal notranslate"><span class="pre">gamma</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> less complex</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">rbf_svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">)</span>
+    <span class="n">rbf_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">rbf_svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;gamma = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">gamma</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="relation-of-c-and-the-fundamental-trade-off">
+<h3>Relation of <code class="docutils literal notranslate"><span class="pre">C</span></code> and the fundamental trade-off<a class="headerlink" href="#relation-of-c-and-the-fundamental-trade-off" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <em>also</em> affects the fundamental tradeoff</p>
+<ul>
+<li><p>larger <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> more complex</p></li>
+<li><p>smaller <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> less complex</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">rbf_svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">rbf_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">plot_classifier</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">rbf_svm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">(),</span> <span class="n">show_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;C = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">C</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="svm-rbf-true-false-questions">
+<h3>SVM RBF True/False questions<a class="headerlink" href="#svm-rbf-true-false-questions" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Similar to KNN, SVM with RBF kernel is a non-parametric model.</p></li>
+<li><p>In SVM RBF, removing a non-support vector does not change the decision boundary.</p></li>
+<li><p>In sklearn’s SVC classifier, large values of gamma tend to result in higher training score but probably lower validation score.</p></li>
+</ol>
+</div>
+<div class="section" id="search-over-multiple-hyperparameters">
+<h3>Search over multiple hyperparameters<a class="headerlink" href="#search-over-multiple-hyperparameters" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>So far you have seen how to carry out search over a hyperparameter</p></li>
+<li><p>In the above case the best training error is achieved by the most complex model (large <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, large <code class="docutils literal notranslate"><span class="pre">C</span></code>).</p></li>
+<li><p>Best validation error requires a hyperparameter search to balance the fundamental tradeoff.</p>
+<ul>
+<li><p>In general we can’t search them one at a time.</p></li>
+<li><p>More on this next week. But if you cannot wait till then, you may look up the following:</p>
+<ul>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">sklearn.model_selection.GridSearchCV</a></p></li>
+<li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html">sklearn.model_selection.RandomizedSearchCV</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="more-on-rbf-svm-and-interpretation-of-gamma-and-c-in-573">
+<h3>More on RBF SVM and interpretation of <code class="docutils literal notranslate"><span class="pre">gamma</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> in 573!<a class="headerlink" href="#more-on-rbf-svm-and-interpretation-of-gamma-and-c-in-573" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="svm-regressor">
+<h3>SVM Regressor<a class="headerlink" href="#svm-regressor" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Similar to KNNs, you can use SVMs for regression problems as well.</p></li>
+<li><p>See <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html"><code class="docutils literal notranslate"><span class="pre">sklearn.svm.SVR</span></code></a> for more details.</p></li>
+</ul>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We have KNNs and SVMs as new supervised learning techniques in our toolbox.</p></li>
+<li><p>These are analogy-based learners and the idea is to assign nearby points the same label.</p></li>
+<li><p>Unlike decision trees, all features are equally important.</p></li>
+<li><p>Both can be used for classification or regression (much like the other methods we’ve seen).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="revisit-lecture-learning-objectives">
+<h2>Revisit: Lecture learning objectives<a class="headerlink" href="#revisit-lecture-learning-objectives" title="Permalink to this headline">¶</a></h2>
+<p>From this lecture, you will be able to</p>
+<ul class="simple">
+<li><p>explain the notion of similarity-based algorithms;</p></li>
+<li><p>broadly describe how <span class="math notranslate nohighlight">\(k\)</span>-NNs use distances;</p></li>
+<li><p>discuss the effect of using a small/large value of the hyperparameter <span class="math notranslate nohighlight">\(k\)</span> when using the <span class="math notranslate nohighlight">\(k\)</span>-NN algorithm;</p></li>
+<li><p>describe the problem of curse of dimensionality;</p></li>
+<li><p>explain the general idea of SVMs with RBF kernel;</p></li>
+<li><p>explain the differences between <span class="math notranslate nohighlight">\(k\)</span>-NNs and SVM RBFs;</p></li>
+<li><p>broadly describe the relation of <code class="docutils literal notranslate"><span class="pre">gamma</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> hyperparameters with the fundamental tradeoff.</p></li>
+</ul>
+<div class="section" id="questions-for-group-discussion">
+<h3>Questions for group discussion<a class="headerlink" href="#questions-for-group-discussion" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>When we calculated Euclidean distances from all cities to all other cities, why did we set the diagonal entries to infinity before finding the closest city?</p></li>
+<li><p>Why do we have to treat <span class="math notranslate nohighlight">\(k\)</span> as a hyperparameter rather than a parameter?</p></li>
+<li><p>Which of the following models are parametric and which ones are non-parametric?</p>
+<ul class="simple">
+<li><p>Decision stumps</p></li>
+<li><p>decision trees with no depth</p></li>
+<li><p>KNNs</p></li>
+<li><p>SVMs with RBF</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="knn-practice-question">
+<h3>KNN practice question<a class="headerlink" href="#knn-practice-question" title="Permalink to this headline">¶</a></h3>
+<p>Consider this toy dataset:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} X = \begin{bmatrix}5 &amp; 2\\4 &amp; 3\\  2 &amp; 2\\ 10 &amp; 10\\ 9 &amp; -1\\ 9&amp; 9\end{bmatrix}, \quad y = \begin{bmatrix}0\\0\\1\\1\\1\\2\end{bmatrix}.\end{split}\]</div>
+<ol class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(k=1\)</span>, what would you predict for <span class="math notranslate nohighlight">\(x=\begin{bmatrix} 0\\0\end{bmatrix}\)</span>?</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(k=3\)</span>, what would you predict for <span class="math notranslate nohighlight">\(x=\begin{bmatrix} 0\\0\end{bmatrix}\)</span>?</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(k=3\)</span>, what would you predict for <span class="math notranslate nohighlight">\(x=\begin{bmatrix} 0\\0\end{bmatrix}\)</span> if we were doing regression rather than classification?</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Varada&#39;s solution</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;feature1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="s2">&quot;feature2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn1</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">knn1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">knn1</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn3</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">knn3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">knn3</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knnr</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">knnr</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
