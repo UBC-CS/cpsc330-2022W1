@@ -2,6 +2,8 @@ from utils import *
 import matplotlib.pyplot as plt
 import mglearn
 from imageio import imread
+from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
+from sklearn.metrics.pairwise import euclidean_distances
 
 
 def plot_tree_decision_boundary(
@@ -61,3 +63,33 @@ def plot_fruit_tree(ax=None):
     mygraph.render("tmp")
     ax.imshow(imread("tmp.png"))
     ax.set_axis_off()    
+    
+
+def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1):
+    # credit: This function is based on: https://github.com/amueller/mglearn/blob/master/mglearn/plot_knn_classification.py
+    dist = euclidean_distances(X_train, X_test)
+    closest = np.argsort(dist, axis=0)
+    for x, neighbors in zip(X_test, closest.T):
+        for neighbor in neighbors[:n_neighbors]:
+            plt.arrow(
+                x[0],
+                x[1],
+                X_train[neighbor, 0] - x[0],
+                X_train[neighbor, 1] - x[1],
+                head_width=0,
+                fc="k",
+                ec="k",
+            )
+
+    clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
+    plot_train_test_points(X_train, y_train, X_test)
+
+def plot_train_test_points(X_train, y_train, X_test):
+    training_points = mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train)
+    test_points = mglearn.discrete_scatter(
+            X_test[:, 0], X_test[:, 1], markers="*", c='g', s=18
+        );
+    plt.legend(
+        training_points + test_points,
+        ["training class 0", "training class 1", "test points"],
+    );

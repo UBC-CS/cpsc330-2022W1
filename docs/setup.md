@@ -104,7 +104,7 @@ For other packages we need for the course, we will be creating a `conda` virtual
     ```    
 6. We are all set! When you want to run the lecture materials or work on your homework, start Jupyter Lab from your base environment, as shown below.
 
-> ```(base) kvarada@CPSC-W-KVARADA01:~$ jupyter lab```
+```(base) kvarada@CPSC-W-KVARADA01:~$ jupyter lab```
 
 Jupyter Lab will be opened in your default browser. Navigate to the appropriate notebook in Jupyter Lab. When you open the notebook, you should see our newly created `conda` environment `cpsc330` there. See the screenshots below. Select `cpsc330` as the preferred kernel. 
 
@@ -116,7 +116,7 @@ For more information on conda environments, see [here](https://docs.conda.io/pro
 
 ### (Optional) Git 
 
-Most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private Git repository for your homework assignments, especially if you plan to collaborate with your classmates. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md)
+If you want to run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments, especially if you plan to collaborate with your classmates. 
 
 		
 ## Credit
