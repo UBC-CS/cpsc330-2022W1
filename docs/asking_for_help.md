@@ -6,7 +6,14 @@ Aside from all the standard UBC policies and guidelines, here are some additiona
 
 #### General Q&A guidelines
 
-- For general questions, use Piazza. For questions involving your specific implementation of a homework question, open a GitHub issue in your assignment repo. For questions about grades, open an issue in your personal homework repo.
+- For general questions, use Piazza and post to the entire class so that other students benefit from the discussion. 
+- For questions involving your specific implementation of a homework question use tutorials or office hours.  
+- Try to make the error reproducible and understandable
+  - Include the exact command you used to run the code.
+  - Include the entire error traceback, or at the very least the part showing the line number and error message.
+- Include a link to the file you want us to review, and a brief explanation.
+  - If you want to be extra fancy, you can include a link to the specific line by appending a code like `#L123` to the end of the URL (this would link to line 123). You can also link to a range of lines, like `#L9-L17` to highlight lines 9-17. See, for example, [this link](https://github.com/mgelbart/rhomboid/blob/master/src/run_tests.py#L9-L17).
+- For questions about your grade, check Piazza to see if we posted a list of who graded which questions. If so, you can just send a message on piazza to the person from the teaching team who graded it. If you don't get a timely response (a couple days), then send it to all instructors, which you can do by typing **instructors** in the post to field). Clearly mention the assessment, your name and student number, and explain your concern.   
 - Do not post offensive or disrespectful content.
 - If you have a code problem, include as much relevant information as possible like:
   - your version of Python and relevant libraries
@@ -26,18 +33,3 @@ Aside from all the standard UBC policies and guidelines, here are some additiona
   - you can filter by tags like `hw1` or do a keyword search
 - If you post a question and then figure out the answer yourself, please do not delete the question. It's still useful. Ideally, you'd post the answer to your own question for others to benefit.
 - When using equations, write them in LaTeX syntax and surround them with two dollar-signs. For example `$$2^x$$` will render nicely in Piazza.
-
-
-#### GitHub-specific guidelines
-
-- Open your Issue in the appropriate repository
-  - If you want the course staff to review/help debug your code, open an Issue in your personal homework repository (e.g., `hw1_goatcabin`)
-  - If you have a question/concern about your grades, open an Issue in your personal homework repository (e.g., `hw1_goatcabin`)
-- Tag the appropriate people
-  - For questions about your code, tag `@cpsc330-2020w-t1/staff` in your issue's text; **otherwise, we will not be notified and won't see it**.
-  - For questions about your grade, check Piazza to see if we posted a list of who graded which questions. If so, tag just the person who graded it. If you don't get a timely response (a couple days), then post a reminder and tag the instructor (`@mgelbart`). Again, **if no one is tagged then no one will see your message**.
-- Try to make the error reproducible and understandable
-  - Include the exact command you used to run the code.
-  - Include the entire error traceback, or at the very least the part showing the line number and error message.
-- Include a link to the file you want us to review, and a brief explanation.
-  - If you want to be extra fancy, you can include a link to the specific line by appending a code like `#L123` to the end of the URL (this would link to line 123). You can also link to a range of lines, like `#L9-L17` to highlight lines 9-17. See, for example, [this link](https://github.com/mgelbart/rhomboid/blob/master/src/run_tests.py#L9-L17).

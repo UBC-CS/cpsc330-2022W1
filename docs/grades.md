@@ -1,6 +1,6 @@
 ## CPSC 330 grading policies
 
-All grading concerns and challenges must be reported on GitHub in your homework repository following [these guidelines](asking_for_help.md#github-specific-guidelines).
+All grading concerns and challenges must be reported on [Piazza](https://piazza.com/class/kt60nrdhu53454?cid=6) by posting it to the instructors. Please select the appropriate folder (e.g., hw2 for homework 2) when you post your message. 
 
 #### Grading concerns: time limit
 If you perceive a problem with your homework or exam grade, you have **one week** to raise a concern from the time that your grades were posted. After that, your grade is final.
