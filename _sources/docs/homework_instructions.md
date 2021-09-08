@@ -4,13 +4,8 @@ You will be submitting your homework assignments on Gradescope. Check out Grades
 
 To find your assignments, go to 
 
-## Student repositories
-For every assignment, we will create a repository (repo) for each student. The repository will be named based on an internal ID
-that we generate for each student. For example, 
-if your id is `goatcabin` then for assignment 1 there will be a repository called
-`hw1_goatcabin`. The assignment will ship with the necessary code/data.
-
-If you visit [the organization homepage](https://github.students.cs.ubc.ca/cpsc330-2020w-t1) you will see a list of all repositories that you have access to.
+## Accessing homework assignments
+Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330) under the hw folder as a Jupyter notebook. It will be ship with necessary code and data or links to download the data.    
 
 ## How to submit
 
