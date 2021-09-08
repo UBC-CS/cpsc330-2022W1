@@ -1,5 +1,16 @@
 # Setting up coding environment
 
+## Git 
+
+If you want to run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments, especially if you plan to collaborate with your classmates. 
+
+Once you have `Git` you can clone the Course GitHub repository using the following command on your command line. 
+
+```git clone https://github.com/UBC-CS/cpsc330.git```
+
+When there are updates in the repository, you can update the local copy using the command below from the directory of the repository. 
+```git pull```
+
 ## Python and Conda
 
 We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.9). **Python 2 is not supported in this course.**
@@ -114,11 +125,9 @@ Jupyter Lab will be opened in your default browser. Navigate to the appropriate 
     
 For more information on conda environments, see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
-### (Optional) Git 
+Now you should be able to run the notebook on your computer!! 
 
-If you want to run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments, especially if you plan to collaborate with your classmates. 
 
-		
 ## Credit
 
 These installation instructions are based on [the MDS software installation instructions](https://ubc-mds.github.io/resources_pages/installation_instructions/).
