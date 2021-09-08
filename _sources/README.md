@@ -6,6 +6,7 @@ Instructor: Varada Kolhatkar
 
 ## Important links
 
+* [Course GitHub page](https://github.com/UBC-CS/cpsc330)
 * [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html)
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
 * [Canvas link](https://canvas.ubc.ca/courses/78046)
