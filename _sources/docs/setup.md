@@ -130,8 +130,18 @@ Jupyter Lab will be opened in your default browser. Navigate to the appropriate 
     
 For more information on conda environments, see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
-Now you should be able to run the notebook on your computer!! 
+Now you should be able to run the lecture notebooks on your computer!! Note that the environment file above is good to get started but it does not contain **all** packages we will be using in the course and we might have to install some packages manually later in the course.  
 
+
+### Debugging
+
+If the `conda env create -f cpsc330env.yml` command above results in an error on your computer: 
+
+- Figure out what package it's failing on from the error message.
+- Get rid of the line with that package from your local copy of `cpsc330env.yml`. 
+- Try creating the environment again with the modified `cpsc330env.yml`. 
+- Once the environment is created, activate the environment and install the missing packages manually in the environment. You may have to install these packages using `pip install` in some cases, as the most recent version of the package might not available via `conda` for your operating system yet. 
+- If you still have trouble with the environment and running lecture notebooks on your machine, make use of office hours and tutorials. 
 
 ## Credit
 
