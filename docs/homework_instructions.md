@@ -1,6 +1,6 @@
 # Homework info & submission guidelines
 
-You will be submitting your homework assignments on Gradescope. Check out Gradescope Student Guide: https://lthub.ubc.ca/guides/gradescope-student-guide/. 
+You will be submitting your homework assignments on Gradescope. Check out [Gradescope Student Guide](https://lthub.ubc.ca/guides/gradescope-student-guide/). 
 
 ## Accessing homework assignments
 Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330) under the `hw` folder. Once it's available, I'll make an announcement on [Piazza](https://piazza.com/class/kt60nrdhu53454). The assignment will generally consist of a jupyter notebook along with necessary code and data or links to download the data.    
