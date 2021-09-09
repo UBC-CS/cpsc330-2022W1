@@ -1,4 +1,4 @@
-# Reference Material
+# Reference material
 
 ### Relevant companion materials
 
