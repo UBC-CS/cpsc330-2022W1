@@ -13,8 +13,8 @@ Instructor: Varada Kolhatkar
 * [Class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Syllabus / administrative info](docs/course_info.md)
 * [Piazza](https://piazza.com/class/kt60nrdhu53454) (this is where all announcements will be made)
-* [Other course documents](docs)
-* [Past exams](exams/)
+* [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
+* [Past exams](https://github.com/UBC-CS/cpsc330/tree/master/exams)
 
 ## Lecture schedule
 
