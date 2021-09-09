@@ -6,10 +6,15 @@ If you want to run lecture notebooks locally, which is highly recommended, you w
 
 Once you have `Git` you can clone the Course GitHub repository using the following command on your command line. 
 
-```git clone https://github.com/UBC-CS/cpsc330.git```
+```
+git clone https://github.com/UBC-CS/cpsc330.git
+```
 
 When there are updates in the repository, you can update the local copy using the command below from the directory of the repository. 
-```git pull```
+
+```
+git pull
+```
 
 ## Python and Conda
 
