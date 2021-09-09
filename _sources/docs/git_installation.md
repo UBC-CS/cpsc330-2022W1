@@ -14,7 +14,7 @@ The instructions below pertain to using git from the command line. For those who
 
 ## Setting up
 
-GitHub is a web-based application and does not require set-up. However, you will be running lecture notebooks locally and therefore need git installed locally. Follow the instructions below. 
+GitHub is a web-based application and does not require set-up. Since you will be cloning the [course GitHub repository](https://github.com/UBC-CS/cpsc330) in order to run the lecture notebooks locally, you need git installed locally. Follow the instructions below for this. 
 
 #### Mac Users
 

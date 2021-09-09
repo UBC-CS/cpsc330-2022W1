@@ -1,11 +1,14 @@
-## CPSC 330 grading policies
+# CPSC 330 grading policies
 
-All grading concerns and challenges must be reported on [Piazza](https://piazza.com/class/kt60nrdhu53454?cid=6) by posting it to the instructors. Please select the appropriate folder (e.g., hw2 for homework 2) when you post your message. 
+## General guidelines
+- All grading concerns and challenges must be reported on [Piazza](https://piazza.com/class/kt60nrdhu53454?cid=6) by posting it to the instructors. 
+- You must select the `grading_concerns` folder when you post your message. If you do not do it, we might not see your message. 
+- Clearly state your name, student number, the assessment, and your concern.
 
-#### Grading concerns: time limit
+## Grading concerns: time limit
 If you perceive a problem with your homework or exam grade, you have **one week** to raise a concern from the time that your grades were posted. After that, your grade is final.
 
-#### Reasonable grading concerns
+## Reasonable grading concerns
 Grades are not perfect; some randomness in grading is normal, meaning that you'll generally get more than you deserve in some cases and less than you deserve in other cases. Thus, it is possible to exploit the system by consistently complaining when your grade is too low but not when it is too high. Unfortunately, this takes time away from the course staff which could have been spent on making the course better for everyone. Thus, in my view, students who overzealously contest grades are penalizing their classmates for personal gain.
 
 Sometimes serious grading errors are made, for example when a grader did not see your answer to a question or completely deviated from standard grading practices for some unknown reason. Such situations can be quite frustrating for students, and we want you to feel that the course is fair. In these cases, it makes sense for the student to bring the error to our attention.

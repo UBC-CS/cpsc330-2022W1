@@ -2,9 +2,9 @@
 
 ## Git 
 
-If you want to run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments, especially if you plan to collaborate with your classmates. 
+If you want to clone the class GitHub repository and run lecture notebooks locally, which is highly recommended, you will need `Git` on your computer. Check out the [git setup instructions](https://github.com/UBC-CS/cpsc330/blob/master/docs/git_installation.md). Also, most of our homework assignments will be done in JupyterLab. You don't have to do it but it might be easier for you to create a private GitHub repository for your homework assignments. 
 
-Once you have `Git` you can clone the Course GitHub repository using the following command on your command line. 
+Once you have `Git` go to the directory where you want to do CPSC 330 work, and clone the Course GitHub repository using the following command on your command line. 
 
 ```
 git clone https://github.com/UBC-CS/cpsc330.git
@@ -102,7 +102,7 @@ For other packages we need for the course, we will be creating a `conda` virtual
     conda env list
     ```
     You should see a list of environments as the output. If Miniconda is not installed, you can download Miniconda (a small, bootstrap version of Anaconda) from [here](https://docs.conda.io/en/latest/miniconda.html).  
-2. Download [cpsc330env.yml](cpsc330env.yml) and put it in your working directory
+2. Download [cpsc330env.yml](./cpsc330env.yml) and put it in your working directory
 3. Create an environment by 
     ```
     conda env create -f cpsc330env.yml
@@ -113,7 +113,7 @@ For other packages we need for the course, we will be creating a `conda` virtual
     ```
     conda activate cpsc330
     ```
-    After a successful activation, something like `(cpsc330env)` should show up in the terminal.
+    After a successful activation, something like `(cpsc330)` should show up in the terminal.
 5. To deactivate the environment, run
     ```
     conda deactivate
@@ -124,9 +124,9 @@ For other packages we need for the course, we will be creating a `conda` virtual
 
 Jupyter Lab will be opened in your default browser. Navigate to the appropriate notebook in Jupyter Lab. When you open the notebook, you should see our newly created `conda` environment `cpsc330` there. See the screenshots below. Select `cpsc330` as the preferred kernel. 
 
-![](../lectures/img/conda-kernel.png)
+![](img/conda-kernel.png)
 
-![](../lectures/img/conda-env.png)
+![](img/conda-env.png)
     
 For more information on conda environments, see [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
 
