@@ -31,14 +31,14 @@ Instructor: Varada Kolhatkar
 
 **Lectures**: 
 
-| Date  | Topic |  Related readings and datasets | vs. CPSC 340 |
+| Date  | Topic |  Assigned videos and datasets | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
 | Sep 7 | _UBC Imagine Day - no class_ | | 
-| Sep 9 | Course intro [[notes](lectures/01_intro.ipynb)] [[videos](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM&index=1)] |  | n/a|
+| Sep 9 | Course intro [[notes](lectures/01_intro.ipynb)] | 📹 <li>Pre-watch: None</li><li>During lecture: [1.0](https://youtu.be/-1hTcS5ZE4w)</li> | n/a|
 |  | **Part I: ML fundamentals and preprocessing**  | |  
 |  | |**Week 2 datasets:** <li>[grade prediction toy dataset](lectures/data/quiz2-grade-toy-classification.csv)</li><li>[Canada USA cities toy dataset](lectures/data/canada_usa_cities.csv)</li> | |
-| Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] [[videos](https://www.youtube.com/watch?v=YNT8n4cXu4A&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM&index=2)]|  |   less depth| 
-| Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]|  | similar |
+| Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] | 📹 <li>Pre-watch: [2.1](https://youtu.be/YNT8n4cXu4A), [2.2](https://youtu.be/6eT5cLL-2Vc)</li> <li>During lecture: [2.3](https://youtu.be/Hcf19Ij35rA), [2.4](https://youtu.be/KEtsfXn4w2E)</li> |   less depth| 
+| Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]| 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
 |        |     |**Week 3 datasets:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li><li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li> | |
 | Sep 21 | Distances, KNN, imputation, scaling |   | less depth |
 | Sep 28 | Categorical features and text features |  |  more depth|
@@ -47,7 +47,7 @@ Instructor: Varada Kolhatkar
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
 |        |     |**Week 5 datasets**: <li>[SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset)</li> | |
 | Oct 5 | Logistic regression, word counts, `predict_proba`| |   less depth |
-| Oct 7 | Hyperparameter optimization, overfitting the validation set | less depth | 
+| Oct 7 | Hyperparameter optimization, overfitting the validation set | | less depth | 
 |        |     |**Week 6 datasets**: <li>[Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)</li> | |
 | Oct 12 | Outliers |  |   different|
 | Oct 14 | Evaluation metrics for classification  |  | more depth |
@@ -77,7 +77,7 @@ Instructor: Varada Kolhatkar
 |        |     | **Week 14 datasets**: <li></li> | |
 | Dec 7 | Model deployment and conclusion |  |  new |
 
-
+New topics: 
 
 ## Working during the COVID-19 global pandemic
 
