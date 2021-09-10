@@ -30,6 +30,8 @@ Instructor: Varada Kolhatkar
 **Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available [here](https://ubc.ca.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=7cb3d5e9-9fcc-4c76-a287-ad98010bacfe).     
 
 **Lectures**: 
+- Try to watch the "Pre-watch" videos before each lecture. 
+- I'll be developing lecture notes in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them on the [Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
 
 | Date  | Topic |  Assigned videos and datasets | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
@@ -77,7 +79,6 @@ Instructor: Varada Kolhatkar
 |        |     | **Week 14 datasets**: <li></li> | |
 | Dec 7 | Model deployment and conclusion |  |  new |
 
-New topics: 
 
 ## Working during the COVID-19 global pandemic
 
