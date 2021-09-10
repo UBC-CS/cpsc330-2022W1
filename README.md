@@ -16,6 +16,15 @@ Instructor: Varada Kolhatkar
 * [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
 * [Past exams](https://github.com/UBC-CS/cpsc330/tree/master/exams)
 
+## Deliverable due dates
+
+|Assessment  | Due date |  Where to find? | Where to submit? | 
+|-------|-----------|-----------|-----------|
+| Syllabus quiz | Sept 14th 11:59pm  | [Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) | 
+| hw1 | Sept 14th 11:59pm |  [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw2 | TBD | 
+
+
 ## Lecture schedule
 
 **Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available [here](https://ubc.ca.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=7cb3d5e9-9fcc-4c76-a287-ad98010bacfe).     
@@ -69,8 +78,6 @@ Instructor: Varada Kolhatkar
 | Dec 7 | Model deployment and conclusion |  |  new |
 
 
-## Homework schedule
-TBD
 
 ## Working during the COVID-19 global pandemic
 
