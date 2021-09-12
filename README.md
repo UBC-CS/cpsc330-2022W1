@@ -16,7 +16,7 @@ Instructor: Varada Kolhatkar
 * [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
 * [Past exams](https://github.com/UBC-CS/cpsc330/tree/master/exams)
 
-## Deliverable due dates
+## Deliverable due dates (tentative)
 Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. 
 
 |Assessment  | Due date |  Where to find? | Where to submit? | 
@@ -35,7 +35,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 
 
-## Lecture schedule
+## Lecture schedule (tentative)
 
 **Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available [here](https://ubc.ca.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=7cb3d5e9-9fcc-4c76-a287-ad98010bacfe).     
 
@@ -52,10 +52,10 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] | 📹 <li>Pre-watch: [2.1](https://youtu.be/YNT8n4cXu4A), [2.2](https://youtu.be/6eT5cLL-2Vc)</li> <li>During lecture: [2.3](https://youtu.be/Hcf19Ij35rA), [2.4](https://youtu.be/KEtsfXn4w2E)</li> |   less depth| 
 | Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]| 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
 |        |     |**Week 3 datasets:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li><li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li> | |
-| Sep 21 | Distances, KNN, imputation, scaling |   | less depth |
-| Sep 23 | Categorical features and text features |  |  more depth|
+| Sep 21 | Distances, KNN, SVM with RBF kernel |   | less depth |
+| Sep 23 | Preprocessing, `sklearn` pipelines |  |  more depth|
 |        |     | **Week 4 dataset:** <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li> | |
-| Sep 28 | Pipelines, column transformer | | more depth |
+| Sep 28 | More preprocessing, text features, `sklearn` column transformers | | more depth |
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
 |        |     |**Week 5 datasets**: <li>[SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset)</li> | |
 | Oct 5 | Logistic regression, word counts, `predict_proba`| |   less depth |
