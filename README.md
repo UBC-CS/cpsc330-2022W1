@@ -16,29 +16,50 @@ Instructor: Varada Kolhatkar
 * [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
 * [Past exams](https://github.com/UBC-CS/cpsc330/tree/master/exams)
 
-## Lecture schedule
+## Deliverable due dates (tentative)
+Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. 
+
+|Assessment  | Due date |  Where to find? | Where to submit? | 
+|-------|-----------|-----------|-----------|
+| Syllabus quiz | Sept 14, 11:59pm  | [Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) | 
+| hw1 | Sept 14, 11:59pm |  [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw2 | Sept 20, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)| 
+| hw3 | Oct 04, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw4 | Oct 11, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw5 | Oct 25, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| **Midterm** | Oct 28, during class time|[Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) | 
+| hw6 | Nov 15, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw7 | Nov 22, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw8 | Nov 29, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| **Final exam** | TBD | [Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) |
+
+
+
+## Lecture schedule (tentative)
 
 **Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available [here](https://ubc.ca.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=7cb3d5e9-9fcc-4c76-a287-ad98010bacfe).     
 
 **Lectures**: 
+- Try to watch the "Pre-watch" videos before each lecture. 
+- I'll be developing lecture notes in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them on the [Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
 
-| Date  | Topic |  Related readings and datasets | vs. CPSC 340 |
+| Date  | Topic |  Assigned videos and datasets | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
 | Sep 7 | _UBC Imagine Day - no class_ | | 
-| Sep 9 | Course intro [[notes](lectures/01_intro.ipynb)] [[videos](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM&index=1)] |  | n/a|
+| Sep 9 | Course intro [[notes](lectures/01_intro.ipynb)] | 📹 <li>Pre-watch: None</li><li>During lecture: [1.0](https://youtu.be/-1hTcS5ZE4w)</li> | n/a|
 |  | **Part I: ML fundamentals and preprocessing**  | |  
 |  | |**Week 2 datasets:** <li>[grade prediction toy dataset](lectures/data/quiz2-grade-toy-classification.csv)</li><li>[Canada USA cities toy dataset](lectures/data/canada_usa_cities.csv)</li> | |
-| Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] [[videos](https://www.youtube.com/watch?v=YNT8n4cXu4A&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM&index=2)]|  |   less depth| 
-| Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]|  | similar |
+| Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] | 📹 <li>Pre-watch: [2.1](https://youtu.be/YNT8n4cXu4A), [2.2](https://youtu.be/6eT5cLL-2Vc)</li> <li>During lecture: [2.3](https://youtu.be/Hcf19Ij35rA), [2.4](https://youtu.be/KEtsfXn4w2E)</li> |   less depth| 
+| Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]| 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
 |        |     |**Week 3 datasets:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li><li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li> | |
-| Sep 21 | Distances, KNN, imputation, scaling |   | less depth |
-| Sep 28 | Categorical features and text features |  |  more depth|
+| Sep 21 | Distances, KNN, SVM with RBF kernel |   | less depth |
+| Sep 23 | Preprocessing, `sklearn` pipelines |  |  more depth|
 |        |     | **Week 4 dataset:** <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li> | |
-| Sep 23 | Pipelines, column transformer | | more depth |
+| Sep 28 | More preprocessing, text features, `sklearn` column transformers | | more depth |
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
 |        |     |**Week 5 datasets**: <li>[SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset)</li> | |
 | Oct 5 | Logistic regression, word counts, `predict_proba`| |   less depth |
-| Oct 7 | Hyperparameter optimization, overfitting the validation set | less depth | 
+| Oct 7 | Hyperparameter optimization, overfitting the validation set | | less depth | 
 |        |     |**Week 6 datasets**: <li>[Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)</li> | |
 | Oct 12 | Outliers |  |   different|
 | Oct 14 | Evaluation metrics for classification  |  | more depth |
@@ -68,9 +89,6 @@ Instructor: Varada Kolhatkar
 |        |     | **Week 14 datasets**: <li></li> | |
 | Dec 7 | Model deployment and conclusion |  |  new |
 
-
-## Homework schedule
-TBD
 
 ## Working during the COVID-19 global pandemic
 

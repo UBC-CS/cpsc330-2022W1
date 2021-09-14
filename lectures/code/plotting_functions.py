@@ -4,7 +4,8 @@ import mglearn
 from imageio import imread
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.metrics.pairwise import euclidean_distances
-
+from sklearn.model_selection import cross_validate, train_test_split
+from sklearn.svm import SVC
 
 def plot_tree_decision_boundary(
     model, X, y, x_label="x-axis", y_label="y-axis", eps=None, ax=None, title=None
@@ -65,10 +66,14 @@ def plot_fruit_tree(ax=None):
     ax.set_axis_off()    
     
 
-def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1):
+def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1, class_names=['class 0','class 1'], test_format='star'):
     # credit: This function is based on: https://github.com/amueller/mglearn/blob/master/mglearn/plot_knn_classification.py
+    plt.clf()    
+    print('n_neighbors', n_neighbors)
     dist = euclidean_distances(X_train, X_test)
     closest = np.argsort(dist, axis=0)
+    clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
+    plot_train_test_points(X_train, y_train, X_test, class_names, test_format)
     for x, neighbors in zip(X_test, closest.T):
         for neighbor in neighbors[:n_neighbors]:
             plt.arrow(
@@ -79,17 +84,73 @@ def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1):
                 head_width=0,
                 fc="k",
                 ec="k",
-            )
+            )    
+    plt.show()
 
-    clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
-    plot_train_test_points(X_train, y_train, X_test)
-
-def plot_train_test_points(X_train, y_train, X_test):
+def plot_train_test_points(X_train, y_train, X_test, class_names=['class 0','class 1'], test_format='star'):
     training_points = mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train)
-    test_points = mglearn.discrete_scatter(
-            X_test[:, 0], X_test[:, 1], markers="*", c='g', s=18
-        );
+    if test_format == "circle": 
+        test_points = mglearn.discrete_scatter(
+                X_test[:, 0], X_test[:, 1], markers="o", c='k', s=18
+            );
+    else: 
+        test_points = mglearn.discrete_scatter(
+                X_test[:, 0], X_test[:, 1], markers="*", c='g', s=16
+            );        
     plt.legend(
         training_points + test_points,
-        ["training class 0", "training class 1", "test points"],
-    );
+        [class_names[0], class_names[1], "test point(s)"],
+    )  
+    
+
+def plot_support_vectors(svm, X, y):
+    mglearn.plots.plot_2d_separator(svm, X, eps=.5)
+    mglearn.discrete_scatter(X[:, 0], X[:, 1], y)
+    sv = svm.support_vectors_ # plot support vectors
+    # class labels of support vectors are given by the sign of the dual coefficients
+    sv_labels = svm.dual_coef_.ravel() > 0
+    mglearn.discrete_scatter(sv[:, 0], sv[:, 1], sv_labels, s=15, markeredgewidth=3)
+    plt.xlabel("Feature 0")
+    plt.ylabel("Feature 1");
+    
+
+
+def plot_svc_gamma(param_grid, X_train, y_train, x_label="longitude", y_label='latitude'): 
+    fig, axes = plt.subplots(1, len(param_grid), figsize=(len(param_grid)*5, 4))
+    for gamma, ax in zip(param_grid, axes):
+        clf = SVC(gamma=gamma)
+        scores = cross_validate(clf, X_train, y_train, return_train_score=True)
+        mean_valid_score = scores["test_score"].mean()
+        mean_train_score = scores["train_score"].mean()
+        clf.fit(X_train, y_train)
+        mglearn.plots.plot_2d_separator(
+            clf, X_train, fill=True, eps=0.5, ax=ax, alpha=0.4
+        )
+        mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train, ax=ax)
+        title = "gamma={}\n train score={}, valid score={}".format(
+            gamma, round(mean_train_score, 2), round(mean_valid_score, 2)
+        )
+        ax.set_title(title)
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(y_label)
+    axes[0].legend(loc=1);    
+    
+def plot_svc_C(param_grid, X_train, y_train, x_label="longitude", y_label='latitude'): 
+    fig, axes = plt.subplots(1, len(param_grid), figsize=(len(param_grid)*5, 4))
+    for C, ax in zip(param_grid, axes):
+        clf = SVC(C=C, gamma=0.01)
+        scores = cross_validate(clf, X_train, y_train, return_train_score=True)
+        mean_valid_score = scores["test_score"].mean()
+        mean_train_score = scores["train_score"].mean()
+        clf.fit(X_train, y_train)
+        mglearn.plots.plot_2d_separator(
+            clf, X_train, fill=True, eps=0.5, ax=ax, alpha=0.4
+        )
+        mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train, ax=ax)
+        title = "C={}\n train score={}, valid score={}".format(
+            C, round(mean_train_score, 2), round(mean_valid_score, 2)
+        )
+        ax.set_title(title)
+        ax.set_xlabel(x_label)
+        ax.set_ylabel(y_label)
+    axes[0].legend(loc=1);    
