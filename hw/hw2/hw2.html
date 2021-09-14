@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/hw/hw2/hw2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw2/hw2.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-2-decision-trees-and-machine-learning-fundamentals">
+   Homework 2: Decision trees and machine learning fundamentals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-2-and-3">
+     Associated lectures: Lectures 2 and 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-the-data-set">
+   Introducing the data set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploratory-data-analysis">
+   Exercise 1: Exploratory data analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     1(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     1(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     1(c)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d">
+     1(d)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e">
+     1(e)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f">
+     1(f)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g">
+     1(g)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-using-sklearn-to-build-a-decision-tree-classifier">
+   Exercise 2: Using sklearn to build a decision tree classifier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2(c)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2(d)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2(e)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     2(f)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-hyperparameters">
+   Exercise 3: Hyperparameters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-4-test-set">
+   Exercise 4: Test set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-5-conceptual-questions">
+   Exercise 5: Conceptual questions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="homework-2-decision-trees-and-machine-learning-fundamentals">
+<h2>Homework 2: Decision trees and machine learning fundamentals<a class="headerlink" href="#homework-2-decision-trees-and-machine-learning-fundamentals" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="associated-lectures-lectures-2-and-3">
+<h3>Associated lectures: <a class="reference external" href="https://ubc-cs.github.io/cpsc330/README.html">Lectures 2 and 3</a><a class="headerlink" href="#associated-lectures-lectures-2-and-3" title="Permalink to this headline">¶</a></h3>
+<p><strong>Due date: Monday Sep 20, 2021 at 11:59pm</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>rubric={points:3}</p>
+<p>Follow the <a class="reference external" href="https://github.com/UBC-CS/cpsc330/blob/master/docs/homework_instructions.md">homework submission instructions</a>. In particular, <strong>see the note about not pushing downloaded data to your repo</strong>.</p>
+<p>You are welcome to broadly discuss questions with your classmates but your final answers must be your own. <strong>We are not allowing group submission for this homework assignment.</strong></p>
+</div>
+<div class="section" id="introducing-the-data-set">
+<h2>Introducing the data set<a class="headerlink" href="#introducing-the-data-set" title="Permalink to this headline">¶</a></h2>
+<p>For this  assignment you’ll be looking at Kaggle’s <a class="reference external" href="https://www.kaggle.com/geomack/spotifyclassification/">Spotify Song Attributes</a> dataset.
+The dataset contains a number of features of songs from 2017 and a binary variable <code class="docutils literal notranslate"><span class="pre">target</span></code> that represents whether the user liked the song (encoded as 1) or not (encoded as 0). See the documentation of all the features <a class="reference external" href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/">here</a>.</p>
+<p>This dataset is publicly available on Kaggle, and you will have to download it yourself. Follow the steps below to get the data CSV.</p>
+<ol class="simple">
+<li><p>If you do not have an account with <a class="reference external" href="https://www.kaggle.com/">Kaggle</a>, you will first need to create one (it’s free).</p></li>
+<li><p>Login to your account and <a class="reference external" href="https://www.kaggle.com/geomack/spotifyclassification/download">download</a> the dataset.</p></li>
+<li><p>Unzip the data file if needed, then rename it to <code class="docutils literal notranslate"><span class="pre">spotify.csv</span></code>, and move it to the same directory as this notebook.</p></li>
+</ol>
+</div>
+<div class="section" id="exercise-1-exploratory-data-analysis">
+<h2>Exercise 1: Exploratory data analysis<a class="headerlink" href="#exercise-1-exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a">
+<h3>1(a)<a class="headerlink" href="#a" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Read in the data CSV and store it as a pandas dataframe named <code class="docutils literal notranslate"><span class="pre">spotify_df</span></code>. The first column of the .csv file should be set as the index.</p>
+</div>
+<div class="section" id="b">
+<h3>1(b)<a class="headerlink" href="#b" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Run the following line of code to split the data. How many training and test examples do we have?</p>
+<blockquote>
+<div><p>Note: we are setting the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> so that everyone has the same split on their assignments. This will make it easier for the TAs to grade.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">spotify_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_17660</span><span class="o">/</span><span class="mf">2600711376.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_train</span><span class="p">,</span> <span class="n">df_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">spotify_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;spotify_df&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="c">
+<h3>1(c)<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:3}</p>
+<ul class="simple">
+<li><p>Print out the output of <code class="docutils literal notranslate"><span class="pre">describe()</span></code> <strong>on the training split</strong>. This will compute some summary statistics of the numeric columns.</p></li>
+<li><p>Which feature has the smallest range?</p></li>
+</ul>
+<blockquote>
+<div><p>Hint: You can subtract the min value from the max value of the column to get the range.</p>
+</div></blockquote>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">describe</span></code> returns another DataFrame.</p>
+</div>
+<div class="section" id="d">
+<h3>1(d)<a class="headerlink" href="#d" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:5}</p>
+<p>Let’s focus on the following features:</p>
+<ul class="simple">
+<li><p>danceability</p></li>
+<li><p>tempo</p></li>
+<li><p>energy</p></li>
+<li><p>valence</p></li>
+</ul>
+<p>For each of these features (in order), produce a histogram that shows the distribution of the feature values in the training set, <strong>separated for positive and negative examples</strong>.
+By “positive examples” we mean target = 1 (user liked the song, positive sentiment) and by “negative examples” we mean target = 0 (used disliked the song, negative sentiment). As an example, here is what the histogram would look like for a different feature, loudness:</p>
+<a class="reference internal image-reference" href="../../_images/loudness.png"><img alt="../../_images/loudness.png" src="../../_images/loudness.png" style="width: 400px;" /></a>
+<p>(You don’t have to match all the details exactly, such as colour, but your histograms should look something like this, with a reasonable number of bins to see the shape of the distribution.) As shown above, there are two different histograms, one for target = 0 and one for target = 1, and they are overlaid on top of each other. The histogram above shows that extremely quiet songs tend to be disliked (more blue bars than orange on the left) and very loud songs also tend to be disliked (more blue than orange on the far right).</p>
+<p>To adhere to the <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY (Don’t Repeat Yourself)</a> principle, make sure you use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop for your plotting, rather than repeating the plotting code 4 times. For this to work, I used <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> at the end of your loop, which draws the figure and resets the canvas for your next plot.</p>
+<p>Here is some code that separates out the dataset into positive and negative examples, to help you get started:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">negative_examples</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;target == 0&quot;</span><span class="p">)</span>
+<span class="n">positive_examples</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;target == 1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="e">
+<h3>1(e)<a class="headerlink" href="#e" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:4}</p>
+<p>Let’s say you had to make a decision stump (decision tree with depth 1), <em>by hand</em>, to predict the target class. Just from looking at the plots above, describe a reasonable split (feature name and threshold) and what class you would predict in the two cases. For example, in the loudness histogram provided earlier on, it seems that very large values of loudness are generally disliked (more blue on the right side of the histogram), so you might answer something like this: “A reasonable split would be to predict 0 if loudness &gt; -5 (and predict 1 otherwise).”</p>
+</div>
+<div class="section" id="f">
+<h3>1(f)<a class="headerlink" href="#f" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Let’s say that, for a particular feature, the histograms of that feature are identical for the two target classes. Does that mean the feature is not useful for predicting the target class?</p>
+</div>
+<div class="section" id="g">
+<h3>1(g)<a class="headerlink" href="#g" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Note that the dataset includes two free text features labeled <code class="docutils literal notranslate"><span class="pre">song_title</span></code> and <code class="docutils literal notranslate"><span class="pre">artist</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_train</span><span class="p">[[</span><span class="s2">&quot;song_title&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Do you think these features could be useful in predicting whether the user liked the song or not?</p></li>
+<li><p>Would there be any difficulty in using them in your model?</p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div class="section" id="exercise-2-using-sklearn-to-build-a-decision-tree-classifier">
+<h2>Exercise 2: Using sklearn to build a decision tree classifier<a class="headerlink" href="#exercise-2-using-sklearn-to-build-a-decision-tree-classifier" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>2(a)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<ul class="simple">
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> and <code class="docutils literal notranslate"><span class="pre">X_test</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code> from <code class="docutils literal notranslate"><span class="pre">df_train</span></code> and <code class="docutils literal notranslate"><span class="pre">df_test</span></code> above. Skip the <code class="docutils literal notranslate"><span class="pre">song_title</span></code> and <code class="docutils literal notranslate"><span class="pre">artist</span></code> features for now.</p></li>
+<li><p>Fit a <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> on the train set.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>2(b)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to predict the class of the first example in your <code class="docutils literal notranslate"><span class="pre">X_train</span></code>. Is the prediction correct? That is, does it match with the corresponding class in <code class="docutils literal notranslate"><span class="pre">y_train</span></code>?</p>
+<blockquote>
+<div><p>Hint: you can grab the first example with <code class="docutils literal notranslate"><span class="pre">X_train.iloc[[0]]</span></code>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>2(c)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> function on your training set to compute the 10-fold cross-validation accuracy of your tree.</p>
+</div>
+<div class="section" id="id4">
+<h3>2(d)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:2}</p>
+<p>The above is useful, but we would like to see the training accuracy as well.</p>
+<ul class="simple">
+<li><p>Compute the 10-fold cross-validation again but this time using the <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> function with <code class="docutils literal notranslate"><span class="pre">return_train_score=True</span></code>.</p></li>
+<li><p>Print out both the cross-validation score and the training score.</p></li>
+<li><p>Is your cross-validation score exactly the same as what you got in the previous part? Very briefly discuss.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>2(e)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:1}</p>
+<p>Do you see a significant difference between the training score and the cross-validation score? Briefly discuss.</p>
+</div>
+<div class="section" id="id6">
+<h3>2(f)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>rubric={points:1}</p>
+<p>Inspect the 10 sub-scores from the 10 folds of cross-validation. How does this inform the trustworthiness of your cross validation score?</p>
+</div>
+</div>
+<div class="section" id="exercise-3-hyperparameters">
+<h2>Exercise 3: Hyperparameters<a class="headerlink" href="#exercise-3-hyperparameters" title="Permalink to this headline">¶</a></h2>
+<p>rubric={points:10}</p>
+<p>In this exercise, you’ll experiment with the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter of the decision tree classifier. See the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"><code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> documentation</a> for more details.</p>
+<ul class="simple">
+<li><p>Explore the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter. Run 10-fold cross-validation for trees with different values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> (at least 10 different values in the range 1 to 25).</p></li>
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, get both the train accuracy and the cross-validation accuracy.</p></li>
+<li><p>Make a plot with <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> on the <em>x</em>-axis and the train and cross-validation scores on the <em>y</em>-axis. That is, your plot should have two curves, one for train and one for cross-validation. Include a legend to specify which is which.</p></li>
+<li><p>Discuss how changing the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter affects the training and cross-validation accuracy. From these results, what depth would you pick as the optimal depth?</p></li>
+<li><p>Do you think that the depth you chose would generalize to other “spotify” datasets (i.e., data on other spotify users)?</p></li>
+</ul>
+<blockquote>
+<div><p>Note: generally speaking (for all assignments) you are welcome to copy/paste code directly from the lecture notes, though I ask that you add a small citation (e.g. “Adapted from lecture 2”) if you do so.</p>
+</div></blockquote>
+</div>
+<div class="section" id="exercise-4-test-set">
+<h2>Exercise 4: Test set<a class="headerlink" href="#exercise-4-test-set" title="Permalink to this headline">¶</a></h2>
+<p>rubric={points:4}</p>
+<p>Remember the test set you created way back at the beginning of this assignment? Let’s use it now to see if our cross-validation score from the previous exercise is trustworthy.</p>
+<ul class="simple">
+<li><p>Select your favorite <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> from the previous part.</p></li>
+<li><p>Train a decision tree classifier using that <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> on the <em>entire training set</em>.</p></li>
+<li><p>Compute and display the test score.</p></li>
+<li><p>How does it compare to the cross-validation score from the previous exercise? Briefly discuss.</p></li>
+</ul>
+</div>
+<div class="section" id="exercise-5-conceptual-questions">
+<h2>Exercise 5: Conceptual questions<a class="headerlink" href="#exercise-5-conceptual-questions" title="Permalink to this headline">¶</a></h2>
+<p>rubric={points:3}</p>
+<p>Consider the dataset below, which has <span class="math notranslate nohighlight">\(6\)</span> examples and <span class="math notranslate nohighlight">\(2\)</span> features:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} X = \begin{bmatrix}5 &amp; 2\\4 &amp; 3\\  2 &amp; 2\\ 10 &amp; 10\\ 9 &amp; -1\\ 9&amp; 9\end{bmatrix}, \quad y = \begin{bmatrix}-1\\-1\\+1\\+1\\+1\\+1\end{bmatrix}.\end{split}\]</div>
+<ol class="simple">
+<li><p>Say we fit a decision stump (depth 1 decision tree) and the first split is on the first feature (left column) being less than 5.5. What would we predict in the “true” and “false” cases here?</p></li>
+<li><p>What training accuracy would the above stump get on this data set?</p></li>
+<li><p>Can we obtain 100% accuracy with a single decision stump in this particular example?</p></li>
+</ol>
+</div>
+<div class="section" id="submission-instructions">
+<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">¶</a></h2>
+<p><strong>PLEASE READ:</strong> When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
