@@ -419,22 +419,20 @@
 
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">OrdinalEncoder</span><span class="p">,</span> 
     <span class="n">FunctionTransformer</span><span class="p">,</span>
     <span class="n">Normalizer</span><span class="p">,</span>
     <span class="n">OneHotEncoder</span><span class="p">,</span>
+    <span class="n">OrdinalEncoder</span><span class="p">,</span>
     <span class="n">StandardScaler</span><span class="p">,</span>
     <span class="n">normalize</span><span class="p">,</span>
     <span class="n">scale</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 </pre></div>
@@ -481,7 +479,7 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_63009</span><span class="o">/</span><span class="mf">962641680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_72580</span><span class="o">/</span><span class="mf">962641680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
 <span class="ne">NameError</span>: name &#39;X_train&#39; is not defined
@@ -516,14 +514,14 @@
     <span class="s2">&quot;total_bedrooms&quot;</span><span class="p">,</span>
     <span class="s2">&quot;population&quot;</span><span class="p">,</span>
     <span class="s2">&quot;households&quot;</span><span class="p">,</span>
-    <span class="s1">&#39;median_income&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;rooms_per_household&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;bedrooms_per_household&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;population_per_household&#39;</span>    
+    <span class="s2">&quot;median_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rooms_per_household&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bedrooms_per_household&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;population_per_household&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">]</span>
-<span class="c1">#reamainder_features = [&quot;median_income&quot;]</span>
+<span class="c1"># reamainder_features = [&quot;median_income&quot;]</span>
 </pre></div>
 </div>
 </div>
@@ -550,8 +548,8 @@
     <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
-    <span class="p">],</span> 
-    <span class="c1">#remainder=&#39;passthrough&#39;    </span>
+    <span class="p">],</span>
+    <span class="c1"># remainder=&#39;passthrough&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -603,7 +601,9 @@
 <p>We can get the new names of the columns that were generated by the one-hot encoding:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span>
+    <span class="n">categorical_features</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -619,7 +619,9 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">columns</span>
 </pre></div>
@@ -648,12 +650,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span><span class="o">=</span><span class="p">{}</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
     <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;preprocessor&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-        <span class="c1">#(&quot;reg&quot;, KNeighborsRegressor()),</span>
+        <span class="c1"># (&quot;reg&quot;, KNeighborsRegressor()),</span>
         <span class="p">(</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)),</span>
     <span class="p">]</span>
 <span class="p">)</span>
@@ -900,7 +903,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -921,7 +924,7 @@ Name: income, dtype: int64
     <span class="s2">&quot;education.num&quot;</span><span class="p">,</span>
     <span class="s2">&quot;capital.gain&quot;</span><span class="p">,</span>
     <span class="s2">&quot;capital.loss&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;hours.per.week&quot;</span>
+    <span class="s2">&quot;hours.per.week&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
@@ -932,10 +935,10 @@ Name: income, dtype: int64
     <span class="s2">&quot;relationship&quot;</span><span class="p">,</span>
     <span class="s2">&quot;race&quot;</span><span class="p">,</span>
     <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;native.country&quot;</span>
+    <span class="s2">&quot;native.country&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="n">target</span><span class="o">=</span><span class="s1">&#39;income&#39;</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;income&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -959,8 +962,7 @@ Name: income, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
-    <span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)),</span> 
-           <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())]</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)),</span> <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())]</span>
 <span class="p">)</span>
 
 <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
@@ -1462,7 +1464,7 @@ dtype: float64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1480,7 +1482,9 @@ dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oe</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">oe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">&quot;education&quot;</span><span class="p">]])</span>
 <span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">oe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">&quot;education&quot;</span><span class="p">]])</span>
-<span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ed_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">ed_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
 <span class="n">ed_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="n">oe</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -1497,7 +1501,11 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">oe</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transformed&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">oe</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">oe</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transformed&quot;</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">oe</span><span class="o">.</span><span class="n">categories_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1590,10 +1598,24 @@ dtype: float64
 <p>Let’s order them manually.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">education_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Preschool&#39;</span><span class="p">,</span> <span class="s1">&#39;1st-4th&#39;</span><span class="p">,</span> <span class="s1">&#39;5th-6th&#39;</span><span class="p">,</span> <span class="s1">&#39;7th-8th&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;9th&#39;</span><span class="p">,</span> <span class="s1">&#39;10th&#39;</span><span class="p">,</span> <span class="s1">&#39;11th&#39;</span><span class="p">,</span> <span class="s1">&#39;12th&#39;</span><span class="p">,</span> <span class="s1">&#39;HS-grad&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;Prof-school&#39;</span><span class="p">,</span> <span class="s1">&#39;Assoc-voc&#39;</span><span class="p">,</span> <span class="s1">&#39;Assoc-acdm&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;Some-college&#39;</span><span class="p">,</span> <span class="s1">&#39;Bachelors&#39;</span><span class="p">,</span> <span class="s1">&#39;Masters&#39;</span><span class="p">,</span> <span class="s1">&#39;Doctorate&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">education_levels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Preschool&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1st-4th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;5th-6th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;7th-8th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;9th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;10th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;11th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;12th&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Prof-school&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Assoc-voc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Assoc-acdm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Some-college&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Bachelors&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Masters&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Doctorate&quot;</span><span class="p">,</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1610,7 +1632,9 @@ dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oe</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">oe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">&quot;education&quot;</span><span class="p">]])</span>
 <span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">oe</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s2">&quot;education&quot;</span><span class="p">]])</span>
-<span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ed_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">ed_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">ed_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span>
 <span class="n">oe</span><span class="o">.</span><span class="n">categories_</span>
 </pre></div>
 </div>
@@ -1626,12 +1650,18 @@ dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;capital.gain&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;capital.loss&#39;</span><span class="p">,</span> <span class="s1">&#39;hours.per.week&#39;</span><span class="p">]</span>
-<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;workclass&#39;</span><span class="p">,</span> <span class="s1">&#39;marital.status&#39;</span><span class="p">,</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> 
-                        <span class="s1">&#39;relationship&#39;</span><span class="p">,</span> <span class="s1">&#39;race&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;native.country&#39;</span><span class="p">]</span>
-<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span>
-<span class="n">target_column</span> <span class="o">=</span> <span class="s1">&#39;income&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;fnlwgt&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.gain&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.loss&quot;</span><span class="p">,</span> <span class="s2">&quot;hours.per.week&quot;</span><span class="p">]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;workclass&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;marital.status&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;occupation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relationship&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;race&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;native.country&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">]</span>
+<span class="n">target_column</span> <span class="o">=</span> <span class="s2">&quot;income&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1647,15 +1677,17 @@ dtype: float64
 
 <span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
-    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,),</span>
-
+    <span class="n">OrdinalEncoder</span><span class="p">(</span>
+        <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span> <span class="n">ordinal_transformer</span><span class="p">,</span> <span class="n">ordinal_features</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span> <span class="n">ordinal_transformer</span><span class="p">,</span> <span class="n">ordinal_features</span><span class="p">),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
@@ -1695,13 +1727,18 @@ dtype: float64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;capital.gain&#39;</span><span class="p">,</span> 
-                    <span class="s1">&#39;capital.loss&#39;</span><span class="p">,</span> <span class="s1">&#39;hours.per.week&#39;</span><span class="p">]</span>
-<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;workclass&#39;</span><span class="p">,</span> <span class="s1">&#39;marital.status&#39;</span><span class="p">,</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> 
-                        <span class="s1">&#39;relationship&#39;</span><span class="p">,</span> <span class="s1">&#39;race&#39;</span><span class="p">,</span> <span class="s1">&#39;native.country&#39;</span><span class="p">]</span>
-<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;education&#39;</span><span class="p">]</span>
-<span class="n">binary_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span>
-<span class="n">target_column</span> <span class="o">=</span> <span class="s1">&#39;income&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;fnlwgt&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.gain&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.loss&quot;</span><span class="p">,</span> <span class="s2">&quot;hours.per.week&quot;</span><span class="p">]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;workclass&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;marital.status&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;occupation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;relationship&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;race&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;native.country&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">]</span>
+<span class="n">binary_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span>
+<span class="n">target_column</span> <span class="o">=</span> <span class="s2">&quot;income&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -1717,21 +1754,23 @@ dtype: float64
 
 <span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
-    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,),</span>
-
+    <span class="n">OrdinalEncoder</span><span class="p">(</span>
+        <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">binary_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
-    <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>    
-    <span class="p">)</span>
+    <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+<span class="p">)</span>
 
 <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span> <span class="n">ordinal_transformer</span><span class="p">,</span> <span class="n">ordinal_features</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;binary&quot;</span><span class="p">,</span> <span class="n">binary_transformer</span><span class="p">,</span> <span class="n">binary_features</span><span class="p">)</span>
+        <span class="p">(</span><span class="s2">&quot;binary&quot;</span><span class="p">,</span> <span class="n">binary_transformer</span><span class="p">,</span> <span class="n">binary_features</span><span class="p">),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
@@ -2183,7 +2222,10 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 <span class="nb">print</span><span class="p">(</span>
     <span class="s2">&quot;Proportion of non-zero elements: </span><span class="si">%0.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">nnz</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The value at cell 3,</span><span class="si">%d</span><span class="s2"> is: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">],</span> <span class="n">X_counts</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">]]))</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;The value at cell 3,</span><span class="si">%d</span><span class="s2"> is: </span><span class="si">%d</span><span class="s2">&quot;</span>
+    <span class="o">%</span> <span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">],</span> <span class="n">X_counts</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">]])</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2254,11 +2296,14 @@ The value at cell 3,31 is: 1
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s look at all features, i.e., words (along with their frequencies). </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s look at all features, i.e., words (along with their frequencies).</span>
 <span class="n">vec_all</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 <span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec_all</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> 
-             <span class="n">index</span> <span class="o">=</span> <span class="n">vec_all</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">vec_all</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;counts&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2374,8 +2419,11 @@ The value at cell 3,31 is: 1
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can control the size of X (the number of features) using `max_features`</span>
 <span class="n">vec8</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> 
-             <span class="n">index</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;counts&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2549,8 +2597,11 @@ The value at cell 3,31 is: 1
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8_binary</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8_binary</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> 
-             <span class="n">index</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;counts&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;counts&quot;</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;counts&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2618,7 +2669,9 @@ The value at cell 3,31 is: 1
 <p>The ties in counts between different words makes it even more confusing. I don’t think it’ll have a big impact on the results but this is good to know! Remember that <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> developers are also humans who are prone to make mistakes. So it’s always a good habit to question whatever tools we use every now and then.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">vec8_binary</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">vec8_binary</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span>
+<span class="p">)</span>
 <span class="n">bow_df</span>
 </pre></div>
 </div>
@@ -2761,7 +2814,7 @@ The value at cell 3,31 is: 1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2786,7 +2839,7 @@ The value at cell 3,31 is: 1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2830,6 +2883,453 @@ The value at cell 3,31 is: 1
 </ul>
 </li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurant_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>north_america</th>
+      <th>eat_out_freq</th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
+      <th>food_type</th>
+      <th>noise_level</th>
+      <th>good_server</th>
+      <th>comments</th>
+      <th>restaurant_name</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>29</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Other</td>
+      <td>no music</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>10</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>food tastes good</td>
+      <td>Midam</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>21</td>
+      <td>10</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>good food</td>
+      <td>pear tree</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>24</td>
+      <td>15</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>My love for Korean food</td>
+      <td>Dami</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Yes</td>
+      <td>5.0</td>
+      <td>23</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Canadian/American</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>Good food</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>Yes</td>
+      <td>5.0</td>
+      <td>22</td>
+      <td>4</td>
+      <td>20</td>
+      <td>Canadian/American</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>do not remember</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>22</td>
+      <td>0</td>
+      <td>15</td>
+      <td>Chinese</td>
+      <td>no music</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>20</td>
+      <td>10</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>no music</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>Tim Kee Kitchen</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>162</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>21</td>
+      <td>30</td>
+      <td>22</td>
+      <td>Chinese</td>
+      <td>high</td>
+      <td>No</td>
+      <td>The environment was very not clean. The food tasted awful.</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+    <tr>
+      <th>163</th>
+      <td>No</td>
+      <td>6.0</td>
+      <td>26</td>
+      <td>20</td>
+      <td>30</td>
+      <td>Fusion</td>
+      <td>low</td>
+      <td>No</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>dislike</td>
+    </tr>
+  </tbody>
+</table>
+<p>164 rows × 11 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurant_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>eat_out_freq</th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>164.000000</td>
+      <td>164.000000</td>
+      <td>1.640000e+02</td>
+      <td>164.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.463415</td>
+      <td>22.548780</td>
+      <td>6.100015e+04</td>
+      <td>6127.585366</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.556267</td>
+      <td>3.058338</td>
+      <td>7.808669e+05</td>
+      <td>78084.527814</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>10.000000</td>
+      <td>-2.000000e+00</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+      <td>21.000000</td>
+      <td>1.000000e+01</td>
+      <td>16.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>2.000000</td>
+      <td>22.000000</td>
+      <td>2.000000e+01</td>
+      <td>20.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.000000</td>
+      <td>23.000000</td>
+      <td>4.000000e+01</td>
+      <td>30.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.000000</td>
+      <td>32.000000</td>
+      <td>1.000000e+07</td>
+      <td>1000000.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurant_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/cleaned_restaurant_data.csv&quot;</span><span class="p">)</span>
+<span class="n">restaurant_subset</span> <span class="o">=</span> <span class="n">restaurant_df</span><span class="p">[[</span><span class="s2">&quot;n_people&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">]]</span>
+<span class="n">clean_restaurant_subset</span> <span class="o">=</span> <span class="n">restaurant_subset</span><span class="p">[</span><span class="n">restaurant_df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">clean_restaurant_subset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>n_people</th>
+      <th>price</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20</td>
+      <td>10</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>20</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10</td>
+      <td>40</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15</td>
+      <td>40</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20</td>
+      <td>10</td>
+      <td>like</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">clean_restaurant_subset</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">clean_restaurant_subset</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(max_depth=4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7209302325581395
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5454545454545454
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="kn">import</span> <span class="nn">IPython</span>
+<span class="kn">import</span> <span class="nn">mglearn</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">export_graphviz</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">plot_tree_decision_boundary_and_tree</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">X_train</span><span class="p">,</span>
+    <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;n_people&quot;</span><span class="p">,</span>
+    <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/06_column-transformer-text-feats_115_0.png" src="../_images/06_column-transformer-text-feats_115_0.png" />
+</div>
+</div>
 </div>
 </div>
 </div>
