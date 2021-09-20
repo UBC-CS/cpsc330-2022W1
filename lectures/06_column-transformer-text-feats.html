@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DSCI 571: Supervised Machine Learning I &#8212; CPSC 330 Applied Machine Learning</title>
+    <title>Lecture 6: sklearn ColumnTransformer and Text Features &#8212; CPSC 330 Applied Machine Learning</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -221,17 +221,122 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lecture-5-more-on-categorical-features-and-encoding-text-data">
-   Lecture 5: More on categorical features and encoding text data
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#learning-objectives">
-     Learning objectives
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sklearn-s-columntransformer">
+   sklearn’s
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformations-on-the-toy-data">
+     Transformations on the toy data
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#columntransformer-example">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ColumnTransformer
+      </span>
+     </code>
+     example
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data">
+       Data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#identify-the-transformations-we-want-to-apply">
+       Identify the transformations we want to apply
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-a-column-transformer">
+       Create a column transformer
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convenient-make-column-transformer-syntax">
+       Convenient
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         make_column_transformer
+        </span>
+       </code>
+       syntax
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#let-s-examine-the-transformed-data">
+       Let’s examine the transformed data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#viewing-the-transformed-data-as-a-dataframe">
+       Viewing the transformed data as a dataframe
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columntransformer-transformed-data">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         ColumnTransformer
+        </span>
+       </code>
+       : Transformed data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#training-models-with-transformed-data">
+       Training models with transformed data
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remainder-passthrough">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       remainder="passthrough"
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#preprocessing-the-targets">
+       Preprocessing the targets?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#columntransformer-a-name-7-a">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -242,8 +347,8 @@
      </a>
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#remainder-passthrough">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
      <code class="docutils literal notranslate">
       <span class="pre">
        remainder="passthrough"
@@ -251,8 +356,8 @@
      </code>
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#preprocessing-the-targets">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
        Preprocessing the targets?
       </a>
      </li>
@@ -260,17 +365,17 @@
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#more-on-categorical-features">
    1. More on categorical features
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
    Data
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#make-pipeline-syntax">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -280,7 +385,7 @@
      syntax
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#handle-unknown-ignore">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -289,54 +394,54 @@
      </code>
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cases-where-it-s-ok-to-break-the-golden-rule">
      Cases where it’s OK to break the golden rule
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ordinal-encoding">
      Ordinal encoding
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#binary-features">
      Binary features
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ohe-with-many-categories">
      OHE with many categories
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#do-we-actually-want-to-use-certain-features-for-prediction">
      Do we actually want to use certain features for prediction?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-features-true-or-false">
      Categorical features (True or False)
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#encoding-text-data">
    2. Encoding text data
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spam-non-spam-toy-example">
      Spam/non-spam toy example
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bag-of-words-bow-representation">
      Bag of words (BOW) representation
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#extracting-bow-features-using-scikit-learn">
      Extracting BOW features using
      <code class="docutils literal notranslate">
@@ -346,12 +451,12 @@
      </code>
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#why-sparse-matrices">
      Why sparse matrices?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#onehotencoder-and-sparse-features">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -361,7 +466,7 @@
      and sparse features
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#important-hyperparameters-of-countvectorizer">
      Important hyperparameters of
      <code class="docutils literal notranslate">
@@ -371,17 +476,17 @@
      </code>
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#preprocessing">
      Preprocessing
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#is-this-a-realistic-representation-of-text-data">
      Is this a realistic representation of text data?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#countvectorizer-true-or-false">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -404,11 +509,10 @@
         
               <div>
                 
-  <div class="section" id="dsci-571-supervised-machine-learning-i">
-<h1>DSCI 571: Supervised Machine Learning I<a class="headerlink" href="#dsci-571-supervised-machine-learning-i" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="lecture-5-more-on-categorical-features-and-encoding-text-data">
-<h2>Lecture 5: More on categorical features and encoding text data<a class="headerlink" href="#lecture-5-more-on-categorical-features-and-encoding-text-data" title="Permalink to this headline">¶</a></h2>
-<p>UBC Master of Data Science program, 2020-21</p>
+  <p><img alt="" src="../_images/330-banner.png" /></p>
+<div class="section" id="lecture-6-sklearn-columntransformer-and-text-features">
+<h1>Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features<a class="headerlink" href="#lecture-6-sklearn-columntransformer-and-text-features" title="Permalink to this headline">¶</a></h1>
+<p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -444,9 +548,13 @@
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="learning-objectives">
-<h3>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h3>
+<h1>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h1>
 <p>From this lecture, you will be able to</p>
+<ul class="simple">
+<li><p>use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to build all our transformations together into one object and use it with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines.</p></li>
+</ul>
 <ol class="simple">
 <li><p>explain <code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code>;</p></li>
 <li><p>identify when it’s appropriate to apply ordinal encoding vs one-hot encoding;</p></li>
@@ -456,8 +564,1452 @@
 <li><p>explain different hyperparameters of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>.</p></li>
 </ol>
 </div>
+<div class="section" id="sklearn-s-columntransformer">
+<h1>sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html"><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></a><a class="headerlink" href="#sklearn-s-columntransformer" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>In most applications, some features are categorical, some are continuous, some are binary, and some are ordinal.</p></li>
+<li><p>When we want to develop supervised machine learning pipelines on real-world datasets, very often we want to apply different transformation on different columns.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let’s look at a toy example:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/quiz2-grade-toy-col-transformer.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ml_experience</th>
+      <th>major</th>
+      <th>class_attendance</th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab2</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+      <th>quiz2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>92</td>
+      <td>93.0</td>
+      <td>84</td>
+      <td>91</td>
+      <td>92</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Mechanical Engineering</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>94</td>
+      <td>90.0</td>
+      <td>80</td>
+      <td>83</td>
+      <td>91</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>78</td>
+      <td>85.0</td>
+      <td>83</td>
+      <td>80</td>
+      <td>80</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>92</td>
+      <td>91</td>
+      <td>89</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>4</td>
+      <td>77</td>
+      <td>83.0</td>
+      <td>90</td>
+      <td>92</td>
+      <td>85</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>Economics</td>
+      <td>Good</td>
+      <td>5</td>
+      <td>70</td>
+      <td>73.0</td>
+      <td>68</td>
+      <td>74</td>
+      <td>71</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>80</td>
+      <td>88.0</td>
+      <td>89</td>
+      <td>88</td>
+      <td>91</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>Mechanical Engineering</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>95</td>
+      <td>93.0</td>
+      <td>69</td>
+      <td>79</td>
+      <td>75</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>Linguistics</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>97</td>
+      <td>90.0</td>
+      <td>94</td>
+      <td>82</td>
+      <td>80</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1</td>
+      <td>Mathematics</td>
+      <td>Average</td>
+      <td>4</td>
+      <td>95</td>
+      <td>82.0</td>
+      <td>94</td>
+      <td>94</td>
+      <td>85</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>Psycology</td>
+      <td>Good</td>
+      <td>3</td>
+      <td>98</td>
+      <td>86.0</td>
+      <td>95</td>
+      <td>95</td>
+      <td>78</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+      <td>Physics</td>
+      <td>Average</td>
+      <td>1</td>
+      <td>95</td>
+      <td>88.0</td>
+      <td>93</td>
+      <td>92</td>
+      <td>85</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>Physics</td>
+      <td>Excellent</td>
+      <td>2</td>
+      <td>98</td>
+      <td>96.0</td>
+      <td>96</td>
+      <td>99</td>
+      <td>100</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0</td>
+      <td>Mechanical Engineering</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>95</td>
+      <td>94.0</td>
+      <td>96</td>
+      <td>95</td>
+      <td>100</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>95</td>
+      <td>90.0</td>
+      <td>93</td>
+      <td>95</td>
+      <td>70</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Good</td>
+      <td>3</td>
+      <td>92</td>
+      <td>85.0</td>
+      <td>67</td>
+      <td>94</td>
+      <td>92</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0</td>
+      <td>Computer Science</td>
+      <td>Average</td>
+      <td>5</td>
+      <td>75</td>
+      <td>91.0</td>
+      <td>93</td>
+      <td>86</td>
+      <td>85</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>Economics</td>
+      <td>Average</td>
+      <td>3</td>
+      <td>86</td>
+      <td>89.0</td>
+      <td>65</td>
+      <td>86</td>
+      <td>87</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1</td>
+      <td>Psycology</td>
+      <td>Good</td>
+      <td>2</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>90</td>
+      <td>88</td>
+      <td>82</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0</td>
+      <td>Psycology</td>
+      <td>Poor</td>
+      <td>2</td>
+      <td>77</td>
+      <td>94.0</td>
+      <td>87</td>
+      <td>81</td>
+      <td>89</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1</td>
+      <td>Linguistics</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>96</td>
+      <td>92.0</td>
+      <td>92</td>
+      <td>96</td>
+      <td>87</td>
+      <td>A+</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 21 entries, 0 to 20
+Data columns (total 10 columns):
+ #   Column            Non-Null Count  Dtype  
+---  ------            --------------  -----  
+ 0   ml_experience     21 non-null     int64  
+ 1   major             21 non-null     object 
+ 2   class_attendance  21 non-null     object 
+ 3   university_years  21 non-null     int64  
+ 4   lab1              21 non-null     int64  
+ 5   lab2              19 non-null     float64
+ 6   lab3              21 non-null     int64  
+ 7   lab4              21 non-null     int64  
+ 8   quiz1             21 non-null     int64  
+ 9   quiz2             21 non-null     object 
+dtypes: float64(1), int64(6), object(3)
+memory usage: 1.8+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transformations-on-the-toy-data">
+<h2>Transformations on the toy data<a class="headerlink" href="#transformations-on-the-toy-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ml_experience</th>
+      <th>major</th>
+      <th>class_attendance</th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab2</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+      <th>quiz2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>92</td>
+      <td>93.0</td>
+      <td>84</td>
+      <td>91</td>
+      <td>92</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Mechanical Engineering</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>94</td>
+      <td>90.0</td>
+      <td>80</td>
+      <td>83</td>
+      <td>91</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>78</td>
+      <td>85.0</td>
+      <td>83</td>
+      <td>80</td>
+      <td>80</td>
+      <td>not A+</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>92</td>
+      <td>91</td>
+      <td>89</td>
+      <td>A+</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>4</td>
+      <td>77</td>
+      <td>83.0</td>
+      <td>90</td>
+      <td>92</td>
+      <td>85</td>
+      <td>A+</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Scaling on numeric features</p></li>
+<li><p>One-hot encoding on the categorical feature <code class="docutils literal notranslate"><span class="pre">major</span></code></p></li>
+<li><p>Ordinal encoding on the ordinal feature <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code></p></li>
+<li><p>Imputation on the <code class="docutils literal notranslate"><span class="pre">lab2</span></code> feature</p></li>
+<li><p>None on the <code class="docutils literal notranslate"><span class="pre">ml_experience</span></code> feature</p></li>
+</ul>
+</div>
+<div class="section" id="columntransformer-example">
+<h2><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> example<a class="headerlink" href="#columntransformer-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data">
+<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;quiz2&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quiz2&quot;</span><span class="p">]</span>
+<span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;ml_experience&#39;, &#39;major&#39;, &#39;class_attendance&#39;, &#39;university_years&#39;,
+       &#39;lab1&#39;, &#39;lab2&#39;, &#39;lab3&#39;, &#39;lab4&#39;, &#39;quiz1&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="identify-the-transformations-we-want-to-apply">
+<h3>Identify the transformations we want to apply<a class="headerlink" href="#identify-the-transformations-we-want-to-apply" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ml_experience</th>
+      <th>major</th>
+      <th>class_attendance</th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab2</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>92</td>
+      <td>93.0</td>
+      <td>84</td>
+      <td>91</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Mechanical Engineering</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>94</td>
+      <td>90.0</td>
+      <td>80</td>
+      <td>83</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>78</td>
+      <td>85.0</td>
+      <td>83</td>
+      <td>80</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>92</td>
+      <td>91</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>4</td>
+      <td>77</td>
+      <td>83.0</td>
+      <td>90</td>
+      <td>92</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;university_years&quot;</span><span class="p">,</span> <span class="s2">&quot;lab1&quot;</span><span class="p">,</span> <span class="s2">&quot;lab3&quot;</span><span class="p">,</span> <span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="s2">&quot;quiz1&quot;</span><span class="p">]</span>  <span class="c1"># apply scaling</span>
+<span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span>  <span class="c1"># apply one-hot encoding</span>
+<span class="n">binary_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ml_experience&quot;</span><span class="p">]</span>  <span class="c1"># do not apply any transformation</span>
+<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lab2&#39;</span><span class="p">,</span> <span class="s1">&#39;class_attendance&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For simplicity, let’s only focus on scaling and one-hot encoding first.</p>
+</div>
+<div class="section" id="create-a-column-transformer">
+<h3>Create a column transformer<a class="headerlink" href="#create-a-column-transformer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Each transformation is specified by a name, a transformer object, and the columns this transformer should be applied to.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;scaling&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_feats</span><span class="p">),</span>
+     <span class="p">(</span><span class="s2">&quot;onehot&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">categorical_feats</span><span class="p">),</span>     
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Each transformer is applied to the specified columns and the result of the transformations are concatenated horizontally.</p></li>
+</ul>
+</div>
+<div class="section" id="convenient-make-column-transformer-syntax">
+<h3>Convenient <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> syntax<a class="headerlink" href="#convenient-make-column-transformer-syntax" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Similar to <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> syntax, there is convenient <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> syntax.</p></li>
+<li><p>The syntax automatically names each step based on its class.</p></li>
+<li><p>We’ll be mostly using this syntax.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+
+<span class="n">ct</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_feats</span><span class="p">),</span> <span class="c1"># scaling on numeric features</span>
+    <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">categorical_feats</span><span class="p">),</span> <span class="c1"># OHE on categorical features </span>
+    <span class="p">(</span><span class="s2">&quot;passthrough&quot;</span><span class="p">,</span> <span class="n">binary_feats</span><span class="p">),</span> <span class="c1"># no transformations on the binary features</span>
+    <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_feats</span><span class="p">)</span> <span class="c1"># drop the drop features </span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ColumnTransformer(transformers=[(&#39;standardscaler&#39;, StandardScaler(),
+                                 [&#39;university_years&#39;, &#39;lab1&#39;, &#39;lab3&#39;, &#39;lab4&#39;,
+                                  &#39;quiz1&#39;]),
+                                (&#39;onehotencoder&#39;, OneHotEncoder(), [&#39;major&#39;]),
+                                (&#39;passthrough&#39;, &#39;passthrough&#39;,
+                                 [&#39;ml_experience&#39;]),
+                                (&#39;drop&#39;, &#39;drop&#39;, [&#39;lab2&#39;, &#39;class_attendance&#39;])])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>A big advantage here is that we build all our transformations together into one object, and that way we’re sure we do the same operations to all splits of the data.</p></li>
+<li><p>Otherwise we might, for example, do the OHE on both train and test but forget to scale the test data.</p></li>
+</ul>
+</div>
+<div class="section" id="let-s-examine-the-transformed-data">
+<h3>Let’s examine the transformed data<a class="headerlink" href="#let-s-examine-the-transformed-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">transformed</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy.ndarray
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the returned object is not a dataframe. So there are no column names.</p>
+</div>
+</div>
+<div class="section" id="viewing-the-transformed-data-as-a-dataframe">
+<h3>Viewing the transformed data as a dataframe<a class="headerlink" href="#viewing-the-transformed-data-as-a-dataframe" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>How can we view our transformed data as a dataframe?</p></li>
+<li><p>We are adding more columns.</p></li>
+<li><p>So the original columns won’t directly to the transformed data.</p></li>
+<li><p>Let’s create column names for the transformed data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">column_names</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">numeric_feats</span>
+    <span class="o">+</span> <span class="n">ct</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="o">+</span> <span class="n">binary_feats</span>
+<span class="p">)</span>
+<span class="n">column_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;university_years&#39;,
+ &#39;lab1&#39;,
+ &#39;lab3&#39;,
+ &#39;lab4&#39;,
+ &#39;quiz1&#39;,
+ &#39;x0_Computer Science&#39;,
+ &#39;x0_Economics&#39;,
+ &#39;x0_Linguistics&#39;,
+ &#39;x0_Mathematics&#39;,
+ &#39;x0_Mechanical Engineering&#39;,
+ &#39;x0_Physics&#39;,
+ &#39;x0_Psychology&#39;,
+ &#39;x0_Psycology&#39;,
+ &#39;ml_experience&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the order of the columns in the transformed data depends upon the order of the features we pass to the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and can be different than the order of the features in the original dataframe.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+      <th>x0_Computer Science</th>
+      <th>x0_Economics</th>
+      <th>x0_Linguistics</th>
+      <th>x0_Mathematics</th>
+      <th>x0_Mechanical Engineering</th>
+      <th>x0_Physics</th>
+      <th>x0_Psychology</th>
+      <th>x0_Psycology</th>
+      <th>ml_experience</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.093454</td>
+      <td>0.358913</td>
+      <td>-0.217334</td>
+      <td>0.362700</td>
+      <td>0.840028</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.074719</td>
+      <td>0.590827</td>
+      <td>-0.614206</td>
+      <td>-0.855972</td>
+      <td>0.712198</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.093454</td>
+      <td>-1.264480</td>
+      <td>-0.316552</td>
+      <td>-1.312974</td>
+      <td>-0.693936</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.093454</td>
+      <td>0.242957</td>
+      <td>0.576409</td>
+      <td>0.362700</td>
+      <td>0.456537</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.887812</td>
+      <td>-1.380436</td>
+      <td>0.377973</td>
+      <td>0.515034</td>
+      <td>-0.054784</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.869077</td>
+      <td>-2.192133</td>
+      <td>-1.804821</td>
+      <td>-2.226978</td>
+      <td>-1.844409</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.887812</td>
+      <td>-1.032566</td>
+      <td>0.278755</td>
+      <td>-0.094302</td>
+      <td>0.712198</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-0.093454</td>
+      <td>0.706783</td>
+      <td>-1.705603</td>
+      <td>-1.465308</td>
+      <td>-1.333088</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>-1.074719</td>
+      <td>0.938697</td>
+      <td>0.774844</td>
+      <td>-1.008306</td>
+      <td>-0.693936</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.887812</td>
+      <td>0.706783</td>
+      <td>0.774844</td>
+      <td>0.819702</td>
+      <td>-0.054784</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>-0.093454</td>
+      <td>1.054653</td>
+      <td>0.874062</td>
+      <td>0.972036</td>
+      <td>-0.949597</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>-2.055985</td>
+      <td>0.706783</td>
+      <td>0.675627</td>
+      <td>0.515034</td>
+      <td>-0.054784</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>-1.074719</td>
+      <td>1.054653</td>
+      <td>0.973280</td>
+      <td>1.581372</td>
+      <td>1.862671</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.887812</td>
+      <td>0.706783</td>
+      <td>0.973280</td>
+      <td>0.972036</td>
+      <td>1.862671</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>-0.093454</td>
+      <td>0.706783</td>
+      <td>0.675627</td>
+      <td>0.972036</td>
+      <td>-1.972240</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>-0.093454</td>
+      <td>0.358913</td>
+      <td>-1.904039</td>
+      <td>0.819702</td>
+      <td>0.840028</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1.869077</td>
+      <td>-1.612349</td>
+      <td>0.675627</td>
+      <td>-0.398970</td>
+      <td>-0.054784</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>-0.093454</td>
+      <td>-0.336826</td>
+      <td>-2.102474</td>
+      <td>-0.398970</td>
+      <td>0.200876</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>-1.074719</td>
+      <td>0.242957</td>
+      <td>0.377973</td>
+      <td>-0.094302</td>
+      <td>-0.438275</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>-1.074719</td>
+      <td>-1.380436</td>
+      <td>0.080319</td>
+      <td>-1.160640</td>
+      <td>0.456537</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.887812</td>
+      <td>0.822740</td>
+      <td>0.576409</td>
+      <td>1.124370</td>
+      <td>0.200876</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="columntransformer-transformed-data">
+<h3><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>: Transformed data<a class="headerlink" href="#columntransformer-transformed-data" title="Permalink to this headline">¶</a></h3>
+<br>
+<img src='./img/column-transformer.png' width="1500">
+<p><a class="reference external" href="https://amueller.github.io/COMS4995-s20/slides/aml-04-preprocessing/#37">Adapted from here.</a></p>
+</div>
+<div class="section" id="training-models-with-transformed-data">
+<h3>Training models with transformed data<a class="headerlink" href="#training-models-with-transformed-data" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We can now pass the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object as a step in a pipeline.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.001</span><span class="p">))</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;,
+       &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;,
+       &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;,
+       &#39;not A+&#39;, &#39;not A+&#39;, &#39;not A+&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_5441</span><span class="o">/</span><span class="mf">962641680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;X_train&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify the categorical and numeric columns</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;latitude&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;housing_median_age&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_rooms&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_bedrooms&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;population&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;households&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;median_income&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rooms_per_household&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bedrooms_per_household&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;population_per_household&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">]</span>
+<span class="c1"># reamainder_features = [&quot;median_income&quot;]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Let’s build a pipeline for our dataset</p></li>
+<li><p>create the preprocessing pipelines for both numeric and categorical data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">)),</span> <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())]</span>
+<span class="p">)</span>
+
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;onehot&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="c1"># remainder=&#39;passthrough&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we <code class="docutils literal notranslate"><span class="pre">fit</span></code> with the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">fit</span></code> on <em>all</em> the transformers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_pp</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we transform with the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">transform</span></code> on <em>all</em> the transformers.</p>
+<p>We can get the new names of the columns that were generated by the one-hot encoding:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span>
+    <span class="n">categorical_features</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combining this with the numeric feature names gives us all the column names:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehot&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;preprocessor&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+        <span class="c1"># (&quot;reg&quot;, KNeighborsRegressor()),</span>
+        <span class="p">(</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">store_cross_val_results</span><span class="p">(</span><span class="s2">&quot;imp + scaling + ohe + SVR&quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">results_dict</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Note that categorical features are different than free text features. Sometimes there are columns containing free text information and we we’ll look at ways to deal with them later in the course.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="remainder-passthrough">
+<h2><code class="docutils literal notranslate"><span class="pre">remainder=&quot;passthrough&quot;</span></code><a class="headerlink" href="#remainder-passthrough" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Side note: the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> will automatically remove columns that are not being transformed:</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">remainder=&quot;passthrough&quot;</span></code> of <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to keep the other columns in tact.</p></li>
+</ul>
+<div class="section" id="preprocessing-the-targets">
+<h3>Preprocessing the targets?<a class="headerlink" href="#preprocessing-the-targets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Generally no need for this when doing classification.</p></li>
+<li><p>In regression it makes sense in some cases. More on this in 573.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> is fine with categorical labels (<span class="math notranslate nohighlight">\(y\)</span>-values) for classification problems.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;quiz2&quot;</span><span class="p">,</span> <span class="s2">&quot;lab2&quot;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;quiz2&quot;</span><span class="p">]</span>
+<span class="n">X</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">]</span>  <span class="c1">#</span>
+<span class="n">attendance_cats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Poor&quot;</span><span class="p">,</span> <span class="s2">&quot;Average&quot;</span><span class="p">,</span> <span class="s2">&quot;Good&quot;</span><span class="p">,</span> <span class="s2">&quot;Excellent&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">make_column_transformer</span>
+
+<span class="n">ct</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_feats</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="n">categorical_feats</span><span class="p">),</span>
+    <span class="c1"># (OrdinalEncoder(categories=[attendance_cats], dtype=int), ordinal_feats),</span>
+    <span class="p">(</span><span class="s2">&quot;passthrough&quot;</span><span class="p">,</span> <span class="n">binary_feats</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_feat_names</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">cat_feat_names</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+<span class="n">col_names</span> <span class="o">=</span> <span class="n">numeric_feats</span> <span class="o">+</span> <span class="n">cat_feat_names</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">+</span> <span class="n">ordinal_feats</span> <span class="o">+</span> <span class="n">binary_feats</span>
+<span class="n">col_names</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">Ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;imputer&quot;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;onehot&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="c1"># remainder=&#39;passthrough&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="columntransformer-a-name-7-a">
-<h3><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> <a name="7"></a><a class="headerlink" href="#columntransformer-a-name-7-a" title="Permalink to this headline">¶</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> <a name="7"></a><a class="headerlink" href="#columntransformer-a-name-7-a" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html"><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></a> makes this more manageable.</p>
 <ul>
@@ -481,29 +2033,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73798</span><span class="o">/</span><span class="mf">962641680.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;X_train&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;longitude&#39;, &#39;latitude&#39;, &#39;housing_median_age&#39;, &#39;total_rooms&#39;,
-       &#39;total_bedrooms&#39;, &#39;population&#39;, &#39;households&#39;, &#39;median_income&#39;,
-       &#39;ocean_proximity&#39;, &#39;rooms_per_household&#39;, &#39;bedrooms_per_household&#39;,
-       &#39;population_per_household&#39;],
-      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -572,27 +2105,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ColumnTransformer(transformers=[(&#39;num&#39;,
-                                 Pipeline(steps=[(&#39;imputer&#39;,
-                                                  SimpleImputer(strategy=&#39;median&#39;)),
-                                                 (&#39;scaler&#39;, StandardScaler())]),
-                                 [&#39;longitude&#39;, &#39;latitude&#39;, &#39;housing_median_age&#39;,
-                                  &#39;total_rooms&#39;, &#39;total_bedrooms&#39;, &#39;population&#39;,
-                                  &#39;households&#39;, &#39;median_income&#39;,
-                                  &#39;rooms_per_household&#39;,
-                                  &#39;bedrooms_per_household&#39;,
-                                  &#39;population_per_household&#39;]),
-                                (&#39;cat&#39;,
-                                 Pipeline(steps=[(&#39;imputer&#39;,
-                                                  SimpleImputer(fill_value=&#39;missing&#39;,
-                                                                strategy=&#39;constant&#39;)),
-                                                 (&#39;onehot&#39;,
-                                                  OneHotEncoder(handle_unknown=&#39;ignore&#39;))]),
-                                 [&#39;ocean_proximity&#39;])])
-</pre></div>
-</div>
-</div>
 </div>
 <p>When we <code class="docutils literal notranslate"><span class="pre">fit</span></code> with the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">fit</span></code> on <em>all</em> the transformers</p>
 <div class="cell docutils container">
@@ -612,13 +2124,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;ocean_proximity_&lt;1H OCEAN&#39;, &#39;ocean_proximity_INLAND&#39;,
-       &#39;ocean_proximity_ISLAND&#39;, &#39;ocean_proximity_NEAR BAY&#39;,
-       &#39;ocean_proximity_NEAR OCEAN&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <p>Combining this with the numeric feature names gives us all the column names:</p>
 <div class="cell docutils container">
@@ -629,26 +2134,6 @@
     <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">columns</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;longitude&#39;,
- &#39;latitude&#39;,
- &#39;housing_median_age&#39;,
- &#39;total_rooms&#39;,
- &#39;total_bedrooms&#39;,
- &#39;population&#39;,
- &#39;households&#39;,
- &#39;median_income&#39;,
- &#39;rooms_per_household&#39;,
- &#39;bedrooms_per_household&#39;,
- &#39;population_per_household&#39;,
- &#39;ocean_proximity_&lt;1H OCEAN&#39;,
- &#39;ocean_proximity_INLAND&#39;,
- &#39;ocean_proximity_ISLAND&#39;,
- &#39;ocean_proximity_NEAR BAY&#39;,
- &#39;ocean_proximity_NEAR OCEAN&#39;]
 </pre></div>
 </div>
 </div>
@@ -677,59 +2162,19 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mean_fit_time (s)</th>
-      <th>mean_score_time (s)</th>
-      <th>mean_train_score</th>
-      <th>mean_validation_score</th>
-      <th>std_train_score</th>
-      <th>std_validation_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>imp + scaling + ohe + SVR</th>
-      <td>6.5684</td>
-      <td>0.9774</td>
-      <td>-0.0526</td>
-      <td>-0.0531</td>
-      <td>0.0009</td>
-      <td>0.0108</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Note that categorical features are different than free text features. Sometimes there are columns containing free text information and we we’ll look at ways to deal with them later in the course.</p></li>
 </ul>
 </div>
-<div class="section" id="remainder-passthrough">
-<h3><code class="docutils literal notranslate"><span class="pre">remainder=&quot;passthrough&quot;</span></code><a class="headerlink" href="#remainder-passthrough" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h2><code class="docutils literal notranslate"><span class="pre">remainder=&quot;passthrough&quot;</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Side note: the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> will automatically remove columns that are not being transformed:</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">remainder=&quot;passthrough&quot;</span></code> of <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to keep the other columns in tact.</p></li>
 </ul>
-<div class="section" id="preprocessing-the-targets">
-<h4>Preprocessing the targets?<a class="headerlink" href="#preprocessing-the-targets" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id2">
+<h3>Preprocessing the targets?<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Generally no need for this when doing classification.</p></li>
 <li><p>In regression it makes sense in some cases. More on this in 573.</p></li>
@@ -739,10 +2184,10 @@
 </div>
 </div>
 <div class="section" id="more-on-categorical-features">
-<h2>1. More on categorical features<a class="headerlink" href="#more-on-categorical-features" title="Permalink to this headline">¶</a></h2>
+<h1>1. More on categorical features<a class="headerlink" href="#more-on-categorical-features" title="Permalink to this headline">¶</a></h1>
 </div>
-<div class="section" id="data">
-<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h1>Data<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h1>
 <p>We’ll be using <a class="reference external" href="https://www.kaggle.com/uciml/adult-census-income">the adult census dataset</a> you used in lab 2.</p>
 <p>This is a classification dataset and the classification task is to predict whether income exceeds 50K per year or not based on the census data. You can find more information on the dataset and features <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Adult">here</a>.</p>
 <p>The code below loads the data CSV (assuming that it is saved as <code class="docutils literal notranslate"><span class="pre">data/adult.csv</span></code> in this folder).</p>
@@ -775,147 +2220,10 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>workclass</th>
-      <th>fnlwgt</th>
-      <th>education</th>
-      <th>education.num</th>
-      <th>marital.status</th>
-      <th>occupation</th>
-      <th>relationship</th>
-      <th>race</th>
-      <th>sex</th>
-      <th>capital.gain</th>
-      <th>capital.loss</th>
-      <th>hours.per.week</th>
-      <th>native.country</th>
-      <th>income</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5514</th>
-      <td>26</td>
-      <td>Private</td>
-      <td>256263</td>
-      <td>HS-grad</td>
-      <td>9</td>
-      <td>Never-married</td>
-      <td>Craft-repair</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0</td>
-      <td>0</td>
-      <td>25</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>19777</th>
-      <td>24</td>
-      <td>Private</td>
-      <td>170277</td>
-      <td>HS-grad</td>
-      <td>9</td>
-      <td>Never-married</td>
-      <td>Other-service</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>35</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>10781</th>
-      <td>36</td>
-      <td>Private</td>
-      <td>75826</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Divorced</td>
-      <td>Adm-clerical</td>
-      <td>Unmarried</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>32240</th>
-      <td>22</td>
-      <td>State-gov</td>
-      <td>24395</td>
-      <td>Some-college</td>
-      <td>10</td>
-      <td>Married-civ-spouse</td>
-      <td>Adm-clerical</td>
-      <td>Wife</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>0</td>
-      <td>0</td>
-      <td>20</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-    <tr>
-      <th>9876</th>
-      <td>31</td>
-      <td>Local-gov</td>
-      <td>356689</td>
-      <td>Bachelors</td>
-      <td>13</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>0</td>
-      <td>0</td>
-      <td>40</td>
-      <td>United-States</td>
-      <td>&lt;=50K</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;=50K    19744
-&gt;50K      6304
-Name: income, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -995,7 +2303,7 @@ Name: income, dtype: int64
 </div>
 </div>
 <div class="section" id="make-pipeline-syntax">
-<h3><code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> syntax<a class="headerlink" href="#make-pipeline-syntax" title="Permalink to this headline">¶</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> syntax<a class="headerlink" href="#make-pipeline-syntax" title="Permalink to this headline">¶</a></h2>
 <p>Let’s create a column transformer and a pipeline using an alternative syntax <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code>.</p>
 <ul class="simple">
 <li><p>shorthand for the <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> constructor</p></li>
@@ -1024,216 +2332,10 @@ Name: income, dtype: int64
 </div>
 </div>
 <div class="section" id="handle-unknown-ignore">
-<h3><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code><a class="headerlink" href="#handle-unknown-ignore" title="Permalink to this headline">¶</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code><a class="headerlink" href="#handle-unknown-ignore" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">5</span><span class="n">f434d83cf44</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/utils/validation.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                           <span class="ne">FutureWarning</span><span class="p">)</span>
-<span class="nn">     71         kwargs.update({k: arg for k, arg</span> in <span class="ni">zip</span><span class="nt">(sig.parameters, args)})</span>
-<span class="ne">---&gt; </span><span class="mi">72</span>         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">inner_f</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">240</span>     <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">241</span>                         <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">242</span>     <span class="n">scores</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">243</span>         <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">244</span>             <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorers</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span> 
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>                 <span class="k">pass</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>                 <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">866</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>                 <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">784</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> 
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">558</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">559</span>         <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-<span class="ne">--&gt; </span><span class="mi">560</span>         <span class="n">test_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">scorer</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">561</span>         <span class="n">score_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">fit_time</span>
-<span class="g g-Whitespace">    </span><span class="mi">562</span>         <span class="k">if</span> <span class="n">return_train_score</span><span class="p">:</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer)</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>         <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">607</span>         <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> 
-<span class="g g-Whitespace">    </span><span class="mi">609</span>     <span class="n">error_msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;scoring must return a number, got </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">) &quot;</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/metrics/_scorer.py</span> in <span class="ni">__call__</span><span class="nt">(self, estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>                                       <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">90</span>                 <span class="n">score</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">91</span>             <span class="n">scores</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span>
-<span class="g g-Whitespace">     </span><span class="mi">92</span>         <span class="k">return</span> <span class="n">scores</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/metrics/_scorer.py</span> in <span class="ni">_passthrough_scorer</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span> <span class="k">def</span> <span class="nf">_passthrough_scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span>     <span class="sd">&quot;&quot;&quot;Function that wraps estimator.score&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">372</span>     <span class="k">return</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span> 
-<span class="g g-Whitespace">    </span><span class="mi">374</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/utils/metaestimators.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span> 
-<span class="g g-Whitespace">    </span><span class="mi">118</span>         <span class="c1"># lambda, but not partial, allows help() to work with update_wrapper</span>
-<span class="ne">--&gt; </span><span class="mi">119</span>         <span class="n">out</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">120</span>         <span class="c1"># update the docstring of the returned function</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span>         <span class="n">update_wrapper</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/pipeline.py</span> in <span class="ni">score</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">with_final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">607</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span>         <span class="n">score_params</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="g g-Whitespace">    </span><span class="mi">609</span>         <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">transform</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">602</span>         <span class="c1"># TODO: also call _check_n_features(reset=False) in 0.24</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_features</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_feature_names</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">604</span>         <span class="n">Xs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_transform_one</span><span class="p">,</span> <span class="n">fitted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_output</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">_fit_transform</span><span class="nt">(self, X, y, func, fitted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">fitted</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span> <span class="n">replace_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">457</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">458</span>             <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">459</span>                 <span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">460</span>                     <span class="n">transformer</span><span class="o">=</span><span class="n">clone</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fitted</span> <span class="k">else</span> <span class="n">trans</span><span class="p">,</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span> 
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>                 <span class="k">pass</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>                 <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">866</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">867</span>                 <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">868</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">784</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> 
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform_one</span><span class="nt">(transformer, X, y, weight, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span> 
-<span class="g g-Whitespace">    </span><span class="mi">718</span> <span class="k">def</span> <span class="nf">_transform_one</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">719</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">720</span>     <span class="c1"># if we have a weight for this transformer, multiply output</span>
-<span class="g g-Whitespace">    </span><span class="mi">721</span>     <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">547</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
-<span class="g g-Whitespace">    </span><span class="mi">548</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">549</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">550</span>         <span class="k">return</span> <span class="n">Xt</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span> 
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/preprocessing/_encoders.py</span> in <span class="ni">transform</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">426</span>         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">427</span>         <span class="c1"># validation of X happens in _check_X called by _transform</span>
-<span class="ne">--&gt; </span><span class="mi">428</span>         <span class="n">X_int</span><span class="p">,</span> <span class="n">X_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">handle_unknown</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">handle_unknown</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">429</span> 
-<span class="g g-Whitespace">    </span><span class="mi">430</span>         <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X_int</span><span class="o">.</span><span class="n">shape</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.8/site-packages/sklearn/preprocessing/_encoders.py</span> in <span class="ni">_transform</span><span class="nt">(self, X, handle_unknown)</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span>                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Found unknown categories </span><span class="si">{0}</span><span class="s2"> in column </span><span class="si">{1}</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">123</span>                            <span class="s2">&quot; during transform&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">124</span>                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">125</span>                 <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span>                     <span class="c1"># Set the problematic rows to an acceptable value and</span>
-
-<span class="ne">ValueError</span>: Found unknown categories [&#39;Holand-Netherlands&#39;] in column 7 during transform
 </pre></div>
 </div>
 </div>
@@ -1246,52 +2348,6 @@ Name: income, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">[</span><span class="s2">&quot;native.country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>United-States                 23315
-Mexico                          512
-Philippines                     165
-Germany                         115
-Canada                           97
-El-Salvador                      92
-Puerto-Rico                      85
-India                            82
-England                          74
-Cuba                             70
-China                            63
-South                            63
-Jamaica                          62
-Italy                            60
-Dominican-Republic               56
-Columbia                         53
-Vietnam                          53
-Guatemala                        52
-Japan                            44
-Poland                           44
-Taiwan                           41
-Haiti                            36
-Iran                             34
-Portugal                         31
-Nicaragua                        29
-Greece                           28
-Peru                             27
-France                           26
-Ecuador                          19
-Thailand                         18
-Hong                             17
-Yugoslavia                       15
-Ireland                          15
-Cambodia                         15
-Laos                             13
-Trinadad&amp;Tobago                  12
-Outlying-US(Guam-USVI-etc)       12
-Hungary                          11
-Scotland                         10
-Honduras                          7
-Holand-Netherlands                1
-Name: native.country, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1333,15 +2389,6 @@ Name: native.country, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       8.028445
-score_time     1.249983
-test_score     0.855421
-train_score    0.867792
-dtype: float64
-</pre></div>
-</div>
-</div>
 </div>
 <ul class="simple">
 <li><p>Do you want this behaviour?</p></li>
@@ -1350,7 +2397,7 @@ dtype: float64
 </ul>
 </div>
 <div class="section" id="cases-where-it-s-ok-to-break-the-golden-rule">
-<h3>Cases where it’s OK to break the golden rule<a class="headerlink" href="#cases-where-it-s-ok-to-break-the-golden-rule" title="Permalink to this headline">¶</a></h3>
+<h2>Cases where it’s OK to break the golden rule<a class="headerlink" href="#cases-where-it-s-ok-to-break-the-golden-rule" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>If it’s some fix number of categories. For example, if it’s something like courses in MDS. We know the categories in advance and this is one of the cases where it might be OK to violate the golden rule and get a list of all possible values for the categorical variable.</p></li>
 </ul>
@@ -1360,101 +2407,13 @@ dtype: float64
 </ul>
 </div>
 <div class="section" id="ordinal-encoding">
-<h3>Ordinal encoding<a class="headerlink" href="#ordinal-encoding" title="Permalink to this headline">¶</a></h3>
+<h2>Ordinal encoding<a class="headerlink" href="#ordinal-encoding" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="n">categorical_features</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>workclass</th>
-      <th>education</th>
-      <th>marital.status</th>
-      <th>occupation</th>
-      <th>relationship</th>
-      <th>race</th>
-      <th>sex</th>
-      <th>native.country</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5514</th>
-      <td>Private</td>
-      <td>HS-grad</td>
-      <td>Never-married</td>
-      <td>Craft-repair</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>United-States</td>
-    </tr>
-    <tr>
-      <th>19777</th>
-      <td>Private</td>
-      <td>HS-grad</td>
-      <td>Never-married</td>
-      <td>Other-service</td>
-      <td>Not-in-family</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>United-States</td>
-    </tr>
-    <tr>
-      <th>10781</th>
-      <td>Private</td>
-      <td>Bachelors</td>
-      <td>Divorced</td>
-      <td>Adm-clerical</td>
-      <td>Unmarried</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>United-States</td>
-    </tr>
-    <tr>
-      <th>32240</th>
-      <td>State-gov</td>
-      <td>Some-college</td>
-      <td>Married-civ-spouse</td>
-      <td>Adm-clerical</td>
-      <td>Wife</td>
-      <td>White</td>
-      <td>Female</td>
-      <td>United-States</td>
-    </tr>
-    <tr>
-      <th>9876</th>
-      <td>Local-gov</td>
-      <td>Bachelors</td>
-      <td>Married-civ-spouse</td>
-      <td>Prof-specialty</td>
-      <td>Husband</td>
-      <td>White</td>
-      <td>Male</td>
-      <td>United-States</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Most of the columns are actually categorical columns, in the sense that there is no ordinality among values.</p></li>
@@ -1473,14 +2432,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;HS-grad&#39;, &#39;Bachelors&#39;, &#39;Some-college&#39;, &#39;11th&#39;, &#39;5th-6th&#39;,
-       &#39;Assoc-voc&#39;, &#39;Masters&#39;, &#39;9th&#39;, &#39;Doctorate&#39;, &#39;Prof-school&#39;,
-       &#39;7th-8th&#39;, &#39;10th&#39;, &#39;12th&#39;, &#39;1st-4th&#39;, &#39;Assoc-acdm&#39;, &#39;Preschool&#39;],
-      dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1495,14 +2446,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;10th&#39;, &#39;11th&#39;, &#39;12th&#39;, &#39;1st-4th&#39;, &#39;5th-6th&#39;, &#39;7th-8th&#39;, &#39;9th&#39;,
-       &#39;Assoc-acdm&#39;, &#39;Assoc-voc&#39;, &#39;Bachelors&#39;, &#39;Doctorate&#39;, &#39;HS-grad&#39;,
-       &#39;Masters&#39;, &#39;Preschool&#39;, &#39;Prof-school&#39;, &#39;Some-college&#39;],
-      dtype=object)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1514,72 +2457,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>transformed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>10th</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>11th</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>12th</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>1st-4th</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>5th-6th</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>7th-8th</th>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>9th</th>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>Assoc-acdm</th>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>Assoc-voc</th>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>Bachelors</th>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> has encoded the categories by alphabetically sorting them and then assigning integers to them in that order.</p></li>
@@ -1588,14 +2465,6 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;HS-grad&#39;, &#39;Bachelors&#39;, &#39;Some-college&#39;, &#39;11th&#39;, &#39;5th-6th&#39;,
-       &#39;Assoc-voc&#39;, &#39;Masters&#39;, &#39;9th&#39;, &#39;Doctorate&#39;, &#39;Prof-school&#39;,
-       &#39;7th-8th&#39;, &#39;10th&#39;, &#39;12th&#39;, &#39;1st-4th&#39;, &#39;Assoc-acdm&#39;, &#39;Preschool&#39;],
-      dtype=object)
 </pre></div>
 </div>
 </div>
@@ -1641,14 +2510,6 @@ dtype: float64
     <span class="n">data</span><span class="o">=</span><span class="n">ed_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;education_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span>
 <span class="p">)</span>
 <span class="n">oe</span><span class="o">.</span><span class="n">categories_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;Preschool&#39;, &#39;1st-4th&#39;, &#39;5th-6th&#39;, &#39;7th-8th&#39;, &#39;9th&#39;, &#39;10th&#39;,
-        &#39;11th&#39;, &#39;12th&#39;, &#39;HS-grad&#39;, &#39;Prof-school&#39;, &#39;Assoc-voc&#39;,
-        &#39;Assoc-acdm&#39;, &#39;Some-college&#39;, &#39;Bachelors&#39;, &#39;Masters&#39;, &#39;Doctorate&#39;],
-       dtype=object)]
 </pre></div>
 </div>
 </div>
@@ -1713,19 +2574,10 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       6.670280
-score_time     1.131099
-test_score     0.851927
-train_score    0.853348
-dtype: float64
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="binary-features">
-<h3>Binary features<a class="headerlink" href="#binary-features" title="Permalink to this headline">¶</a></h3>
+<h2>Binary features<a class="headerlink" href="#binary-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>In this dataset the only feature coded with two possible values in the dataset is sex.</p></li>
 <li><p>Let’s try OHE on that feature.</p></li>
@@ -1796,123 +2648,13 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fit_time</th>
-      <th>score_time</th>
-      <th>test_score</th>
-      <th>train_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>6.654067</td>
-      <td>1.100806</td>
-      <td>0.850864</td>
-      <td>0.853153</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>6.412274</td>
-      <td>1.083333</td>
-      <td>0.844530</td>
-      <td>0.855792</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>6.531355</td>
-      <td>1.108229</td>
-      <td>0.859693</td>
-      <td>0.850609</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>6.482359</td>
-      <td>1.103760</td>
-      <td>0.849299</td>
-      <td>0.853832</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>6.491378</td>
-      <td>1.106489</td>
-      <td>0.854291</td>
-      <td>0.853448</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </div>
 <div class="section" id="ohe-with-many-categories">
-<h3>OHE with many categories<a class="headerlink" href="#ohe-with-many-categories" title="Permalink to this headline">¶</a></h3>
+<h2>OHE with many categories<a class="headerlink" href="#ohe-with-many-categories" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">[</span><span class="s2">&quot;native.country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>United-States                 23315
-Mexico                          512
-Philippines                     165
-Germany                         115
-Canada                           97
-El-Salvador                      92
-Puerto-Rico                      85
-India                            82
-England                          74
-Cuba                             70
-China                            63
-South                            63
-Jamaica                          62
-Italy                            60
-Dominican-Republic               56
-Columbia                         53
-Vietnam                          53
-Guatemala                        52
-Japan                            44
-Poland                           44
-Taiwan                           41
-Haiti                            36
-Iran                             34
-Portugal                         31
-Nicaragua                        29
-Greece                           28
-Peru                             27
-France                           26
-Ecuador                          19
-Thailand                         18
-Hong                             17
-Yugoslavia                       15
-Ireland                          15
-Cambodia                         15
-Laos                             13
-Trinadad&amp;Tobago                  12
-Outlying-US(Guam-USVI-etc)       12
-Hungary                          11
-Scotland                         10
-Honduras                          7
-Holand-Netherlands                1
-Name: native.country, dtype: int64
 </pre></div>
 </div>
 </div>
@@ -1928,7 +2670,7 @@ Name: native.country, dtype: int64
 </ul>
 </div>
 <div class="section" id="do-we-actually-want-to-use-certain-features-for-prediction">
-<h3>Do we actually want to use certain features for prediction?<a class="headerlink" href="#do-we-actually-want-to-use-certain-features-for-prediction" title="Permalink to this headline">¶</a></h3>
+<h2>Do we actually want to use certain features for prediction?<a class="headerlink" href="#do-we-actually-want-to-use-certain-features-for-prediction" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Do you want to use <code class="docutils literal notranslate"><span class="pre">race</span></code> in prediction?</p></li>
 <li><p>Remember that the systems you build are going to be used in some applications.</p></li>
@@ -1937,7 +2679,7 @@ Name: native.country, dtype: int64
 </ul>
 </div>
 <div class="section" id="categorical-features-true-or-false">
-<h3>Categorical features (True or False)<a class="headerlink" href="#categorical-features-true-or-false" title="Permalink to this headline">¶</a></h3>
+<h2>Categorical features (True or False)<a class="headerlink" href="#categorical-features-true-or-false" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
 <li><p>Creating groups of rarely occurring categories might overfit the model.</p></li>
@@ -1945,7 +2687,7 @@ Name: native.country, dtype: int64
 </div>
 </div>
 <div class="section" id="encoding-text-data">
-<h2>2. Encoding text data<a class="headerlink" href="#encoding-text-data" title="Permalink to this headline">¶</a></h2>
+<h1>2. Encoding text data<a class="headerlink" href="#encoding-text-data" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>ML algorithms we have seen so far prefer numeric and fixed length input that looks like this:</p></li>
 </ul>
@@ -1958,7 +2700,7 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 <li><p>How can we represent such data into fixed number of features?</p></li>
 </ul>
 <div class="section" id="spam-non-spam-toy-example">
-<h3>Spam/non-spam toy example<a class="headerlink" href="#spam-non-spam-toy-example" title="Permalink to this headline">¶</a></h3>
+<h2>Spam/non-spam toy example<a class="headerlink" href="#spam-non-spam-toy-example" title="Permalink to this headline">¶</a></h2>
 <p>Would you be able to apply the algorithms we have seen so far on the data that looks like this?</p>
 <p><span class="math notranslate nohighlight">\(X = \begin{bmatrix}\text{&quot;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&quot;,}\\ \text{&quot;Lol your always so convincing.&quot;}\\ \text{&quot;Congrats! 1 year special cinema pass for 2 is yours. call 09061209465 now!&quot;}\\ \end{bmatrix}\)</span></p>
 <p>and</p>
@@ -1970,7 +2712,7 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 </ul>
 </div>
 <div class="section" id="bag-of-words-bow-representation">
-<h3>Bag of words (BOW) representation<a class="headerlink" href="#bag-of-words-bow-representation" title="Permalink to this headline">¶</a></h3>
+<h2>Bag of words (BOW) representation<a class="headerlink" href="#bag-of-words-bow-representation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>One way is to use a simple bag of words (BOW) representation which involves two components.</p>
 <ul>
@@ -1985,7 +2727,7 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 <p><a class="reference external" href="https://web.stanford.edu/~jurafsky/slp3/4.pdf">Source</a></p>
 </div>
 <div class="section" id="extracting-bow-features-using-scikit-learn">
-<h3>Extracting BOW features using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#extracting-bow-features-using-scikit-learn" title="Permalink to this headline">¶</a></h3>
+<h2>Extracting BOW features using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#extracting-bow-features-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code></p>
 <ul>
@@ -2015,207 +2757,10 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>08002986030</th>
-      <th>100000</th>
-      <th>11</th>
-      <th>900</th>
-      <th>all</th>
-      <th>always</th>
-      <th>are</th>
-      <th>around</th>
-      <th>as</th>
-      <th>been</th>
-      <th>...</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>usf</th>
-      <th>valued</th>
-      <th>vettam</th>
-      <th>week</th>
-      <th>with</th>
-      <th>won</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>1</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-<p>6 rows × 72 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_counts</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6x72 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 85 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -2234,18 +2779,10 @@ $<span class="math notranslate nohighlight">\(y = \begin{bmatrix}spam \\ non spa
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of elements:  432
-The number of non-zero elements:  85
-Proportion of non-zero elements: 0.1968
-The value at cell 3,31 is: 1
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="why-sparse-matrices">
-<h3>Why sparse matrices?<a class="headerlink" href="#why-sparse-matrices" title="Permalink to this headline">¶</a></h3>
+<h2>Why sparse matrices?<a class="headerlink" href="#why-sparse-matrices" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Most words do not appear in a given document.</p></li>
 <li><p>We get massive computational savings if we only store the nonzero elements.</p></li>
@@ -2262,7 +2799,7 @@ The value at cell 3,31 is: 1
 </ul>
 </div>
 <div class="section" id="onehotencoder-and-sparse-features">
-<h3><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> and sparse features<a class="headerlink" href="#onehotencoder-and-sparse-features" title="Permalink to this headline">¶</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> and sparse features<a class="headerlink" href="#onehotencoder-and-sparse-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>By default, <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> also creates sparse features.</p></li>
 <li><p>You could set <code class="docutils literal notranslate"><span class="pre">sparse=False</span></code> to get a regular <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array.</p></li>
@@ -2271,7 +2808,7 @@ The value at cell 3,31 is: 1
 </ul>
 </div>
 <div class="section" id="important-hyperparameters-of-countvectorizer">
-<h3>Important hyperparameters of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code><a class="headerlink" href="#important-hyperparameters-of-countvectorizer" title="Permalink to this headline">¶</a></h3>
+<h2>Important hyperparameters of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code><a class="headerlink" href="#important-hyperparameters-of-countvectorizer" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">binary</span></code></p>
 <ul>
@@ -2312,112 +2849,6 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>counts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>to</th>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>your</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>you</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>free</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>as</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>urgent</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>have</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>for</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>he</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>the</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>update</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>callertune</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>been</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>melle</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>mobile</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>prize</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>receive</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>or</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>oru</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>our</th>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2432,64 +2863,6 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>counts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>to</th>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>your</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>as</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>free</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>you</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>the</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>update</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>urgent</th>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2498,105 +2871,6 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>as</th>
-      <th>free</th>
-      <th>the</th>
-      <th>to</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2610,64 +2884,6 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>counts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>urgent</th>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>you</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>as</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>free</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>the</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>to</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>update</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>your</th>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <p>Notice that <code class="docutils literal notranslate"><span class="pre">vec8</span></code> and <code class="docutils literal notranslate"><span class="pre">vec8_binary</span></code> have different vocabularies, which is kind of unexpected behaviour and doesn’t match the documentation of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
 <p><a class="reference external" href="https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/feature_extraction/text.py#L1206-L1225">Here</a> is the code for <code class="docutils literal notranslate"><span class="pre">binary=True</span></code> condition in <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>. As we can see, the binarization is done before limiting the features to <code class="docutils literal notranslate"><span class="pre">max_features</span></code>, and so now we are actually looking at the document counts (in how many documents it occurs) rather than term count. This is not explained anywhere in the documentation.</p>
@@ -2681,109 +2897,10 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>as</th>
-      <th>been</th>
-      <th>free</th>
-      <th>have</th>
-      <th>prize</th>
-      <th>to</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 </div>
 <div class="section" id="preprocessing">
-<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Note that <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> is carrying out some preprocessing such as because of the default argument values</p>
 <ul>
@@ -2795,17 +2912,6 @@ The value at cell 3,31 is: 1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&#39;,
-  &#39;Lol you are always so convincing.&#39;,
-  &quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;,
-  &#39;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&#39;,
-  &#39;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&#39;,
-  &quot;As per your request &#39;Melle Melle (Oru Minnaminunginte Nurungu Vettam)&#39; has been set as your callertune for all Callers. Press *9 to copy your friends Callertune&quot;],
- [&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;])
 </pre></div>
 </div>
 </div>
@@ -2823,21 +2929,10 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;, CountVectorizer()), (&#39;svc&#39;, SVC())])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;],
-      dtype=&#39;&lt;U8&#39;)
 </pre></div>
 </div>
 </div>
@@ -2848,15 +2943,10 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="is-this-a-realistic-representation-of-text-data">
-<h3>Is this a realistic representation of text data?<a class="headerlink" href="#is-this-a-realistic-representation-of-text-data" title="Permalink to this headline">¶</a></h3>
+<h2>Is this a realistic representation of text data?<a class="headerlink" href="#is-this-a-realistic-representation-of-text-data" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Of course this is not a great representation of language</p>
 <ul>
@@ -2870,7 +2960,7 @@ The value at cell 3,31 is: 1
 <p>In the lab you’ll develop a system for spam identification on a dataset from Kaggle.</p>
 </div>
 <div class="section" id="countvectorizer-true-or-false">
-<h3><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>: True or False<a class="headerlink" href="#countvectorizer-true-or-false" title="Permalink to this headline">¶</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>: True or False<a class="headerlink" href="#countvectorizer-true-or-false" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>As you increase the value for <code class="docutils literal notranslate"><span class="pre">max_features</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> the training score is likely to go up.</p>
 <ul>
@@ -2894,197 +2984,6 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>north_america</th>
-      <th>eat_out_freq</th>
-      <th>age</th>
-      <th>n_people</th>
-      <th>price</th>
-      <th>food_type</th>
-      <th>noise_level</th>
-      <th>good_server</th>
-      <th>comments</th>
-      <th>restaurant_name</th>
-      <th>target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Yes</td>
-      <td>3.0</td>
-      <td>29</td>
-      <td>20</td>
-      <td>10</td>
-      <td>Other</td>
-      <td>no music</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Yes</td>
-      <td>2.0</td>
-      <td>23</td>
-      <td>10</td>
-      <td>20</td>
-      <td>Chinese</td>
-      <td>low</td>
-      <td>Yes</td>
-      <td>food tastes good</td>
-      <td>Midam</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Yes</td>
-      <td>2.0</td>
-      <td>21</td>
-      <td>10</td>
-      <td>40</td>
-      <td>Other</td>
-      <td>low</td>
-      <td>Yes</td>
-      <td>good food</td>
-      <td>pear tree</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>No</td>
-      <td>2.0</td>
-      <td>24</td>
-      <td>15</td>
-      <td>40</td>
-      <td>Other</td>
-      <td>medium</td>
-      <td>Yes</td>
-      <td>My love for Korean food</td>
-      <td>Dami</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Yes</td>
-      <td>5.0</td>
-      <td>23</td>
-      <td>20</td>
-      <td>10</td>
-      <td>Canadian/American</td>
-      <td>low</td>
-      <td>Yes</td>
-      <td>Good food</td>
-      <td>NaN</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>159</th>
-      <td>Yes</td>
-      <td>5.0</td>
-      <td>22</td>
-      <td>4</td>
-      <td>20</td>
-      <td>Canadian/American</td>
-      <td>low</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>do not remember</td>
-      <td>dislike</td>
-    </tr>
-    <tr>
-      <th>160</th>
-      <td>Yes</td>
-      <td>3.0</td>
-      <td>22</td>
-      <td>0</td>
-      <td>15</td>
-      <td>Chinese</td>
-      <td>no music</td>
-      <td>No</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>dislike</td>
-    </tr>
-    <tr>
-      <th>161</th>
-      <td>Yes</td>
-      <td>2.0</td>
-      <td>20</td>
-      <td>10</td>
-      <td>20</td>
-      <td>Chinese</td>
-      <td>no music</td>
-      <td>Yes</td>
-      <td>NaN</td>
-      <td>Tim Kee Kitchen</td>
-      <td>dislike</td>
-    </tr>
-    <tr>
-      <th>162</th>
-      <td>No</td>
-      <td>2.0</td>
-      <td>21</td>
-      <td>30</td>
-      <td>22</td>
-      <td>Chinese</td>
-      <td>high</td>
-      <td>No</td>
-      <td>The environment was very not clean. The food tasted awful.</td>
-      <td>NaN</td>
-      <td>dislike</td>
-    </tr>
-    <tr>
-      <th>163</th>
-      <td>No</td>
-      <td>6.0</td>
-      <td>26</td>
-      <td>20</td>
-      <td>30</td>
-      <td>Fusion</td>
-      <td>low</td>
-      <td>No</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>dislike</td>
-    </tr>
-  </tbody>
-</table>
-<p>164 rows × 11 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3092,159 +2991,16 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>eat_out_freq</th>
-      <th>age</th>
-      <th>n_people</th>
-      <th>price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>164.000000</td>
-      <td>164.000000</td>
-      <td>1.640000e+02</td>
-      <td>164.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>2.463415</td>
-      <td>22.548780</td>
-      <td>6.100015e+04</td>
-      <td>6127.585366</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>1.556267</td>
-      <td>3.058338</td>
-      <td>7.808669e+05</td>
-      <td>78084.527814</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.000000</td>
-      <td>10.000000</td>
-      <td>-2.000000e+00</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>1.000000</td>
-      <td>21.000000</td>
-      <td>1.000000e+01</td>
-      <td>16.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>2.000000</td>
-      <td>22.000000</td>
-      <td>2.000000e+01</td>
-      <td>20.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>3.000000</td>
-      <td>23.000000</td>
-      <td>4.000000e+01</td>
-      <td>30.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>7.000000</td>
-      <td>32.000000</td>
-      <td>1.000000e+07</td>
-      <td>1000000.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurant_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/cleaned_restaurant_data.csv&quot;</span><span class="p">)</span>
 <span class="n">restaurant_subset</span> <span class="o">=</span> <span class="n">restaurant_df</span><span class="p">[[</span><span class="s2">&quot;n_people&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">]]</span>
-<span class="n">clean_restaurant_subset</span> <span class="o">=</span> <span class="n">restaurant_subset</span><span class="p">[</span><span class="n">restaurant_df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">clean_restaurant_subset</span> <span class="o">=</span> <span class="n">restaurant_subset</span><span class="p">[</span><span class="n">restaurant_df</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">200</span><span class="p">]</span>
 <span class="n">clean_restaurant_subset</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>n_people</th>
-      <th>price</th>
-      <th>target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>20</td>
-      <td>10</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10</td>
-      <td>20</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>10</td>
-      <td>40</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>15</td>
-      <td>40</td>
-      <td>like</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>20</td>
-      <td>10</td>
-      <td>like</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3264,20 +3020,10 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(max_depth=4)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7209302325581395
 </pre></div>
 </div>
 </div>
@@ -3288,15 +3034,11 @@ The value at cell 3,31 is: 1
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5454545454545454
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">graphviz</span>
 <span class="kn">import</span> <span class="nn">IPython</span>
@@ -3329,10 +3071,6 @@ The value at cell 3,31 is: 1
     <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;price&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/06_column-transformer-text-feats_115_0.png" src="../_images/06_column-transformer-text-feats_115_0.png" />
 </div>
 </div>
 </div>
