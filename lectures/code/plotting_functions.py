@@ -87,6 +87,27 @@ def plot_knn_clf(X_train, y_train, X_test, n_neighbors=1, class_names=['class 0'
             )    
     plt.show()
 
+def plot_knn_decision_boundaries(X_train, y_train, k_values = [1,11,100]):
+    fig, axes = plt.subplots(1, len(k_values), figsize=(15, 4))
+
+    for n_neighbors, ax in zip(k_values, axes):
+        clf = KNeighborsClassifier(n_neighbors=n_neighbors)
+        scores = cross_validate(clf, X_train, y_train, return_train_score=True)
+        mean_valid_score = scores["test_score"].mean()
+        mean_train_score = scores["train_score"].mean()
+        clf.fit(X_train, y_train)
+        mglearn.plots.plot_2d_separator(
+            clf, X_train.to_numpy(), fill=True, eps=0.5, ax=ax, alpha=0.4
+        )
+        mglearn.discrete_scatter(X_train.iloc[:, 0], X_train.iloc[:, 1], y_train, ax=ax)
+        title = "n_neighbors={}\n train score={}, valid score={}".format(
+            n_neighbors, round(mean_train_score, 2), round(mean_valid_score, 2)
+        )
+        ax.set_title(title)
+        ax.set_xlabel("longitude")
+        ax.set_ylabel("latitude")
+    axes[0].legend(loc=1);    
+
 def plot_train_test_points(X_train, y_train, X_test, class_names=['class 0','class 1'], test_format='star'):
     training_points = mglearn.discrete_scatter(X_train[:, 0], X_train[:, 1], y_train)
     if test_format == "circle": 
@@ -156,8 +177,7 @@ def plot_svc_C(param_grid, X_train, y_train, x_label="longitude", y_label='latit
     axes[0].legend(loc=1);    
     
 
-    
-import mglearn
+
 
 def make_bracket(s, xy, textxy, width, ax):
     annotation = ax.annotate(
