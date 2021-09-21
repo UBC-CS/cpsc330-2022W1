@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 4: Distances, \(k\)-nearest neighbours, SVM, Scaling &#8212; CPSC 330 Applied Machine Learning</title>
+    <title>Lecture 4: \(k\)-nearest neighbours and SVM RBFs &#8212; CPSC 330 Applied Machine Learning</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -120,11 +120,11 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 4: Distances,
+   Lecture 4:
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -nearest neighbours, SVM, Scaling
+   -nearest neighbours and SVM RBFs
   </a>
  </li>
 </ul>
@@ -255,8 +255,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lecture-learning-objectives">
-   Lecture learning objectives
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -562,8 +562,8 @@
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-4-distances-k-nearest-neighbours-svm-scaling">
-<h1>Lecture 4: Distances, <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours, SVM, Scaling<a class="headerlink" href="#lecture-4-distances-k-nearest-neighbours-svm-scaling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lecture-4-k-nearest-neighbours-and-svm-rbfs">
+<h1>Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours and SVM RBFs<a class="headerlink" href="#lecture-4-k-nearest-neighbours-and-svm-rbfs" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
 <blockquote>
@@ -644,8 +644,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="lecture-learning-objectives">
-<h2>Lecture learning objectives<a class="headerlink" href="#lecture-learning-objectives" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
 <p>From this lecture, you will be able to</p>
 <ul class="simple">
 <li><p>explain the notion of similarity-based algorithms;</p></li>
@@ -739,7 +739,7 @@ Follow the installation instructions <a class="reference external" href="https:/
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ab6034ced6ce47d1a79660c62086e805"}
+{"version_major": 2, "version_minor": 0, "model_id": "7c7ad10907194472ba2aaea37891faa4"}
 </script></div>
 </div>
 </div>
@@ -1462,36 +1462,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001433</td>
-      <td>0.002032</td>
+      <td>0.001426</td>
+      <td>0.002350</td>
       <td>0.710526</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001221</td>
-      <td>0.001982</td>
+      <td>0.001194</td>
+      <td>0.001850</td>
       <td>0.684211</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001218</td>
-      <td>0.001879</td>
+      <td>0.001241</td>
+      <td>0.001941</td>
       <td>0.842105</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001208</td>
-      <td>0.001867</td>
+      <td>0.001189</td>
+      <td>0.001835</td>
       <td>0.702703</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001236</td>
-      <td>0.001845</td>
+      <td>0.001183</td>
+      <td>0.001813</td>
       <td>0.837838</td>
       <td>1.0</td>
     </tr>
@@ -1536,36 +1536,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001185</td>
-      <td>0.002432</td>
+      <td>0.001195</td>
+      <td>0.002411</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001424</td>
-      <td>0.002096</td>
+      <td>0.001086</td>
+      <td>0.002183</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001264</td>
-      <td>0.002259</td>
+      <td>0.001074</td>
+      <td>0.002048</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001171</td>
-      <td>0.002169</td>
+      <td>0.001069</td>
+      <td>0.001951</td>
       <td>0.594595</td>
       <td>0.602649</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001241</td>
-      <td>0.002270</td>
+      <td>0.001140</td>
+      <td>0.001980</td>
       <td>0.594595</td>
       <td>0.602649</td>
     </tr>
@@ -1594,8 +1594,18 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8f6a054100a54c9cb17e5f2942b3f91b"}
+{"version_major": 2, "version_minor": 0, "model_id": "d1619b3b67a34dbfa7bcca738bdd54cc"}
 </script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_knn_decision_boundaries</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">k_values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_kNNs-SVM-RBF_66_0.png" src="../_images/04_kNNs-SVM-RBF_66_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="how-to-choose-n-neighbors">
@@ -1754,7 +1764,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:xlabel=&#39;n_neighbors&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/04_kNNs-SVM-RBF_69_1.png" src="../_images/04_kNNs-SVM-RBF_69_1.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_70_1.png" src="../_images/04_kNNs-SVM-RBF_70_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1857,7 +1867,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_84_0.png" src="../_images/04_kNNs-SVM-RBF_84_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_85_0.png" src="../_images/04_kNNs-SVM-RBF_85_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1867,7 +1877,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_85_0.png" src="../_images/04_kNNs-SVM-RBF_85_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_86_0.png" src="../_images/04_kNNs-SVM-RBF_86_0.png" />
 </div>
 </div>
 </div>
@@ -1975,122 +1985,122 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
     <tr>
       <th>0</th>
       <td>4</td>
-      <td>0.507500</td>
-      <td>0.910000</td>
+      <td>0.501875</td>
+      <td>0.900625</td>
     </tr>
     <tr>
       <th>1</th>
       <td>104</td>
-      <td>0.504375</td>
-      <td>0.750000</td>
+      <td>0.500000</td>
+      <td>0.797500</td>
     </tr>
     <tr>
       <th>2</th>
       <td>204</td>
-      <td>0.501875</td>
-      <td>0.709375</td>
+      <td>0.507500</td>
+      <td>0.692500</td>
     </tr>
     <tr>
       <th>3</th>
       <td>304</td>
-      <td>0.510625</td>
-      <td>0.639375</td>
+      <td>0.509375</td>
+      <td>0.693750</td>
     </tr>
     <tr>
       <th>4</th>
       <td>404</td>
-      <td>0.507500</td>
-      <td>0.632500</td>
+      <td>0.500625</td>
+      <td>0.670000</td>
     </tr>
     <tr>
       <th>5</th>
       <td>504</td>
-      <td>0.503750</td>
-      <td>0.659375</td>
+      <td>0.504375</td>
+      <td>0.648125</td>
     </tr>
     <tr>
       <th>6</th>
       <td>604</td>
-      <td>0.500625</td>
-      <td>0.609375</td>
+      <td>0.502500</td>
+      <td>0.643125</td>
     </tr>
     <tr>
       <th>7</th>
       <td>704</td>
-      <td>0.513125</td>
-      <td>0.612500</td>
+      <td>0.502500</td>
+      <td>0.589375</td>
     </tr>
     <tr>
       <th>8</th>
       <td>804</td>
-      <td>0.503750</td>
-      <td>0.615000</td>
+      <td>0.506250</td>
+      <td>0.591250</td>
     </tr>
     <tr>
       <th>9</th>
       <td>904</td>
-      <td>0.506250</td>
-      <td>0.583750</td>
+      <td>0.511875</td>
+      <td>0.571250</td>
     </tr>
     <tr>
       <th>10</th>
       <td>1004</td>
-      <td>0.506875</td>
-      <td>0.643750</td>
+      <td>0.501250</td>
+      <td>0.568125</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1104</td>
-      <td>0.501250</td>
-      <td>0.599375</td>
+      <td>0.500000</td>
+      <td>0.646875</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1204</td>
-      <td>0.505625</td>
-      <td>0.570625</td>
+      <td>0.501875</td>
+      <td>0.623750</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1304</td>
-      <td>0.502500</td>
-      <td>0.620000</td>
+      <td>0.508125</td>
+      <td>0.612500</td>
     </tr>
     <tr>
       <th>14</th>
       <td>1404</td>
-      <td>0.504375</td>
-      <td>0.573125</td>
+      <td>0.508125</td>
+      <td>0.607500</td>
     </tr>
     <tr>
       <th>15</th>
       <td>1504</td>
-      <td>0.503750</td>
-      <td>0.572500</td>
+      <td>0.513750</td>
+      <td>0.631250</td>
     </tr>
     <tr>
       <th>16</th>
       <td>1604</td>
-      <td>0.515000</td>
-      <td>0.575625</td>
+      <td>0.507500</td>
+      <td>0.587500</td>
     </tr>
     <tr>
       <th>17</th>
       <td>1704</td>
-      <td>0.503750</td>
-      <td>0.560625</td>
+      <td>0.502500</td>
+      <td>0.578750</td>
     </tr>
     <tr>
       <th>18</th>
       <td>1804</td>
-      <td>0.504375</td>
-      <td>0.576250</td>
+      <td>0.510000</td>
+      <td>0.593125</td>
     </tr>
     <tr>
       <th>19</th>
       <td>1904</td>
-      <td>0.501250</td>
-      <td>0.578750</td>
+      <td>0.502500</td>
+      <td>0.581875</td>
     </tr>
   </tbody>
 </table>
@@ -2149,7 +2159,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_99_0.png" src="../_images/04_kNNs-SVM-RBF_99_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_100_0.png" src="../_images/04_kNNs-SVM-RBF_100_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2201,36 +2211,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001918</td>
-      <td>0.003949</td>
+      <td>0.001566</td>
+      <td>0.002452</td>
       <td>0.794118</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001661</td>
-      <td>0.001944</td>
+      <td>0.001419</td>
+      <td>0.002077</td>
       <td>0.764706</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001221</td>
-      <td>0.001766</td>
+      <td>0.001259</td>
+      <td>0.002025</td>
       <td>0.727273</td>
       <td>0.850746</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001171</td>
-      <td>0.001971</td>
+      <td>0.001134</td>
+      <td>0.001809</td>
       <td>0.787879</td>
       <td>0.828358</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001553</td>
-      <td>0.001811</td>
+      <td>0.001224</td>
+      <td>0.001913</td>
       <td>0.939394</td>
       <td>0.783582</td>
     </tr>
@@ -2280,36 +2290,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.002038</td>
-      <td>0.001042</td>
+      <td>0.002243</td>
+      <td>0.001033</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001472</td>
-      <td>0.000987</td>
+      <td>0.001597</td>
+      <td>0.001081</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001430</td>
-      <td>0.000974</td>
+      <td>0.001725</td>
+      <td>0.000977</td>
       <td>0.727273</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001535</td>
-      <td>0.001029</td>
+      <td>0.001676</td>
+      <td>0.000985</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001513</td>
-      <td>0.001001</td>
+      <td>0.001693</td>
+      <td>0.001030</td>
       <td>0.939394</td>
       <td>0.805970</td>
     </tr>
@@ -2340,7 +2350,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_104_0.png" src="../_images/04_kNNs-SVM-RBF_104_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_105_0.png" src="../_images/04_kNNs-SVM-RBF_105_0.png" />
 </div>
 </div>
 </div>
@@ -2379,7 +2389,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_107_0.png" src="../_images/04_kNNs-SVM-RBF_107_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_108_0.png" src="../_images/04_kNNs-SVM-RBF_108_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2401,7 +2411,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_109_0.png" src="../_images/04_kNNs-SVM-RBF_109_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_110_0.png" src="../_images/04_kNNs-SVM-RBF_110_0.png" />
 </div>
 </div>
 <p>The support vectors are the bigger points in the plot above.</p>
@@ -2432,27 +2442,12 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
-<span class="c1"># plot_svc_gamma(gamma, X_train.to_numpy(), y_train.to_numpy(), x_label=&quot;longitude&quot;, y_label=&#39;latitude&#39;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="relation-of-c-and-the-fundamental-trade-off">
-<h3>Relation of <code class="docutils literal notranslate"><span class="pre">C</span></code> and the fundamental trade-off<a class="headerlink" href="#relation-of-c-and-the-fundamental-trade-off" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <em>also</em> affects the fundamental tradeoff</p>
-<ul>
-<li><p>larger <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> more complex</p></li>
-<li><p>smaller <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> less complex</p></li>
-</ul>
-</li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">]</span>
-<span class="n">plot_svc_C</span><span class="p">(</span>
-    <span class="n">C</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span>
+<span class="n">plot_svc_gamma</span><span class="p">(</span>
+    <span class="n">gamma</span><span class="p">,</span>
+    <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+    <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span>
+    <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -2460,18 +2455,19 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_13674</span><span class="o">/</span><span class="mf">454766283.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">]</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_svc_C</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">C</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="p">)</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_14199</span><span class="o">/</span><span class="mf">3299663106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">gamma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_svc_gamma</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">gamma</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span>
 
-<span class="nn">~/CS/2021-22/330/cpsc330/lectures/code/./plotting_functions.py</span> in <span class="ni">plot_svc_C</span><span class="nt">(param_grid, X_train, y_train, x_label, y_label)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="n">mean_train_score</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">145</span>         <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_2d_separator</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+<span class="nn">~/CS/2021-22/330/cpsc330/lectures/code/./plotting_functions.py</span> in <span class="ni">plot_svc_gamma</span><span class="nt">(param_grid, X_train, y_train, x_label, y_label)</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>         <span class="n">mean_train_score</span> <span class="o">=</span> <span class="n">scores</span><span class="p">[</span><span class="s2">&quot;train_score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">147</span>         <span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_2d_separator</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>             <span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="p">)</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/mglearn/plot_2d_separator.py</span> in <span class="ni">plot_2d_separator</span><span class="nt">(classifier, X, fill, ax, eps, alpha, cm, linewidth, threshold, linestyle)</span>
 <span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">X_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">X1</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">X2</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
@@ -2504,7 +2500,31 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
-<img alt="../_images/04_kNNs-SVM-RBF_115_1.png" src="../_images/04_kNNs-SVM-RBF_115_1.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_114_1.png" src="../_images/04_kNNs-SVM-RBF_114_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="relation-of-c-and-the-fundamental-trade-off">
+<h3>Relation of <code class="docutils literal notranslate"><span class="pre">C</span></code> and the fundamental trade-off<a class="headerlink" href="#relation-of-c-and-the-fundamental-trade-off" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <em>also</em> affects the fundamental tradeoff</p>
+<ul>
+<li><p>larger <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> more complex</p></li>
+<li><p>smaller <code class="docutils literal notranslate"><span class="pre">C</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> less complex</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1000.0</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">]</span>
+<span class="n">plot_svc_C</span><span class="p">(</span>
+    <span class="n">C</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">x_label</span><span class="o">=</span><span class="s2">&quot;longitude&quot;</span><span class="p">,</span> <span class="n">y_label</span><span class="o">=</span><span class="s2">&quot;latitude&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_kNNs-SVM-RBF_116_0.png" src="../_images/04_kNNs-SVM-RBF_116_0.png" />
 </div>
 </div>
 </div>
