@@ -256,3 +256,37 @@ def plot_proper_processing(estimator_name):
     make_bracket(estimator_name + " predict", (17.5, 3), (17.5, 4), 4.8, axes[1])
     fig.subplots_adjust(hspace=.3)
     
+def plot_original_scaled(
+    X_train,
+    X_test,
+    train_transformed,
+    test_transformed,
+    title_transformed="Properly transformed",
+):
+    fig, axes = plt.subplots(1, 2, figsize=(15, 4))
+    axes[0].scatter(X_train[:, 0], X_train[:, 1], label="Training set", s=60)
+    axes[0].scatter(
+        X_test[:, 0],
+        X_test[:, 1],
+        marker="^",
+        color=mglearn.cm2(1),
+        label="Test set",
+        s=60,
+    )
+    axes[0].legend(loc="upper right")
+
+    axes[0].set_title("Original Data")
+
+    axes[1].scatter(
+        train_transformed[:, 0], train_transformed[:, 1], label="Training set", s=60
+    )
+    axes[1].scatter(
+        test_transformed[:, 0],
+        test_transformed[:, 1],
+        marker="^",
+        color=mglearn.cm2(1),
+        label="Test set",
+        s=60,
+    )
+    axes[1].legend(loc="upper right")
+    axes[1].set_title(title_transformed);    
