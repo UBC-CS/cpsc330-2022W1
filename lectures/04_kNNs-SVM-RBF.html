@@ -54,7 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 5: Preprocessing and sklearn pipelines" href="05_preprocessing-pipelines.html" />
     <link rel="prev" title="Lecture 3: Machine Learning Fundamentals" href="03_ml-fundamentals.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -125,6 +125,17 @@
     \(k\)
    </span>
    -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
   </a>
  </li>
 </ul>
@@ -465,6 +476,11 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#support-vector-machines-svms-with-rbf-kernel-video">
    Support Vector Machines (SVMs) with RBF kernel [video]
   </a>
@@ -746,7 +762,7 @@ Follow the installation instructions <a class="reference external" href="https:/
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "5863e946662a4e6bb0d202fce4d3fb38"}
+{"version_major": 2, "version_minor": 0, "model_id": "a0c9e9cc8fc74a4e954b43aa31216ea5"}
 </script></div>
 </div>
 </div>
@@ -1469,36 +1485,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001353</td>
-      <td>0.002351</td>
+      <td>0.001312</td>
+      <td>0.002588</td>
       <td>0.710526</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001171</td>
-      <td>0.002147</td>
+      <td>0.001212</td>
+      <td>0.001837</td>
       <td>0.684211</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001151</td>
-      <td>0.001782</td>
+      <td>0.001177</td>
+      <td>0.001815</td>
       <td>0.842105</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.001157</td>
-      <td>0.001757</td>
+      <td>0.001836</td>
       <td>0.702703</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001242</td>
-      <td>0.001776</td>
+      <td>0.001144</td>
+      <td>0.001759</td>
       <td>0.837838</td>
       <td>1.0</td>
     </tr>
@@ -1543,36 +1559,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001246</td>
-      <td>0.002390</td>
+      <td>0.001179</td>
+      <td>0.002374</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001108</td>
-      <td>0.002199</td>
+      <td>0.001105</td>
+      <td>0.002161</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001129</td>
-      <td>0.002024</td>
+      <td>0.001203</td>
+      <td>0.002007</td>
       <td>0.605263</td>
       <td>0.600000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001145</td>
-      <td>0.001957</td>
+      <td>0.001084</td>
+      <td>0.002205</td>
       <td>0.594595</td>
       <td>0.602649</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001072</td>
-      <td>0.001907</td>
+      <td>0.001076</td>
+      <td>0.001937</td>
       <td>0.594595</td>
       <td>0.602649</td>
     </tr>
@@ -1601,7 +1617,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "20f78f50aea44adcad192ddd6b9f815e"}
+{"version_major": 2, "version_minor": 0, "model_id": "4215509c3b7947849f2c52ac7c9c26ea"}
 </script></div>
 </div>
 <div class="cell docutils container">
@@ -1990,129 +2006,133 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
     <tr>
       <th>0</th>
       <td>4</td>
-      <td>0.499375</td>
-      <td>0.971250</td>
+      <td>0.506250</td>
+      <td>0.915000</td>
     </tr>
     <tr>
       <th>1</th>
       <td>104</td>
-      <td>0.500000</td>
-      <td>0.785625</td>
+      <td>0.505000</td>
+      <td>0.740000</td>
     </tr>
     <tr>
       <th>2</th>
       <td>204</td>
-      <td>0.500625</td>
-      <td>0.730000</td>
+      <td>0.503750</td>
+      <td>0.695000</td>
     </tr>
     <tr>
       <th>3</th>
       <td>304</td>
-      <td>0.505000</td>
-      <td>0.680625</td>
+      <td>0.501875</td>
+      <td>0.624375</td>
     </tr>
     <tr>
       <th>4</th>
       <td>404</td>
-      <td>0.505625</td>
-      <td>0.618125</td>
+      <td>0.501875</td>
+      <td>0.676875</td>
     </tr>
     <tr>
       <th>5</th>
       <td>504</td>
-      <td>0.506250</td>
-      <td>0.694375</td>
+      <td>0.500625</td>
+      <td>0.709375</td>
     </tr>
     <tr>
       <th>6</th>
       <td>604</td>
-      <td>0.502500</td>
-      <td>0.570625</td>
+      <td>0.500000</td>
+      <td>0.658125</td>
     </tr>
     <tr>
       <th>7</th>
       <td>704</td>
-      <td>0.505625</td>
-      <td>0.600000</td>
+      <td>0.504375</td>
+      <td>0.605000</td>
     </tr>
     <tr>
       <th>8</th>
       <td>804</td>
-      <td>0.500000</td>
-      <td>0.641250</td>
+      <td>0.500625</td>
+      <td>0.611250</td>
     </tr>
     <tr>
       <th>9</th>
       <td>904</td>
-      <td>0.502500</td>
-      <td>0.590000</td>
+      <td>0.505000</td>
+      <td>0.605000</td>
     </tr>
     <tr>
       <th>10</th>
       <td>1004</td>
-      <td>0.508125</td>
-      <td>0.591875</td>
+      <td>0.508750</td>
+      <td>0.641875</td>
     </tr>
     <tr>
       <th>11</th>
       <td>1104</td>
-      <td>0.505625</td>
-      <td>0.613750</td>
+      <td>0.504375</td>
+      <td>0.623125</td>
     </tr>
     <tr>
       <th>12</th>
       <td>1204</td>
-      <td>0.503125</td>
-      <td>0.576875</td>
+      <td>0.503750</td>
+      <td>0.610000</td>
     </tr>
     <tr>
       <th>13</th>
       <td>1304</td>
-      <td>0.505000</td>
-      <td>0.591875</td>
+      <td>0.503750</td>
+      <td>0.609375</td>
     </tr>
     <tr>
       <th>14</th>
       <td>1404</td>
-      <td>0.506875</td>
-      <td>0.610625</td>
+      <td>0.502500</td>
+      <td>0.603125</td>
     </tr>
     <tr>
       <th>15</th>
       <td>1504</td>
-      <td>0.510625</td>
-      <td>0.573125</td>
+      <td>0.502500</td>
+      <td>0.577500</td>
     </tr>
     <tr>
       <th>16</th>
       <td>1604</td>
       <td>0.500000</td>
-      <td>0.619375</td>
+      <td>0.601875</td>
     </tr>
     <tr>
       <th>17</th>
       <td>1704</td>
-      <td>0.509375</td>
-      <td>0.576250</td>
+      <td>0.503125</td>
+      <td>0.570000</td>
     </tr>
     <tr>
       <th>18</th>
       <td>1804</td>
-      <td>0.503750</td>
-      <td>0.586875</td>
+      <td>0.510625</td>
+      <td>0.586250</td>
     </tr>
     <tr>
       <th>19</th>
       <td>1904</td>
-      <td>0.501250</td>
-      <td>0.572500</td>
+      <td>0.502500</td>
+      <td>0.590625</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-<p><br><br></p>
 </div>
+</div>
+<div class="section" id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/eva-coffee.png" /></p>
+<p><br><br></p>
 </div>
 <div class="section" id="support-vector-machines-svms-with-rbf-kernel-video">
 <h2>Support Vector Machines (SVMs) with RBF kernel [<a class="reference external" href="https://youtu.be/ic_zqOhi020">video</a>]<a class="headerlink" href="#support-vector-machines-svms-with-rbf-kernel-video" title="Permalink to this headline">¶</a></h2>
@@ -2164,7 +2184,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_100_0.png" src="../_images/04_kNNs-SVM-RBF_100_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_101_0.png" src="../_images/04_kNNs-SVM-RBF_101_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2216,36 +2236,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001672</td>
-      <td>0.002249</td>
+      <td>0.001533</td>
+      <td>0.002297</td>
       <td>0.794118</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001177</td>
-      <td>0.001733</td>
+      <td>0.001169</td>
+      <td>0.001779</td>
       <td>0.764706</td>
       <td>0.819549</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001261</td>
-      <td>0.001780</td>
+      <td>0.001158</td>
+      <td>0.001763</td>
       <td>0.727273</td>
       <td>0.850746</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001191</td>
-      <td>0.002169</td>
+      <td>0.001171</td>
+      <td>0.001762</td>
       <td>0.787879</td>
       <td>0.828358</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001177</td>
-      <td>0.002075</td>
+      <td>0.001151</td>
+      <td>0.001750</td>
       <td>0.939394</td>
       <td>0.783582</td>
     </tr>
@@ -2295,36 +2315,36 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001833</td>
-      <td>0.001044</td>
+      <td>0.004848</td>
+      <td>0.001577</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001611</td>
-      <td>0.001416</td>
+      <td>0.001433</td>
+      <td>0.001260</td>
       <td>0.823529</td>
       <td>0.842105</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001611</td>
-      <td>0.000979</td>
+      <td>0.001370</td>
+      <td>0.000923</td>
       <td>0.727273</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001896</td>
-      <td>0.001016</td>
+      <td>0.001415</td>
+      <td>0.001077</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001510</td>
-      <td>0.001119</td>
+      <td>0.001401</td>
+      <td>0.000977</td>
       <td>0.939394</td>
       <td>0.805970</td>
     </tr>
@@ -2355,7 +2375,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_105_0.png" src="../_images/04_kNNs-SVM-RBF_105_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_106_0.png" src="../_images/04_kNNs-SVM-RBF_106_0.png" />
 </div>
 </div>
 </div>
@@ -2394,7 +2414,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_108_0.png" src="../_images/04_kNNs-SVM-RBF_108_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_109_0.png" src="../_images/04_kNNs-SVM-RBF_109_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2416,7 +2436,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_110_0.png" src="../_images/04_kNNs-SVM-RBF_110_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_111_0.png" src="../_images/04_kNNs-SVM-RBF_111_0.png" />
 </div>
 </div>
 <p>The support vectors are the bigger points in the plot above.</p>
@@ -2460,7 +2480,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_22846</span><span class="o">/</span><span class="mf">3299663106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_10904</span><span class="o">/</span><span class="mf">3299663106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">gamma</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">plot_svc_gamma</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="n">gamma</span><span class="p">,</span>
@@ -2505,7 +2525,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
-<img alt="../_images/04_kNNs-SVM-RBF_114_1.png" src="../_images/04_kNNs-SVM-RBF_114_1.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_115_1.png" src="../_images/04_kNNs-SVM-RBF_115_1.png" />
 </div>
 </div>
 </div>
@@ -2529,7 +2549,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/04_kNNs-SVM-RBF_116_0.png" src="../_images/04_kNNs-SVM-RBF_116_0.png" />
+<img alt="../_images/04_kNNs-SVM-RBF_117_0.png" src="../_images/04_kNNs-SVM-RBF_117_0.png" />
 </div>
 </div>
 </div>
@@ -2636,7 +2656,7 @@ Prediction of the black dot with 3 neighbours: [&#39;Canada&#39;]
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="03_ml-fundamentals.html" title="previous page">Lecture 3: Machine Learning Fundamentals</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
+    <a class='right-next' id="next-link" href="05_preprocessing-pipelines.html" title="next page">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a>
 
         </div>
         

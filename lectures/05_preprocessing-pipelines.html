@@ -54,6 +54,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 4: \(k\)-Nearest Neighbours and SVM RBFs" href="04_kNNs-SVM-RBF.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -100,7 +102,7 @@
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -122,7 +124,18 @@
    <span class="math notranslate nohighlight">
     \(k\)
    </span>
-   -nearest neighbours and SVM RBFs
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
   </a>
  </li>
 </ul>
@@ -230,37 +243,27 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Lecture 5: Preprocessing and
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     sklearn
-    </span>
-   </code>
-   pipelines
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lecture-learning-objectives">
-   Lecture learning objectives
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-plan-for-today">
+   Lecture plan for today
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lecture-outline">
-     Lecture outline
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#motivation-and-big-picture-a-name-1-a">
-   Motivation and big picture
-   <a name="1">
-   </a>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-outcomes">
+   Learning outcomes
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation-and-big-picture-video">
+   Motivation and big picture [video]
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#example-k-nearest-neighbours-on-the-spotify-dataset">
      Example:
      <span class="math notranslate nohighlight">
@@ -269,7 +272,7 @@
      -nearest neighbours on the Spotify dataset
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scaling-using-scikit-learn-s-standardscaler">
      Scaling using
      <code class="docutils literal notranslate">
@@ -285,7 +288,7 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#fit-and-transform-paradigm-for-transformers">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -301,7 +304,7 @@
      paradigm for transformers
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sklearn-api-summary-estimators">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -311,7 +314,7 @@
      API summary: estimators
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#sklearn-api-summary-transformers">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -321,34 +324,34 @@
      API summary: transformers
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#common-preprocessing-techniques">
      Common preprocessing techniques
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dataset-splitting-and-baseline">
    Dataset, splitting, and baseline
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#when-is-it-ok-to-do-things-before-splitting">
      When is it OK to do things before splitting?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#eda">
      EDA
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-all-transformations-we-need-to-apply-on-the-dataset">
      What all transformations we need to apply on the dataset?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#let-s-first-run-our-baseline-model-dummyregressor">
      Let’s first run our baseline model
      <code class="docutils literal notranslate">
@@ -358,64 +361,70 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#imputation">
      Imputation
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-s-the-problem">
      What’s the problem?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scaling">
      Scaling
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-class-discussion">
+     ❓❓ Questions for class discussion
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#state-whether-true-false">
+       State whether True/False
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion">
+       Bad methodology 1: Scaling the data separately (for class discussion)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion">
+       Bad methodology 2: Scaling the data together (for class discussion)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#methodology-3-for-class-discussion">
+       Methodology 3 (for class discussion)
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#feature-transformations-and-the-golden-rule">
-   Feature transformations and the golden rule
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-transformations-and-the-golden-rule-video">
+   Feature transformations and the golden rule [
+   <span class="xref myst">
+    video
+   </span>
+   ]
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#how-to-carry-out-cross-validation">
      How to carry out cross-validation?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion">
-     Bad methodology 1: Scaling the data separately (for class discussion)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#question">
-     Question
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion">
-     Bad methodology 2: Scaling the data together (for class discussion)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Question
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#methodology-3-for-class-discussion">
-     Methodology 3 (for class discussion)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pipelines">
      Pipelines
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#alternative-and-more-compact-syntax-make-pipeline">
      Alternative and more compact syntax:
      <code class="docutils literal notranslate">
@@ -425,56 +434,68 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#let-s-try-cross-validation-with-our-pipeline">
      Let’s try cross-validation with our pipeline
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#categorical-features">
-   Categorical features
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#categorical-features-video">
+   Categorical features [video]
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#can-we-use-this-feature-in-the-model">
      Can we use this feature in the model?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#what-are-the-options">
      What are the options?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ordinal-encoding-occasionally-recommended">
      Ordinal encoding (occasionally recommended)
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#one-hot-encoding-ohe">
        One-hot encoding (OHE)
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#let-s-do-it-on-our-housing-data">
      Let’s do it on our housing data
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#true-false-pipelines-and-one-hot-encoding">
+     True/False: Pipelines and one-hot encoding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-did-we-learn-today">
+   What did we learn today?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#problem-different-transformations-on-different-columns">
      Problem: Different transformations on different columns
     </a>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#revisit-lecture-learning-objectives">
-   Revisit: Lecture learning objectives
-  </a>
  </li>
 </ul>
 
@@ -492,11 +513,12 @@
 <h1>Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines<a class="headerlink" href="#lecture-5-preprocessing-and-sklearn-pipelines" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
@@ -507,10 +529,8 @@
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">import</span> <span class="nn">mglearn</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span>
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="c1"># Classifiers and regressors</span>
@@ -518,7 +538,6 @@
 
 <span class="c1"># Preprocessing and pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">euclidean_distances</span>
 
 <span class="c1"># train test split and cross validation</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
@@ -540,30 +559,33 @@
 </div>
 </div>
 </div>
-<div class="section" id="lecture-learning-objectives">
-<h1>Lecture learning objectives<a class="headerlink" href="#lecture-learning-objectives" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lecture-plan-for-today">
+<h2>Lecture plan for today<a class="headerlink" href="#lecture-plan-for-today" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Announcements (~2 mins)</p></li>
+<li><p>Recap and intro (~8 mins)</p></li>
+<li><p>Exercises and Q&amp;A on pre-watched videos (~20 mins)</p></li>
+<li><p>Watch <span class="xref myst">sklearn pipelines video</span> (~12 mins)</p></li>
+<li><p>Q&amp;A (~3 mins)</p></li>
+<li><p>Break</p></li>
+<li><p>Watch <span class="xref myst">One-hot encoding video</span> (~9 mins)</p></li>
+<li><p>Exercises and Q&amp;A (~10 mins )</p></li>
+<li><p>Summary and wrap up (~5 mins)</p></li>
+</ul>
+</div>
+<div class="section" id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
 <p>From this lecture, you will be able to</p>
 <ul class="simple">
+<li><p>explain motivation for preprocessing in supervised machine learning;</p></li>
 <li><p>identify when to implement feature transformations such as imputation, scaling, and one-hot encoding in a machine learning model development pipeline;</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> for applying feature transformations on your dataset;</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> transformers for applying feature transformations on your dataset;</p></li>
 <li><p>discuss golden rule in the context of feature transformations;</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline.Pipeline</span></code> to build a preliminary machine learning pipeline;</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline.Pipeline</span></code> and <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline.make_pipeline</span></code> to build a preliminary machine learning pipeline.</p></li>
 </ul>
-<div class="section" id="lecture-outline">
-<h2>Lecture outline<a class="headerlink" href="#lecture-outline" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p><a class="reference external" href="#1">Introduction and motivation</a></p></li>
-<li><p><a class="reference external" href="#2">Dataset and baseline</a></p></li>
-<li><p><a class="reference external" href="#3">Imputation</a></p></li>
-<li><p><a class="reference external" href="#4">Scaling</a></p></li>
-<li><p><a class="reference external" href="#5">Feature transformations and the golden rule</a></p></li>
-<li><p><a class="reference external" href="#6">Categorical variables</a></p></li>
-<li><p><a class="reference external" href="#7">ColumnTransformer</a></p></li>
-</ol>
 </div>
-</div>
-<div class="section" id="motivation-and-big-picture-a-name-1-a">
-<h1>Motivation and big picture <a name="1"></a><a class="headerlink" href="#motivation-and-big-picture-a-name-1-a" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation-and-big-picture-video">
+<h2>Motivation and big picture [<a class="reference external" href="https://youtu.be/xx9HlmzORRk">video</a>]<a class="headerlink" href="#motivation-and-big-picture-video" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>So far we have seen</p>
 <ul>
@@ -578,7 +600,7 @@
 </li>
 </ul>
 <div class="section" id="example-k-nearest-neighbours-on-the-spotify-dataset">
-<h2>Example: <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours on the Spotify dataset<a class="headerlink" href="#example-k-nearest-neighbours-on-the-spotify-dataset" title="Permalink to this headline">¶</a></h2>
+<h3>Example: <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbours on the Spotify dataset<a class="headerlink" href="#example-k-nearest-neighbours-on-the-spotify-dataset" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>In lab1 you used <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> to predict whether the user would like a particular song or not.</p></li>
 <li><p>Can we use <span class="math notranslate nohighlight">\(k\)</span>-NN classifier for this task?</p></li>
@@ -646,36 +668,36 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000705</td>
-      <td>0.000242</td>
+      <td>0.000608</td>
+      <td>0.000246</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000467</td>
-      <td>0.000197</td>
+      <td>0.000456</td>
+      <td>0.000201</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000456</td>
+      <td>0.000516</td>
       <td>0.000199</td>
       <td>0.507740</td>
       <td>0.507752</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000455</td>
-      <td>0.000197</td>
+      <td>0.000463</td>
+      <td>0.000201</td>
       <td>0.506211</td>
       <td>0.508133</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000467</td>
-      <td>0.000197</td>
+      <td>0.000454</td>
+      <td>0.000195</td>
       <td>0.509317</td>
       <td>0.507359</td>
     </tr>
@@ -723,36 +745,36 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.002196</td>
-      <td>0.007491</td>
+      <td>0.002088</td>
+      <td>0.007501</td>
       <td>0.563467</td>
       <td>0.717829</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001809</td>
-      <td>0.007233</td>
+      <td>0.001729</td>
+      <td>0.007276</td>
       <td>0.535604</td>
       <td>0.721705</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001722</td>
-      <td>0.007236</td>
+      <td>0.001770</td>
+      <td>0.007423</td>
       <td>0.529412</td>
       <td>0.708527</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001716</td>
-      <td>0.007237</td>
+      <td>0.001967</td>
+      <td>0.007518</td>
       <td>0.537267</td>
       <td>0.721921</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001738</td>
-      <td>0.007283</td>
+      <td>0.001720</td>
+      <td>0.007222</td>
       <td>0.562112</td>
       <td>0.711077</td>
     </tr>
@@ -925,7 +947,7 @@
 </ul>
 </div>
 <div class="section" id="scaling-using-scikit-learn-s-standardscaler">
-<h2>Scaling using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html"><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></a><a class="headerlink" href="#scaling-using-scikit-learn-s-standardscaler" title="Permalink to this headline">¶</a></h2>
+<h3>Scaling using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html"><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></a><a class="headerlink" href="#scaling-using-scikit-learn-s-standardscaler" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>We’ll use <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html"><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code></a>, which is a <code class="docutils literal notranslate"><span class="pre">transformer</span></code>.</p></li>
 <li><p>Only focus on the syntax for now. We’ll talk about scaling in a bit.</p></li>
@@ -1063,7 +1085,7 @@
 </div>
 </div>
 <div class="section" id="fit-and-transform-paradigm-for-transformers">
-<h2><code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code> paradigm for transformers<a class="headerlink" href="#fit-and-transform-paradigm-for-transformers" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code> paradigm for transformers<a class="headerlink" href="#fit-and-transform-paradigm-for-transformers" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> uses <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code> paradigms for feature transformations.</p></li>
 <li><p>We <code class="docutils literal notranslate"><span class="pre">fit</span></code> the transformer on the train split and then transform the train split as well as the test split.</p></li>
@@ -1071,7 +1093,7 @@
 </ul>
 </div>
 <div class="section" id="sklearn-api-summary-estimators">
-<h2><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API summary: estimators<a class="headerlink" href="#sklearn-api-summary-estimators" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API summary: estimators<a class="headerlink" href="#sklearn-api-summary-estimators" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <code class="docutils literal notranslate"><span class="pre">model</span></code> is a classification or regression model.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">X_train_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
@@ -1080,7 +1102,7 @@
 </div>
 </div>
 <div class="section" id="sklearn-api-summary-transformers">
-<h2><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API summary: transformers<a class="headerlink" href="#sklearn-api-summary-transformers" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> API summary: transformers<a class="headerlink" href="#sklearn-api-summary-transformers" title="Permalink to this headline">¶</a></h3>
 <p>Suppose <code class="docutils literal notranslate"><span class="pre">transformer</span></code> is a transformer used to change the input representation, for example, to tackle missing values or to scales numeric features.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="p">[</span><span class="n">y_train</span><span class="p">])</span>
 <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
@@ -1134,7 +1156,7 @@ Test score: 0.686
 </ul>
 </div>
 <div class="section" id="common-preprocessing-techniques">
-<h2>Common preprocessing techniques<a class="headerlink" href="#common-preprocessing-techniques" title="Permalink to this headline">¶</a></h2>
+<h3>Common preprocessing techniques<a class="headerlink" href="#common-preprocessing-techniques" title="Permalink to this headline">¶</a></h3>
 <p>Some commonly performed feature transformation include:</p>
 <ul class="simple">
 <li><p>Imputation: Tackling missing values</p></li>
@@ -1147,7 +1169,7 @@ Test score: 0.686
 </div>
 </div>
 <div class="section" id="dataset-splitting-and-baseline">
-<h1>Dataset, splitting, and baseline<a class="headerlink" href="#dataset-splitting-and-baseline" title="Permalink to this headline">¶</a></h1>
+<h2>Dataset, splitting, and baseline<a class="headerlink" href="#dataset-splitting-and-baseline" title="Permalink to this headline">¶</a></h2>
 <p>We’ll be working on <a class="reference external" href="https://www.kaggle.com/harrywang/housing">California housing prices regression dataset</a> to demonstrate these feature transformation techniques. The task is to predict median house values in Californian districts, given a number of features from these districts. If you are running the notebook on your own, you’ll have to download the data and put it in the data directory.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1413,7 +1435,7 @@ Test score: 0.686
 </div></div></div>
 </div>
 <div class="section" id="when-is-it-ok-to-do-things-before-splitting">
-<h2>When is it OK to do things before splitting?<a class="headerlink" href="#when-is-it-ok-to-do-things-before-splitting" title="Permalink to this headline">¶</a></h2>
+<h3>When is it OK to do things before splitting?<a class="headerlink" href="#when-is-it-ok-to-do-things-before-splitting" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Here it would have been OK to add new features before splitting because we are not using any global information in the data but only looking at one row at a time.</p></li>
 <li><p>But just to be safe and to avoid accidentally breaking the golden rule, it’s better to do it after splitting.</p></li>
@@ -1425,7 +1447,7 @@ Test score: 0.686
 </ul>
 </div>
 <div class="section" id="eda">
-<h2>EDA<a class="headerlink" href="#eda" title="Permalink to this headline">¶</a></h2>
+<h3>EDA<a class="headerlink" href="#eda" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1772,7 +1794,7 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05_preprocessing-pipelines_46_0.png" src="../_images/05_preprocessing-pipelines_46_0.png" />
+<img alt="../_images/05_preprocessing-pipelines_48_0.png" src="../_images/05_preprocessing-pipelines_48_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1794,12 +1816,12 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/05_preprocessing-pipelines_47_0.png" src="../_images/05_preprocessing-pipelines_47_0.png" />
+<img alt="../_images/05_preprocessing-pipelines_49_0.png" src="../_images/05_preprocessing-pipelines_49_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="what-all-transformations-we-need-to-apply-on-the-dataset">
-<h2>What all transformations we need to apply on the dataset?<a class="headerlink" href="#what-all-transformations-we-need-to-apply-on-the-dataset" title="Permalink to this headline">¶</a></h2>
+<h3>What all transformations we need to apply on the dataset?<a class="headerlink" href="#what-all-transformations-we-need-to-apply-on-the-dataset" title="Permalink to this headline">¶</a></h3>
 <p>Here is what we see from the EDA.</p>
 <ul class="simple">
 <li><p>Some missing values in <code class="docutils literal notranslate"><span class="pre">total_bedrooms</span></code> column</p></li>
@@ -1821,7 +1843,7 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="section" id="let-s-first-run-our-baseline-model-dummyregressor">
-<h2>Let’s first run our baseline model <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code><a class="headerlink" href="#let-s-first-run-our-baseline-model-dummyregressor" title="Permalink to this headline">¶</a></h2>
+<h3>Let’s first run our baseline model <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code><a class="headerlink" href="#let-s-first-run-our-baseline-model-dummyregressor" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># dictionary to store our results for different models</span>
@@ -1924,7 +1946,7 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="section" id="imputation">
-<h2>Imputation<a class="headerlink" href="#imputation" title="Permalink to this headline">¶</a></h2>
+<h3>Imputation<a class="headerlink" href="#imputation" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
@@ -1935,7 +1957,7 @@ memory usage: 2.0+ MB
 </div>
 </div>
 <div class="section" id="what-s-the-problem">
-<h2>What’s the problem?<a class="headerlink" href="#what-s-the-problem" title="Permalink to this headline">¶</a></h2>
+<h3>What’s the problem?<a class="headerlink" href="#what-s-the-problem" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">Input</span> <span class="n">contains</span> <span class="n">NaN</span><span class="p">,</span> <span class="n">infinity</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">value</span> <span class="n">too</span> <span class="n">large</span> <span class="k">for</span> <span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span><span class="o">.</span>
 </pre></div>
 </div>
@@ -2181,48 +2203,9 @@ memory usage: 2.0+ MB
 <li><p>Let’s check whether the NaN values have been replaced or not</p></li>
 <li><p>Note that <code class="docutils literal notranslate"><span class="pre">imputer.transform</span></code> returns an <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array and not a dataframe</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">7763</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>longitude                  -118.100000
-latitude                     33.910000
-housing_median_age           36.000000
-total_rooms                 726.000000
-total_bedrooms              435.000000
-population                  490.000000
-households                  130.000000
-median_income                 3.638900
-rooms_per_household           5.584615
-bedrooms_per_household        1.048860
-population_per_household      3.769231
-Name: 7763, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train KNN on the imputed values</span>
-<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5085407150708963
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="scaling">
-<h2>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h2>
+<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>This problem affects a large number of ML methods.</p></li>
 <li><p>A number of approaches to this problem. We are going to look into two most popular ones.</p></li>
@@ -2249,10 +2232,17 @@ Name: 7763, dtype: float64
 </tbody>
 </table>
 <p>There are all sorts of articles on this; see, e.g. <a class="reference external" href="http://www.dataminingblog.com/standardization-vs-normalization/">here</a> and <a class="reference external" href="https://medium.com/&#64;rrfd/standardize-or-normalize-examples-in-python-e3f174b65dfc">here</a>.</p>
-<center>
-<img src='./img/scaling-data.png' width="600">
-</center>
-<p><a class="reference external" href="https://amueller.github.io/COMS4995-s19/slides/aml-05-preprocessing/#8">source</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># [source](https://amueller.github.io/COMS4995-s19/slides/aml-05-preprocessing/#8)</span>
+<span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_scaling</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_68_0.png" src="../_images/05_preprocessing-pipelines_68_0.png" />
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">StandardScaler</span>
@@ -2475,12 +2465,19 @@ Name: 7763, dtype: float64
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Big difference in the KNN training performance after scaling the data.</p></li>
+<li><p>But we saw last week that training score doesn’t tell us much. We should look at the cross-validation score.</p></li>
+</ul>
+</div>
+<div class="section" id="questions-for-class-discussion">
+<h3>❓❓ Questions for class discussion<a class="headerlink" href="#questions-for-class-discussion" title="Permalink to this headline">¶</a></h3>
+<p>Consider a toy data with the following two columns. If you apply <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> on this data, both columns A and B will end up being identical. True or False?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">)</span>
-<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_imp</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_cols</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span>
+<span class="n">test_df</span>
 </pre></div>
 </div>
 </div>
@@ -2503,204 +2500,331 @@ Name: 7763, dtype: float64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>longitude</th>
-      <th>latitude</th>
-      <th>housing_median_age</th>
-      <th>total_rooms</th>
-      <th>total_bedrooms</th>
-      <th>population</th>
-      <th>households</th>
-      <th>median_income</th>
-      <th>rooms_per_household</th>
-      <th>bedrooms_per_household</th>
-      <th>population_per_household</th>
+      <th>A</th>
+      <th>B</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.657371</td>
-      <td>0.159405</td>
-      <td>0.411765</td>
-      <td>0.074928</td>
-      <td>0.098541</td>
-      <td>0.072788</td>
-      <td>0.098832</td>
-      <td>0.181039</td>
-      <td>0.028717</td>
-      <td>0.021437</td>
-      <td>0.002918</td>
+      <td>10</td>
+      <td>-2</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.476096</td>
-      <td>0.573858</td>
-      <td>0.313725</td>
-      <td>0.008749</td>
-      <td>0.020019</td>
-      <td>0.001345</td>
-      <td>0.003124</td>
-      <td>0.205942</td>
-      <td>0.116642</td>
-      <td>0.182806</td>
-      <td>0.001495</td>
+      <td>20</td>
+      <td>-1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.719124</td>
-      <td>0.021254</td>
-      <td>0.882353</td>
-      <td>0.085279</td>
-      <td>0.119025</td>
-      <td>0.040752</td>
-      <td>0.116264</td>
-      <td>0.148998</td>
-      <td>0.027594</td>
-      <td>0.022275</td>
-      <td>0.001099</td>
+      <td>30</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.701195</td>
-      <td>0.157279</td>
-      <td>0.333333</td>
-      <td>0.041508</td>
-      <td>0.042365</td>
-      <td>0.025113</td>
-      <td>0.046703</td>
-      <td>0.325099</td>
-      <td>0.034645</td>
-      <td>0.018619</td>
-      <td>0.001981</td>
+      <td>40</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.709163</td>
-      <td>0.036132</td>
-      <td>0.333333</td>
-      <td>0.141513</td>
-      <td>0.227188</td>
-      <td>0.176574</td>
-      <td>0.239599</td>
-      <td>0.093661</td>
-      <td>0.021064</td>
-      <td>0.019905</td>
-      <td>0.002922</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>18571</th>
-      <td>0.622510</td>
-      <td>0.145590</td>
-      <td>0.686275</td>
-      <td>0.018414</td>
-      <td>0.067349</td>
-      <td>0.013649</td>
-      <td>0.021214</td>
-      <td>0.216480</td>
-      <td>0.033591</td>
-      <td>0.021211</td>
-      <td>0.002476</td>
-    </tr>
-    <tr>
-      <th>18572</th>
-      <td>0.708167</td>
-      <td>0.088204</td>
-      <td>0.254902</td>
-      <td>0.119157</td>
-      <td>0.122905</td>
-      <td>0.068191</td>
-      <td>0.127939</td>
-      <td>0.278562</td>
-      <td>0.036654</td>
-      <td>0.020296</td>
-      <td>0.001959</td>
-    </tr>
-    <tr>
-      <th>18573</th>
-      <td>0.257968</td>
-      <td>0.509033</td>
-      <td>0.078431</td>
-      <td>0.105575</td>
-      <td>0.111421</td>
-      <td>0.068163</td>
-      <td>0.114455</td>
-      <td>0.353836</td>
-      <td>0.036241</td>
-      <td>0.020699</td>
-      <td>0.002254</td>
-    </tr>
-    <tr>
-      <th>18574</th>
-      <td>0.190239</td>
-      <td>0.556854</td>
-      <td>0.843137</td>
-      <td>0.039244</td>
-      <td>0.051676</td>
-      <td>0.015639</td>
-      <td>0.053445</td>
-      <td>0.232762</td>
-      <td>0.027598</td>
-      <td>0.020490</td>
-      <td>0.000828</td>
-    </tr>
-    <tr>
-      <th>18575</th>
-      <td>0.524900</td>
-      <td>0.390011</td>
-      <td>0.372549</td>
-      <td>0.048553</td>
-      <td>0.060211</td>
-      <td>0.034698</td>
-      <td>0.057063</td>
-      <td>0.139012</td>
-      <td>0.032930</td>
-      <td>0.023255</td>
-      <td>0.002313</td>
+      <td>50</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
-<p>18576 rows × 11 columns</p>
 </div></div></div>
 </div>
+<div class="section" id="state-whether-true-false">
+<h4>State whether True/False<a class="headerlink" href="#state-whether-true-false" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> ensures fixed minimum and maximum values for the features.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> calculates mean and standard deviation for each feature.</p></li>
+<li><p>After applying <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> The transformed data has a different shape than the original data.</p></li>
+<li><p>The transformers in <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> return a dataframe with transformed features.</p></li>
+<li><p>The transformed feature values might be hard to interpret for humans.</p></li>
+<li><p>In general, it’s a good idea to apply scaling on numeric features before training <span class="math notranslate nohighlight">\(k\)</span>-NN or SVM RBF models.</p></li>
+</ol>
+<p>Let’s create some synthetic data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span><span class="p">,</span> <span class="n">make_classification</span>
+
+<span class="c1"># make synthetic data</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># split it into training and test sets</span>
+<span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">,</span> <span class="n">y_test_toy</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_train_toy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training set&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_test_toy</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test_toy</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">mglearn</span><span class="o">.</span><span class="n">cm2</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Test set&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">60</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8069808827506428
+<img alt="../_images/05_preprocessing-pipelines_78_0.png" src="../_images/05_preprocessing-pipelines_78_0.png" />
+</div>
+</div>
+<p>Let’s transform the data using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> and examine how the data looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">train_transformed</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">test_transformed</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_toy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_original_scaled</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">,</span> <span class="n">train_transformed</span><span class="p">,</span> <span class="n">test_transformed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_81_0.png" src="../_images/05_preprocessing-pipelines_81_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="bad-methodology-1-scaling-the-data-separately-for-class-discussion">
+<h4>Bad methodology 1: Scaling the data separately (for class discussion)<a class="headerlink" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DO NOT DO THIS! For illustration purposes only.</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>  <span class="c1"># Creating a separate object for scaling test data</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test_toy</span><span class="p">)</span>  <span class="c1"># Calling fit on the test data</span>
+<span class="n">test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">X_test_toy</span>
+<span class="p">)</span>  <span class="c1"># Transforming the test data using the scaler fit on test data</span>
+
+<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_scaled</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">train_scaled</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">test_scaled</span><span class="p">,</span> <span class="n">y_test_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.75
+Test score: 0.50
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_original_scaled</span><span class="p">(</span>
+    <span class="n">X_train_toy</span><span class="p">,</span>
+    <span class="n">X_test_toy</span><span class="p">,</span>
+    <span class="n">train_scaled</span><span class="p">,</span>
+    <span class="n">test_scaled</span><span class="p">,</span>
+    <span class="n">title_transformed</span><span class="o">=</span><span class="s2">&quot;Improperly transformed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_84_0.png" src="../_images/05_preprocessing-pipelines_84_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Is anything wrong in methodology 1? If yes, what is it?</p></li>
+</ul>
+</div>
+<div class="section" id="bad-methodology-2-scaling-the-data-together-for-class-discussion">
+<h4>Bad methodology 2: Scaling the data together (for class discussion)<a class="headerlink" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_toy</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((80, 2), (20, 2))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join the train and test sets back together</span>
+<span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_train_toy</span><span class="p">,</span> <span class="n">X_test_toy</span><span class="p">))</span>
+<span class="n">XX</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<span class="n">XX_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
+<span class="n">XX_train</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">XX_test</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_test</span><span class="p">,</span> <span class="n">y_test_toy</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.75
+Test score: 0.55
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>Big difference in the KNN training performance after scaling the data.</p></li>
-<li><p>But we saw last week that training score doesn’t tell us much. We should look at the cross-validation score.</p></li>
+<li><p>Is anything wrong in methodology 2? If yes, what is it?</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_original_scaled</span><span class="p">(</span>
+    <span class="n">X_train_toy</span><span class="p">,</span>
+    <span class="n">X_test_toy</span><span class="p">,</span>
+    <span class="n">XX_train</span><span class="p">,</span>
+    <span class="n">XX_test</span><span class="p">,</span>
+    <span class="n">title_transformed</span><span class="o">=</span><span class="s2">&quot;Improperly transformed&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_92_0.png" src="../_images/05_preprocessing-pipelines_92_0.png" />
+</div>
+</div>
+<p>Not a big difference in the transformed data but if the test set is large it might influence the mean and standard deviation significantly.</p>
+</div>
+<div class="section" id="methodology-3-for-class-discussion">
+<h4>Methodology 3 (for class discussion)<a class="headerlink" href="#methodology-3-for-class-discussion" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_toy</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_toy</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train_toy</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000403</td>
+      <td>0.000985</td>
+      <td>0.6875</td>
+      <td>0.671875</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000330</td>
+      <td>0.000777</td>
+      <td>0.7500</td>
+      <td>0.671875</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000326</td>
+      <td>0.000770</td>
+      <td>0.6875</td>
+      <td>0.734375</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.000324</td>
+      <td>0.000769</td>
+      <td>0.6250</td>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000334</td>
+      <td>0.000789</td>
+      <td>0.5000</td>
+      <td>0.687500</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p>Is anything wrong in methodology 3? Are we breaking the golden rule here?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_improper_processing</span><span class="p">(</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_97_0.png" src="../_images/05_preprocessing-pipelines_97_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_proper_processing</span><span class="p">(</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05_preprocessing-pipelines_98_0.png" src="../_images/05_preprocessing-pipelines_98_0.png" />
+</div>
+</div>
 <p><br><br><br><br></p>
 </div>
 </div>
-<div class="section" id="feature-transformations-and-the-golden-rule">
-<h1>Feature transformations and the golden rule<a class="headerlink" href="#feature-transformations-and-the-golden-rule" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="feature-transformations-and-the-golden-rule-video">
+<h2>Feature transformations and the golden rule [<span class="xref myst">video</span>]<a class="headerlink" href="#feature-transformations-and-the-golden-rule-video" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="how-to-carry-out-cross-validation">
-<h2>How to carry out cross-validation?<a class="headerlink" href="#how-to-carry-out-cross-validation" title="Permalink to this headline">¶</a></h2>
+<h3>How to carry out cross-validation?<a class="headerlink" href="#how-to-carry-out-cross-validation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Last week we saw that cross validation is a better way to get a realistic assessment of the model.</p></li>
 <li><p>Let’s try cross-validation with transformed data.</p></li>
@@ -2708,6 +2832,11 @@ Name: 7763, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">)</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">)</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_imp</span><span class="p">)</span>
 <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
@@ -2741,38 +2870,38 @@ Name: 7763, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007370</td>
-      <td>0.087177</td>
-      <td>0.706351</td>
-      <td>0.800218</td>
+      <td>0.007577</td>
+      <td>0.190388</td>
+      <td>0.710905</td>
+      <td>0.803734</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.007098</td>
-      <td>0.067307</td>
-      <td>0.684604</td>
-      <td>0.803476</td>
+      <td>0.007272</td>
+      <td>0.176625</td>
+      <td>0.706893</td>
+      <td>0.803212</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.007051</td>
-      <td>0.072511</td>
-      <td>0.706272</td>
-      <td>0.797642</td>
+      <td>0.007217</td>
+      <td>0.187831</td>
+      <td>0.711039</td>
+      <td>0.803030</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.007001</td>
-      <td>0.090250</td>
-      <td>0.693732</td>
-      <td>0.801361</td>
+      <td>0.007700</td>
+      <td>0.195519</td>
+      <td>0.695769</td>
+      <td>0.806275</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007588</td>
-      <td>0.082945</td>
-      <td>0.687278</td>
-      <td>0.801517</td>
+      <td>0.007490</td>
+      <td>0.147004</td>
+      <td>0.697941</td>
+      <td>0.805146</td>
     </tr>
   </tbody>
 </table>
@@ -2791,229 +2920,13 @@ Name: 7763, dtype: float64
 <li><p>With many different transformations and cross validation the code gets unwieldy very quickly.</p></li>
 <li><p>Likely to make mistakes and “leak” information.</p></li>
 </ul>
-</div>
-<div class="section" id="bad-methodology-1-scaling-the-data-separately-for-class-discussion">
-<h2>Bad methodology 1: Scaling the data separately (for class discussion)<a class="headerlink" href="#bad-methodology-1-scaling-the-data-separately-for-class-discussion" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">)</span>
-<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train_imp</span><span class="p">)</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>  <span class="c1"># Creating a separate object for scaling test data. Bad!</span>
-<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test_imp</span><span class="p">)</span>  <span class="c1"># Calling fit on the test data. NOOOO!</span>
-<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
-    <span class="n">X_test_imp</span>
-<span class="p">)</span>  <span class="c1"># Transforming the test data using the scaler fit on test data ... Bad!</span>
-
-<span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.81
-Test score: 0.72
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="question">
-<h2>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Is anything wrong in methodology 1? If yes, what is it?</p></li>
-</ul>
-<p><strong>Varada’s answer:</strong></p>
-<p>Yes. We are scaling the train and test splits separately using two different <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> objects. This is bad because we want to apply the same transformation on the training and test splits.</p>
-</div>
-<div class="section" id="bad-methodology-2-scaling-the-data-together-for-class-discussion">
-<h2>Bad methodology 2: Scaling the data together (for class discussion)<a class="headerlink" href="#bad-methodology-2-scaling-the-data-together-for-class-discussion" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_imp</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test_imp</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((18576, 11), (2064, 11))
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join the train and test sets back together</span>
-<span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_train_imp</span><span class="p">,</span> <span class="n">X_test_imp</span><span class="p">))</span>  <span class="c1">## Don&#39;t do it!</span>
-<span class="n">XX</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(20640, 11)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
-<span class="n">XX_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">XX</span><span class="p">)</span>
-<span class="n">XX_train</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[:</span><span class="mi">18576</span><span class="p">]</span>
-<span class="n">XX_test</span> <span class="o">=</span> <span class="n">XX_scaled</span><span class="p">[</span><span class="mi">18576</span><span class="p">:]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
-<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test score: </span><span class="si">{</span><span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">XX_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Misleading score</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training score: 0.81
-Test score: 0.73
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>Question<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Is anything wrong in methodology 2? If yes, what is it?</p></li>
-</ul>
-<p><strong>Varada’s answer:</strong>
-Yes. Here we are scaling the train and test splits together. The golden rule says that the test data shouldn’t influence the training in any way. Here we are using the information from the test split when we <code class="docutils literal notranslate"><span class="pre">fit</span></code> the scaler and calculate the mean, as we are passing the combined <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">X_test</span></code> to it. So it’s violation of the golden rule.</p>
 <ul class="simple">
 <li><p>In these examples our test accuracies look fine, but our methodology is flawed.</p></li>
 <li><p>Implications can be significant in practice!</p></li>
 </ul>
 </div>
-<div class="section" id="methodology-3-for-class-discussion">
-<h2>Methodology 3 (for class discussion)<a class="headerlink" href="#methodology-3-for-class-discussion" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
-
-<span class="n">imp1</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">imp1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">X_train_imp1</span> <span class="o">=</span> <span class="n">imp1</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">X_test_imp1</span> <span class="o">=</span> <span class="n">imp1</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">knn</span><span class="p">,</span> <span class="n">X_train_imp1</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fit_time</th>
-      <th>score_time</th>
-      <th>test_score</th>
-      <th>train_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.008234</td>
-      <td>0.021974</td>
-      <td>0.227692</td>
-      <td>0.509318</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.007019</td>
-      <td>0.021162</td>
-      <td>0.276627</td>
-      <td>0.498514</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.007274</td>
-      <td>0.021123</td>
-      <td>0.264333</td>
-      <td>0.501672</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.007184</td>
-      <td>0.021039</td>
-      <td>0.264331</td>
-      <td>0.500106</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.007161</td>
-      <td>0.022238</td>
-      <td>0.232269</td>
-      <td>0.505915</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<ul class="simple">
-<li><p>Is anything wrong in methodology 3? Are we breaking the golden rule here?</p></li>
-</ul>
-<p><strong>Varada’s answer:</strong></p>
-<p>This is tricky. If we were using a different strategy, for instance, <code class="docutils literal notranslate"><span class="pre">strategy=&quot;mean&quot;</span></code> we would have violated the golden rule. But since “constant” strategy doesn’t really make any use of the rows from the validation/test splits and works on a row-by-row basis, we are not breaking the golden rule here. That said, in general be very careful when you pass preprocessed data to <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>, as you are likely to be breaking the golden rule if you do so. Imagine that your imputation strategy were “mean”. In that case,</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">imp1.fit(X_train)</span></code> will calculate means of all columns in X_train using all the rows in <code class="docutils literal notranslate"><span class="pre">X_train</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">imp1.transform(X_train)</span></code> will transform the data to create <code class="docutils literal notranslate"><span class="pre">X_train_imp1</span></code>.</p></li>
-<li><p>When you call <code class="docutils literal notranslate"><span class="pre">cross_validate(knn,</span> <span class="pre">X_train_imp1,</span> <span class="pre">y_train,</span> <span class="pre">return_train_score=True)</span></code>, inside <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>, train and validation splits will be created for each fold from <code class="docutils literal notranslate"><span class="pre">X_train_imp1</span></code>.</p></li>
-<li><p>Remember that we shouldn’t be including the validation split when we call <code class="docutils literal notranslate"><span class="pre">fit</span></code> both for transformers and for estimators.</p></li>
-<li><p>Are we doing it here? No. You already have used rows from the validation split in each fold when you <code class="docutils literal notranslate"><span class="pre">fit</span></code> the imputer with <code class="docutils literal notranslate"><span class="pre">mean</span></code> strategy outside <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>. And the rows from validation split have been used to calculate the mean.</p></li>
-<li><p>So your training inside cross-validation in each fold would be influenced by the information in the validation split in that fold, which is violation of the golden rule.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_improper_processing</span><span class="p">(</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/05_preprocessing-pipelines_93_0.png" src="../_images/05_preprocessing-pipelines_93_0.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_proper_processing</span><span class="p">(</span><span class="s2">&quot;kNN&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/05_preprocessing-pipelines_94_0.png" src="../_images/05_preprocessing-pipelines_94_0.png" />
-</div>
-</div>
-</div>
 <div class="section" id="pipelines">
-<h2>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h2>
+<h3>Pipelines<a class="headerlink" href="#pipelines" title="Permalink to this headline">¶</a></h3>
 <p>Can we do this in a more elegant and organized way?</p>
 <ul class="simple">
 <li><p>YES!! Using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span> <span class="pre">Pipeline</span></code></a>.</p></li>
@@ -3043,7 +2956,7 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </ul>
 </div>
 <div class="section" id="alternative-and-more-compact-syntax-make-pipeline">
-<h2>Alternative and more compact syntax: <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code><a class="headerlink" href="#alternative-and-more-compact-syntax-make-pipeline" title="Permalink to this headline">¶</a></h2>
+<h3>Alternative and more compact syntax: <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code><a class="headerlink" href="#alternative-and-more-compact-syntax-make-pipeline" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> constructor</p></li>
 <li><p>Does not permit naming steps</p></li>
@@ -3103,13 +3016,11 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 <li><p>Transform <code class="docutils literal notranslate"><span class="pre">X_train_imp</span></code> using the fit <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> to create <code class="docutils literal notranslate"><span class="pre">X_train_imp_scaled</span></code></p></li>
 <li><p>Predict using the fit model (<code class="docutils literal notranslate"><span class="pre">KNeighborsRegressor</span></code> in our case) on <code class="docutils literal notranslate"><span class="pre">X_train_imp_scaled</span></code>.</p></li>
 </ul>
-<center>
-<img src='./img/pipeline.png' width="800">
-</center>
+<a class="reference internal image-reference" href="../_images/pipeline.png"><img alt="../_images/pipeline.png" src="../_images/pipeline.png" style="width: 800px;" /></a>
 <p><a class="reference external" href="https://amueller.github.io/COMS4995-s20/slides/aml-04-preprocessing/#18">Source</a></p>
 </div>
 <div class="section" id="let-s-try-cross-validation-with-our-pipeline">
-<h2>Let’s try cross-validation with our pipeline<a class="headerlink" href="#let-s-try-cross-validation-with-our-pipeline" title="Permalink to this headline">¶</a></h2>
+<h3>Let’s try cross-validation with our pipeline<a class="headerlink" href="#let-s-try-cross-validation-with-our-pipeline" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;imp + scaling + knn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
@@ -3154,8 +3065,8 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
     </tr>
     <tr>
       <th>imp + scaling + knn</th>
-      <td>0.022 (+/- 0.001)</td>
-      <td>0.189 (+/- 0.014)</td>
+      <td>0.022 (+/- 0.002)</td>
+      <td>0.186 (+/- 0.011)</td>
       <td>0.706 (+/- 0.006)</td>
       <td>0.806 (+/- 0.005)</td>
     </tr>
@@ -3164,11 +3075,15 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </div></div></div>
 </div>
 <p>Using a <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> takes care of applying the <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on the train portion and only <code class="docutils literal notranslate"><span class="pre">transform</span></code> on the validation portion in each fold.</p>
+</div>
+</div>
+<div class="section" id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/eva-coffee.png" /></p>
 <p><br><br></p>
 </div>
-</div>
-<div class="section" id="categorical-features">
-<h1>Categorical features<a class="headerlink" href="#categorical-features" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="categorical-features-video">
+<h2>Categorical features [<a class="reference external" href="https://youtu.be/2mJ9rAhMMl0">video</a>]<a class="headerlink" href="#categorical-features-video" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Recall that we had dropped the categorical feature <code class="docutils literal notranslate"><span class="pre">ocean_proximity</span></code> feature from the dataframe. But it could potentially be a useful feature in this task.</p></li>
 <li><p>Let’s create our <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and and <code class="docutils literal notranslate"><span class="pre">X_test</span></code> again by keeping the feature in the data.</p></li>
@@ -3183,6 +3098,54 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11178</span><span class="o">/</span><span class="mf">3781118800.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;median_house_value&quot;</span><span class="p">]</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/frame.py</span> in <span class="ni">drop</span><span class="nt">(self, labels, axis, index, columns, level, inplace, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4899</span>                 <span class="n">weight</span>  <span class="mf">1.0</span>     <span class="mf">0.8</span>
+<span class="g g-Whitespace">   </span><span class="mi">4900</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4901</span><span class="s2">         return super().drop(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4902</span><span class="s2">             labels=labels,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4903</span><span class="s2">             axis=axis,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">drop</span><span class="nt">(self, labels, axis, index, columns, level, inplace, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4148</span><span class="s2">         for axis, labels in axes.items():</span>
+<span class="g g-Whitespace">   </span><span class="mi">4149</span><span class="s2">             if labels is not None:</span>
+<span class="ne">-&gt; </span><span class="mi">4150</span><span class="s2">                 obj = obj._drop_axis(labels, axis, level=level, errors=errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4151</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">4152</span><span class="s2">         if inplace:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">_drop_axis</span><span class="nt">(self, labels, axis, level, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4183</span><span class="s2">                 new_axis = axis.drop(labels, level=level, errors=errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4184</span><span class="s2">             else:</span>
+<span class="ne">-&gt; </span><span class="mi">4185</span><span class="s2">                 new_axis = axis.drop(labels, errors=errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4186</span><span class="s2">             result = self.reindex(**{axis_name: new_axis})</span>
+<span class="g g-Whitespace">   </span><span class="mi">4187</span><span class="s2"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/indexes/base.py</span> in <span class="ni">drop</span><span class="nt">(self, labels, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6016</span><span class="s2">         if mask.any():</span>
+<span class="g g-Whitespace">   </span><span class="mi">6017</span><span class="s2">             if errors != &quot;ignore&quot;:</span>
+<span class="ne">-&gt; </span><span class="mi">6018</span><span class="s2">                 raise KeyError(f&quot;</span><span class="si">{labels[mask]}</span><span class="s2"> not found in axis&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6019</span><span class="s2">             indexer = indexer[~mask]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6020</span><span class="s2">         return self.delete(indexer)</span>
+
+<span class="ne">KeyError</span>: &quot;[&#39;median_house_value&#39;] not found in axis&quot;
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
 <li><p>Let’s try to build a <code class="docutils literal notranslate"><span class="pre">KNeighborRegressor</span></code> on this data using our pipeline</p></li>
@@ -3193,73 +3156,13 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_14379</span><span class="o">/</span><span class="mf">1263246052.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">340</span><span class="sd">         fit_params_steps = self._check_fit_params(**fit_params)</span>
-<span class="ne">--&gt; </span><span class="mi">341</span><span class="sd">         Xt = self._fit(X, y, **fit_params_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd">         with _print_elapsed_time(&#39;Pipeline&#39;,</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd">                                  self._log_message(len(self.steps) - 1)):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit</span><span class="nt">(self, X, y, **fit_params_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span><span class="sd">                 cloned_transformer = clone(transformer)</span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span><span class="sd">             # Fit or load from cache the current transformer</span>
-<span class="ne">--&gt; </span><span class="mi">303</span><span class="sd">             X, fitted_transformer = fit_transform_one_cached(</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span><span class="sd">                 cloned_transformer, X, y, None,</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="sd">                 message_clsname=&#39;Pipeline&#39;,</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/memory.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">350</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">351</span><span class="sd">     def __call__(self, *args, **kwargs):</span>
-<span class="ne">--&gt; </span><span class="mi">352</span><span class="sd">         return self.func(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span><span class="sd">     def call_and_shelve(self, *args, **kwargs):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="sd">     with _print_elapsed_time(message_clsname, message):</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span><span class="sd">         if hasattr(transformer, &#39;fit_transform&#39;):</span>
-<span class="ne">--&gt; </span><span class="mi">754</span><span class="sd">             res = transformer.fit_transform(X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="sd">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="sd">             res = transformer.fit(X, y, **fit_params).transform(X)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="sd">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="sd">             # fit method of arity 2 (supervised transformation)</span>
-<span class="ne">--&gt; </span><span class="mi">702</span><span class="sd">             return self.fit(X, y, **fit_params).transform(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="sd"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/impute/_base.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">286</span><span class="sd">         self : SimpleImputer</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">288</span>         <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">in_fit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span> 
-<span class="g g-Whitespace">    </span><span class="mi">290</span>         <span class="c1"># default fill_value is 0 for numerical input and &quot;missing_value&quot;</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/impute/_base.py</span> in <span class="ni">_validate_input</span><span class="nt">(self, X, in_fit)</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span>                 <span class="n">new_ve</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot use </span><span class="si">{}</span><span class="s2"> strategy with non-numeric &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>                                     <span class="s2">&quot;data:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="p">,</span> <span class="n">ve</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">260</span>                 <span class="k">raise</span> <span class="n">new_ve</span> <span class="kn">from</span> <span class="bp">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span>                 <span class="k">raise</span> <span class="n">ve</span>
-
-<span class="ne">ValueError</span>: Cannot use median strategy with non-numeric data:
-<span class="n">could</span> <span class="ow">not</span> <span class="n">convert</span> <span class="n">string</span> <span class="n">to</span> <span class="nb">float</span><span class="p">:</span> <span class="s1">&#39;INLAND&#39;</span>
-</pre></div>
-</div>
-</div>
 </div>
 <ul class="simple">
 <li><p>This failed because we have non-numeric data.</p></li>
 <li><p>Imagine how <span class="math notranslate nohighlight">\(k\)</span>-NN would calculate distances when you have non-numeric features.</p></li>
 </ul>
 <div class="section" id="can-we-use-this-feature-in-the-model">
-<h2>Can we use this feature in the model?<a class="headerlink" href="#can-we-use-this-feature-in-the-model" title="Permalink to this headline">¶</a></h2>
+<h3>Can we use this feature in the model?<a class="headerlink" href="#can-we-use-this-feature-in-the-model" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>In <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, most algorithms require numeric inputs.</p></li>
 <li><p>Decision trees could theoretically work with categorical features.</p>
@@ -3270,7 +3173,7 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </ul>
 </div>
 <div class="section" id="what-are-the-options">
-<h2>What are the options?<a class="headerlink" href="#what-are-the-options" title="Permalink to this headline">¶</a></h2>
+<h3>What are the options?<a class="headerlink" href="#what-are-the-options" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Drop the column (not recommended)</p>
 <ul>
@@ -3313,7 +3216,7 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </div>
 </div>
 <div class="section" id="ordinal-encoding-occasionally-recommended">
-<h2>Ordinal encoding (occasionally recommended)<a class="headerlink" href="#ordinal-encoding-occasionally-recommended" title="Permalink to this headline">¶</a></h2>
+<h3>Ordinal encoding (occasionally recommended)<a class="headerlink" href="#ordinal-encoding-occasionally-recommended" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Here we simply assign an integer to each of our unique categorical labels.</p></li>
 <li><p>We can use sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html"><code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code></a>.</p></li>
@@ -3342,7 +3245,7 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 <li><p>In general, label encoding is useful if there is ordinality in your data and capturing it is important for your problem, e.g., <code class="docutils literal notranslate"><span class="pre">[cold,</span> <span class="pre">warm,</span> <span class="pre">hot]</span></code>.</p></li>
 </ul>
 <div class="section" id="one-hot-encoding-ohe">
-<h3>One-hot encoding (OHE)<a class="headerlink" href="#one-hot-encoding-ohe" title="Permalink to this headline">¶</a></h3>
+<h4>One-hot encoding (OHE)<a class="headerlink" href="#one-hot-encoding-ohe" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Create new binary columns to represent our categories.</p></li>
 <li><p>If we have <span class="math notranslate nohighlight">\(c\)</span> categories in our column.</p>
@@ -3353,6 +3256,10 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 <li><p>Example: Imagine a language column which has the information on whether you</p></li>
 <li><p>We can use sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html"><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code></a> to do so.</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One-hot encoding is called one-hot because only one of the newly created features is 1 for each data point.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
@@ -3372,7 +3279,7 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </div>
 </div>
 <div class="section" id="let-s-do-it-on-our-housing-data">
-<h2>Let’s do it on our housing data<a class="headerlink" href="#let-s-do-it-on-our-housing-data" title="Permalink to this headline">¶</a></h2>
+<h3>Let’s do it on our housing data<a class="headerlink" href="#let-s-do-it-on-our-housing-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
@@ -3404,9 +3311,40 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 </div>
 </div>
 </div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>One-hot encoded variables are also referred to as <strong>dummy variables</strong>.
+You will often see people using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html"><code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> method of pandas</a> to convert categorical variables into dummy variables. That said, using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> has the advantage of making it easy to treat training and test set in a consistent way.</p>
 </div>
+</div>
+<div class="section" id="true-false-pipelines-and-one-hot-encoding">
+<h3>True/False: Pipelines and one-hot encoding<a class="headerlink" href="#true-false-pipelines-and-one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>You can “glue” together imputation and scaling of numeric features and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> classifier object within a single pipeline.</p></li>
+<li><p>You can “glue” together scaling of numeric features, one-hot encoding of categorical features, and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> classifier object within a single pipeline.</p></li>
+<li><p>Once you have an <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> pipeline object you can call <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code>, and <code class="docutils literal notranslate"><span class="pre">score</span></code> on it.</p></li>
+<li><p>You can carry out data splitting within <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> pipeline.</p></li>
+<li><p>We have to be careful of the order we put each transformation and model in a pipeline.</p></li>
+<li><p>Pipelines will <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">transform</span></code> on the training fold and only <code class="docutils literal notranslate"><span class="pre">transform</span></code> on the validation fold during cross-validation.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="what-did-we-learn-today">
+<h2>What did we learn today?<a class="headerlink" href="#what-did-we-learn-today" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Motivation for preprocessing</p></li>
+<li><p>Common preprocessing steps</p>
+<ul>
+<li><p>Imputation</p></li>
+<li><p>Scaling</p></li>
+<li><p>One-hot encoding</p></li>
+</ul>
+</li>
+<li><p>Golden rule in the context of preprocessing</p></li>
+<li><p>Building simple supervised machine learning pipelines using <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline.make_pipeline</span></code>.</p></li>
+</ul>
 <div class="section" id="problem-different-transformations-on-different-columns">
-<h2>Problem: Different transformations on different columns<a class="headerlink" href="#problem-different-transformations-on-different-columns" title="Permalink to this headline">¶</a></h2>
+<h3>Problem: Different transformations on different columns<a class="headerlink" href="#problem-different-transformations-on-different-columns" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>How do we put this together with other columns in the data before fitting the regressor?</p></li>
 <li><p>Before we fit our regressor, we want to apply different transformations on different columns</p>
@@ -3429,16 +3367,6 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
 <p><strong>Coming up: sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html"><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></a>!!</strong></p>
 </div>
 </div>
-<div class="section" id="revisit-lecture-learning-objectives">
-<h1>Revisit: Lecture learning objectives<a class="headerlink" href="#revisit-lecture-learning-objectives" title="Permalink to this headline">¶</a></h1>
-<p>From this lecture, you will be able to</p>
-<ul class="simple">
-<li><p>identify when to implement feature transformations such as imputation, scaling, and one-hot encoding in a machine learning model development pipeline;</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> for applying feature transformations on your dataset;</p></li>
-<li><p>discuss golden rule in the context of feature transformations;</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">sklearn.pipeline.Pipeline</span></code> to build a preliminary machine learning pipeline;</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to build all our transformations together into one object and use it with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines.</p></li>
-</ul>
 </div>
 
     <script type="text/x-thebe-config">
@@ -3450,22 +3378,24 @@ Yes. Here we are scaling the train and test splits together. The golden rule say
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-571-py"
+            mode: "conda-env-cpsc330-py"
         },
         kernelOptions: {
-            kernelName: "conda-env-571-py",
+            kernelName: "conda-env-cpsc330-py",
             path: "./lectures"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-571-py'</script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
 
               </div>
               
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="04_kNNs-SVM-RBF.html" title="previous page">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a>
+    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
 
         </div>
         

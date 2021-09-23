@@ -17,65 +17,56 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-pipe.fit(X_train, X_train)
+X_train = train_df.drop(columns=["median_house_value"])
+y_train = train_df["median_house_value"]
+
+X_test = test_df.drop(columns=["median_house_value"])
+y_test = test_df["median_house_value"]
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_14379/1263246052.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mpipe[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mX_train[0m[0;34m,[0m [0mX_train[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py[0m in [0;36mfit[0;34m(self, X, y, **fit_params)[0m
-[1;32m    339[0m         """
-[1;32m    340[0m         [0mfit_params_steps[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_check_fit_params[0m[0;34m([0m[0;34m**[0m[0mfit_params[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 341[0;31m         [0mXt[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_fit[0m[0;34m([0m[0mX[0m[0;34m,[0m [0my[0m[0;34m,[0m [0;34m**[0m[0mfit_params_steps[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    342[0m         with _print_elapsed_time('Pipeline',
-[1;32m    343[0m                                  self._log_message(len(self.steps) - 1)):
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11178/3781118800.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0my_train[0m [0;34m=[0m [0mtrain_df[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m [0mX_test[0m [0;34m=[0m [0mtest_df[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mcolumns[0m[0;34m=[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0my_test[0m [0;34m=[0m [0mtest_df[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py[0m in [0;36m_fit[0;34m(self, X, y, **fit_params_steps)[0m
-[1;32m    301[0m                 [0mcloned_transformer[0m [0;34m=[0m [0mclone[0m[0;34m([0m[0mtransformer[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    302[0m             [0;31m# Fit or load from cache the current transformer[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 303[0;31m             X, fitted_transformer = fit_transform_one_cached(
-[0m[1;32m    304[0m                 [0mcloned_transformer[0m[0;34m,[0m [0mX[0m[0;34m,[0m [0my[0m[0;34m,[0m [0;32mNone[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    305[0m                 [0mmessage_clsname[0m[0;34m=[0m[0;34m'Pipeline'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    309[0m                     [0mstacklevel[0m[0;34m=[0m[0mstacklevel[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    310[0m                 )
+[0;32m--> 311[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    312[0m [0;34m[0m[0m
+[1;32m    313[0m         [0;32mreturn[0m [0mwrapper[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/memory.py[0m in [0;36m__call__[0;34m(self, *args, **kwargs)[0m
-[1;32m    350[0m [0;34m[0m[0m
-[1;32m    351[0m     [0;32mdef[0m [0m__call__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 352[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    353[0m [0;34m[0m[0m
-[1;32m    354[0m     [0;32mdef[0m [0mcall_and_shelve[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/frame.py[0m in [0;36mdrop[0;34m(self, labels, axis, index, columns, level, inplace, errors)[0m
+[1;32m   4899[0m                 [0mweight[0m  [0;36m1.0[0m     [0;36m0.8[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4900[0m         """
+[0;32m-> 4901[0;31m         return super().drop(
+[0m[1;32m   4902[0m             [0mlabels[0m[0;34m=[0m[0mlabels[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4903[0m             [0maxis[0m[0;34m=[0m[0maxis[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py[0m in [0;36m_fit_transform_one[0;34m(transformer, X, y, weight, message_clsname, message, **fit_params)[0m
-[1;32m    752[0m     [0;32mwith[0m [0m_print_elapsed_time[0m[0;34m([0m[0mmessage_clsname[0m[0;34m,[0m [0mmessage[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    753[0m         [0;32mif[0m [0mhasattr[0m[0;34m([0m[0mtransformer[0m[0;34m,[0m [0;34m'fit_transform'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 754[0;31m             [0mres[0m [0;34m=[0m [0mtransformer[0m[0;34m.[0m[0mfit_transform[0m[0;34m([0m[0mX[0m[0;34m,[0m [0my[0m[0;34m,[0m [0;34m**[0m[0mfit_params[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    755[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    756[0m             [0mres[0m [0;34m=[0m [0mtransformer[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mX[0m[0;34m,[0m [0my[0m[0;34m,[0m [0;34m**[0m[0mfit_params[0m[0;34m)[0m[0;34m.[0m[0mtransform[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py[0m in [0;36mdrop[0;34m(self, labels, axis, index, columns, level, inplace, errors)[0m
+[1;32m   4148[0m         [0;32mfor[0m [0maxis[0m[0;34m,[0m [0mlabels[0m [0;32min[0m [0maxes[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4149[0m             [0;32mif[0m [0mlabels[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 4150[0;31m                 [0mobj[0m [0;34m=[0m [0mobj[0m[0;34m.[0m[0m_drop_axis[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0maxis[0m[0;34m,[0m [0mlevel[0m[0;34m=[0m[0mlevel[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   4151[0m [0;34m[0m[0m
+[1;32m   4152[0m         [0;32mif[0m [0minplace[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py[0m in [0;36mfit_transform[0;34m(self, X, y, **fit_params)[0m
-[1;32m    700[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    701[0m             [0;31m# fit method of arity 2 (supervised transformation)[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 702[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mfit[0m[0;34m([0m[0mX[0m[0;34m,[0m [0my[0m[0;34m,[0m [0;34m**[0m[0mfit_params[0m[0;34m)[0m[0;34m.[0m[0mtransform[0m[0;34m([0m[0mX[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    703[0m [0;34m[0m[0m
-[1;32m    704[0m [0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py[0m in [0;36m_drop_axis[0;34m(self, labels, axis, level, errors)[0m
+[1;32m   4183[0m                 [0mnew_axis[0m [0;34m=[0m [0maxis[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0mlevel[0m[0;34m=[0m[0mlevel[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4184[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 4185[0;31m                 [0mnew_axis[0m [0;34m=[0m [0maxis[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   4186[0m             [0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mreindex[0m[0;34m([0m[0;34m**[0m[0;34m{[0m[0maxis_name[0m[0;34m:[0m [0mnew_axis[0m[0;34m}[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4187[0m [0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/impute/_base.py[0m in [0;36mfit[0;34m(self, X, y)[0m
-[1;32m    286[0m         [0mself[0m [0;34m:[0m [0mSimpleImputer[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    287[0m         """
-[0;32m--> 288[0;31m         [0mX[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_validate_input[0m[0;34m([0m[0mX[0m[0;34m,[0m [0min_fit[0m[0;34m=[0m[0;32mTrue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    289[0m [0;34m[0m[0m
-[1;32m    290[0m         [0;31m# default fill_value is 0 for numerical input and "missing_value"[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/indexes/base.py[0m in [0;36mdrop[0;34m(self, labels, errors)[0m
+[1;32m   6016[0m         [0;32mif[0m [0mmask[0m[0;34m.[0m[0many[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6017[0m             [0;32mif[0m [0merrors[0m [0;34m!=[0m [0;34m"ignore"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 6018[0;31m                 [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0;34mf"{labels[mask]} not found in axis"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   6019[0m             [0mindexer[0m [0;34m=[0m [0mindexer[0m[0;34m[[0m[0;34m~[0m[0mmask[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6020[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdelete[0m[0;34m([0m[0mindexer[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/impute/_base.py[0m in [0;36m_validate_input[0;34m(self, X, in_fit)[0m
-[1;32m    258[0m                 new_ve = ValueError("Cannot use {} strategy with non-numeric "
-[1;32m    259[0m                                     "data:\n{}".format(self.strategy, ve))
-[0;32m--> 260[0;31m                 [0;32mraise[0m [0mnew_ve[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    261[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    262[0m                 [0;32mraise[0m [0mve[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mValueError[0m: Cannot use median strategy with non-numeric data:
-could not convert string to float: 'INLAND'
-ValueError: Cannot use median strategy with non-numeric data:
-could not convert string to float: 'INLAND'
+[0;31mKeyError[0m: "['median_house_value'] not found in axis"
+KeyError: "['median_house_value'] not found in axis"
 
