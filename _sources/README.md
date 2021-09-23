@@ -53,7 +53,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]| 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
 |        |     |**Week 3 datasets:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li><li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li> | |
 | Sep 21 | [$k$-NNs and SVM with RBF kernel](lectures/04_kNNs-SVM-RBF.ipynb) | 📹  <li> Pre-watch: [4.1](https://youtu.be/hCa3EXEUmQk), [4.2](https://youtu.be/bENDqXKJLmg)</li> <li>During lecture: [4.3](https://youtu.be/IRGbqi5S9gQ), [4.4](https://youtu.be/ic_zqOhi020)</li>  | less depth |
-| Sep 23 | [Preprocessing, `sklearn` pipelines(lectures/05_preprocessing-pipelines.ipynb) | 📹  <li> Pre-watch: [5.1](https://youtu.be/xx9HlmzORRk), [5.2](https://youtu.be/G2IXbVzKlt8)</li><li>During lecture: [5.3](https://youtu.be/nWTce7WJSd4), [5.4](https://youtu.be/2mJ9rAhMMl0)</li>  |  more depth|
+| Sep 23 | [Preprocessing, `sklearn` pipelines](lectures/05_preprocessing-pipelines.ipynb) | 📹  <li> Pre-watch: [5.1](https://youtu.be/xx9HlmzORRk), [5.2](https://youtu.be/G2IXbVzKlt8)</li><li>During lecture: [5.3](https://youtu.be/nWTce7WJSd4), [5.4](https://youtu.be/2mJ9rAhMMl0)</li>  |  more depth|
 |        |     | **Week 4 dataset:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li> | |
 | Sep 28 | More preprocessing, `sklearn` `ColumnTransformer`, text features | | more depth |
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
