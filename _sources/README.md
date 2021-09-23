@@ -46,11 +46,11 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Date  | Topic |  Assigned videos and datasets | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
 | Sep 7 | _UBC Imagine Day - no class_ | | 
-| Sep 9 | Course intro [[notes](lectures/01_intro.ipynb)] | 📹 <li>Pre-watch: None</li><li>During lecture: [1.0](https://youtu.be/-1hTcS5ZE4w)</li> | n/a|
+| Sep 9 | [Course intro](lectures/01_intro.ipynb) | 📹 <li>Pre-watch: None</li><li>During lecture: [1.0](https://youtu.be/-1hTcS5ZE4w)</li> | n/a|
 |  | **Part I: ML fundamentals and preprocessing**  | |  
 |  | |**Week 2 datasets:** <li>[grade prediction toy dataset](lectures/data/quiz2-grade-toy-classification.csv)</li><li>[Canada USA cities toy dataset](lectures/data/canada_usa_cities.csv)</li> | |
-| Sep 14 | Decision trees [[notes](lectures/02_decision-trees.ipynb)] | 📹 <li>Pre-watch: [2.1](https://youtu.be/YNT8n4cXu4A), [2.2](https://youtu.be/6eT5cLL-2Vc)</li> <li>During lecture: [2.3](https://youtu.be/Hcf19Ij35rA), [2.4](https://youtu.be/KEtsfXn4w2E)</li> |   less depth| 
-| Sep 16 | ML fundamentals [[notes](lectures/03_ml-fundamentals.ipynb)]| 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
+| Sep 14 | [Decision trees](lectures/02_decision-trees.ipynb) | 📹 <li>Pre-watch: [2.1](https://youtu.be/YNT8n4cXu4A), [2.2](https://youtu.be/6eT5cLL-2Vc)</li> <li>During lecture: [2.3](https://youtu.be/Hcf19Ij35rA), [2.4](https://youtu.be/KEtsfXn4w2E)</li> |   less depth| 
+| Sep 16 | [ML fundamentals](lectures/03_ml-fundamentals.ipynb) | 📹  <li> Pre-watch: [3.1](https://youtu.be/iS2hsRRlc2M), [3.2](https://youtu.be/h2AEobwcUQw)</li> <li>During lecture: [3.3](https://youtu.be/4cv8VYonepA), [3.4](https://youtu.be/Ihay8yE5KTI)</li>| similar |
 |        |     |**Week 3 datasets:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li><li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li> | |
 | Sep 21 | [$k$-NNs and SVM with RBF kernel](lectures/04_kNNs-SVM-RBF.ipynb) | 📹  <li> Pre-watch: [4.1](https://youtu.be/hCa3EXEUmQk), [4.2](https://youtu.be/bENDqXKJLmg)</li> <li>During lecture: [4.3](https://youtu.be/IRGbqi5S9gQ), [4.4](https://youtu.be/ic_zqOhi020)</li>  | less depth |
 | Sep 23 | [Preprocessing, `sklearn` pipelines](lectures/05_preprocessing-pipelines.ipynb) | 📹  <li> Pre-watch: [5.1](https://youtu.be/xx9HlmzORRk), [5.2](https://youtu.be/G2IXbVzKlt8)</li><li>During lecture: [5.3](https://youtu.be/nWTce7WJSd4), [5.4](https://youtu.be/2mJ9rAhMMl0)</li>  |  more depth|
