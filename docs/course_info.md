@@ -35,6 +35,7 @@ The tutorials for this class will be run by the TAs and will be in the office ho
 - Gaurav Bhatt
 - Brianna (Brie) Dungate 
 - Rubia Guerra
+- Ariel Shann
 
 ## Registration
 
