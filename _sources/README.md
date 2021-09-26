@@ -37,7 +37,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 ## Lecture schedule (tentative)
 
-**Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available [here](https://ubc.ca.panopto.com/Panopto/Pages/Sessions/List.aspx?folderID=7cb3d5e9-9fcc-4c76-a287-ad98010bacfe).     
+**Live lectures**: The lectures will be in-person in **[Hugh Dempster Pavilion (DMP) 110](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for more details. The live lecture recordings will be available via [Canvas](https://canvas.ubc.ca/courses/78046).     
 
 **Lectures**: 
 - Try to watch the "Pre-watch" videos before each lecture. 
@@ -55,7 +55,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Sep 21 | [$k$-NNs and SVM with RBF kernel](lectures/04_kNNs-SVM-RBF.ipynb) | 📹  <li> Pre-watch: [4.1](https://youtu.be/hCa3EXEUmQk), [4.2](https://youtu.be/bENDqXKJLmg)</li> <li>During lecture: [4.3](https://youtu.be/IRGbqi5S9gQ), [4.4](https://youtu.be/ic_zqOhi020)</li>  | less depth |
 | Sep 23 | [Preprocessing, `sklearn` pipelines](lectures/05_preprocessing-pipelines.ipynb) | 📹  <li> Pre-watch: [5.1](https://youtu.be/xx9HlmzORRk), [5.2](https://youtu.be/G2IXbVzKlt8)</li><li>During lecture: [5.3](https://youtu.be/nWTce7WJSd4), [5.4](https://youtu.be/2mJ9rAhMMl0)</li>  |  more depth|
 |        |     | **Week 4 dataset:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li> | |
-| Sep 28 | More preprocessing, `sklearn` `ColumnTransformer`, text features | | more depth |
+| Sep 28 | More preprocessing, `sklearn` `ColumnTransformer`, text features | 📹  <li> Pre-watch: [6.1](https://youtu.be/to2mukSyvLk), 6.2</li> | more depth |
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
 |        |     |**Week 5 datasets**: <li>[SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset)</li> | |
 | Oct 5 | Logistic regression, word counts, `predict_proba`| |   less depth |
