@@ -54,6 +54,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 5: Preprocessing and sklearn pipelines" href="05_preprocessing-pipelines.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -100,7 +102,7 @@
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -134,6 +136,22 @@
     </span>
    </code>
    pipelines
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
   </a>
  </li>
 </ul>
@@ -241,49 +259,32 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Lecture 6:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     sklearn
-    </span>
-   </code>
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ColumnTransformer
-    </span>
-   </code>
-   and Text Features
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
    Imports
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-outcomes">
    Learning outcomes
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sklearn-s-columntransformer-introduction">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sklearn-s-columntransformer">
    sklearn’s
    <code class="docutils literal notranslate">
     <span class="pre">
      ColumnTransformer
     </span>
    </code>
-   introduction
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#transformations-on-the-toy-data">
      Transformations on the toy data
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#columntransformer-example">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -293,22 +294,22 @@
      example
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#data">
        Data
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#identify-the-transformations-we-want-to-apply">
        Identify the transformations we want to apply
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#create-a-column-transformer">
        Create a column transformer
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#convenient-make-column-transformer-syntax">
        Convenient
        <code class="docutils literal notranslate">
@@ -319,17 +320,17 @@
        syntax
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#let-s-examine-the-transformed-data">
        Let’s examine the transformed data
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#viewing-the-transformed-data-as-a-dataframe">
        Viewing the transformed data as a dataframe
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#columntransformer-transformed-data">
        <code class="docutils literal notranslate">
         <span class="pre">
@@ -339,31 +340,57 @@
        : Transformed data
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#training-models-with-transformed-data">
        Training models with transformed data
       </a>
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-you">
+     ❓❓ Questions for you
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#true-false">
+       True/False
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-transformations-on-what-columns">
+       What transformations on what columns?
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#more-on-feature-transformations">
    More on feature transformations
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#including-lab2">
-     Including
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-transformations-in-a-transformer">
+     Multiple transformations in a transformer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sklearn-set-config">
      <code class="docutils literal notranslate">
       <span class="pre">
-       lab2
+       sklearn
+      </span>
+     </code>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       set_config
       </span>
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#incorporating-ordinal-feature-class-attendance">
      Incorporating ordinal feature
      <code class="docutils literal notranslate">
@@ -373,29 +400,36 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dealing-with-unknown-categories-handle-unknown-ignore">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dealing-with-unknown-categories">
      Dealing with unknown categories
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       handle_unknown="ignore"
-      </span>
-     </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cases-where-it-s-ok-to-break-the-golden-rule">
      Cases where it’s OK to break the golden rule
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#categorical-features-with-only-two-possible-categories">
      Categorical features with only two possible categories
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     ❓❓ Questions for you
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#true-false-categorical-features">
+       True/False: Categorical features
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#columntransformer-on-the-california-housing-dataset">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -404,45 +438,45 @@
    </code>
    on the California housing dataset
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#preprocessing-the-targets">
      Preprocessing the targets?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ohe-with-many-categories">
      OHE with many categories
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#do-we-actually-want-to-use-certain-features-for-prediction">
      Do we actually want to use certain features for prediction?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#categorical-features-true-or-false">
-     Categorical features (True or False)
-    </a>
-   </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#encoding-text-data">
    Encoding text data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#spam-non-spam-toy-example">
-     Spam/non-spam toy example
+     Spam/non spam toy example
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-if-we-apply-ohe">
+     What if we apply OHE?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bag-of-words-bow-representation">
      Bag of words (BOW) representation
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#extracting-bow-features-using-scikit-learn">
      Extracting BOW features using
      <code class="docutils literal notranslate">
@@ -452,12 +486,12 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#why-sparse-matrices">
      Why sparse matrices?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#onehotencoder-and-sparse-features">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -467,7 +501,7 @@
      and sparse features
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#important-hyperparameters-of-countvectorizer">
      Important hyperparameters of
      <code class="docutils literal notranslate">
@@ -477,29 +511,41 @@
      </code>
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#preprocessing">
      Preprocessing
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#is-this-a-realistic-representation-of-text-data">
      Is this a realistic representation of text data?
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#countvectorizer-true-or-false">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       CountVectorizer
-      </span>
-     </code>
-     : True or False
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     ❓❓ Questions for you
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#countvectorizer-true-or-false">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         CountVectorizer
+        </span>
+       </code>
+       : True or False
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#identify-column-transformations">
+       Identify column transformations
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-did-we-learn-today">
    What did we learn today?
   </a>
@@ -520,9 +566,8 @@
 <h1>Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features<a class="headerlink" href="#lecture-6-sklearn-columntransformer-and-text-features" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2021-22</p>
 <p>Instructor: Varada Kolhatkar</p>
-</div>
 <div class="section" id="imports">
-<h1>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h1>
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -541,7 +586,6 @@
 
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
@@ -555,7 +599,7 @@
 </div>
 </div>
 <div class="section" id="learning-outcomes">
-<h1>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h1>
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
 <p>From this lecture, you will be able to</p>
 <ul class="simple">
 <li><p>use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to build all our transformations together into one object and use it with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines.</p></li>
@@ -568,8 +612,8 @@
 </ul>
 <p><br><br><br><br></p>
 </div>
-<div class="section" id="sklearn-s-columntransformer-introduction">
-<h1>sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html"><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></a> introduction<a class="headerlink" href="#sklearn-s-columntransformer-introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sklearn-s-columntransformer">
+<h2>sklearn’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html"><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></a><a class="headerlink" href="#sklearn-s-columntransformer" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>In most applications, some features are categorical, some are continuous, some are binary, and some are ordinal.</p></li>
 <li><p>When we want to develop supervised machine learning pipelines on real-world datasets, very often we want to apply different transformation on different columns.</p></li>
@@ -946,7 +990,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="section" id="transformations-on-the-toy-data">
-<h2>Transformations on the toy data<a class="headerlink" href="#transformations-on-the-toy-data" title="Permalink to this headline">¶</a></h2>
+<h3>Transformations on the toy data<a class="headerlink" href="#transformations-on-the-toy-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1069,9 +1113,9 @@ memory usage: 1.9+ KB
 </ul>
 </div>
 <div class="section" id="columntransformer-example">
-<h2><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> example<a class="headerlink" href="#columntransformer-example" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> example<a class="headerlink" href="#columntransformer-example" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="data">
-<h3>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h3>
+<h4>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;quiz2&quot;</span><span class="p">])</span>
@@ -1090,7 +1134,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="section" id="identify-the-transformations-we-want-to-apply">
-<h3>Identify the transformations we want to apply<a class="headerlink" href="#identify-the-transformations-we-want-to-apply" title="Permalink to this headline">¶</a></h3>
+<h4>Identify the transformations we want to apply<a class="headerlink" href="#identify-the-transformations-we-want-to-apply" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1203,7 +1247,11 @@ memory usage: 1.9+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;university_years&quot;</span><span class="p">,</span> <span class="s2">&quot;lab1&quot;</span><span class="p">,</span> <span class="s2">&quot;lab3&quot;</span><span class="p">,</span> <span class="s2">&quot;lab4&quot;</span><span class="p">,</span> <span class="s2">&quot;quiz1&quot;</span><span class="p">]</span>  <span class="c1"># apply scaling</span>
 <span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span>  <span class="c1"># apply one-hot encoding</span>
 <span class="n">passthrough_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ml_experience&quot;</span><span class="p">]</span>  <span class="c1"># do not apply any transformation</span>
-<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;lab2&quot;</span><span class="p">,</span> <span class="s2">&quot;class_attendance&quot;</span><span class="p">,</span><span class="s1">&#39;enjoy_course&#39;</span><span class="p">]</span> <span class="c1"># do not include these features in modeling</span>
+<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;lab2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;class_attendance&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;enjoy_course&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># do not include these features in modeling</span>
 </pre></div>
 </div>
 </div>
@@ -1211,7 +1259,7 @@ memory usage: 1.9+ KB
 <p>For simplicity, let’s only focus on scaling and one-hot encoding first.</p>
 </div>
 <div class="section" id="create-a-column-transformer">
-<h3>Create a column transformer<a class="headerlink" href="#create-a-column-transformer" title="Permalink to this headline">¶</a></h3>
+<h4>Create a column transformer<a class="headerlink" href="#create-a-column-transformer" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Each transformation is specified by a name, a transformer object, and the columns this transformer should be applied to.</p></li>
 </ul>
@@ -1227,7 +1275,7 @@ memory usage: 1.9+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;scaling&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">numeric_feats</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;onehot&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">categorical_feats</span><span class="p">),</span>                        
+        <span class="p">(</span><span class="s2">&quot;onehot&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">categorical_feats</span><span class="p">),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
@@ -1236,7 +1284,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="section" id="convenient-make-column-transformer-syntax">
-<h3>Convenient <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> syntax<a class="headerlink" href="#convenient-make-column-transformer-syntax" title="Permalink to this headline">¶</a></h3>
+<h4>Convenient <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> syntax<a class="headerlink" href="#convenient-make-column-transformer-syntax" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Similar to <code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code> syntax, there is convenient <code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code> syntax.</p></li>
 <li><p>The syntax automatically names each step based on its class.</p></li>
@@ -1289,7 +1337,7 @@ memory usage: 1.9+ KB
 </ul>
 </div>
 <div class="section" id="let-s-examine-the-transformed-data">
-<h3>Let’s examine the transformed data<a class="headerlink" href="#let-s-examine-the-transformed-data" title="Permalink to this headline">¶</a></h3>
+<h4>Let’s examine the transformed data<a class="headerlink" href="#let-s-examine-the-transformed-data" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">transformed</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
@@ -1382,7 +1430,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="section" id="viewing-the-transformed-data-as-a-dataframe">
-<h3>Viewing the transformed data as a dataframe<a class="headerlink" href="#viewing-the-transformed-data-as-a-dataframe" title="Permalink to this headline">¶</a></h3>
+<h4>Viewing the transformed data as a dataframe<a class="headerlink" href="#viewing-the-transformed-data-as-a-dataframe" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>How can we view our transformed data as a dataframe?</p></li>
 <li><p>We are adding more columns.</p></li>
@@ -1843,13 +1891,13 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="section" id="columntransformer-transformed-data">
-<h3><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>: Transformed data<a class="headerlink" href="#columntransformer-transformed-data" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>: Transformed data<a class="headerlink" href="#columntransformer-transformed-data" title="Permalink to this headline">¶</a></h4>
 <br>
 <img src='./img/column-transformer.png' width="1500">
 <p><a class="reference external" href="https://amueller.github.io/COMS4995-s20/slides/aml-04-preprocessing/#37">Adapted from here.</a></p>
 </div>
 <div class="section" id="training-models-with-transformed-data">
-<h3>Training models with transformed data<a class="headerlink" href="#training-models-with-transformed-data" title="Permalink to this headline">¶</a></h3>
+<h4>Training models with transformed data<a class="headerlink" href="#training-models-with-transformed-data" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>We can now pass the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object as a step in a pipeline.</p></li>
 </ul>
@@ -1869,17 +1917,108 @@ memory usage: 1.9+ KB
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="questions-for-you">
+<h3>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="true-false">
+<h4>True/False<a class="headerlink" href="#true-false" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>You could carry out cross-validation by passing a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object to <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>.</p></li>
+<li><p>After applying column transformer, the order of the columns in the transformed data has to be the same as the order of the columns in the original data.</p></li>
+<li><p>After applying a column transformer, the transformed data is always going to be of different shape than the original data.</p></li>
+<li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object, you get a numpy array.</p></li>
+</ol>
+</div>
+<div class="section" id="what-transformations-on-what-columns">
+<h4>What transformations on what columns?<a class="headerlink" href="#what-transformations-on-what-columns" title="Permalink to this headline">¶</a></h4>
+<p>Consider the feature columns below.</p>
+<ul class="simple">
+<li><p>What transformations would you apply on each column?</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>colour</p></th>
+<th class="head"><p>location</p></th>
+<th class="head"><p>shape</p></th>
+<th class="head"><p>water_content</p></th>
+<th class="head"><p>weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>red</p></td>
+<td><p>canada</p></td>
+<td><p>NaN</p></td>
+<td><p>84</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>yellow</p></td>
+<td><p>mexico</p></td>
+<td><p>long</p></td>
+<td><p>75</p></td>
+<td><p>120</p></td>
+</tr>
+<tr class="row-even"><td><p>orange</p></td>
+<td><p>spain</p></td>
+<td><p>NaN</p></td>
+<td><p>90</p></td>
+<td><p>NaN</p></td>
+</tr>
+<tr class="row-odd"><td><p>magenta</p></td>
+<td><p>china</p></td>
+<td><p>round</p></td>
+<td><p>NaN</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-even"><td><p>purple</p></td>
+<td><p>austria</p></td>
+<td><p>NaN</p></td>
+<td><p>80</p></td>
+<td><p>115</p></td>
+</tr>
+<tr class="row-odd"><td><p>purple</p></td>
+<td><p>turkey</p></td>
+<td><p>oval</p></td>
+<td><p>78</p></td>
+<td><p>340</p></td>
+</tr>
+<tr class="row-even"><td><p>green</p></td>
+<td><p>mexico</p></td>
+<td><p>oval</p></td>
+<td><p>83</p></td>
+<td><p>NaN</p></td>
+</tr>
+<tr class="row-odd"><td><p>blue</p></td>
+<td><p>canada</p></td>
+<td><p>round</p></td>
+<td><p>73</p></td>
+<td><p>535</p></td>
+</tr>
+<tr class="row-even"><td><p>brown</p></td>
+<td><p>china</p></td>
+<td><p>NaN</p></td>
+<td><p>NaN</p></td>
+<td><p>1743</p></td>
+</tr>
+<tr class="row-odd"><td><p>yellow</p></td>
+<td><p>mexico</p></td>
+<td><p>oval</p></td>
+<td><p>83</p></td>
+<td><p>265</p></td>
+</tr>
+</tbody>
+</table>
 <p><br><br><br><br></p>
 </div>
 </div>
 </div>
 <div class="section" id="more-on-feature-transformations">
-<h1>More on feature transformations<a class="headerlink" href="#more-on-feature-transformations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="including-lab2">
-<h2>Including <code class="docutils literal notranslate"><span class="pre">lab2</span></code><a class="headerlink" href="#including-lab2" title="Permalink to this headline">¶</a></h2>
+<h2>More on feature transformations<a class="headerlink" href="#more-on-feature-transformations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="multiple-transformations-in-a-transformer">
+<h3>Multiple transformations in a transformer<a class="headerlink" href="#multiple-transformations-in-a-transformer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Recall that <code class="docutils literal notranslate"><span class="pre">lab2</span></code> has missing values.</p></li>
-<li><p>So we would like to apply more than one transformations, imputation and scaling, on it.</p></li>
+<li><p>So we would like to apply more than one transformations on it: imputation and scaling.</p></li>
 <li><p>We can treat <code class="docutils literal notranslate"><span class="pre">lab2</span></code> separately, but we can also include it into <code class="docutils literal notranslate"><span class="pre">numeric_feats</span></code> and apply both transformations on all numeric columns.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1894,7 +2033,7 @@ memory usage: 1.9+ KB
 <span class="p">]</span>  <span class="c1"># apply scaling</span>
 <span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span>  <span class="c1"># apply one-hot encoding</span>
 <span class="n">passthrough_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ml_experience&quot;</span><span class="p">]</span>  <span class="c1"># do not apply any transformation</span>
-<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">,</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span>
+<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">,</span> <span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2380,9 +2519,46 @@ memory usage: 1.9+ KB
 </table>
 </div></div></div>
 </div>
+<p><br><br></p>
+</div>
+<div class="section" id="sklearn-set-config">
+<h3><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">set_config</span></code><a class="headerlink" href="#sklearn-set-config" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>With multiple transformations in a column transformer, it can get tricky to keep track of everything happening inside it.</p></li>
+<li><p>We can use <code class="docutils literal notranslate"><span class="pre">set_config</span></code> to display a diagram of this.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;diagram&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a {color: black;background-color: white;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a pre{padding: 0;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-toggleable {background-color: white;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-estimator:hover {background-color: #d4ebff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-item {z-index: 1;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-parallel-item:only-child::after {width: 0;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a div.sk-container {display: inline-block;position: relative;}</style><div id="sk-16b34ade-8527-4874-bd1d-1f1207dc0c4a" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2d694064-b793-4551-bd02-2207a6823622" type="checkbox" ><label class="sk-toggleable__label" for="2d694064-b793-4551-bd02-2207a6823622">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer()),
+                                                 ('standardscaler',
+                                                  StandardScaler())]),
+                                 ['university_years', 'lab1', 'lab2', 'lab3',
+                                  'lab4', 'quiz1']),
+                                ('onehotencoder', OneHotEncoder(), ['major']),
+                                ('passthrough', 'passthrough',
+                                 ['ml_experience']),
+                                ('drop', 'drop',
+                                 ['class_attendance', 'enjoy_course'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="12c51ace-7906-4185-9a17-ab67f088fda4" type="checkbox" ><label class="sk-toggleable__label" for="12c51ace-7906-4185-9a17-ab67f088fda4">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ad076d48-1052-4f12-97c3-490c011a4670" type="checkbox" ><label class="sk-toggleable__label" for="ad076d48-1052-4f12-97c3-490c011a4670">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8da97242-5009-4db4-a7ce-76f24ae2df28" type="checkbox" ><label class="sk-toggleable__label" for="8da97242-5009-4db4-a7ce-76f24ae2df28">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3fc97a8e-7eb8-483b-aacc-96c3d7627e66" type="checkbox" ><label class="sk-toggleable__label" for="3fc97a8e-7eb8-483b-aacc-96c3d7627e66">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="bfd4c4d6-14d9-4194-a214-2baf0de64cc5" type="checkbox" ><label class="sk-toggleable__label" for="bfd4c4d6-14d9-4194-a214-2baf0de64cc5">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1878da8a-e682-4e70-97a6-e8630463dece" type="checkbox" ><label class="sk-toggleable__label" for="1878da8a-e682-4e70-97a6-e8630463dece">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7308c3ab-5723-4acc-b447-d877ee22e0ab" type="checkbox" ><label class="sk-toggleable__label" for="7308c3ab-5723-4acc-b447-d877ee22e0ab">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6d5b53e8-f617-4493-896f-e7143d7486ea" type="checkbox" ><label class="sk-toggleable__label" for="6d5b53e8-f617-4493-896f-e7143d7486ea">drop</label><div class="sk-toggleable__content"><pre>['class_attendance', 'enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="07e00bf4-f921-408f-a2c0-9750110e0056" type="checkbox" ><label class="sk-toggleable__label" for="07e00bf4-f921-408f-a2c0-9750110e0056">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<p><br><br></p>
 </div>
 <div class="section" id="incorporating-ordinal-feature-class-attendance">
-<h2>Incorporating ordinal feature <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code><a class="headerlink" href="#incorporating-ordinal-feature-class-attendance" title="Permalink to this headline">¶</a></h2>
+<h3>Incorporating ordinal feature <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code><a class="headerlink" href="#incorporating-ordinal-feature-class-attendance" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> column is different than the <code class="docutils literal notranslate"><span class="pre">major</span></code> column in that there is some ordering of the values.</p>
 <ul>
@@ -2854,16 +3030,14 @@ memory usage: 1.9+ KB
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>The encoder doesn’t know the order and we have to incorporate human knowledge about the ordering here.</p>
+<li><p>What’s the problem here?</p>
 <ul>
-<li><p>Excellent: 3</p></li>
-<li><p>Good: 2</p></li>
-<li><p>Average: 1</p></li>
-<li><p>Poor: 0</p></li>
+<li><p>The encoder doesn’t know the order</p></li>
 </ul>
 </li>
-<li><p>If you reverse the order it wouldn’t matter.</p></li>
+<li><p>We can examine unique categories manually, order them based on our intuitions, and then provide this human knowledge to the transformer.</p></li>
 </ul>
+<p>What are the unique categories of <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code>?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_toy</span><span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -2884,6 +3058,11 @@ memory usage: 1.9+ KB
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that if you use the reverse order of the categories, it wouldn’t matter.</p>
+</div>
+<p>Let’s make sure that we have included all categories in our manual ordering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">class_attendance_levels</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">X_toy</span><span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -2891,6 +3070,15 @@ memory usage: 1.9+ KB
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>We can pass the manually ordered categories when we create an <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code> object as a list of lists.</p></li>
+<li><p>If you have more than one ordinal columns,</p>
+<ul>
+<li><p>manually create a list of ordered categories for each column</p></li>
+<li><p>pass a list of lists to <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code>, where each inner list corresponds to manually created list of ordered categories for a corresponding ordinal column.</p></li>
+</ul>
+</li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oe</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">class_attendance_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -3040,7 +3228,8 @@ memory usage: 1.9+ KB
 </table>
 </div></div></div>
 </div>
-<p>Now let’s apply it</p>
+<p>The encoded categories are looking better now!</p>
+<p>Now let’s apply incorporate ordinal encoding of <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> in our column transformer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span>
@@ -3565,9 +3754,37 @@ memory usage: 1.9+ KB
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
 </div>
-<div class="section" id="dealing-with-unknown-categories-handle-unknown-ignore">
-<h2>Dealing with unknown categories <code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code><a class="headerlink" href="#dealing-with-unknown-categories-handle-unknown-ignore" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c {color: black;background-color: white;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c pre{padding: 0;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-toggleable {background-color: white;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-estimator:hover {background-color: #d4ebff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-item {z-index: 1;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-parallel-item:only-child::after {width: 0;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c div.sk-container {display: inline-block;position: relative;}</style><div id="sk-25bfb6d7-b7d4-4a2f-af1f-634aa53f871c" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="adaba83a-b974-4474-9dba-acff79e763ce" type="checkbox" ><label class="sk-toggleable__label" for="adaba83a-b974-4474-9dba-acff79e763ce">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer()),
+                                                 ('standardscaler',
+                                                  StandardScaler())]),
+                                 ['university_years', 'lab1', 'lab2', 'lab3',
+                                  'lab4', 'quiz1']),
+                                ('onehotencoder', OneHotEncoder(), ['major']),
+                                ('ordinalencoder',
+                                 OrdinalEncoder(categories=[['Poor', 'Average',
+                                                             'Good',
+                                                             'Excellent']],
+                                                dtype=<class 'int'>),
+                                 ['class_attendance']),
+                                ('passthrough', 'passthrough',
+                                 ['ml_experience']),
+                                ('drop', 'drop', [])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="832daaee-80ee-45d9-adeb-195ff63e6831" type="checkbox" ><label class="sk-toggleable__label" for="832daaee-80ee-45d9-adeb-195ff63e6831">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="707115d1-1809-44d4-bb01-c92dd97ddd1c" type="checkbox" ><label class="sk-toggleable__label" for="707115d1-1809-44d4-bb01-c92dd97ddd1c">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="87e19a07-8b9b-47ec-b946-12377deb2a37" type="checkbox" ><label class="sk-toggleable__label" for="87e19a07-8b9b-47ec-b946-12377deb2a37">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1633d9c3-a165-46da-a398-8e4afdc542dd" type="checkbox" ><label class="sk-toggleable__label" for="1633d9c3-a165-46da-a398-8e4afdc542dd">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1e5799d2-2093-45d7-8275-ea16c7140085" type="checkbox" ><label class="sk-toggleable__label" for="1e5799d2-2093-45d7-8275-ea16c7140085">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1ecedd90-270f-4312-be2f-df63a6a76745" type="checkbox" ><label class="sk-toggleable__label" for="1ecedd90-270f-4312-be2f-df63a6a76745">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ae185826-b861-4541-ad98-2218077dc1d6" type="checkbox" ><label class="sk-toggleable__label" for="ae185826-b861-4541-ad98-2218077dc1d6">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="73ec0d11-eb24-47b0-a97d-393ded76a490" type="checkbox" ><label class="sk-toggleable__label" for="73ec0d11-eb24-47b0-a97d-393ded76a490">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="33078bbe-7d4f-41c3-9b71-17d7bd3e445b" type="checkbox" ><label class="sk-toggleable__label" for="33078bbe-7d4f-41c3-9b71-17d7bd3e445b">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f3693c7f-7281-42a9-8cd8-d61012691d94" type="checkbox" ><label class="sk-toggleable__label" for="f3693c7f-7281-42a9-8cd8-d61012691d94">drop</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3c13c606-88bc-47f1-9dc2-f46e031b2412" type="checkbox" ><label class="sk-toggleable__label" for="3c13c606-88bc-47f1-9dc2-f46e031b2412">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<p><br><br></p>
+</div>
+<div class="section" id="dealing-with-unknown-categories">
+<h3>Dealing with unknown categories<a class="headerlink" href="#dealing-with-unknown-categories" title="Permalink to this headline">¶</a></h3>
+<p>Let’s create a pipeline with the column transformer and pass it to <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
@@ -3578,6 +3795,7 @@ memory usage: 1.9+ KB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3623,12 +3841,74 @@ ValueError: Found unknown categories [&#39;Biology&#39;] in column 0 during tran
   warnings.warn(
 </pre></div>
 </div>
-</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.006449</td>
+      <td>0.003116</td>
+      <td>1.00</td>
+      <td>0.937500</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.005501</td>
+      <td>0.003044</td>
+      <td>1.00</td>
+      <td>0.941176</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.005514</td>
+      <td>0.003010</td>
+      <td>0.50</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.005500</td>
+      <td>0.003015</td>
+      <td>0.75</td>
+      <td>0.941176</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.005440</td>
+      <td>0.016805</td>
+      <td>NaN</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>What’s going on here??</p></li>
 <li><p>Let’s look at the error message:
-<code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Found</span> <span class="pre">unknown</span> <span class="pre">categories</span> <span class="pre">['Psychology']</span> <span class="pre">in</span> <span class="pre">column</span> <span class="pre">0</span> <span class="pre">during</span> <span class="pre">transform</span> </code></p></li>
+<code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Found</span> <span class="pre">unknown</span> <span class="pre">categories</span> <span class="pre">['Biology']</span> <span class="pre">in</span> <span class="pre">column</span> <span class="pre">0</span> <span class="pre">during</span> <span class="pre">transform</span> </code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3966,7 +4246,7 @@ Name: major, dtype: int64
 </div>
 </div>
 <ul class="simple">
-<li><p>There is only one instance of Psychology.</p></li>
+<li><p>There is only one instance of Biology.</p></li>
 <li><p>During cross-validation, this is getting put into the validation split.</p></li>
 <li><p>By default, <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> throws an error because you might want to know about this.</p></li>
 </ul>
@@ -3996,6 +4276,34 @@ Name: major, dtype: int64
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-44afcebd-f3db-4066-a25f-651bd8571265 {color: black;background-color: white;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 pre{padding: 0;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-toggleable {background-color: white;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-estimator:hover {background-color: #d4ebff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-item {z-index: 1;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-parallel-item:only-child::after {width: 0;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-44afcebd-f3db-4066-a25f-651bd8571265 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-44afcebd-f3db-4066-a25f-651bd8571265" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="0610a65c-d656-4e44-b8e5-28ebf4381d02" type="checkbox" ><label class="sk-toggleable__label" for="0610a65c-d656-4e44-b8e5-28ebf4381d02">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer()),
+                                                 ('standardscaler',
+                                                  StandardScaler())]),
+                                 ['university_years', 'lab1', 'lab2', 'lab3',
+                                  'lab4', 'quiz1']),
+                                ('onehotencoder',
+                                 OneHotEncoder(handle_unknown='ignore'),
+                                 ['major']),
+                                ('ordinalencoder',
+                                 OrdinalEncoder(categories=[['Poor', 'Average',
+                                                             'Good',
+                                                             'Excellent']],
+                                                dtype=<class 'int'>),
+                                 ['class_attendance']),
+                                ('passthrough', 'passthrough',
+                                 ['ml_experience']),
+                                ('drop', 'drop', [])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d51e6d12-5aab-4b25-b854-c3b7d04b915f" type="checkbox" ><label class="sk-toggleable__label" for="d51e6d12-5aab-4b25-b854-c3b7d04b915f">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="848b911f-f261-40b1-a9ac-935c1c32264c" type="checkbox" ><label class="sk-toggleable__label" for="848b911f-f261-40b1-a9ac-935c1c32264c">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6c81a8a2-88d0-4bbc-aec7-bce7b9288dac" type="checkbox" ><label class="sk-toggleable__label" for="6c81a8a2-88d0-4bbc-aec7-bce7b9288dac">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b7747803-44ea-4e5d-a2da-31b30bb94bdd" type="checkbox" ><label class="sk-toggleable__label" for="b7747803-44ea-4e5d-a2da-31b30bb94bdd">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="760d6bdf-88e2-4d52-bb4d-8402d387cdf5" type="checkbox" ><label class="sk-toggleable__label" for="760d6bdf-88e2-4d52-bb4d-8402d387cdf5">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="714cd0ab-874d-46af-9194-b400af637783" type="checkbox" ><label class="sk-toggleable__label" for="714cd0ab-874d-46af-9194-b400af637783">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="68ebc20b-f747-4e10-8e0d-973bbc270f01" type="checkbox" ><label class="sk-toggleable__label" for="68ebc20b-f747-4e10-8e0d-973bbc270f01">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="31ef8dc3-c49e-4a24-a77a-75b88b8e117f" type="checkbox" ><label class="sk-toggleable__label" for="31ef8dc3-c49e-4a24-a77a-75b88b8e117f">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f1073b87-a065-44e9-b1ae-11d34b520936" type="checkbox" ><label class="sk-toggleable__label" for="f1073b87-a065-44e9-b1ae-11d34b520936">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a0cfbb41-6613-4694-8ad5-d5482147549c" type="checkbox" ><label class="sk-toggleable__label" for="a0cfbb41-6613-4694-8ad5-d5482147549c">drop</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a6515112-9f64-4706-88d5-e29c75e52122" type="checkbox" ><label class="sk-toggleable__label" for="a6515112-9f64-4706-88d5-e29c75e52122">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4039,36 +4347,36 @@ Name: major, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.006131</td>
-      <td>0.003037</td>
+      <td>0.006307</td>
+      <td>0.003315</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005426</td>
-      <td>0.002988</td>
+      <td>0.005458</td>
+      <td>0.003004</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.005503</td>
-      <td>0.003011</td>
+      <td>0.005416</td>
+      <td>0.003015</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.005707</td>
-      <td>0.003028</td>
+      <td>0.005469</td>
+      <td>0.002996</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005479</td>
-      <td>0.003001</td>
+      <td>0.005389</td>
+      <td>0.003006</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4084,114 +4392,60 @@ Name: major, dtype: int64
 <li><p>Do you want this behaviour?</p></li>
 <li><p>Are you expecting to get many unknown categories? Do you want to be able to distinguish between them?</p></li>
 </ul>
+<p><br><br></p>
 </div>
 <div class="section" id="cases-where-it-s-ok-to-break-the-golden-rule">
-<h2>Cases where it’s OK to break the golden rule<a class="headerlink" href="#cases-where-it-s-ok-to-break-the-golden-rule" title="Permalink to this headline">¶</a></h2>
+<h3>Cases where it’s OK to break the golden rule<a class="headerlink" href="#cases-where-it-s-ok-to-break-the-golden-rule" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>If it’s some fix number of categories. For example, if it’s something like provinces in Canada or majors taught at UBC. We know the categories in advance and this is one of the cases where it might be OK to violate the golden rule and get a list of all possible values for the categorical variable.</p></li>
 </ul>
+<p><br><br></p>
 </div>
 <div class="section" id="categorical-features-with-only-two-possible-categories">
-<h2>Categorical features with only two possible categories<a class="headerlink" href="#categorical-features-with-only-two-possible-categories" title="Permalink to this headline">¶</a></h2>
+<h3>Categorical features with only two possible categories<a class="headerlink" href="#categorical-features-with-only-two-possible-categories" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Sometimes you have variables with only two possible categories.</p></li>
 <li><p>If we apply <code class="docutils literal notranslate"><span class="pre">OheHotEncoder</span></code> on such columns, it’ll create two columns, which seems wasteful, as we could represent all information in the column in just one column with say 0’s and 1’s with presence of absence of one of the category.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;bin_col&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;fail&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;fail&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;fail&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pass&quot;</span><span class="p">,</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-<span class="n">toy_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;enjoy_course&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bin_col</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>fail</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>fail</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>fail</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>pass</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>pass</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     yes
+1     yes
+2     yes
+3      no
+4     yes
+5      no
+6     yes
+7      no
+8      no
+9     yes
+10    yes
+11    yes
+12    yes
+13    yes
+14     no
+15     no
+16    yes
+17    yes
+18     no
+19     no
+20    yes
+Name: enjoy_course, dtype: object
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe_enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ohe_enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">toy_df</span><span class="p">)</span>
-<span class="n">transformed</span> <span class="o">=</span> <span class="n">ohe_enc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bin_enc&#39;</span><span class="p">])</span>
+<span class="n">ohe_enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s1">&#39;enjoy_course&#39;</span><span class="p">]])</span>
+<span class="n">transformed</span> <span class="o">=</span> <span class="n">ohe_enc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s1">&#39;enjoy_course&#39;</span><span class="p">]])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bin_enc&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -4224,15 +4478,15 @@ Name: major, dtype: int64
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -4240,33 +4494,236 @@ Name: major, dtype: int64
     </tr>
     <tr>
       <th>5</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>0</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>6</th>
       <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>1</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>9</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>20</th>
       <td>1</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;university_years&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;quiz1&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># apply scaling</span>
+<span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span>  <span class="c1"># apply one-hot encoding</span>
+<span class="n">ordinal_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">]</span>  <span class="c1"># apply ordinal encoding</span>
+<span class="n">binary_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span> <span class="c1"># apply one-hot encoding with drop=&quot;if_binary&quot;</span>
+<span class="n">passthrough_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ml_experience&quot;</span><span class="p">]</span>  <span class="c1"># do not apply any transformation</span>
+<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span>
+        <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(),</span> <span class="n">StandardScaler</span><span class="p">()),</span>
+        <span class="n">numeric_feats</span><span class="p">,</span>
+    <span class="p">),</span>  <span class="c1"># scaling on numeric features</span>
+    <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">),</span> <span class="n">categorical_feats</span><span class="p">),</span>  <span class="c1"># OHE on categorical features</span>
+    <span class="p">(</span>
+        <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">class_attendance_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+        <span class="n">ordinal_feats</span><span class="p">,</span>
+    <span class="p">),</span>  <span class="c1"># Ordinal encoding on ordinal features</span>
+    <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span> <span class="n">binary_feats</span><span class="p">),</span>  <span class="c1"># OHE on categorical features    </span>
+    <span class="p">(</span><span class="s2">&quot;passthrough&quot;</span><span class="p">,</span> <span class="n">passthrough_feats</span><span class="p">),</span>  <span class="c1"># no transformations on the binary features</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa {color: black;background-color: white;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa pre{padding: 0;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-toggleable {background-color: white;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-estimator:hover {background-color: #d4ebff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-item {z-index: 1;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-parallel-item:only-child::after {width: 0;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-ca4978fe-e927-44f7-905b-47cc3b7678aa div.sk-container {display: inline-block;position: relative;}</style><div id="sk-ca4978fe-e927-44f7-905b-47cc3b7678aa" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f03ff042-61ed-4313-b375-98e021cba9ae" type="checkbox" ><label class="sk-toggleable__label" for="f03ff042-61ed-4313-b375-98e021cba9ae">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer()),
+                                                 ('standardscaler',
+                                                  StandardScaler())]),
+                                 ['university_years', 'lab1', 'lab2', 'lab3',
+                                  'lab4', 'quiz1']),
+                                ('onehotencoder-1',
+                                 OneHotEncoder(handle_unknown='ignore'),
+                                 ['major']),
+                                ('ordinalencoder',
+                                 OrdinalEncoder(categories=[['Poor', 'Average',
+                                                             'Good',
+                                                             'Excellent']],
+                                                dtype=<class 'int'>),
+                                 ['class_attendance']),
+                                ('onehotencoder-2',
+                                 OneHotEncoder(drop='if_binary',
+                                               dtype=<class 'int'>),
+                                 ['enjoy_course']),
+                                ('passthrough', 'passthrough',
+                                 ['ml_experience'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ccc3aac3-9cb7-4115-9ff1-c84f46882f64" type="checkbox" ><label class="sk-toggleable__label" for="ccc3aac3-9cb7-4115-9ff1-c84f46882f64">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="461390b1-ef6d-45bc-be4d-1237b8e9c994" type="checkbox" ><label class="sk-toggleable__label" for="461390b1-ef6d-45bc-be4d-1237b8e9c994">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ba38defb-ae46-4952-8505-0ba35c3c96f7" type="checkbox" ><label class="sk-toggleable__label" for="ba38defb-ae46-4952-8505-0ba35c3c96f7">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a322bf96-862a-420d-a45b-4f2527422606" type="checkbox" ><label class="sk-toggleable__label" for="a322bf96-862a-420d-a45b-4f2527422606">onehotencoder-1</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d47a9593-1fc5-44d5-8301-7d67c734302d" type="checkbox" ><label class="sk-toggleable__label" for="d47a9593-1fc5-44d5-8301-7d67c734302d">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e5a1f8ea-a2d6-48ee-9cf3-6004cabc3c0e" type="checkbox" ><label class="sk-toggleable__label" for="e5a1f8ea-a2d6-48ee-9cf3-6004cabc3c0e">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="762812ca-36b7-4553-912a-71cde1f86ba8" type="checkbox" ><label class="sk-toggleable__label" for="762812ca-36b7-4553-912a-71cde1f86ba8">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="45ba5756-5e1f-4d14-a7c6-9640519b6b77" type="checkbox" ><label class="sk-toggleable__label" for="45ba5756-5e1f-4d14-a7c6-9640519b6b77">onehotencoder-2</label><div class="sk-toggleable__content"><pre>['enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="76507a64-de48-4132-bb06-dd8f459602d7" type="checkbox" ><label class="sk-toggleable__label" for="76507a64-de48-4132-bb06-dd8f459602d7">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(drop='if_binary', dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b1b83f53-4965-4d2d-94e3-168d90870af9" type="checkbox" ><label class="sk-toggleable__label" for="b1b83f53-4965-4d2d-94e3-168d90870af9">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="26fbef86-940d-4cd3-bfc1-f7b0110159c1" type="checkbox" ><label class="sk-toggleable__label" for="26fbef86-940d-4cd3-bfc1-f7b0110159c1">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.006952</td>
+      <td>0.003768</td>
+      <td>1.00</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.006443</td>
+      <td>0.004029</td>
+      <td>1.00</td>
+      <td>0.941176</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.006368</td>
+      <td>0.003752</td>
+      <td>0.50</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.006400</td>
+      <td>0.003687</td>
+      <td>1.00</td>
+      <td>0.941176</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.006289</td>
+      <td>0.003686</td>
+      <td>0.75</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><br><br></p>
+</div>
+<div class="section" id="id1">
+<h3>❓❓ Questions for you<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="true-false-categorical-features">
+<h4>True/False: Categorical features<a class="headerlink" href="#true-false-categorical-features" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
+<li><p>Creating groups of rarely occurring categories might overfit the model.</p></li>
+</ul>
 <p><br><br><br><br></p>
 </div>
 </div>
+</div>
 <div class="section" id="columntransformer-on-the-california-housing-dataset">
-<h1><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> on the California housing dataset<a class="headerlink" href="#columntransformer-on-the-california-housing-dataset" title="Permalink to this headline">¶</a></h1>
+<h2><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> on the California housing dataset<a class="headerlink" href="#columntransformer-on-the-california-housing-dataset" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">housing_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/housing.csv&quot;</span><span class="p">)</span>
@@ -4730,23 +5187,20 @@ Name: major, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ColumnTransformer(transformers=[(&#39;pipeline&#39;,
-                                 Pipeline(steps=[(&#39;simpleimputer&#39;,
-                                                  SimpleImputer(strategy=&#39;median&#39;)),
-                                                 (&#39;standardscaler&#39;,
+<div class="output text_html"><style>#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb {color: black;background-color: white;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb pre{padding: 0;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-toggleable {background-color: white;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-estimator:hover {background-color: #d4ebff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-item {z-index: 1;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-parallel-item:only-child::after {width: 0;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb div.sk-container {display: inline-block;position: relative;}</style><div id="sk-330f5d71-b5c9-40e7-a3b1-fe89d91e29bb" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5f585ab4-ab65-4a86-8507-059076db55a4" type="checkbox" ><label class="sk-toggleable__label" for="5f585ab4-ab65-4a86-8507-059076db55a4">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer(strategy='median')),
+                                                 ('standardscaler',
                                                   StandardScaler())]),
-                                 [&#39;longitude&#39;, &#39;latitude&#39;, &#39;housing_median_age&#39;,
-                                  &#39;total_rooms&#39;, &#39;total_bedrooms&#39;, &#39;population&#39;,
-                                  &#39;households&#39;, &#39;median_income&#39;,
-                                  &#39;rooms_per_household&#39;,
-                                  &#39;bedrooms_per_household&#39;,
-                                  &#39;population_per_household&#39;]),
-                                (&#39;onehotencoder&#39;,
-                                 OneHotEncoder(handle_unknown=&#39;ignore&#39;),
-                                 [&#39;ocean_proximity&#39;])])
-</pre></div>
-</div>
-</div>
+                                 ['longitude', 'latitude', 'housing_median_age',
+                                  'total_rooms', 'total_bedrooms', 'population',
+                                  'households', 'median_income',
+                                  'rooms_per_household',
+                                  'bedrooms_per_household',
+                                  'population_per_household']),
+                                ('onehotencoder',
+                                 OneHotEncoder(handle_unknown='ignore'),
+                                 ['ocean_proximity'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="28e2f868-a76f-49dc-90bc-9a8bae4c38ff" type="checkbox" ><label class="sk-toggleable__label" for="28e2f868-a76f-49dc-90bc-9a8bae4c38ff">pipeline</label><div class="sk-toggleable__content"><pre>['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income', 'rooms_per_household', 'bedrooms_per_household', 'population_per_household']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8155ec27-ed97-4be4-82d0-30ed4b0d54d8" type="checkbox" ><label class="sk-toggleable__label" for="8155ec27-ed97-4be4-82d0-30ed4b0d54d8">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d862621c-e92e-4f64-8b9c-ce3fb2f77fe8" type="checkbox" ><label class="sk-toggleable__label" for="d862621c-e92e-4f64-8b9c-ce3fb2f77fe8">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="59fe933f-c894-497f-aad3-fc93bf2a1f80" type="checkbox" ><label class="sk-toggleable__label" for="59fe933f-c894-497f-aad3-fc93bf2a1f80">onehotencoder</label><div class="sk-toggleable__content"><pre>['ocean_proximity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6ad1f874-52e4-4b13-9ac9-e16f5e7badd6" type="checkbox" ><label class="sk-toggleable__label" for="6ad1f874-52e4-4b13-9ac9-e16f5e7badd6">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <p>When we <code class="docutils literal notranslate"><span class="pre">fit</span></code> with the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">fit</span></code> on <em>all</em> the transformers</p>
 <div class="cell docutils container">
@@ -4819,14 +5273,90 @@ Name: major, dtype: int64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span><span class="p">[</span><span class="s1">&#39;imp + scaling + ohe + SVR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># results_dict[&quot;imp + scaling + ohe + SVR&quot;] = mean_std_cross_val_scores(</span>
+<span class="c1">#     pipe, X_train, y_train, return_train_score=True</span>
+<span class="c1"># )</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pd.DataFrame(results_dict)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Note that categorical features are different than free text features. Sometimes there are columns containing free text information and we we’ll look at ways to deal with them later in the course.</p></li>
+</ul>
+<div class="section" id="preprocessing-the-targets">
+<h3>Preprocessing the targets?<a class="headerlink" href="#preprocessing-the-targets" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Generally no need for this when doing classification.</p></li>
+<li><p>In regression it makes sense in some cases. More on this later.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> is fine with categorical labels (<span class="math notranslate nohighlight">\(y\)</span>-values) for classification problems.</p></li>
+</ul>
+</div>
+<div class="section" id="ohe-with-many-categories">
+<h3>OHE with many categories<a class="headerlink" href="#ohe-with-many-categories" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Do we have enough data for rare categories to learn anything meaningful?</p></li>
+<li><p>How about grouping them into bigger categories</p>
+<ul>
+<li><p>Example: “South America” or “Asia”</p></li>
+</ul>
+</li>
+<li><p>Or having “other” category for rare cases?</p></li>
+</ul>
+</div>
+<div class="section" id="do-we-actually-want-to-use-certain-features-for-prediction">
+<h3>Do we actually want to use certain features for prediction?<a class="headerlink" href="#do-we-actually-want-to-use-certain-features-for-prediction" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Do you want to use <code class="docutils literal notranslate"><span class="pre">race</span></code> in prediction?</p></li>
+<li><p>Remember that the systems you build are going to be used in some applications.</p></li>
+<li><p>It’s extremely important to be mindful of the consequences of including certain features in your predictive model.</p></li>
+<li><p>I would just drop the feature to avoid racial biases.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</div>
+</div>
+<div class="section" id="encoding-text-data">
+<h2>Encoding text data<a class="headerlink" href="#encoding-text-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_spam</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spam&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Congrats! I can&#39;t wait to see you!!&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">toy_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">toy_spam</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="spam-non-spam-toy-example">
+<h3>Spam/non spam toy example<a class="headerlink" href="#spam-non-spam-toy-example" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>What if the feature is in the form of raw text?</p></li>
+<li><p>The feature <code class="docutils literal notranslate"><span class="pre">sms</span></code> below is neither categorical nor ordinal.</p></li>
+<li><p>How can we encode it so that we can pass it to the machine learning algorithms we have seen so far?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_df</span>
 </pre></div>
 </div>
 </div>
@@ -4849,98 +5379,165 @@ Name: major, dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>imp + scaling + ohe + SVR</th>
+      <th>sms</th>
+      <th>target</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>fit_time</th>
-      <td>8.369 (+/- 0.043)</td>
+      <th>0</th>
+      <td>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</td>
+      <td>spam</td>
     </tr>
     <tr>
-      <th>score_time</th>
-      <td>4.316 (+/- 0.034)</td>
+      <th>1</th>
+      <td>Lol you are always so convincing.</td>
+      <td>non spam</td>
     </tr>
     <tr>
-      <th>test_score</th>
-      <td>-0.053 (+/- 0.012)</td>
+      <th>2</th>
+      <td>Nah I don't think he goes to usf, he lives around here though</td>
+      <td>non spam</td>
     </tr>
     <tr>
-      <th>train_score</th>
-      <td>-0.053 (+/- 0.001)</td>
+      <th>3</th>
+      <td>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</td>
+      <td>spam</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</td>
+      <td>spam</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Congrats! I can't wait to see you!!</td>
+      <td>non spam</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="what-if-we-apply-ohe">
+<h3>What if we apply OHE?<a class="headerlink" href="#what-if-we-apply-ohe" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### DO NOT DO THIS.</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">transformed</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[[</span><span class="s2">&quot;sms&quot;</span><span class="p">]])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">enc</span><span class="o">.</span><span class="n">categories_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Congrats! I can't wait to see you!!</th>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <th>Lol you are always so convincing.</th>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 <ul class="simple">
-<li><p>Note that categorical features are different than free text features. Sometimes there are columns containing free text information and we we’ll look at ways to deal with them later in the course.</p></li>
+<li><p>We do not have a fixed number of categories here.</p></li>
+<li><p>Each “category” (feature value) is likely to occur only once in the training data and we won’t learn anything meaningful if we apply one-hot encoding or ordinal encoding on this feature.</p></li>
 </ul>
-<div class="section" id="preprocessing-the-targets">
-<h2>Preprocessing the targets?<a class="headerlink" href="#preprocessing-the-targets" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Generally no need for this when doing classification.</p></li>
-<li><p>In regression it makes sense in some cases. More on this later.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sklearn</span></code> is fine with categorical labels (<span class="math notranslate nohighlight">\(y\)</span>-values) for classification problems.</p></li>
-</ul>
-</div>
-<div class="section" id="ohe-with-many-categories">
-<h2>OHE with many categories<a class="headerlink" href="#ohe-with-many-categories" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Do we have enough data for rare categories to learn anything meaningful?</p></li>
-<li><p>How about grouping them into bigger categories</p>
+<li><p>How can we encode or represent raw text data into fixed number of features so that we can learn some useful patterns from it?</p></li>
+<li><p>This is a well studied problem in the field of Natural Language Processing (NLP), which is concerned with giving computers the ability to understand written and spoken language.</p></li>
+<li><p>Some popular representations of raw text include:</p>
 <ul>
-<li><p>Example: “South America” or “Asia”</p></li>
+<li><p><strong>Bag of words</strong></p></li>
+<li><p>TF-IDF</p></li>
+<li><p>Embedding representations</p></li>
 </ul>
 </li>
-<li><p>Or having “other” category for rare cases?</p></li>
-</ul>
-</div>
-<div class="section" id="do-we-actually-want-to-use-certain-features-for-prediction">
-<h2>Do we actually want to use certain features for prediction?<a class="headerlink" href="#do-we-actually-want-to-use-certain-features-for-prediction" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Do you want to use <code class="docutils literal notranslate"><span class="pre">race</span></code> in prediction?</p></li>
-<li><p>Remember that the systems you build are going to be used in some applications.</p></li>
-<li><p>It’s extremely important to be mindful of the consequences of including certain features in your predictive model.</p></li>
-<li><p>I would just drop the feature to avoid racial biases.</p></li>
-</ul>
-</div>
-<div class="section" id="categorical-features-true-or-false">
-<h2>Categorical features (True or False)<a class="headerlink" href="#categorical-features-true-or-false" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
-<li><p>Creating groups of rarely occurring categories might overfit the model.</p></li>
-</ul>
-<p><br><br><br><br></p>
-</div>
-</div>
-<div class="section" id="encoding-text-data">
-<h1>Encoding text data<a class="headerlink" href="#encoding-text-data" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>ML algorithms we have seen so far prefer numeric and fixed length input that looks like this:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}X = \begin{bmatrix}1.0 &amp; 4.0 &amp; \ldots &amp; &amp; 3.0\\ 0.0 &amp; 2.0 &amp; \ldots &amp; &amp; 6.0\\ 1.0 &amp; 0.0 &amp; \ldots &amp; &amp; 0.0\\ \end{bmatrix}, y = \begin{bmatrix}\text{spam} \\ \text{non spam} \\ \text{spam} \end{bmatrix}\end{split}\]</div>
-<ul class="simple">
-<li><p>But what if we are only given data in the form of raw text and associated labels?</p></li>
-<li><p>How can we represent such data into fixed number of features?</p></li>
-</ul>
-<div class="section" id="spam-non-spam-toy-example">
-<h2>Spam/non-spam toy example<a class="headerlink" href="#spam-non-spam-toy-example" title="Permalink to this headline">¶</a></h2>
-<p>Would you be able to apply the algorithms we have seen so far on the data that looks like this?</p>
-<p><span class="math notranslate nohighlight">\(X = \begin{bmatrix}\text{&quot;URGENT!! You have been selected to receive a £900 prize reward!&quot;,}\\ \text{&quot;Lol your always so convincing.&quot;}\\ \text{&quot;Congrats! 1 year special cinema pass for 2 is yours. call 09061209465 now!&quot;}\\ \end{bmatrix}\)</span></p>
-<p>and</p>
-<p><span class="math notranslate nohighlight">\(y = \begin{bmatrix}\text{spam} \\ \text{non spam} \\ \text{spam} \end{bmatrix}\)</span></p>
-<ul class="simple">
-<li><p>In categorical features or ordinal features, we have fixed number of categories.</p></li>
-<li><p>In text features such as above, each feature value (i.e., each text message) is going to be different.</p></li>
-<li><p>How do we encode these feature?</p></li>
 </ul>
 </div>
 <div class="section" id="bag-of-words-bow-representation">
-<h2>Bag of words (BOW) representation<a class="headerlink" href="#bag-of-words-bow-representation" title="Permalink to this headline">¶</a></h2>
+<h3>Bag of words (BOW) representation<a class="headerlink" href="#bag-of-words-bow-representation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>One way is to use a simple bag of words (BOW) representation which involves two components.</p>
+<li><p>One of the most popular representation of raw text</p></li>
+<li><p>Ignores the syntax and word order</p></li>
+<li><p>It has two components:</p>
 <ul>
 <li><p>The vocabulary (all unique words in all documents)</p></li>
 <li><p>A value indicating either the presence or absence or the count of each word in the document.</p></li>
@@ -4948,12 +5545,12 @@ Name: major, dtype: int64
 </li>
 </ul>
 <center>
-<img src='./img/bag-of-words.png' width="800">
+<img src='./img/bag-of-words.png' width="600">
 </center>
 <p><a class="reference external" href="https://web.stanford.edu/~jurafsky/slp3/4.pdf">Source</a></p>
 </div>
 <div class="section" id="extracting-bow-features-using-scikit-learn">
-<h2>Extracting BOW features using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#extracting-bow-features-using-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<h3>Extracting BOW features using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code><a class="headerlink" href="#extracting-bow-features-using-scikit-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code></p>
 <ul>
@@ -4964,21 +5561,19 @@ Name: major, dtype: int64
 </ul>
 </li>
 </ul>
-<p>Note: In the Natural Language Processing (NLP) community a text data set is referred to as a <strong>corpus</strong> (plural: corpora).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the Natural Language Processing (NLP) community text data  is referred to as a <strong>corpus</strong> (plural: corpora). ```</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Lol you are always so convincing.&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;As per your request &#39;Melle Melle (Oru Minnaminunginte Nurungu Vettam)&#39; has been set as your callertune for all Callers. Press *9 to copy your friends Callertune&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;non spam&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
 <span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 <span class="n">bow_df</span>
 </pre></div>
 </div>
@@ -5006,23 +5601,47 @@ Name: major, dtype: int64
       <th>100000</th>
       <th>11</th>
       <th>900</th>
-      <th>all</th>
       <th>always</th>
       <th>are</th>
       <th>around</th>
       <th>as</th>
       <th>been</th>
+      <th>call</th>
       <th>...</th>
       <th>update</th>
       <th>urgent</th>
       <th>usf</th>
       <th>valued</th>
-      <th>vettam</th>
+      <th>wait</th>
       <th>week</th>
       <th>with</th>
       <th>won</th>
       <th>you</th>
       <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -5035,9 +5654,9 @@ Name: major, dtype: int64
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
       <td>...</td>
       <td>0</td>
       <td>1</td>
@@ -5056,9 +5675,9 @@ Name: major, dtype: int64
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -5082,8 +5701,8 @@ Name: major, dtype: int64
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
@@ -5133,7 +5752,7 @@ Name: major, dtype: int64
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>...</td>
       <td>2</td>
       <td>0</td>
@@ -5147,17 +5766,17 @@ Name: major, dtype: int64
       <td>1</td>
     </tr>
     <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
+      <th>Congrats! I can't wait to see you!!</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>2</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
@@ -5167,13 +5786,29 @@ Name: major, dtype: int64
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
-      <td>3</td>
     </tr>
   </tbody>
 </table>
-<p>6 rows × 72 columns</p>
+<p>6 rows × 61 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Note that unlike other transformers we are passing a <code class="docutils literal notranslate"><span class="pre">Series</span></code> object to <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code>. For other transformers, you can define one transformer for more than one columns. But with <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> you need to define separate <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> transformers for each text column, if you have more than one text columns.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5182,12 +5817,25 @@ Name: major, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6x72 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 85 stored elements in Compressed Sparse Row format&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6x61 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 71 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="why-sparse-matrices">
+<h3>Why sparse matrices?<a class="headerlink" href="#why-sparse-matrices" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Most words do not appear in a given document.</p></li>
+<li><p>We get massive computational savings if we only store the nonzero elements.</p></li>
+<li><p>There is a bit of overhead, because we also need to store the locations:</p>
+<ul>
+<li><p>e.g. “location (3,27): 1”.</p></li>
+</ul>
+</li>
+<li><p>However, if the fraction of nonzero is small, this is a huge win.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The total number of elements: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
@@ -5203,34 +5851,21 @@ Name: major, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of elements:  432
-The number of non-zero elements:  85
-Proportion of non-zero elements: 0.1968
-The value at cell 3,31 is: 1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of elements:  366
+The number of non-zero elements:  71
+Proportion of non-zero elements: 0.1940
+The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="why-sparse-matrices">
-<h2>Why sparse matrices?<a class="headerlink" href="#why-sparse-matrices" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Most words do not appear in a given document.</p></li>
-<li><p>We get massive computational savings if we only store the nonzero elements.</p></li>
-<li><p>There is a bit of overhead, because we also need to store the locations:</p>
-<ul>
-<li><p>e.g. “location (3,31): 1”.</p></li>
-</ul>
-</li>
-<li><p>However, if the fraction of nonzero is small, this is a huge win.</p></li>
-</ul>
 <p>Question for you</p>
 <ul class="simple">
 <li><p>What would happen if you apply <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> on sparse data?</p></li>
 </ul>
 </div>
 <div class="section" id="onehotencoder-and-sparse-features">
-<h2><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> and sparse features<a class="headerlink" href="#onehotencoder-and-sparse-features" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> and sparse features<a class="headerlink" href="#onehotencoder-and-sparse-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>By default, <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> also creates sparse features.</p></li>
 <li><p>You could set <code class="docutils literal notranslate"><span class="pre">sparse=False</span></code> to get a regular <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array.</p></li>
@@ -5239,7 +5874,7 @@ The value at cell 3,31 is: 1
 </ul>
 </div>
 <div class="section" id="important-hyperparameters-of-countvectorizer">
-<h2>Important hyperparameters of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code><a class="headerlink" href="#important-hyperparameters-of-countvectorizer" title="Permalink to this headline">¶</a></h2>
+<h3>Important hyperparameters of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code><a class="headerlink" href="#important-hyperparameters-of-countvectorizer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">binary</span></code></p>
 <ul>
@@ -5268,122 +5903,12 @@ The value at cell 3,31 is: 1
 </li>
 </ul>
 <p>Let’s look at all features, i.e., words (along with their frequencies).</p>
-<p>We can control the size of X (the number of features) using <code class="docutils literal notranslate"><span class="pre">max_features</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
-<span class="n">bow_df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>as</th>
-      <th>free</th>
-      <th>the</th>
-      <th>to</th>
-      <th>update</th>
-      <th>urgent</th>
-      <th>you</th>
-      <th>your</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Lol you are always so convincing.</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Nah I don't think he goes to usf, he lives around here though</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8_binary</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8_binary</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
 <span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec8_binary</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span>
+    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">bow_df</span>
 </pre></div>
@@ -5408,30 +5933,93 @@ The value at cell 3,31 is: 1
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>08002986030</th>
+      <th>100000</th>
+      <th>11</th>
+      <th>900</th>
+      <th>always</th>
+      <th>are</th>
+      <th>around</th>
       <th>as</th>
       <th>been</th>
-      <th>free</th>
-      <th>have</th>
-      <th>prize</th>
-      <th>to</th>
+      <th>call</th>
+      <th>...</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>usf</th>
+      <th>valued</th>
+      <th>wait</th>
+      <th>week</th>
+      <th>with</th>
+      <th>won</th>
       <th>you</th>
       <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -5448,40 +6036,444 @@ The value at cell 3,31 is: 1
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
       <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
       <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
       <td>1</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>0</td>
     </tr>
     <tr>
       <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
+      <td>...</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>As per your request 'Melle Melle (Oru Minnaminunginte Nurungu Vettam)' has been set as your callertune for all Callers. Press *9 to copy your friends Callertune</th>
-      <td>1</td>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 61 columns</p>
+</div></div></div>
+</div>
+<p>When we use <code class="docutils literal notranslate"><span class="pre">binary=True</span></code>, the representation uses presence/absence of words instead of word counts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec_binary</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec_binary</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec_binary</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">bow_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>08002986030</th>
+      <th>100000</th>
+      <th>11</th>
+      <th>900</th>
+      <th>always</th>
+      <th>are</th>
+      <th>around</th>
+      <th>as</th>
+      <th>been</th>
+      <th>call</th>
+      <th>...</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>usf</th>
+      <th>valued</th>
+      <th>wait</th>
+      <th>week</th>
+      <th>with</th>
+      <th>won</th>
+      <th>you</th>
+      <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 61 columns</p>
+</div></div></div>
+</div>
+<p>We can control the size of X (the number of features) using <code class="docutils literal notranslate"><span class="pre">max_features</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+<span class="n">bow_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">X_counts</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span> <span class="n">index</span><span class="o">=</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">bow_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>free</th>
+      <th>have</th>
+      <th>mobile</th>
+      <th>the</th>
+      <th>to</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>you</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
     </tr>
@@ -5498,7 +6490,7 @@ The value at cell 3,31 is: 1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">index</span><span class="o">=</span><span class="n">vec8</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
@@ -5535,20 +6527,20 @@ The value at cell 3,31 is: 1
       <td>5</td>
     </tr>
     <tr>
-      <th>your</th>
+      <th>you</th>
       <td>4</td>
-    </tr>
-    <tr>
-      <th>as</th>
-      <td>3</td>
     </tr>
     <tr>
       <th>free</th>
       <td>3</td>
     </tr>
     <tr>
-      <th>you</th>
-      <td>3</td>
+      <th>have</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>mobile</th>
+      <td>2</td>
     </tr>
     <tr>
       <th>the</th>
@@ -5569,7 +6561,7 @@ The value at cell 3,31 is: 1
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec8_binary</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8_binary</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vec8_binary</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">data</span><span class="o">=</span><span class="n">X_counts</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">index</span><span class="o">=</span><span class="n">vec8_binary</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(),</span>
@@ -5607,15 +6599,7 @@ The value at cell 3,31 is: 1
     </tr>
     <tr>
       <th>you</th>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>as</th>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>been</th>
-      <td>2</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>free</th>
@@ -5630,8 +6614,16 @@ The value at cell 3,31 is: 1
       <td>2</td>
     </tr>
     <tr>
-      <th>your</th>
+      <th>urgent</th>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>mobiles</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>months</th>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -5639,7 +6631,7 @@ The value at cell 3,31 is: 1
 </div>
 </div>
 <div class="section" id="preprocessing">
-<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Note that <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> is carrying out some preprocessing such as because of the default argument values</p>
 <ul>
@@ -5650,24 +6642,6 @@ The value at cell 3,31 is: 1
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([&#39;URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!&#39;,
-  &#39;Lol you are always so convincing.&#39;,
-  &quot;Nah I don&#39;t think he goes to usf, he lives around here though&quot;,
-  &#39;URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!&#39;,
-  &#39;Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030&#39;,
-  &quot;As per your request &#39;Melle Melle (Oru Minnaminunginte Nurungu Vettam)&#39; has been set as your callertune for all Callers. Press *9 to copy your friends Callertune&quot;],
- [&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -5675,44 +6649,29 @@ The value at cell 3,31 is: 1
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">],</span> <span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;countvectorizer&#39;, CountVectorizer()), (&#39;svc&#39;, SVC())])
-</pre></div>
-</div>
-</div>
+<div class="output text_html"><style>#sk-78251389-f4f0-4878-b032-1c04634e9c70 {color: black;background-color: white;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 pre{padding: 0;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-toggleable {background-color: white;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-estimator:hover {background-color: #d4ebff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-item {z-index: 1;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-parallel-item:only-child::after {width: 0;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-78251389-f4f0-4878-b032-1c04634e9c70 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-78251389-f4f0-4878-b032-1c04634e9c70" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8df2a3e9-0693-41d2-83cc-ad06cfd5bdb5" type="checkbox" ><label class="sk-toggleable__label" for="8df2a3e9-0693-41d2-83cc-ad06cfd5bdb5">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('countvectorizer', CountVectorizer()), ('svc', SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="819b547b-6da0-4403-839e-1abc6dc2ac04" type="checkbox" ><label class="sk-toggleable__label" for="819b547b-6da0-4403-839e-1abc6dc2ac04">CountVectorizer</label><div class="sk-toggleable__content"><pre>CountVectorizer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c3687c2b-6e72-45bb-9d9f-a20157526bf6" type="checkbox" ><label class="sk-toggleable__label" for="c3687c2b-6e72-45bb-9d9f-a20157526bf6">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;],
-      dtype=&#39;&lt;U8&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+      dtype=object)
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="is-this-a-realistic-representation-of-text-data">
-<h2>Is this a realistic representation of text data?<a class="headerlink" href="#is-this-a-realistic-representation-of-text-data" title="Permalink to this headline">¶</a></h2>
+<h3>Is this a realistic representation of text data?<a class="headerlink" href="#is-this-a-realistic-representation-of-text-data" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Of course this is not a great representation of language</p>
 <ul>
@@ -5723,19 +6682,212 @@ The value at cell 3,31 is: 1
 <li><p>But it works surprisingly well for many tasks.</p></li>
 <li><p>We will learn more expressive representations in the coming weeks.</p></li>
 </ul>
+<p><br><br></p>
 </div>
+<div class="section" id="id2">
+<h3>❓❓ Questions for you<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="countvectorizer-true-or-false">
-<h2><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>: True or False<a class="headerlink" href="#countvectorizer-true-or-false" title="Permalink to this headline">¶</a></h2>
+<h4><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>: True or False<a class="headerlink" href="#countvectorizer-true-or-false" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>As you increase the value for <code class="docutils literal notranslate"><span class="pre">max_features</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> the training score is likely to go up.</p></li>
-<li><p>If we encounter a word in the validation or the test split that’s not available in the training data, we’ll get an error.</p></li>
+<li><p>Suppose you are encoding text data using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>. If you encounter a word in the validation or the test split that’s not available in the training data, we’ll get an error.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_df</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> can be used to get rid of most frequently occurring words from the dictionary.</p></li>
 </ul>
+</div>
+<div class="section" id="identify-column-transformations">
+<h4>Identify column transformations<a class="headerlink" href="#identify-column-transformations" title="Permalink to this headline">¶</a></h4>
+<p>Consider the restaurant data from the survey you did a few weeks ago.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">restaurant_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cleaned_restaurant_data.csv&#39;</span><span class="p">)</span>
+<span class="n">restaurant_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>north_america</th>
+      <th>eat_out_freq</th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
+      <th>food_type</th>
+      <th>noise_level</th>
+      <th>good_server</th>
+      <th>comments</th>
+      <th>restaurant_name</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>29</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Other</td>
+      <td>no music</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>10</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>food tastes good</td>
+      <td>Midam</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>21</td>
+      <td>10</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>good food</td>
+      <td>pear tree</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>24</td>
+      <td>15</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>My love for Korean food</td>
+      <td>Dami</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Yes</td>
+      <td>5.0</td>
+      <td>23</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Canadian/American</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>Good food</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>22</td>
+      <td>60</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>food tasted great!</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>10000000</td>
+      <td>1000000</td>
+      <td>Canadian/American</td>
+      <td>crazy loud</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>CACTUS CLUB CAFE</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Yes</td>
+      <td>4.0</td>
+      <td>20</td>
+      <td>20</td>
+      <td>40</td>
+      <td>Chinese</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Yes</td>
+      <td>1.0</td>
+      <td>21</td>
+      <td>40</td>
+      <td>60</td>
+      <td>Italian</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>Frankie’s</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>20</td>
+      <td>50</td>
+      <td>45</td>
+      <td>Canadian/American</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>Steak was good, ambiance was nice and server was helpful.</td>
+      <td>Hy's steakhouse</td>
+      <td>like</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What all feature transformations you would apply on this dataset?</p>
 <p><br><br><br><br></p>
 </div>
 </div>
+</div>
 <div class="section" id="what-did-we-learn-today">
-<h1>What did we learn today?<a class="headerlink" href="#what-did-we-learn-today" title="Permalink to this headline">¶</a></h1>
+<h2>What did we learn today?<a class="headerlink" href="#what-did-we-learn-today" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Motivation to use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> syntax</p></li>
@@ -5755,6 +6907,7 @@ The value at cell 3,31 is: 1
 </ul>
 </li>
 </ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -5782,6 +6935,8 @@ The value at cell 3,31 is: 1
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="05_preprocessing-pipelines.html" title="previous page">Lecture 5: Preprocessing and <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> pipelines</a>
+    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
 
         </div>
         
