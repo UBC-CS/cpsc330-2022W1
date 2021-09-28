@@ -607,7 +607,7 @@
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
-<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span><span class="p">,</span> <span class="n">DummyRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
@@ -628,7 +628,7 @@
 <li><p>Exercises on pre-watched video 6.1 (~15 mins)</p></li>
 <li><p>Live explanation: More on <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> (~20 mins)</p></li>
 <li><p>Break (~5 mins)</p></li>
-<li><p>Live explanation: ColumnTransformer on California housing (~10 mins)</p></li>
+<li><p>Live explanation: ColumnTransformer on California housing dataset (~10 mins)</p></li>
 <li><p>Exercises on pre-watched video 6.2 (~15 mins)</p></li>
 <li><p>Summary and wrap up (~2 mins)</p></li>
 </ul>
@@ -637,10 +637,17 @@
 <h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>No class on Thursday.</p></li>
-<li><p>I’ve moved moved my Zoom office hour to Wednesday at 1pm this week. See the Calendar.</p></li>
 <li><p>Homework 3 is due on Oct 4th.</p></li>
-<li><p>I won’t be posting my solutions in the lecture notebooks anymore.</p></li>
-<li><p>Extra office hour on Wednesday.</p></li>
+<li><p>Scheduled extra office hours this week.</p>
+<ul>
+<li><p>Check the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</p></li>
+</ul>
+</li>
+<li><p>I won’t be posting my solutions in the lecture notebooks anymore because the notebooks are publicly available.</p>
+<ul>
+<li><p>Start a discussion on Piazza if you are unsure about any of the questions we discuss in class and I’ll be happy to respond there.</p></li>
+</ul>
+</li>
 <li><p>We’re working on Homework 2 grading. The grades will be released in a couple of days.</p></li>
 </ul>
 </div>
@@ -1974,7 +1981,7 @@ memory usage: 1.9+ KB
 <li><p>You could carry out cross-validation by passing a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object to <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>.</p></li>
 <li><p>After applying column transformer, the order of the columns in the transformed data has to be the same as the order of the columns in the original data.</p></li>
 <li><p>After applying a column transformer, the transformed data is always going to be of different shape than the original data.</p></li>
-<li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object, you get a numpy array.</p></li>
+<li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> object, you get a numpy ndarray.</p></li>
 </ol>
 </div>
 <div class="section" id="what-transformations-on-what-columns">
@@ -2065,6 +2072,180 @@ memory usage: 1.9+ KB
 <h3>Multiple transformations in a transformer<a class="headerlink" href="#multiple-transformations-in-a-transformer" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Recall that <code class="docutils literal notranslate"><span class="pre">lab2</span></code> has missing values.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>enjoy_course</th>
+      <th>ml_experience</th>
+      <th>major</th>
+      <th>class_attendance</th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab2</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>92</td>
+      <td>93.0</td>
+      <td>84</td>
+      <td>91</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Mechanical Engineering</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>94</td>
+      <td>90.0</td>
+      <td>80</td>
+      <td>83</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>78</td>
+      <td>85.0</td>
+      <td>83</td>
+      <td>80</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>92</td>
+      <td>91</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>4</td>
+      <td>77</td>
+      <td>83.0</td>
+      <td>90</td>
+      <td>92</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>no</td>
+      <td>1</td>
+      <td>Economics</td>
+      <td>Good</td>
+      <td>5</td>
+      <td>70</td>
+      <td>73.0</td>
+      <td>68</td>
+      <td>74</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>80</td>
+      <td>88.0</td>
+      <td>89</td>
+      <td>88</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Mechanical Engineering</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>95</td>
+      <td>93.0</td>
+      <td>69</td>
+      <td>79</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Linguistics</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>97</td>
+      <td>90.0</td>
+      <td>94</td>
+      <td>82</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Mathematics</td>
+      <td>Average</td>
+      <td>4</td>
+      <td>95</td>
+      <td>82.0</td>
+      <td>94</td>
+      <td>94</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
 <li><p>So we would like to apply more than one transformations on it: imputation and scaling.</p></li>
 <li><p>We can treat <code class="docutils literal notranslate"><span class="pre">lab2</span></code> separately, but we can also include it into <code class="docutils literal notranslate"><span class="pre">numeric_feats</span></code> and apply both transformations on all numeric columns.</p></li>
 </ul>
@@ -2086,7 +2267,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <ul class="simple">
-<li><p>To apply more than one transformations we can define a pipeline inside a column transformer.</p></li>
+<li><p>To apply more than one transformations we can define a pipeline inside a column transformer to chain different transformations.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2590,7 +2771,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-691a4880-baa8-481a-9291-149e614b80fd {color: black;background-color: white;}#sk-691a4880-baa8-481a-9291-149e614b80fd pre{padding: 0;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-toggleable {background-color: white;}#sk-691a4880-baa8-481a-9291-149e614b80fd label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-691a4880-baa8-481a-9291-149e614b80fd input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-691a4880-baa8-481a-9291-149e614b80fd input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-estimator:hover {background-color: #d4ebff;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-item {z-index: 1;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-parallel-item:only-child::after {width: 0;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-691a4880-baa8-481a-9291-149e614b80fd div.sk-container {display: inline-block;position: relative;}</style><div id="sk-691a4880-baa8-481a-9291-149e614b80fd" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2404d8ab-dc20-4d0d-a43e-3facd631675e" type="checkbox" ><label class="sk-toggleable__label" for="2404d8ab-dc20-4d0d-a43e-3facd631675e">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+<div class="output text_html"><style>#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea {color: black;background-color: white;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea pre{padding: 0;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-toggleable {background-color: white;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-estimator:hover {background-color: #d4ebff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-item {z-index: 1;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-parallel-item:only-child::after {width: 0;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea div.sk-container {display: inline-block;position: relative;}</style><div id="sk-1ec5b1f0-c1ba-4282-8da0-cb6947f423ea" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d63fbdde-12b4-4b69-b1a7-3157cd8642c7" type="checkbox" ><label class="sk-toggleable__label" for="d63fbdde-12b4-4b69-b1a7-3157cd8642c7">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
                                  Pipeline(steps=[('simpleimputer',
                                                   SimpleImputer()),
                                                  ('standardscaler',
@@ -2601,7 +2782,30 @@ memory usage: 1.9+ KB
                                 ('passthrough', 'passthrough',
                                  ['ml_experience']),
                                 ('drop', 'drop',
-                                 ['class_attendance', 'enjoy_course'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2de9a4d7-cb9d-4701-80a2-f9dfcba5e804" type="checkbox" ><label class="sk-toggleable__label" for="2de9a4d7-cb9d-4701-80a2-f9dfcba5e804">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3d78adab-762f-447d-aeb2-eb610ee1e850" type="checkbox" ><label class="sk-toggleable__label" for="3d78adab-762f-447d-aeb2-eb610ee1e850">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="cad234c5-86be-4ebe-b0dd-037578b55658" type="checkbox" ><label class="sk-toggleable__label" for="cad234c5-86be-4ebe-b0dd-037578b55658">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="65ad3486-8143-4071-a6bf-30e870e4e9ee" type="checkbox" ><label class="sk-toggleable__label" for="65ad3486-8143-4071-a6bf-30e870e4e9ee">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a5317ef3-c06a-49b2-ad54-7951be3d9d87" type="checkbox" ><label class="sk-toggleable__label" for="a5317ef3-c06a-49b2-ad54-7951be3d9d87">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2534b2d2-f8e9-44f5-ae3b-04f6cf38a1ae" type="checkbox" ><label class="sk-toggleable__label" for="2534b2d2-f8e9-44f5-ae3b-04f6cf38a1ae">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e19f5c43-bb79-4696-a89b-f0c1e51b25e3" type="checkbox" ><label class="sk-toggleable__label" for="e19f5c43-bb79-4696-a89b-f0c1e51b25e3">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="78f61bd5-1165-4ae2-a808-da6bb33b6e28" type="checkbox" ><label class="sk-toggleable__label" for="78f61bd5-1165-4ae2-a808-da6bb33b6e28">drop</label><div class="sk-toggleable__content"><pre>['class_attendance', 'enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a7fa0cd0-71eb-4925-9583-e4ad039d7388" type="checkbox" ><label class="sk-toggleable__label" for="a7fa0cd0-71eb-4925-9583-e4ad039d7388">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+                                 ['class_attendance', 'enjoy_course'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="fef19eb3-791f-4357-b2c9-267723ef5d80" type="checkbox" ><label class="sk-toggleable__label" for="fef19eb3-791f-4357-b2c9-267723ef5d80">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="08470dd7-9cd2-409c-8a39-873c93aa2c38" type="checkbox" ><label class="sk-toggleable__label" for="08470dd7-9cd2-409c-8a39-873c93aa2c38">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7aa95ae4-d4c4-4305-9704-719070606888" type="checkbox" ><label class="sk-toggleable__label" for="7aa95ae4-d4c4-4305-9704-719070606888">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ffc2fe98-0457-43b9-9512-32d8a22896a3" type="checkbox" ><label class="sk-toggleable__label" for="ffc2fe98-0457-43b9-9512-32d8a22896a3">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a3fd1ba7-39e2-4032-97e2-b32b8d150812" type="checkbox" ><label class="sk-toggleable__label" for="a3fd1ba7-39e2-4032-97e2-b32b8d150812">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f8d1dc79-d7d5-48e9-89e9-f01dd524c74d" type="checkbox" ><label class="sk-toggleable__label" for="f8d1dc79-d7d5-48e9-89e9-f01dd524c74d">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="bfea9453-e429-4ea2-8c15-a422b79e2858" type="checkbox" ><label class="sk-toggleable__label" for="bfea9453-e429-4ea2-8c15-a422b79e2858">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="fe7d7aa5-6ada-4050-83a3-db3ef136bc65" type="checkbox" ><label class="sk-toggleable__label" for="fe7d7aa5-6ada-4050-83a3-db3ef136bc65">drop</label><div class="sk-toggleable__content"><pre>['class_attendance', 'enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1055ecae-a11a-4384-8f95-aeb47cb63943" type="checkbox" ><label class="sk-toggleable__label" for="1055ecae-a11a-4384-8f95-aeb47cb63943">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ColumnTransformer(transformers=[(&#39;pipeline&#39;,
+                                 Pipeline(steps=[(&#39;simpleimputer&#39;,
+                                                  SimpleImputer()),
+                                                 (&#39;standardscaler&#39;,
+                                                  StandardScaler())]),
+                                 [&#39;university_years&#39;, &#39;lab1&#39;, &#39;lab2&#39;, &#39;lab3&#39;,
+                                  &#39;lab4&#39;, &#39;quiz1&#39;]),
+                                (&#39;onehotencoder&#39;, OneHotEncoder(), [&#39;major&#39;]),
+                                (&#39;passthrough&#39;, &#39;passthrough&#39;,
+                                 [&#39;ml_experience&#39;]),
+                                (&#39;drop&#39;, &#39;drop&#39;,
+                                 [&#39;class_attendance&#39;, &#39;enjoy_course&#39;])])
+</pre></div>
+</div>
+</div>
 </div>
 <p><br><br></p>
 </div>
@@ -2610,7 +2814,7 @@ memory usage: 1.9+ KB
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> column is different than the <code class="docutils literal notranslate"><span class="pre">major</span></code> column in that there is some ordering of the values.</p>
 <ul>
-<li><p>Excellent &gt; Good &gt; poor</p></li>
+<li><p>Excellent &gt; Good &gt; Average &gt; poor</p></li>
 </ul>
 </li>
 </ul>
@@ -2824,7 +3028,7 @@ memory usage: 1.9+ KB
 <ul class="simple">
 <li><p>What’s the problem here?</p>
 <ul>
-<li><p>The encoder doesn’t know the order</p></li>
+<li><p>The encoder doesn’t know the order.</p></li>
 </ul>
 </li>
 <li><p>We can examine unique categories manually, order them based on our intuitions, and then provide this human knowledge to the transformer.</p></li>
@@ -2877,9 +3081,6 @@ memory usage: 1.9+ KB
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[array([&#39;Poor&#39;, &#39;Average&#39;, &#39;Good&#39;, &#39;Excellent&#39;], dtype=object)]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -2969,7 +3170,7 @@ memory usage: 1.9+ KB
 </ul>
 </li>
 </ul>
-<p>Now let’s apply incorporate ordinal encoding of <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> in our column transformer.</p>
+<p>Now let’s incorporate ordinal encoding of <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> in our column transformer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span>
@@ -2983,7 +3184,7 @@ memory usage: 1.9+ KB
 <span class="n">categorical_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span>  <span class="c1"># apply one-hot encoding</span>
 <span class="n">ordinal_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;class_attendance&quot;</span><span class="p">]</span>  <span class="c1"># apply ordinal encoding</span>
 <span class="n">passthrough_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ml_experience&quot;</span><span class="p">]</span>  <span class="c1"># do not apply any transformation</span>
-<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">drop_feats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span>  <span class="c1"># do not include these features</span>
 </pre></div>
 </div>
 </div>
@@ -3014,7 +3215,7 @@ memory usage: 1.9+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 {color: black;background-color: white;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 pre{padding: 0;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-toggleable {background-color: white;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-estimator:hover {background-color: #d4ebff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-item {z-index: 1;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-parallel-item:only-child::after {width: 0;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-f6675d6b-c0cb-4682-b818-023e5e97bf94 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-f6675d6b-c0cb-4682-b818-023e5e97bf94" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f7294b7f-486b-47d4-8fe3-cfbcf4f952c0" type="checkbox" ><label class="sk-toggleable__label" for="f7294b7f-486b-47d4-8fe3-cfbcf4f952c0">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+<div class="output text_html"><style>#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f {color: black;background-color: white;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f pre{padding: 0;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-toggleable {background-color: white;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-estimator:hover {background-color: #d4ebff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-item {z-index: 1;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-parallel-item:only-child::after {width: 0;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f div.sk-container {display: inline-block;position: relative;}</style><div id="sk-8648e0c9-72f1-49aa-8bac-cb98d14d636f" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="da468363-9510-4c59-86d0-ece28daca2ac" type="checkbox" ><label class="sk-toggleable__label" for="da468363-9510-4c59-86d0-ece28daca2ac">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
                                  Pipeline(steps=[('simpleimputer',
                                                   SimpleImputer()),
                                                  ('standardscaler',
@@ -3030,8 +3231,8 @@ memory usage: 1.9+ KB
                                  ['class_attendance']),
                                 ('passthrough', 'passthrough',
                                  ['ml_experience']),
-                                ('drop', 'drop', [])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="43f20c5f-7c2b-47c7-ba4e-7dfee825b22c" type="checkbox" ><label class="sk-toggleable__label" for="43f20c5f-7c2b-47c7-ba4e-7dfee825b22c">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ba8bd830-b38f-4d6f-b358-292653cf865b" type="checkbox" ><label class="sk-toggleable__label" for="ba8bd830-b38f-4d6f-b358-292653cf865b">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ec5b70c9-4879-4542-9223-f9479dc32b4d" type="checkbox" ><label class="sk-toggleable__label" for="ec5b70c9-4879-4542-9223-f9479dc32b4d">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="27395013-d406-4388-a3cd-fed0856b4e8a" type="checkbox" ><label class="sk-toggleable__label" for="27395013-d406-4388-a3cd-fed0856b4e8a">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="db6f0eb1-1d49-4561-8774-be79fa54e1e7" type="checkbox" ><label class="sk-toggleable__label" for="db6f0eb1-1d49-4561-8774-be79fa54e1e7">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="04bd2cf5-352e-470b-b037-fa3f6d71ab31" type="checkbox" ><label class="sk-toggleable__label" for="04bd2cf5-352e-470b-b037-fa3f6d71ab31">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="79e9852a-7751-4b1e-9559-edebebaaf5b1" type="checkbox" ><label class="sk-toggleable__label" for="79e9852a-7751-4b1e-9559-edebebaaf5b1">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
-               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d34d2da0-da94-457f-b8e8-b653175f0f01" type="checkbox" ><label class="sk-toggleable__label" for="d34d2da0-da94-457f-b8e8-b653175f0f01">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7bc8c5a6-fc9e-4861-95a9-a354482550e1" type="checkbox" ><label class="sk-toggleable__label" for="7bc8c5a6-fc9e-4861-95a9-a354482550e1">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="bdca8155-51f5-46cc-9786-19e6d6c1106e" type="checkbox" ><label class="sk-toggleable__label" for="bdca8155-51f5-46cc-9786-19e6d6c1106e">drop</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="11df12dc-7cf7-4296-b1db-ae52cc176dce" type="checkbox" ><label class="sk-toggleable__label" for="11df12dc-7cf7-4296-b1db-ae52cc176dce">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+                                ('drop', 'drop', ['enjoy_course'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="79779fae-90ad-4df4-b6e8-197f64169245" type="checkbox" ><label class="sk-toggleable__label" for="79779fae-90ad-4df4-b6e8-197f64169245">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6a67dda2-fb2c-46f4-ba76-87f9e8c8bb6c" type="checkbox" ><label class="sk-toggleable__label" for="6a67dda2-fb2c-46f4-ba76-87f9e8c8bb6c">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f3ceadee-8ed0-43c8-a228-f5f616966eab" type="checkbox" ><label class="sk-toggleable__label" for="f3ceadee-8ed0-43c8-a228-f5f616966eab">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8ea9831c-efb5-4ef2-af13-64997664e2c7" type="checkbox" ><label class="sk-toggleable__label" for="8ea9831c-efb5-4ef2-af13-64997664e2c7">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="fbb8e183-e4a2-4529-a719-daf726772ded" type="checkbox" ><label class="sk-toggleable__label" for="fbb8e183-e4a2-4529-a719-daf726772ded">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="27442eb4-cfca-4833-bf26-598afaf6e8a8" type="checkbox" ><label class="sk-toggleable__label" for="27442eb4-cfca-4833-bf26-598afaf6e8a8">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="32d0bf34-b9e0-45b8-8c29-b77c75dfd2a6" type="checkbox" ><label class="sk-toggleable__label" for="32d0bf34-b9e0-45b8-8c29-b77c75dfd2a6">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f14784dc-2670-4eb5-84d9-3a3decd6e0be" type="checkbox" ><label class="sk-toggleable__label" for="f14784dc-2670-4eb5-84d9-3a3decd6e0be">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ae216230-a8f1-4abf-87a3-38f623279d73" type="checkbox" ><label class="sk-toggleable__label" for="ae216230-a8f1-4abf-87a3-38f623279d73">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="588cd316-16d5-4470-b3ca-aa5925eb94a2" type="checkbox" ><label class="sk-toggleable__label" for="588cd316-16d5-4470-b3ca-aa5925eb94a2">drop</label><div class="sk-toggleable__content"><pre>['enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a491a789-0432-4ea7-b07d-5db4d920c797" type="checkbox" ><label class="sk-toggleable__label" for="a491a789-0432-4ea7-b07d-5db4d920c797">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3534,7 +3735,7 @@ memory usage: 1.9+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scores = cross_validate(pipe, X, y, cv=5, return_train_score=True)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># scores = cross_validate(pipe, X, y, return_train_score=True)</span>
 <span class="c1"># pd.DataFrame(scores)</span>
 </pre></div>
 </div>
@@ -3604,7 +3805,7 @@ Name: major, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 {color: black;background-color: white;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 pre{padding: 0;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-toggleable {background-color: white;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-item {z-index: 1;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-parallel-item:only-child::after {width: 0;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-56274f9d-333f-4705-9b76-70335c8d7fe1 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-56274f9d-333f-4705-9b76-70335c8d7fe1" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a5590b3c-234e-4145-a49a-a013ca1a32b2" type="checkbox" ><label class="sk-toggleable__label" for="a5590b3c-234e-4145-a49a-a013ca1a32b2">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+<div class="output text_html"><style>#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba {color: black;background-color: white;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba pre{padding: 0;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-toggleable {background-color: white;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-estimator:hover {background-color: #d4ebff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-item {z-index: 1;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-parallel-item:only-child::after {width: 0;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba div.sk-container {display: inline-block;position: relative;}</style><div id="sk-906a4121-6180-4e3e-ad6f-9f58d4c6eaba" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1cce2f26-efe6-4151-b78c-9f7ad397d2a9" type="checkbox" ><label class="sk-toggleable__label" for="1cce2f26-efe6-4151-b78c-9f7ad397d2a9">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
                                  Pipeline(steps=[('simpleimputer',
                                                   SimpleImputer()),
                                                  ('standardscaler',
@@ -3622,8 +3823,8 @@ Name: major, dtype: int64
                                  ['class_attendance']),
                                 ('passthrough', 'passthrough',
                                  ['ml_experience']),
-                                ('drop', 'drop', [])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4d2b6e2d-76ab-4ca2-9663-37812c7538f3" type="checkbox" ><label class="sk-toggleable__label" for="4d2b6e2d-76ab-4ca2-9663-37812c7538f3">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5b235383-c867-4959-a63f-2cf29784eb5a" type="checkbox" ><label class="sk-toggleable__label" for="5b235383-c867-4959-a63f-2cf29784eb5a">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="903a32c5-0f63-4991-80ce-1a700c060ad7" type="checkbox" ><label class="sk-toggleable__label" for="903a32c5-0f63-4991-80ce-1a700c060ad7">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1521c4b7-bbf9-4fd6-8658-f957066d8c19" type="checkbox" ><label class="sk-toggleable__label" for="1521c4b7-bbf9-4fd6-8658-f957066d8c19">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d87c6908-9d3b-44a1-a6bd-b9ea9b56fd5c" type="checkbox" ><label class="sk-toggleable__label" for="d87c6908-9d3b-44a1-a6bd-b9ea9b56fd5c">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9902572b-05b5-49d8-92f9-a6f86dcaa2f8" type="checkbox" ><label class="sk-toggleable__label" for="9902572b-05b5-49d8-92f9-a6f86dcaa2f8">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9b4c2410-15aa-41a8-b056-7bed662fa84e" type="checkbox" ><label class="sk-toggleable__label" for="9b4c2410-15aa-41a8-b056-7bed662fa84e">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
-               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4a832b0d-0243-4bdb-81a8-cc346ebca4ee" type="checkbox" ><label class="sk-toggleable__label" for="4a832b0d-0243-4bdb-81a8-cc346ebca4ee">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="000108cd-67e8-4248-b91b-9c99fcaff4fe" type="checkbox" ><label class="sk-toggleable__label" for="000108cd-67e8-4248-b91b-9c99fcaff4fe">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f90c936b-66f0-4eb0-8849-fedd8902ea4b" type="checkbox" ><label class="sk-toggleable__label" for="f90c936b-66f0-4eb0-8849-fedd8902ea4b">drop</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c66b3f82-33f2-4aba-9e61-c810f4524709" type="checkbox" ><label class="sk-toggleable__label" for="c66b3f82-33f2-4aba-9e61-c810f4524709">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+                                ('drop', 'drop', ['enjoy_course'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="21ddde5f-1c42-4fb3-8cf4-5f310a2976c8" type="checkbox" ><label class="sk-toggleable__label" for="21ddde5f-1c42-4fb3-8cf4-5f310a2976c8">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f827c4b7-36b5-410e-b524-c5d4b8b81fc1" type="checkbox" ><label class="sk-toggleable__label" for="f827c4b7-36b5-410e-b524-c5d4b8b81fc1">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="93d7f6a7-2cb3-47c1-acaf-b80d2a488715" type="checkbox" ><label class="sk-toggleable__label" for="93d7f6a7-2cb3-47c1-acaf-b80d2a488715">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="04b812ff-f1da-4966-bcde-2be138f21ae4" type="checkbox" ><label class="sk-toggleable__label" for="04b812ff-f1da-4966-bcde-2be138f21ae4">onehotencoder</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6f34f964-3df1-4176-a358-9914cd9e0216" type="checkbox" ><label class="sk-toggleable__label" for="6f34f964-3df1-4176-a358-9914cd9e0216">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ef8e5432-6664-4a94-815c-9212ef1301c9" type="checkbox" ><label class="sk-toggleable__label" for="ef8e5432-6664-4a94-815c-9212ef1301c9">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6ea43dd1-96a6-4519-836e-c2da84325269" type="checkbox" ><label class="sk-toggleable__label" for="6ea43dd1-96a6-4519-836e-c2da84325269">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ecc62cc8-18fa-4718-97aa-824b8037e7a7" type="checkbox" ><label class="sk-toggleable__label" for="ecc62cc8-18fa-4718-97aa-824b8037e7a7">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="65b62d42-e05e-4def-a698-c50fc9704f2e" type="checkbox" ><label class="sk-toggleable__label" for="65b62d42-e05e-4def-a698-c50fc9704f2e">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="20d4d084-2a04-4d8a-843c-3c1b7634f37d" type="checkbox" ><label class="sk-toggleable__label" for="20d4d084-2a04-4d8a-843c-3c1b7634f37d">drop</label><div class="sk-toggleable__content"><pre>['enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c7d91395-6f11-4673-91f4-72b27edb3ceb" type="checkbox" ><label class="sk-toggleable__label" for="c7d91395-6f11-4673-91f4-72b27edb3ceb">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3667,36 +3868,36 @@ Name: major, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.006369</td>
-      <td>0.003134</td>
+      <td>0.006659</td>
+      <td>0.003238</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005697</td>
-      <td>0.003113</td>
+      <td>0.005634</td>
+      <td>0.003092</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.005566</td>
-      <td>0.003066</td>
+      <td>0.005613</td>
+      <td>0.003111</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.005559</td>
-      <td>0.003096</td>
+      <td>0.005689</td>
+      <td>0.003099</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005685</td>
-      <td>0.003100</td>
+      <td>0.005582</td>
+      <td>0.003112</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -3729,32 +3930,16 @@ Name: major, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     yes
-1     yes
-2     yes
-3      no
-4     yes
-5      no
-6     yes
-7      no
-8      no
-9     yes
-10    yes
-11    yes
-12    yes
-13    yes
-14     no
-15     no
-16    yes
-17    yes
-18     no
-19     no
-20    yes
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    yes
+1    yes
+2    yes
+3     no
+4    yes
 Name: enjoy_course, dtype: object
 </pre></div>
 </div>
@@ -3765,7 +3950,8 @@ Name: enjoy_course, dtype: object
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe_enc</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s2">&quot;if_binary&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ohe_enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]])</span>
 <span class="n">transformed</span> <span class="o">=</span> <span class="n">ohe_enc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]])</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bin_enc&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;enjoy_course_enc&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">[[</span><span class="s2">&quot;enjoy_course&quot;</span><span class="p">]],</span> <span class="n">df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3788,92 +3974,59 @@ Name: enjoy_course, dtype: object
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>bin_enc</th>
+      <th>enjoy_course</th>
+      <th>enjoy_course_enc</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>no</td>
       <td>0</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
     <tr>
       <th>5</th>
+      <td>no</td>
       <td>0</td>
     </tr>
     <tr>
       <th>6</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
     <tr>
       <th>7</th>
+      <td>no</td>
       <td>0</td>
     </tr>
     <tr>
       <th>8</th>
+      <td>no</td>
       <td>0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>20</th>
+      <td>yes</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -3931,7 +4084,7 @@ Name: enjoy_course, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 {color: black;background-color: white;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 pre{padding: 0;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-toggleable {background-color: white;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-item {z-index: 1;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-parallel-item:only-child::after {width: 0;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-4d8ce56b-5668-444c-ab3a-46524a30b5d4" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9c5c0c31-76a7-4187-8440-746edb0af5aa" type="checkbox" ><label class="sk-toggleable__label" for="9c5c0c31-76a7-4187-8440-746edb0af5aa">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+<div class="output text_html"><style>#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 {color: black;background-color: white;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 pre{padding: 0;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-toggleable {background-color: white;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-item {z-index: 1;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-parallel-item:only-child::after {width: 0;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-f17cb8bb-ded3-4d5e-a160-c40a6dce76f4" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="1988a91a-9363-4e2c-8d93-4277ec45144a" type="checkbox" ><label class="sk-toggleable__label" for="1988a91a-9363-4e2c-8d93-4277ec45144a">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
                                  Pipeline(steps=[('simpleimputer',
                                                   SimpleImputer()),
                                                  ('standardscaler',
@@ -3952,8 +4105,8 @@ Name: enjoy_course, dtype: object
                                                dtype=<class 'int'>),
                                  ['enjoy_course']),
                                 ('passthrough', 'passthrough',
-                                 ['ml_experience'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="73437d81-0568-4cf9-b34a-b7d88a62736d" type="checkbox" ><label class="sk-toggleable__label" for="73437d81-0568-4cf9-b34a-b7d88a62736d">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="0bb6203d-a236-4da1-ab96-ac05c249a4e4" type="checkbox" ><label class="sk-toggleable__label" for="0bb6203d-a236-4da1-ab96-ac05c249a4e4">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f182a988-a65b-4034-b59f-5e4b352a8d88" type="checkbox" ><label class="sk-toggleable__label" for="f182a988-a65b-4034-b59f-5e4b352a8d88">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9a354de0-cfe7-414c-b802-025ce062100d" type="checkbox" ><label class="sk-toggleable__label" for="9a354de0-cfe7-414c-b802-025ce062100d">onehotencoder-1</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6fc31083-7da9-4292-850b-4c39a4072241" type="checkbox" ><label class="sk-toggleable__label" for="6fc31083-7da9-4292-850b-4c39a4072241">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="0dc365d6-f01d-42cf-bb12-3b51e701e6f9" type="checkbox" ><label class="sk-toggleable__label" for="0dc365d6-f01d-42cf-bb12-3b51e701e6f9">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="57d59f78-1662-4815-8e20-9353fd9cc05d" type="checkbox" ><label class="sk-toggleable__label" for="57d59f78-1662-4815-8e20-9353fd9cc05d">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
-               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f72cc198-cb22-4b8c-8b66-1c62e7540209" type="checkbox" ><label class="sk-toggleable__label" for="f72cc198-cb22-4b8c-8b66-1c62e7540209">onehotencoder-2</label><div class="sk-toggleable__content"><pre>['enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="0d85647e-4a11-47f8-90b6-1a4204b76c1d" type="checkbox" ><label class="sk-toggleable__label" for="0d85647e-4a11-47f8-90b6-1a4204b76c1d">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(drop='if_binary', dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c2e6b27a-4c08-4a0f-9f04-5165d373a170" type="checkbox" ><label class="sk-toggleable__label" for="c2e6b27a-4c08-4a0f-9f04-5165d373a170">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e9656000-6139-4422-ae8f-e8a445424b9e" type="checkbox" ><label class="sk-toggleable__label" for="e9656000-6139-4422-ae8f-e8a445424b9e">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+                                 ['ml_experience'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="27792f74-0085-4d31-be94-8ac419affcc1" type="checkbox" ><label class="sk-toggleable__label" for="27792f74-0085-4d31-be94-8ac419affcc1">pipeline</label><div class="sk-toggleable__content"><pre>['university_years', 'lab1', 'lab2', 'lab3', 'lab4', 'quiz1']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d9b3c0f6-2b95-4623-a87d-3c8a18e40bde" type="checkbox" ><label class="sk-toggleable__label" for="d9b3c0f6-2b95-4623-a87d-3c8a18e40bde">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4de44799-c743-4786-b7c6-68e77dab14e6" type="checkbox" ><label class="sk-toggleable__label" for="4de44799-c743-4786-b7c6-68e77dab14e6">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="56621e9e-528f-49eb-93c5-c40c55d01d08" type="checkbox" ><label class="sk-toggleable__label" for="56621e9e-528f-49eb-93c5-c40c55d01d08">onehotencoder-1</label><div class="sk-toggleable__content"><pre>['major']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="cc018455-7ba9-494e-9b79-eb5fec16ae26" type="checkbox" ><label class="sk-toggleable__label" for="cc018455-7ba9-494e-9b79-eb5fec16ae26">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9a3301af-8551-44e7-a17d-e8baa7ef5722" type="checkbox" ><label class="sk-toggleable__label" for="9a3301af-8551-44e7-a17d-e8baa7ef5722">ordinalencoder</label><div class="sk-toggleable__content"><pre>['class_attendance']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="dc0a5fa9-fec0-488d-9fbb-b1e15117bf59" type="checkbox" ><label class="sk-toggleable__label" for="dc0a5fa9-fec0-488d-9fbb-b1e15117bf59">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[['Poor', 'Average', 'Good', 'Excellent']],
+               dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f89fb8c7-0309-45a0-8ce8-f3d55d5c2267" type="checkbox" ><label class="sk-toggleable__label" for="f89fb8c7-0309-45a0-8ce8-f3d55d5c2267">onehotencoder-2</label><div class="sk-toggleable__content"><pre>['enjoy_course']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="cb5c374f-f226-4654-bfbe-a1d2f3b1320d" type="checkbox" ><label class="sk-toggleable__label" for="cb5c374f-f226-4654-bfbe-a1d2f3b1320d">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(drop='if_binary', dtype=<class 'int'>)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5cdac8c1-bb92-4f37-9e72-c07accf832c5" type="checkbox" ><label class="sk-toggleable__label" for="5cdac8c1-bb92-4f37-9e72-c07accf832c5">passthrough</label><div class="sk-toggleable__content"><pre>['ml_experience']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="93a2bac0-0868-464a-98a5-960795e4d4dd" type="checkbox" ><label class="sk-toggleable__label" for="93a2bac0-0868-464a-98a5-960795e4d4dd">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3997,42 +4150,46 @@ Name: enjoy_course, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.007193</td>
-      <td>0.003840</td>
+      <td>0.007180</td>
+      <td>0.003753</td>
       <td>1.00</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.006522</td>
-      <td>0.003697</td>
+      <td>0.006415</td>
+      <td>0.003723</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.006539</td>
-      <td>0.003644</td>
+      <td>0.006440</td>
+      <td>0.003803</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.006659</td>
-      <td>0.004235</td>
+      <td>0.006461</td>
+      <td>0.003709</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.007150</td>
-      <td>0.003864</td>
+      <td>0.006573</td>
+      <td>0.003616</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not read too much into the scores, as we are running cross-validation on a very small dataset with 21 examples. The main point here is to show you how can we use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to apply different transformations on different columns.</p>
 </div>
 </div>
 </div>
@@ -4327,7 +4484,7 @@ Name: enjoy_course, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4440,6 +4597,81 @@ Name: enjoy_course, dtype: object
       <td>1.004801</td>
       <td>4.323045</td>
     </tr>
+    <tr>
+      <th>9730</th>
+      <td>-121.74</td>
+      <td>36.79</td>
+      <td>16.0</td>
+      <td>3841.0</td>
+      <td>620.0</td>
+      <td>1799.0</td>
+      <td>611.0</td>
+      <td>4.3814</td>
+      <td>&lt;1H OCEAN</td>
+      <td>6.286416</td>
+      <td>1.014730</td>
+      <td>2.944354</td>
+    </tr>
+    <tr>
+      <th>14690</th>
+      <td>-117.09</td>
+      <td>32.80</td>
+      <td>36.0</td>
+      <td>2163.0</td>
+      <td>367.0</td>
+      <td>915.0</td>
+      <td>360.0</td>
+      <td>4.7188</td>
+      <td>NEAR OCEAN</td>
+      <td>6.008333</td>
+      <td>1.019444</td>
+      <td>2.541667</td>
+    </tr>
+    <tr>
+      <th>7938</th>
+      <td>-118.11</td>
+      <td>33.86</td>
+      <td>33.0</td>
+      <td>2389.0</td>
+      <td>410.0</td>
+      <td>1229.0</td>
+      <td>393.0</td>
+      <td>5.3889</td>
+      <td>&lt;1H OCEAN</td>
+      <td>6.078880</td>
+      <td>1.043257</td>
+      <td>3.127226</td>
+    </tr>
+    <tr>
+      <th>18365</th>
+      <td>-122.12</td>
+      <td>37.28</td>
+      <td>21.0</td>
+      <td>349.0</td>
+      <td>64.0</td>
+      <td>149.0</td>
+      <td>56.0</td>
+      <td>5.8691</td>
+      <td>&lt;1H OCEAN</td>
+      <td>6.232143</td>
+      <td>1.142857</td>
+      <td>2.660714</td>
+    </tr>
+    <tr>
+      <th>10931</th>
+      <td>-117.91</td>
+      <td>33.74</td>
+      <td>25.0</td>
+      <td>4273.0</td>
+      <td>965.0</td>
+      <td>2946.0</td>
+      <td>922.0</td>
+      <td>2.9926</td>
+      <td>&lt;1H OCEAN</td>
+      <td>4.634490</td>
+      <td>1.046638</td>
+      <td>3.195228</td>
+    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -4484,8 +4716,7 @@ Name: enjoy_course, dtype: object
 </div>
 </div>
 <ul class="simple">
-<li><p>Let’s build a pipeline for our dataset</p></li>
-<li><p>create the preprocessing pipelines for both numeric and categorical data.</p></li>
+<li><p>Let’s create a <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> for our dataset.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4519,6 +4750,23 @@ memory usage: 1.8+ MB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">[</span><span class="s2">&quot;ocean_proximity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1H OCEAN     8221
+INLAND        5915
+NEAR OCEAN    2389
+NEAR BAY      2046
+ISLAND           5
+Name: ocean_proximity, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
 <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
@@ -4531,12 +4779,12 @@ memory usage: 1.8+ MB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff {color: black;background-color: white;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff pre{padding: 0;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-toggleable {background-color: white;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-estimator:hover {background-color: #d4ebff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-item {z-index: 1;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-parallel-item:only-child::after {width: 0;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-e3230598-1725-447a-bd45-a6fd3d2d0dff div.sk-container {display: inline-block;position: relative;}</style><div id="sk-e3230598-1725-447a-bd45-a6fd3d2d0dff" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="174bf211-beaf-4976-b5e2-184548e29299" type="checkbox" ><label class="sk-toggleable__label" for="174bf211-beaf-4976-b5e2-184548e29299">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+<div class="output text_html"><style>#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e {color: black;background-color: white;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e pre{padding: 0;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-toggleable {background-color: white;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-estimator:hover {background-color: #d4ebff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-item {z-index: 1;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-parallel-item:only-child::after {width: 0;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e div.sk-container {display: inline-block;position: relative;}</style><div id="sk-5e76e556-bf27-43a9-99e2-6d080d7bd63e" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4d7be17a-501a-4418-80c7-9c4aa5362df1" type="checkbox" ><label class="sk-toggleable__label" for="4d7be17a-501a-4418-80c7-9c4aa5362df1">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
                                  Pipeline(steps=[('simpleimputer',
                                                   SimpleImputer(strategy='median')),
                                                  ('standardscaler',
@@ -4549,18 +4797,42 @@ memory usage: 1.8+ MB
                                   'population_per_household']),
                                 ('onehotencoder',
                                  OneHotEncoder(handle_unknown='ignore'),
-                                 ['ocean_proximity'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e94a6026-57cf-4af3-a1b9-993c74959a71" type="checkbox" ><label class="sk-toggleable__label" for="e94a6026-57cf-4af3-a1b9-993c74959a71">pipeline</label><div class="sk-toggleable__content"><pre>['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income', 'rooms_per_household', 'bedrooms_per_household', 'population_per_household']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3407798f-3490-49ed-903a-a25fc41df222" type="checkbox" ><label class="sk-toggleable__label" for="3407798f-3490-49ed-903a-a25fc41df222">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="6011e077-4a4c-40ef-a7e0-aa72087250b2" type="checkbox" ><label class="sk-toggleable__label" for="6011e077-4a4c-40ef-a7e0-aa72087250b2">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5210a1ad-82ed-41c3-afbd-04c65b476f0e" type="checkbox" ><label class="sk-toggleable__label" for="5210a1ad-82ed-41c3-afbd-04c65b476f0e">onehotencoder</label><div class="sk-toggleable__content"><pre>['ocean_proximity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="dd83a34d-876f-475d-9648-6132fff4e410" type="checkbox" ><label class="sk-toggleable__label" for="dd83a34d-876f-475d-9648-6132fff4e410">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+                                 ['ocean_proximity'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8a5bd2e9-9243-48b4-a35a-d32126eae53e" type="checkbox" ><label class="sk-toggleable__label" for="8a5bd2e9-9243-48b4-a35a-d32126eae53e">pipeline</label><div class="sk-toggleable__content"><pre>['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income', 'rooms_per_household', 'bedrooms_per_household', 'population_per_household']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ac9a43e4-1d19-4e2e-ba30-9fcd6e17105d" type="checkbox" ><label class="sk-toggleable__label" for="ac9a43e4-1d19-4e2e-ba30-9fcd6e17105d">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b51996e5-e0b4-41d7-8488-c6b635d8343e" type="checkbox" ><label class="sk-toggleable__label" for="b51996e5-e0b4-41d7-8488-c6b635d8343e">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8b994423-4754-4fd0-a3ee-47d284a56794" type="checkbox" ><label class="sk-toggleable__label" for="8b994423-4754-4fd0-a3ee-47d284a56794">onehotencoder</label><div class="sk-toggleable__content"><pre>['ocean_proximity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b08c55fd-62e6-4e41-9609-9a5dc6dae60e" type="checkbox" ><label class="sk-toggleable__label" for="b08c55fd-62e6-4e41-9609-9a5dc6dae60e">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
-<p>When we <code class="docutils literal notranslate"><span class="pre">fit</span></code> the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">fit</span></code> on <em>all</em> the transformers</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_pp</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_pp</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>When we transform with the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">transform</span></code> on <em>all</em> the transformers.</p>
+<ul class="simple">
+<li><p>When we <code class="docutils literal notranslate"><span class="pre">fit</span></code> the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">fit</span></code> on <em>all</em> the transformers</p></li>
+<li><p>When we <code class="docutils literal notranslate"><span class="pre">transform</span></code> the preprocessor, it calls <code class="docutils literal notranslate"><span class="pre">transform</span></code> on <em>all</em> the transformers.</p></li>
+</ul>
 <p>We can get the new names of the columns that were generated by the one-hot encoding:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 {color: black;background-color: white;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 pre{padding: 0;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-toggleable {background-color: white;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-estimator:hover {background-color: #d4ebff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-item {z-index: 1;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-parallel-item:only-child::after {width: 0;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-69654c32-e1ae-4e7a-b49c-7e9d27d07ee9" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="dae78e5f-00d5-4ef7-91e8-e75db2de79ea" type="checkbox" ><label class="sk-toggleable__label" for="dae78e5f-00d5-4ef7-91e8-e75db2de79ea">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[('pipeline',
+                                 Pipeline(steps=[('simpleimputer',
+                                                  SimpleImputer(strategy='median')),
+                                                 ('standardscaler',
+                                                  StandardScaler())]),
+                                 ['longitude', 'latitude', 'housing_median_age',
+                                  'total_rooms', 'total_bedrooms', 'population',
+                                  'households', 'median_income',
+                                  'rooms_per_household',
+                                  'bedrooms_per_household',
+                                  'population_per_household']),
+                                ('onehotencoder',
+                                 OneHotEncoder(handle_unknown='ignore'),
+                                 ['ocean_proximity'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="874ead67-57b9-4c90-8e67-7a4a94439c8c" type="checkbox" ><label class="sk-toggleable__label" for="874ead67-57b9-4c90-8e67-7a4a94439c8c">pipeline</label><div class="sk-toggleable__content"><pre>['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income', 'rooms_per_household', 'bedrooms_per_household', 'population_per_household']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="cd56bb27-8990-4197-86c3-bd21e7bb2f6c" type="checkbox" ><label class="sk-toggleable__label" for="cd56bb27-8990-4197-86c3-bd21e7bb2f6c">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy='median')</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="29268611-f2e8-418a-abbf-a874fa1ac520" type="checkbox" ><label class="sk-toggleable__label" for="29268611-f2e8-418a-abbf-a874fa1ac520">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a6823a1c-f4f2-4eae-937d-ddb66b66d13d" type="checkbox" ><label class="sk-toggleable__label" for="a6823a1c-f4f2-4eae-937d-ddb66b66d13d">onehotencoder</label><div class="sk-toggleable__content"><pre>['ocean_proximity']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="02e9fd7a-13fd-4230-96f6-2366b9b45a65" type="checkbox" ><label class="sk-toggleable__label" for="02e9fd7a-13fd-4230-96f6-2366b9b45a65">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore')</pre></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span>
@@ -4580,12 +4852,12 @@ memory usage: 1.8+ MB
 <p>Combining this with the numeric feature names gives us all the column names:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">column_names</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
     <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span>
         <span class="n">categorical_features</span>
     <span class="p">)</span>
 <span class="p">)</span>
-<span class="n">columns</span>
+<span class="n">column_names</span>
 </pre></div>
 </div>
 </div>
@@ -4610,10 +4882,316 @@ memory usage: 1.8+ MB
 </div>
 </div>
 </div>
+<p>Let’s visualize the preprocessed training data as a dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_pp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>rooms_per_household</th>
+      <th>bedrooms_per_household</th>
+      <th>population_per_household</th>
+      <th>ocean_proximity_&lt;1H OCEAN</th>
+      <th>ocean_proximity_INLAND</th>
+      <th>ocean_proximity_ISLAND</th>
+      <th>ocean_proximity_NEAR BAY</th>
+      <th>ocean_proximity_NEAR OCEAN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.908140</td>
+      <td>-0.743917</td>
+      <td>-0.526078</td>
+      <td>0.143120</td>
+      <td>0.235339</td>
+      <td>1.026092</td>
+      <td>0.266135</td>
+      <td>-0.389736</td>
+      <td>-0.210591</td>
+      <td>-0.083813</td>
+      <td>0.126398</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.002057</td>
+      <td>1.083123</td>
+      <td>-0.923283</td>
+      <td>-1.049510</td>
+      <td>-0.969959</td>
+      <td>-1.206672</td>
+      <td>-1.253312</td>
+      <td>-0.198924</td>
+      <td>4.726412</td>
+      <td>11.166631</td>
+      <td>-0.050132</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.218207</td>
+      <td>-1.352930</td>
+      <td>1.380504</td>
+      <td>0.329670</td>
+      <td>0.549764</td>
+      <td>0.024896</td>
+      <td>0.542873</td>
+      <td>-0.635239</td>
+      <td>-0.273606</td>
+      <td>-0.025391</td>
+      <td>-0.099240</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.128188</td>
+      <td>-0.753286</td>
+      <td>-0.843842</td>
+      <td>-0.459154</td>
+      <td>-0.626949</td>
+      <td>-0.463877</td>
+      <td>-0.561467</td>
+      <td>0.714077</td>
+      <td>0.122307</td>
+      <td>-0.280310</td>
+      <td>0.010183</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.168196</td>
+      <td>-1.287344</td>
+      <td>-0.843842</td>
+      <td>1.343085</td>
+      <td>2.210026</td>
+      <td>4.269688</td>
+      <td>2.500924</td>
+      <td>-1.059242</td>
+      <td>-0.640266</td>
+      <td>-0.190617</td>
+      <td>0.126808</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>18571</th>
+      <td>0.733102</td>
+      <td>-0.804818</td>
+      <td>0.586095</td>
+      <td>-0.875337</td>
+      <td>-0.243446</td>
+      <td>-0.822136</td>
+      <td>-0.966131</td>
+      <td>-0.118182</td>
+      <td>0.063110</td>
+      <td>-0.099558</td>
+      <td>0.071541</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18572</th>
+      <td>1.163195</td>
+      <td>-1.057793</td>
+      <td>-1.161606</td>
+      <td>0.940194</td>
+      <td>0.609314</td>
+      <td>0.882438</td>
+      <td>0.728235</td>
+      <td>0.357500</td>
+      <td>0.235096</td>
+      <td>-0.163397</td>
+      <td>0.007458</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18573</th>
+      <td>-1.097293</td>
+      <td>0.797355</td>
+      <td>-1.876574</td>
+      <td>0.695434</td>
+      <td>0.433046</td>
+      <td>0.881563</td>
+      <td>0.514155</td>
+      <td>0.934269</td>
+      <td>0.211892</td>
+      <td>-0.135305</td>
+      <td>0.044029</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18574</th>
+      <td>-1.437367</td>
+      <td>1.008167</td>
+      <td>1.221622</td>
+      <td>-0.499947</td>
+      <td>-0.484029</td>
+      <td>-0.759944</td>
+      <td>-0.454427</td>
+      <td>0.006578</td>
+      <td>-0.273382</td>
+      <td>-0.149822</td>
+      <td>-0.132875</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>18575</th>
+      <td>0.242996</td>
+      <td>0.272667</td>
+      <td>-0.684960</td>
+      <td>-0.332190</td>
+      <td>-0.353018</td>
+      <td>-0.164307</td>
+      <td>-0.396991</td>
+      <td>-0.711754</td>
+      <td>0.025998</td>
+      <td>0.042957</td>
+      <td>0.051269</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>18576 rows × 16 columns</p>
+</div></div></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
+<span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyRegressor</span><span class="p">()</span>
+<span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+    <span class="n">dummy</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>dummy</th>
+      <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
+      <td>-0.001 (+/- 0.001)</td>
+      <td>0.000 (+/- 0.000)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVR</span>
 
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">SVR</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))</span>
 </pre></div>
@@ -4628,156 +5206,56 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11787</span><span class="o">/</span><span class="mf">1048437596.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;imp + scaling + ohe + SVR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
-
-<span class="nn">~/CS/2021-22/330/cpsc330/lectures/code/./utils.py</span> in <span class="ni">mean_std_cross_val_scores</span><span class="nt">(model, X_train, y_train, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd"> </span>
-<span class="ne">--&gt; </span><span class="mi">114</span><span class="sd">     scores = cross_validate(model, X_train, y_train, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span><span class="sd">     mean_scores = pd.DataFrame(scores).mean()</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">             extra_args = len(args) - len(all_args)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="sd">             if extra_args &lt;= 0:</span>
-<span class="ne">---&gt; </span><span class="mi">63</span><span class="sd">                 return f(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">             # extra_args &gt; 0</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span><span class="sd">     parallel = Parallel(n_jobs=n_jobs, verbose=verbose,</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span><span class="sd">                         pre_dispatch=pre_dispatch)</span>
-<span class="ne">--&gt; </span><span class="mi">250</span><span class="sd">     results = parallel(</span>
-<span class="g g-Whitespace">    </span><span class="mi">251</span><span class="sd">         delayed(_fit_and_score)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span><span class="sd">             clone(estimator), X, y, scorers, train, test, verbose, None,</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span><span class="sd">             # remaining jobs.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span><span class="sd">             self._iterating = False</span>
-<span class="ne">-&gt; </span><span class="mi">1041</span><span class="sd">             if self.dispatch_one_batch(iterator):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1042</span><span class="sd">                 self._iterating = self._original_iterator is not None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span><span class="sd"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span><span class="sd">                 return False</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span><span class="sd">             else:</span>
-<span class="ne">--&gt; </span><span class="mi">859</span><span class="sd">                 self._dispatch(tasks)</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span><span class="sd">                 return True</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span><span class="sd"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">775</span><span class="sd">         with self._lock:</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span><span class="sd">             job_idx = len(self._jobs)</span>
-<span class="ne">--&gt; </span><span class="mi">777</span><span class="sd">             job = self._backend.apply_async(batch, callback=cb)</span>
-<span class="g g-Whitespace">    </span><span class="mi">778</span><span class="sd">             # A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span><span class="sd">             # called before we get here, causing self._jobs to</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span><span class="sd">     def apply_async(self, func, callback=None):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span><span class="sd">         &quot;&quot;&quot;</span><span class="n">Schedule</span> <span class="n">a</span> <span class="n">func</span> <span class="n">to</span> <span class="n">be</span> <span class="n">run</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span><span class="s2">         result = ImmediateResult(func)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span><span class="s2">         if callback:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="s2">             callback(result)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="s2">         # Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="s2">         # arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span><span class="s2">         self.results = batch()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="s2">     def get(self):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span><span class="s2">         # change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span><span class="s2">             return [func(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                     for func, args, kwargs in self.items]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span><span class="s2">         # change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span><span class="s2">             return [func(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                     for func, args, kwargs in self.items]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span><span class="s2">     def __call__(self, *args, **kwargs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span><span class="s2">         with config_context(**self.config):</span>
-<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">             return self.function(*args, **kwargs)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">626</span><span class="s2">         score_time = time.time() - start_time - fit_time</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span><span class="s2">         if return_train_score:</span>
-<span class="ne">--&gt; </span><span class="mi">628</span><span class="s2">             train_scores = _score(</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span><span class="s2">                 estimator, X_train, y_train, scorer, error_score</span>
-<span class="g g-Whitespace">    </span><span class="mi">630</span><span class="s2">             )</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">685</span><span class="s2">             scores = scorer(estimator, X_test)</span>
-<span class="g g-Whitespace">    </span><span class="mi">686</span><span class="s2">         else:</span>
-<span class="ne">--&gt; </span><span class="mi">687</span><span class="s2">             scores = scorer(estimator, X_test, y_test)</span>
-<span class="g g-Whitespace">    </span><span class="mi">688</span><span class="s2">     except Exception:</span>
-<span class="g g-Whitespace">    </span><span class="mi">689</span><span class="s2">         if error_score == &#39;raise&#39;:</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/metrics/_scorer.py</span> in <span class="ni">_passthrough_scorer</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span><span class="s2"> def _passthrough_scorer(estimator, *args, **kwargs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="s2">     &quot;&quot;&quot;</span><span class="n">Function</span> <span class="n">that</span> <span class="n">wraps</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">397</span><span class="s2">     return estimator.score(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">398</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">399</span><span class="s2"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/metaestimators.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="s2">         # lambda, but not partial, allows help() to work with update_wrapper</span>
-<span class="ne">--&gt; </span><span class="mi">120</span><span class="s2">         out = lambda *args, **kwargs: self.fn(obj, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2">         # update the docstring of the returned function</span>
-<span class="g g-Whitespace">    </span><span class="mi">122</span><span class="s2">         update_wrapper(out, self.fn)</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">score</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">620</span><span class="s2">         if sample_weight is not None:</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span><span class="s2">             score_params[&#39;sample_weight&#39;] = sample_weight</span>
-<span class="ne">--&gt; </span><span class="mi">622</span><span class="s2">         return self.steps[-1][-1].score(Xt, y, **score_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">623</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">624</span><span class="s2">     @property</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py</span> in <span class="ni">score</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">551</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">552</span><span class="s2">         from .metrics import r2_score</span>
-<span class="ne">--&gt; </span><span class="mi">553</span><span class="s2">         y_pred = self.predict(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span><span class="s2">         return r2_score(y, y_pred, sample_weight=sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">555</span><span class="s2"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/svm/_base.py</span> in <span class="ni">predict</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="s2">         X = self._validate_for_predict(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="s2">         predict = self._sparse_predict if self._sparse else self._dense_predict</span>
-<span class="ne">--&gt; </span><span class="mi">344</span><span class="s2">         return predict(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span><span class="s2">     def _dense_predict(self, X):</span>
-
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/svm/_base.py</span> in <span class="ni">_dense_predict</span><span class="nt">(self, X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span><span class="s2">         svm_type = LIBSVM_IMPL.index(self._impl)</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">361</span><span class="s2">         return libsvm.predict(</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span><span class="s2">             X, self.support_, self.support_vectors_, self._n_support,</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span><span class="s2">             self._dual_coef_, self._intercept_,</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>dummy</th>
+      <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
+      <td>-0.001 (+/- 0.001)</td>
+      <td>0.000 (+/- 0.000)</td>
+    </tr>
+    <tr>
+      <th>imp + scaling + ohe + SVR</th>
+      <td>8.161 (+/- 0.147)</td>
+      <td>4.218 (+/- 0.124)</td>
+      <td>-0.053 (+/- 0.012)</td>
+      <td>-0.053 (+/- 0.001)</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Note that categorical features are different than free text features. Sometimes there are columns containing free text information and we we’ll look at ways to deal with them in the later part of this lecture.</p></li>
@@ -4861,6 +5339,63 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sms</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</td>
+      <td>spam</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lol you are always so convincing.</td>
+      <td>non spam</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Nah I don't think he goes to usf, he lives around here though</td>
+      <td>non spam</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</td>
+      <td>spam</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</td>
+      <td>spam</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Congrats! I can't wait to see you!!</td>
+      <td>non spam</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="what-if-we-apply-ohe">
@@ -4874,6 +5409,91 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Congrats! I can't wait to see you!!</th>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <th>Lol you are always so convincing.</th>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <ul class="simple">
 <li><p>We do not have a fixed number of categories here.</p></li>
@@ -4937,10 +5557,230 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>08002986030</th>
+      <th>100000</th>
+      <th>11</th>
+      <th>900</th>
+      <th>always</th>
+      <th>are</th>
+      <th>around</th>
+      <th>as</th>
+      <th>been</th>
+      <th>call</th>
+      <th>...</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>usf</th>
+      <th>valued</th>
+      <th>wait</th>
+      <th>week</th>
+      <th>with</th>
+      <th>won</th>
+      <th>you</th>
+      <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 61 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas.core.series.Series
 </pre></div>
 </div>
 </div>
@@ -4952,6 +5792,12 @@ memory usage: 1.8+ MB
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;6x61 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+	with 71 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -4980,6 +5826,14 @@ memory usage: 1.8+ MB
     <span class="s2">&quot;The value at cell 3,</span><span class="si">%d</span><span class="s2"> is: </span><span class="si">%d</span><span class="s2">&quot;</span>
     <span class="o">%</span> <span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">],</span> <span class="n">X_counts</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="s2">&quot;jackpot&quot;</span><span class="p">]])</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The total number of elements:  366
+The number of non-zero elements:  71
+Proportion of non-zero elements: 0.1940
+The value at cell 3,27 is: 1
 </pre></div>
 </div>
 </div>
@@ -5039,6 +5893,221 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>08002986030</th>
+      <th>100000</th>
+      <th>11</th>
+      <th>900</th>
+      <th>always</th>
+      <th>are</th>
+      <th>around</th>
+      <th>as</th>
+      <th>been</th>
+      <th>call</th>
+      <th>...</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>usf</th>
+      <th>valued</th>
+      <th>wait</th>
+      <th>week</th>
+      <th>with</th>
+      <th>won</th>
+      <th>you</th>
+      <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 61 columns</p>
+</div></div></div>
 </div>
 <p>When we use <code class="docutils literal notranslate"><span class="pre">binary=True</span></code>, the representation uses presence/absence of words instead of word counts.</p>
 <div class="cell docutils container">
@@ -5052,6 +6121,221 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>08002986030</th>
+      <th>100000</th>
+      <th>11</th>
+      <th>900</th>
+      <th>always</th>
+      <th>are</th>
+      <th>around</th>
+      <th>as</th>
+      <th>been</th>
+      <th>call</th>
+      <th>...</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>usf</th>
+      <th>valued</th>
+      <th>wait</th>
+      <th>week</th>
+      <th>with</th>
+      <th>won</th>
+      <th>you</th>
+      <th>your</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 61 columns</p>
+</div></div></div>
 </div>
 <p>We can control the size of X (the number of features) using <code class="docutils literal notranslate"><span class="pre">max_features</span></code>.</p>
 <div class="cell docutils container">
@@ -5065,6 +6349,116 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>free</th>
+      <th>have</th>
+      <th>mobile</th>
+      <th>the</th>
+      <th>to</th>
+      <th>update</th>
+      <th>urgent</th>
+      <th>you</th>
+    </tr>
+    <tr>
+      <th>sms</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>URGENT!! As a valued network customer you have been selected to receive a £900 prize reward!</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Lol you are always so convincing.</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Nah I don't think he goes to usf, he lives around here though</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>URGENT! You have won a 1 week FREE membership in our £100000 prize Jackpot!</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Had your mobile 11 months or more? U R entitled to Update to the latest colour mobiles with camera for Free! Call The Mobile Update Co FREE on 08002986030</th>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Congrats! I can't wait to see you!!</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5084,6 +6478,64 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>to</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>you</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>free</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>have</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>mobile</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>the</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>update</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>urgent</th>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -5097,6 +6549,64 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>counts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>to</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>you</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>free</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>have</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>prize</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>urgent</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>mobiles</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>months</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
 <div class="section" id="preprocessing">
@@ -5122,10 +6632,18 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e {color: black;background-color: white;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e pre{padding: 0;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-toggleable {background-color: white;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.2em 0.3em;box-sizing: border-box;text-align: center;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-estimator {font-family: monospace;background-color: #f0f8ff;margin: 0.25em 0.25em;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-estimator:hover {background-color: #d4ebff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-item {z-index: 1;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-parallel-item:only-child::after {width: 0;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0.2em;box-sizing: border-box;padding-bottom: 0.1em;background-color: white;position: relative;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e div.sk-container {display: inline-block;position: relative;}</style><div id="sk-1cf01d32-e149-4c1d-b89c-2c52f8d8368e" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="dace2e69-5e28-43d6-9e47-94ef3c37dd3f" type="checkbox" ><label class="sk-toggleable__label" for="dace2e69-5e28-43d6-9e47-94ef3c37dd3f">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('countvectorizer', CountVectorizer()), ('svc', SVC())])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="5ea3e2d8-e87c-4b24-adc8-619302efe1e8" type="checkbox" ><label class="sk-toggleable__label" for="5ea3e2d8-e87c-4b24-adc8-619302efe1e8">CountVectorizer</label><div class="sk-toggleable__content"><pre>CountVectorizer()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="8503ba9f-ff25-48d8-b829-a8156d680337" type="checkbox" ><label class="sk-toggleable__label" for="8503ba9f-ff25-48d8-b829-a8156d680337">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">toy_df</span><span class="p">[</span><span class="s2">&quot;sms&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;spam&#39;, &#39;non spam&#39;, &#39;non spam&#39;, &#39;spam&#39;, &#39;spam&#39;, &#39;non spam&#39;],
+      dtype=object)
 </pre></div>
 </div>
 </div>
@@ -5170,6 +6688,182 @@ memory usage: 1.8+ MB
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>north_america</th>
+      <th>eat_out_freq</th>
+      <th>age</th>
+      <th>n_people</th>
+      <th>price</th>
+      <th>food_type</th>
+      <th>noise_level</th>
+      <th>good_server</th>
+      <th>comments</th>
+      <th>restaurant_name</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Yes</td>
+      <td>3.0</td>
+      <td>29</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Other</td>
+      <td>no music</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>10</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>food tastes good</td>
+      <td>Midam</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>21</td>
+      <td>10</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>good food</td>
+      <td>pear tree</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>24</td>
+      <td>15</td>
+      <td>40</td>
+      <td>Other</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>My love for Korean food</td>
+      <td>Dami</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Yes</td>
+      <td>5.0</td>
+      <td>23</td>
+      <td>20</td>
+      <td>10</td>
+      <td>Canadian/American</td>
+      <td>low</td>
+      <td>Yes</td>
+      <td>Good food</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>22</td>
+      <td>60</td>
+      <td>20</td>
+      <td>Chinese</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>food tasted great!</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Yes</td>
+      <td>2.0</td>
+      <td>23</td>
+      <td>10000000</td>
+      <td>1000000</td>
+      <td>Canadian/American</td>
+      <td>crazy loud</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>CACTUS CLUB CAFE</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Yes</td>
+      <td>4.0</td>
+      <td>20</td>
+      <td>20</td>
+      <td>40</td>
+      <td>Chinese</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Yes</td>
+      <td>1.0</td>
+      <td>21</td>
+      <td>40</td>
+      <td>60</td>
+      <td>Italian</td>
+      <td>high</td>
+      <td>Yes</td>
+      <td>NaN</td>
+      <td>Frankie’s</td>
+      <td>like</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>No</td>
+      <td>2.0</td>
+      <td>20</td>
+      <td>50</td>
+      <td>45</td>
+      <td>Canadian/American</td>
+      <td>medium</td>
+      <td>Yes</td>
+      <td>Steak was good, ambiance was nice and server was helpful.</td>
+      <td>Hy's steakhouse</td>
+      <td>like</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>What all feature transformations you would apply on this dataset?</p>
 <p><br><br><br><br></p>
