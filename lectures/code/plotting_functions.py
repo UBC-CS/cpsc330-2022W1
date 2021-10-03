@@ -290,3 +290,30 @@ def plot_original_scaled(
     )
     axes[1].legend(loc="upper right")
     axes[1].set_title(title_transformed);    
+    
+    
+def plot_logistic_regression(x, w):
+    import graphviz
+    sentiment = 'pos' if sum(w) > 0 else 'neg'    
+    lr_graph = graphviz.Digraph(node_attr={'shape': 'circle', 'fixedsize': 'False'},
+                                graph_attr={'rankdir': 'LR', 'splines': 'line'})
+    inputs = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_0")
+    output = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_2")
+
+    for i in range(len(x)):
+        inputs.node(x[i], labelloc="c")
+    inputs.body.append('label = "inputs"')
+    inputs.body.append('color = "white"')
+
+    lr_graph.subgraph(inputs)
+
+    output.body.append('label = "output"')
+    output.body.append('color = "white"')
+    output.node("y_hat=%s" %sentiment)
+
+    lr_graph.subgraph(output)
+    print('Weighted sum of the input features = %0.3f y_hat = %s' %(sum(w), sentiment))
+    for i in range(len(w)):
+        lr_graph.edge(x[i], "y_hat=%s" %sentiment, label=str(w[i]))
+    return lr_graph    
+    
