@@ -25,7 +25,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | hw1 | Sept 14, 11:59pm |  [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
 | hw2 | Sept 20, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)| 
 | hw3 | Oct 04, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
-| hw4 | Oct 11, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| hw4 | Oct 12, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
 | hw5 | Oct 25, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
 | **Midterm** | Oct 28, during class time|[Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) | 
 | hw6 | Nov 15, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
@@ -57,7 +57,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 |        |     | **Week 4 dataset:** <li>[California housing](https://www.kaggle.com/harrywang/housing)</li> | |
 | Sep 28 | [More preprocessing, `sklearn` `ColumnTransformer`, text features](lectures/06_column-transformer-text-feats.ipynb) | 📹  <li> Pre-watch: [6.1](https://youtu.be/to2mukSyvLk), [6.2](https://youtu.be/hteVvLwrWZ4)</li> | more depth |
 | Sep 30 | _Truth and reconciliation day - no class_ | |   |
-|        |     |**Week 5 datasets**: <li>[SMS Spam Collection Dataset](https://www.kaggle.com/uciml/sms-spam-collection-dataset)</li> | |
+|        |     |**Week 5 datasets**: <li>[IMDB movie review](https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)</li> | |
 | Oct 5 | [Linear models](lectures/07_linear-models.ipynb) | 📹  <li> Pre-watch: [7.1](https://youtu.be/HXd1U2q4VFA), [7.2](https://youtu.be/56L5z_t22qE), [7.3](https://youtu.be/_OAK5KiGLg0)</li> |   less depth |
 | Oct 7 | Hyperparameter optimization, overfitting the validation set | | less depth | 
 |        |     |**Week 6 datasets**: <li>[Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)</li> | |
