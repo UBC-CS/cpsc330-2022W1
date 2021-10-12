@@ -61,7 +61,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Oct 5 | [Linear models](lectures/07_linear-models.ipynb) | 📹  <li> Pre-watch: [7.1](https://youtu.be/HXd1U2q4VFA), [7.2](https://youtu.be/56L5z_t22qE), [7.3](https://youtu.be/_OAK5KiGLg0)</li> |   less depth |
 | Oct 7 | Lecture canceled | |  | 
 |        |     |**Week 6 datasets**: <li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li><li>[Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)</li> | |
-| Oct 12 | Hyperparameter optimization, overfitting the validation set |  |   different|
+| Oct 12 | Hyperparameter optimization, overfitting the validation set | 📹  <li> Pre-watch: [8.1](https://youtu.be/lMWdHZSZMk8) |   different|
 | Oct 14 | Evaluation metrics for classification  |  | more depth |
 |        |     |**Week 7 datasets**: <li>[Kaggle House Prices data set](https://www.kaggle.com/c/home-data-for-ml-course/)</li> | |
 | Oct 19 | Linear regression, regression metrics |  |   more depth on metrics less depth on regression|
