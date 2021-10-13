@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 8: Hyperparameter optimization and optimization bias &#8212; CPSC 330 Applied Machine Learning</title>
+    <title>Lecture 8: Hyperparameter Optimization and Optimization Bias &#8212; CPSC 330 Applied Machine Learning</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,18 +42,20 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 7: Linear Models" href="07_linear-models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -72,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -81,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -100,7 +106,7 @@
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -155,6 +161,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="07_linear-models.html">
    Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
   </a>
  </li>
 </ul>
@@ -260,7 +271,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -434,8 +445,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optimization-bias">
-   Optimization bias
+  <a class="reference internal nav-link" href="#optimization-bias-overfitting-of-the-validation-set">
+   Optimization bias/Overfitting of the validation set
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -444,8 +455,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     Overfitting of the validation error
+    <a class="reference internal nav-link" href="#optimization-bias-of-parameter-learning">
+     Optimization bias of parameter learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization-bias-of-hyper-parameter-learning">
+     Optimization bias of hyper-parameter learning
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -459,24 +475,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#let-s-examine-effects-of-optimization-on-the-adult-income-dataset">
-     Let’s examine effects of optimization on the adult income dataset
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#identify-feature-types">
-     Identify feature types
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#define-columntransformer-and-a-pipeline">
-     Define
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       ColumnTransformer
-      </span>
-     </code>
-     and a pipeline
+    <a class="reference internal nav-link" href="#optimization-bias-on-the-spotify-dataset">
+     Optimization bias on the Spotify dataset
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -490,13 +490,18 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#large-datasets-solves-many-of-these-problems">
-     Large datasets solves many of these problems
+    <a class="reference internal nav-link" href="#when-test-score-is-much-lower-than-cv-score">
+     When test score is much lower than CV score
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#questions-for-class-discussion-optimization-bias">
-     Questions for class discussion (optimization bias)
+    <a class="reference internal nav-link" href="#large-datasets-solve-many-of-these-problems">
+     Large datasets solve many of these problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-you">
+     ❓❓ Questions for you
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -505,12 +510,12 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
+    <a class="reference internal nav-link" href="#id2">
      Would you trust the model?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#id3">
      Would you trust the model?
     </a>
    </li>
@@ -522,7 +527,7 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
+    <a class="reference internal nav-link" href="#id4">
      Automated hyperparameter optimization
     </a>
    </li>
@@ -546,7 +551,7 @@
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
 <div class="section" id="lecture-8-hyperparameter-optimization-and-optimization-bias">
-<h1>Lecture 8: Hyperparameter optimization and optimization bias<a class="headerlink" href="#lecture-8-hyperparameter-optimization-and-optimization-bias" title="Permalink to this headline">¶</a></h1>
+<h1>Lecture 8: Hyperparameter Optimization and Optimization Bias<a class="headerlink" href="#lecture-8-hyperparameter-optimization-and-optimization-bias" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
 <div class="section" id="imports">
@@ -568,13 +573,13 @@
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span>
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -587,14 +592,22 @@
 <div class="section" id="lecture-plan-for-today">
 <h2>Lecture plan for today<a class="headerlink" href="#lecture-plan-for-today" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>TBD</p></li>
+<li><p>Announcements</p></li>
+<li><p>Watch hyperparameter optimization video on your own: https://youtu.be/lMWdHZSZMk8</p></li>
+<li><p>Live lecturing on <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> and <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code>.</p></li>
+<li><p>Q&amp;A and exercises</p></li>
+<li><p>Break</p></li>
+<li><p>Watch optimization bias video on your own: https://youtu.be/Z9a9XZ0vQv0</p></li>
+<li><p>Q&amp;A and exercises</p></li>
 </ul>
 <p><br><br></p>
 </div>
 <div class="section" id="announcements">
 <h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>TBD</p></li>
+<li><p>HW4 deadline extension (due on Friday, October 15, 11:59pm)</p></li>
+<li><p>HW3 solutions have been released</p></li>
+<li><p>HW3 grading in progress</p></li>
 </ul>
 <div class="section" id="learning-outcomes">
 <h3>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h3>
@@ -811,13 +824,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_score</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)}</span>
 
 <span class="n">results_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;mean_cv_score&quot;</span><span class="p">:</span> <span class="p">[]}</span>
 
-<span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;max_depth&quot;</span><span class="p">]:</span>  <span class="c1"># for each combination of parameters, train an SVC</span>
+<span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="n">param_grid</span><span class="p">[</span>
+    <span class="s2">&quot;max_depth&quot;</span>
+<span class="p">]:</span>  <span class="c1"># for each combination of parameters, train an SVC</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>  <span class="c1"># perform cross-validation</span>
     <span class="n">mean_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>  <span class="c1"># compute mean cross-validation accuracy</span>
@@ -851,7 +864,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.71792204295906
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7173009249466377
 </pre></div>
 </div>
 </div>
@@ -859,7 +872,7 @@
 <p>Let’s try SVM RBF and tuning <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> on the same dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span> <span class="c1"># We need scaling for SVM RBF</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>  <span class="c1"># We need scaling for SVM RBF</span>
 <span class="n">pipe_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -879,8 +892,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.049172
-score_time     0.024862
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.047575
+score_time     0.024266
 test_score     0.738998
 train_score    0.814011
 dtype: float64
@@ -1065,13 +1078,16 @@ dtype: float64
     <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span>
     <span class="n">yticklabels</span><span class="o">=</span><span class="n">param_grid</span><span class="p">[</span><span class="s2">&quot;gamma&quot;</span><span class="p">],</span>
     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span>
-<span class="p">);</span>
+<span class="p">)</span>
 <span class="c1"># plot the mean cross-validation scores</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_33_0.png" src="../_images/08_hyperparameter-optimization_33_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x1330919d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/08_hyperparameter-optimization_33_1.png" src="../_images/08_hyperparameter-optimization_33_1.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1157,6 +1173,8 @@ dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
+<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
+
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
     <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
@@ -1178,37 +1196,22 @@ dtype: float64
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 {color: black;background-color: white;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 pre{padding: 0;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-toggleable {background-color: white;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-estimator:hover {background-color: #d4ebff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-item {z-index: 1;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-parallel-item:only-child::after {width: 0;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-6610cc4e-35f7-451b-91de-48bf40b3ce82 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-6610cc4e-35f7-451b-91de-48bf40b3ce82" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="aab16892-871a-4c85-a5b9-f833e54349c7" type="checkbox" ><label class="sk-toggleable__label" for="aab16892-871a-4c85-a5b9-f833e54349c7">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[('standardscaler', StandardScaler()),
-                                       ('svc', SVC(C=1, gamma=0.1))]),
-             n_jobs=-1,
-             param_grid={'svc__C': [0.001, 0.01, 0.1, 1.0, 10, 100],
-                         'svc__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100]},
-             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e64a1a16-5b58-40a7-96ca-340d87d546dc" type="checkbox" ><label class="sk-toggleable__label" for="e64a1a16-5b58-40a7-96ca-340d87d546dc">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="00bf1ba5-0877-4d41-b090-88449475bf2c" type="checkbox" ><label class="sk-toggleable__label" for="00bf1ba5-0877-4d41-b090-88449475bf2c">SVC</label><div class="sk-toggleable__content"><pre>SVC(C=1, gamma=0.1)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
-</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> object above behaves like a classifier. We can call <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code> or <code class="docutils literal notranslate"><span class="pre">score</span></code> on it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="c1"># all the work is done here</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span> <span class="c1"># all the work is done here</span>
+<span class="n">grid_search</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 {color: black;background-color: white;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 pre{padding: 0;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-toggleable {background-color: white;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-estimator:hover {background-color: #d4ebff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-item {z-index: 1;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-parallel-item:only-child::after {width: 0;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-cf16fa29-4789-4f11-9627-f7a7be357d90 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-cf16fa29-4789-4f11-9627-f7a7be357d90" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="e0c956c3-d560-4f69-a064-fd4ef91ceaec" type="checkbox" ><label class="sk-toggleable__label" for="e0c956c3-d560-4f69-a064-fd4ef91ceaec">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+<div class="output text_html"><style>#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd {color: black;background-color: white;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd pre{padding: 0;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-toggleable {background-color: white;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-estimator:hover {background-color: #d4ebff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-item {z-index: 1;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-parallel-item:only-child::after {width: 0;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd div.sk-container {display: inline-block;position: relative;}</style><div id="sk-e23a0d2b-3679-43ae-8780-880b5d02dcbd" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="688666b3-ba94-41df-b24f-eb338e1a23a8" type="checkbox" ><label class="sk-toggleable__label" for="688666b3-ba94-41df-b24f-eb338e1a23a8">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
              estimator=Pipeline(steps=[('standardscaler', StandardScaler()),
-                                       ('svc', SVC(C=1, gamma=0.1))]),
+                                       ('svc', SVC())]),
              n_jobs=-1,
              param_grid={'svc__C': [0.001, 0.01, 0.1, 1.0, 10, 100],
                          'svc__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100]},
-             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="299c6327-54fb-49c8-ae72-6cdf6c0de40b" type="checkbox" ><label class="sk-toggleable__label" for="299c6327-54fb-49c8-ae72-6cdf6c0de40b">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="a4fc86a8-f73a-4d9b-8411-7a7f57d8de36" type="checkbox" ><label class="sk-toggleable__label" for="a4fc86a8-f73a-4d9b-8411-7a7f57d8de36">SVC</label><div class="sk-toggleable__content"><pre>SVC(C=1, gamma=0.1)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="edad37ea-601c-460a-a8ef-cbbcaa224f62" type="checkbox" ><label class="sk-toggleable__label" for="edad37ea-601c-460a-a8ef-cbbcaa224f62">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="f1fd6c94-caa8-4ff4-8c27-e795682126b7" type="checkbox" ><label class="sk-toggleable__label" for="f1fd6c94-caa8-4ff4-8c27-e795682126b7">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <p>Fitting the <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> object</p>
 <ul class="simple">
@@ -1295,99 +1298,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.13244</td>
-      <td>0.133145</td>
-      <td>0.133014</td>
-      <td>0.137895</td>
-      <td>0.118721</td>
-      <td>0.096685</td>
-      <td>0.109478</td>
-      <td>0.103687</td>
-      <td>0.116791</td>
-      <td>0.123205</td>
+      <td>0.189708</td>
+      <td>0.190837</td>
+      <td>0.186994</td>
+      <td>0.177659</td>
+      <td>0.11424</td>
+      <td>0.094726</td>
+      <td>0.11281</td>
+      <td>0.106839</td>
+      <td>0.104924</td>
+      <td>0.108503</td>
       <td>...</td>
-      <td>0.127539</td>
-      <td>0.1512</td>
-      <td>0.156924</td>
-      <td>0.135535</td>
-      <td>0.108006</td>
-      <td>0.146378</td>
-      <td>0.254411</td>
-      <td>0.146613</td>
-      <td>0.155671</td>
-      <td>0.135254</td>
+      <td>0.114569</td>
+      <td>0.129605</td>
+      <td>0.136555</td>
+      <td>0.117223</td>
+      <td>0.094257</td>
+      <td>0.132829</td>
+      <td>0.237454</td>
+      <td>0.134695</td>
+      <td>0.149208</td>
+      <td>0.12559</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.006534</td>
-      <td>0.008663</td>
-      <td>0.00664</td>
-      <td>0.00769</td>
-      <td>0.004828</td>
-      <td>0.003742</td>
-      <td>0.002295</td>
-      <td>0.004181</td>
-      <td>0.00958</td>
-      <td>0.00199</td>
+      <td>0.011863</td>
+      <td>0.006958</td>
+      <td>0.004227</td>
+      <td>0.009226</td>
+      <td>0.001794</td>
+      <td>0.001606</td>
+      <td>0.001835</td>
+      <td>0.005292</td>
+      <td>0.00107</td>
+      <td>0.001703</td>
       <td>...</td>
-      <td>0.005367</td>
-      <td>0.00285</td>
-      <td>0.005671</td>
-      <td>0.002341</td>
-      <td>0.002534</td>
-      <td>0.002578</td>
-      <td>0.01267</td>
-      <td>0.005019</td>
-      <td>0.004468</td>
-      <td>0.006932</td>
+      <td>0.004591</td>
+      <td>0.002547</td>
+      <td>0.003246</td>
+      <td>0.002141</td>
+      <td>0.000938</td>
+      <td>0.003837</td>
+      <td>0.012179</td>
+      <td>0.002</td>
+      <td>0.0026</td>
+      <td>0.004292</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.078996</td>
-      <td>0.081792</td>
-      <td>0.079336</td>
-      <td>0.08457</td>
-      <td>0.061962</td>
-      <td>0.061176</td>
-      <td>0.063569</td>
-      <td>0.063452</td>
-      <td>0.070303</td>
-      <td>0.07351</td>
+      <td>0.062251</td>
+      <td>0.064746</td>
+      <td>0.066367</td>
+      <td>0.064736</td>
+      <td>0.06572</td>
+      <td>0.064255</td>
+      <td>0.065201</td>
+      <td>0.064661</td>
+      <td>0.066263</td>
+      <td>0.065171</td>
       <td>...</td>
-      <td>0.051168</td>
-      <td>0.084156</td>
-      <td>0.073274</td>
-      <td>0.071205</td>
-      <td>0.056913</td>
-      <td>0.040628</td>
-      <td>0.04181</td>
-      <td>0.069038</td>
-      <td>0.073979</td>
-      <td>0.076039</td>
+      <td>0.040618</td>
+      <td>0.065374</td>
+      <td>0.062539</td>
+      <td>0.063509</td>
+      <td>0.047952</td>
+      <td>0.039765</td>
+      <td>0.042228</td>
+      <td>0.064917</td>
+      <td>0.068919</td>
+      <td>0.067359</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.003001</td>
-      <td>0.000713</td>
-      <td>0.002357</td>
-      <td>0.006405</td>
-      <td>0.001423</td>
-      <td>0.000927</td>
-      <td>0.000294</td>
-      <td>0.000617</td>
-      <td>0.006881</td>
-      <td>0.001917</td>
+      <td>0.001321</td>
+      <td>0.002966</td>
+      <td>0.003185</td>
+      <td>0.001846</td>
+      <td>0.001366</td>
+      <td>0.002686</td>
+      <td>0.002819</td>
+      <td>0.000907</td>
+      <td>0.002673</td>
+      <td>0.002096</td>
       <td>...</td>
-      <td>0.003577</td>
-      <td>0.005784</td>
-      <td>0.00285</td>
-      <td>0.001265</td>
-      <td>0.003517</td>
-      <td>0.000622</td>
-      <td>0.001905</td>
-      <td>0.004153</td>
-      <td>0.003026</td>
-      <td>0.003618</td>
+      <td>0.00137</td>
+      <td>0.001533</td>
+      <td>0.001236</td>
+      <td>0.001096</td>
+      <td>0.000636</td>
+      <td>0.001363</td>
+      <td>0.003297</td>
+      <td>0.002426</td>
+      <td>0.001815</td>
+      <td>0.00191</td>
     </tr>
     <tr>
       <th>param_svc__C</th>
@@ -1880,99 +1883,99 @@ dtype: float64
   <tbody>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.097663</td>
-      <td>0.146378</td>
-      <td>0.127539</td>
-      <td>0.098015</td>
-      <td>0.254411</td>
-      <td>0.108006</td>
-      <td>0.10878</td>
-      <td>0.100793</td>
-      <td>0.11254</td>
-      <td>0.108825</td>
+      <td>0.084358</td>
+      <td>0.132829</td>
+      <td>0.114569</td>
+      <td>0.087957</td>
+      <td>0.237454</td>
+      <td>0.094257</td>
+      <td>0.094057</td>
+      <td>0.089092</td>
+      <td>0.098833</td>
+      <td>0.09108</td>
       <td>...</td>
-      <td>0.116791</td>
-      <td>0.103687</td>
-      <td>0.109478</td>
-      <td>0.096685</td>
-      <td>0.118721</td>
-      <td>0.137895</td>
-      <td>0.133014</td>
-      <td>0.133145</td>
-      <td>0.139241</td>
-      <td>0.115083</td>
+      <td>0.104924</td>
+      <td>0.106839</td>
+      <td>0.11281</td>
+      <td>0.094726</td>
+      <td>0.11424</td>
+      <td>0.177659</td>
+      <td>0.186994</td>
+      <td>0.190837</td>
+      <td>0.119908</td>
+      <td>0.101631</td>
     </tr>
     <tr>
       <th>std_fit_time</th>
-      <td>0.002361</td>
-      <td>0.002578</td>
-      <td>0.005367</td>
-      <td>0.004101</td>
-      <td>0.01267</td>
-      <td>0.002534</td>
-      <td>0.001145</td>
-      <td>0.002896</td>
-      <td>0.003208</td>
-      <td>0.003637</td>
+      <td>0.001583</td>
+      <td>0.003837</td>
+      <td>0.004591</td>
+      <td>0.00159</td>
+      <td>0.012179</td>
+      <td>0.000938</td>
+      <td>0.001363</td>
+      <td>0.001259</td>
+      <td>0.001577</td>
+      <td>0.001753</td>
       <td>...</td>
-      <td>0.00958</td>
-      <td>0.004181</td>
-      <td>0.002295</td>
-      <td>0.003742</td>
-      <td>0.004828</td>
-      <td>0.00769</td>
-      <td>0.00664</td>
-      <td>0.008663</td>
-      <td>0.003429</td>
-      <td>0.003858</td>
+      <td>0.00107</td>
+      <td>0.005292</td>
+      <td>0.001835</td>
+      <td>0.001606</td>
+      <td>0.001794</td>
+      <td>0.009226</td>
+      <td>0.004227</td>
+      <td>0.006958</td>
+      <td>0.002752</td>
+      <td>0.001852</td>
     </tr>
     <tr>
       <th>mean_score_time</th>
-      <td>0.047259</td>
-      <td>0.040628</td>
-      <td>0.051168</td>
-      <td>0.055252</td>
-      <td>0.04181</td>
-      <td>0.056913</td>
-      <td>0.067427</td>
-      <td>0.057843</td>
-      <td>0.069513</td>
-      <td>0.062325</td>
+      <td>0.045723</td>
+      <td>0.039765</td>
+      <td>0.040618</td>
+      <td>0.044684</td>
+      <td>0.042228</td>
+      <td>0.047952</td>
+      <td>0.057936</td>
+      <td>0.052113</td>
+      <td>0.061068</td>
+      <td>0.053028</td>
       <td>...</td>
-      <td>0.070303</td>
-      <td>0.063452</td>
-      <td>0.063569</td>
-      <td>0.061176</td>
-      <td>0.061962</td>
-      <td>0.08457</td>
-      <td>0.079336</td>
-      <td>0.081792</td>
-      <td>0.073934</td>
-      <td>0.07492</td>
+      <td>0.066263</td>
+      <td>0.064661</td>
+      <td>0.065201</td>
+      <td>0.064255</td>
+      <td>0.06572</td>
+      <td>0.064736</td>
+      <td>0.066367</td>
+      <td>0.064746</td>
+      <td>0.064923</td>
+      <td>0.064229</td>
     </tr>
     <tr>
       <th>std_score_time</th>
-      <td>0.002635</td>
-      <td>0.000622</td>
-      <td>0.003577</td>
-      <td>0.003051</td>
-      <td>0.001905</td>
-      <td>0.003517</td>
-      <td>0.001756</td>
-      <td>0.002176</td>
-      <td>0.003322</td>
-      <td>0.001756</td>
+      <td>0.001888</td>
+      <td>0.001363</td>
+      <td>0.00137</td>
+      <td>0.002471</td>
+      <td>0.003297</td>
+      <td>0.000636</td>
+      <td>0.001346</td>
+      <td>0.001184</td>
+      <td>0.001896</td>
+      <td>0.002135</td>
       <td>...</td>
-      <td>0.006881</td>
-      <td>0.000617</td>
-      <td>0.000294</td>
-      <td>0.000927</td>
-      <td>0.001423</td>
-      <td>0.006405</td>
-      <td>0.002357</td>
-      <td>0.000713</td>
-      <td>0.003245</td>
-      <td>0.002052</td>
+      <td>0.002673</td>
+      <td>0.000907</td>
+      <td>0.002819</td>
+      <td>0.002686</td>
+      <td>0.001366</td>
+      <td>0.001846</td>
+      <td>0.003185</td>
+      <td>0.002966</td>
+      <td>0.001503</td>
+      <td>0.001228</td>
     </tr>
     <tr>
       <th>param_svc__C</th>
@@ -2387,8 +2390,167 @@ dtype: float64
 <p>21 rows × 36 columns</p>
 </div></div></div>
 </div>
+<p>Let’s only look at the most relevant rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)[</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;mean_test_score&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param_svc__gamma&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;param_svc__C&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean_fit_time&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rank_test_score&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;rank_test_score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>rank_test_score</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>...</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+      <th>21</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean_test_score</th>
+      <td>0.743961</td>
+      <td>0.732792</td>
+      <td>0.729091</td>
+      <td>0.720391</td>
+      <td>0.711715</td>
+      <td>0.704284</td>
+      <td>0.703034</td>
+      <td>0.697473</td>
+      <td>0.678851</td>
+      <td>0.678244</td>
+      <td>...</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+      <td>0.50775</td>
+    </tr>
+    <tr>
+      <th>param_svc__gamma</th>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>0.001</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>...</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>100</td>
+      <td>10</td>
+      <td>1.0</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>10</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>param_svc__C</th>
+      <td>1.0</td>
+      <td>100</td>
+      <td>10</td>
+      <td>10</td>
+      <td>100</td>
+      <td>100</td>
+      <td>0.1</td>
+      <td>1.0</td>
+      <td>0.1</td>
+      <td>10</td>
+      <td>...</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.1</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>mean_fit_time</th>
+      <td>0.084358</td>
+      <td>0.132829</td>
+      <td>0.114569</td>
+      <td>0.087957</td>
+      <td>0.237454</td>
+      <td>0.094257</td>
+      <td>0.094057</td>
+      <td>0.089092</td>
+      <td>0.098833</td>
+      <td>0.09108</td>
+      <td>...</td>
+      <td>0.104924</td>
+      <td>0.106839</td>
+      <td>0.11281</td>
+      <td>0.094726</td>
+      <td>0.11424</td>
+      <td>0.177659</td>
+      <td>0.186994</td>
+      <td>0.190837</td>
+      <td>0.119908</td>
+      <td>0.101631</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 36 columns</p>
+</div></div></div>
+</div>
 <ul class="simple">
-<li><p>Other than searching for best hyperparameter values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> also fits a new model on the whole training set with the parameters that yielded the best results</p></li>
+<li><p>Other than searching for best hyperparameter values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> also fits a new model on the whole training set with the parameters that yielded the best results.</p></li>
 <li><p>So we can conveniently call <code class="docutils literal notranslate"><span class="pre">score</span></code> on the test set with a fitted <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> object.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -2410,7 +2572,6 @@ dtype: float64
 <li><p>Note the <code class="docutils literal notranslate"><span class="pre">n_jobs=-1</span></code> above.</p></li>
 <li><p>Hyperparameter optimization can be done <em>in parallel</em> for each of the configurations.</p></li>
 <li><p>This is very useful when scaling up to large numbers of machines in the cloud.</p></li>
-<li><p>But even on my laptop there are 8 cores it can use, so that makes it a lot faster.</p></li>
 </ul>
 </div>
 <div class="section" id="the-syntax">
@@ -2421,6 +2582,41 @@ dtype: float64
 <li><p><code class="docutils literal notranslate"><span class="pre">svc__gamma</span></code>: the <code class="docutils literal notranslate"><span class="pre">gamma</span></code> of the <code class="docutils literal notranslate"><span class="pre">svc</span></code> of the pipeline</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">svc__C</span></code>: the <code class="docutils literal notranslate"><span class="pre">C</span></code> of the <code class="docutils literal notranslate"><span class="pre">svc</span></code> of the pipeline</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
+
+<span class="n">pipe_dt</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">pipe_svm</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 {color: black;background-color: white;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 pre{padding: 0;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-toggleable {background-color: white;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-estimator:hover {background-color: #d4ebff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-item {z-index: 1;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-parallel-item:only-child::after {width: 0;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-e0eb9d12-3a4f-4b21-a373-e3c1d2e9f5f9" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="33d1d9c9-68b3-499f-80d5-a651ce9d7d14" type="checkbox" ><label class="sk-toggleable__label" for="33d1d9c9-68b3-499f-80d5-a651ce9d7d14">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
+             estimator=Pipeline(steps=[('standardscaler', StandardScaler()),
+                                       ('svc', SVC())]),
+             n_jobs=-1,
+             param_grid={'svc__C': [0.001, 0.01, 0.1, 1.0, 10, 100],
+                         'svc__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100]},
+             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2ab866bd-077b-4e13-bcd5-01929fc52329" type="checkbox" ><label class="sk-toggleable__label" for="2ab866bd-077b-4e13-bcd5-01929fc52329">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="bd1f0659-7a3c-4769-b1b8-5892043aba24" type="checkbox" ><label class="sk-toggleable__label" for="bd1f0659-7a3c-4769-b1b8-5892043aba24">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
 </div>
 <div class="section" id="visualizing-the-parameter-grid-as-a-heatmap">
 <h3>Visualizing the parameter grid as a heatmap<a class="headerlink" href="#visualizing-the-parameter-grid-as-a-heatmap" title="Permalink to this headline">¶</a></h3>
@@ -2454,7 +2650,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_64_0.png" src="../_images/08_hyperparameter-optimization_64_0.png" />
+<img alt="../_images/08_hyperparameter-optimization_67_0.png" src="../_images/08_hyperparameter-optimization_67_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2506,7 +2702,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_69_0.png" src="../_images/08_hyperparameter-optimization_69_0.png" />
+<img alt="../_images/08_hyperparameter-optimization_72_0.png" src="../_images/08_hyperparameter-optimization_72_0.png" />
 </div>
 </div>
 </div>
@@ -2521,7 +2717,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_71_0.png" src="../_images/08_hyperparameter-optimization_71_0.png" />
+<img alt="../_images/08_hyperparameter-optimization_74_0.png" src="../_images/08_hyperparameter-optimization_74_0.png" />
 </div>
 </div>
 <p>It seems like we are getting even better cross-validation results with <code class="docutils literal notranslate"><span class="pre">C</span></code> = 2.0 and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> = 0.1</p>
@@ -2535,7 +2731,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_73_0.png" src="../_images/08_hyperparameter-optimization_73_0.png" />
+<img alt="../_images/08_hyperparameter-optimization_76_0.png" src="../_images/08_hyperparameter-optimization_76_0.png" />
 </div>
 </div>
 <p>That’s good! We are finding some more options for <code class="docutils literal notranslate"><span class="pre">C</span></code> where the accuracy is 0.75.
@@ -2544,7 +2740,7 @@ The tricky part is we do not know in advance what range of hyperparameters might
 <div class="section" id="true-false">
 <h3>True/False<a class="headerlink" href="#true-false" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>If you get optimal results are for the edges of your parameter grid, it might be a good idea to adjust the range of values in your parameter grid.</p></li>
+<li><p>If you get optimal results at the edges of your parameter grid, it might be a good idea to adjust the range of values in your parameter grid.</p></li>
 <li><p>Grid search is guaranteed to find best hyperparameters values.</p></li>
 </ul>
 <div class="admonition note">
@@ -2584,23 +2780,23 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
 
+
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
-    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
+    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
 <span class="p">}</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grid size: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">.</span><span class="n">values</span><span class="p">())))))</span>
 <span class="n">param_grid</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid size: 144
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid size: 36
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
-        1.e+02, 1.e+03, 1.e+04, 1.e+05]),
- &#39;svc__C&#39;: array([1.e-06, 1.e-05, 1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01,
-        1.e+02, 1.e+03, 1.e+04, 1.e+05])}
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100],
+ &#39;svc__C&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100]}
 </pre></div>
 </div>
 </div>
@@ -2608,7 +2804,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
-    <span class="n">pipe_svm</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+    <span class="n">pipe_svm</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
 <span class="p">)</span>
 <span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 </pre></div>
@@ -2651,67 +2847,67 @@ For example, in the context of <code class="docutils literal notranslate"><span 
       <th>1</th>
       <th>2</th>
       <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>10</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>6</th>
+      <th>6</th>
+      <th>6</th>
+      <th>6</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mean_test_score</th>
-      <td>0.72721</td>
+      <td>0.732792</td>
       <td>0.711715</td>
+      <td>0.678851</td>
+      <td>0.652824</td>
+      <td>0.508371</td>
       <td>0.50775</td>
       <td>0.50775</td>
       <td>0.50775</td>
       <td>0.50775</td>
       <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50713</td>
     </tr>
     <tr>
       <th>param_svc__gamma</th>
+      <td>0.01</td>
+      <td>0.1</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>100</td>
       <td>0.001</td>
       <td>0.1</td>
-      <td>0.0001</td>
-      <td>0.000001</td>
-      <td>1000.0</td>
-      <td>100.0</td>
-      <td>100000.0</td>
-      <td>0.000001</td>
-      <td>0.01</td>
-      <td>10000.0</td>
+      <td>100</td>
+      <td>100</td>
+      <td>0.001</td>
     </tr>
     <tr>
       <th>param_svc__C</th>
-      <td>10000.0</td>
-      <td>100.0</td>
-      <td>0.0001</td>
-      <td>10.0</td>
-      <td>0.000001</td>
-      <td>0.000001</td>
-      <td>0.001</td>
-      <td>0.0001</td>
+      <td>100</td>
+      <td>100</td>
+      <td>0.1</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.01</td>
-      <td>100000.0</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.001</td>
+      <td>0.1</td>
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.607792</td>
-      <td>0.23722</td>
-      <td>0.061416</td>
-      <td>0.084219</td>
-      <td>0.069315</td>
-      <td>0.094561</td>
-      <td>0.093136</td>
-      <td>0.108058</td>
-      <td>0.099118</td>
-      <td>0.072634</td>
+      <td>0.136908</td>
+      <td>0.223643</td>
+      <td>0.091786</td>
+      <td>0.081974</td>
+      <td>0.109959</td>
+      <td>0.086026</td>
+      <td>0.092921</td>
+      <td>0.086742</td>
+      <td>0.088263</td>
+      <td>0.10128</td>
     </tr>
   </tbody>
 </table>
@@ -2721,12 +2917,12 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <h3><code class="docutils literal notranslate"><span class="pre">n_iter</span></code><a class="headerlink" href="#n-iter" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Note the <code class="docutils literal notranslate"><span class="pre">n_iter</span></code>, we didn’t need this for <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
-<li><p>Larger <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> will take longer but do more searching.</p>
+<li><p>Larger <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> will take longer but it’ll do more searching.</p>
 <ul>
 <li><p>Remember you still need to multiply by number of folds!</p></li>
 </ul>
 </li>
-<li><p>I also set <code class="docutils literal notranslate"><span class="pre">random_state</span></code> but you don’t have it.</p></li>
+<li><p>I have also set <code class="docutils literal notranslate"><span class="pre">random_state</span></code> but you don’t have to do it.</p></li>
 </ul>
 </div>
 <div class="section" id="range-of-c">
@@ -2735,13 +2931,13 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <li><p>Note the exponential range for <code class="docutils literal notranslate"><span class="pre">C</span></code>. This is quite common.</p></li>
 <li><p>There is no point trying <span class="math notranslate nohighlight">\(C=\{1,2,3\ldots,100\}\)</span> because <span class="math notranslate nohighlight">\(C=1,2,3\)</span> are too similar to each other.</p></li>
 <li><p>Often we’re trying to find an order of magnitude, e.g. <span class="math notranslate nohighlight">\(C=\{0.01,0.1,1,10,100\}\)</span>.</p></li>
-<li><p>We can also write that is <span class="math notranslate nohighlight">\(C=\{10^{-2},10^{-1},10^0,10^1,10^2\}\)</span>.</p></li>
+<li><p>We can also write that as <span class="math notranslate nohighlight">\(C=\{10^{-2},10^{-1},10^0,10^1,10^2\}\)</span>.</p></li>
 <li><p>Or, in other words, <span class="math notranslate nohighlight">\(C\)</span> values to try are <span class="math notranslate nohighlight">\(10^n\)</span> for <span class="math notranslate nohighlight">\(n=-2,-1,0,1,2\)</span> which is basically what we have above.</p></li>
 </ul>
-<p>Another thing we can do is give probability distributions to draw from:</p>
+<p>(Optional) Another thing we can do is give probability distributions to draw from:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">loguniform</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">expon</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span><span class="p">,</span> <span class="n">lognorm</span><span class="p">,</span> <span class="n">loguniform</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">uniform</span>
 </pre></div>
 </div>
 </div>
@@ -2749,8 +2945,8 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">),</span> <span class="c1">#loguniform(1e-3, 1e3),</span>
-    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="n">loguniform</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">),</span>        
+    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="n">uniform</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">),</span>  <span class="c1"># loguniform(1e-3, 1e3),</span>
+    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="n">loguniform</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">),</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2775,13 +2971,13 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 100 candidates, totalling 500 fits
 </pre></div>
 </div>
-<div class="output text_html"><style>#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 {color: black;background-color: white;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 pre{padding: 0;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-toggleable {background-color: white;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-estimator:hover {background-color: #d4ebff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-item {z-index: 1;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-parallel-item:only-child::after {width: 0;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-fbaaa380-82b5-4460-b634-42aa7a9b91e6" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="eeac5404-680c-459f-b44a-edc0620c2823" type="checkbox" ><label class="sk-toggleable__label" for="eeac5404-680c-459f-b44a-edc0620c2823">RandomizedSearchCV</label><div class="sk-toggleable__content"><pre>RandomizedSearchCV(estimator=Pipeline(steps=[('standardscaler',
+<div class="output text_html"><style>#sk-f6ae2039-1210-44da-b716-f910171a261d {color: black;background-color: white;}#sk-f6ae2039-1210-44da-b716-f910171a261d pre{padding: 0;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-toggleable {background-color: white;}#sk-f6ae2039-1210-44da-b716-f910171a261d label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-f6ae2039-1210-44da-b716-f910171a261d input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6ae2039-1210-44da-b716-f910171a261d input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-estimator:hover {background-color: #d4ebff;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-item {z-index: 1;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-parallel-item:only-child::after {width: 0;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-f6ae2039-1210-44da-b716-f910171a261d div.sk-container {display: inline-block;position: relative;}</style><div id="sk-f6ae2039-1210-44da-b716-f910171a261d" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="b56d0489-e466-47c1-82b3-6461c5787d21" type="checkbox" ><label class="sk-toggleable__label" for="b56d0489-e466-47c1-82b3-6461c5787d21">RandomizedSearchCV</label><div class="sk-toggleable__content"><pre>RandomizedSearchCV(estimator=Pipeline(steps=[('standardscaler',
                                               StandardScaler()),
-                                             ('svc', SVC(C=1, gamma=0.1))]),
+                                             ('svc', SVC())]),
                    n_iter=100, n_jobs=-1,
-                   param_distributions={'svc__C': <scipy.stats._distn_infrastructure.rv_frozen object at 0x1381ccaf0>,
-                                        'svc__gamma': <scipy.stats._distn_infrastructure.rv_frozen object at 0x138202af0>},
-                   random_state=123, verbose=1)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="7ad69c21-a0d4-4c5d-8eeb-52da49f51956" type="checkbox" ><label class="sk-toggleable__label" for="7ad69c21-a0d4-4c5d-8eeb-52da49f51956">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="3ce88a2c-5b94-4570-ab94-e1423754454d" type="checkbox" ><label class="sk-toggleable__label" for="3ce88a2c-5b94-4570-ab94-e1423754454d">SVC</label><div class="sk-toggleable__content"><pre>SVC(C=1, gamma=0.1)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+                   param_distributions={'svc__C': <scipy.stats._distn_infrastructure.rv_frozen object at 0x1331aba00>,
+                                        'svc__gamma': <scipy.stats._distn_infrastructure.rv_frozen object at 0x1331ef100>},
+                   random_state=123, verbose=1)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="78f486b5-9d75-423f-a09b-b90e71a044fc" type="checkbox" ><label class="sk-toggleable__label" for="78f486b5-9d75-423f-a09b-b90e71a044fc">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="4a294b35-cbee-4a00-bf37-12ed4f5859e5" type="checkbox" ><label class="sk-toggleable__label" for="4a294b35-cbee-4a00-bf37-12ed4f5859e5">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2926,27 +3122,27 @@ For example, in the context of <code class="docutils literal notranslate"><span 
     </tr>
     <tr>
       <th>mean_fit_time</th>
-      <td>0.662635</td>
-      <td>0.628511</td>
-      <td>0.555058</td>
-      <td>0.857166</td>
-      <td>1.527833</td>
-      <td>1.152758</td>
-      <td>0.302105</td>
-      <td>0.892365</td>
-      <td>0.557435</td>
-      <td>0.396327</td>
+      <td>0.578138</td>
+      <td>0.754308</td>
+      <td>0.539585</td>
+      <td>0.815382</td>
+      <td>1.383389</td>
+      <td>0.983303</td>
+      <td>0.257189</td>
+      <td>0.760234</td>
+      <td>0.467037</td>
+      <td>0.349615</td>
       <td>...</td>
-      <td>0.163627</td>
-      <td>0.156817</td>
-      <td>0.132313</td>
-      <td>0.148665</td>
-      <td>0.138724</td>
-      <td>0.128592</td>
-      <td>0.128467</td>
-      <td>0.125043</td>
-      <td>0.126596</td>
-      <td>0.117941</td>
+      <td>0.137354</td>
+      <td>0.134108</td>
+      <td>0.120242</td>
+      <td>0.121672</td>
+      <td>0.109651</td>
+      <td>0.114588</td>
+      <td>0.119547</td>
+      <td>0.105508</td>
+      <td>0.105618</td>
+      <td>0.134166</td>
     </tr>
   </tbody>
 </table>
@@ -2955,32 +3151,19 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </div>
 <ul class="simple">
 <li><p>This is a bit fancy. What’s nice is that you can have it concentrate more on certain values by setting the distribution.</p></li>
-<li><p>Let’s go back to:</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
-    <span class="s2">&quot;svc__C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="advantages-of-randomizedsearchcv">
 <h3>Advantages of <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code><a class="headerlink" href="#advantages-of-randomizedsearchcv" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Faster compared to <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
 <li><p>Adding parameters that do not influence the performance does not affect efficiency.</p></li>
+<li><p>Works better when some parameters are more important than others.</p></li>
 <li><p>In general, I recommend using <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code> rather than <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code>.</p></li>
 </ul>
 </div>
 <div class="section" id="id1">
 <h3>Advantages of <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Works better when some parameters are more important than others.</p></li>
-</ul>
 <p><img alt="" src="../_images/randomsearch_bergstra.png" /></p>
 <p>Source: <a class="reference external" href="http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf">Bergstra and Bengio, Random Search for Hyper-Parameter Optimization, JMLR 2012</a>.</p>
 <ul class="simple">
@@ -3037,32 +3220,39 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <p><br><br><br><br></p>
 </div>
 </div>
-<div class="section" id="optimization-bias">
-<h2>Optimization bias<a class="headerlink" href="#optimization-bias" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="optimization-bias-overfitting-of-the-validation-set">
+<h2>Optimization bias/Overfitting of the validation set<a class="headerlink" href="#optimization-bias-overfitting-of-the-validation-set" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="overfitting-of-the-validation-error">
 <h3>Overfitting of the validation error<a class="headerlink" href="#overfitting-of-the-validation-error" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Why do we need to evaluate the model on the test set in the end?</p></li>
 <li><p>Why not just use cross-validation on the whole dataset?</p></li>
-<li><p>While carrying out hyperparameter optimization, we end up trying over many possibilities.</p></li>
+<li><p>While carrying out hyperparameter optimization, we usually try over many possibilities.</p></li>
 <li><p>If our dataset is small and if your validation set is hit too many times, we suffer from <strong>optimization bias</strong> or <strong>overfitting the validation set</strong>.</p></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h3>Overfitting of the validation error<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>Optimization bias of parameter learning:</p>
+<div class="section" id="optimization-bias-of-parameter-learning">
+<h3>Optimization bias of parameter learning<a class="headerlink" href="#optimization-bias-of-parameter-learning" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>During learning, we could search over tons of different decision trees.</p></li>
-<li><p>So we can get “lucky” and find one with low training error by chance.</p>
+<li><p>Overfitting of the training error</p></li>
+<li><p>An example:</p>
 <ul>
-<li><p>“Overfitting of the training error”.</p></li>
+<li><p>During training, we could search over tons of different decision trees.</p></li>
+<li><p>So we can get “lucky” and find one with low training error by chance.</p></li>
 </ul>
 </li>
 </ul>
-<p>Optimization bias of hyper-parameter learning:</p>
+</div>
+<div class="section" id="optimization-bias-of-hyper-parameter-learning">
+<h3>Optimization bias of hyper-parameter learning<a class="headerlink" href="#optimization-bias-of-hyper-parameter-learning" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Here, we might optimize the validation error over 100 values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>.</p></li>
-<li><p>One of the 100 trees might have low validation error by chance.</p></li>
+<li><p>Overfitting of the validation error</p></li>
+<li><p>An example:</p>
+<ul>
+<li><p>Here, we might optimize the validation error over 1000 values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>.</p></li>
+<li><p>One of the 1000 trees might have low validation error by chance.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="example-1-optimization-bias-optional">
@@ -3087,7 +3277,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 <p><strong>But on new questions the “random choice” accuracy is still 25%.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code attribution: Thanks to Rodolfo! (optional)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (optional) Code attribution: Rodolfo Lourenzutti</span>
 <span class="n">number_tests</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">ntests</span> <span class="ow">in</span> <span class="n">number_tests</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
@@ -3102,7 +3292,7 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1 tests is : 0.25
-The expected grade among the best of 2 tests is : 0.33
+The expected grade among the best of 2 tests is : 0.32
 The expected grade among the best of 10 tests is : 0.47
 </pre></div>
 </div>
@@ -3112,7 +3302,7 @@ The expected grade among the best of 10 tests is : 0.47
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.73
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.83
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.82
 </pre></div>
 </div>
 </div>
@@ -3144,7 +3334,7 @@ The expected grade among the best of 10 tests is : 0.47
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code attribution: Thanks to Rodolfo! (optional)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># (optional) Code attribution: Rodolfo Lourenzutti</span>
 <span class="n">number_tests</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">ntests</span> <span class="ow">in</span> <span class="n">number_tests</span><span class="p">:</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
@@ -3177,139 +3367,157 @@ The expected grade among the best of 2 tests is : 0.27
 </div>
 </div>
 </div>
-<div class="section" id="let-s-examine-effects-of-optimization-on-the-adult-income-dataset">
-<h3>Let’s examine effects of optimization on the adult income dataset<a class="headerlink" href="#let-s-examine-effects-of-optimization-on-the-adult-income-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="optimization-bias-on-the-spotify-dataset">
+<h3>Optimization bias on the Spotify dataset<a class="headerlink" href="#optimization-bias-on-the-spotify-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">adult_df_large</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_tiny</span><span class="p">,</span> <span class="n">X_test_big</span><span class="p">,</span> <span class="n">y_train_tiny</span><span class="p">,</span> <span class="n">y_test_big</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_spotify</span><span class="p">,</span> <span class="n">y_spotify</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_tiny</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_68126</span><span class="o">/</span><span class="mf">3730860457.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">adult_df_large</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(20, 13)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_tiny</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ne">NameError</span>: name &#39;adult_df_large&#39; is not defined
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
-<span class="n">test_df_nan</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_nan</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="identify-feature-types">
-<h3>Identify feature types<a class="headerlink" href="#identify-feature-types" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="s2">&quot;fnlwgt&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.gain&quot;</span><span class="p">,</span> <span class="s2">&quot;capital.loss&quot;</span><span class="p">,</span> <span class="s2">&quot;hours.per.week&quot;</span><span class="p">]</span>
-<span class="c1"># I am removing eduction.num column</span>
-<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;workclass&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;marital.status&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;occupation&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;relationship&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;native.country&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="c1"># I am removing &#39;race&#39; column</span>
-<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;education&quot;</span><span class="p">]</span>
-<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;income&quot;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">education_levels</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;Preschool&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;1st-4th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;5th-6th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;7th-8th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;9th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;10th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;11th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;12th&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;HS-grad&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Prof-school&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Assoc-voc&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Assoc-acdm&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Some-college&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Bachelors&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Masters&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Doctorate&quot;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df_nan</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df_nan</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df_nan</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df_nan</span><span class="p">[</span><span class="n">target</span><span class="p">]</span>
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>130</th>
+      <td>0.055100</td>
+      <td>0.547</td>
+      <td>251093</td>
+      <td>0.643</td>
+      <td>0.000000</td>
+      <td>1</td>
+      <td>0.2670</td>
+      <td>-8.904</td>
+      <td>1</td>
+      <td>0.2270</td>
+      <td>143.064</td>
+      <td>4.0</td>
+      <td>0.1870</td>
+    </tr>
+    <tr>
+      <th>1687</th>
+      <td>0.000353</td>
+      <td>0.420</td>
+      <td>210240</td>
+      <td>0.929</td>
+      <td>0.000747</td>
+      <td>7</td>
+      <td>0.1220</td>
+      <td>-3.899</td>
+      <td>0</td>
+      <td>0.1210</td>
+      <td>127.204</td>
+      <td>4.0</td>
+      <td>0.3180</td>
+    </tr>
+    <tr>
+      <th>871</th>
+      <td>0.314000</td>
+      <td>0.430</td>
+      <td>193427</td>
+      <td>0.734</td>
+      <td>0.000286</td>
+      <td>9</td>
+      <td>0.0808</td>
+      <td>-10.043</td>
+      <td>0</td>
+      <td>0.1020</td>
+      <td>133.992</td>
+      <td>4.0</td>
+      <td>0.0537</td>
+    </tr>
+    <tr>
+      <th>1123</th>
+      <td>0.082100</td>
+      <td>0.725</td>
+      <td>246653</td>
+      <td>0.711</td>
+      <td>0.000000</td>
+      <td>10</td>
+      <td>0.0931</td>
+      <td>-4.544</td>
+      <td>1</td>
+      <td>0.0335</td>
+      <td>93.003</td>
+      <td>4.0</td>
+      <td>0.4760</td>
+    </tr>
+    <tr>
+      <th>1396</th>
+      <td>0.286000</td>
+      <td>0.616</td>
+      <td>236960</td>
+      <td>0.387</td>
+      <td>0.000000</td>
+      <td>9</td>
+      <td>0.2770</td>
+      <td>-6.079</td>
+      <td>0</td>
+      <td>0.0335</td>
+      <td>81.856</td>
+      <td>4.0</td>
+      <td>0.4700</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="define-columntransformer-and-a-pipeline">
-<h3>Define <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and a pipeline<a class="headerlink" href="#define-columntransformer-and-a-pipeline" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
-
-<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
-    <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">),</span>
-<span class="p">)</span>
-
-<span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
-    <span class="n">OrdinalEncoder</span><span class="p">(</span>
-        <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
-    <span class="p">),</span>
-<span class="p">)</span>
-
-<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
-    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
-        <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;ordinal&quot;</span><span class="p">,</span> <span class="n">ordinal_transformer</span><span class="p">,</span> <span class="n">ordinal_features</span><span class="p">),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">SVC</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -3327,13 +3535,28 @@ The expected grade among the best of 2 tests is : 0.27
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid size: 900
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: array([1.e-20, 1.e-19, 1.e-18, 1.e-17, 1.e-16, 1.e-15, 1.e-14, 1.e-13,
+        1.e-12, 1.e-11, 1.e-10, 1.e-09, 1.e-08, 1.e-07, 1.e-06, 1.e-05,
+        1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03,
+        1.e+04, 1.e+05, 1.e+06, 1.e+07, 1.e+08, 1.e+09]),
+ &#39;svc__C&#39;: array([1.e-20, 1.e-19, 1.e-18, 1.e-17, 1.e-16, 1.e-15, 1.e-14, 1.e-13,
+        1.e-12, 1.e-11, 1.e-10, 1.e-09, 1.e-08, 1.e-07, 1.e-06, 1.e-05,
+        1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03,
+        1.e+04, 1.e+05, 1.e+06, 1.e+07, 1.e+08, 1.e+09])}
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
-    <span class="n">pipe</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+    <span class="n">pipe</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">900</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span>
 <span class="p">)</span>
-<span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+<span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tiny</span><span class="p">,</span> <span class="n">y_train_tiny</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -3348,18 +3571,160 @@ The expected grade among the best of 2 tests is : 0.27
         <span class="s2">&quot;mean_fit_time&quot;</span><span class="p">,</span>
         <span class="s2">&quot;rank_test_score&quot;</span><span class="p">,</span>
     <span class="p">]</span>
-<span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;rank_test_score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;rank_test_score&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>rank_test_score</th>
+      <th>1</th>
+      <th>1</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>3</th>
+      <th>...</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>900</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>mean_test_score</th>
+      <td>0.8</td>
+      <td>0.8</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>0.75</td>
+      <td>...</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.65</td>
+      <td>0.55</td>
+    </tr>
+    <tr>
+      <th>param_svc__gamma</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.0</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>0.001</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>100000.0</td>
+      <td>1000000000.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>param_svc__C</th>
+      <td>1000000000.0</td>
+      <td>100000000.0</td>
+      <td>1000000000.0</td>
+      <td>10000.0</td>
+      <td>1000000.0</td>
+      <td>10000000.0</td>
+      <td>100000.0</td>
+      <td>1000.0</td>
+      <td>10000000.0</td>
+      <td>100000000.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1000000000.0</td>
+      <td>1000000000.0</td>
+    </tr>
+    <tr>
+      <th>mean_fit_time</th>
+      <td>0.005196</td>
+      <td>0.004981</td>
+      <td>0.003464</td>
+      <td>0.004811</td>
+      <td>0.004923</td>
+      <td>0.004359</td>
+      <td>0.004385</td>
+      <td>0.004299</td>
+      <td>0.005634</td>
+      <td>0.004836</td>
+      <td>...</td>
+      <td>0.004634</td>
+      <td>0.005138</td>
+      <td>0.005016</td>
+      <td>0.004877</td>
+      <td>0.004698</td>
+      <td>0.004202</td>
+      <td>0.004059</td>
+      <td>0.005331</td>
+      <td>0.004228</td>
+      <td>0.004424</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 900 columns</p>
+</div></div></div>
 </div>
+<p>Given the results: one might claim that we found a model that performs with 0.8 accuracy on our dataset.</p>
 <ul class="simple">
-<li><p>Do we really believe that 0.85 is a good estimate of our test data?</p></li>
-<li><p>Do we really believe that <code class="docutils literal notranslate"><span class="pre">gamma</span></code>=0.001 and C=1000 are the best hyperparameters?</p></li>
+<li><p>Do we really believe that 0.80 is a good estimate of our test data?</p></li>
+<li><p>Do we really believe that <code class="docutils literal notranslate"><span class="pre">gamma</span></code>=0.0 and C=1_000_000_000 are the best hyperparameters?</p></li>
 </ul>
 <ul class="simple">
-<li><p>No, because our training data is quite small and so our validation splits in cross validation would be small.</p></li>
-<li><p>No, because of the small dataset and the fact that we hit the small validation set 900 times and it’s possible that we got lucky on the validation set!</p></li>
 <li><p>Let’s find out the test score with this best model.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -3368,15 +3733,42 @@ The expected grade among the best of 2 tests is : 0.27
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6163366336633663
+</pre></div>
+</div>
+</div>
 </div>
 <ul class="simple">
-<li><p>We can trust this test score because it’s a huge test set.</p></li>
+<li><p>The results above are overly optimistic.</p>
+<ul>
+<li><p>because our training data is very small and so our validation splits in cross validation would be small.</p></li>
+<li><p>because of the small dataset and the fact that we hit the small validation set 900 times and it’s possible that we got lucky on the validation set!</p></li>
 </ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>As we suspected, the best cross-validation score is not a good estimate of our test data; it is overly optimistic.</p></li>
+<li><p>We can trust this test score because the test set is of good size.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_big</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1997, 13)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="overfitting-of-the-validation-data">
 <h3>Overfitting of the validation data<a class="headerlink" href="#overfitting-of-the-validation-data" title="Permalink to this headline">¶</a></h3>
+<p>The following plot demonstrates what happens during overfitting of the validation data.</p>
 <center>
-<img src='./img/optimization-bias.png' width="800">
+<img src='./img/optimization-bias.png' width="600">
 </center>
 <p><a class="reference external" href="https://amueller.github.io/COMS4995-s20/slides/aml-03-supervised-learning/#20">Source</a></p>
 <ul class="simple">
@@ -3386,14 +3778,24 @@ The expected grade among the best of 2 tests is : 0.27
 <div class="section" id="why-do-we-need-a-test-set">
 <h3>Why do we need a test set?<a class="headerlink" href="#why-do-we-need-a-test-set" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>We have a VERY optimistic cross-validation score.</p></li>
 <li><p>This is why we need a test set.</p></li>
-<li><p>The frustrating part is that if our dataset is small then our test set is also small :(.</p></li>
+<li><p>The frustrating part is that if our dataset is small then our test set is also small 😔.</p></li>
 <li><p>But we don’t have a lot of better alternatives, unfortunately, if we have a small dataset.</p></li>
 </ul>
 </div>
-<div class="section" id="large-datasets-solves-many-of-these-problems">
-<h3>Large datasets solves many of these problems<a class="headerlink" href="#large-datasets-solves-many-of-these-problems" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="when-test-score-is-much-lower-than-cv-score">
+<h3>When test score is much lower than CV score<a class="headerlink" href="#when-test-score-is-much-lower-than-cv-score" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>What to do if your test score is much lower than your cross-validation score:</p>
+<ul>
+<li><p>Try simpler models and use the test set a couple of times; it’s not the end of the world.</p></li>
+<li><p>Communicate this clearly when you report the results.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="large-datasets-solve-many-of-these-problems">
+<h3>Large datasets solve many of these problems<a class="headerlink" href="#large-datasets-solve-many-of-these-problems" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>With infinite amounts of training data, overfitting would not be a problem and you could have your test score = your train score.</p>
 <ul>
@@ -3402,16 +3804,10 @@ The expected grade among the best of 2 tests is : 0.27
 </ul>
 </li>
 <li><p>So, more data will make your test score better and robust.</p></li>
-<li><p>What to do if your test score is much lower than your cross-validation score:</p>
-<ul>
-<li><p>Try simpler models and use the test set a couple of times - it’s not the end of the world.</p></li>
-<li><p>Communicate this clearly when you report the results.</p></li>
-</ul>
-</li>
 </ul>
 </div>
-<div class="section" id="questions-for-class-discussion-optimization-bias">
-<h3>Questions for class discussion (optimization bias)<a class="headerlink" href="#questions-for-class-discussion-optimization-bias" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="questions-for-you">
+<h3>❓❓ Questions for you<a class="headerlink" href="#questions-for-you" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="would-you-trust-the-model">
 <h3>Would you trust the model?<a class="headerlink" href="#would-you-trust-the-model" title="Permalink to this headline">¶</a></h3>
@@ -3423,8 +3819,8 @@ The expected grade among the best of 2 tests is : 0.27
 <li><p>Probably not</p></li>
 </ol>
 </div>
-<div class="section" id="id3">
-<h3>Would you trust the model?<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Would you trust the model?<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>You have a dataset and you give me half of it. I build a model using 80% of the data given to me and report the accuracy of 0.95 on the remaining 20% of the data. Would it classify the rest of the data with similar accuracy?</p></li>
 </ul>
@@ -3433,8 +3829,8 @@ The expected grade among the best of 2 tests is : 0.27
 <li><p>Probably not</p></li>
 </ol>
 </div>
-<div class="section" id="id4">
-<h3>Would you trust the model?<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Would you trust the model?<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>You have a dataset and you give me 1/10th of it. The dataset given to me is rather small and so I split it into 96% train and 4% validation split. I carry out hyperparameter optimization using a single 4% validation split and report validation accuracy of 0.97. Would it classify the rest of the data with similar accuracy?</p></li>
 </ul>
@@ -3446,8 +3842,8 @@ The expected grade among the best of 2 tests is : 0.27
 </div>
 <div class="section" id="final-comments-and-summary">
 <h2>Final comments and summary<a class="headerlink" href="#final-comments-and-summary" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id5">
-<h3>Automated hyperparameter optimization<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Automated hyperparameter optimization<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Advantages</p>
 <ul>
@@ -3464,16 +3860,15 @@ The expected grade among the best of 2 tests is : 0.27
 </li>
 </ul>
 <p>Often, especially on typical datasets, we get back <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s default hyperparameter values. This means that the defaults are well chosen by <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> developers!</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">The</span> <span class="n">problem</span> <span class="n">of</span> <span class="n">finding</span> <span class="n">the</span> <span class="n">best</span> <span class="n">values</span> <span class="k">for</span> <span class="n">the</span> <span class="n">important</span> <span class="n">hyperparameters</span> <span class="ow">is</span> <span class="n">tricky</span> <span class="n">because</span> 
-    <span class="o">-</span> <span class="n">You</span> <span class="n">may</span> <span class="n">have</span> <span class="n">a</span> <span class="n">lot</span> <span class="n">of</span> <span class="n">them</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">deep</span> <span class="n">learning</span><span class="p">)</span><span class="o">.</span> 
-    <span class="o">-</span> <span class="n">You</span> <span class="n">may</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">hyperparameters</span> <span class="n">which</span> <span class="n">may</span> <span class="n">interact</span> <span class="k">with</span> <span class="n">each</span> <span class="n">other</span> <span class="ow">in</span> <span class="n">unexpected</span> <span class="n">ways</span><span class="o">.</span>    
-<span class="o">-</span> <span class="n">The</span> <span class="n">best</span> <span class="n">settings</span> <span class="n">depend</span> <span class="n">on</span> <span class="n">the</span> <span class="n">specific</span> <span class="n">data</span><span class="o">/</span><span class="n">problem</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-</div>
+<ul class="simple">
+<li><p>The problem of finding the best values for the important hyperparameters is tricky because</p>
+<ul>
+<li><p>You may have a lot of them (e.g. deep learning).</p></li>
+<li><p>You may have multiple hyperparameters which may interact with each other in unexpected ways.</p></li>
+</ul>
+</li>
+<li><p>The best settings depend on the specific data/problem.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="optional-readings-and-resources">
@@ -3507,14 +3902,36 @@ The expected grade among the best of 2 tests is : 0.27
               </div>
               
         
-        <div class='prev-next-bottom'>
             
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="07_linear-models.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lecture 7: Linear Models</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../attribution.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Attributions</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

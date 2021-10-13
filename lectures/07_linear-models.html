@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,19 +42,19 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 8: Hyperparameter Optimization and Optimization Bias" href="08_hyperparameter-optimization.html" />
     <link rel="prev" title="Lecture 6: sklearn ColumnTransformer and Text Features" href="06_column-transformer-text-feats.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -74,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -157,6 +161,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
   </a>
  </li>
 </ul>
@@ -262,7 +271,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -697,6 +706,7 @@
 <div class="section" id="announcements">
 <h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><p>Homework 3 was due last night.</p></li>
 <li><p>Homework 4 will be released today (Due date: Oct 12th because Monday, Oct 11th is a holiday.)</p></li>
 </ul>
 </div>
@@ -1381,36 +1391,36 @@ problems.
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003089</td>
-      <td>0.000392</td>
+      <td>0.003360</td>
+      <td>0.000451</td>
       <td>0.743230</td>
       <td>0.766721</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001005</td>
-      <td>0.000305</td>
+      <td>0.000829</td>
+      <td>0.000293</td>
       <td>0.787715</td>
       <td>0.757490</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000962</td>
-      <td>0.000332</td>
+      <td>0.000943</td>
+      <td>0.000297</td>
       <td>0.758903</td>
       <td>0.761349</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000985</td>
-      <td>0.000365</td>
+      <td>0.000768</td>
+      <td>0.000286</td>
       <td>0.775489</td>
       <td>0.753837</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000979</td>
-      <td>0.000292</td>
+      <td>0.000761</td>
+      <td>0.000282</td>
       <td>0.644863</td>
       <td>0.788461</td>
     </tr>
@@ -2031,14 +2041,14 @@ It got a bit <b>boring</b> at times but the direction was <b>excellent</b> and t
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e2ea3cf3305c49f98df78ed635166bf3"}
+{"version_major": 2, "version_minor": 0, "model_id": "232156265bd4483390484d188cd73b1e"}
 </script></div>
 </div>
 <p>In our case, for values for the coefficient of <em>boring</em> &lt; -3.36, the prediction would be negative.</p>
 <p>A linear model learns these coefficients or weights from the training data!</p>
 <p>So a linear classifier is a linear function of the input <code class="docutils literal notranslate"><span class="pre">X</span></code>, followed by a threshold.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d3fb97f4-a84f-48b4-b5ac-d7b88c0f1a17">
-<span class="eqno">(1)<a class="headerlink" href="#equation-d3fb97f4-a84f-48b4-b5ac-d7b88c0f1a17" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4fe35120-94ff-4110-8c32-07f0204ac845">
+<span class="eqno">(1)<a class="headerlink" href="#equation-4fe35120-94ff-4110-8c32-07f0204ac845" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 =&amp; w^Tx + b
@@ -2170,36 +2180,36 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000582</td>
-      <td>0.000444</td>
+      <td>0.000705</td>
+      <td>0.000376</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000434</td>
-      <td>0.000237</td>
+      <td>0.000621</td>
+      <td>0.000363</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000352</td>
-      <td>0.000219</td>
+      <td>0.000414</td>
+      <td>0.000223</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000343</td>
-      <td>0.000205</td>
+      <td>0.000352</td>
+      <td>0.000209</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000343</td>
-      <td>0.000204</td>
+      <td>0.000364</td>
+      <td>0.000243</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
@@ -2246,36 +2256,36 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.008296</td>
-      <td>0.001010</td>
+      <td>0.006988</td>
+      <td>0.000926</td>
       <td>0.852941</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005923</td>
-      <td>0.001043</td>
+      <td>0.005469</td>
+      <td>0.001202</td>
       <td>0.823529</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.005104</td>
-      <td>0.000879</td>
+      <td>0.004884</td>
+      <td>0.000825</td>
       <td>0.696970</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.005321</td>
-      <td>0.000838</td>
+      <td>0.005049</td>
+      <td>0.000830</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005250</td>
-      <td>0.000973</td>
+      <td>0.005064</td>
+      <td>0.000867</td>
       <td>0.939394</td>
       <td>0.805970</td>
     </tr>
@@ -3439,13 +3449,11 @@ Name: country, dtype: object
   warnings.warn(
 /Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py:441: UserWarning: X does not have valid feature names, but LogisticRegression was fitted with feature names
   warnings.warn(
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py:441: UserWarning: X does not have valid feature names, but LogisticRegression was fitted with feature names
+/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/base.py:441: UserWarning: X does not have valid feature names, but LogisticRegression was fitted with feature names
   warnings.warn(
 </pre></div>
 </div>
-<img alt="../_images/07_linear-models_155_2.png" src="../_images/07_linear-models_155_2.png" />
+<img alt="../_images/07_linear-models_155_1.png" src="../_images/07_linear-models_155_1.png" />
 </div>
 </div>
 <p>Sometimes a complex model that is overfitted, tends to make more confident predictions, even if they are wrong, whereas a simpler model tends to make predictions with more uncertainty.</p>
@@ -3809,36 +3817,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001707</td>
-      <td>0.001141</td>
+      <td>0.001593</td>
+      <td>0.001085</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001275</td>
-      <td>0.000996</td>
+      <td>0.001256</td>
+      <td>0.001368</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001412</td>
-      <td>0.000998</td>
+      <td>0.001255</td>
+      <td>0.001003</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001222</td>
-      <td>0.001002</td>
+      <td>0.001216</td>
+      <td>0.001006</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001240</td>
-      <td>0.001017</td>
+      <td>0.001242</td>
+      <td>0.001023</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
@@ -3887,36 +3895,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.602372</td>
-      <td>0.116315</td>
+      <td>0.557793</td>
+      <td>0.102916</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.769544</td>
-      <td>0.159667</td>
+      <td>0.557622</td>
+      <td>0.104588</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.687302</td>
-      <td>0.122850</td>
+      <td>0.562238</td>
+      <td>0.106944</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.621892</td>
-      <td>0.113675</td>
+      <td>0.545486</td>
+      <td>0.096094</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.612765</td>
-      <td>0.111346</td>
+      <td>0.543112</td>
+      <td>0.099017</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -3949,7 +3957,7 @@ Model intercept: [10.8869838]
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_69373</span><span class="o">/</span><span class="mf">2096027445.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2740</span><span class="o">/</span><span class="mf">2096027445.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -4020,11 +4028,11 @@ Model intercept: [10.8869838]
 <span class="g g-Whitespace">    </span><span class="mi">211</span> 
 
 <span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span> 
-<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-<span class="ne">--&gt; </span><span class="mi">703</span>         <span class="n">test_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">704</span>         <span class="n">score_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">fit_time</span>
 <span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="k">if</span> <span class="n">return_train_score</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">706</span>             <span class="n">train_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span> 
+<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
 
 <span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer, error_score)</span>
 <span class="g g-Whitespace">    </span><span class="mi">760</span>             <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
@@ -4322,7 +4330,7 @@ Model intercept: [10.8869838]
 <p>Let’s explore prediction of the following new review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_review</span> <span class="o">=</span> <span class="s2">&quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recomment it!&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fake_review</span> <span class="o">=</span> <span class="s2">&quot;It got a bit boring at times but the direction was excellent and the acting was flawless. Overall I enjoyed the movie and I highly recommend it!&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -4342,7 +4350,7 @@ Model intercept: [10.8869838]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;1x10000 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
-	with 12 stored elements in Compressed Sparse Row format&gt;
+	with 13 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -4355,12 +4363,24 @@ Model intercept: [10.8869838]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.1718113, 0.8281887]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.16423497, 0.83576503]])
 </pre></div>
 </div>
 </div>
 </div>
-<p>The model is 82% confident that it’s a positive review.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">classes_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;neg&#39;, &#39;pos&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The model is 83.5% confident that it’s a positive review.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">fake_review</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
@@ -4407,7 +4427,7 @@ Model intercept: [10.8869838]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
 </pre></div>
 </div>
 </div>
@@ -4420,8 +4440,8 @@ Model intercept: [10.8869838]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;acting&#39;, &#39;bit&#39;, &#39;boring&#39;, &#39;direction&#39;, &#39;enjoyed&#39;, &#39;excellent&#39;,
-       &#39;flawless&#39;, &#39;got&#39;, &#39;highly&#39;, &#39;movie&#39;, &#39;overall&#39;, &#39;times&#39;],
-      dtype=&#39;&lt;U17&#39;)
+       &#39;flawless&#39;, &#39;got&#39;, &#39;highly&#39;, &#39;movie&#39;, &#39;overall&#39;, &#39;recommend&#39;,
+       &#39;times&#39;], dtype=&#39;&lt;U17&#39;)
 </pre></div>
 </div>
 </div>
@@ -4505,6 +4525,10 @@ Model intercept: [10.8869838]
       <td>0.136288</td>
     </tr>
     <tr>
+      <th>recommend</th>
+      <td>0.054205</td>
+    </tr>
+    <tr>
       <th>times</th>
       <td>0.133895</td>
     </tr>
@@ -4522,7 +4546,7 @@ Model intercept: [10.8869838]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_221_0.png" src="../_images/07_linear-models_221_0.png" />
+<img alt="../_images/07_linear-models_222_0.png" src="../_images/07_linear-models_222_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4615,7 +4639,7 @@ Prediction probability: 1.0000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_231_0.png" src="../_images/07_linear-models_231_0.png" />
+<img alt="../_images/07_linear-models_232_0.png" src="../_images/07_linear-models_232_0.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with <strong>positive</strong> coefficients win in this case!</p>
@@ -4680,7 +4704,7 @@ Prediction probability: 0.0000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_237_0.png" src="../_images/07_linear-models_237_0.png" />
+<img alt="../_images/07_linear-models_238_0.png" src="../_images/07_linear-models_238_0.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with negative coefficients win in this case!</p>
@@ -4803,16 +4827,36 @@ Prediction probability: 0.0000
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="06_column-transformer-text-feats.html" title="previous page">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="06_column-transformer-text-feats.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08_hyperparameter-optimization.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lecture 8: Hyperparameter Optimization and Optimization Bias</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
