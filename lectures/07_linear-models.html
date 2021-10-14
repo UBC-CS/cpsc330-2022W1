@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,15 +42,15 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -74,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -162,6 +166,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="08_hyperparameter-optimization.html">
    Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_classification-metrics.html">
+   Lecture 9: Classification Metrics
   </a>
  </li>
 </ul>
@@ -267,7 +276,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -1387,36 +1396,36 @@ problems.
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003360</td>
-      <td>0.000451</td>
+      <td>0.002590</td>
+      <td>0.000453</td>
       <td>0.743230</td>
       <td>0.766721</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000829</td>
-      <td>0.000293</td>
+      <td>0.000837</td>
+      <td>0.000309</td>
       <td>0.787715</td>
       <td>0.757490</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000943</td>
-      <td>0.000297</td>
+      <td>0.000870</td>
+      <td>0.000295</td>
       <td>0.758903</td>
       <td>0.761349</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000768</td>
-      <td>0.000286</td>
+      <td>0.000840</td>
+      <td>0.000294</td>
       <td>0.775489</td>
       <td>0.753837</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000761</td>
-      <td>0.000282</td>
+      <td>0.000799</td>
+      <td>0.000294</td>
       <td>0.644863</td>
       <td>0.788461</td>
     </tr>
@@ -2037,14 +2046,14 @@ It got a bit <b>boring</b> at times but the direction was <b>excellent</b> and t
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "232156265bd4483390484d188cd73b1e"}
+{"version_major": 2, "version_minor": 0, "model_id": "a97c1b32316c4f9fb836b13856a023be"}
 </script></div>
 </div>
 <p>In our case, for values for the coefficient of <em>boring</em> &lt; -3.36, the prediction would be negative.</p>
 <p>A linear model learns these coefficients or weights from the training data!</p>
 <p>So a linear classifier is a linear function of the input <code class="docutils literal notranslate"><span class="pre">X</span></code>, followed by a threshold.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4fe35120-94ff-4110-8c32-07f0204ac845">
-<span class="eqno">(1)<a class="headerlink" href="#equation-4fe35120-94ff-4110-8c32-07f0204ac845" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-defa0fb7-40e0-4607-8c00-b64e186ad53e">
+<span class="eqno">(1)<a class="headerlink" href="#equation-defa0fb7-40e0-4607-8c00-b64e186ad53e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{split}
 z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 =&amp; w^Tx + b
@@ -2176,36 +2185,36 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000705</td>
-      <td>0.000376</td>
+      <td>0.000584</td>
+      <td>0.000452</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000621</td>
-      <td>0.000363</td>
+      <td>0.000410</td>
+      <td>0.000209</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000414</td>
-      <td>0.000223</td>
+      <td>0.000347</td>
+      <td>0.000207</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000352</td>
-      <td>0.000209</td>
+      <td>0.000340</td>
+      <td>0.000205</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000364</td>
-      <td>0.000243</td>
+      <td>0.000340</td>
+      <td>0.000201</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
@@ -2252,36 +2261,36 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.006988</td>
-      <td>0.000926</td>
+      <td>0.007449</td>
+      <td>0.000915</td>
       <td>0.852941</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.005469</td>
-      <td>0.001202</td>
+      <td>0.005229</td>
+      <td>0.000810</td>
       <td>0.823529</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.004884</td>
-      <td>0.000825</td>
+      <td>0.004661</td>
+      <td>0.000805</td>
       <td>0.696970</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.005049</td>
-      <td>0.000830</td>
+      <td>0.004913</td>
+      <td>0.000814</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.005064</td>
-      <td>0.000867</td>
+      <td>0.004874</td>
+      <td>0.000808</td>
       <td>0.939394</td>
       <td>0.805970</td>
     </tr>
@@ -3813,36 +3822,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001593</td>
-      <td>0.001085</td>
+      <td>0.001579</td>
+      <td>0.001060</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001256</td>
-      <td>0.001368</td>
+      <td>0.001223</td>
+      <td>0.000994</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001255</td>
-      <td>0.001003</td>
+      <td>0.001230</td>
+      <td>0.000990</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001216</td>
-      <td>0.001006</td>
+      <td>0.001175</td>
+      <td>0.000978</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001242</td>
-      <td>0.001023</td>
+      <td>0.001201</td>
+      <td>0.000996</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
@@ -3891,36 +3900,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.557793</td>
-      <td>0.102916</td>
+      <td>0.563458</td>
+      <td>0.105207</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.557622</td>
-      <td>0.104588</td>
+      <td>0.539661</td>
+      <td>0.100064</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.562238</td>
-      <td>0.106944</td>
+      <td>0.585523</td>
+      <td>0.106863</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.545486</td>
-      <td>0.096094</td>
+      <td>0.554427</td>
+      <td>0.096111</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.543112</td>
-      <td>0.099017</td>
+      <td>0.557064</td>
+      <td>0.097527</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -3953,7 +3962,7 @@ Model intercept: [10.8869838]
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2740</span><span class="o">/</span><span class="mf">2096027445.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4813</span><span class="o">/</span><span class="mf">2096027445.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">),</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -4024,60 +4033,186 @@ Model intercept: [10.8869838]
 <span class="g g-Whitespace">    </span><span class="mi">211</span> 
 
 <span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>         <span class="n">score_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">fit_time</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="k">if</span> <span class="n">return_train_score</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">706</span>             <span class="n">train_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">707</span> 
-<span class="g g-Whitespace">    </span><span class="mi">708</span>     <span class="k">if</span> <span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">680</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">681</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">682</span> 
+<span class="g g-Whitespace">    </span><span class="mi">683</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>             <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">761</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">762</span>             <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">764</span>         <span class="k">if</span> <span class="n">error_score</span> <span class="o">==</span> <span class="s2">&quot;raise&quot;</span><span class="p">:</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">392</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span> <span class="o">!=</span> <span class="s2">&quot;passthrough&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">393</span>                 <span class="n">fit_params_last_step</span> <span class="o">=</span> <span class="n">fit_params_steps</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+<span class="ne">--&gt; </span><span class="mi">394</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_last_step</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span> 
+<span class="g g-Whitespace">    </span><span class="mi">396</span>         <span class="k">return</span> <span class="bp">self</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/metrics/_scorer.py</span> in <span class="ni">_passthrough_scorer</span><span class="nt">(estimator, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span> <span class="k">def</span> <span class="nf">_passthrough_scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="sd">&quot;&quot;&quot;Function that wraps estimator.score&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">418</span>     <span class="k">return</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">419</span> 
-<span class="g g-Whitespace">    </span><span class="mi">420</span> 
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1587</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1588</span>             <span class="n">prefer</span> <span class="o">=</span> <span class="s2">&quot;processes&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1589</span>         <span class="n">fold_coefs_</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1590</span>             <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1591</span>             <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/metaestimators.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span> 
-<span class="g g-Whitespace">    </span><span class="mi">112</span>             <span class="c1"># lambda, but not partial, allows help() to work with update_wrapper</span>
-<span class="ne">--&gt; </span><span class="mi">113</span>             <span class="n">out</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># noqa</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="k">else</span><span class="p">:</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>             <span class="c1"># remaining jobs.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">1041</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">859</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">775</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">777</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span> 
+<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span> 
+<span class="g g-Whitespace">    </span><span class="mi">211</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py</span> in <span class="ni">_logistic_regression_path</span><span class="nt">(X, y, pos_class, Cs, fit_intercept, max_iter, tol, verbose, solver, coef, class_weight, dual, penalty, intercept_scaling, multi_class, random_state, check_input, max_squared_sum, sample_weight, l1_ratio)</span>
+<span class="g g-Whitespace">    </span><span class="mi">804</span>                 <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">805</span>             <span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">806</span>             <span class="n">opt_res</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">807</span>                 <span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">808</span>                 <span class="n">w0</span><span class="p">,</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/_minimize.py</span> in <span class="ni">minimize</span><span class="nt">(fun, x0, args, method, jac, hess, hessp, bounds, constraints, tol, callback, options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">621</span>                                   <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>     <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;l-bfgs-b&#39;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">623</span>         <span class="k">return</span> <span class="n">_minimize_lbfgsb</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span>                                 <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span>     <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;tnc&#39;</span><span class="p">:</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/lbfgsb.py</span> in <span class="ni">_minimize_lbfgsb</span><span class="nt">(fun, x0, args, jac, bounds, disp, maxcor, ftol, gtol, eps, maxfun, maxiter, iprint, callback, maxls, finite_diff_rel_step, **unknown_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>             <span class="c1"># until the completion of the current minimization iteration.</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>             <span class="c1"># Overwrite f and g:</span>
+<span class="ne">--&gt; </span><span class="mi">360</span>             <span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">func_and_grad</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>         <span class="k">elif</span> <span class="n">task_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;NEW_X&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>             <span class="c1"># new iteration</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/_differentiable_functions.py</span> in <span class="ni">fun_and_grad</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">266</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_update_x_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">267</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/_differentiable_functions.py</span> in <span class="ni">_update_fun</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span>     <span class="k">def</span> <span class="nf">_update_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">233</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun_impl</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>             <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/_differentiable_functions.py</span> in <span class="ni">update_fun</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> 
+<span class="g g-Whitespace">    </span><span class="mi">136</span>         <span class="k">def</span> <span class="nf">update_fun</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">137</span>             <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">fun_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> 
+<span class="g g-Whitespace">    </span><span class="mi">139</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun_impl</span> <span class="o">=</span> <span class="n">update_fun</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/_differentiable_functions.py</span> in <span class="ni">fun_wrapped</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>             <span class="c1"># Overwriting results in undefined behaviour because</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>             <span class="c1"># fun(self.x) will change self.x, with the two no longer linked.</span>
+<span class="ne">--&gt; </span><span class="mi">134</span>             <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> 
+<span class="g g-Whitespace">    </span><span class="mi">136</span>         <span class="k">def</span> <span class="nf">update_fun</span><span class="p">():</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/optimize.py</span> in <span class="ni">__call__</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span>         <span class="sd">&quot;&quot;&quot; returns the the function value &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">74</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_compute_if_needed</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/optimize/optimize.py</span> in <span class="ni">_compute_if_needed</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>             <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">68</span>             <span class="n">fg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py</span> in <span class="ni">_logistic_loss_and_grad</span><span class="nt">(w, X, y, alpha, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>     <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">115</span> 
+<span class="ne">--&gt; </span><span class="mi">116</span>     <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">yz</span> <span class="o">=</span> <span class="n">_intercept_dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span> 
+<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">score</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">with_final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">707</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">708</span>         <span class="n">score_params</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="g g-Whitespace">    </span><span class="mi">709</span>         <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py</span> in <span class="ni">_intercept_dot</span><span class="nt">(w, X, y)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>         <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span> 
+<span class="ne">---&gt; </span><span class="mi">79</span>     <span class="n">z</span> <span class="o">=</span> <span class="n">safe_sparse_dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>     <span class="n">yz</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span>     <span class="k">return</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">yz</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/feature_extraction/text.py</span> in <span class="ni">transform</span><span class="nt">(self, raw_documents)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1368</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1369</span>         <span class="c1"># use the same matrix-building strategy as fit_transform</span>
-<span class="ne">-&gt; </span><span class="mi">1370</span>         <span class="n">_</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count_vocab</span><span class="p">(</span><span class="n">raw_documents</span><span class="p">,</span> <span class="n">fixed_vocab</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1371</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">binary</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1372</span>             <span class="n">X</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/utils/extmath.py</span> in <span class="ni">safe_sparse_dot</span><span class="nt">(a, b, dense_output)</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>             <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">153</span>         <span class="n">ret</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="n">b</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> 
+<span class="g g-Whitespace">    </span><span class="mi">155</span>     <span class="k">if</span> <span class="p">(</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/feature_extraction/text.py</span> in <span class="ni">_count_vocab</span><span class="nt">(self, raw_documents, fixed_vocab)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>         <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">raw_documents</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>             <span class="n">feature_counter</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">-&gt; </span><span class="mi">1220</span>             <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">analyze</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>                     <span class="n">feature_idx</span> <span class="o">=</span> <span class="n">vocabulary</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/sparse/base.py</span> in <span class="ni">__matmul__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Scalar operands are not allowed, &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>                              <span class="s2">&quot;use &#39;*&#39; instead&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">560</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span> 
+<span class="g g-Whitespace">    </span><span class="mi">562</span>     <span class="k">def</span> <span class="fm">__rmatmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
 
-<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/sklearn/feature_extraction/text.py</span> in <span class="ni">_analyze</span><span class="nt">(doc, analyzer, tokenizer, ngrams, preprocessor, decoder, stop_words)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>             <span class="n">doc</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="k">if</span> <span class="n">tokenizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">115</span>             <span class="n">doc</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span>         <span class="k">if</span> <span class="n">ngrams</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">117</span>             <span class="k">if</span> <span class="n">stop_words</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/sparse/base.py</span> in <span class="ni">__mul__</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span>             <span class="c1"># Fast path for the most common case</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span>             <span class="k">if</span> <span class="n">other</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,):</span>
+<span class="ne">--&gt; </span><span class="mi">467</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mul_vector</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>             <span class="k">elif</span> <span class="n">other</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mul_vector</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/scipy/sparse/compressed.py</span> in <span class="ni">_mul_vector</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span>         <span class="c1"># csr_matvec or csc_matvec</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span>         <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">_sparsetools</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">+</span> <span class="s1">&#39;_matvec&#39;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">478</span>         <span class="n">fn</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indptr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">479</span> 
+<span class="g g-Whitespace">    </span><span class="mi">480</span>         <span class="k">return</span> <span class="n">result</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -4823,16 +4958,36 @@ Prediction probability: 0.0000
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="06_column-transformer-text-feats.html" title="previous page">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</a>
-    <a class='right-next' id="next-link" href="08_hyperparameter-optimization.html" title="next page">Lecture 8: Hyperparameter Optimization and Optimization Bias</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="06_column-transformer-text-feats.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="08_hyperparameter-optimization.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Lecture 8: Hyperparameter Optimization and Optimization Bias</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

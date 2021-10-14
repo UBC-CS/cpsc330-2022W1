@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,18 +42,20 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 8: Hyperparameter Optimization and Optimization Bias" href="08_hyperparameter-optimization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -72,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -81,7 +87,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -100,7 +106,7 @@
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -160,6 +166,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="08_hyperparameter-optimization.html">
    Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 9: Classification Metrics
   </a>
  </li>
 </ul>
@@ -265,7 +276,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -278,6 +289,11 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-outcomes">
@@ -622,6 +638,12 @@
 <li><p>Live lecturing: Handling data imbalance (~10 mins)</p></li>
 </ul>
 </div>
+</div>
+<div class="section" id="announcements">
+<h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>HW4 is due tomorrow</p></li>
+</ul>
 </div>
 <div class="section" id="learning-outcomes">
 <h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
@@ -1181,8 +1203,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.010597
-score_time     0.001029
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.010338
+score_time     0.001063
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1228,8 +1250,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.344079
-score_time     0.007033
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.314947
+score_time     0.006434
 test_score     0.999176
 train_score    0.999249
 dtype: float64
@@ -1277,7 +1299,7 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_35_0.png" src="../_images/09_classification-metrics_35_0.png" />
+<img alt="../_images/09_classification-metrics_36_0.png" src="../_images/09_classification-metrics_36_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1291,7 +1313,7 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_36_0.png" src="../_images/09_classification-metrics_36_0.png" />
+<img alt="../_images/09_classification-metrics_37_0.png" src="../_images/09_classification-metrics_37_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1410,7 +1432,7 @@ $<span class="math notranslate nohighlight">\( recall = \frac{TP}{TP+FN} = \frac
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_50_0.png" src="../_images/09_classification-metrics_50_0.png" />
+<img alt="../_images/09_classification-metrics_51_0.png" src="../_images/09_classification-metrics_51_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1448,7 +1470,7 @@ Recall: 0.6275
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_53_0.png" src="../_images/09_classification-metrics_53_0.png" />
+<img alt="../_images/09_classification-metrics_54_0.png" src="../_images/09_classification-metrics_54_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1768,8 +1790,8 @@ weighted avg       1.00      1.00      1.00     59810
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.428137</td>
-      <td>0.027495</td>
+      <td>0.427875</td>
+      <td>0.024332</td>
       <td>0.999147</td>
       <td>0.999367</td>
       <td>0.711864</td>
@@ -1781,8 +1803,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>1</th>
-      <td>0.429224</td>
-      <td>0.024425</td>
+      <td>0.435053</td>
+      <td>0.025570</td>
       <td>0.999298</td>
       <td>0.999329</td>
       <td>0.766667</td>
@@ -1794,8 +1816,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>2</th>
-      <td>0.428321</td>
-      <td>0.024651</td>
+      <td>0.423585</td>
+      <td>0.024148</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -1807,8 +1829,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>3</th>
-      <td>0.432541</td>
-      <td>0.024400</td>
+      <td>0.432247</td>
+      <td>0.026217</td>
       <td>0.999172</td>
       <td>0.999279</td>
       <td>0.697248</td>
@@ -1820,8 +1842,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>4</th>
-      <td>0.426139</td>
-      <td>0.024156</td>
+      <td>0.435873</td>
+      <td>0.023834</td>
       <td>0.999172</td>
       <td>0.999223</td>
       <td>0.702703</td>
@@ -2176,7 +2198,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_99_0.png" src="../_images/09_classification-metrics_99_0.png" />
+<img alt="../_images/09_classification-metrics_100_0.png" src="../_images/09_classification-metrics_100_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2268,7 +2290,7 @@ $<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{TP + FP}, TPR = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_109_0.png" src="../_images/09_classification-metrics_109_0.png" />
+<img alt="../_images/09_classification-metrics_110_0.png" src="../_images/09_classification-metrics_110_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2325,8 +2347,8 @@ $<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{TP + FP}, TPR = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.427597
-score_time                0.043902
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.436485
+score_time                0.043496
 test_accuracy             0.999212
 test_f1                   0.724369
 test_recall               0.610536
@@ -2498,7 +2520,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_130_0.png" src="../_images/09_classification-metrics_130_0.png" />
+<img alt="../_images/09_classification-metrics_131_0.png" src="../_images/09_classification-metrics_131_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2532,7 +2554,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_133_0.png" src="../_images/09_classification-metrics_133_0.png" />
+<img alt="../_images/09_classification-metrics_134_0.png" src="../_images/09_classification-metrics_134_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2572,7 +2594,7 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_136_0.png" src="../_images/09_classification-metrics_136_0.png" />
+<img alt="../_images/09_classification-metrics_137_0.png" src="../_images/09_classification-metrics_137_0.png" />
 </div>
 </div>
 <p>We have reduced false negatives but we have many more false positives now …</p>
@@ -2630,13 +2652,13 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.430985</td>
-      <td>0.458113</td>
+      <td>0.433900</td>
+      <td>0.450893</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.044322</td>
-      <td>0.050046</td>
+      <td>0.043583</td>
+      <td>0.047407</td>
     </tr>
     <tr>
       <th>test_accuracy</th>
@@ -2776,14 +2798,36 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
               </div>
               
         
-        <div class='prev-next-bottom'>
             
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="08_hyperparameter-optimization.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lecture 8: Hyperparameter Optimization and Optimization Bias</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../attribution.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Attributions</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

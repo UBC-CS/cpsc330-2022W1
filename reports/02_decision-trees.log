@@ -17,41 +17,43 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+import glob
+import os
+import re
 import sys
+from collections import Counter, defaultdict
 
-import IPython
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from IPython.display import HTML
 
 sys.path.append("code/.")
-
-import ipywidgets as widgets
+import graphviz
+import IPython
 import mglearn
-from IPython.display import display
-from ipywidgets import interact, interactive
+from IPython.display import HTML, display
 from plotting_functions import *
 from sklearn.dummy import DummyClassifier
-from sklearn.model_selection import cross_validate, train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from utils import *
 
-%matplotlib inline
-
+plt.rcParams["font.size"] = 16
 pd.set_option("display.max_colwidth", 200)
-import warnings
 
-warnings.filterwarnings("ignore")
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_4760/73640380.py[0m in [0;36m<module>[0;34m[0m
-[1;32m     13[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mdisplay[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     14[0m [0;32mfrom[0m [0mipywidgets[0m [0;32mimport[0m [0minteract[0m[0;34m,[0m [0minteractive[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 15[0;31m [0;32mfrom[0m [0mplotting_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     16[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdummy[0m [0;32mimport[0m [0mDummyClassifier[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     17[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmodel_selection[0m [0;32mimport[0m [0mcross_validate[0m[0;34m,[0m [0mtrain_test_split[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_4726/321085069.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     14[0m [0;32mimport[0m [0mmglearn[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     15[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mHTML[0m[0;34m,[0m [0mdisplay[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 16[0;31m [0;32mfrom[0m [0mplotting_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     17[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mdummy[0m [0;32mimport[0m [0mDummyClassifier[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     18[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mfeature_extraction[0m[0;34m.[0m[0mtext[0m [0;32mimport[0m [0mCountVectorizer[0m[0;34m[0m[0;34m[0m[0m
 
 [0;32m~/CS/2021-22/330/cpsc330/lectures/code/./plotting_functions.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0;32mfrom[0m [0mutils[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
