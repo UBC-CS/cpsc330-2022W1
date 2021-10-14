@@ -317,3 +317,46 @@ def plot_logistic_regression(x, w):
         lr_graph.edge(x[i], "y_hat=%s" %sentiment, label=str(w[i]))
     return lr_graph    
     
+def plot_confusion_matrix_ex(tn, fp, fn, tp, target='Fraud'):
+    plt.figure(figsize=(7, 7))
+    confusion = np.array([[tn, fp], [fn, tp]])
+    plt.text(0.40, .7, confusion[0, 0], size=45, horizontalalignment='right')
+    plt.text(0.40, .2, confusion[1, 0], size=45, horizontalalignment='right')
+    plt.text(.90, .7, confusion[0, 1], size=45, horizontalalignment='right')
+    plt.text(.90, 0.2, confusion[1, 1], size=45, horizontalalignment='right')
+    plt.xticks([.25, .75], ["predicted not " + target, "predicted " + target], size=20, rotation=25)
+    plt.yticks([.25, .75], ["true " + target, "true not " + target ], size=20)
+    plt.plot([.5, .5], [0, 1], '--', c='k')
+    plt.plot([0, 1], [.5, .5], '--', c='k')
+
+    plt.xlim(0, 1)
+    plt.ylim(0, 1)
+    
+
+def plot_confusion_matrix_example(tn, fp, fn, tp, target='Fraud'):
+    fig, ax = plt.subplots(1, 2, figsize=(20, 6), subplot_kw={'xticks': (), 'yticks': ()})
+
+    plt.setp(ax, xticks=[.25, .75], xticklabels=["predicted not " + target, "predicted " + target],
+       yticks=[.25, .75], yticklabels=["true " + target, "true not " + target ])    
+    confusion = np.array([[tn, fp], [fn, tp]])
+    ax[0].text(0.40, .7, confusion[0, 0], size=45, horizontalalignment='right')
+    ax[0].text(0.40, .2, confusion[1, 0], size=45, horizontalalignment='right')
+    ax[0].text(.90, .7, confusion[0, 1], size=45, horizontalalignment='right')
+    ax[0].text(.90, 0.2, confusion[1, 1], size=45, horizontalalignment='right')
+    ax[0].plot([.5, .5], [0, 1], '--', c='k')
+    ax[0].plot([0, 1], [.5, .5], '--', c='k')
+
+    ax[0].set_xlim(0, 1)
+    ax[0].set_ylim(0, 1)    
+    
+    ax[1].text(0.45, .6, "TN", size=100, horizontalalignment='right')
+    ax[1].text(0.45, .1, "FN", size=100, horizontalalignment='right')
+    ax[1].text(.95, .6, "FP", size=100, horizontalalignment='right')
+    ax[1].text(.95, 0.1, "TP", size=100, horizontalalignment='right')
+    ax[1].plot([.5, .5], [0, 1], '--', c='k')
+    ax[1].plot([0, 1], [.5, .5], '--', c='k')
+    ax[1].yaxis.set_tick_params(labelsize=12)
+    ax[1].set_xlim(0, 1)
+    ax[1].set_ylim(0, 1)  
+    
+        
