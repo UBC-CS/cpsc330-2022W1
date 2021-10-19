@@ -297,6 +297,13 @@
   <a class="reference internal nav-link" href="#announcements">
    Announcements
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-clarifications-on-last-lecture">
+     Some clarifications on last lecture
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-outcomes">
@@ -572,6 +579,18 @@
 </ul>
 </li>
 </ul>
+<div class="section" id="some-clarifications-on-last-lecture">
+<h3>Some clarifications on last lecture<a class="headerlink" href="#some-clarifications-on-last-lecture" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Formula for false positive rate: Fraction of false positives out of all negative examples.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ FPR  = \frac{FP}{FP + TN} \]</div>
+<ul class="simple">
+<li><p>When you calculate precision, recall, f1 score, by default only the positive label is evaluated, assuming by default that the positive class is labeled 1.</p></li>
+<li><p>This is configurable through the <code class="docutils literal notranslate"><span class="pre">pos_label</span></code> parameter.</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="learning-outcomes">
 <h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h2>
@@ -1407,36 +1426,36 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MiscFeature&#39;,
- &#39;Heating&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Utilities&#39;,
  &#39;LandContour&#39;,
- &#39;PavedDrive&#39;,
- &#39;HouseStyle&#39;,
  &#39;RoofMatl&#39;,
- &#39;Neighborhood&#39;,
- &#39;Exterior2nd&#39;,
- &#39;Foundation&#39;,
- &#39;LandSlope&#39;,
- &#39;Utilities&#39;,
- &#39;Exterior1st&#39;,
- &#39;Condition1&#39;,
- &#39;Street&#39;,
- &#39;RoofStyle&#39;,
- &#39;SaleType&#39;,
- &#39;MSZoning&#39;,
- &#39;Condition2&#39;,
- &#39;Alley&#39;,
+ &#39;MasVnrType&#39;,
  &#39;CentralAir&#39;,
+ &#39;Foundation&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;MSZoning&#39;,
+ &#39;Condition1&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;LotConfig&#39;,
+ &#39;BldgType&#39;,
+ &#39;Heating&#39;,
  &#39;MSSubClass&#39;,
  &#39;GarageFinish&#39;,
- &#39;SaleCondition&#39;,
- &#39;Electrical&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;HouseStyle&#39;,
  &#39;GarageType&#39;,
  &#39;LotShape&#39;,
+ &#39;Electrical&#39;,
+ &#39;Condition2&#39;,
+ &#39;SaleType&#39;,
+ &#39;Street&#39;,
  &#39;MoSold&#39;,
- &#39;LotConfig&#39;,
- &#39;MasVnrType&#39;,
- &#39;BldgType&#39;]
+ &#39;Exterior1st&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;LandSlope&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Alley&#39;]
 </pre></div>
 </div>
 </div>
@@ -1578,16 +1597,16 @@ memory usage: 841.8+ KB
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>MasVnrType_BrkCmn</th>
-      <th>MasVnrType_BrkFace</th>
-      <th>MasVnrType_None</th>
-      <th>MasVnrType_Stone</th>
-      <th>MasVnrType_missing</th>
-      <th>BldgType_1Fam</th>
-      <th>BldgType_2fmCon</th>
-      <th>BldgType_Duplex</th>
-      <th>BldgType_Twnhs</th>
-      <th>BldgType_TwnhsE</th>
+      <th>Exterior2nd_Wd Shng</th>
+      <th>LandSlope_Gtl</th>
+      <th>LandSlope_Mod</th>
+      <th>LandSlope_Sev</th>
+      <th>PavedDrive_N</th>
+      <th>PavedDrive_P</th>
+      <th>PavedDrive_Y</th>
+      <th>Alley_Grvl</th>
+      <th>Alley_Pave</th>
+      <th>Alley_missing</th>
     </tr>
   </thead>
   <tbody>
@@ -1609,11 +1628,11 @@ memory usage: 841.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1629,15 +1648,15 @@ memory usage: 841.8+ KB
       <td>0.476092</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1653,15 +1672,15 @@ memory usage: 841.8+ KB
       <td>1.227559</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1677,15 +1696,15 @@ memory usage: 841.8+ KB
       <td>0.443419</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1701,15 +1720,15 @@ memory usage: 841.8+ KB
       <td>0.354114</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1797,71 +1816,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001049</td>
-      <td>0.000300</td>
+      <td>0.001131</td>
+      <td>0.000279</td>
       <td>-0.003547</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000644</td>
-      <td>0.000217</td>
+      <td>0.000657</td>
+      <td>0.000227</td>
       <td>-0.001266</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000622</td>
-      <td>0.000217</td>
+      <td>0.000632</td>
+      <td>0.000223</td>
       <td>-0.011767</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000621</td>
-      <td>0.000215</td>
+      <td>0.000640</td>
+      <td>0.000222</td>
       <td>-0.006744</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000614</td>
-      <td>0.000216</td>
+      <td>0.000633</td>
+      <td>0.000222</td>
       <td>-0.076533</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000618</td>
-      <td>0.000216</td>
+      <td>0.000634</td>
+      <td>0.000223</td>
       <td>-0.003133</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000616</td>
-      <td>0.000275</td>
+      <td>0.000628</td>
+      <td>0.000223</td>
       <td>-0.000397</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000670</td>
+      <td>0.000627</td>
       <td>0.000223</td>
       <td>-0.003785</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000769</td>
-      <td>0.000218</td>
+      <td>0.000636</td>
+      <td>0.000223</td>
       <td>-0.001740</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000621</td>
-      <td>0.000217</td>
+      <td>0.000630</td>
+      <td>0.000224</td>
       <td>-0.000117</td>
       <td>0.0</td>
     </tr>
@@ -1914,71 +1933,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.033477</td>
-      <td>0.008634</td>
+      <td>0.033464</td>
+      <td>0.008725</td>
       <td>0.861355</td>
       <td>0.911906</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.027504</td>
-      <td>0.008984</td>
+      <td>0.027199</td>
+      <td>0.009251</td>
       <td>0.812301</td>
       <td>0.913861</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.027100</td>
-      <td>0.009467</td>
+      <td>0.027555</td>
+      <td>0.008516</td>
       <td>0.775283</td>
       <td>0.915963</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.029942</td>
-      <td>0.008821</td>
+      <td>0.028096</td>
+      <td>0.008385</td>
       <td>0.874519</td>
       <td>0.910849</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.028787</td>
-      <td>0.008722</td>
+      <td>0.027558</td>
+      <td>0.008159</td>
       <td>0.851969</td>
       <td>0.911622</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.029050</td>
-      <td>0.008479</td>
+      <td>0.028737</td>
+      <td>0.008360</td>
       <td>0.826198</td>
       <td>0.910176</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.028396</td>
-      <td>0.008285</td>
+      <td>0.028919</td>
+      <td>0.008663</td>
       <td>0.825533</td>
       <td>0.913781</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.027999</td>
-      <td>0.008439</td>
+      <td>0.029027</td>
+      <td>0.008537</td>
       <td>0.872238</td>
       <td>0.910071</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.028471</td>
-      <td>0.008260</td>
+      <td>0.028207</td>
+      <td>0.008444</td>
       <td>0.196663</td>
       <td>0.921448</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.027393</td>
-      <td>0.008406</td>
+      <td>0.027914</td>
+      <td>0.008673</td>
       <td>0.890474</td>
       <td>0.908221</td>
     </tr>
@@ -2024,7 +2043,7 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10_regression-metrics_60_0.png" src="../_images/10_regression-metrics_60_0.png" />
+<img alt="../_images/10_regression-metrics_61_0.png" src="../_images/10_regression-metrics_61_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2094,7 +2113,7 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.10647423245, 30791.092505420682)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.1064742324, 30791.09250542063)
 </pre></div>
 </div>
 </div>
@@ -2165,12 +2184,12 @@ memory usage: 841.8+ KB
       <td>11704.053037</td>
     </tr>
     <tr>
-      <th>99</th>
+      <th>229</th>
       <td>Neighborhood_NridgHt</td>
       <td>9662.969631</td>
     </tr>
     <tr>
-      <th>98</th>
+      <th>228</th>
       <td>Neighborhood_NoRidge</td>
       <td>9497.598615</td>
     </tr>
@@ -2185,27 +2204,27 @@ memory usage: 841.8+ KB
       <td>...</td>
     </tr>
     <tr>
-      <th>75</th>
+      <th>55</th>
       <td>RoofMatl_ClyTile</td>
       <td>-3992.399179</td>
     </tr>
     <tr>
-      <th>60</th>
+      <th>51</th>
       <td>LandContour_Bnk</td>
       <td>-5001.996997</td>
     </tr>
     <tr>
-      <th>91</th>
+      <th>221</th>
       <td>Neighborhood_Gilbert</td>
       <td>-5197.585536</td>
     </tr>
     <tr>
-      <th>88</th>
+      <th>218</th>
       <td>Neighborhood_CollgCr</td>
       <td>-5467.463086</td>
     </tr>
     <tr>
-      <th>90</th>
+      <th>220</th>
       <td>Neighborhood_Edwards</td>
       <td>-5796.508529</td>
     </tr>
@@ -2326,7 +2345,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636092
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636098
 </pre></div>
 </div>
 </div>
@@ -2354,7 +2373,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636096
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636098
 </pre></div>
 </div>
 </div>
@@ -2376,7 +2395,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.096
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.104
 </pre></div>
 </div>
 </div>
@@ -2395,7 +2414,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.4733187746
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774606
 </pre></div>
 </div>
 </div>
@@ -2415,7 +2434,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10_regression-metrics_97_0.png" src="../_images/10_regression-metrics_97_0.png" />
+<img alt="../_images/10_regression-metrics_98_0.png" src="../_images/10_regression-metrics_98_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2447,7 +2466,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636096
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636098
 </pre></div>
 </div>
 </div>
@@ -2459,7 +2478,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636096
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636098
 </pre></div>
 </div>
 </div>
@@ -2483,7 +2502,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8279622258827071
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.827962225882707
 </pre></div>
 </div>
 </div>
@@ -2506,7 +2525,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.4733187746
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774606
 </pre></div>
 </div>
 </div>
@@ -2523,7 +2542,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10_regression-metrics_111_0.png" src="../_images/10_regression-metrics_111_0.png" />
+<img alt="../_images/10_regression-metrics_112_0.png" src="../_images/10_regression-metrics_112_0.png" />
 </div>
 </div>
 <p>How about looking at percent error?</p>
@@ -2593,7 +2612,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.093121294225263
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.09312129422526
 </pre></div>
 </div>
 </div>
@@ -2637,7 +2656,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10_regression-metrics_125_0.png" src="../_images/10_regression-metrics_125_0.png" />
+<img alt="../_images/10_regression-metrics_126_0.png" src="../_images/10_regression-metrics_126_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2647,7 +2666,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/10_regression-metrics_126_0.png" src="../_images/10_regression-metrics_126_0.png" />
+<img alt="../_images/10_regression-metrics_127_0.png" src="../_images/10_regression-metrics_127_0.png" />
 </div>
 </div>
 <p>We can incorporate this in our pipeline using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>.</p>
@@ -2695,7 +2714,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.808600924240859
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.808600924240862
 </pre></div>
 </div>
 </div>
@@ -2749,36 +2768,36 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.029164</td>
-      <td>0.010938</td>
+      <td>0.028192</td>
+      <td>0.010127</td>
       <td>-7.060346e+08</td>
       <td>-9.383069e+08</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.028840</td>
-      <td>0.009949</td>
+      <td>0.028643</td>
+      <td>0.009708</td>
       <td>-1.239851e+09</td>
       <td>-8.267971e+08</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.028149</td>
-      <td>0.010430</td>
+      <td>0.025756</td>
+      <td>0.011470</td>
       <td>-1.125125e+09</td>
       <td>-8.763019e+08</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.031931</td>
-      <td>0.009855</td>
+      <td>0.027832</td>
+      <td>0.009771</td>
       <td>-9.819320e+08</td>
       <td>-8.847908e+08</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.029975</td>
-      <td>0.011080</td>
+      <td>0.027212</td>
+      <td>0.009518</td>
       <td>-2.268434e+09</td>
       <td>-7.397199e+08</td>
     </tr>
@@ -2831,36 +2850,36 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.027660</td>
-      <td>0.010293</td>
+      <td>0.026838</td>
+      <td>0.009404</td>
       <td>9.699277</td>
       <td>10.407124</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.030648</td>
-      <td>0.010153</td>
+      <td>0.026339</td>
+      <td>0.009721</td>
       <td>10.803043</td>
       <td>9.966190</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.027763</td>
-      <td>0.010064</td>
+      <td>0.025480</td>
+      <td>0.009609</td>
       <td>11.836195</td>
       <td>10.180734</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.028796</td>
-      <td>0.010237</td>
+      <td>0.028076</td>
+      <td>0.009781</td>
       <td>10.784686</td>
       <td>10.247198</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.027248</td>
-      <td>0.009902</td>
+      <td>0.025929</td>
+      <td>0.009389</td>
       <td>12.196718</td>
       <td>9.828607</td>
     </tr>
@@ -2912,19 +2931,19 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>2.863312e-02</td>
-      <td>2.783275e-02</td>
-      <td>2.746582e-02</td>
-      <td>2.833796e-02</td>
-      <td>2.733397e-02</td>
+      <td>2.804804e-02</td>
+      <td>2.664089e-02</td>
+      <td>2.603388e-02</td>
+      <td>2.810287e-02</td>
+      <td>2.663922e-02</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>1.060796e-02</td>
-      <td>1.143909e-02</td>
-      <td>1.131606e-02</td>
-      <td>1.176023e-02</td>
-      <td>1.090980e-02</td>
+      <td>1.046419e-02</td>
+      <td>1.074100e-02</td>
+      <td>1.032495e-02</td>
+      <td>1.059914e-02</td>
+      <td>1.071095e-02</td>
     </tr>
     <tr>
       <th>test_r2</th>
@@ -3001,7 +3020,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.496387589495999
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.496387589496003
 </pre></div>
 </div>
 </div>

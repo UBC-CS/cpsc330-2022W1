@@ -54,7 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 10: Regression Evaluation Metrics" href="10_regression-metrics.html" />
     <link rel="prev" title="Lecture 8: Hyperparameter Optimization and Optimization Bias" href="08_hyperparameter-optimization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -171,6 +171,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
   </a>
  </li>
 </ul>
@@ -1207,8 +1212,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.011628
-score_time     0.001231
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.010733
+score_time     0.001152
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1254,8 +1259,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.349646
-score_time     0.006880
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.336121
+score_time     0.006642
 test_score     0.999176
 train_score    0.999249
 dtype: float64
@@ -1794,8 +1799,8 @@ weighted avg       1.00      1.00      1.00     59810
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.501817</td>
-      <td>0.028824</td>
+      <td>0.447973</td>
+      <td>0.027553</td>
       <td>0.999147</td>
       <td>0.999367</td>
       <td>0.711864</td>
@@ -1807,8 +1812,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>1</th>
-      <td>0.496426</td>
-      <td>0.029304</td>
+      <td>0.448987</td>
+      <td>0.024917</td>
       <td>0.999298</td>
       <td>0.999329</td>
       <td>0.766667</td>
@@ -1820,8 +1825,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>2</th>
-      <td>0.467749</td>
-      <td>0.026676</td>
+      <td>0.433761</td>
+      <td>0.024852</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -1833,8 +1838,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>3</th>
-      <td>0.480014</td>
-      <td>0.026493</td>
+      <td>0.443817</td>
+      <td>0.024519</td>
       <td>0.999172</td>
       <td>0.999279</td>
       <td>0.697248</td>
@@ -1846,8 +1851,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>4</th>
-      <td>0.485048</td>
-      <td>0.025991</td>
+      <td>0.451238</td>
+      <td>0.025598</td>
       <td>0.999172</td>
       <td>0.999223</td>
       <td>0.702703</td>
@@ -2269,7 +2274,7 @@ weighted avg       1.00      1.00      1.00     59810
 <ul class="simple">
 <li><p>Another commonly used tool to analyze the behavior of classifiers at different thresholds.</p></li>
 <li><p>Similar to PR curve, it considers all possible thresholds for a given classifier given by <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> but instead of precision and recall it plots false positive rate (FPR) and true positive rate (TPR or recall).
-$<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{TP + FP}, TPR = \frac{TP}{TP + FP}\)</span>$</p></li>
+$<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{FP + TN}, TPR = \frac{TP}{TP + FP}\)</span>$</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2351,8 +2356,8 @@ $<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{TP + FP}, TPR = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.481367
-score_time                0.047760
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.452388
+score_time                0.044668
 test_accuracy             0.999212
 test_f1                   0.724369
 test_recall               0.610536
@@ -2662,13 +2667,13 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.474988</td>
-      <td>0.483749</td>
+      <td>0.463115</td>
+      <td>0.454458</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.046877</td>
-      <td>0.050121</td>
+      <td>0.045146</td>
+      <td>0.048090</td>
     </tr>
     <tr>
       <th>test_accuracy</th>
@@ -2824,10 +2829,10 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../attribution.html" title="next page">
+        <a class="right-next" href="10_regression-metrics.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Attributions</p>
+                <p class="prevnext-title">Lecture 10: Regression Evaluation Metrics</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
