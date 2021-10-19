@@ -494,8 +494,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#approach-1-changing-the-training-procedure">
-     Approach 1:  Changing the training procedure
+    <a class="reference internal nav-link" href="#changing-the-training-procedure">
+     Changing the training procedure
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1207,8 +1207,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.010776
-score_time     0.001059
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.011628
+score_time     0.001231
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1254,8 +1254,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.330720
-score_time     0.006439
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.349646
+score_time     0.006880
 test_score     0.999176
 train_score    0.999249
 dtype: float64
@@ -1794,8 +1794,8 @@ weighted avg       1.00      1.00      1.00     59810
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.555212</td>
-      <td>0.028470</td>
+      <td>0.501817</td>
+      <td>0.028824</td>
       <td>0.999147</td>
       <td>0.999367</td>
       <td>0.711864</td>
@@ -1807,8 +1807,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>1</th>
-      <td>0.459922</td>
-      <td>0.026080</td>
+      <td>0.496426</td>
+      <td>0.029304</td>
       <td>0.999298</td>
       <td>0.999329</td>
       <td>0.766667</td>
@@ -1820,8 +1820,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>2</th>
-      <td>0.496727</td>
-      <td>0.027589</td>
+      <td>0.467749</td>
+      <td>0.026676</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -1833,8 +1833,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>3</th>
-      <td>0.568488</td>
-      <td>0.029272</td>
+      <td>0.480014</td>
+      <td>0.026493</td>
       <td>0.999172</td>
       <td>0.999279</td>
       <td>0.697248</td>
@@ -1846,8 +1846,8 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>4</th>
-      <td>0.480746</td>
-      <td>0.026273</td>
+      <td>0.485048</td>
+      <td>0.025991</td>
       <td>0.999172</td>
       <td>0.999223</td>
       <td>0.702703</td>
@@ -2351,8 +2351,8 @@ $<span class="math notranslate nohighlight">\( FPR  = \frac{FP}{TP + FP}, TPR = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.478466
-score_time                0.047928
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.481367
+score_time                0.047760
 test_accuracy             0.999212
 test_f1                   0.724369
 test_recall               0.610536
@@ -2401,7 +2401,7 @@ dtype: float64
 </ul>
 </li>
 </ul>
-<p>But, if you answer “no” to both question, it may be fine to just ignore the class imbalance.</p>
+<p>In some cases, it may be fine to just ignore the class imbalance.</p>
 </div>
 <div class="section" id="which-type-of-error-is-more-important">
 <h3>Which type of error is more important?<a class="headerlink" href="#which-type-of-error-is-more-important" title="Permalink to this headline">¶</a></h3>
@@ -2459,12 +2459,7 @@ weighted avg       1.00      1.00      1.00     59810
 <p>Can we change the model itself rather than changing the threshold so that it takes into account the errors that are important to us?</p>
 <p>There are two common approaches for this:</p>
 <ul class="simple">
-<li><p><strong>Changing the training procedure</strong></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">class_weight</span></code></p></li>
-</ul>
-</li>
-<li><p><strong>Changing the data (optional)</strong> (not covered in this class but reach out if you’re interested)</p>
+<li><p><strong>Changing the data (optional)</strong> (not covered in this course)</p>
 <ul>
 <li><p>Undersampling</p></li>
 <li><p>Oversampling</p>
@@ -2475,10 +2470,15 @@ weighted avg       1.00      1.00      1.00     59810
 </li>
 </ul>
 </li>
+<li><p><strong>Changing the training procedure</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">class_weight</span></code></p></li>
+</ul>
+</li>
 </ul>
 </div>
-<div class="section" id="approach-1-changing-the-training-procedure">
-<h3>Approach 1:  Changing the training procedure<a class="headerlink" href="#approach-1-changing-the-training-procedure" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="changing-the-training-procedure">
+<h3>Changing the training procedure<a class="headerlink" href="#changing-the-training-procedure" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>All <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> classifiers have a parameter called <code class="docutils literal notranslate"><span class="pre">class_weight</span></code>.</p></li>
 <li><p>This allows you to specify that one class is more important than another.</p></li>
@@ -2543,7 +2543,7 @@ weighted avg       1.00      1.00      1.00     59810
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lr_weight</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
-    <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+    <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="p">)</span>
 <span class="n">pipe_lr_weight</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">plot_confusion_matrix</span><span class="p">(</span>
@@ -2626,7 +2626,13 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
     <span class="s2">&quot;Original&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">orig_scores</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
     <span class="s2">&quot;class_weight=&#39;balanced&#39;&quot;</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bal_scores</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">}</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comp_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">bal_scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">comp_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">bal_scores</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -2656,13 +2662,13 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.465068</td>
-      <td>0.463701</td>
+      <td>0.474988</td>
+      <td>0.483749</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.046634</td>
-      <td>0.047578</td>
+      <td>0.046877</td>
+      <td>0.050121</td>
     </tr>
     <tr>
       <th>test_accuracy</th>
