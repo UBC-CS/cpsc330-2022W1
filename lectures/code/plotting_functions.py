@@ -6,6 +6,8 @@ from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.model_selection import cross_validate, train_test_split
 from sklearn.svm import SVC
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.ensemble import RandomForestClassifier
 
 def plot_tree_decision_boundary(
     model, X, y, x_label="x-axis", y_label="y-axis", eps=None, ax=None, title=None
@@ -359,4 +361,44 @@ def plot_confusion_matrix_example(tn, fp, fn, tp, target='Fraud'):
     ax[1].set_xlim(0, 1)
     ax[1].set_ylim(0, 1)  
     
+def make_num_tree_plot(preprocessor, X_train, y_train, X_test, y_test, num_trees, scoring_metric='accuracy'):
+    """
+    Make number of trees vs error rate plot for RandomForestClassifier
+
+    Parameters
+    ----------
+    model: sklearn classifier model
+        The sklearn model
+    X_train: numpy.ndarray
+        The X part of the train set
+    y_train: numpy.ndarray
+        The y part of the train set
+    X_test: numpy.ndarray
+        The X part of the test/validation set
+    y_test: numpy.ndarray
+        The y part of the test/validation set
+    num_trees: int
+        The value for `n_estimators` argument of RandomForestClassifier
+    Returns
+    -------
+        None
+        Shows the number of trees vs error rate plot
+
+    """
+    train_scores = []
+    test_scores = []
+    for ntree in num_trees:
+        model = make_pipeline(preprocessor, RandomForestClassifier(n_estimators=ntree))
+        scores = cross_validate(
+            model, X_train, y_train, return_train_score=True, scoring=scoring_metric
+        )
+        train_scores.append(np.mean(scores["train_score"]))
+        test_scores.append(np.mean(scores["test_score"]))
+
+    plt.semilogx(num_trees, train_scores, label="train")
+    plt.semilogx(num_trees, test_scores, label="cv")
+    plt.legend()
+    plt.xlabel("number of trees")
+    plt.ylabel("scores") 
+
         
