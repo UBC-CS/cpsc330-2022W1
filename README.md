@@ -65,7 +65,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Oct 14 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb)  | 📹  <li> Videos: [9.2](https://youtu.be/ZCuCErW5lI8)</li><li>[9.3](https://youtu.be/XkCTUuoH23c)</li><li>[9.4](https://youtu.be/jHaKRCFb6Qw)</li> | more depth |
 |        |     |**Week 7 datasets**: <li>[Kaggle House Prices data set](https://www.kaggle.com/c/home-data-for-ml-course/)</li> | |
 | Oct 19 | [Regression metrics](lectures/10_regression-metrics) |  📹 <li>Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ)</li> |   more depth on metrics less depth on regression|
-| Oct 21 | Ensembles, prediction intervals | | similar |
+| Oct 21 | [Ensembles]() |  📹 <li>Pre-watch: [11.1](https://youtu.be/8litm1H7DLo)</li>[11.2](https://youtu.be/EkFkY9QB2Hw)</li> | similar |
 |        |     |**Week 8 datasets**: <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li>  | |
 | Oct 26 | feature importances, feature selection | | feature importances is new, less depth on feature selection |
 | Oct 28 | **Midterm**  |  |
