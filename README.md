@@ -61,11 +61,11 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Oct 5 | [Linear models](lectures/07_linear-models.ipynb) | 📹  <li> Pre-watch: [7.1](https://youtu.be/HXd1U2q4VFA), [7.2](https://youtu.be/56L5z_t22qE), [7.3](https://youtu.be/_OAK5KiGLg0)</li> |   less depth |
 | Oct 7 | Lecture canceled | |  | 
 |        |     |**Week 6 datasets**: <li>[Spotify Song Attributes](https://www.kaggle.com/geomack/spotifyclassification/home)</li><li>[Credit Card Fraud Detection](https://www.kaggle.com/mlg-ulb/creditcardfraud)</li> | |
-| Oct 12 | [Hyperparameter optimization, overfitting the validation set](lectures/08_hyperparameter-optimization.ipynb) | 📹  <li> Videos: [8.1](https://youtu.be/lMWdHZSZMk8)</li><li>[8.2](https://youtu.be/Z9a9XZ0vQv0)</li> |   different|
-| Oct 14 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb)  | 📹  <li> Videos: [9.2](https://youtu.be/ZCuCErW5lI8)</li><li>[9.3](https://youtu.be/XkCTUuoH23c)</li><li>[9.4](https://youtu.be/jHaKRCFb6Qw)</li> | more depth |
-|        |     |**Week 7 datasets**: <li>[Kaggle House Prices data set](https://www.kaggle.com/c/home-data-for-ml-course/)</li> | |
+| Oct 12 | [Hyperparameter optimization, overfitting the validation set](lectures/08_hyperparameter-optimization.ipynb) | 📹  <li> Videos: [8.1](https://youtu.be/lMWdHZSZMk8),[8.2](https://youtu.be/Z9a9XZ0vQv0)</li> |   different|
+| Oct 14 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb)  | 📹  <li> Videos: [9.2](https://youtu.be/ZCuCErW5lI8),[9.3](https://youtu.be/XkCTUuoH23c),[9.4](https://youtu.be/jHaKRCFb6Qw)</li> | more depth |
+|        |     |**Week 7 datasets**: <li>[Kaggle House Prices data set](https://www.kaggle.com/c/home-data-for-ml-course/)</li> <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li> | |
 | Oct 19 | [Regression metrics](lectures/10_regression-metrics) |  📹 <li>Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ)</li> |   more depth on metrics less depth on regression|
-| Oct 21 | [Ensembles]() |  📹 <li>Pre-watch: [11.1](https://youtu.be/8litm1H7DLo)</li>[11.2](https://youtu.be/EkFkY9QB2Hw)</li> | similar |
+| Oct 21 | [Ensembles](lecture/11_ensembles.ipynb) |  📹 <li>Pre-watch: [11.1](https://youtu.be/8litm1H7DLo),[11.2](https://youtu.be/EkFkY9QB2Hw)</li> | similar |
 |        |     |**Week 8 datasets**: <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li>  | |
 | Oct 26 | feature importances, feature selection | | feature importances is new, less depth on feature selection |
 | Oct 28 | **Midterm**  |  |
