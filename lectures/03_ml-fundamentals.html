@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -74,10 +74,6 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -87,7 +83,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -171,6 +167,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="09_classification-metrics.html">
    Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensembles.html">
+   Lecture 11: Ensembles
   </a>
  </li>
 </ul>
@@ -276,7 +282,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -608,55 +614,6 @@
 <span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4748</span><span class="o">/</span><span class="mf">4243764780.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Classifiers</span>
-
-<span class="o">~/</span><span class="n">CS</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="mi">22</span><span class="o">/</span><span class="mi">330</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">/</span><span class="n">lectures</span><span class="o">/</span><span class="n">code</span><span class="o">/./</span><span class="n">plotting_functions</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">mglearn</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">imageio</span> <span class="kn">import</span> <span class="n">imread</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span>
-
-<span class="o">~/</span><span class="n">CS</span><span class="o">/</span><span class="mi">2021</span><span class="o">-</span><span class="mi">22</span><span class="o">/</span><span class="mi">330</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">/</span><span class="n">lectures</span><span class="o">/</span><span class="n">code</span><span class="o">/./</span><span class="n">utils</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">re</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">from</span> <span class="nn">torchvision.models</span> <span class="kn">import</span> <span class="n">vgg16</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">torch</span>
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">os</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">.extension</span> <span class="kn">import</span> <span class="n">_HAS_OPS</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="o">~/</span><span class="n">opt</span><span class="o">/</span><span class="n">miniconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">cpsc330</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">torchvision</span><span class="o">/</span><span class="n">extension</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span> 
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>     <span class="n">_register_extensions</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>     <span class="n">_HAS_OPS</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/extension.py</span> in <span class="ni">_register_extensions</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span>     <span class="k">if</span> <span class="n">ext_specs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span>         <span class="k">raise</span> <span class="ne">ImportError</span>
-<span class="ne">---&gt; </span><span class="mi">47</span>     <span class="n">torch</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">load_library</span><span class="p">(</span><span class="n">ext_specs</span><span class="o">.</span><span class="n">origin</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> 
-<span class="g g-Whitespace">     </span><span class="mi">49</span> 
-
-<span class="ne">AttributeError</span>: module &#39;torch&#39; has no attribute &#39;ops&#39;
 </pre></div>
 </div>
 </div>
@@ -1781,71 +1738,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001820</td>
-      <td>0.000895</td>
+      <td>0.001564</td>
+      <td>0.000876</td>
       <td>0.764706</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001216</td>
-      <td>0.000813</td>
+      <td>0.001190</td>
+      <td>0.000824</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001169</td>
-      <td>0.000799</td>
+      <td>0.001186</td>
+      <td>0.000813</td>
       <td>0.705882</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001161</td>
-      <td>0.000805</td>
+      <td>0.001167</td>
+      <td>0.000818</td>
       <td>0.941176</td>
       <td>0.900000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001150</td>
-      <td>0.000791</td>
+      <td>0.001168</td>
+      <td>0.000812</td>
       <td>0.823529</td>
       <td>0.906667</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.001181</td>
-      <td>0.000793</td>
+      <td>0.001174</td>
+      <td>0.000816</td>
       <td>0.823529</td>
       <td>0.913333</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.001149</td>
-      <td>0.000791</td>
+      <td>0.001158</td>
+      <td>0.000805</td>
       <td>0.705882</td>
       <td>0.920000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.001150</td>
-      <td>0.000786</td>
+      <td>0.001166</td>
+      <td>0.000807</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.001168</td>
-      <td>0.000824</td>
+      <td>0.001164</td>
+      <td>0.000813</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.001154</td>
-      <td>0.000810</td>
+      <td>0.001158</td>
+      <td>0.000801</td>
       <td>0.937500</td>
       <td>0.900662</td>
     </tr>
@@ -1884,11 +1841,11 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.001232</td>
+      <td>0.001209</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.000811</td>
+      <td>0.000819</td>
     </tr>
     <tr>
       <th>test_score</th>
@@ -1968,71 +1925,71 @@ Standard deviation of cross-validation score = 0.09
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001647</td>
-      <td>0.000810</td>
+      <td>0.001560</td>
+      <td>0.000897</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001136</td>
-      <td>0.000767</td>
+      <td>0.001301</td>
+      <td>0.000824</td>
       <td>0.875000</td>
       <td>0.992857</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001118</td>
-      <td>0.000764</td>
+      <td>0.001190</td>
+      <td>0.000821</td>
       <td>0.875000</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001431</td>
-      <td>0.000814</td>
+      <td>0.001210</td>
+      <td>0.000820</td>
       <td>0.687500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001201</td>
-      <td>0.000800</td>
+      <td>0.001243</td>
+      <td>0.000810</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.001165</td>
-      <td>0.000795</td>
+      <td>0.001182</td>
+      <td>0.000810</td>
       <td>0.812500</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.001181</td>
-      <td>0.000798</td>
+      <td>0.001193</td>
+      <td>0.000820</td>
       <td>0.866667</td>
       <td>0.985816</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.001174</td>
-      <td>0.000797</td>
+      <td>0.001193</td>
+      <td>0.000807</td>
       <td>0.600000</td>
       <td>0.992908</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.001174</td>
-      <td>0.000858</td>
+      <td>0.001186</td>
+      <td>0.000804</td>
       <td>0.666667</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.001174</td>
-      <td>0.000864</td>
+      <td>0.001184</td>
+      <td>0.000942</td>
       <td>0.733333</td>
       <td>1.000000</td>
     </tr>
@@ -2100,7 +2057,7 @@ Standard deviation of cross-validation score = 0.09
       <th>Decision tree</th>
       <td>0.001 (+/- 0.000)</td>
       <td>0.001 (+/- 0.000)</td>
-      <td>0.788 (+/- 0.055)</td>
+      <td>0.775 (+/- 0.047)</td>
       <td>0.992 (+/- 0.014)</td>
     </tr>
   </tbody>
@@ -2343,8 +2300,8 @@ Validation error:   0.213
     <tr>
       <th>2</th>
       <td>0.160258</td>
-      <td>0.223750</td>
-      <td>0.062723</td>
+      <td>0.217500</td>
+      <td>0.048940</td>
       <td>0.007316</td>
     </tr>
     <tr>
@@ -2364,36 +2321,36 @@ Validation error:   0.213
     <tr>
       <th>5</th>
       <td>0.083338</td>
-      <td>0.191250</td>
-      <td>0.067120</td>
+      <td>0.185000</td>
+      <td>0.064205</td>
       <td>0.010650</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.066960</td>
-      <td>0.191250</td>
-      <td>0.072707</td>
-      <td>0.012065</td>
+      <td>0.066251</td>
+      <td>0.197500</td>
+      <td>0.074773</td>
+      <td>0.012019</td>
     </tr>
     <tr>
       <th>7</th>
       <td>0.044873</td>
-      <td>0.210417</td>
-      <td>0.089136</td>
+      <td>0.223333</td>
+      <td>0.080734</td>
       <td>0.009059</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.029909</td>
+      <td>0.030618</td>
       <td>0.210000</td>
       <td>0.092331</td>
-      <td>0.009422</td>
+      <td>0.010547</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.020653</td>
-      <td>0.209583</td>
-      <td>0.091819</td>
+      <td>0.203333</td>
+      <td>0.090978</td>
       <td>0.010294</td>
     </tr>
     <tr>
@@ -2406,36 +2363,36 @@ Validation error:   0.213
     <tr>
       <th>11</th>
       <td>0.005699</td>
-      <td>0.222083</td>
-      <td>0.109323</td>
+      <td>0.215833</td>
+      <td>0.109335</td>
       <td>0.004264</td>
     </tr>
     <tr>
       <th>12</th>
       <td>0.003561</td>
-      <td>0.235833</td>
-      <td>0.083836</td>
+      <td>0.242083</td>
+      <td>0.086932</td>
       <td>0.004769</td>
     </tr>
     <tr>
       <th>13</th>
       <td>0.000000</td>
-      <td>0.229583</td>
-      <td>0.089354</td>
+      <td>0.248333</td>
+      <td>0.089485</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>14</th>
       <td>0.000000</td>
-      <td>0.242083</td>
-      <td>0.086932</td>
+      <td>0.229583</td>
+      <td>0.084870</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>15</th>
       <td>0.000000</td>
       <td>0.235833</td>
-      <td>0.092687</td>
+      <td>0.083836</td>
       <td>0.000000</td>
     </tr>
   </tbody>
@@ -2459,7 +2416,7 @@ Validation error:   0.213
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The minimum validation error is 0.191 at max_depth = 5 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The minimum validation error is 0.185 at max_depth = 5 
 </pre></div>
 </div>
 </div>
@@ -2637,36 +2594,16 @@ Validation error:   0.213
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="02_decision-trees.html" title="previous page">Lecture 2: Terminology, Baselines, Decision Trees</a>
+    <a class='right-next' id="next-link" href="04_kNNs-SVM-RBF.html" title="next page">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="02_decision-trees.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Lecture 2: Terminology, Baselines, Decision Trees</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="04_kNNs-SVM-RBF.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Lecture 4: <span class="math notranslate nohighlight">\(k\)</span>-Nearest Neighbours and SVM RBFs</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer mt-5 mt-md-0">
     <div class="container">
       <p>
         

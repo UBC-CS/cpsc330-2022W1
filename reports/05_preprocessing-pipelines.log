@@ -1,105 +1,72 @@
 Traceback (most recent call last):
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
     return loop.run_until_complete(coro)
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
     return future.result()
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
     await self.async_execute_cell(
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
     self._check_raise_for_error(cell, exec_reply)
-  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import sys
-import time
+X_train = train_df.drop(columns=["median_house_value"])
+y_train = train_df["median_house_value"]
 
-import matplotlib.pyplot as plt
-
-%matplotlib inline
-import numpy as np
-import pandas as pd
-from IPython.display import HTML
-
-sys.path.append("code/.")
-
-import mglearn
-from IPython.display import display
-from plotting_functions import *
-
-# Classifiers and regressors
-from sklearn.dummy import DummyClassifier, DummyRegressor
-
-# Preprocessing and pipeline
-from sklearn.impute import SimpleImputer
-
-# train test split and cross validation
-from sklearn.model_selection import cross_val_score, cross_validate, train_test_split
-from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import (
-    MinMaxScaler,
-    OneHotEncoder,
-    OrdinalEncoder,
-    StandardScaler,
-)
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
-from utils import *
-
-pd.set_option("display.max_colwidth", 200)
+X_test = test_df.drop(columns=["median_house_value"])
+y_test = test_df["median_house_value"]
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_4774/3984305675.py[0m in [0;36m<module>[0;34m[0m
-[1;32m     13[0m [0;32mimport[0m [0mmglearn[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     14[0m [0;32mfrom[0m [0mIPython[0m[0;34m.[0m[0mdisplay[0m [0;32mimport[0m [0mdisplay[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 15[0;31m [0;32mfrom[0m [0mplotting_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     16[0m [0;34m[0m[0m
-[1;32m     17[0m [0;31m# Classifiers and regressors[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/CS/2021-22/330/cpsc330/lectures/code/./plotting_functions.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0mutils[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;32mimport[0m [0mmglearn[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;32mfrom[0m [0mimageio[0m [0;32mimport[0m [0mimread[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mneighbors[0m [0;32mimport[0m [0mKNeighborsClassifier[0m[0;34m,[0m [0mKNeighborsRegressor[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/CS/2021-22/330/cpsc330/lectures/code/./utils.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      3[0m [0;32mimport[0m [0mre[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0;32mfrom[0m [0mPIL[0m [0;32mimport[0m [0mImage[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 5[0;31m [0;32mfrom[0m [0mtorchvision[0m[0;34m.[0m[0mmodels[0m [0;32mimport[0m [0mvgg16[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      6[0m [0;32mfrom[0m [0mtorchvision[0m [0;32mimport[0m [0mtransforms[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      7[0m [0;32mimport[0m [0mtorch[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/__init__.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      2[0m [0;32mimport[0m [0mos[0m[0;34m[0m[0;34m[0m[0m
+[0;31mKeyError[0m                                  Traceback (most recent call last)
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_5809/3781118800.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0my_train[0m [0;34m=[0m [0mtrain_df[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
 [1;32m      3[0m [0;34m[0m[0m
-[0;32m----> 4[0;31m [0;32mfrom[0m [0;34m.[0m[0mextension[0m [0;32mimport[0m [0m_HAS_OPS[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      5[0m [0;34m[0m[0m
-[1;32m      6[0m [0;32mfrom[0m [0mtorchvision[0m [0;32mimport[0m [0mmodels[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 4[0;31m [0mX_test[0m [0;34m=[0m [0mtest_df[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mcolumns[0m[0;34m=[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      5[0m [0my_test[0m [0;34m=[0m [0mtest_df[0m[0;34m[[0m[0;34m"median_house_value"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/extension.py[0m in [0;36m<module>[0;34m[0m
-[1;32m     49[0m [0;34m[0m[0m
-[1;32m     50[0m [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 51[0;31m     [0m_register_extensions[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     52[0m     [0m_HAS_OPS[0m [0;34m=[0m [0;32mTrue[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     53[0m [0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    309[0m                     [0mstacklevel[0m[0;34m=[0m[0mstacklevel[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    310[0m                 )
+[0;32m--> 311[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    312[0m [0;34m[0m[0m
+[1;32m    313[0m         [0;32mreturn[0m [0mwrapper[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/extension.py[0m in [0;36m_register_extensions[0;34m()[0m
-[1;32m     45[0m     [0;32mif[0m [0mext_specs[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     46[0m         [0;32mraise[0m [0mImportError[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 47[0;31m     [0mtorch[0m[0;34m.[0m[0mops[0m[0;34m.[0m[0mload_library[0m[0;34m([0m[0mext_specs[0m[0;34m.[0m[0morigin[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     48[0m [0;34m[0m[0m
-[1;32m     49[0m [0;34m[0m[0m
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/frame.py[0m in [0;36mdrop[0;34m(self, labels, axis, index, columns, level, inplace, errors)[0m
+[1;32m   4899[0m                 [0mweight[0m  [0;36m1.0[0m     [0;36m0.8[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4900[0m         """
+[0;32m-> 4901[0;31m         return super().drop(
+[0m[1;32m   4902[0m             [0mlabels[0m[0;34m=[0m[0mlabels[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4903[0m             [0maxis[0m[0;34m=[0m[0maxis[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mAttributeError[0m: module 'torch' has no attribute 'ops'
-AttributeError: module 'torch' has no attribute 'ops'
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py[0m in [0;36mdrop[0;34m(self, labels, axis, index, columns, level, inplace, errors)[0m
+[1;32m   4148[0m         [0;32mfor[0m [0maxis[0m[0;34m,[0m [0mlabels[0m [0;32min[0m [0maxes[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4149[0m             [0;32mif[0m [0mlabels[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 4150[0;31m                 [0mobj[0m [0;34m=[0m [0mobj[0m[0;34m.[0m[0m_drop_axis[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0maxis[0m[0;34m,[0m [0mlevel[0m[0;34m=[0m[0mlevel[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   4151[0m [0;34m[0m[0m
+[1;32m   4152[0m         [0;32mif[0m [0minplace[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py[0m in [0;36m_drop_axis[0;34m(self, labels, axis, level, errors)[0m
+[1;32m   4183[0m                 [0mnew_axis[0m [0;34m=[0m [0maxis[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0mlevel[0m[0;34m=[0m[0mlevel[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4184[0m             [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 4185[0;31m                 [0mnew_axis[0m [0;34m=[0m [0maxis[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mlabels[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0merrors[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   4186[0m             [0mresult[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mreindex[0m[0;34m([0m[0;34m**[0m[0;34m{[0m[0maxis_name[0m[0;34m:[0m [0mnew_axis[0m[0;34m}[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   4187[0m [0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/indexes/base.py[0m in [0;36mdrop[0;34m(self, labels, errors)[0m
+[1;32m   6016[0m         [0;32mif[0m [0mmask[0m[0;34m.[0m[0many[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6017[0m             [0;32mif[0m [0merrors[0m [0;34m!=[0m [0;34m"ignore"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 6018[0;31m                 [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0;34mf"{labels[mask]} not found in axis"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   6019[0m             [0mindexer[0m [0;34m=[0m [0mindexer[0m[0;34m[[0m[0;34m~[0m[0mmask[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m   6020[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0mdelete[0m[0;34m([0m[0mindexer[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mKeyError[0m: "['median_house_value'] not found in axis"
+KeyError: "['median_house_value'] not found in axis"
 
