@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/kvarada/opt/miniconda3/envs/571/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import numpy.random as npr
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split, cross_val_score, cross_validate
+from sklearn.preprocessing import StandardScaler, OrdinalEncoder, OneHotEncoder
+from sklearn.dummy import DummyRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer, make_column_transformer, TransformedTargetRegressor
+from sklearn.linear_model import LinearRegression, Ridge, RidgeCV, LogisticRegression
+from sklearn.svm import SVC
+from sklearn.metrics import mean_squared_error, r2_score, make_scorer
+from sklearn.metrics import (
+    classification_report,
+    confusion_matrix,
+    plot_confusion_matrix,
+)
+# pip install git+git://github.com/mgelbart/plot-classifier.git
+from plot_classifier import plot_classifier
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_15974/2332530037.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     21[0m )
+[1;32m     22[0m [0;31m# pip install git+git://github.com/mgelbart/plot-classifier.git[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 23[0;31m [0;32mfrom[0m [0mplot_classifier[0m [0;32mimport[0m [0mplot_classifier[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mModuleNotFoundError[0m: No module named 'plot_classifier'
+ModuleNotFoundError: No module named 'plot_classifier'
+

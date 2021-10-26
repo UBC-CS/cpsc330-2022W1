@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -72,6 +72,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -81,7 +85,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
@@ -280,7 +284,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -426,8 +430,8 @@
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#strengths">
-     Strengths
+    <a class="reference internal nav-link" href="#strengths-and-weaknesses">
+     Strengths and weaknesses
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -982,14 +986,14 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.001)</td>
+      <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.008)</td>
+      <td>0.632 (+/- 0.004)</td>
       <td>0.633 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.170 (+/- 0.002)</td>
+      <td>0.171 (+/- 0.001)</td>
       <td>0.019 (+/- 0.000)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
@@ -1063,21 +1067,21 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.001)</td>
+      <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.008)</td>
+      <td>0.632 (+/- 0.004)</td>
       <td>0.633 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.170 (+/- 0.002)</td>
+      <td>0.171 (+/- 0.001)</td>
       <td>0.019 (+/- 0.000)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.771 (+/- 0.527)</td>
+      <td>0.792 (+/- 0.562)</td>
       <td>0.044 (+/- 0.002)</td>
       <td>0.857 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
@@ -1204,7 +1208,7 @@ Suppose this is your original dataset: [1,2,3,4]</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classes:  [&#39;&lt;=50K&#39; &#39;&gt;50K&#39;]
-Prediction by random forest:  [&#39;&gt;50K&#39;]
+Prediction by random forest:  [&#39;&lt;=50K&#39;]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1231,15 +1235,15 @@ Prediction by random forest:  [&#39;&gt;50K&#39;]
   <tbody>
     <tr>
       <th>age</th>
-      <td>0.476406</td>
+      <td>0.329210</td>
     </tr>
     <tr>
       <th>fnlwgt</th>
-      <td>-0.033864</td>
+      <td>-0.330600</td>
     </tr>
     <tr>
       <th>capital.gain</th>
-      <td>0.541538</td>
+      <td>-0.147166</td>
     </tr>
     <tr>
       <th>capital.loss</th>
@@ -1297,7 +1301,7 @@ Prediction by random forest:  [&#39;&gt;50K&#39;]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tree 1
 </pre></div>
 </div>
-<img alt="../_images/11_ensembles_52_1.svg" src="../_images/11_ensembles_52_1.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
+<img alt="../_images/11_ensembles_52_1.svg" src="../_images/11_ensembles_52_1.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [1.]
 
 
 Tree 2
@@ -1309,7 +1313,7 @@ Tree 2
 Tree 3
 </pre></div>
 </div>
-<img alt="../_images/11_ensembles_52_5.svg" src="../_images/11_ensembles_52_5.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [1.]
+<img alt="../_images/11_ensembles_52_5.svg" src="../_images/11_ensembles_52_5.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
 </pre></div>
 </div>
 </div>
@@ -1336,7 +1340,7 @@ Tree 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_6942</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_15896</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">make_num_tree_plot</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
@@ -1526,8 +1530,8 @@ Tree 3
 <p>More trees are always better! We pick less trees for speed.</p>
 </div>
 </div>
-<div class="section" id="strengths">
-<h3>Strengths<a class="headerlink" href="#strengths" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="strengths-and-weaknesses">
+<h3>Strengths and weaknesses<a class="headerlink" href="#strengths-and-weaknesses" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Usually one of the best performing off-the-shelf classifiers without heavy tuning of hyperparameters</p></li>
 <li><p>Don’t require scaling of data</p></li>
@@ -3157,16 +3161,36 @@ Tree 3
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="10_regression-metrics.html" title="previous page">Lecture 10: Regression Evaluation Metrics</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="10_regression-metrics.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Lecture 10: Regression Evaluation Metrics</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../attribution.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Attributions</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
