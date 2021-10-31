@@ -69,22 +69,22 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 |        |     |**Week 8 datasets**: <li>[Adult Census Income](https://www.kaggle.com/uciml/adult-census-income#)</li>  | |
 | Oct 26 | [feature importances, model interpretation](lectures/12_feat-importances.ipynb) | 📹 <li>Pre-watch: [12.1](https://youtu.be/xfICsGL7DXE),[12.2](https://youtu.be/tiSN18OmZOo)</li> | feature importances is new, feature engineering is new |
 | Oct 28 | **Midterm**  |  |
-|  | **Part II: Unsupervised learning, transfer learning, different learning settings**  | | 
 |        |     | **Week 9 datasets**: <li>[Credit Card Dataset for Clustering](https://www.kaggle.com/arjunbhasin2013/ccdata)</li> | |
-| Nov 2 |   Clustering |   | less depth |
-| Nov 4 |   Simple recommender systems | | less depth |
-|        |  | **Week 10 datasets**: <li>[Jester 1.7M jokes ratings dataset](https://www.kaggle.com/vikashrajluhaniwal/jester-17m-jokes-ratings-dataset)</li> | |
-| Nov 9 |  Text data, embeddings, topic modeling  |  |   new |
+| Nov 2 |   Feature engineering and feature selection |   | less depth |
+|  | **Part II: Unsupervised learning, transfer learning, different learning settings**  | | 
+| Nov 4 |   Clustering |   | less depth |
+|        |  | **Week 10 datasets**: <li>[Jester 1.7M jokes ratings dataset](https://www.kaggle.com/vikashrajluhaniwal/jester-17m-jokes-ratings-dataset)</li> |
+| Nov 9 |   Simple recommender systems | | less depth ||
 | Nov 11 | _Midterm break - no class_  |  |
 |        |     | **Week 11 datasets**: <li></li> | |
-| Nov 16 | Neural networks and computer vision | |   less depth |
-| Nov 18 | Time series data |  | new |
+| Nov 16 |  Text data, embeddings, topic modeling  |  |   new |
+| Nov 18 | Neural networks and computer vision | |   less depth |
 |        |     | **Week 12 datasets**: <li></li> | |
-| Nov 23 | Survival analysis |  |   new |
-|  | **Part III: Communication and ethics**  | |
-| Nov 25 | Communication introduction |  | new |
+| Nov 23 | Time series data |  | new |
+| Nov 25 | Survival analysis |  |   new |
+|  | **Part III: Communication, ethics, deployment**  | |
 |        |     | **Week 13 datasets**: <li></li> | |
-| Nov 30 | Communication and ethics |  |   new |
+| Nov 30 | Communication |  |   new |
 | Dec 2 |  Ethics |  | new |
 |        |     | **Week 14 datasets**: <li></li> | |
 | Dec 7 | Model deployment and conclusion |  |  new |
