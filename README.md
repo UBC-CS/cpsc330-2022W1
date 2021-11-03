@@ -72,7 +72,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 |        |     | **Week 9 datasets**: <li>[Credit Card Dataset for Clustering](https://www.kaggle.com/arjunbhasin2013/ccdata)</li> | |
 | Nov 2 |   [Feature engineering and feature selection](lectures/13_feature-engineering-selection.ipynb) | None | less depth |
 |  | **Part II: Unsupervised learning, transfer learning, different learning settings**  | | 
-| Nov 4 |   [Clustering](lectures/14_k-means-clustering.ipynb) | Coming up  | less depth |
+| Nov 4 |   [Clustering](lectures/14_k-means-clustering.ipynb) |  📹 <li>Pre-watch: [14.1](https://youtu.be/caAuUAXwpb8),[14.2](https://youtu.be/s6AvSZ1_l7I),[14.3](https://youtu.be/M5ilrhcL0oY)</li>  | less depth |
 |        |  | **Week 10 datasets**: <li>[Jester 1.7M jokes ratings dataset](https://www.kaggle.com/vikashrajluhaniwal/jester-17m-jokes-ratings-dataset)</li> |
 | Nov 9 |   Simple recommender systems | | less depth ||
 | Nov 11 | _Midterm break - no class_  |  |
