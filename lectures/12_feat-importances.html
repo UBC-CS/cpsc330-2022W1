@@ -177,6 +177,16 @@
    Lecture 11: Ensembles
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_k-means-clustering.html">
+   Lecture 14: Clustering
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -961,36 +971,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Alley&#39;,
- &#39;MoSold&#39;,
- &#39;GarageFinish&#39;,
- &#39;Utilities&#39;,
- &#39;Street&#39;,
- &#39;Exterior2nd&#39;,
- &#39;PavedDrive&#39;,
- &#39;MasVnrType&#39;,
- &#39;HouseStyle&#39;,
- &#39;RoofStyle&#39;,
- &#39;RoofMatl&#39;,
- &#39;CentralAir&#39;,
- &#39;Electrical&#39;,
- &#39;SaleType&#39;,
- &#39;LandSlope&#39;,
- &#39;MSSubClass&#39;,
- &#39;Exterior1st&#39;,
- &#39;Condition1&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Electrical&#39;,
  &#39;MSZoning&#39;,
- &#39;BldgType&#39;,
- &#39;Condition2&#39;,
- &#39;Neighborhood&#39;,
- &#39;Foundation&#39;,
+ &#39;MoSold&#39;,
  &#39;LandContour&#39;,
- &#39;SaleCondition&#39;,
- &#39;MiscFeature&#39;,
- &#39;Heating&#39;,
- &#39;GarageType&#39;,
+ &#39;Foundation&#39;,
+ &#39;CentralAir&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;Utilities&#39;,
+ &#39;SaleType&#39;,
  &#39;LotConfig&#39;,
- &#39;LotShape&#39;]
+ &#39;GarageFinish&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;LandSlope&#39;,
+ &#39;GarageType&#39;,
+ &#39;Condition1&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;Alley&#39;,
+ &#39;Street&#39;,
+ &#39;Heating&#39;,
+ &#39;LotShape&#39;,
+ &#39;Condition2&#39;,
+ &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -1117,16 +1127,16 @@
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>GarageType_missing</th>
-      <th>LotConfig_Corner</th>
-      <th>LotConfig_CulDSac</th>
-      <th>LotConfig_FR2</th>
-      <th>LotConfig_FR3</th>
-      <th>LotConfig_Inside</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -1144,12 +1154,12 @@
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1173,7 +1183,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1192,12 +1202,12 @@
       <td>1.227559</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1221,7 +1231,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1242,11 +1252,11 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1296,7 +1306,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1122</th>
@@ -1312,12 +1322,12 @@
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1337,12 +1347,12 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1360,15 +1370,15 @@
       <td>0.467379</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1392,7 +1402,7 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1634,7 +1644,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467573
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467549
 </pre></div>
 </div>
 </div>
@@ -1792,7 +1802,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467573
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467549
 </pre></div>
 </div>
 </div>
@@ -1815,7 +1825,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Alley&#39;, &#39;MoSold&#39;, &#39;GarageFinish&#39;, &#39;Utilities&#39;, &#39;Street&#39;, &#39;Exterior2nd&#39;, &#39;PavedDrive&#39;, &#39;MasVnrType&#39;, &#39;HouseStyle&#39;, &#39;RoofStyle&#39;, &#39;RoofMatl&#39;, &#39;CentralAir&#39;, &#39;Electrical&#39;, &#39;SaleType&#39;, &#39;LandSlope&#39;, &#39;MSSubClass&#39;, &#39;Exterior1st&#39;, &#39;Condition1&#39;, &#39;MSZoning&#39;, &#39;BldgType&#39;, &#39;Condition2&#39;, &#39;Neighborhood&#39;, &#39;Foundation&#39;, &#39;LandContour&#39;, &#39;SaleCondition&#39;, &#39;MiscFeature&#39;, &#39;Heating&#39;, &#39;GarageType&#39;, &#39;LotConfig&#39;, &#39;LotShape&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Electrical&#39;, &#39;MSZoning&#39;, &#39;MoSold&#39;, &#39;LandContour&#39;, &#39;Foundation&#39;, &#39;CentralAir&#39;, &#39;Exterior1st&#39;, &#39;Utilities&#39;, &#39;SaleType&#39;, &#39;LotConfig&#39;, &#39;GarageFinish&#39;, &#39;Neighborhood&#39;, &#39;MasVnrType&#39;, &#39;SaleCondition&#39;, &#39;RoofStyle&#39;, &#39;PavedDrive&#39;, &#39;LandSlope&#39;, &#39;GarageType&#39;, &#39;Condition1&#39;, &#39;RoofMatl&#39;, &#39;Exterior2nd&#39;, &#39;MSSubClass&#39;, &#39;HouseStyle&#39;, &#39;MiscFeature&#39;, &#39;Alley&#39;, &#39;Street&#39;, &#39;Heating&#39;, &#39;LotShape&#39;, &#39;Condition2&#39;, &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -2433,7 +2443,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094063
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.35671809407
 </pre></div>
 </div>
 </div>
@@ -2445,7 +2455,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646615
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646623
 </pre></div>
 </div>
 </div>
@@ -2878,7 +2888,7 @@ Name: income, dtype: float64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_6425</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_20296</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>

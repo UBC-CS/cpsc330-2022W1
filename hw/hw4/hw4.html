@@ -175,6 +175,16 @@
    Lecture 11: Ensembles
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/14_k-means-clustering.html">
+   Lecture 14: Clustering
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -512,6 +522,19 @@ rubric={points:25}
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_19989</span><span class="o">/</span><span class="mf">63553379.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_dummy</span><span class="p">,</span> <span class="n">y_train_dummy</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">my_dc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_dummy</span><span class="p">),</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_dummy</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">my_dc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">),</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">))</span>
+
+<span class="ne">AssertionError</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 <p>Below are some tests for <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>.</p>
 <div class="cell docutils container">
@@ -522,20 +545,6 @@ rubric={points:25}
 <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
     <span class="n">my_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">),</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">)</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_5624</span><span class="o">/</span><span class="mf">3894093271.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">my_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train_dummy</span><span class="p">),</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_train_dummy</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">my_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">),</span> <span class="n">sk_dc</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid_dummy</span><span class="p">)</span>
-
-<span class="ne">AssertionError</span>: 
 </pre></div>
 </div>
 </div>

@@ -1,0 +1,96 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import librosa.display
+import matplotlib.pyplot as plt
+
+y, sr = librosa.load(
+    "/Users/kvarada/MDS/data/genres/classical/classical.00001.au", duration=10
+)
+plt.figure()
+plt.subplot(3, 1, 1)
+librosa.display.waveplot(y, sr=sr)
+plt.title("Monophonic")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mRuntimeError[0m                              Traceback (most recent call last)
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/librosa/core/audio.py[0m in [0;36mload[0;34m(path, sr, mono, offset, duration, dtype, res_type)[0m
+[1;32m    148[0m     [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 149[0;31m         [0;32mwith[0m [0msf[0m[0;34m.[0m[0mSoundFile[0m[0;34m([0m[0mpath[0m[0;34m)[0m [0;32mas[0m [0msf_desc[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    150[0m             [0msr_native[0m [0;34m=[0m [0msf_desc[0m[0;34m.[0m[0msamplerate[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/soundfile.py[0m in [0;36m__init__[0;34m(self, file, mode, samplerate, channels, subtype, endian, format, closefd)[0m
+[1;32m    628[0m                                          format, subtype, endian)
+[0;32m--> 629[0;31m         [0mself[0m[0;34m.[0m[0m_file[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_open[0m[0;34m([0m[0mfile[0m[0;34m,[0m [0mmode_int[0m[0;34m,[0m [0mclosefd[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    630[0m         [0;32mif[0m [0mset[0m[0;34m([0m[0mmode[0m[0;34m)[0m[0;34m.[0m[0missuperset[0m[0;34m([0m[0;34m'r+'[0m[0;34m)[0m [0;32mand[0m [0mself[0m[0;34m.[0m[0mseekable[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/soundfile.py[0m in [0;36m_open[0;34m(self, file, mode_int, closefd)[0m
+[1;32m   1182[0m             [0;32mraise[0m [0mTypeError[0m[0;34m([0m[0;34m"Invalid file: {0!r}"[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1183[0;31m         _error_check(_snd.sf_error(file_ptr),
+[0m[1;32m   1184[0m                      "Error opening {0!r}: ".format(self.name))
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/soundfile.py[0m in [0;36m_error_check[0;34m(err, prefix)[0m
+[1;32m   1356[0m         [0merr_str[0m [0;34m=[0m [0m_snd[0m[0;34m.[0m[0msf_error_number[0m[0;34m([0m[0merr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1357[0;31m         [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0mprefix[0m [0;34m+[0m [0m_ffi[0m[0;34m.[0m[0mstring[0m[0;34m([0m[0merr_str[0m[0;34m)[0m[0;34m.[0m[0mdecode[0m[0;34m([0m[0;34m'utf-8'[0m[0;34m,[0m [0;34m'replace'[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1358[0m [0;34m[0m[0m
+
+[0;31mRuntimeError[0m: Error opening '/Users/kvarada/MDS/data/genres/classical/classical.00001.au': System error.
+
+During handling of the above exception, another exception occurred:
+
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_20312/3439407378.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[0;32m----> 4[0;31m y, sr = librosa.load(
+[0m[1;32m      5[0m     [0;34m"/Users/kvarada/MDS/data/genres/classical/classical.00001.au"[0m[0;34m,[0m [0mduration[0m[0;34m=[0m[0;36m10[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m )
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/librosa/core/audio.py[0m in [0;36mload[0;34m(path, sr, mono, offset, duration, dtype, res_type)[0m
+[1;32m    164[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0;34m([0m[0mstr[0m[0;34m,[0m [0mpathlib[0m[0;34m.[0m[0mPurePath[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    165[0m             [0mwarnings[0m[0;34m.[0m[0mwarn[0m[0;34m([0m[0;34m"PySoundFile failed. Trying audioread instead."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 166[0;31m             [0my[0m[0;34m,[0m [0msr_native[0m [0;34m=[0m [0m__audioread_load[0m[0;34m([0m[0mpath[0m[0;34m,[0m [0moffset[0m[0;34m,[0m [0mduration[0m[0;34m,[0m [0mdtype[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    167[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    168[0m             [0;32mraise[0m [0;34m([0m[0mexc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/librosa/core/audio.py[0m in [0;36m__audioread_load[0;34m(path, offset, duration, dtype)[0m
+[1;32m    188[0m [0;34m[0m[0m
+[1;32m    189[0m     [0my[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 190[0;31m     [0;32mwith[0m [0maudioread[0m[0;34m.[0m[0maudio_open[0m[0;34m([0m[0mpath[0m[0;34m)[0m [0;32mas[0m [0minput_file[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    191[0m         [0msr_native[0m [0;34m=[0m [0minput_file[0m[0;34m.[0m[0msamplerate[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    192[0m         [0mn_channels[0m [0;34m=[0m [0minput_file[0m[0;34m.[0m[0mchannels[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/audioread/__init__.py[0m in [0;36maudio_open[0;34m(path, backends)[0m
+[1;32m    109[0m     [0;32mfor[0m [0mBackendClass[0m [0;32min[0m [0mbackends[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    110[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 111[0;31m             [0;32mreturn[0m [0mBackendClass[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    112[0m         [0;32mexcept[0m [0mDecodeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    113[0m             [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/audioread/rawread.py[0m in [0;36m__init__[0;34m(self, filename)[0m
+[1;32m     60[0m     """
+[1;32m     61[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfilename[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 62[0;31m         [0mself[0m[0;34m.[0m[0m_fh[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0mfilename[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     63[0m [0;34m[0m[0m
+[1;32m     64[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/Users/kvarada/MDS/data/genres/classical/classical.00001.au'
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/kvarada/MDS/data/genres/classical/classical.00001.au'
+
