@@ -955,3 +955,23 @@ def plot_silhouette_dist(w, h):
     plt.xlabel("X1", fontdict={'fontsize': w})
     plt.ylabel("X2", fontdict={'fontsize': w})
     plt.title("Distances for silhouette", fontdict={'fontsize': w+h})    
+    
+    
+def plot_X_k_means(X, k=2):
+    fig, ax = plt.subplots(1, 2, figsize=(12, 4))    
+    ax[0].set_title("Original dataset")
+    ax[0].set_xlabel("Feature 0")
+    ax[0].set_ylabel("Feature 1")    
+    mglearn.discrete_scatter(X[:, 0], X[:, 1], ax=ax[0]);
+    # cluster the data into three clusters
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(X)
+    colours = list(range(0,k))
+    # plot the cluster assignments and cluster centers
+    ax[1].set_title("K-Means clusters (K=%d)"%(k))
+    ax[1].set_xlabel("Feature 0")
+    ax[1].set_ylabel("Feature 1")        
+    mglearn.discrete_scatter(X[:, 0], X[:, 1], kmeans.labels_, markers='o', ax=ax[1])
+    mglearn.discrete_scatter(
+        kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:, 1], colours, 
+        markers='*', markeredgewidth=1.0, ax=ax[1])    
