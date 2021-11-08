@@ -294,534 +294,525 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Lecture 14: Clustering
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#imports">
-     Imports
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-outcomes-a-name-lo-a">
+   Learning outcomes
+   <a name="lo">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-machine-learning-from">
+     Types of machine learning from
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#learning-outcomes-a-name-lo-a">
-     Learning outcomes
-     <a name="lo">
-     </a>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-learning">
+     Supervised learning
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#unsupervised-learning">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#labeled-vs-unlabeled-data">
+     Labeled vs. Unlabeled data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
      Unsupervised learning
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#types-of-machine-learning-from">
-       Types of machine learning from
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#supervised-learning">
-       Supervised learning
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#labeled-vs-unlabeled-data">
-       Labeled vs. Unlabeled data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       Unsupervised learning
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-supervised-vs-unsupervised-learning">
-       Example: Supervised vs unsupervised learning
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#an-example-with-sklearn-toy-dataset">
-       An example with
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         sklearn
-        </span>
-       </code>
-       toy dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#can-we-learn-without-targets">
-       Can we learn without targets?
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-motivation">
-     Clustering motivation
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#why-clustering">
-       Why clustering?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#clustering">
-       Clustering
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#input-and-possible-output">
-       Input and possible output
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#is-there-a-notion-of-correct-grouping">
-       Is there a notion of “correct” grouping?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-1">
-       Example 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-2">
-       Example 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#meaningful-groups-in-clustering">
-       Meaningful groups in clustering
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#common-applications-data-exploration">
-       Common applications: Data exploration
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#common-applications-customer-segmentation">
-       Common applications: Customer segmentation
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#document-clustering">
-       Document clustering
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#similarity-and-distances">
-       Similarity and distances
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-clustering-algorithm">
-     K-Means clustering algorithm
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#k-means-clustering">
-       K-Means clustering
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#k-means-using-sklearn">
-       K-Means using
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         sklearn
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#kmeans-fit">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KMeans
-        </span>
-       </code>
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         fit
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#predict-of-kmeans">
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         predict
-        </span>
-       </code>
-       of
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         KMeans
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#cluster-centers-in-k-means">
-       Cluster centers in  K-Means
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#k-means-predictions-on-new-examples">
-       K-Means predictions on new examples
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#k-means-algorithm-main-idea">
-       K-Means algorithm: Main idea
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       K-Means clustering algorithm
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#initialization">
-       Initialization
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iterative-process">
-       Iterative process
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-to-find-closest-centers">
-       How to find closest centers?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       How to find closest centers?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#how-to-update-centers">
-       How to update centers?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-1-step-1">
-       Iteration 1: Step 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-1-step-2">
-       Iteration 1: Step 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-2-step-1">
-       Iteration 2: step 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-2-step-2">
-       Iteration 2: step 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-3-step-1">
-       Iteration 3: step 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-3-step-2">
-       Iteration 3: step 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-4-step-1">
-       Iteration 4: step 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-4-step-2">
-       Iteration 4: step 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-5-step-1">
-       Iteration 5: step 1
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#iteration-5-step-2">
-       Iteration 5: step 2
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#when-to-stop">
-       When to stop?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
-       Example 2
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id5">
-         Initialization
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#optional-feature-engineering-using-k-means">
-       (Optional) Feature engineering using K-Means
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choosing-k-a-name-3-a">
-     Choosing K
-     <a name="3">
-     </a>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hyperparameter-tuning-for-k">
-       Hyperparameter tuning for K
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#method-1-the-elbow-method">
-       Method 1: The Elbow method
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#inertia">
-       Inertia
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#method-2-the-silhouette-method">
-       Method 2: The Silhouette method
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mean-intra-cluster-distance-a">
-       Mean intra-cluster distance (
-       <span class="math notranslate nohighlight">
-        \(a\)
-       </span>
-       )
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mean-nearest-cluster-distance-b">
-       Mean nearest-cluster distance (
-       <span class="math notranslate nohighlight">
-        \(b\)
-       </span>
-       )
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#silhouette-distance-for-a-sample">
-       Silhouette distance for a sample
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-silhouette-scores-to-select-the-number-of-clusters">
-       Using Silhouette scores to select the number of clusters
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-to-look-for-in-these-plots">
-       What to look for in these plots?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#comments-on-silhouette-scores">
-       Comments on Silhouette scores
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#k-means-true-false-questions">
-       K-Means: True/False questions
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       K-Means: True/False questions
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#break-5-min">
-     Break (5 min)
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-supervised-vs-unsupervised-learning">
+     Example: Supervised vs unsupervised learning
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-case-study-customer-segmentation">
-     K-Means case study: Customer segmentation
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-example-with-sklearn-toy-dataset">
+     An example with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+     toy dataset
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-customer-segmentation">
-       What is customer segmentation?
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#business-problem">
-       Business problem
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#data">
-       Data
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#information-of-the-dataset">
-       Information of the dataset
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#preliminary-eda">
-       Preliminary EDA
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#practice-exercises-for-you">
-       Practice exercises for you
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#mini-exercises-for-you-answers">
-       Mini exercises for you (Answers)
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#feature-types-and-preprocessing">
-       Feature types and preprocessing
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#tuning-the-hyperparameter-n-clusters">
-       Tuning the hyperparameter
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         n_clusters
-        </span>
-       </code>
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#cluster-interpretation">
-       Cluster interpretation
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#transactors">
-         Transactors
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#revolvers">
-         Revolvers
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#vip-prime">
-         VIP/Prime
-        </a>
-       </li>
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#low-activity">
-         Low activity
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#more-on-interpretation-of-clusters">
-       More on interpretation of clusters
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#practice-exercise-for-you">
-       Practice exercise for you
-      </a>
-     </li>
-    </ul>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#final-comments-and-summary">
-     Final comments and summary
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#can-we-learn-without-targets">
+     Can we learn without targets?
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#a-comment-on-initialization">
-       A comment on initialization
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-bad-initialization">
-       Example: Bad initialization
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-better-initialization">
-       Example: Better initialization
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-can-we-do-about-it">
-   What can we do about it?
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-motivation">
+   Clustering motivation
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-clustering">
+     Why clustering?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering">
+     Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-and-possible-output">
+     Input and possible output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-there-a-notion-of-correct-grouping">
+     Is there a notion of “correct” grouping?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1">
+     Example 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2">
+     Example 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meaningful-groups-in-clustering">
+     Meaningful groups in clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-applications-data-exploration">
+     Common applications: Data exploration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-applications-customer-segmentation">
+     Common applications: Customer segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-clustering">
+     Document clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarity-and-distances">
+     Similarity and distances
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-clustering-algorithm">
+   K-Means clustering algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     K-Means clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-using-sklearn">
+     K-Means using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kmeans-fit">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fit
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-of-kmeans">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict
+      </span>
+     </code>
+     of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-centers-in-k-means">
+     Cluster centers in  K-Means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-predictions-on-new-examples">
+     K-Means predictions on new examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-algorithm-main-idea">
+     K-Means algorithm: Main idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     K-Means clustering algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization">
+     Initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-process">
+     Iterative process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-find-closest-centers">
+     How to find closest centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     How to find closest centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-update-centers">
+     How to update centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-1-step-1">
+     Iteration 1: Step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-1-step-2">
+     Iteration 1: Step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-2-step-1">
+     Iteration 2: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-2-step-2">
+     Iteration 2: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-3-step-1">
+     Iteration 3: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-3-step-2">
+     Iteration 3: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-4-step-1">
+     Iteration 4: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-4-step-2">
+     Iteration 4: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-5-step-1">
+     Iteration 5: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-5-step-2">
+     Iteration 5: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-stop">
+     When to stop?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Example 2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Initialization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-feature-engineering-using-k-means">
+     (Optional) Feature engineering using K-Means
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-k-a-name-3-a">
+   Choosing K
+   <a name="3">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-tuning-for-k">
+     Hyperparameter tuning for K
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-1-the-elbow-method">
+     Method 1: The Elbow method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inertia">
+     Inertia
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-2-the-silhouette-method">
+     Method 2: The Silhouette method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-intra-cluster-distance-a">
+     Mean intra-cluster distance (
+     <span class="math notranslate nohighlight">
+      \(a\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-nearest-cluster-distance-b">
+     Mean nearest-cluster distance (
+     <span class="math notranslate nohighlight">
+      \(b\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#silhouette-distance-for-a-sample">
+     Silhouette distance for a sample
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-silhouette-scores-to-select-the-number-of-clusters">
+     Using Silhouette scores to select the number of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-to-look-for-in-these-plots">
+     What to look for in these plots?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments-on-silhouette-scores">
+     Comments on Silhouette scores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-true-false-questions">
+     K-Means: True/False questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     K-Means: True/False questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-case-study-customer-segmentation">
+   K-Means case study: Customer segmentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-customer-segmentation">
+     What is customer segmentation?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#business-problem">
+     Business problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-of-the-dataset">
+     Information of the dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-eda">
+     Preliminary EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-exercises-for-you">
+     Practice exercises for you
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mini-exercises-for-you-answers">
+     Mini exercises for you (Answers)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-types-and-preprocessing">
+     Feature types and preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-the-hyperparameter-n-clusters">
+     Tuning the hyperparameter
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_clusters
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-interpretation">
+     Cluster interpretation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#transactors">
+       Transactors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#revolvers">
+       Revolvers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vip-prime">
+       VIP/Prime
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#low-activity">
+       Low activity
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-on-interpretation-of-clusters">
+     More on interpretation of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-exercise-for-you">
+     Practice exercise for you
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-comments-and-summary">
+   Final comments and summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-comment-on-initialization">
+     A comment on initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-bad-initialization">
+     Example: Bad initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-better-initialization">
+     Example: Better initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-can-we-do-about-it">
+     What can we do about it?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#important-points-to-remember">
      Important points to remember
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id7">
      Important points to remember
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
      Important points to remember
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#resources">
-     Resources
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#questions-for-class-discussion-a-name-questions-a">
-     Questions for class Discussion
-     <a name="questions">
-     </a>
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-class-discussion-a-name-questions-a">
+   Questions for class Discussion
+   <a name="questions">
+   </a>
+  </a>
  </li>
 </ul>
 
@@ -3319,125 +3310,125 @@ memory usage: 1.2+ MB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>CASH_ADVANCE_TRX</th>
-      <th>TENURE</th>
-      <th>INSTALLMENTS_PURCHASES</th>
-      <th>ONEOFF_PURCHASES_FREQUENCY</th>
-      <th>PAYMENTS</th>
-      <th>BALANCE</th>
       <th>PURCHASES_FREQUENCY</th>
-      <th>ONEOFF_PURCHASES</th>
-      <th>PURCHASES_TRX</th>
-      <th>PRC_FULL_PAYMENT</th>
       <th>CASH_ADVANCE</th>
-      <th>CASH_ADVANCE_FREQUENCY</th>
-      <th>BALANCE_FREQUENCY</th>
-      <th>PURCHASES</th>
-      <th>MINIMUM_PAYMENTS</th>
       <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>TENURE</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>BALANCE</th>
+      <th>PAYMENTS</th>
+      <th>PURCHASES</th>
       <th>CREDIT_LIMIT</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_TRX</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>MINIMUM_PAYMENTS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.476070</td>
-      <td>0.360680</td>
-      <td>-0.349079</td>
-      <td>-0.678661</td>
-      <td>-0.528979</td>
-      <td>-0.731989</td>
       <td>-0.806490</td>
-      <td>-0.356934</td>
-      <td>-0.511333</td>
-      <td>-0.525551</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>-0.249434</td>
-      <td>-0.424900</td>
-      <td>-3.109675e-01</td>
       <td>-0.707313</td>
+      <td>-0.249434</td>
+      <td>0.360680</td>
+      <td>-0.675349</td>
+      <td>-0.349079</td>
+      <td>-0.731989</td>
+      <td>-0.528979</td>
+      <td>-0.424900</td>
       <td>-0.960433</td>
+      <td>-0.525551</td>
+      <td>-0.476070</td>
+      <td>-0.511333</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-3.109675e-01</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.110074</td>
-      <td>0.360680</td>
-      <td>-0.454576</td>
-      <td>-0.678661</td>
-      <td>0.818642</td>
-      <td>0.786961</td>
       <td>-1.221758</td>
-      <td>-0.356934</td>
-      <td>-0.591796</td>
-      <td>0.234227</td>
       <td>2.605605</td>
-      <td>0.573963</td>
-      <td>0.134325</td>
-      <td>-0.469552</td>
-      <td>8.931021e-02</td>
       <td>-0.916995</td>
+      <td>0.134325</td>
+      <td>0.360680</td>
+      <td>0.573963</td>
+      <td>-0.454576</td>
+      <td>0.786961</td>
+      <td>0.818642</td>
+      <td>-0.469552</td>
       <td>0.688639</td>
+      <td>0.234227</td>
+      <td>0.110074</td>
+      <td>-0.591796</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>8.931021e-02</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.476070</td>
-      <td>0.360680</td>
-      <td>-0.454576</td>
-      <td>2.673451</td>
-      <td>-0.383805</td>
-      <td>0.447135</td>
       <td>1.269843</td>
-      <td>0.108889</td>
-      <td>-0.109020</td>
-      <td>-0.525551</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>0.518084</td>
-      <td>-0.107668</td>
-      <td>-1.016632e-01</td>
       <td>-0.916995</td>
+      <td>0.518084</td>
+      <td>0.360680</td>
+      <td>-0.675349</td>
+      <td>-0.454576</td>
+      <td>0.447135</td>
+      <td>-0.383805</td>
+      <td>-0.107668</td>
       <td>0.826062</td>
+      <td>-0.525551</td>
+      <td>-0.476070</td>
+      <td>-0.109020</td>
+      <td>0.108889</td>
+      <td>2.673451</td>
+      <td>-1.016632e-01</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-0.329534</td>
-      <td>0.360680</td>
-      <td>-0.454576</td>
-      <td>-0.399319</td>
-      <td>-0.598688</td>
-      <td>0.049099</td>
       <td>-1.014125</td>
-      <td>0.546189</td>
-      <td>-0.551565</td>
-      <td>-0.525551</td>
       <td>-0.368653</td>
-      <td>-0.258913</td>
-      <td>-1.016953</td>
-      <td>0.232058</td>
-      <td>4.878305e-17</td>
       <td>-0.916995</td>
+      <td>-1.016953</td>
+      <td>0.360680</td>
+      <td>-0.258913</td>
+      <td>-0.454576</td>
+      <td>0.049099</td>
+      <td>-0.598688</td>
+      <td>0.232058</td>
       <td>0.826062</td>
+      <td>-0.525551</td>
+      <td>-0.329534</td>
+      <td>-0.551565</td>
+      <td>0.546189</td>
+      <td>-0.399319</td>
+      <td>4.878305e-17</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.476070</td>
-      <td>0.360680</td>
-      <td>-0.454576</td>
-      <td>-0.399319</td>
-      <td>-0.364368</td>
-      <td>-0.358775</td>
       <td>-1.014125</td>
-      <td>-0.347294</td>
-      <td>-0.551565</td>
-      <td>-0.525551</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>0.518084</td>
-      <td>-0.462063</td>
-      <td>-2.657913e-01</td>
       <td>-0.916995</td>
+      <td>0.518084</td>
+      <td>0.360680</td>
+      <td>-0.675349</td>
+      <td>-0.454576</td>
+      <td>-0.358775</td>
+      <td>-0.364368</td>
+      <td>-0.462063</td>
       <td>-0.905464</td>
+      <td>-0.525551</td>
+      <td>-0.476070</td>
+      <td>-0.551565</td>
+      <td>-0.347294</td>
+      <td>-0.399319</td>
+      <td>-2.657913e-01</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3461,103 +3452,103 @@ memory usage: 1.2+ MB
     </tr>
     <tr>
       <th>8945</th>
-      <td>-0.476070</td>
-      <td>-4.122768</td>
-      <td>-0.132643</td>
-      <td>-0.678661</td>
-      <td>-0.486217</td>
-      <td>-0.737950</td>
       <td>1.269843</td>
-      <td>-0.356934</td>
-      <td>-0.350408</td>
-      <td>1.183951</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>0.518084</td>
-      <td>-0.333293</td>
-      <td>-3.498541e-01</td>
       <td>1.179833</td>
+      <td>0.518084</td>
+      <td>-4.122768</td>
+      <td>-0.675349</td>
+      <td>-0.132643</td>
+      <td>-0.737950</td>
+      <td>-0.486217</td>
+      <td>-0.333293</td>
       <td>-0.960433</td>
+      <td>1.183951</td>
+      <td>-0.476070</td>
+      <td>-0.350408</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-3.498541e-01</td>
     </tr>
     <tr>
       <th>8946</th>
-      <td>-0.476070</td>
-      <td>-4.122768</td>
-      <td>-0.122823</td>
-      <td>-0.678661</td>
-      <td>-0.503396</td>
-      <td>-0.742423</td>
       <td>1.269843</td>
-      <td>-0.356934</td>
-      <td>-0.350408</td>
-      <td>-0.525551</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>0.518084</td>
-      <td>-0.329136</td>
-      <td>4.878305e-17</td>
       <td>1.179833</td>
+      <td>0.518084</td>
+      <td>-4.122768</td>
+      <td>-0.675349</td>
+      <td>-0.122823</td>
+      <td>-0.742423</td>
+      <td>-0.503396</td>
+      <td>-0.329136</td>
       <td>-0.960433</td>
+      <td>-0.525551</td>
+      <td>-0.476070</td>
+      <td>-0.350408</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>4.878305e-17</td>
     </tr>
     <tr>
       <th>8947</th>
-      <td>-0.476070</td>
-      <td>-4.122768</td>
-      <td>-0.294893</td>
-      <td>-0.678661</td>
-      <td>-0.570615</td>
-      <td>-0.740398</td>
       <td>0.854576</td>
-      <td>-0.356934</td>
-      <td>-0.390639</td>
-      <td>0.329200</td>
       <td>-0.466786</td>
-      <td>-0.675349</td>
-      <td>-0.185477</td>
-      <td>-0.401965</td>
-      <td>-3.354655e-01</td>
       <td>0.760469</td>
+      <td>-0.185477</td>
+      <td>-4.122768</td>
+      <td>-0.675349</td>
+      <td>-0.294893</td>
+      <td>-0.740398</td>
+      <td>-0.570615</td>
+      <td>-0.401965</td>
       <td>-0.960433</td>
+      <td>0.329200</td>
+      <td>-0.476070</td>
+      <td>-0.390639</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-3.354655e-01</td>
     </tr>
     <tr>
       <th>8948</th>
-      <td>-0.182998</td>
-      <td>-4.122768</td>
-      <td>-0.454576</td>
-      <td>-0.678661</td>
-      <td>-0.580536</td>
-      <td>-0.745174</td>
       <td>-1.221758</td>
-      <td>-0.356934</td>
-      <td>-0.591796</td>
-      <td>0.329200</td>
       <td>-0.449352</td>
-      <td>0.157527</td>
-      <td>-0.185477</td>
-      <td>-0.469552</td>
-      <td>-3.469065e-01</td>
       <td>-0.916995</td>
+      <td>-0.185477</td>
+      <td>-4.122768</td>
+      <td>0.157527</td>
+      <td>-0.454576</td>
+      <td>-0.745174</td>
+      <td>-0.580536</td>
+      <td>-0.469552</td>
       <td>-1.097856</td>
+      <td>0.329200</td>
+      <td>-0.182998</td>
+      <td>-0.591796</td>
+      <td>-0.356934</td>
+      <td>-0.678661</td>
+      <td>-3.469065e-01</td>
     </tr>
     <tr>
       <th>8949</th>
-      <td>-0.182998</td>
-      <td>-4.122768</td>
-      <td>-0.454576</td>
-      <td>1.556082</td>
-      <td>-0.576869</td>
-      <td>-0.572575</td>
       <td>0.439310</td>
-      <td>0.301732</td>
-      <td>0.333524</td>
-      <td>-0.525551</td>
       <td>-0.406205</td>
-      <td>0.990398</td>
-      <td>-0.889033</td>
-      <td>0.042146</td>
-      <td>-3.329464e-01</td>
       <td>-0.916995</td>
+      <td>-0.889033</td>
+      <td>-4.122768</td>
+      <td>0.990398</td>
+      <td>-0.454576</td>
+      <td>-0.572575</td>
+      <td>-0.576869</td>
+      <td>0.042146</td>
       <td>-0.905464</td>
+      <td>-0.525551</td>
+      <td>-0.182998</td>
+      <td>0.333524</td>
+      <td>0.301732</td>
+      <td>1.556082</td>
+      <td>-3.329464e-01</td>
     </tr>
   </tbody>
 </table>
@@ -3738,105 +3729,105 @@ memory usage: 1.2+ MB
   <thead>
     <tr>
       <th></th>
-      <th>CASH_ADVANCE_TRX</th>
-      <th>TENURE</th>
-      <th>INSTALLMENTS_PURCHASES</th>
-      <th>ONEOFF_PURCHASES_FREQUENCY</th>
-      <th>PAYMENTS</th>
-      <th>BALANCE</th>
       <th>PURCHASES_FREQUENCY</th>
-      <th>ONEOFF_PURCHASES</th>
-      <th>PURCHASES_TRX</th>
-      <th>PRC_FULL_PAYMENT</th>
       <th>CASH_ADVANCE</th>
-      <th>CASH_ADVANCE_FREQUENCY</th>
-      <th>BALANCE_FREQUENCY</th>
-      <th>PURCHASES</th>
-      <th>MINIMUM_PAYMENTS</th>
       <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>TENURE</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>INSTALLMENTS_PURCHASES</th>
+      <th>BALANCE</th>
+      <th>PAYMENTS</th>
+      <th>PURCHASES</th>
       <th>CREDIT_LIMIT</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PURCHASES_TRX</th>
+      <th>ONEOFF_PURCHASES</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>MINIMUM_PAYMENTS</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.170458</td>
-      <td>0.324140</td>
-      <td>2.406470</td>
-      <td>1.798653</td>
-      <td>1.919096</td>
-      <td>0.954485</td>
       <td>1.136338</td>
-      <td>2.713251</td>
-      <td>3.003251</td>
-      <td>0.454703</td>
       <td>-0.155091</td>
-      <td>-0.319096</td>
-      <td>0.462694</td>
-      <td>3.125845</td>
-      <td>0.477421</td>
       <td>1.065918</td>
+      <td>0.462694</td>
+      <td>0.324140</td>
+      <td>-0.319096</td>
+      <td>2.406470</td>
+      <td>0.954485</td>
+      <td>1.919096</td>
+      <td>3.125845</td>
       <td>1.429882</td>
+      <td>0.454703</td>
+      <td>-0.170458</td>
+      <td>3.003251</td>
+      <td>2.713251</td>
+      <td>1.798653</td>
+      <td>0.477421</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1.617143</td>
-      <td>-0.097146</td>
-      <td>-0.253747</td>
-      <td>-0.212939</td>
-      <td>0.603821</td>
-      <td>1.459578</td>
       <td>-0.504848</td>
-      <td>-0.163914</td>
-      <td>-0.283580</td>
-      <td>-0.406367</td>
       <td>1.688972</td>
-      <td>1.745948</td>
-      <td>0.384753</td>
-      <td>-0.234638</td>
-      <td>0.490910</td>
       <td>-0.450201</td>
+      <td>0.384753</td>
+      <td>-0.097146</td>
+      <td>1.745948</td>
+      <td>-0.253747</td>
+      <td>1.459578</td>
+      <td>0.603821</td>
+      <td>-0.234638</td>
       <td>0.838968</td>
+      <td>-0.406367</td>
+      <td>1.617143</td>
+      <td>-0.283580</td>
+      <td>-0.163914</td>
+      <td>-0.212939</td>
+      <td>0.490910</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.164607</td>
-      <td>-0.052972</td>
-      <td>-0.387798</td>
-      <td>-0.389437</td>
-      <td>-0.262060</td>
-      <td>-0.265552</td>
       <td>-0.797823</td>
-      <td>-0.230500</td>
-      <td>-0.474987</td>
-      <td>-0.258866</td>
       <td>-0.182691</td>
-      <td>-0.101500</td>
-      <td>-0.368944</td>
-      <td>-0.343190</td>
-      <td>-0.119249</td>
       <td>-0.714246</td>
+      <td>-0.368944</td>
+      <td>-0.052972</td>
+      <td>-0.101500</td>
+      <td>-0.387798</td>
+      <td>-0.265552</td>
+      <td>-0.262060</td>
+      <td>-0.343190</td>
       <td>-0.334417</td>
+      <td>-0.258866</td>
+      <td>-0.164607</td>
+      <td>-0.474987</td>
+      <td>-0.230500</td>
+      <td>-0.389437</td>
+      <td>-0.119249</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-0.360303</td>
-      <td>0.057744</td>
-      <td>0.255904</td>
-      <td>0.317153</td>
-      <td>-0.138502</td>
-      <td>-0.321688</td>
       <td>0.983721</td>
-      <td>0.000926</td>
-      <td>0.296985</td>
-      <td>0.395041</td>
       <td>-0.366373</td>
-      <td>-0.462599</td>
-      <td>0.242574</td>
-      <td>0.109044</td>
-      <td>-0.091844</td>
       <td>0.874138</td>
+      <td>0.242574</td>
+      <td>0.057744</td>
+      <td>-0.462599</td>
+      <td>0.255904</td>
+      <td>-0.321688</td>
+      <td>-0.138502</td>
+      <td>0.109044</td>
       <td>-0.077298</td>
+      <td>0.395041</td>
+      <td>-0.360303</td>
+      <td>0.296985</td>
+      <td>0.000926</td>
+      <td>0.317153</td>
+      <td>-0.091844</td>
     </tr>
   </tbody>
 </table>
@@ -4860,10 +4851,8 @@ memory usage: 1.2+ MB
 </div>
 </div>
 </div>
-</div>
-</div>
 <div class="section" id="what-can-we-do-about-it">
-<h1>What can we do about it?<a class="headerlink" href="#what-can-we-do-about-it" title="Permalink to this headline">¶</a></h1>
+<h3>What can we do about it?<a class="headerlink" href="#what-can-we-do-about-it" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>One strategy is to run the algorithm several times.</p>
 <ul>
@@ -4879,15 +4868,16 @@ memory usage: 1.2+ MB
 </ul>
 </li>
 </ul>
+</div>
 <div class="section" id="important-points-to-remember">
-<h2>Important points to remember<a class="headerlink" href="#important-points-to-remember" title="Permalink to this headline">¶</a></h2>
+<h3>Important points to remember<a class="headerlink" href="#important-points-to-remember" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Clustering is a common unsupervised approach to identify underlying structure in data and grouping points based on similarity.</p></li>
 <li><p>K-Means is a popular clustering algorithm.</p></li>
 </ul>
 </div>
 <div class="section" id="id7">
-<h2>Important points to remember<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<h3>Important points to remember<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p><strong>K-Means</strong></p>
 <ul class="simple">
 <li><p>It requires us to specify the number of clusters in advance.</p></li>
@@ -4898,12 +4888,13 @@ memory usage: 1.2+ MB
 </ul>
 </div>
 <div class="section" id="id8">
-<h2>Important points to remember<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<h3>Important points to remember<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Two ways to provide insight into how many clusters are reasonable for the give problem are: <strong>the Elbow method</strong> and <strong>the Silhouette method</strong>.</p></li>
 <li><p>Some applications of K-Means clustering include data exploration, feature engineering, customer segmentation, and document clustering.</p></li>
 <li><p>It takes fair amount of manual effort and domain knowledge to interpret clusters returned by K-Means.</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
