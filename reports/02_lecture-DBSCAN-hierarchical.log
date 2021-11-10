@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+    return loop.run_until_complete(coro)
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+    await self.async_execute_cell(
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import random
+import sys
+
+import numpy as np
+import pandas as pd
+
+sys.path.append("code/.")
+import matplotlib.pyplot as plt
+import mglearn
+import seaborn as sns
+from ipywidgets import interactive
+from plotting_functions import *
+from scipy.cluster.hierarchy import dendrogram, fcluster, linkage
+from sklearn import cluster, datasets, metrics
+from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
+from sklearn.datasets import make_blobs
+from sklearn.decomposition import PCA
+from sklearn.metrics.pairwise import euclidean_distances
+from sklearn.preprocessing import StandardScaler
+from support_functions import *
+from yellowbrick.cluster import SilhouetteVisualizer
+
+plt.rcParams["font.size"] = 16
+# plt.style.use("seaborn")
+%matplotlib inline
+pd.set_option("display.max_colwidth", 0)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+[0;32m/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_19254/2842264530.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     19[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mmetrics[0m[0;34m.[0m[0mpairwise[0m [0;32mimport[0m [0meuclidean_distances[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     20[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mpreprocessing[0m [0;32mimport[0m [0mStandardScaler[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 21[0;31m [0;32mfrom[0m [0msupport_functions[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     22[0m [0;32mfrom[0m [0myellowbrick[0m[0;34m.[0m[0mcluster[0m [0;32mimport[0m [0mSilhouetteVisualizer[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     23[0m [0;34m[0m[0m
+
+[0;31mModuleNotFoundError[0m: No module named 'support_functions'
+ModuleNotFoundError: No module named 'support_functions'
+
