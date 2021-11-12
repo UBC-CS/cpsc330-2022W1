@@ -77,7 +77,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Nov 9 |   Simple recommender systems | | less depth ||
 | Nov 11 | _Midterm break - no class_  |  |
 |        |     | **Week 11 datasets**: <li></li> | |
-| Nov 16 |  Text data, embeddings, topic modeling  |  |   new |
+| Nov 16 |  Text data, embeddings, topic modeling  | 📹 <li>Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY),[16.2](https://youtu.be/7W5Q8gzNPBc)</li>  |   new |
 | Nov 18 | Neural networks and computer vision | |   less depth |
 |        |     | **Week 12 datasets**: <li></li> | |
 | Nov 23 | Time series data |  | new |
