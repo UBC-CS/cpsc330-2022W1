@@ -81,8 +81,9 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Nov 23 | Time series data |  | new |
 | Nov 25 | Survival analysis |  |   new |
 |  | **Part III: Communication, ethics, deployment**  | |
-| Nov 30 | Communication |  |   new |
-| Dec 2 |  Ethics |  | new |
+| Nov 30  |  Ethics |  | new |
+| Dec 2 | Communication |  |   new |
+
 | Dec 7 | Model deployment and conclusion |  |  new |
 
 
