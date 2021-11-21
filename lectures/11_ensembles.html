@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 14: Clustering" href="14_k-means-clustering.html" />
+    <link rel="next" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
     <link rel="prev" title="Lecture 10: Regression Evaluation Metrics" href="10_regression-metrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -175,6 +175,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
   </a>
  </li>
  <li class="toctree-l1">
@@ -1004,12 +1009,12 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.632 (+/- 0.005)</td>
       <td>0.632 (+/- 0.004)</td>
+      <td>0.634 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.170 (+/- 0.003)</td>
+      <td>0.174 (+/- 0.003)</td>
       <td>0.019 (+/- 0.000)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
@@ -1085,20 +1090,20 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.632 (+/- 0.005)</td>
       <td>0.632 (+/- 0.004)</td>
+      <td>0.634 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.170 (+/- 0.003)</td>
+      <td>0.174 (+/- 0.003)</td>
       <td>0.019 (+/- 0.000)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.859 (+/- 0.611)</td>
-      <td>0.044 (+/- 0.003)</td>
+      <td>0.879 (+/- 0.540)</td>
+      <td>0.045 (+/- 0.002)</td>
       <td>0.857 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
@@ -1224,7 +1229,7 @@ Suppose this is your original dataset: [1,2,3,4]</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classes:  [&#39;&lt;=50K&#39; &#39;&gt;50K&#39;]
-Prediction by random forest:  [&#39;&gt;50K&#39;]
+Prediction by random forest:  [&#39;&lt;=50K&#39;]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1251,15 +1256,15 @@ Prediction by random forest:  [&#39;&gt;50K&#39;]
   <tbody>
     <tr>
       <th>age</th>
-      <td>0.844395</td>
+      <td>-0.701161</td>
     </tr>
     <tr>
       <th>fnlwgt</th>
-      <td>0.749545</td>
+      <td>-1.284372</td>
     </tr>
     <tr>
       <th>capital.gain</th>
-      <td>0.823510</td>
+      <td>-0.147166</td>
     </tr>
     <tr>
       <th>capital.loss</th>
@@ -1267,7 +1272,7 @@ Prediction by random forest:  [&#39;&gt;50K&#39;]
     </tr>
     <tr>
       <th>hours.per.week</th>
-      <td>-0.042081</td>
+      <td>-0.447517</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1329,7 +1334,7 @@ Tree 2
 Tree 3
 </pre></div>
 </div>
-<img alt="../_images/11_ensembles_52_5.svg" src="../_images/11_ensembles_52_5.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [1.]
+<img alt="../_images/11_ensembles_52_5.svg" src="../_images/11_ensembles_52_5.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
 </pre></div>
 </div>
 </div>
@@ -1356,7 +1361,7 @@ Tree 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_4953</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16807</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">make_num_tree_plot</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
@@ -3180,7 +3185,7 @@ Tree 3
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="10_regression-metrics.html" title="previous page">Lecture 10: Regression Evaluation Metrics</a>
-    <a class='right-next' id="next-link" href="14_k-means-clustering.html" title="next page">Lecture 14: Clustering</a>
+    <a class='right-next' id="next-link" href="13_feature-engineering-selection.html" title="next page">Lecture 13: Feature engineering and feature selection</a>
 
         </div>
         

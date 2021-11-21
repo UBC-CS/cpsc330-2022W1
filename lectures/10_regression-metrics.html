@@ -180,6 +180,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="14_k-means-clustering.html">
    Lecture 14: Clustering
   </a>
@@ -187,6 +192,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="15_recommender-systems.html">
    Lecture 15: DBSCAN and Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_natural-language-processing.html">
+   Lecture 16: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_intro_to_computer-vision.html">
+   Lecture 17: Multi-class classification and introduction to computer vision
   </a>
  </li>
 </ul>
@@ -1437,36 +1452,36 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;LotConfig&#39;,
- &#39;RoofStyle&#39;,
- &#39;SaleCondition&#39;,
- &#39;Utilities&#39;,
- &#39;Exterior1st&#39;,
- &#39;LandContour&#39;,
- &#39;Exterior2nd&#39;,
- &#39;Heating&#39;,
- &#39;MiscFeature&#39;,
- &#39;LotShape&#39;,
- &#39;GarageType&#39;,
- &#39;BldgType&#39;,
- &#39;SaleType&#39;,
- &#39;Alley&#39;,
- &#39;Condition2&#39;,
- &#39;GarageFinish&#39;,
- &#39;PavedDrive&#39;,
- &#39;MSSubClass&#39;,
- &#39;HouseStyle&#39;,
- &#39;LandSlope&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MSSubClass&#39;,
  &#39;Condition1&#39;,
- &#39;Foundation&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;SaleCondition&#39;,
  &#39;MoSold&#39;,
  &#39;Street&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;CentralAir&#39;,
+ &#39;GarageType&#39;,
+ &#39;LandSlope&#39;,
+ &#39;HouseStyle&#39;,
  &#39;MasVnrType&#39;,
- &#39;Electrical&#39;,
+ &#39;Heating&#39;,
+ &#39;Foundation&#39;,
+ &#39;LandContour&#39;,
+ &#39;LotConfig&#39;,
+ &#39;SaleType&#39;,
  &#39;MSZoning&#39;,
+ &#39;Alley&#39;,
  &#39;Neighborhood&#39;,
+ &#39;Electrical&#39;,
+ &#39;LotShape&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;Condition2&#39;,
+ &#39;Utilities&#39;,
+ &#39;PavedDrive&#39;,
  &#39;RoofMatl&#39;,
- &#39;CentralAir&#39;]
+ &#39;GarageFinish&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;BldgType&#39;]
 </pre></div>
 </div>
 </div>
@@ -1608,16 +1623,16 @@ memory usage: 841.8+ KB
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>RoofMatl_ClyTile</th>
-      <th>RoofMatl_CompShg</th>
-      <th>RoofMatl_Membran</th>
-      <th>RoofMatl_Metal</th>
-      <th>RoofMatl_Roll</th>
-      <th>RoofMatl_Tar&amp;Grv</th>
-      <th>RoofMatl_WdShake</th>
-      <th>RoofMatl_WdShngl</th>
-      <th>CentralAir_N</th>
-      <th>CentralAir_Y</th>
+      <th>RoofStyle_Gable</th>
+      <th>RoofStyle_Gambrel</th>
+      <th>RoofStyle_Hip</th>
+      <th>RoofStyle_Mansard</th>
+      <th>RoofStyle_Shed</th>
+      <th>BldgType_1Fam</th>
+      <th>BldgType_2fmCon</th>
+      <th>BldgType_Duplex</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
     </tr>
   </thead>
   <tbody>
@@ -1634,16 +1649,16 @@ memory usage: 841.8+ KB
       <td>0.269972</td>
       <td>-0.961498</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1658,16 +1673,16 @@ memory usage: 841.8+ KB
       <td>-0.573129</td>
       <td>0.476092</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1682,16 +1697,16 @@ memory usage: 841.8+ KB
       <td>-0.573129</td>
       <td>1.227559</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1706,16 +1721,16 @@ memory usage: 841.8+ KB
       <td>-0.573129</td>
       <td>0.443419</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1730,16 +1745,16 @@ memory usage: 841.8+ KB
       <td>-0.573129</td>
       <td>0.354114</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1827,71 +1842,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001495</td>
-      <td>0.000255</td>
+      <td>0.001172</td>
+      <td>0.000273</td>
       <td>-0.003547</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000657</td>
-      <td>0.000222</td>
+      <td>0.000689</td>
+      <td>0.000230</td>
       <td>-0.001266</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000640</td>
-      <td>0.000223</td>
+      <td>0.000645</td>
+      <td>0.000228</td>
       <td>-0.011767</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000628</td>
-      <td>0.000224</td>
+      <td>0.000629</td>
+      <td>0.000226</td>
       <td>-0.006744</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000630</td>
-      <td>0.000226</td>
+      <td>0.000631</td>
+      <td>0.000230</td>
       <td>-0.076533</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000622</td>
-      <td>0.000223</td>
+      <td>0.000636</td>
+      <td>0.000230</td>
       <td>-0.003133</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000625</td>
-      <td>0.000222</td>
+      <td>0.000678</td>
+      <td>0.000229</td>
       <td>-0.000397</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000840</td>
-      <td>0.000306</td>
+      <td>0.000637</td>
+      <td>0.000228</td>
       <td>-0.003785</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000654</td>
-      <td>0.000224</td>
+      <td>0.000632</td>
+      <td>0.000233</td>
       <td>-0.001740</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000633</td>
-      <td>0.000222</td>
+      <td>0.000636</td>
+      <td>0.000228</td>
       <td>-0.000117</td>
       <td>0.0</td>
     </tr>
@@ -1944,71 +1959,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.035525</td>
-      <td>0.011116</td>
+      <td>0.034658</td>
+      <td>0.009409</td>
       <td>0.861355</td>
       <td>0.911906</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.033667</td>
-      <td>0.009618</td>
+      <td>0.030041</td>
+      <td>0.009667</td>
       <td>0.812301</td>
       <td>0.913861</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.029851</td>
-      <td>0.009188</td>
+      <td>0.030440</td>
+      <td>0.008741</td>
       <td>0.775283</td>
       <td>0.915963</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.031530</td>
-      <td>0.008559</td>
+      <td>0.031187</td>
+      <td>0.009318</td>
       <td>0.874519</td>
       <td>0.910849</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.032429</td>
-      <td>0.009019</td>
+      <td>0.030243</td>
+      <td>0.008942</td>
       <td>0.851969</td>
       <td>0.911622</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.028315</td>
-      <td>0.009124</td>
+      <td>0.030030</td>
+      <td>0.009177</td>
       <td>0.826198</td>
       <td>0.910176</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.029854</td>
-      <td>0.008840</td>
+      <td>0.030433</td>
+      <td>0.008728</td>
       <td>0.825533</td>
       <td>0.913781</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.030807</td>
-      <td>0.010306</td>
+      <td>0.029523</td>
+      <td>0.008687</td>
       <td>0.872238</td>
       <td>0.910071</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.029720</td>
-      <td>0.008868</td>
+      <td>0.029801</td>
+      <td>0.008832</td>
       <td>0.196663</td>
       <td>0.921448</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.028691</td>
-      <td>0.008723</td>
+      <td>0.028407</td>
+      <td>0.009082</td>
       <td>0.890474</td>
       <td>0.908221</td>
     </tr>
@@ -2131,7 +2146,7 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.1064742324, 30791.09250542071)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.1064742324, 30791.092505420624)
 </pre></div>
 </div>
 </div>
@@ -2185,25 +2200,30 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;LotConfig_Corner&#39;,
- &#39;LotConfig_CulDSac&#39;,
- &#39;LotConfig_FR2&#39;,
- &#39;LotConfig_FR3&#39;,
- &#39;LotConfig_Inside&#39;,
- &#39;RoofStyle_Flat&#39;,
- &#39;RoofStyle_Gable&#39;,
- &#39;RoofStyle_Gambrel&#39;,
- &#39;RoofStyle_Hip&#39;,
- &#39;RoofStyle_Mansard&#39;,
- &#39;RoofStyle_Shed&#39;,
- &#39;SaleCondition_Abnorml&#39;,
- &#39;SaleCondition_AdjLand&#39;,
- &#39;SaleCondition_Alloca&#39;,
- &#39;SaleCondition_Family&#39;,
- &#39;SaleCondition_Normal&#39;,
- &#39;SaleCondition_Partial&#39;,
- &#39;Utilities_AllPub&#39;,
- &#39;Utilities_NoSeWa&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MSSubClass_20&#39;,
+ &#39;MSSubClass_30&#39;,
+ &#39;MSSubClass_40&#39;,
+ &#39;MSSubClass_45&#39;,
+ &#39;MSSubClass_50&#39;,
+ &#39;MSSubClass_60&#39;,
+ &#39;MSSubClass_70&#39;,
+ &#39;MSSubClass_75&#39;,
+ &#39;MSSubClass_80&#39;,
+ &#39;MSSubClass_85&#39;,
+ &#39;MSSubClass_90&#39;,
+ &#39;MSSubClass_120&#39;,
+ &#39;MSSubClass_160&#39;,
+ &#39;MSSubClass_180&#39;,
+ &#39;MSSubClass_190&#39;,
+ &#39;Condition1_Artery&#39;,
+ &#39;Condition1_Feedr&#39;,
+ &#39;Condition1_Norm&#39;,
+ &#39;Condition1_PosA&#39;,
+ &#39;Condition1_PosN&#39;,
+ &#39;Condition1_RRAe&#39;,
+ &#39;Condition1_RRAn&#39;,
+ &#39;Condition1_RRNe&#39;,
+ &#39;Condition1_RRNn&#39;,
  &#39;Exterior1st_AsbShng&#39;,
  &#39;Exterior1st_AsphShn&#39;,
  &#39;Exterior1st_BrkComm&#39;,
@@ -2219,10 +2239,26 @@ memory usage: 841.8+ KB
  &#39;Exterior1st_VinylSd&#39;,
  &#39;Exterior1st_Wd Sdng&#39;,
  &#39;Exterior1st_WdShing&#39;,
- &#39;LandContour_Bnk&#39;,
- &#39;LandContour_HLS&#39;,
- &#39;LandContour_Low&#39;,
- &#39;LandContour_Lvl&#39;,
+ &#39;SaleCondition_Abnorml&#39;,
+ &#39;SaleCondition_AdjLand&#39;,
+ &#39;SaleCondition_Alloca&#39;,
+ &#39;SaleCondition_Family&#39;,
+ &#39;SaleCondition_Normal&#39;,
+ &#39;SaleCondition_Partial&#39;,
+ &#39;MoSold_1&#39;,
+ &#39;MoSold_2&#39;,
+ &#39;MoSold_3&#39;,
+ &#39;MoSold_4&#39;,
+ &#39;MoSold_5&#39;,
+ &#39;MoSold_6&#39;,
+ &#39;MoSold_7&#39;,
+ &#39;MoSold_8&#39;,
+ &#39;MoSold_9&#39;,
+ &#39;MoSold_10&#39;,
+ &#39;MoSold_11&#39;,
+ &#39;MoSold_12&#39;,
+ &#39;Street_Grvl&#39;,
+ &#39;Street_Pave&#39;,
  &#39;Exterior2nd_AsbShng&#39;,
  &#39;Exterior2nd_AsphShn&#39;,
  &#39;Exterior2nd_Brk Cmn&#39;,
@@ -2239,21 +2275,8 @@ memory usage: 841.8+ KB
  &#39;Exterior2nd_VinylSd&#39;,
  &#39;Exterior2nd_Wd Sdng&#39;,
  &#39;Exterior2nd_Wd Shng&#39;,
- &#39;Heating_Floor&#39;,
- &#39;Heating_GasA&#39;,
- &#39;Heating_GasW&#39;,
- &#39;Heating_Grav&#39;,
- &#39;Heating_OthW&#39;,
- &#39;Heating_Wall&#39;,
- &#39;MiscFeature_Gar2&#39;,
- &#39;MiscFeature_Othr&#39;,
- &#39;MiscFeature_Shed&#39;,
- &#39;MiscFeature_TenC&#39;,
- &#39;MiscFeature_missing&#39;,
- &#39;LotShape_IR1&#39;,
- &#39;LotShape_IR2&#39;,
- &#39;LotShape_IR3&#39;,
- &#39;LotShape_Reg&#39;,
+ &#39;CentralAir_N&#39;,
+ &#39;CentralAir_Y&#39;,
  &#39;GarageType_2Types&#39;,
  &#39;GarageType_Attchd&#39;,
  &#39;GarageType_Basment&#39;,
@@ -2261,11 +2284,43 @@ memory usage: 841.8+ KB
  &#39;GarageType_CarPort&#39;,
  &#39;GarageType_Detchd&#39;,
  &#39;GarageType_missing&#39;,
- &#39;BldgType_1Fam&#39;,
- &#39;BldgType_2fmCon&#39;,
- &#39;BldgType_Duplex&#39;,
- &#39;BldgType_Twnhs&#39;,
- &#39;BldgType_TwnhsE&#39;,
+ &#39;LandSlope_Gtl&#39;,
+ &#39;LandSlope_Mod&#39;,
+ &#39;LandSlope_Sev&#39;,
+ &#39;HouseStyle_1.5Fin&#39;,
+ &#39;HouseStyle_1.5Unf&#39;,
+ &#39;HouseStyle_1Story&#39;,
+ &#39;HouseStyle_2.5Fin&#39;,
+ &#39;HouseStyle_2.5Unf&#39;,
+ &#39;HouseStyle_2Story&#39;,
+ &#39;HouseStyle_SFoyer&#39;,
+ &#39;HouseStyle_SLvl&#39;,
+ &#39;MasVnrType_BrkCmn&#39;,
+ &#39;MasVnrType_BrkFace&#39;,
+ &#39;MasVnrType_None&#39;,
+ &#39;MasVnrType_Stone&#39;,
+ &#39;MasVnrType_missing&#39;,
+ &#39;Heating_Floor&#39;,
+ &#39;Heating_GasA&#39;,
+ &#39;Heating_GasW&#39;,
+ &#39;Heating_Grav&#39;,
+ &#39;Heating_OthW&#39;,
+ &#39;Heating_Wall&#39;,
+ &#39;Foundation_BrkTil&#39;,
+ &#39;Foundation_CBlock&#39;,
+ &#39;Foundation_PConc&#39;,
+ &#39;Foundation_Slab&#39;,
+ &#39;Foundation_Stone&#39;,
+ &#39;Foundation_Wood&#39;,
+ &#39;LandContour_Bnk&#39;,
+ &#39;LandContour_HLS&#39;,
+ &#39;LandContour_Low&#39;,
+ &#39;LandContour_Lvl&#39;,
+ &#39;LotConfig_Corner&#39;,
+ &#39;LotConfig_CulDSac&#39;,
+ &#39;LotConfig_FR2&#39;,
+ &#39;LotConfig_FR3&#39;,
+ &#39;LotConfig_Inside&#39;,
  &#39;SaleType_COD&#39;,
  &#39;SaleType_CWD&#39;,
  &#39;SaleType_Con&#39;,
@@ -2275,95 +2330,14 @@ memory usage: 841.8+ KB
  &#39;SaleType_New&#39;,
  &#39;SaleType_Oth&#39;,
  &#39;SaleType_WD&#39;,
- &#39;Alley_Grvl&#39;,
- &#39;Alley_Pave&#39;,
- &#39;Alley_missing&#39;,
- &#39;Condition2_Artery&#39;,
- &#39;Condition2_Feedr&#39;,
- &#39;Condition2_Norm&#39;,
- &#39;Condition2_PosA&#39;,
- &#39;Condition2_PosN&#39;,
- &#39;Condition2_RRAe&#39;,
- &#39;Condition2_RRAn&#39;,
- &#39;Condition2_RRNn&#39;,
- &#39;GarageFinish_Fin&#39;,
- &#39;GarageFinish_RFn&#39;,
- &#39;GarageFinish_Unf&#39;,
- &#39;GarageFinish_missing&#39;,
- &#39;PavedDrive_N&#39;,
- &#39;PavedDrive_P&#39;,
- &#39;PavedDrive_Y&#39;,
- &#39;MSSubClass_20&#39;,
- &#39;MSSubClass_30&#39;,
- &#39;MSSubClass_40&#39;,
- &#39;MSSubClass_45&#39;,
- &#39;MSSubClass_50&#39;,
- &#39;MSSubClass_60&#39;,
- &#39;MSSubClass_70&#39;,
- &#39;MSSubClass_75&#39;,
- &#39;MSSubClass_80&#39;,
- &#39;MSSubClass_85&#39;,
- &#39;MSSubClass_90&#39;,
- &#39;MSSubClass_120&#39;,
- &#39;MSSubClass_160&#39;,
- &#39;MSSubClass_180&#39;,
- &#39;MSSubClass_190&#39;,
- &#39;HouseStyle_1.5Fin&#39;,
- &#39;HouseStyle_1.5Unf&#39;,
- &#39;HouseStyle_1Story&#39;,
- &#39;HouseStyle_2.5Fin&#39;,
- &#39;HouseStyle_2.5Unf&#39;,
- &#39;HouseStyle_2Story&#39;,
- &#39;HouseStyle_SFoyer&#39;,
- &#39;HouseStyle_SLvl&#39;,
- &#39;LandSlope_Gtl&#39;,
- &#39;LandSlope_Mod&#39;,
- &#39;LandSlope_Sev&#39;,
- &#39;Condition1_Artery&#39;,
- &#39;Condition1_Feedr&#39;,
- &#39;Condition1_Norm&#39;,
- &#39;Condition1_PosA&#39;,
- &#39;Condition1_PosN&#39;,
- &#39;Condition1_RRAe&#39;,
- &#39;Condition1_RRAn&#39;,
- &#39;Condition1_RRNe&#39;,
- &#39;Condition1_RRNn&#39;,
- &#39;Foundation_BrkTil&#39;,
- &#39;Foundation_CBlock&#39;,
- &#39;Foundation_PConc&#39;,
- &#39;Foundation_Slab&#39;,
- &#39;Foundation_Stone&#39;,
- &#39;Foundation_Wood&#39;,
- &#39;MoSold_1&#39;,
- &#39;MoSold_2&#39;,
- &#39;MoSold_3&#39;,
- &#39;MoSold_4&#39;,
- &#39;MoSold_5&#39;,
- &#39;MoSold_6&#39;,
- &#39;MoSold_7&#39;,
- &#39;MoSold_8&#39;,
- &#39;MoSold_9&#39;,
- &#39;MoSold_10&#39;,
- &#39;MoSold_11&#39;,
- &#39;MoSold_12&#39;,
- &#39;Street_Grvl&#39;,
- &#39;Street_Pave&#39;,
- &#39;MasVnrType_BrkCmn&#39;,
- &#39;MasVnrType_BrkFace&#39;,
- &#39;MasVnrType_None&#39;,
- &#39;MasVnrType_Stone&#39;,
- &#39;MasVnrType_missing&#39;,
- &#39;Electrical_FuseA&#39;,
- &#39;Electrical_FuseF&#39;,
- &#39;Electrical_FuseP&#39;,
- &#39;Electrical_Mix&#39;,
- &#39;Electrical_SBrkr&#39;,
- &#39;Electrical_missing&#39;,
  &#39;MSZoning_C (all)&#39;,
  &#39;MSZoning_FV&#39;,
  &#39;MSZoning_RH&#39;,
  &#39;MSZoning_RL&#39;,
  &#39;MSZoning_RM&#39;,
+ &#39;Alley_Grvl&#39;,
+ &#39;Alley_Pave&#39;,
+ &#39;Alley_missing&#39;,
  &#39;Neighborhood_Blmngtn&#39;,
  &#39;Neighborhood_Blueste&#39;,
  &#39;Neighborhood_BrDale&#39;,
@@ -2389,6 +2363,34 @@ memory usage: 841.8+ KB
  &#39;Neighborhood_StoneBr&#39;,
  &#39;Neighborhood_Timber&#39;,
  &#39;Neighborhood_Veenker&#39;,
+ &#39;Electrical_FuseA&#39;,
+ &#39;Electrical_FuseF&#39;,
+ &#39;Electrical_FuseP&#39;,
+ &#39;Electrical_Mix&#39;,
+ &#39;Electrical_SBrkr&#39;,
+ &#39;Electrical_missing&#39;,
+ &#39;LotShape_IR1&#39;,
+ &#39;LotShape_IR2&#39;,
+ &#39;LotShape_IR3&#39;,
+ &#39;LotShape_Reg&#39;,
+ &#39;MiscFeature_Gar2&#39;,
+ &#39;MiscFeature_Othr&#39;,
+ &#39;MiscFeature_Shed&#39;,
+ &#39;MiscFeature_TenC&#39;,
+ &#39;MiscFeature_missing&#39;,
+ &#39;Condition2_Artery&#39;,
+ &#39;Condition2_Feedr&#39;,
+ &#39;Condition2_Norm&#39;,
+ &#39;Condition2_PosA&#39;,
+ &#39;Condition2_PosN&#39;,
+ &#39;Condition2_RRAe&#39;,
+ &#39;Condition2_RRAn&#39;,
+ &#39;Condition2_RRNn&#39;,
+ &#39;Utilities_AllPub&#39;,
+ &#39;Utilities_NoSeWa&#39;,
+ &#39;PavedDrive_N&#39;,
+ &#39;PavedDrive_P&#39;,
+ &#39;PavedDrive_Y&#39;,
  &#39;RoofMatl_ClyTile&#39;,
  &#39;RoofMatl_CompShg&#39;,
  &#39;RoofMatl_Membran&#39;,
@@ -2397,8 +2399,21 @@ memory usage: 841.8+ KB
  &#39;RoofMatl_Tar&amp;Grv&#39;,
  &#39;RoofMatl_WdShake&#39;,
  &#39;RoofMatl_WdShngl&#39;,
- &#39;CentralAir_N&#39;,
- &#39;CentralAir_Y&#39;]
+ &#39;GarageFinish_Fin&#39;,
+ &#39;GarageFinish_RFn&#39;,
+ &#39;GarageFinish_Unf&#39;,
+ &#39;GarageFinish_missing&#39;,
+ &#39;RoofStyle_Flat&#39;,
+ &#39;RoofStyle_Gable&#39;,
+ &#39;RoofStyle_Gambrel&#39;,
+ &#39;RoofStyle_Hip&#39;,
+ &#39;RoofStyle_Mansard&#39;,
+ &#39;RoofStyle_Shed&#39;,
+ &#39;BldgType_1Fam&#39;,
+ &#39;BldgType_2fmCon&#39;,
+ &#39;BldgType_Duplex&#39;,
+ &#39;BldgType_Twnhs&#39;,
+ &#39;BldgType_TwnhsE&#39;]
 </pre></div>
 </div>
 </div>
@@ -2468,12 +2483,12 @@ memory usage: 841.8+ KB
       <td>11704.053037</td>
     </tr>
     <tr>
-      <th>244</th>
+      <th>203</th>
       <td>Neighborhood_NridgHt</td>
       <td>9662.969631</td>
     </tr>
     <tr>
-      <th>243</th>
+      <th>202</th>
       <td>Neighborhood_NoRidge</td>
       <td>9497.598615</td>
     </tr>
@@ -2488,27 +2503,27 @@ memory usage: 841.8+ KB
       <td>...</td>
     </tr>
     <tr>
-      <th>253</th>
+      <th>240</th>
       <td>RoofMatl_ClyTile</td>
       <td>-3992.399179</td>
     </tr>
     <tr>
-      <th>83</th>
+      <th>161</th>
       <td>LandContour_Bnk</td>
       <td>-5001.996997</td>
     </tr>
     <tr>
-      <th>236</th>
+      <th>195</th>
       <td>Neighborhood_Gilbert</td>
       <td>-5197.585536</td>
     </tr>
     <tr>
-      <th>233</th>
+      <th>192</th>
       <td>Neighborhood_CollgCr</td>
       <td>-5467.463086</td>
     </tr>
     <tr>
-      <th>235</th>
+      <th>194</th>
       <td>Neighborhood_Edwards</td>
       <td>-5796.508529</td>
     </tr>
@@ -2629,7 +2644,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636099
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636098
 </pre></div>
 </div>
 </div>
@@ -2679,7 +2694,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.101
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.102
 </pre></div>
 </div>
 </div>
@@ -2786,7 +2801,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8279622258827068
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.827962225882707
 </pre></div>
 </div>
 </div>
@@ -2896,7 +2911,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.093121294225266
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.093121294225263
 </pre></div>
 </div>
 </div>
@@ -2998,7 +3013,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.808600924240855
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.80860092424086
 </pre></div>
 </div>
 </div>
@@ -3052,36 +3067,36 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.032705</td>
-      <td>0.011161</td>
+      <td>0.028894</td>
+      <td>0.009931</td>
       <td>-7.060346e+08</td>
       <td>-9.383069e+08</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.030552</td>
-      <td>0.011804</td>
+      <td>0.025948</td>
+      <td>0.009651</td>
       <td>-1.239851e+09</td>
       <td>-8.267971e+08</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.030139</td>
-      <td>0.011833</td>
+      <td>0.027423</td>
+      <td>0.010596</td>
       <td>-1.125125e+09</td>
       <td>-8.763019e+08</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.032724</td>
-      <td>0.010663</td>
+      <td>0.028112</td>
+      <td>0.010412</td>
       <td>-9.819320e+08</td>
       <td>-8.847908e+08</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.027225</td>
-      <td>0.010882</td>
+      <td>0.027646</td>
+      <td>0.009794</td>
       <td>-2.268434e+09</td>
       <td>-7.397199e+08</td>
     </tr>
@@ -3134,36 +3149,36 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.028570</td>
-      <td>0.011276</td>
+      <td>0.029062</td>
+      <td>0.010510</td>
       <td>9.699277</td>
       <td>10.407124</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.027953</td>
-      <td>0.010208</td>
+      <td>0.029215</td>
+      <td>0.010582</td>
       <td>10.803043</td>
       <td>9.966190</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.028859</td>
-      <td>0.010672</td>
+      <td>0.027234</td>
+      <td>0.010012</td>
       <td>11.836195</td>
       <td>10.180734</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.027815</td>
-      <td>0.010729</td>
+      <td>0.028633</td>
+      <td>0.010276</td>
       <td>10.784686</td>
       <td>10.247198</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.028674</td>
-      <td>0.009789</td>
+      <td>0.027775</td>
+      <td>0.010176</td>
       <td>12.196718</td>
       <td>9.828607</td>
     </tr>
@@ -3215,19 +3230,19 @@ Name: SalePrice, Length: 1314, dtype: float64
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>2.904415e-02</td>
-      <td>2.873516e-02</td>
-      <td>3.028989e-02</td>
-      <td>2.938080e-02</td>
-      <td>2.904582e-02</td>
+      <td>2.710104e-02</td>
+      <td>2.735305e-02</td>
+      <td>2.766061e-02</td>
+      <td>2.826905e-02</td>
+      <td>2.835512e-02</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>1.122594e-02</td>
-      <td>1.149178e-02</td>
-      <td>1.129794e-02</td>
-      <td>1.153207e-02</td>
-      <td>1.167321e-02</td>
+      <td>1.047301e-02</td>
+      <td>1.102805e-02</td>
+      <td>1.093125e-02</td>
+      <td>1.147008e-02</td>
+      <td>1.112771e-02</td>
     </tr>
     <tr>
       <th>test_r2</th>
@@ -3304,7 +3319,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.496387589495995
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.496387589496003
 </pre></div>
 </div>
 </div>

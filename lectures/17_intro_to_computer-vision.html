@@ -180,6 +180,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="14_k-means-clustering.html">
    Lecture 14: Clustering
   </a>
@@ -305,9 +310,16 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lecture-plan">
-   Lecture plan
+  <a class="reference internal nav-link" href="#imports">
+   Imports
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lecture-plan">
+     Lecture plan
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#learning-objectives">
@@ -480,6 +492,8 @@
 <h1>Lecture 17: Multi-class classification and introduction to computer vision<a class="headerlink" href="#lecture-17-multi-class-classification-and-introduction-to-computer-vision" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
+<div class="section" id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
@@ -505,7 +519,7 @@
 </div>
 </div>
 <div class="section" id="lecture-plan">
-<h2>Lecture plan<a class="headerlink" href="#lecture-plan" title="Permalink to this headline">¶</a></h2>
+<h3>Lecture plan<a class="headerlink" href="#lecture-plan" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Announcements (~2 min)</p></li>
 <li><p>Recap (~5 mins)</p></li>
@@ -517,6 +531,7 @@
 <li><p>Pre-trained networks (10 min)</p></li>
 <li><p>Transfer learning (15 min)</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="learning-objectives">
 <h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
@@ -611,7 +626,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_15_0.png" src="../_images/17_intro_to_computer-vision_15_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_16_0.png" src="../_images/17_intro_to_computer-vision_16_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -654,7 +669,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_19_0.png" src="../_images/17_intro_to_computer-vision_19_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_20_0.png" src="../_images/17_intro_to_computer-vision_20_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -696,7 +711,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_22_0.png" src="../_images/17_intro_to_computer-vision_22_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_23_0.png" src="../_images/17_intro_to_computer-vision_23_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -718,7 +733,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_23_0.png" src="../_images/17_intro_to_computer-vision_23_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_24_0.png" src="../_images/17_intro_to_computer-vision_24_0.png" />
 </div>
 </div>
 </div>
@@ -777,7 +792,7 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_29_0.png" src="../_images/17_intro_to_computer-vision_29_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_30_0.png" src="../_images/17_intro_to_computer-vision_30_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -791,10 +806,10 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>537 ms ± 4.12 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>530 ms ± 7.43 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 With OVO wrapper
-0.8026666666666666
-0.756
+0.8106666666666666
+0.784
 </pre></div>
 </div>
 </div>
@@ -810,10 +825,10 @@ With OVO wrapper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>82 ms ± 2.09 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78 ms ± 809 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 With OVR wrapper
-0.7373333333333333
-0.676
+0.7066666666666667
+0.672
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1079,7 @@ Name: target, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_47_0.png" src="../_images/17_intro_to_computer-vision_47_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_48_0.png" src="../_images/17_intro_to_computer-vision_48_0.png" />
 </div>
 </div>
 <p>And print the classification report.</p>
@@ -1442,7 +1457,7 @@ Length: 8060, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_73_0.svg" src="../_images/17_intro_to_computer-vision_73_0.svg" /></div>
+<img alt="../_images/17_intro_to_computer-vision_74_0.svg" src="../_images/17_intro_to_computer-vision_74_0.svg" /></div>
 </div>
 <ul class="simple">
 <li><p>Below we are adding one “layer” of transformations in between features and the target.</p></li>
@@ -1456,7 +1471,7 @@ Length: 8060, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_75_0.svg" src="../_images/17_intro_to_computer-vision_75_0.svg" /></div>
+<img alt="../_images/17_intro_to_computer-vision_76_0.svg" src="../_images/17_intro_to_computer-vision_76_0.svg" /></div>
 </div>
 <ul class="simple">
 <li><p>Now we are adding one more layer of transformations.</p></li>
@@ -1468,7 +1483,7 @@ Length: 8060, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_77_0.svg" src="../_images/17_intro_to_computer-vision_77_0.svg" /></div>
+<img alt="../_images/17_intro_to_computer-vision_78_0.svg" src="../_images/17_intro_to_computer-vision_78_0.svg" /></div>
 </div>
 <ul class="simple">
 <li><p>Important question: how many features before/after transformation.</p>
@@ -1602,7 +1617,7 @@ Length: 8060, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_89_0.png" src="../_images/17_intro_to_computer-vision_89_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_90_0.png" src="../_images/17_intro_to_computer-vision_90_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1746,7 +1761,7 @@ Number of classes: 19
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_5065/66211837.py:1: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_16952/66211837.py:1: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   mask = np.zeros(people.target.shape, dtype=np.bool)
 </pre></div>
@@ -2000,7 +2015,7 @@ Now we can use our usual classification methods.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_114_0.png" src="../_images/17_intro_to_computer-vision_114_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_115_0.png" src="../_images/17_intro_to_computer-vision_115_0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         Class  Probability score
                      tiger cat              0.357
               tabby, tabby cat              0.207
@@ -2009,7 +2024,7 @@ Pembroke, Pembroke Welsh corgi              0.046
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_114_2.png" src="../_images/17_intro_to_computer-vision_114_2.png" />
+<img alt="../_images/17_intro_to_computer-vision_115_2.png" src="../_images/17_intro_to_computer-vision_115_2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                     Class  Probability score
          cheetah, chetah, Acinonyx jubatus              0.982
                   leopard, Panthera pardus              0.012
@@ -2018,7 +2033,7 @@ jaguar, panther, Panthera onca, Felis onca              0.004
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_114_4.png" src="../_images/17_intro_to_computer-vision_114_4.png" />
+<img alt="../_images/17_intro_to_computer-vision_115_4.png" src="../_images/17_intro_to_computer-vision_115_4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                   Class  Probability score
                                  macaque              0.714
 patas, hussar monkey, Erythrocebus patas              0.122
@@ -2027,7 +2042,7 @@ patas, hussar monkey, Erythrocebus patas              0.122
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_114_6.png" src="../_images/17_intro_to_computer-vision_114_6.png" />
+<img alt="../_images/17_intro_to_computer-vision_115_6.png" src="../_images/17_intro_to_computer-vision_115_6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        Class  Probability score
 Walker hound, Walker foxhound              0.577
                   EntleBucher              0.089
@@ -2093,7 +2108,7 @@ Walker hound, Walker foxhound              0.577
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_119_0.png" src="../_images/17_intro_to_computer-vision_119_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_120_0.png" src="../_images/17_intro_to_computer-vision_120_0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                            Class  Probability score
                                                            collie              0.502
                            dingo, warrigal, warragal, Canis dingo              0.135
@@ -2102,7 +2117,7 @@ German shepherd, German shepherd dog, German police dog, alsatian              0
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_119_2.png" src="../_images/17_intro_to_computer-vision_119_2.png" />
+<img alt="../_images/17_intro_to_computer-vision_120_2.png" src="../_images/17_intro_to_computer-vision_120_2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                   Class  Probability score
                                     reel              0.460
                                    canoe              0.036
@@ -2111,7 +2126,7 @@ binoculars, field glasses, opera glasses              0.036
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_119_4.png" src="../_images/17_intro_to_computer-vision_119_4.png" />
+<img alt="../_images/17_intro_to_computer-vision_120_4.png" src="../_images/17_intro_to_computer-vision_120_4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                      Class  Probability score
                                                  hair spray              0.072
 hand blower, blow dryer, blow drier, hair dryer, hair drier              0.044
@@ -2120,7 +2135,7 @@ hand blower, blow dryer, blow drier, hair dryer, hair drier              0.044
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_119_6.png" src="../_images/17_intro_to_computer-vision_119_6.png" />
+<img alt="../_images/17_intro_to_computer-vision_120_6.png" src="../_images/17_intro_to_computer-vision_120_6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>               Class  Probability score
                  wig              0.144
 Afghan hound, Afghan              0.120
@@ -2129,7 +2144,7 @@ Afghan hound, Afghan              0.120
 --------------------------------------------------------------
 </pre></div>
 </div>
-<img alt="../_images/17_intro_to_computer-vision_119_8.png" src="../_images/17_intro_to_computer-vision_119_8.png" />
+<img alt="../_images/17_intro_to_computer-vision_120_8.png" src="../_images/17_intro_to_computer-vision_120_8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                                            Class  Probability score
                                        jersey, T-shirt, tee shirt              0.051
 cellular telephone, cellular phone, cellphone, cell, mobile phone              0.024
@@ -2226,7 +2241,7 @@ cellular telephone, cellular phone, cellphone, cell, mobile phone              0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/17_intro_to_computer-vision_123_0.png" src="../_images/17_intro_to_computer-vision_123_0.png" />
+<img alt="../_images/17_intro_to_computer-vision_124_0.png" src="../_images/17_intro_to_computer-vision_124_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2285,10 +2300,10 @@ First sample: (&#39;data/hymenoptera_data/train/ants/0013035.jpg&#39;, 0)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_5065</span><span class="o">/</span><span class="mf">3614622345.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16952</span><span class="o">/</span><span class="mf">3614622345.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">Z_valid</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span><span class="n">densenet</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">],</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s1">&#39;val&#39;</span><span class="p">])</span>
 
-<span class="nn">/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_5065/3411149805.py</span> in <span class="ni">get_features</span><span class="nt">(model, train_loader, valid_loader)</span>
+<span class="nn">/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_16952/3411149805.py</span> in <span class="ni">get_features</span><span class="nt">(model, train_loader, valid_loader)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">Z_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">y_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">))</span>
 <span class="ne">----&gt; </span><span class="mi">9</span>         <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>

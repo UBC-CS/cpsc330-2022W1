@@ -74,19 +74,16 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 |  | **Part II: Unsupervised learning, transfer learning, different learning settings**  | | 
 | Nov 4 |   [Clustering](lectures/14_k-means-clustering.ipynb) |  📹 <li>Pre-watch: [14.1](https://youtu.be/caAuUAXwpb8),[14.2](https://youtu.be/s6AvSZ1_l7I),[14.3](https://youtu.be/M5ilrhcL0oY)</li>  | less depth |
 |        |  | **Week 10 datasets**: <li>[Jester 1.7M jokes ratings dataset](https://www.kaggle.com/vikashrajluhaniwal/jester-17m-jokes-ratings-dataset)</li> |
-| Nov 9 |   Simple recommender systems | | less depth ||
+| Nov 9 |   [Simple recommender systems](lectures/15_recommender-systems.ipynb) | | less depth ||
 | Nov 11 | _Midterm break - no class_  |  |
-|        |     | **Week 11 datasets**: <li></li> | |
-| Nov 16 |  Text data, embeddings, topic modeling  | 📹 <li>Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY),[16.2](https://youtu.be/7W5Q8gzNPBc)</li>  |   new |
-| Nov 18 | Neural networks and computer vision | |   less depth |
-|        |     | **Week 12 datasets**: <li></li> | |
+| Nov 16 |  [Text data, embeddings, topic modeling](lectures/16_natural-language-processing.ipynb)  | 📹 <li>Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY),[16.2](https://youtu.be/7W5Q8gzNPBc)</li>  |   new |
+| Nov 18 | [Neural networks and computer vision](lectures/17_intro_to_computer-vision.ipynb) | |   less depth |
 | Nov 23 | Time series data |  | new |
 | Nov 25 | Survival analysis |  |   new |
 |  | **Part III: Communication, ethics, deployment**  | |
-|        |     | **Week 13 datasets**: <li></li> | |
-| Nov 30 | Communication |  |   new |
-| Dec 2 |  Ethics |  | new |
-|        |     | **Week 14 datasets**: <li></li> | |
+| Nov 30  |  Ethics |  | new |
+| Dec 2 | Communication |  |   new |
+
 | Dec 7 | Model deployment and conclusion |  |  new |
 
 

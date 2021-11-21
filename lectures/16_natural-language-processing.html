@@ -180,6 +180,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="14_k-means-clustering.html">
    Lecture 14: Clustering
   </a>
@@ -1472,7 +1477,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
       <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>2</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
@@ -1511,7 +1516,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
     </tr>
   </tbody>
 </table>
-<p>5 rows × 5577 columns</p>
+<p>5 rows × 5575 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1656,7 +1661,7 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_5038</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16925</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">)</span>
@@ -1676,52 +1681,45 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1628</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1630</span><span class="s2">         return _load_word2vec_format(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="s2">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="s2">             limit=limit, datatype=datatype, no_header=no_header,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1630</span><span class="sd">         return _load_word2vec_format(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="sd">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="sd">             limit=limit, datatype=datatype, no_header=no_header,</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1907</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1908</span><span class="s2">         if binary:</span>
-<span class="ne">-&gt; </span><span class="mi">1909</span><span class="s2">             _word2vec_read_binary(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span><span class="s2">                 fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1911</span><span class="s2">             )</span>
+<span class="g g-Whitespace">   </span><span class="mi">1907</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1908</span><span class="sd">         if binary:</span>
+<span class="ne">-&gt; </span><span class="mi">1909</span><span class="sd">             _word2vec_read_binary(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span><span class="sd">                 fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1911</span><span class="sd">             )</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_word2vec_read_binary</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1800</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1801</span><span class="s2">     while tot_processed_words &lt; vocab_size:</span>
-<span class="ne">-&gt; </span><span class="mi">1802</span><span class="s2">         new_chunk = fin.read(binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1803</span><span class="s2">         chunk += new_chunk</span>
-<span class="g g-Whitespace">   </span><span class="mi">1804</span><span class="s2">         processed_words, chunk = _add_bytes_to_kv(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1802</span><span class="sd">         new_chunk = fin.read(binary_chunk_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1803</span><span class="sd">         chunk += new_chunk</span>
+<span class="ne">-&gt; </span><span class="mi">1804</span><span class="sd">         processed_words, chunk = _add_bytes_to_kv(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1805</span><span class="sd">             kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1806</span><span class="sd">         tot_processed_words += processed_words</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/gzip.py</span> in <span class="ni">read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span><span class="s2">             import errno</span>
-<span class="g g-Whitespace">    </span><span class="mi">299</span><span class="s2">             raise OSError(errno.EBADF, &quot;read() on write-only GzipFile object&quot;)</span>
-<span class="ne">--&gt; </span><span class="mi">300</span><span class="s2">         return self._buffer.read(size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">301</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">302</span><span class="s2">     def read1(self, size=-1):</span>
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_bytes_to_kv</span><span class="nt">(kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1788</span><span class="sd">         word = word.lstrip(&#39;\n&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1789</span><span class="sd">         vector = frombuffer(chunk, offset=i_vector, count=vector_size, dtype=REAL).astype(datatype)</span>
+<span class="ne">-&gt; </span><span class="mi">1790</span><span class="sd">         _add_word_to_kv(kv, counts, word, vector, vocab_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span><span class="sd">         start = i_vector + bytes_per_vector</span>
+<span class="g g-Whitespace">   </span><span class="mi">1792</span><span class="sd">         processed_words += 1</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/_compression.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span><span class="s2">     def readinto(self, b):</span>
-<span class="g g-Whitespace">     </span><span class="mi">67</span><span class="s2">         with memoryview(b) as view, view.cast(&quot;B&quot;) as byte_view:</span>
-<span class="ne">---&gt; </span><span class="mi">68</span><span class="s2">             data = self.read(len(byte_view))</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span><span class="s2">             byte_view[:len(data)] = data</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span><span class="s2">         return len(data)</span>
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1768</span><span class="sd">         logger.warning(&quot;vocabulary file is incomplete: &#39;%s&#39; is missing&quot;, word)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1769</span><span class="sd">         word_count = None</span>
+<span class="ne">-&gt; </span><span class="mi">1770</span><span class="sd">     kv.set_vecattr(word, &#39;count&#39;, word_count)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1771</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1772</span><span class="sd"> </span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/gzip.py</span> in <span class="ni">read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">491</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">492</span><span class="s2">             # Read a chunk of data from the file</span>
-<span class="ne">--&gt; </span><span class="mi">493</span><span class="s2">             buf = self._fp.read(io.DEFAULT_BUFFER_SIZE)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span><span class="s2">             uncompress = self._decompressor.decompress(buf, size)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/gzip.py</span> in <span class="ni">read</span><span class="nt">(self, size)</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span><span class="s2">             self._read = None</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span><span class="s2">             return self._buffer[read:] + </span><span class="se">\</span>
-<span class="ne">---&gt; </span><span class="mi">96</span><span class="s2">                    self.file.read(size-self._length+read)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="s2">     def prepend(self, prepend=b&#39;&#39;):</span>
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">set_vecattr</span><span class="nt">(self, key, attr, val)</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">329</span>         <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

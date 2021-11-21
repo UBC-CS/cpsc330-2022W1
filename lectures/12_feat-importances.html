@@ -178,6 +178,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="14_k-means-clustering.html">
    Lecture 14: Clustering
   </a>
@@ -185,6 +190,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="15_recommender-systems.html">
    Lecture 15: DBSCAN and Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_natural-language-processing.html">
+   Lecture 16: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_intro_to_computer-vision.html">
+   Lecture 17: Multi-class classification and introduction to computer vision
   </a>
  </li>
 </ul>
@@ -565,6 +580,7 @@
 
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;code/.&quot;</span><span class="p">)</span>
 
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">from</span> <span class="nn">plotting_functions</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
@@ -584,8 +600,6 @@
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span><span class="p">,</span> <span class="n">SVR</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
 </div>
 </div>
@@ -648,7 +662,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/housing-kaggle/train.csv&quot;</span><span class="p">)</span>
-<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 <span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -841,11 +855,11 @@
 <h3>Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code><a class="headerlink" href="#let-s-separate-x-and-y" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">])</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
 
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">])</span>
-<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -858,7 +872,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">]</span>
 <span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;BedroomAbvGr&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;KitchenAbvGr&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;KitchenAbvGr&quot;</span><span class="p">,</span>
     <span class="s2">&quot;LotFrontage&quot;</span><span class="p">,</span>
     <span class="s2">&quot;LotArea&quot;</span><span class="p">,</span>
     <span class="s2">&quot;OverallQual&quot;</span><span class="p">,</span>
@@ -947,11 +961,11 @@
     <span class="s2">&quot;Fence&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 <span class="n">ordering_ordinal_oth</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Mn&#39;</span><span class="p">,</span> <span class="s1">&#39;Av&#39;</span><span class="p">,</span> <span class="s1">&#39;Gd&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;Unf&#39;</span><span class="p">,</span> <span class="s1">&#39;LwQ&#39;</span><span class="p">,</span> <span class="s1">&#39;Rec&#39;</span><span class="p">,</span> <span class="s1">&#39;BLQ&#39;</span><span class="p">,</span> <span class="s1">&#39;ALQ&#39;</span><span class="p">,</span> <span class="s1">&#39;GLQ&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;Unf&#39;</span><span class="p">,</span> <span class="s1">&#39;LwQ&#39;</span><span class="p">,</span> <span class="s1">&#39;Rec&#39;</span><span class="p">,</span> <span class="s1">&#39;BLQ&#39;</span><span class="p">,</span> <span class="s1">&#39;ALQ&#39;</span><span class="p">,</span> <span class="s1">&#39;GLQ&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;Sal&#39;</span><span class="p">,</span><span class="s1">&#39;Sev&#39;</span><span class="p">,</span><span class="s1">&#39;Maj2&#39;</span><span class="p">,</span><span class="s1">&#39;Maj1&#39;</span><span class="p">,</span><span class="s1">&#39;Mod&#39;</span><span class="p">,</span><span class="s1">&#39;Min2&#39;</span><span class="p">,</span><span class="s1">&#39;Min1&#39;</span><span class="p">,</span><span class="s1">&#39;Typ&#39;</span><span class="p">],</span>    
-    <span class="p">[</span><span class="s1">&#39;NA&#39;</span><span class="p">,</span> <span class="s1">&#39;MnWw&#39;</span><span class="p">,</span> <span class="s1">&#39;GdWo&#39;</span><span class="p">,</span> <span class="s1">&#39;MnPrv&#39;</span><span class="p">,</span> <span class="s1">&#39;GdPrv&#39;</span><span class="p">]</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="s2">&quot;Mn&quot;</span><span class="p">,</span> <span class="s2">&quot;Av&quot;</span><span class="p">,</span> <span class="s2">&quot;Gd&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Sal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sev&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj2&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj1&quot;</span><span class="p">,</span> <span class="s2">&quot;Mod&quot;</span><span class="p">,</span> <span class="s2">&quot;Min2&quot;</span><span class="p">,</span> <span class="s2">&quot;Min1&quot;</span><span class="p">,</span> <span class="s2">&quot;Typ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;MnWw&quot;</span><span class="p">,</span> <span class="s2">&quot;GdWo&quot;</span><span class="p">,</span> <span class="s2">&quot;MnPrv&quot;</span><span class="p">,</span> <span class="s2">&quot;GdPrv&quot;</span><span class="p">],</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -963,7 +977,7 @@
     <span class="nb">set</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
     <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span>
     <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
-    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_oth</span><span class="p">)</span>    
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_oth</span><span class="p">)</span>
     <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">categorical_features</span>
@@ -971,36 +985,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;,
- &#39;Condition2&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofMatl&#39;,
+ &#39;LandContour&#39;,
+ &#39;BldgType&#39;,
+ &#39;MiscFeature&#39;,
  &#39;SaleCondition&#39;,
- &#39;Heating&#39;,
- &#39;Exterior1st&#39;,
- &#39;SaleType&#39;,
- &#39;GarageType&#39;,
- &#39;HouseStyle&#39;,
- &#39;CentralAir&#39;,
- &#39;MasVnrType&#39;,
- &#39;Foundation&#39;,
- &#39;MSZoning&#39;,
- &#39;Exterior2nd&#39;,
  &#39;MoSold&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;GarageType&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;Electrical&#39;,
+ &#39;Condition2&#39;,
+ &#39;LotShape&#39;,
+ &#39;Foundation&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Heating&#39;,
+ &#39;SaleType&#39;,
+ &#39;Street&#39;,
+ &#39;Condition1&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;MSZoning&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;CentralAir&#39;,
  &#39;LotConfig&#39;,
  &#39;LandSlope&#39;,
- &#39;Utilities&#39;,
- &#39;MSSubClass&#39;,
- &#39;LotShape&#39;,
- &#39;MiscFeature&#39;,
- &#39;PavedDrive&#39;,
  &#39;Alley&#39;,
- &#39;Street&#39;,
- &#39;Neighborhood&#39;,
- &#39;RoofMatl&#39;,
- &#39;Condition1&#39;,
- &#39;Electrical&#39;,
- &#39;BldgType&#39;,
- &#39;GarageFinish&#39;,
- &#39;LandContour&#39;]
+ &#39;Utilities&#39;]
 </pre></div>
 </div>
 </div>
@@ -1029,7 +1043,7 @@
     <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_features</span><span class="p">),</span>
     <span class="p">(</span><span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
     <span class="p">(</span><span class="n">ordinal_transformer_reg</span><span class="p">,</span> <span class="n">ordinal_features_reg</span><span class="p">),</span>
-    <span class="p">(</span><span class="n">ordinal_transformer_oth</span><span class="p">,</span> <span class="n">ordinal_features_oth</span><span class="p">),</span>    
+    <span class="p">(</span><span class="n">ordinal_transformer_oth</span><span class="p">,</span> <span class="n">ordinal_features_oth</span><span class="p">),</span>
     <span class="p">(</span><span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -1085,14 +1099,18 @@
     <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
     <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="n">new_columns</span> <span class="o">=</span> <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ordinal_features_reg</span> <span class="o">+</span> <span class="n">ordinal_features_oth</span> <span class="o">+</span> <span class="n">ohe_columns</span>
+<span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ordinal_features_reg</span> <span class="o">+</span> <span class="n">ordinal_features_oth</span> <span class="o">+</span> <span class="n">ohe_columns</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+<span class="p">)</span>
 <span class="n">X_train_enc</span>
 </pre></div>
 </div>
@@ -1127,16 +1145,16 @@
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>BldgType_Twnhs</th>
-      <th>BldgType_TwnhsE</th>
-      <th>GarageFinish_Fin</th>
-      <th>GarageFinish_RFn</th>
-      <th>GarageFinish_Unf</th>
-      <th>GarageFinish_missing</th>
-      <th>LandContour_Bnk</th>
-      <th>LandContour_HLS</th>
-      <th>LandContour_Low</th>
-      <th>LandContour_Lvl</th>
+      <th>LotConfig_FR3</th>
+      <th>LotConfig_Inside</th>
+      <th>LandSlope_Gtl</th>
+      <th>LandSlope_Mod</th>
+      <th>LandSlope_Sev</th>
+      <th>Alley_Grvl</th>
+      <th>Alley_Pave</th>
+      <th>Alley_missing</th>
+      <th>Utilities_AllPub</th>
+      <th>Utilities_NoSeWa</th>
     </tr>
   </thead>
   <tbody>
@@ -1155,14 +1173,14 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1178,15 +1196,15 @@
       <td>0.476092</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1203,14 +1221,14 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1226,15 +1244,15 @@
       <td>0.443419</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1251,13 +1269,13 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1298,15 +1316,15 @@
       <td>-0.090231</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1122</th>
@@ -1323,14 +1341,14 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1346</th>
@@ -1347,14 +1365,14 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1406</th>
@@ -1371,14 +1389,14 @@
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1394,15 +1412,15 @@
       <td>-0.144686</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1436,8 +1454,8 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">();</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cor</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">);</span>
 </pre></div>
@@ -1463,8 +1481,8 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">();</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">y_train</span><span class="p">,</span> <span class="n">X_train_enc</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cor</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">);</span>
 </pre></div>
@@ -1639,12 +1657,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span> <span class="s1">&#39;Coefficient&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467565
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467533
 </pre></div>
 </div>
 </div>
@@ -1666,7 +1684,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example</span><span class="p">[</span><span class="s1">&#39;ExterQual&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1681,7 +1699,7 @@ Name: ExterQual, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example_perturbed</span> <span class="o">=</span> <span class="n">one_example</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">one_example_perturbed</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Ex&#39;</span> <span class="c1"># Change Gd to Ex</span>
+<span class="n">one_example_perturbed</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Ex&quot;</span>  <span class="c1"># Change Gd to Ex</span>
 </pre></div>
 </div>
 </div>
@@ -1766,7 +1784,7 @@ Name: ExterQual, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example_perturbed</span><span class="p">[</span><span class="s1">&#39;ExterQual&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example_perturbed</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1780,9 +1798,12 @@ Name: ExterQual, dtype: object
 <p>How does the prediction change after changing <code class="docutils literal notranslate"><span class="pre">ExterQual</span></code> from <code class="docutils literal notranslate"><span class="pre">Gd</span></code> to <code class="docutils literal notranslate"><span class="pre">Ex</span></code>?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prediction on the original example: &#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prediction on the perturbed example: &#39;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example_perturbed</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After changing ExterQual from Gd to Ex increased the prediction by: &quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example_perturbed</span><span class="p">)</span> <span class="o">-</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction on the original example: &quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction on the perturbed example: &quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example_perturbed</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;After changing ExterQual from Gd to Ex increased the prediction by: &quot;</span><span class="p">,</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example_perturbed</span><span class="p">)</span> <span class="o">-</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">one_example</span><span class="p">),</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1797,12 +1818,12 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 <p>That’s exactly the learned coefficient for <code class="docutils literal notranslate"><span class="pre">ExterQual</span></code>!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span> <span class="s1">&#39;Coefficient&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467565
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467533
 </pre></div>
 </div>
 </div>
@@ -1825,7 +1846,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;, &#39;Condition2&#39;, &#39;SaleCondition&#39;, &#39;Heating&#39;, &#39;Exterior1st&#39;, &#39;SaleType&#39;, &#39;GarageType&#39;, &#39;HouseStyle&#39;, &#39;CentralAir&#39;, &#39;MasVnrType&#39;, &#39;Foundation&#39;, &#39;MSZoning&#39;, &#39;Exterior2nd&#39;, &#39;MoSold&#39;, &#39;LotConfig&#39;, &#39;LandSlope&#39;, &#39;Utilities&#39;, &#39;MSSubClass&#39;, &#39;LotShape&#39;, &#39;MiscFeature&#39;, &#39;PavedDrive&#39;, &#39;Alley&#39;, &#39;Street&#39;, &#39;Neighborhood&#39;, &#39;RoofMatl&#39;, &#39;Condition1&#39;, &#39;Electrical&#39;, &#39;BldgType&#39;, &#39;GarageFinish&#39;, &#39;LandContour&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofMatl&#39;, &#39;LandContour&#39;, &#39;BldgType&#39;, &#39;MiscFeature&#39;, &#39;SaleCondition&#39;, &#39;MoSold&#39;, &#39;MasVnrType&#39;, &#39;Exterior2nd&#39;, &#39;Neighborhood&#39;, &#39;GarageType&#39;, &#39;MSSubClass&#39;, &#39;HouseStyle&#39;, &#39;Electrical&#39;, &#39;Condition2&#39;, &#39;LotShape&#39;, &#39;Foundation&#39;, &#39;GarageFinish&#39;, &#39;Heating&#39;, &#39;SaleType&#39;, &#39;Street&#39;, &#39;Condition1&#39;, &#39;Exterior1st&#39;, &#39;MSZoning&#39;, &#39;RoofStyle&#39;, &#39;PavedDrive&#39;, &#39;CentralAir&#39;, &#39;LotConfig&#39;, &#39;LandSlope&#39;, &#39;Alley&#39;, &#39;Utilities&#39;]
 </pre></div>
 </div>
 </div>
@@ -2178,7 +2199,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_example_perturbed</span> <span class="o">=</span> <span class="n">one_example</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">one_example_perturbed</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># add 1 to the LotArea</span>
+<span class="n">one_example_perturbed</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># add 1 to the LotArea</span>
 </pre></div>
 </div>
 </div>
@@ -2354,7 +2375,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s1">&#39;pipeline-1&#39;</span><span class="p">][</span><span class="s1">&#39;standardscaler&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline-1&quot;</span><span class="p">][</span><span class="s2">&quot;standardscaler&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2381,7 +2402,9 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_scales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">var_</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">numeric_features</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Scale&quot;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_scales</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">var_</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">numeric_features</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Scale&quot;</span><span class="p">]</span>
+<span class="p">)</span>
 <span class="n">lr_scales</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2438,24 +2461,24 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094075
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094087
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span><span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">lr_scales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span><span class="s2">&quot;Scale&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_coefs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span> <span class="s2">&quot;Coefficient&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">lr_scales</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;LotArea&quot;</span><span class="p">,</span> <span class="s2">&quot;Scale&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646629
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646642
 </pre></div>
 </div>
 </div>
@@ -2506,7 +2529,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">5109.356718094072</span><span class="o">/</span><span class="mf">8994.471032</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">5109.356718094072</span> <span class="o">/</span> <span class="mf">8994.471032</span>
 </pre></div>
 </div>
 </div>
@@ -2854,7 +2877,9 @@ Name: income, dtype: float64
     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">pipe_rf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">))</span>
-<span class="n">pipe_xgb</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">pipe_xgb</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="p">,</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s2">&quot;logloss&quot;</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="n">pipe_lgbm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">))</span>
 <span class="n">classifiers</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;logistic regression&quot;</span><span class="p">:</span> <span class="n">pipe_lr</span><span class="p">,</span>
@@ -2888,7 +2913,7 @@ Name: income, dtype: float64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_38211</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16846</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
@@ -3543,6 +3568,7 @@ Name: income, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">eli5</span>
+
 <span class="c1"># pipe_xgb = make_pipeline(preprocessor, XGBClassifier(random_state=123, eval_metric=&quot;logloss&quot;, verbosity=0))</span>
 <span class="c1"># pipe_xgb.fit(X_train, y_train);</span>
 <span class="c1"># eli5.explain_weights(pipe_xgb.named_steps[&quot;xgbclassifier&quot;], feature_names=feature_names)</span>
@@ -4797,7 +4823,9 @@ Name: income, Length: 6513, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lgbm</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;lgbmclassifier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">ex_l50k_index</span><span class="p">]</span> <span class="c1"># raw score of the model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lgbm</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;lgbmclassifier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span>
+    <span class="n">ex_l50k_index</span>
+<span class="p">]</span>  <span class="c1"># raw score of the model</span>
 </pre></div>
 </div>
 </div>
@@ -4854,7 +4882,9 @@ Name: income, Length: 6513, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lgbm</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;lgbmclassifier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">ex_g50k_index</span><span class="p">]</span> <span class="c1"># raw model score</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_lgbm</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;lgbmclassifier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">raw_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span>
+    <span class="n">ex_g50k_index</span>
+<span class="p">]</span>  <span class="c1"># raw model score</span>
 </pre></div>
 </div>
 </div>
