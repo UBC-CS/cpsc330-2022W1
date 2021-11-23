@@ -204,6 +204,11 @@
    Lecture 17: Multi-class classification and introduction to computer vision
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_time-series.html">
+   Lecture 18: Time series
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -475,11 +480,6 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#implicit-biases-and-stereotypes-in-word-embeddings">
      Implicit biases and stereotypes in word embeddings
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#other-pre-trained-embeddings">
-     Other pre-trained embeddings
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1516,7 +1516,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
     </tr>
   </tbody>
 </table>
-<p>5 rows × 5575 columns</p>
+<p>5 rows × 5578 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1661,7 +1661,7 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16925</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_42239</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">)</span>
@@ -1720,6 +1720,13 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 <span class="ne">--&gt; </span><span class="mi">329</span>         <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
 <span class="g g-Whitespace">    </span><span class="mi">330</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">allocate_vecattrs</span><span class="nt">(self, attrs, types)</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span>             <span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span>         <span class="n">target_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index_to_key</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">288</span>         <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>             <span class="k">if</span> <span class="n">t</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span>                 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span>  <span class="c1"># ensure &#39;int&#39; type 64-bit (numpy-on-Windows https://github.com/numpy/numpy/issues/9464)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2236,9 +2243,7 @@ The similarity between GPU and lion is 0.002
 </div>
 <p><img alt="" src="../_images/eva-srsly.png" /></p>
 <p>Most of the modern embeddings are de-biased.</p>
-</div>
-<div class="section" id="other-pre-trained-embeddings">
-<h3>Other pre-trained embeddings<a class="headerlink" href="#other-pre-trained-embeddings" title="Permalink to this headline">¶</a></h3>
+<p>(NLP)### Other pre-trained embeddings</p>
 <p>A number of pre-trained word embeddings are available. The most popular ones are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://code.google.com/archive/p/word2vec/">Word2Vec</a></p>
