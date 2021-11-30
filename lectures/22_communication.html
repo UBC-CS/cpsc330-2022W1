@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPSC 330 Lecture 20 &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_k-means-clustering.html">
+   Lecture 14: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_recommender-systems.html">
+   Lecture 15: DBSCAN and Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_natural-language-processing.html">
+   Lecture 16: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_intro_to_computer-vision.html">
+   Lecture 17: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_time-series.html">
+   Lecture 18: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_survival-analysis.html">
+   Lecture 19: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_ethics.html">
+   Lecture 20: Ethics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lectures/22_communication.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/lectures/22_communication.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements-5-min">
+   Announcements (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-should-i-care-about-effective-communication">
+   Why should I care about effective communication?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activity-explaining-gridsearchcv-15-min">
+   Activity: explaining
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GridSearchCV
+    </span>
+   </code>
+   (15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-1">
+     Explanation 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-2">
+     Explanation 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-questions">
+     Discussion questions:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles-of-good-explanations-15-min">
+   Principles of good explanations (15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts-then-labels-not-the-other-way-around">
+     Concepts
+     <em>
+      then
+     </em>
+     labels, not the other way around
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottom-up-explanations">
+     Bottom-up explanations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-ideas-in-small-chunks">
+     New ideas in small chunks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approach-from-all-angles">
+     Approach from all angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reuse-your-running-examples">
+     Reuse your running examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-experimenting-show-the-results-asap">
+     When experimenting, show the results asap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you">
+     Interesting to you != useful to the reader (aka it’s not about you)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-and-decision-making-5-min">
+   ML and decision-making (5 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decisions-involve-a-few-key-pieces">
+     Decisions involve a few key pieces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-this-inform-you-as-an-ml-practitioner">
+     How does this inform you as an ML practitioner?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decision-making-activity-15-min">
+   Decision-making activity (15 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cpsc-330-lecture-20">
+<h1>CPSC 330 Lecture 20<a class="headerlink" href="#cpsc-330-lecture-20" title="Permalink to this headline">¶</a></h1>
+<p>Outline:</p>
+<ul class="simple">
+<li><p>👋</p></li>
+<li><p><strong>Turn on recording</strong></p></li>
+<li><p>Announcements (5 min)</p></li>
+<li><p>Activity: explaining <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> (15 min)</p></li>
+<li><p>Principles of good explanations (15 min)</p></li>
+<li><p>Break (5 min)</p></li>
+<li><p>ML and decision-making (5 min)</p></li>
+<li><p>Decision-making activity (15 min)</p></li>
+</ul>
+<div class="section" id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When communicating about applied ML, tailor an explanation to the intended audience.</p></li>
+<li><p>Apply best practices of technical communication, such as bottom-up explanations and reader-centric writing.</p></li>
+<li><p>Given an ML problem, analyze the decision being made and the objectives.</p></li>
+<li><p>Avoid the pitfall of thinking about ML as coding in isolation; build the habit of relating your work to the surrounding context and stakeholders.</p></li>
+</ul>
+</div>
+<div class="section" id="announcements-5-min">
+<h2>Announcements (5 min)<a class="headerlink" href="#announcements-5-min" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>hw5 grades posted this morning, hw6 grades coming very soon.</p></li>
+<li><p>hw8 posted, due Monday 11:59pm.</p>
+<ul>
+<li><p>If your dataset is too big, feel free to subset; see https://piazza.com/class/kb2e6nwu3uj23?cid=564</p></li>
+<li><p>If you’re having trouble finding datasets, feel free to start a Piazza thread; it’s fine if you use the same dataset as another classmate/group</p></li>
+</ul>
+</li>
+<li><p>I will drop your lowest two assignment grades: https://piazza.com/class/kb2e6nwu3uj23?cid=560</p></li>
+<li><p>The next 3 lectures will involve activities based on Google Docs</p>
+<ul>
+<li><p>I understand from the initial survey in September that there are a (very small) number of you who are unable to access Google Docs</p></li>
+<li><p>Sorry about that! You will still be able to see the results because I’ll be sharing my screen, you just won’t be able to post to the document.</p></li>
+</ul>
+</li>
+<li><p>Almost there, hang in there!</p></li>
+</ul>
+</div>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+<p>The content of this lecture is adapted from <a class="reference external" href="https://github.com/UBC-MDS/DSCI_542_comm-arg">DSCI 542</a>, created by <a class="reference external" href="https://davidklaing.com/">David Laing</a>.</p>
+</div>
+<div class="section" id="why-should-i-care-about-effective-communication">
+<h2>Why should I care about effective communication?<a class="headerlink" href="#why-should-i-care-about-effective-communication" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Most ML practitioners work in an organization with &gt;1 people.</p></li>
+<li><p>There will very likely be stakeholders other than yourself.</p></li>
+<li><p>Those people need to understand what you’re doing because:</p>
+<ul>
+<li><p>their state of mind may change the way you do things (see below)</p></li>
+<li><p>your state of mind may change the way they do things (interpreting your results)</p></li>
+</ul>
+</li>
+<li><p>In my experience, ML suffers from some particular communication issues:</p>
+<ul>
+<li><p>overstating one’s results / unable to articulate the limitations</p></li>
+<li><p>unable to explain the predictions</p></li>
+<li><p>and the reason is: these things are actually very hard to explain!</p>
+<ul>
+<li><p>Why did CatBoost make that prediction?</p></li>
+<li><p>Can we trust test error?</p></li>
+<li><p>What does it mean if <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> outputs 0.9?</p></li>
+<li><p>Etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="activity-explaining-gridsearchcv-15-min">
+<h2>Activity: explaining <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> (15 min)<a class="headerlink" href="#activity-explaining-gridsearchcv-15-min" title="Permalink to this headline">¶</a></h2>
+<p>Below are two possible explanations of <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> pitched to different audiences. Read them both and then follow the instructions at the end.</p>
+<div class="section" id="explanation-1">
+<h3>Explanation 1<a class="headerlink" href="#explanation-1" title="Permalink to this headline">¶</a></h3>
+<p>Machine learning algorithms, like an airplane’s cockpit, typically involve a bunch of knobs and switches that need to be set.</p>
+<p><img alt="" src="https://i.pinimg.com/236x/ea/43/f3/ea43f3c7f3a8c92d884ce012c77628fd--cockpit-gauges.jpg" /></p>
+<p>For example, check out the documentation of the popular random forest algorithm <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">here</a>. Here’s a list of the function arguments, along with their default values (from the documentation):</p>
+<blockquote>
+<div><p>class sklearn.ensemble.RandomForestClassifier(n_estimators=100, criterion=’gini’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=’auto’, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)</p>
+</div></blockquote>
+<p>Holy cow, that’s a lot of knobs and switches! As a machine learning practitioner, how am I supposed to choose <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>? Should I leave it at the default of 100? Or try 1000? What about <code class="docutils literal notranslate"><span class="pre">criterion</span></code> or <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> for that matter? Should I trust the defaults?</p>
+<p>Enter <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">GridSearchCV</a> to save the day. The general strategy here is the choose the settings that perform best on the specific task of interest. So I can’t say <code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code> is better than <code class="docutils literal notranslate"><span class="pre">n_estimators=1000</span></code> without knowing what problem I’m working on. For a specific problem, you usually have a numerical score that measures performance. <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> is part of the popular <a class="reference external" href="https://scikit-learn.org/">scikit-learn</a> Python machine learning library. It works by searching over various settings and tells you which one worked best on your problem.</p>
+<p>The “grid” in “grid search” comes from the fact that tries all possible combinations on a grid. For example, if you want it to consider setting <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> to 100, 150 or 200, and you want it to consider setting <code class="docutils literal notranslate"><span class="pre">criterion</span></code> to <code class="docutils literal notranslate"><span class="pre">'gini'</span></code> or <code class="docutils literal notranslate"><span class="pre">'entropy'</span></code>, then it will search over all 6 possible combinations in a grid of 3 possible values by 2 possible values:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">criterion='gini'</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">criterion='entropy'</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=150</span></code></p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code></p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here is a code sample that uses <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> to select from the 6 options we just mentioned. The problem being solved is classifying images of handwritten digits into the 10 digit categories (0-9). I chose this because the dataset is conveniently built in to scikit-learn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="c1"># load a dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+
+<span class="c1"># set up the grid search</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+                           <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span>
+                                <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+                                <span class="s1">&#39;criterion&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">]</span>
+                           <span class="p">})</span>
+
+<span class="c1"># run the grid search</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;criterion&#39;: &#39;gini&#39;, &#39;n_estimators&#39;: 100}
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see from the output above, the grid search selected <code class="docutils literal notranslate"><span class="pre">criterion='gini',</span> <span class="pre">n_estimators=100</span></code>, which was one of our 6 options above (specifically Option 1).</p>
+<p>By the way, these “knobs” we’ve been setting are called [<em>hyperparameters</em>](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning) and the process of setting these hyperparameters automatically is called <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperparameter_optimization"><em>hyperparameter optimization</em></a> or <em>hyperparameter tuning</em>.</p>
+<p>~400 words, not including code.</p>
+<p><br><br><br><br><br><br></p>
+</div>
+<div class="section" id="explanation-2">
+<h3>Explanation 2<a class="headerlink" href="#explanation-2" title="Permalink to this headline">¶</a></h3>
+<p>https://medium.com/datadriveninvestor/an-introduction-to-grid-search-ff57adcc0998</p>
+<p>~400 words, not including code.</p>
+<p><br><br><br><br><br><br></p>
+</div>
+<div class="section" id="discussion-questions">
+<h3>Discussion questions:<a class="headerlink" href="#discussion-questions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>What do you like about each explanation?</p></li>
+<li><p>What do you dislike about each explanation?</p></li>
+<li><p>What do you think is the intended audience for each explanation?</p></li>
+<li><p>Which explanation do you think is more effective overall for someone on Day 1 of CPSC 330?</p></li>
+<li><p>Each explanation has an image. Which one is more effective? What are the pros/cons?</p></li>
+<li><p>Each explanation has some sample code. Which one is more effective? What are the pros/cons?</p></li>
+</ul>
+<p>After you’re done reading, take ~5 min to consider the discussion questions above. Paste your answer to <strong>at least one</strong> of the above questions in the Google doc [link to be posted in the Zoom chat] under the appropriate question heading.</p>
+</div>
+</div>
+<div class="section" id="principles-of-good-explanations-15-min">
+<h2>Principles of good explanations (15 min)<a class="headerlink" href="#principles-of-good-explanations-15-min" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="concepts-then-labels-not-the-other-way-around">
+<h3>Concepts <em>then</em> labels, not the other way around<a class="headerlink" href="#concepts-then-labels-not-the-other-way-around" title="Permalink to this headline">¶</a></h3>
+<p>The first explanation start with an analogy for the concept (and the label is left until the very end):</p>
+<blockquote>
+<div><p>Machine learning algorithms, like an airplane’s cockpit, typically involve a bunch of knobs and switches that need to be set.</p>
+</div></blockquote>
+<p>In the second explanation, the first sentence is wasted on anyone who doesn’t already know what “hyperparameter tuning” means:</p>
+<blockquote>
+<div><p>Grid search is the process of performing hyper parameter tuning in order to determine the optimal values for a given model.</p>
+</div></blockquote>
+<p>The effectiveness of these different statements depend on your audience.</p>
+<p>See <a class="reference external" href="https://twitter.com/ProfFeynman/status/899963856549625858?s=20">this video</a>: “I learned very early the difference between knowing the name of something and knowing something.” -Richard Feynman.</p>
+</div>
+<div class="section" id="bottom-up-explanations">
+<h3>Bottom-up explanations<a class="headerlink" href="#bottom-up-explanations" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_knowledge">Curse of Knowledge</a> leads to <em>top-down</em> explanations:</p>
+<p><img alt="" src="../_images/top_down.png" /></p>
+<ul class="simple">
+<li><p>When you know something well, you think about things in the context of all your knowledge.</p></li>
+<li><p>Those lacking the context, or frame of mind, cannot easily understand.</p></li>
+</ul>
+<p>There is another way: <em>bottom-up</em> explanations:</p>
+<p><img alt="" src="../_images/bottom_up.png" /></p>
+<p>When you’re brand new to a concept, you benefit from analogies, concrete examples and familiar patterns.</p>
+</div>
+<div class="section" id="new-ideas-in-small-chunks">
+<h3>New ideas in small chunks<a class="headerlink" href="#new-ideas-in-small-chunks" title="Permalink to this headline">¶</a></h3>
+<p>The first explanation has a hidden conceptual skeleton:</p>
+<ol class="simple">
+<li><p>The concept of setting a bunch of values.</p></li>
+<li><p>Random forest example.</p></li>
+<li><p>The problem / pain point.</p></li>
+<li><p>The solution.</p></li>
+<li><p>How it works - high level.</p></li>
+<li><p>How it works - written example.</p></li>
+<li><p>How it works - code example.</p></li>
+<li><p>The name of what we were discussing all this time.</p></li>
+</ol>
+</div>
+<div class="section" id="approach-from-all-angles">
+<h3>Approach from all angles<a class="headerlink" href="#approach-from-all-angles" title="Permalink to this headline">¶</a></h3>
+<p>When we’re trying to draw mental boundaries around a concept, it’s helpful to see examples on all sides of those boundaries. If we were writing a longer explanation, it might have been better to show more, e.g.</p>
+<ul class="simple">
+<li><p>Performance with and without hyperparameter tuning.</p></li>
+<li><p>Other types of hyperparameter tuning (e.g. <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code>).</p></li>
+</ul>
+</div>
+<div class="section" id="reuse-your-running-examples">
+<h3>Reuse your running examples<a class="headerlink" href="#reuse-your-running-examples" title="Permalink to this headline">¶</a></h3>
+<p>Effective explanations often use the same example throughout the text and code. This helps readers follow the line of reasoning.</p>
+</div>
+<div class="section" id="when-experimenting-show-the-results-asap">
+<h3>When experimenting, show the results asap<a class="headerlink" href="#when-experimenting-show-the-results-asap" title="Permalink to this headline">¶</a></h3>
+<p>The first explanation shows the output of the code, whereas the second does not. This is easy to do and makes a big difference.</p>
+</div>
+<div class="section" id="interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you">
+<h3>Interesting to you != useful to the reader (aka it’s not about you)<a class="headerlink" href="#interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you" title="Permalink to this headline">¶</a></h3>
+<p>Here is something I deleted from my explanation:</p>
+<blockquote>
+<div><p>Some hyperparameters, like <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> are numeric. Numeric hyperparameters are like the knobs in the cockpit: you can tune them continuously. <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> is numeric. Categorical hyperparameters are like the switches in the cockpit: they can take on (two or more) distinct values. <code class="docutils literal notranslate"><span class="pre">criterion</span></code> is categorical.</p>
+</div></blockquote>
+<p>It’s a very elegant analogy! But is it helpful?</p>
+<p>And furthermore, what is my hidden motivation for wanting to include it? Elegance, art, and the pursuit of higher beauty? Or <em>making myself look smart</em>? So maybe another name for this principle could be <strong>It’s not about you.</strong></p>
+</div>
+</div>
+<div class="section" id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">¶</a></h2>
+<p>REMINDER TO RESUME RECORDING</p>
+</div>
+<div class="section" id="ml-and-decision-making-5-min">
+<h2>ML and decision-making (5 min)<a class="headerlink" href="#ml-and-decision-making-5-min" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>There is often a wide gap between what people care about and what ML can do.</p></li>
+<li><p>To understand what ML can do, let’s think about what <strong>decisions</strong> will be made using ML.</p></li>
+</ul>
+<div class="section" id="decisions-involve-a-few-key-pieces">
+<h3>Decisions involve a few key pieces<a class="headerlink" href="#decisions-involve-a-few-key-pieces" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <strong>decision variable</strong>: the variable that is manipulated through the decision.</p>
+<ul>
+<li><p>E.g. how much should I sell my house for? (numeric)</p></li>
+<li><p>E.g. should I sell my house? (categorical)</p></li>
+</ul>
+</li>
+<li><p>The decision-maker’s <strong>objectives</strong>: the variables that the decision-maker ultimately cares about, and wishes to manipulate indirectly through the decision variable.</p>
+<ul>
+<li><p>E.g. my total profit, time to sale, etc.</p></li>
+</ul>
+</li>
+<li><p>The <strong>context</strong>: the variables that mediate the relationship between the decision variable and the objectives.</p>
+<ul>
+<li><p>E.g. the housing market, cost of marketing it, my timeline, etc.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="how-does-this-inform-you-as-an-ml-practitioner">
+<h3>How does this inform you as an ML practitioner?<a class="headerlink" href="#how-does-this-inform-you-as-an-ml-practitioner" title="Permalink to this headline">¶</a></h3>
+<p>Questions you have to answer:</p>
+<ul class="simple">
+<li><p>Who is the decision maker?</p></li>
+<li><p>What are their objectives?</p></li>
+<li><p>What are their alternatives?</p></li>
+<li><p>What is their context?</p></li>
+<li><p>What data do I need?</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="decision-making-activity-15-min">
+<h2>Decision-making activity (15 min)<a class="headerlink" href="#decision-making-activity-15-min" title="Permalink to this headline">¶</a></h2>
+<p>Consider the avocado price dataset from hw7. Let’s say you work for Whole Foods, and they are wondering whether they should order more avocados this week or wait until next week.</p>
+<p>Answer the following questions:</p>
+<ol class="simple">
+<li><p>What are your decision variable(s) here?</p></li>
+<li><p>Is the decision numeric or categorical? What are the alternatives?</p></li>
+<li><p>What are the objective(s)?</p></li>
+</ol>
+<p>and then</p>
+<ol class="simple">
+<li><p>What data do you need here?</p></li>
+<li><p>What output might you show them from the model you trained in hw7?</p></li>
+<li><p>How does the output connect to the decisions?</p></li>
+<li><p>How would you present your results? What would you advise?</p></li>
+</ol>
+<p>Take 5-10 min for this activity, and then we’ll discuss afterwards. Paste your answer to <strong>at least one</strong> of the above questions in the Google doc [link to be posted in the Zoom chat] under the appropriate question heading.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Principles of effective communication</p>
+<ul>
+<li><p>Concepts then labels, not the other way around.</p></li>
+<li><p>Bottom-up explanations.</p></li>
+<li><p>New ideas in small chunks.</p></li>
+<li><p>Examples from all angles.</p></li>
+<li><p>Reuse your running examples.</p></li>
+<li><p>When experimenting, show the results asap.</p></li>
+<li><p>It’s not about you.</p></li>
+</ul>
+</li>
+<li><p>Decision-making</p>
+<ul>
+<li><p>Decision variables, objectives, and context.</p></li>
+<li><p>How does ML fit in?</p></li>
+</ul>
+</li>
+</ul>
+<p>Next class we’ll talk about communicating probabilities in your predictions, and we’ll also talk about principles of effective visualizations.</p>
+<p>Note: if we have extra time, we can do some parts of Lecture 24.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

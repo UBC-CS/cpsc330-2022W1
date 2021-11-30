@@ -30,8 +30,8 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | **Midterm** | Oct 28, during class time|[Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) | 
 | hw6 | Nov 15, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
 | hw7 | ~~Nov 15, 11:59pm~~ <br> Nov 17, 11:59pm  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
-| hw8 | Nov 29, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
-| **Final exam** | December 19th,  | [Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) |
+| hw8 | Dec 07, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/5032)|  
+| **Final exam** | Dec. 19th at noon at PHRM 1101 | [Canvas](https://canvas.ubc.ca/courses/78046) | [Canvas](https://canvas.ubc.ca/courses/78046) |
 
 
 
@@ -78,12 +78,11 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Nov 11 | _Midterm break - no class_  |  |
 | Nov 16 |  [Text data, embeddings, topic modeling](lectures/16_natural-language-processing.ipynb)  | 📹 <li>Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY),[16.2](https://youtu.be/7W5Q8gzNPBc)</li>  |   new |
 | Nov 18 | [Neural networks and computer vision](lectures/17_intro_to_computer-vision.ipynb) | |   less depth |
-| Nov 23 | Time series data |  | new |
-| Nov 25 | Survival analysis |  |   new |
+| Nov 23 | [Time series data](lectures/18_time-series.ipynb) | (Optional) [Humour: The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new |
+| Nov 25 | [Survival analysis](lectures/19_survival-analysis.ipynb) |  (Optional)[Calling Bullshit 4.1: Right Censoring](https://www.youtube.com/watch?v=ITWQ5psx9Sw)|   new |
 |  | **Part III: Communication, ethics, deployment**  | |
 | Nov 30  |  Ethics |  | new |
 | Dec 2 | Communication |  |   new |
-
 | Dec 7 | Model deployment and conclusion |  |  new |
 
 
