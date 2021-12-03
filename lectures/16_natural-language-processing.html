@@ -1045,8 +1045,9 @@ If A and B have almost identical environments we say that they are synonyms.
 <li><p>A standard way to represent meaning in NLP</p></li>
 <li><p>The idea is to create <strong>embeddings of words</strong> so that distances among words in the vector space indicate the relationship between them.</p></li>
 </ul>
+<p><img alt="" src="../_images/t-SNE_word_embeddings.png" /></p>
 <!-- <center> -->
-<img src="img/t-SNE_word_embeddings.png" width="900" height="900">
+<!-- <img src="img/t-SNE_word_embeddings.png" width="900" height="900"> -->
 <!-- </center> -->    
 <p>(Attribution: Jurafsky and Martin 3rd edition)</p>
 </div>
@@ -1685,7 +1686,7 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_74303</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_74715</span><span class="o">/</span><span class="mf">1600894025.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
 <span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">)</span>
@@ -1705,38 +1706,66 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1628</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1630</span><span class="s2">         return _load_word2vec_format(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="s2">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="s2">             limit=limit, datatype=datatype, no_header=no_header,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1630</span><span class="sd">         return _load_word2vec_format(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="sd">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="sd">             limit=limit, datatype=datatype, no_header=no_header,</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1907</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1908</span><span class="s2">         if binary:</span>
-<span class="ne">-&gt; </span><span class="mi">1909</span><span class="s2">             _word2vec_read_binary(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span><span class="s2">                 fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1911</span><span class="s2">             )</span>
+<span class="g g-Whitespace">   </span><span class="mi">1907</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1908</span><span class="sd">         if binary:</span>
+<span class="ne">-&gt; </span><span class="mi">1909</span><span class="sd">             _word2vec_read_binary(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span><span class="sd">                 fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1911</span><span class="sd">             )</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_word2vec_read_binary</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1802</span><span class="s2">         new_chunk = fin.read(binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1803</span><span class="s2">         chunk += new_chunk</span>
-<span class="ne">-&gt; </span><span class="mi">1804</span><span class="s2">         processed_words, chunk = _add_bytes_to_kv(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1805</span><span class="s2">             kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1806</span><span class="s2">         tot_processed_words += processed_words</span>
+<span class="g g-Whitespace">   </span><span class="mi">1802</span><span class="sd">         new_chunk = fin.read(binary_chunk_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1803</span><span class="sd">         chunk += new_chunk</span>
+<span class="ne">-&gt; </span><span class="mi">1804</span><span class="sd">         processed_words, chunk = _add_bytes_to_kv(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1805</span><span class="sd">             kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1806</span><span class="sd">         tot_processed_words += processed_words</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_bytes_to_kv</span><span class="nt">(kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1788</span><span class="s2">         word = word.lstrip(&#39;</span><span class="se">\n</span><span class="s2">&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1789</span><span class="s2">         vector = frombuffer(chunk, offset=i_vector, count=vector_size, dtype=REAL).astype(datatype)</span>
-<span class="ne">-&gt; </span><span class="mi">1790</span><span class="s2">         _add_word_to_kv(kv, counts, word, vector, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1791</span><span class="s2">         start = i_vector + bytes_per_vector</span>
-<span class="g g-Whitespace">   </span><span class="mi">1792</span><span class="s2">         processed_words += 1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1788</span><span class="sd">         word = word.lstrip(&#39;\n&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1789</span><span class="sd">         vector = frombuffer(chunk, offset=i_vector, count=vector_size, dtype=REAL).astype(datatype)</span>
+<span class="ne">-&gt; </span><span class="mi">1790</span><span class="sd">         _add_word_to_kv(kv, counts, word, vector, vocab_size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1791</span><span class="sd">         start = i_vector + bytes_per_vector</span>
+<span class="g g-Whitespace">   </span><span class="mi">1792</span><span class="sd">         processed_words += 1</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1756</span><span class="s2">         logger.warning(&quot;duplicate word &#39;</span><span class="si">%s</span><span class="s2">&#39; in word2vec file, ignoring all but first&quot;, word)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1757</span><span class="s2">         return</span>
-<span class="ne">-&gt; </span><span class="mi">1758</span><span class="s2">     word_id = kv.add_vector(word, weights)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1759</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1760</span><span class="s2">     if counts is None:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1768</span><span class="sd">         logger.warning(&quot;vocabulary file is incomplete: &#39;%s&#39; is missing&quot;, word)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1769</span><span class="sd">         word_count = None</span>
+<span class="ne">-&gt; </span><span class="mi">1770</span><span class="sd">     kv.set_vecattr(word, &#39;count&#39;, word_count)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1771</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1772</span><span class="sd"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">set_vecattr</span><span class="nt">(self, key, attr, val)</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span><span class="sd">         &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">329</span>         <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">allocate_vecattrs</span><span class="nt">(self, attrs, types)</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>                 <span class="k">continue</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>             <span class="n">prev_expando</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">299</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">prev_expando</span><span class="o">.</span><span class="n">dtype</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>                     <span class="sa">f</span><span class="s2">&quot;Can&#39;t allocate type </span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2"> for attribute </span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">, &quot;</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/numpy/core/numerictypes.py</span> in <span class="ni">issubdtype</span><span class="nt">(arg1, arg2)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> 
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">418</span><span class="sd">     if not issubclass_(arg1, generic):</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span><span class="sd">         arg1 = dtype(arg1).type</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span><span class="sd">     if not issubclass_(arg2, generic):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/numpy/core/numerictypes.py</span> in <span class="ni">issubclass_</span><span class="nt">(arg1, arg2)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">321</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>         <span class="k">return</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2154,7 +2183,8 @@ The similarity between GPU and lion is 0.002
 </div>
 <div class="section" id="examples-of-semantic-and-syntactic-relationships">
 <h3>Examples of semantic and syntactic relationships<a class="headerlink" href="#examples-of-semantic-and-syntactic-relationships" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="../_images/word_analogies2.png"><img alt="../_images/word_analogies2.png" src="../_images/word_analogies2.png" style="width: 800px; height: 800px;" /></a>
+<p><img alt="" src="../_images/word_analogies2.png" /></p>
+<!-- <img src="img/word_analogies2.png" width="800" height="800"> -->
 <p>(Credit: Mikolov 2013)</p>
 </div>
 <div class="section" id="implicit-biases-and-stereotypes-in-word-embeddings">
@@ -3769,7 +3799,7 @@ Test accuracy 0.83
 </ul>
 <p><img alt="" src="../_images/topic_modeling_output.png" /></p>
 <!-- <center> -->
-<img src="img/topic_modeling_output.png" height="800" width="800"> 
+<!-- <img src="img/topic_modeling_output.png" height="800" width="800">  -->
 <!-- </center> -->    </div>
 <div class="section" id="topic-modeling-some-applications">
 <h3>Topic modeling: Some applications<a class="headerlink" href="#topic-modeling-some-applications" title="Permalink to this headline">¶</a></h3>
