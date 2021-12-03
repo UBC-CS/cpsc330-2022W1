@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 19: Survival analysis" href="19_survival-analysis.html" />
     <link rel="prev" title="Lecture 17: Multi-class classification and introduction to computer vision" href="17_intro_to_computer-vision.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -205,6 +205,21 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 18: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_survival-analysis.html">
+   Lecture 19: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_ethics.html">
+   Lecture 20: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_communication.html">
+   Lecture 21: Communication
   </a>
  </li>
 </ul>
@@ -792,7 +807,7 @@ Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_42254/295926807.py:1: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/295926807.py:1: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
   X = citibike.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9 # convert to POSIX time by dividing by 10**9
 </pre></div>
 </div>
@@ -809,9 +824,9 @@ Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_42254/1512548044.py:4: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/1512548044.py:4: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
   X_train = train_df.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9
-/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_42254/1512548044.py:5: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/1512548044.py:5: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
   X_test = test_df.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9
 </pre></div>
 </div>
@@ -1403,36 +1418,36 @@ Test-set R^2: 0.85
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001641</td>
-      <td>0.000269</td>
+      <td>0.001384</td>
+      <td>0.000318</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000538</td>
-      <td>0.000238</td>
+      <td>0.000537</td>
+      <td>0.000243</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000634</td>
-      <td>0.000253</td>
+      <td>0.000694</td>
+      <td>0.000316</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000617</td>
-      <td>0.000242</td>
+      <td>0.000741</td>
+      <td>0.000261</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000990</td>
-      <td>0.000251</td>
+      <td>0.001033</td>
+      <td>0.000267</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -3279,7 +3294,7 @@ Test score: 0.84
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">,</span> <span class="s2">&quot;Location&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3326,6 +3341,324 @@ Test score: 0.84
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>45587</th>
+      <td>2007-11-01</td>
+      <td>Canberra</td>
+      <td>8.0</td>
+      <td>24.3</td>
+      <td>0.0</td>
+      <td>3.4</td>
+      <td>6.3</td>
+      <td>NW</td>
+      <td>30.0</td>
+      <td>SW</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>29.0</td>
+      <td>1019.7</td>
+      <td>1015.0</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>14.4</td>
+      <td>23.6</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45588</th>
+      <td>2007-11-02</td>
+      <td>Canberra</td>
+      <td>14.0</td>
+      <td>26.9</td>
+      <td>3.6</td>
+      <td>4.4</td>
+      <td>9.7</td>
+      <td>ENE</td>
+      <td>39.0</td>
+      <td>E</td>
+      <td>...</td>
+      <td>80.0</td>
+      <td>36.0</td>
+      <td>1012.4</td>
+      <td>1008.4</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>17.5</td>
+      <td>25.7</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45589</th>
+      <td>2007-11-03</td>
+      <td>Canberra</td>
+      <td>13.7</td>
+      <td>23.4</td>
+      <td>3.6</td>
+      <td>5.8</td>
+      <td>3.3</td>
+      <td>NW</td>
+      <td>85.0</td>
+      <td>N</td>
+      <td>...</td>
+      <td>82.0</td>
+      <td>69.0</td>
+      <td>1009.5</td>
+      <td>1007.2</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>15.4</td>
+      <td>20.2</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45590</th>
+      <td>2007-11-04</td>
+      <td>Canberra</td>
+      <td>13.3</td>
+      <td>15.5</td>
+      <td>39.8</td>
+      <td>7.2</td>
+      <td>9.1</td>
+      <td>NW</td>
+      <td>54.0</td>
+      <td>WNW</td>
+      <td>...</td>
+      <td>62.0</td>
+      <td>56.0</td>
+      <td>1005.5</td>
+      <td>1007.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>13.5</td>
+      <td>14.1</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45591</th>
+      <td>2007-11-05</td>
+      <td>Canberra</td>
+      <td>7.6</td>
+      <td>16.1</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>10.6</td>
+      <td>SSE</td>
+      <td>50.0</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>49.0</td>
+      <td>1018.3</td>
+      <td>1018.5</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>11.1</td>
+      <td>15.4</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity9am</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>45587</th>
+      <td>2007-11-01</td>
+      <td>Canberra</td>
+      <td>8.0</td>
+      <td>24.3</td>
+      <td>0.0</td>
+      <td>3.4</td>
+      <td>6.3</td>
+      <td>NW</td>
+      <td>30.0</td>
+      <td>SW</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>29.0</td>
+      <td>1019.7</td>
+      <td>1015.0</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>14.4</td>
+      <td>23.6</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45588</th>
+      <td>2007-11-02</td>
+      <td>Canberra</td>
+      <td>14.0</td>
+      <td>26.9</td>
+      <td>3.6</td>
+      <td>4.4</td>
+      <td>9.7</td>
+      <td>ENE</td>
+      <td>39.0</td>
+      <td>E</td>
+      <td>...</td>
+      <td>80.0</td>
+      <td>36.0</td>
+      <td>1012.4</td>
+      <td>1008.4</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>17.5</td>
+      <td>25.7</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45589</th>
+      <td>2007-11-03</td>
+      <td>Canberra</td>
+      <td>13.7</td>
+      <td>23.4</td>
+      <td>3.6</td>
+      <td>5.8</td>
+      <td>3.3</td>
+      <td>NW</td>
+      <td>85.0</td>
+      <td>N</td>
+      <td>...</td>
+      <td>82.0</td>
+      <td>69.0</td>
+      <td>1009.5</td>
+      <td>1007.2</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>15.4</td>
+      <td>20.2</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45590</th>
+      <td>2007-11-04</td>
+      <td>Canberra</td>
+      <td>13.3</td>
+      <td>15.5</td>
+      <td>39.8</td>
+      <td>7.2</td>
+      <td>9.1</td>
+      <td>NW</td>
+      <td>54.0</td>
+      <td>WNW</td>
+      <td>...</td>
+      <td>62.0</td>
+      <td>56.0</td>
+      <td>1005.5</td>
+      <td>1007.0</td>
+      <td>2.0</td>
+      <td>7.0</td>
+      <td>13.5</td>
+      <td>14.1</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>45591</th>
+      <td>2007-11-05</td>
+      <td>Canberra</td>
+      <td>7.6</td>
+      <td>16.1</td>
+      <td>2.8</td>
+      <td>5.6</td>
+      <td>10.6</td>
+      <td>SSE</td>
+      <td>50.0</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>68.0</td>
+      <td>49.0</td>
+      <td>1018.3</td>
+      <td>1018.5</td>
+      <td>7.0</td>
+      <td>7.0</td>
+      <td>11.1</td>
+      <td>15.4</td>
+      <td>Yes</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
     <tr>
       <th>57415</th>
       <td>2015-06-30</td>
@@ -3448,7 +3781,7 @@ Test score: 0.84
     </tr>
   </tbody>
 </table>
-<p>5 rows × 23 columns</p>
+<p>107502 rows × 23 columns</p>
 </div></div></div>
 </div>
 <ul class="simple">
@@ -4765,7 +5098,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_170_0.png" src="../_images/18_time-series_170_0.png" />
+<img alt="../_images/18_time-series_171_0.png" src="../_images/18_time-series_171_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4780,7 +5113,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_171_0.png" src="../_images/18_time-series_171_0.png" />
+<img alt="../_images/18_time-series_172_0.png" src="../_images/18_time-series_172_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4802,7 +5135,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_174_0.png" src="../_images/18_time-series_174_0.png" />
+<img alt="../_images/18_time-series_175_0.png" src="../_images/18_time-series_175_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4817,7 +5150,7 @@ Test score: 0.84
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_175_0.png" src="../_images/18_time-series_175_0.png" />
+<img alt="../_images/18_time-series_176_0.png" src="../_images/18_time-series_176_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -6220,7 +6553,7 @@ Test score: 0.85
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_42254</span><span class="o">/</span><span class="mf">3220146892.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73320</span><span class="o">/</span><span class="mf">3220146892.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">retail_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/MRTSSM448USN.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">])</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">retail_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">]</span>
 
@@ -6383,7 +6716,7 @@ Test score: 0.85
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_216_0.png" src="../_images/18_time-series_216_0.png" />
+<img alt="../_images/18_time-series_217_0.png" src="../_images/18_time-series_217_0.png" />
 </div>
 </div>
 <p>We can create a dataset using purely lag features.</p>
@@ -6862,7 +7195,7 @@ Test score: 0.85
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18_time-series_231_0.png" src="../_images/18_time-series_231_0.png" />
+<img alt="../_images/18_time-series_232_0.png" src="../_images/18_time-series_232_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -7155,7 +7488,7 @@ Test score: 0.85
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="17_intro_to_computer-vision.html" title="previous page">Lecture 17: Multi-class classification and introduction to computer vision</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
+    <a class='right-next' id="next-link" href="19_survival-analysis.html" title="next page">Lecture 19: Survival analysis</a>
 
         </div>
         
