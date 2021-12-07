@@ -1,0 +1,1351 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPSC 330 Lecture 24 &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="14_k-means-clustering.html">
+   Lecture 14: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_recommender-systems.html">
+   Lecture 15: DBSCAN and Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_natural-language-processing.html">
+   Lecture 16: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_intro_to_computer-vision.html">
+   Lecture 17: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_time-series.html">
+   Lecture 18: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_survival-analysis.html">
+   Lecture 19: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_ethics.html">
+   Lecture 20: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_communication.html">
+   Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/lectures/23_deployment-conclusion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/lectures/23_deployment-conclusion.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements-survey-15-min">
+   Announcements + survey (15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-exam">
+     Final exam
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-deployment-30-min">
+   Model deployment (30 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribution">
+     Attribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-deployment">
+     What is deployment?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requirements-i-already-did-these">
+     Requirements (I already did these)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preparing-the-model-we-wish-to-deploy">
+     Preparing the model we wish to deploy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-setting-up-a-directory-structure-and-environment">
+     (optional) Setting up a directory structure and environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-deployment">
+     Model deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-and-deploying-a-web-api">
+     Building and deploying a web API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-that-the-flask-api-is-alive">
+     Testing that the Flask API is alive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sending-a-request-to-the-api">
+     Sending a request to the API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploying-the-api-on-a-server">
+     Deploying the API on a server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heroku-set-up-i-already-did-these">
+     Heroku set-up (I already did these):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-api-on-heroku">
+     Using the API on Heroku
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-and-deploying-a-web-application">
+     Building and deploying a web application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-the-web-application">
+     Testing the web application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploying-the-web-application">
+     Deploying the web application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-10-min">
+   Break (10 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-review-conclusion-25-min">
+   Course review / conclusion (25 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Learning objectives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-did-we-cover">
+     What did we cover?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-key-takeaways">
+     Some key takeaways
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-would-i-do-differently">
+     What would I do differently?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vs-340">
+     330 vs. 340
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unsolicited-advice">
+     Unsolicited advice
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion-farewell">
+   Conclusion &amp; farewell
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="cpsc-330-lecture-24">
+<h1>CPSC 330 Lecture 24<a class="headerlink" href="#cpsc-330-lecture-24" title="Permalink to this headline">¶</a></h1>
+<p>Outline:</p>
+<ul class="simple">
+<li><p>👋</p></li>
+<li><p><strong>Turn on recording</strong></p></li>
+<li><p>Announcements + survey (15 min)</p></li>
+<li><p>Model deployment (30 min)</p></li>
+<li><p>Instructor/TA evaluations + Break (10 min)</p></li>
+<li><p>Review / conclusion (25 min)</p></li>
+</ul>
+<div class="section" id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Describe the goals and challenges of model deployment.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_validate</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="announcements-survey-15-min">
+<h2>Announcements + survey (15 min)<a class="headerlink" href="#announcements-survey-15-min" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Last lecture today!</p></li>
+<li><p>Learning objectives should now be posted for all lectures.</p></li>
+<li><p>hw7 grades posted</p></li>
+<li><p>Extremely short survey on CPSC 330 vs. 340: https://ubc.ca1.qualtrics.com/jfe/form/SV_2ayfs2EcNUJdYKV</p></li>
+<li><p>We will take time later for the formal course evaluations.</p></li>
+</ul>
+<div class="section" id="final-exam">
+<h3>Final exam<a class="headerlink" href="#final-exam" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Cummulative</p></li>
+<li><p>All of it is going to be on Canvas.</p></li>
+<li><p>Combination of</p>
+<ul>
+<li><p>Multiple choice questions</p></li>
+<li><p>Short answer questions</p></li>
+<li><p>Simple coding questions</p></li>
+</ul>
+</li>
+</ul>
+<p>Joint rules:</p>
+<ul class="simple">
+<li><p>No communication</p></li>
+<li><p>No public Piazza posts</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="model-deployment-30-min">
+<h2>Model deployment (30 min)<a class="headerlink" href="#model-deployment-30-min" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="attribution">
+<h3>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h3>
+<p>This material adapted from the <a class="reference external" href="https://github.com/TomasBeuzen/machine-learning-tutorials/blob/master/ml-deploy-model/deploy-with-flask.ipynb">model deployment tutorial</a> by <a class="reference external" href="https://www.tomasbeuzen.com/">Tomas Beuzen</a>.</p>
+</div>
+<div class="section" id="what-is-deployment">
+<h3>What is deployment?<a class="headerlink" href="#what-is-deployment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>After we train a model, we want to use it!</p></li>
+<li><p>The user likely does not want to install your Python stack, train your model.</p></li>
+<li><p>You don’t necessarily want to share your dataset.</p></li>
+<li><p>So we need to do two things:</p></li>
+</ul>
+<ol class="simple">
+<li><p>Save/store your model for later use.</p></li>
+<li><p>Make the saved model conveniently accessible.</p></li>
+</ol>
+<p>We will use <a class="reference external" href="https://joblib.readthedocs.io/">Joblib</a> for (1) and <a class="reference external" href="https://flask.palletsprojects.com/">Flask</a> &amp; <a class="reference external" href="https://www.heroku.com/">Heroku</a> for (2).</p>
+</div>
+<div class="section" id="requirements-i-already-did-these">
+<h3>Requirements (I already did these)<a class="headerlink" href="#requirements-i-already-did-these" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Heroku account. Register <a class="reference external" href="https://www.heroku.com/">here</a>.</p></li>
+<li><p>Heroku CLI. Download <a class="reference external" href="https://devcenter.heroku.com/categories/command-line">here</a>.</p></li>
+</ul>
+<p>More python installations (not in the course environment):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">Flask</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">Flask</span><span class="o">-</span><span class="n">WTF</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">joblib</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preparing-the-model-we-wish-to-deploy">
+<h3>Preparing the model we wish to deploy<a class="headerlink" href="#preparing-the-model-we-wish-to-deploy" title="Permalink to this headline">¶</a></h3>
+<p>We’ll be training a regression model to predict the age of abalone based on the classic abalone dataset hosted <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">here</a>. We aim to predict the age of abalone based on four physical measurements. I’ve renamed <code class="docutils literal notranslate"><span class="pre">abalone.data</span></code> to <code class="docutils literal notranslate"><span class="pre">abalone.csv</span></code> after downloading.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abalone_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/abalone.csv&#39;</span><span class="p">,</span>
+                       <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;diameter&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;whole_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;shucked_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;viscera_weight&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;shell_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;rings&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46161</span><span class="o">/</span><span class="mf">1046697195.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">abalone_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/abalone.csv&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>                        <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;diameter&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>                                 <span class="s1">&#39;whole_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;shucked_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;viscera_weight&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>                                 <span class="s1">&#39;shell_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;rings&#39;</span><span class="p">])</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHandles</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">         self.handles = get_handle(</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="s2">             src,</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="s2">             &quot;r&quot;,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">         if ioargs.encoding and &quot;b&quot; not in ioargs.mode:</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">             # Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">             handle = open(</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2">                 handle,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">                 ioargs.mode,</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/abalone.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>For simplicity, only use 4 features:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="s1">&#39;diameter&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;whole_weight&#39;</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">abalone_df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">abalone_df</span><span class="p">[</span><span class="s1">&#39;rings&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>length</th>
+      <th>diameter</th>
+      <th>height</th>
+      <th>whole_weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3906</th>
+      <td>0.245</td>
+      <td>0.180</td>
+      <td>0.065</td>
+      <td>0.0635</td>
+    </tr>
+    <tr>
+      <th>2562</th>
+      <td>0.440</td>
+      <td>0.325</td>
+      <td>0.100</td>
+      <td>0.4165</td>
+    </tr>
+    <tr>
+      <th>2197</th>
+      <td>0.405</td>
+      <td>0.305</td>
+      <td>0.105</td>
+      <td>0.3625</td>
+    </tr>
+    <tr>
+      <th>1405</th>
+      <td>0.655</td>
+      <td>0.535</td>
+      <td>0.205</td>
+      <td>1.6445</td>
+    </tr>
+    <tr>
+      <th>1903</th>
+      <td>0.575</td>
+      <td>0.445</td>
+      <td>0.145</td>
+      <td>0.8760</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3906     4
+2562     6
+2197    10
+1405    13
+1903    10
+Name: rings, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Build and score model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8716166306386149
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.27082133598283975
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>We’ll re-fit the model on the full dataset to get it ready for deployment.</p>
+<ul>
+<li><p>This is probably a good idea, because more data is better.</p></li>
+<li><p>It’s also a little scary, because we can’t test this new model.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save trained model using <code class="docutils literal notranslate"><span class="pre">joblib</span></code>. This will be loaded up when we start our “app”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;web_api/abalone_predictor.joblib&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;web_application/abalone_predictor.joblib&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll define a function that accepts input data as a dictionary and returns a prediction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">return_prediction</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">input_json</span><span class="p">):</span>
+    
+    <span class="n">input_data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">input_json</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">features</span><span class="p">]]</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">prediction</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_input_json</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mf">0.41</span><span class="p">,</span>
+    <span class="s1">&#39;diameter&#39;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+    <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mf">0.10</span><span class="p">,</span>
+    <span class="s1">&#39;whole_weight&#39;</span><span class="p">:</span> <span class="mf">0.36</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">return_prediction</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">example_input_json</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.6
+</pre></div>
+</div>
+</div>
+</div>
+<p>This function appears in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> that we’ll be using shortly.</p>
+</div>
+<div class="section" id="optional-setting-up-a-directory-structure-and-environment">
+<h3>(optional) Setting up a directory structure and environment<a class="headerlink" href="#optional-setting-up-a-directory-structure-and-environment" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>We need a specific directory structure to help us easily deploy our machine learning model.</p></li>
+<li><p>This is already set up in this repo.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lectures
+├── web_api
+│   └── abalone_predictor.joblib  <span class="c1"># this is the machine learning model we have built locally</span>
+│   └── app.py  <span class="c1"># the file that defines our flask API</span>
+│   └── Procfile  <span class="c1"># required by Heroku to help start flask app</span>
+│   └── requirements.txt  <span class="c1"># file containing required packages</span>
+│   
+└── web_application
+    └── abalone_predictor.joblib  <span class="c1"># this is the machine learning model we have built locally</span>
+    └── app.py  <span class="c1"># the file that defines our flask API</span>
+    └── Procfile  <span class="c1"># required by Heroku to help start flask app</span>
+    └── requirements.txt  <span class="c1"># file containing required packages</span>
+    └── templates  <span class="c1"># this subdirectory contains HTML templates to help us build the web application</span>
+    │   └── style.css  <span class="c1"># css template to be used in web application</span>
+    └── static  <span class="c1"># this subdirectory contains CSS style sheets</span>
+        └── home.html  <span class="c1"># html template to be used in web application</span>
+        └── prediction.html  <span class="c1"># html template to be used in web application</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-deployment">
+<h3>Model deployment<a class="headerlink" href="#model-deployment" title="Permalink to this headline">¶</a></h3>
+<p>We have two options for deploying our abalone prediction model. We can:</p>
+<ol class="simple">
+<li><p>Develop a RESTful web API that accepts HTTP requests in the form of input data and returns a prediction.</p></li>
+<li><p>Build a web application with a HTML user-interface that interacts directly with our API.</p></li>
+</ol>
+<p>We’ll explore both options below.</p>
+</div>
+<div class="section" id="building-and-deploying-a-web-api">
+<h3>Building and deploying a web API<a class="headerlink" href="#building-and-deploying-a-web-api" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>on localhost (my laptop)</p></th>
+<th class="head"><p>on server (the interwebs)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>API</p></td>
+<td><p>you are here</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>app</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>I have a separate Python file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> that handles this part.</p></li>
+<li><p>We can open it up here in Jupyter Lab and take a look.</p></li>
+<li><p>If we run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code> we’ll bring it to life.</p>
+<ul>
+<li><p>If you get an error, you may need to install those extra packages and make sure you have the environment loaded.</p></li>
+</ul>
+</li>
+<li><p>We won’t go into details here. If you want to learn more about Flask, see:</p>
+<ul>
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PL-osiE80TeTs4UjLw5MM6OjgkjFeUxCYH">Flask tutorial video series by Corey Schafer</a></p></li>
+<li><p><a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/">Flask docs</a></p></li>
+<li><p><a class="reference external" href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world">Flask tutorial by Miguel Grinberg</a></p></li>
+</ul>
+</li>
+<li><p>If you don’t know what an API is, that’s OK.</p>
+<ul>
+<li><p>For our purposes, it’s something that exists at a particular address, that can accept information and return information.</p></li>
+<li><p>Sort of like a function but not Python-specific and potentially accessible by anyone on the internet.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="testing-that-the-flask-api-is-alive">
+<h3>Testing that the Flask API is alive<a class="headerlink" href="#testing-that-the-flask-api-is-alive" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Let’s test this out in a terminal here in Jupyter Lab.</p></li>
+<li><p>Ok, now let’s go to the URL <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:5000/</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="sending-a-request-to-the-api">
+<h3>Sending a request to the API<a class="headerlink" href="#sending-a-request-to-the-api" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!curl -d &#39;{&quot;length&quot;:0.41,&quot;diameter&quot;:0.33,&quot;height&quot;:0.10,&quot;whole_weight&quot;:0.36}&#39; \
+      -H &quot;Content-Type: application/json&quot; \
+      -X POST http://localhost:5000/predict
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.6
+</pre></div>
+</div>
+</div>
+</div>
+<p>(Or, we can open up another Terminal tab and do it there)</p>
+</div>
+<div class="section" id="deploying-the-api-on-a-server">
+<h3>Deploying the API on a server<a class="headerlink" href="#deploying-the-api-on-a-server" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>on localhost (my laptop)</p></th>
+<th class="head"><p>on server (the interwebs)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>API</p></td>
+<td><p></p></td>
+<td><p>you are here</p></td>
+</tr>
+<tr class="row-odd"><td><p>app</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Okay, so we have a working API running on localhost, but we don’t want to host this service on my laptop!</p></li>
+<li><p>We now want to deploy it on a “real” server so others can send it requests.</p></li>
+<li><p>We will use Heroku to deploy our app but you could also use other services such as AWS.</p></li>
+</ul>
+</div>
+<div class="section" id="heroku-set-up-i-already-did-these">
+<h3>Heroku set-up (I already did these):<a class="headerlink" href="#heroku-set-up-i-already-did-these" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Go to <a class="reference external" href="https://dashboard.heroku.com/">Heroku</a>, log-in, and click “Create new app”.</p></li>
+<li><p>Choose a unique name for your app.</p></li>
+<li><p>Create app.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/fl_6.png"><img alt="../_images/fl_6.png" src="../_images/fl_6.png" style="width: 600px;" /></a>
+<ul class="simple">
+<li><p>We will be using the Heroku CLI to deploy our model.</p></li>
+<li><p>We’ll open up another terminal.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">login</span>
+<span class="n">cd</span> <span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">init</span>
+<span class="n">heroku</span> <span class="n">git</span><span class="p">:</span><span class="n">remote</span> <span class="o">-</span><span class="n">a</span> <span class="n">my</span><span class="o">-</span><span class="n">abalone</span><span class="o">-</span><span class="n">predictor</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s2">&quot;Initial commit&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>(Note that for more complex applications, you may choose to containerize everything in a Docker container to deploy to Heroku).</p>
+</div>
+<div class="section" id="using-the-api-on-heroku">
+<h3>Using the API on Heroku<a class="headerlink" href="#using-the-api-on-heroku" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!curl -d &#39;{&quot;length&quot;:0.41,&quot;diameter&quot;:0.35,&quot;height&quot;:0.12,&quot;whole_weight&quot;:0.36}&#39; \
+      -H &quot;Content-Type: application/json&quot; \
+      -X POST https://my-abalone-predictor.herokuapp.com/predict 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9.6
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>OK so what this means is that anyone can do this.</p></li>
+<li><p>In fact, you all have your laptops - give it a try!</p></li>
+<li><p>You can also do the <code class="docutils literal notranslate"><span class="pre">curl</span></code> from a terminal:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;length&quot;:0.41,&quot;diameter&quot;:0.33,&quot;height&quot;:0.10,&quot;whole_weight&quot;:0.36}&#39;</span> \
+     <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> \ 
+     <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">my</span><span class="o">-</span><span class="n">abalone</span><span class="o">-</span><span class="n">predictor</span><span class="o">.</span><span class="n">herokuapp</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">predict</span> 
+</pre></div>
+</div>
+<p><img alt="" src="lectures/img/mike_highfive.png" /></p>
+<p>That’s it for the API approach. Next:</p>
+</div>
+<div class="section" id="building-and-deploying-a-web-application">
+<h3>Building and deploying a web application<a class="headerlink" href="#building-and-deploying-a-web-application" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>on localhost (my laptop)</p></th>
+<th class="head"><p>on server (the interwebs)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>API</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>app</p></td>
+<td><p>you are here</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Flask can create entire web applications.</p></li>
+<li><p>We only need to refactor our code a little bit and link it up with some html and css to create our web application.</p></li>
+<li><p>We will use Flask to create a html form, accept data submitted to the form, and return a prediction using the submitted data.</p></li>
+<li><p>Again, I won’t go into too much detail here, but we can open up <code class="docutils literal notranslate"><span class="pre">web_application/</span></code> and take a quick look.</p></li>
+</ul>
+</div>
+<div class="section" id="testing-the-web-application">
+<h3>Testing the web application<a class="headerlink" href="#testing-the-web-application" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Let’s terminate our API Flask app, navigate to <code class="docutils literal notranslate"><span class="pre">../web_application</span></code>, and run again.</p></li>
+<li><p>Now let’s go back to <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:5000/</span></code>.</p></li>
+</ul>
+<p>We can try it again on localhost.</p>
+</div>
+<div class="section" id="deploying-the-web-application">
+<h3>Deploying the web application<a class="headerlink" href="#deploying-the-web-application" title="Permalink to this headline">¶</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>on localhost (my laptop)</p></th>
+<th class="head"><p>on server (the interwebs)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>API</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>app</p></td>
+<td><p></p></td>
+<td><p>you are here</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>I already logged in to Heroku and created the app.</p></li>
+<li><p>Now the same commands:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">login</span>
+<span class="n">cd</span> <span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="o">/</span>
+<span class="n">git</span> <span class="n">init</span>
+<span class="n">heroku</span> <span class="n">git</span><span class="p">:</span><span class="n">remote</span> <span class="o">-</span><span class="n">a</span> <span class="n">my</span><span class="o">-</span><span class="n">abalone</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="n">app</span>
+<span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s2">&quot;Initial commit&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">master</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Let’s try it out: https://my-abalone-web-app.herokuapp.com/</p></li>
+<li><p>You can try it too!</p></li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h3>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>There are many ways to deploy a model; a RESTful API is very common and convenient.</p></li>
+<li><p>As you can see, a simple deployment is fairly straightward.</p></li>
+<li><p>However, there may be other considerations such as:</p>
+<ul>
+<li><p>Privacy/security</p></li>
+<li><p>Scaling</p></li>
+<li><p>Error handling</p></li>
+<li><p>Real-time / speed</p></li>
+<li><p>Low-resource environments (e.g. edge computing)</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="break-10-min">
+<h2>Break (10 min)<a class="headerlink" href="#break-10-min" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We’ll take a longer break today.</p></li>
+<li><p>Consider taking this time to fill out the instructor/TA evaluations if you haven’t already.</p></li>
+<li><p>You may have seen <a class="reference external" href="https://www.reddit.com/r/UBC/comments/k18qj7/teaching_evaluations_the_good_the_bad_and_the_ugly/">my post about these evaluations</a> on r/ubc.</p></li>
+</ul>
+<p>Evaluation link: https://canvas.ubc.ca/courses/53561/external_tools/4732</p>
+</div>
+<div class="section" id="course-review-conclusion-25-min">
+<h2>Course review / conclusion (25 min)<a class="headerlink" href="#course-review-conclusion-25-min" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Learning objectives<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Here are the course learning outcomes I came up with when proposing this new course:</p>
+<ol class="simple">
+<li><p>Identify problems that may be addressed with machine learning.</p></li>
+<li><p>Select the appropriate machine learning tool for a problem.</p></li>
+<li><p>Transform data of various types into usable features.</p></li>
+<li><p>Apply standard tools implementing supervised and unsupervised learning techniques.</p></li>
+<li><p>Describe core differences between training, validation, and testing regimes.</p></li>
+<li><p>Effectively communicate the results of a machine learning pipeline.</p></li>
+<li><p>Be realistic about the limitations of individual approaches and machine learning as a whole.</p></li>
+<li><p>Create reproducible workflows and pipelines.</p></li>
+</ol>
+<ul class="simple">
+<li><p>How did we do?</p></li>
+<li><p>Hopefully OK, except we skipped the last point (that will likely be its own new course).</p></li>
+<li><p>I would also add:</p></li>
+</ul>
+<ol class="simple">
+<li><p>Identify and avoid scenarios in which training and testing data are accidentally mixed (the “Golden Rule”).</p></li>
+<li><p>Employ good habits for applying ML, such as starting an analysis with a baseline estimator.</p></li>
+</ol>
+<p>because I think they are important enough to make it to the course-level list.</p>
+</div>
+<div class="section" id="what-did-we-cover">
+<h3>What did we cover?<a class="headerlink" href="#what-did-we-cover" title="Permalink to this headline">¶</a></h3>
+<p>I see the course roughly like this (not in order):</p>
+<p>Part 1: Supervised learning on tabular data</p>
+<ul class="simple">
+<li><p>Overfitting, train/validation/test/deployment, cross-validation</p></li>
+<li><p>Feature preprocessing, pipelines, imputation, OHE, etc</p></li>
+<li><p>The Golden Rule, various ways to accidentally violate it</p></li>
+<li><p>Classification metrics: confusion matrix, precision/recall, ROC, AUC</p></li>
+<li><p>Regression metrics: MSE, MAPE</p></li>
+<li><p>Regression: transforming the targets</p></li>
+<li><p>Feature importances, feature selection</p></li>
+<li><p>Hyperparameter optimization</p></li>
+</ul>
+<p>Part 2: Other data types (non-tabular)</p>
+<ul class="simple">
+<li><p>Computer vision with deep learning</p></li>
+<li><p>Language data, text preprocessing</p></li>
+<li><p>Ratings data</p></li>
+<li><p>Time series</p></li>
+<li><p>Right-censored data / survival analysis</p></li>
+</ul>
+<p>Also: Other stuff</p>
+<ul class="simple">
+<li><p>Ensembles</p></li>
+<li><p>Outlier detection</p></li>
+<li><p>Clustering</p></li>
+<li><p>A bunch of models:</p>
+<ul>
+<li><p>baselines</p></li>
+<li><p>linear models (ridge, lasso, huber, logistic regression, SGD)</p></li>
+<li><p>tree-based models (random forest, gradient boosted trees)</p></li>
+<li><p>KNN classifier/regressor</p></li>
+<li><p>pre-trained deep learning models</p></li>
+</ul>
+</li>
+<li><p>Communicating your results (including visualizations)</p></li>
+<li><p>ML skepticism</p></li>
+<li><p>Ethics for ML</p></li>
+</ul>
+</div>
+<div class="section" id="some-key-takeaways">
+<h3>Some key takeaways<a class="headerlink" href="#some-key-takeaways" title="Permalink to this headline">¶</a></h3>
+<p>Some useful guidelines:</p>
+<ul class="simple">
+<li><p>Do train-test split right away and only once</p></li>
+<li><p>Don’t look at the test set until the end</p></li>
+<li><p>Don’t call <code class="docutils literal notranslate"><span class="pre">fit</span></code> on test/validation data</p></li>
+<li><p>Use pipelines</p></li>
+<li><p>Use baselines</p></li>
+</ul>
+<p>Recipe to approach a supervised learning problem with tabular data:</p>
+<ol class="simple">
+<li><p>Have a long conversation with the stakeholder(s) who will be using your pipeline.</p></li>
+<li><p>Have a long conversation with the person(s) who collected the data.</p></li>
+<li><p>Think about the ethical implications - are you sure you want to do this project? If so, should ethics guide your approach?</p></li>
+<li><p>Random train-test split with fixed random seed; do not touch the test data until Step 16.</p></li>
+<li><p>Exploratory data analysis, outlier detection.</p></li>
+<li><p>Choose a scoring metric -&gt; higher values should make you &amp; your stakeholders happier.</p></li>
+<li><p>Fit a baseline model, e.g. <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> or <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code>.</p></li>
+<li><p>Create a preprocessing pipeline. May involve feature engineering. (This is usually a time-consuming step!)</p></li>
+<li><p>Try a linear model, e.g. <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> or <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>; tune hyperparameters with CV.</p></li>
+<li><p>Try other sensible model(s), e.g. LightGBM; tune hyperparameters with CV.</p></li>
+<li><p>For each model, look at sub-scores from the folds of cross-validation to get a sense of “error bars” on the scores.</p></li>
+<li><p>Pick a model that you like. Best CV score is a reasonable metric, though you may choose to favour simpler models.</p></li>
+<li><p>Look at feature importances.</p></li>
+<li><p>(optional) Perform some more diagnostics like confusion matrix for classification, or “predicted vs. true” scatterplots for regression.</p></li>
+<li><p>(optional) Try to calibrate the uncertainty/confidence outputted by your model.</p></li>
+<li><p>Test set evaluation.</p></li>
+<li><p>Question everything again: validity of results, bias/fairness of trained model, etc.</p></li>
+<li><p>Discuss your results with stakeholders.</p></li>
+<li><p>(optional) Retrain on all your data.</p></li>
+<li><p>Deployment &amp; integration.</p></li>
+<li><p>Profit?</p></li>
+</ol>
+<p>PS: the order of steps is approximate, and some steps may need to be repeated during prototyping, experimentation, and as needed over time.</p>
+</div>
+<div class="section" id="what-would-i-do-differently">
+<h3>What would I do differently?<a class="headerlink" href="#what-would-i-do-differently" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Find a dataset with multi-class classification for an early part of the course.</p></li>
+<li><p>Reordering the material a bit:</p>
+<ul>
+<li><p>Move “feature importances for computer vision” into computer vision lecture (not ethics).</p></li>
+<li><p>Introduce random forests and feature importances a bit earlier</p></li>
+<li><p>Move outlier lecture much earlier</p></li>
+</ul>
+</li>
+<li><p>Allocate 2 lectures to time series data</p></li>
+</ul>
+<p>I’m sure you have other suggestions - feel free to drop me an email, submit my contact form anonymously at mikegelbart.com, or drop them in the course evaluations.</p>
+</div>
+<div class="section" id="vs-340">
+<h3>330 vs. 340<a class="headerlink" href="#vs-340" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>I am hoping lots of people will take both courses.</p></li>
+<li><p>There is some overlap but not a crazy amount (I hope).</p></li>
+<li><p>If you want to learn how these methods work under the hood, CPSC 340 will give you a lot of that, such as:</p>
+<ul>
+<li><p>Implementing <code class="docutils literal notranslate"><span class="pre">Ridge.fit()</span></code> from scratch</p></li>
+<li><p>Mathematically speaking, what is <code class="docutils literal notranslate"><span class="pre">C</span></code> in <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code>?</p></li>
+<li><p>How fast do these algorithms run in terms of the number of rows and columns of your dataset?</p></li>
+<li><p>Etc.</p></li>
+</ul>
+</li>
+<li><p>There are also a bunch of other methods covered.</p></li>
+</ul>
+</div>
+<div class="section" id="unsolicited-advice">
+<h3>Unsolicited advice<a class="headerlink" href="#unsolicited-advice" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>I sometimes end my courses with “unsolicited life advice”.</p></li>
+<li><p>Today I will just say let’s take care of ourselves and each other and try to get through this.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion-farewell">
+<h2>Conclusion &amp; farewell<a class="headerlink" href="#conclusion-farewell" title="Permalink to this headline">¶</a></h2>
+<p>That’s all, folks. We made it!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Varada Kolhatkar<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

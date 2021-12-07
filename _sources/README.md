@@ -83,7 +83,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 |  | **Part III: Communication, ethics, deployment**  | |
 | Nov 30  |  [Ethics](lectures/20_ethics.ipynb) |   📹 (Optional but highly recommended) <li>[Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 5 (6 short videos, 50 min total)</li> <li>[The ethics of data science](http://jtleek.com/ads2020/week-15.html)</li>| new |
 | Dec 2 | [Communication](lectures/21_communication.ipynb) | 📹 (Optional but highly recommended) <li>[Calling BS videos](https://www.youtube.com/playlist?list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS) Chapter 6 (6 short videos, 47 min total)</li> <li>[Can you read graphs? Because I can't.](https://www.youtube.com/watch?v=vbDObzI-CTc) by Sabrina (7 min)</li> |   new |
-| Dec 7 | Model deployment and conclusion |  |  new |
+| Dec 7 | [Model deployment and conclusion](lectures/22_deployment-conclusion.ipynb) |  |  new |
 
 
 ## Working during the COVID-19 global pandemic
