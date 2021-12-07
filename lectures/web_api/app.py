@@ -10,7 +10,7 @@ def return_prediction(pipe_lr, text):
     prediction = pipe_lr.predict([text])[0]    
     return prediction
 
-# 3. load our abalone age predictor model
+# 3. load our moment predictor model
 model = joblib.load('moment_predictor.joblib')
 
 # 4. set up our home page
