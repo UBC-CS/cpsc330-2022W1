@@ -52,7 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
+    <link rel="next" title="Lecture 12: Feature importances" href="12_feat-importances.html" />
     <link rel="prev" title="Lecture 10: Regression Evaluation Metrics" href="10_regression-metrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -175,6 +175,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
   </a>
  </li>
  <li class="toctree-l1">
@@ -1032,15 +1037,15 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.001)</td>
+      <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.005)</td>
-      <td>0.634 (+/- 0.003)</td>
+      <td>0.633 (+/- 0.008)</td>
+      <td>0.634 (+/- 0.004)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.172 (+/- 0.002)</td>
-      <td>0.020 (+/- 0.000)</td>
+      <td>0.171 (+/- 0.006)</td>
+      <td>0.020 (+/- 0.001)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
@@ -1113,22 +1118,22 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.001)</td>
+      <td>0.007 (+/- 0.000)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.005)</td>
-      <td>0.634 (+/- 0.003)</td>
+      <td>0.633 (+/- 0.008)</td>
+      <td>0.634 (+/- 0.004)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.172 (+/- 0.002)</td>
-      <td>0.020 (+/- 0.000)</td>
+      <td>0.171 (+/- 0.006)</td>
+      <td>0.020 (+/- 0.001)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.807 (+/- 0.561)</td>
-      <td>0.045 (+/- 0.001)</td>
+      <td>0.797 (+/- 0.513)</td>
+      <td>0.044 (+/- 0.003)</td>
       <td>0.857 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
@@ -1281,11 +1286,11 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
   <tbody>
     <tr>
       <th>age</th>
-      <td>-0.259573</td>
+      <td>-0.112378</td>
     </tr>
     <tr>
       <th>fnlwgt</th>
-      <td>0.165414</td>
+      <td>-0.689785</td>
     </tr>
     <tr>
       <th>capital.gain</th>
@@ -1297,7 +1302,7 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
     </tr>
     <tr>
       <th>hours.per.week</th>
-      <td>2.390530</td>
+      <td>0.363354</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1386,7 +1391,7 @@ Tree 3
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_46345</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2678</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">make_num_tree_plot</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
@@ -3210,7 +3215,7 @@ Tree 3
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="10_regression-metrics.html" title="previous page">Lecture 10: Regression Evaluation Metrics</a>
-    <a class='right-next' id="next-link" href="13_feature-engineering-selection.html" title="next page">Lecture 13: Feature engineering and feature selection</a>
+    <a class='right-next' id="next-link" href="12_feat-importances.html" title="next page">Lecture 12: Feature importances</a>
 
         </div>
         

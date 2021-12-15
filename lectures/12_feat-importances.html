@@ -54,6 +54,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
+    <link rel="prev" title="Lecture 11: Ensembles" href="11_ensembles.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -100,7 +102,7 @@
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -177,6 +179,11 @@
    Lecture 11: Ensembles
   </a>
  </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 12: Feature importances
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
@@ -215,6 +222,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="20_ethics.html">
    Lecture 20: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_communication.html">
+   Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -1000,36 +1017,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;,
- &#39;MSZoning&#39;,
- &#39;HouseStyle&#39;,
- &#39;Alley&#39;,
- &#39;GarageType&#39;,
- &#39;Condition2&#39;,
- &#39;GarageFinish&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MoSold&#39;,
+ &#39;Foundation&#39;,
  &#39;LotShape&#39;,
- &#39;Exterior2nd&#39;,
- &#39;PavedDrive&#39;,
- &#39;LotConfig&#39;,
- &#39;LandContour&#39;,
- &#39;Utilities&#39;,
- &#39;MoSold&#39;,
- &#39;RoofMatl&#39;,
  &#39;Neighborhood&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;Condition2&#39;,
+ &#39;LandSlope&#39;,
+ &#39;Utilities&#39;,
+ &#39;LandContour&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Condition1&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;MSZoning&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Street&#39;,
+ &#39;Electrical&#39;,
+ &#39;GarageType&#39;,
  &#39;MasVnrType&#39;,
- &#39;BldgType&#39;,
+ &#39;Heating&#39;,
+ &#39;HouseStyle&#39;,
  &#39;MSSubClass&#39;,
  &#39;CentralAir&#39;,
- &#39;Foundation&#39;,
- &#39;MiscFeature&#39;,
- &#39;Heating&#39;,
- &#39;SaleCondition&#39;,
- &#39;Street&#39;,
- &#39;Exterior1st&#39;,
- &#39;LandSlope&#39;,
- &#39;Electrical&#39;,
- &#39;Condition1&#39;,
- &#39;SaleType&#39;]
+ &#39;Alley&#39;,
+ &#39;SaleType&#39;,
+ &#39;BldgType&#39;,
+ &#39;RoofMatl&#39;]
 </pre></div>
 </div>
 </div>
@@ -1160,16 +1177,16 @@
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Condition1_RRNn</th>
-      <th>SaleType_COD</th>
-      <th>SaleType_CWD</th>
-      <th>SaleType_Con</th>
-      <th>SaleType_ConLD</th>
-      <th>SaleType_ConLI</th>
-      <th>SaleType_ConLw</th>
-      <th>SaleType_New</th>
-      <th>SaleType_Oth</th>
-      <th>SaleType_WD</th>
+      <th>BldgType_Twnhs</th>
+      <th>BldgType_TwnhsE</th>
+      <th>RoofMatl_ClyTile</th>
+      <th>RoofMatl_CompShg</th>
+      <th>RoofMatl_Membran</th>
+      <th>RoofMatl_Metal</th>
+      <th>RoofMatl_Roll</th>
+      <th>RoofMatl_Tar&amp;Grv</th>
+      <th>RoofMatl_WdShake</th>
+      <th>RoofMatl_WdShngl</th>
     </tr>
   </thead>
   <tbody>
@@ -1189,13 +1206,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1213,13 +1230,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1237,13 +1254,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1261,13 +1278,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1285,13 +1302,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1333,13 +1350,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1122</th>
@@ -1355,9 +1372,9 @@
       <td>-0.961498</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1381,13 +1398,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1406</th>
@@ -1405,13 +1422,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1429,13 +1446,13 @@
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1677,7 +1694,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467542
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467577
 </pre></div>
 </div>
 </div>
@@ -1838,7 +1855,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467542
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4195.671512467577
 </pre></div>
 </div>
 </div>
@@ -1861,7 +1878,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;, &#39;MSZoning&#39;, &#39;HouseStyle&#39;, &#39;Alley&#39;, &#39;GarageType&#39;, &#39;Condition2&#39;, &#39;GarageFinish&#39;, &#39;LotShape&#39;, &#39;Exterior2nd&#39;, &#39;PavedDrive&#39;, &#39;LotConfig&#39;, &#39;LandContour&#39;, &#39;Utilities&#39;, &#39;MoSold&#39;, &#39;RoofMatl&#39;, &#39;Neighborhood&#39;, &#39;MasVnrType&#39;, &#39;BldgType&#39;, &#39;MSSubClass&#39;, &#39;CentralAir&#39;, &#39;Foundation&#39;, &#39;MiscFeature&#39;, &#39;Heating&#39;, &#39;SaleCondition&#39;, &#39;Street&#39;, &#39;Exterior1st&#39;, &#39;LandSlope&#39;, &#39;Electrical&#39;, &#39;Condition1&#39;, &#39;SaleType&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MoSold&#39;, &#39;Foundation&#39;, &#39;LotShape&#39;, &#39;Neighborhood&#39;, &#39;RoofStyle&#39;, &#39;Condition2&#39;, &#39;LandSlope&#39;, &#39;Utilities&#39;, &#39;LandContour&#39;, &#39;GarageFinish&#39;, &#39;Exterior1st&#39;, &#39;MiscFeature&#39;, &#39;PavedDrive&#39;, &#39;Condition1&#39;, &#39;Exterior2nd&#39;, &#39;SaleCondition&#39;, &#39;MSZoning&#39;, &#39;LotConfig&#39;, &#39;Street&#39;, &#39;Electrical&#39;, &#39;GarageType&#39;, &#39;MasVnrType&#39;, &#39;Heating&#39;, &#39;HouseStyle&#39;, &#39;MSSubClass&#39;, &#39;CentralAir&#39;, &#39;Alley&#39;, &#39;SaleType&#39;, &#39;BldgType&#39;, &#39;RoofMatl&#39;]
 </pre></div>
 </div>
 </div>
@@ -2481,7 +2498,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094061
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094065
 </pre></div>
 </div>
 </div>
@@ -2493,7 +2510,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646613
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5680552752646617
 </pre></div>
 </div>
 </div>
@@ -2585,9 +2602,7 @@ After changing ExterQual from Gd to Ex increased the prediction by:  [4195.67151
 <li><p>Ability to interpret ML models is crucial in many applications such as banking, healthcare, and criminal justice.</p></li>
 <li><p>It can be leveraged by domain experts to diagnose systematic errors and underlying biases of complex ML systems.</p></li>
 </ul>
-<center>
-<img src="img/shap_example.png" width="600" height="600">
-</center>
+<a class="reference internal image-reference" href="../_images/shap_example.png"><img alt="../_images/shap_example.png" src="../_images/shap_example.png" style="width: 600px; height: 600px;" /></a>
 <p><a class="reference external" href="https://github.com/slundberg/shap/blob/master/docs/presentations/February%202018%20Talk.pptx">Source</a></p>
 </div>
 <div class="section" id="what-is-model-interpretability">
@@ -2928,7 +2943,7 @@ Name: income, dtype: float64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_36731</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2724</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 <span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
@@ -3146,34 +3161,34 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.007 (+/- 0.001)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.631 (+/- 0.005)</td>
-      <td>0.635 (+/- 0.003)</td>
+      <td>0.630 (+/- 0.005)</td>
+      <td>0.633 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.707 (+/- 0.019)</td>
-      <td>0.018 (+/- 0.001)</td>
+      <td>0.699 (+/- 0.037)</td>
+      <td>0.019 (+/- 0.001)</td>
       <td>0.850 (+/- 0.006)</td>
       <td>0.851 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>7.484 (+/- 0.051)</td>
-      <td>0.096 (+/- 0.006)</td>
+      <td>7.453 (+/- 0.070)</td>
+      <td>0.094 (+/- 0.002)</td>
       <td>0.857 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>XGBoost</th>
-      <td>0.758 (+/- 0.024)</td>
-      <td>0.038 (+/- 0.001)</td>
+      <td>0.739 (+/- 0.011)</td>
+      <td>0.039 (+/- 0.001)</td>
       <td>0.871 (+/- 0.004)</td>
       <td>0.908 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.175 (+/- 0.011)</td>
-      <td>0.026 (+/- 0.001)</td>
+      <td>0.249 (+/- 0.159)</td>
+      <td>0.027 (+/- 0.002)</td>
       <td>0.871 (+/- 0.004)</td>
       <td>0.892 (+/- 0.000)</td>
     </tr>
@@ -3185,9 +3200,7 @@ Name: income, dtype: float64
 <li><p>One problem is that often simple models are interpretable but not accurate.</p></li>
 <li><p>But more complex models (e.g., LightGBM) are less interpretable.</p></li>
 </ul>
-<center>
-<img src="img/shap_motivation.png" width="600" height="600">
-</center>    
+<a class="reference internal image-reference" href="../_images/shap_motivation.png"><img alt="../_images/shap_motivation.png" src="../_images/shap_motivation.png" style="width: 600px; height: 600px;" /></a>
 <p><a class="reference external" href="https://github.com/slundberg/shap/blob/master/docs/presentations/February%202018%20Talk.pptx">Source</a></p>
 </div>
 <div class="section" id="id2">
@@ -4322,9 +4335,7 @@ Name: income, dtype: float64
 </div>
 <div class="section" id="general-idea">
 <h3>General idea<a class="headerlink" href="#general-idea" title="Permalink to this headline">¶</a></h3>
-<center>
-<img src="img/shap_example.png" width="600" height="600">
-</center>
+<a class="reference internal image-reference" href="../_images/shap_example.png"><img alt="../_images/shap_example.png" src="../_images/shap_example.png" style="width: 600px; height: 600px;" /></a>
 <p><a class="reference external" href="https://github.com/slundberg/shap/blob/master/docs/presentations/February%202018%20Talk.pptx">Source</a></p>
 </div>
 <div class="section" id="id4">
@@ -4337,9 +4348,7 @@ Name: income, dtype: float64
 </ul>
 </li>
 </ul>
-<center>
-<img src="img/shap_explanation2.png" width="1000" height="1000">
-</center>
+<a class="reference internal image-reference" href="../_images/shap_explanation2.png"><img alt="../_images/shap_explanation2.png" src="../_images/shap_explanation2.png" style="width: 1000px; height: 1000px;" /></a>
 <p><a class="reference external" href="https://github.com/slundberg/shap/blob/master/docs/presentations/February%202018%20Talk.pptx">Source</a></p>
 <p>Let’s try it out on tree-based models.</p>
 <p>First you’ll have to install it.</p>
@@ -4877,9 +4886,6 @@ Name: income, Length: 6513, dtype: object
 <img alt="../_images/12_feat-importances_189_0.png" src="../_images/12_feat-importances_189_0.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>The raw model score is smaller than the base value so the prediction is &lt;=50K (because we are consider the shap values for class 1).</p></li>
-</ul>
 </div>
 <div class="section" id="id5">
 <h3>Example with prediction &gt;50K<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
@@ -4933,7 +4939,7 @@ Name: income, Length: 6513, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/12_feat-importances_195_0.png" src="../_images/12_feat-importances_195_0.png" />
+<img alt="../_images/12_feat-importances_194_0.png" src="../_images/12_feat-importances_194_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4981,12 +4987,9 @@ Name: income, Length: 6513, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/12_feat-importances_197_0.png" src="../_images/12_feat-importances_197_0.png" />
+<img alt="../_images/12_feat-importances_196_0.png" src="../_images/12_feat-importances_196_0.png" />
 </div>
 </div>
-<ul class="simple">
-<li><p>The raw model score is bigger than the base value so the prediction is &gt;50K (because we are consider the shap values for class 1).</p></li>
-</ul>
 <p>Observations:</p>
 <ul class="simple">
 <li><p>Everything is with respect to class 1 here.</p></li>
@@ -5096,6 +5099,8 @@ Name: income, Length: 6513, dtype: object
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="11_ensembles.html" title="previous page">Lecture 11: Ensembles</a>
+    <a class='right-next' id="next-link" href="13_feature-engineering-selection.html" title="next page">Lecture 13: Feature engineering and feature selection</a>
 
         </div>
         
