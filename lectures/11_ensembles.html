@@ -666,18 +666,18 @@ The interests of truth require a diversity of opinions.
 </ul>
 <div class="section" id="the-netflix-prize">
 <h3>The Netflix prize<a class="headerlink" href="#the-netflix-prize" title="Permalink to this headline">¶</a></h3>
-<p><img alt="image.png" src="lectures/attachment:image.png" /></p>
+<p><img alt="" src="../_images/netflix.png" /></p>
 <p><a class="reference external" href="https://netflixtechblog.com/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429">Source</a></p>
 <ul class="simple">
 <li><p>Most of the winning solutions for Kaggle competitions involve some kind of ensembling. For example:</p></li>
 </ul>
-<center>
-<img src="img/fraud_detection_kaggle.png" width="600" height="600">
-</center>    <p>Key idea: Groups can often make better decisions than individuals, especially when group members are diverse enough.</p>
+<p><img alt="" src="../_images/fraud_detection_kaggle.png" /></p>
+<!-- <img src="img/fraud_detection_kaggle.png" width="600" height="600"> -->
+<p>Key idea: Groups can often make better decisions than individuals, especially when group members are diverse enough.</p>
 <p><a class="reference external" href="http://wisdomofcrowds.blogspot.com/2009/12/introduction-part-i.html">The Wisdom of Crowds</a></p>
-<center>
-<img src="img/wisdom_of_crowds.jpg" width="300" height="300">
-</center>    </div>
+<p><img alt="" src="../_images/wisdom_of_crowds.jpg" /></p>
+<!-- <img src="img/wisdom_of_crowds.jpg" width="300" height="300"> -->
+</div>
 <div class="section" id="tree-based-ensemble-models">
 <h3>Tree-based ensemble models<a class="headerlink" href="#tree-based-ensemble-models" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -908,7 +908,9 @@ The interests of truth require a diversity of opinions.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">())</span>
 
-<span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="n">education_levels</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
@@ -1037,14 +1039,14 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.007 (+/- 0.001)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.008)</td>
-      <td>0.634 (+/- 0.004)</td>
+      <td>0.634 (+/- 0.005)</td>
+      <td>0.631 (+/- 0.004)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.171 (+/- 0.006)</td>
+      <td>0.176 (+/- 0.004)</td>
       <td>0.020 (+/- 0.001)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
@@ -1080,6 +1082,7 @@ Name: income, dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
 <span class="n">pipe_rf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 <span class="p">)</span>
@@ -1118,22 +1121,22 @@ Name: income, dtype: float64
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.007 (+/- 0.000)</td>
+      <td>0.007 (+/- 0.001)</td>
       <td>0.005 (+/- 0.000)</td>
-      <td>0.633 (+/- 0.008)</td>
-      <td>0.634 (+/- 0.004)</td>
+      <td>0.634 (+/- 0.005)</td>
+      <td>0.631 (+/- 0.004)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.171 (+/- 0.006)</td>
+      <td>0.176 (+/- 0.004)</td>
       <td>0.020 (+/- 0.001)</td>
       <td>0.813 (+/- 0.003)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.797 (+/- 0.513)</td>
-      <td>0.044 (+/- 0.003)</td>
+      <td>0.763 (+/- 0.510)</td>
+      <td>0.045 (+/- 0.002)</td>
       <td>0.857 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
@@ -1203,7 +1206,7 @@ Suppose this is your original dataset: [1,2,3,4]</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_rf_demo</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="p">)</span> 
+<span class="p">)</span>
 <span class="n">pipe_rf_demo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1286,11 +1289,11 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
   <tbody>
     <tr>
       <th>age</th>
-      <td>-0.112378</td>
+      <td>0.770797</td>
     </tr>
     <tr>
       <th>fnlwgt</th>
-      <td>-0.689785</td>
+      <td>0.874215</td>
     </tr>
     <tr>
       <th>capital.gain</th>
@@ -1352,7 +1355,7 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tree 1
 </pre></div>
 </div>
-<img alt="../_images/11_ensembles_52_1.svg" src="../_images/11_ensembles_52_1.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
+<img alt="../_images/11_ensembles_52_1.svg" src="../_images/11_ensembles_52_1.svg" /><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [1.]
 
 
 Tree 2
@@ -1382,192 +1385,9 @@ Tree 3
 <h3>Random forests: number of trees (<code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>) and the fundamental tradeoff<a class="headerlink" href="#random-forests-number-of-trees-n-estimators-and-the-fundamental-tradeoff" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">make_num_tree_plot</span><span class="p">(</span>
-    <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2678</span><span class="o">/</span><span class="mf">2496901075.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">make_num_tree_plot</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">preprocessor</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
-
-<span class="nn">~/CS/2021-22/330/cpsc330/lectures/code/./plotting_functions.py</span> in <span class="ni">make_num_tree_plot</span><span class="nt">(preprocessor, X_train, y_train, X_test, y_test, num_trees, scoring_metric)</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="k">for</span> <span class="n">ntree</span> <span class="ow">in</span> <span class="n">num_trees</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="n">model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">ntree</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">392</span>         <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span>             <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span>         <span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>             <span class="n">extra_args</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_args</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>             <span class="k">if</span> <span class="n">extra_args</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">63</span>                 <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> 
-<span class="g g-Whitespace">     </span><span class="mi">65</span>             <span class="c1"># extra_args &gt; 0</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span>     <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span>                         <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">250</span>     <span class="n">results</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">251</span>         <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span>             <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">scorers</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1044</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1045</span> 
-<span class="ne">-&gt; </span><span class="mi">1046</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1047</span>                 <span class="k">pass</span>
-<span class="g g-Whitespace">   </span><span class="mi">1048</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>                 <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">861</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>                 <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">779</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> 
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">598</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span> 
-<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span> <span class="o">!=</span> <span class="s1">&#39;passthrough&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">345</span>                 <span class="n">fit_params_last_step</span> <span class="o">=</span> <span class="n">fit_params_steps</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-<span class="ne">--&gt; </span><span class="mi">346</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_final_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xt</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_last_step</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">347</span> 
-<span class="g g-Whitespace">    </span><span class="mi">348</span>         <span class="k">return</span> <span class="bp">self</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span>             <span class="c1"># parallel_backend contexts set at a higher level,</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span>             <span class="c1"># since correctness does not rely on using threads.</span>
-<span class="ne">--&gt; </span><span class="mi">387</span>             <span class="n">trees</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span>                              <span class="o">**</span><span class="n">_joblib_parallel_args</span><span class="p">(</span><span class="n">prefer</span><span class="o">=</span><span class="s1">&#39;threads&#39;</span><span class="p">))(</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span>                 <span class="n">delayed</span><span class="p">(</span><span class="n">_parallel_build_trees</span><span class="p">)(</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1044</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1045</span> 
-<span class="ne">-&gt; </span><span class="mi">1046</span>             <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1047</span>                 <span class="k">pass</span>
-<span class="g g-Whitespace">   </span><span class="mi">1048</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>                 <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">861</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">862</span>                 <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">863</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">777</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">779</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> 
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/ensemble/_forest.py</span> in <span class="ni">_parallel_build_trees</span><span class="nt">(tree, forest, X, y, sample_weight, tree_idx, n_trees, verbose, class_weight, n_samples_bootstrap)</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                                                         <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> 
-<span class="ne">--&gt; </span><span class="mi">169</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">curr_sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">170</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span>         <span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">902</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">903</span><span class="s2">         super().fit(</span>
-<span class="g g-Whitespace">    </span><span class="mi">904</span><span class="s2">             X, y,</span>
-<span class="g g-Whitespace">    </span><span class="mi">905</span><span class="s2">             sample_weight=sample_weight,</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/tree/_classes.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight, check_input, X_idx_sorted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span><span class="s2">                                            min_impurity_split)</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">394</span><span class="s2">         builder.build(self.tree_, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="s2">         if self.n_outputs_ == 1 and is_classifier(self):</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make_num_tree_plot(</span>
+<span class="c1">#     preprocessor, X_train, y_train, X_test, y_test, [1, 5, 10, 25, 50, 100, 200, 500]</span>
+<span class="c1"># )</span>
 </pre></div>
 </div>
 </div>
@@ -1732,6 +1552,165 @@ Tree 3
     <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
     <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_10542</span><span class="o">/</span><span class="mf">2918226602.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span> <span class="ow">in</span> <span class="n">classifiers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_metric</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="p">)</span>
+
+<span class="nn">~/CS/2021-22/330/cpsc330/lectures/code/./utils.py</span> in <span class="ni">mean_std_cross_val_scores</span><span class="nt">(model, X_train, y_train, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span><span class="sd"> </span>
+<span class="ne">--&gt; </span><span class="mi">114</span><span class="sd">     scores = cross_validate(model, X_train, y_train, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span><span class="sd">     mean_scores = pd.DataFrame(scores).mean()</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="sd">             extra_args = len(args) - len(all_args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="sd">             if extra_args &lt;= 0:</span>
+<span class="ne">---&gt; </span><span class="mi">63</span><span class="sd">                 return f(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="sd">             # extra_args &gt; 0</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span><span class="sd">     parallel = Parallel(n_jobs=n_jobs, verbose=verbose,</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span><span class="sd">                         pre_dispatch=pre_dispatch)</span>
+<span class="ne">--&gt; </span><span class="mi">250</span><span class="sd">     results = parallel(</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span><span class="sd">         delayed(_fit_and_score)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span><span class="sd">             clone(estimator), X, y, scorers, train, test, verbose, None,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span><span class="sd">                 self._iterating = self._original_iterator is not None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1045</span><span class="sd"> </span>
+<span class="ne">-&gt; </span><span class="mi">1046</span><span class="sd">             while self.dispatch_one_batch(iterator):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span><span class="sd">                 pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1048</span><span class="sd"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span><span class="sd">                 return False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span><span class="sd">             else:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span><span class="sd">                 self._dispatch(tasks)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span><span class="sd">                 return True</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span><span class="sd"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span><span class="sd">         with self._lock:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span><span class="sd">             job_idx = len(self._jobs)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span><span class="sd">             job = self._backend.apply_async(batch, callback=cb)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span><span class="sd">             # A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span><span class="sd">             # called before we get here, causing self._jobs to</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span><span class="sd">     def apply_async(self, func, callback=None):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span><span class="sd">         &quot;&quot;&quot;</span><span class="n">Schedule</span> <span class="n">a</span> <span class="n">func</span> <span class="n">to</span> <span class="n">be</span> <span class="n">run</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span><span class="s2">         result = ImmediateResult(func)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span><span class="s2">         if callback:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="s2">             callback(result)</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span><span class="s2">         # Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span><span class="s2">         # arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span><span class="s2">         self.results = batch()</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="s2">     def get(self):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span><span class="s2">         # change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span><span class="s2">             return [func(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                     for func, args, kwargs in self.items]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span><span class="s2">         # change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span><span class="s2">             return [func(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span><span class="s2">                     for func, args, kwargs in self.items]</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span><span class="s2"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span><span class="s2">     def __call__(self, *args, **kwargs):</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span><span class="s2">         with config_context(**self.config):</span>
+<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">             return self.function(*args, **kwargs)</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">596</span><span class="s2">             estimator.fit(X_train, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">597</span><span class="s2">         else:</span>
+<span class="ne">--&gt; </span><span class="mi">598</span><span class="s2">             estimator.fit(X_train, y_train, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">599</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span><span class="s2">     except Exception as e:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span><span class="s2">             if self._final_estimator != &#39;passthrough&#39;:</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span><span class="s2">                 fit_params_last_step = fit_params_steps[self.steps[-1][0]]</span>
+<span class="ne">--&gt; </span><span class="mi">346</span><span class="s2">                 self._final_estimator.fit(Xt, y, **fit_params_last_step)</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">348</span><span class="s2">         return self</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, cat_features, text_features, embedding_features, sample_weight, baseline, use_best_model, eval_set, verbose, logging_level, plot, column_description, verbose_eval, metric_period, silent, early_stopping_rounds, save_snapshot, snapshot_file, snapshot_interval, init_model, callbacks, log_cout, log_cerr)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4673</span><span class="s2">             CatBoostClassifier._check_is_compatible_loss(params[&#39;loss_function&#39;])</span>
+<span class="g g-Whitespace">   </span><span class="mi">4674</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">4675</span><span class="s2">         self._fit(X, y, cat_features, text_features, embedding_features, None, sample_weight, None, None, None, None, baseline, use_best_model,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4676</span><span class="s2">                   eval_set, verbose, logging_level, plot, column_description, verbose_eval, metric_period,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4677</span><span class="s2">                   silent, early_stopping_rounds, save_snapshot, snapshot_file, snapshot_interval, init_model, callbacks, log_cout, log_cerr)</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">_fit</span><span class="nt">(self, X, y, cat_features, text_features, embedding_features, pairs, sample_weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, use_best_model, eval_set, verbose, logging_level, plot, column_description, verbose_eval, metric_period, silent, early_stopping_rounds, save_snapshot, snapshot_file, snapshot_interval, init_model, callbacks, log_cout, log_cerr)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1979</span><span class="s2">             raise CatBoostError(&quot;y may be None only when X is an instance of catboost.Pool or string&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1980</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">1981</span><span class="s2">         train_params = self._prepare_train_params(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1982</span><span class="s2">             X=X, y=y, cat_features=cat_features, text_features=text_features, embedding_features=embedding_features,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1983</span><span class="s2">             pairs=pairs, sample_weight=sample_weight, group_id=group_id, group_weight=group_weight,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">_prepare_train_params</span><span class="nt">(self, X, y, cat_features, text_features, embedding_features, pairs, sample_weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, use_best_model, eval_set, verbose, logging_level, plot, column_description, verbose_eval, metric_period, silent, early_stopping_rounds, save_snapshot, snapshot_file, snapshot_interval, init_model, callbacks)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1865</span><span class="s2">         embedding_features = _process_feature_indices(embedding_features, X, params, &#39;embedding_features&#39;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1866</span><span class="s2"> </span>
+<span class="ne">-&gt; </span><span class="mi">1867</span><span class="s2">         train_pool = _build_train_pool(X, y, cat_features, text_features, embedding_features, pairs,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1868</span><span class="s2">                                        sample_weight, group_id, group_weight, subgroup_id, pairs_weight,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1869</span><span class="s2">                                        baseline, column_description)</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">_build_train_pool</span><span class="nt">(X, y, cat_features, text_features, embedding_features, pairs, sample_weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, column_description)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span><span class="s2">         if y is None:</span>
+<span class="nn">   1152             raise CatBoostError(&quot;y has not initialized in fit(): X is not catboost.Pool object, y must be not None</span> in <span class="ni">fit</span><span class="nt">().&quot;)</span>
+<span class="ne">-&gt; </span><span class="mi">1153</span><span class="s2">         train_pool = Pool(X, y, cat_features=cat_features, text_features=text_features, embedding_features=embedding_features, pairs=pairs, weight=sample_weight, group_id=group_id,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1154</span><span class="s2">                           group_weight=group_weight, subgroup_id=subgroup_id, pairs_weight=pairs_weight, baseline=baseline)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1155</span><span class="s2">     return train_pool</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, label, cat_features, text_features, embedding_features, column_description, pairs, delimiter, has_header, ignore_csv_quoting, weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, feature_names, thread_count, log_cout, log_cerr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span><span class="s2">                     )</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">619</span><span class="s2">                 self._init(data, label, cat_features, text_features, embedding_features, pairs, weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, feature_names, thread_count)</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span><span class="s2">         super(Pool, self).__init__()</span>
+<span class="g g-Whitespace">    </span><span class="mi">621</span><span class="s2"> </span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/catboost/core.py</span> in <span class="ni">_init</span><span class="nt">(self, data, label, cat_features, text_features, embedding_features, pairs, weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, feature_names, thread_count)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1133</span><span class="s2">             baseline = np.reshape(baseline, (samples_count, -1))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1134</span><span class="s2">             self._check_baseline_shape(baseline, samples_count)</span>
+<span class="ne">-&gt; </span><span class="mi">1135</span><span class="s2">         self._init_pool(data, label, cat_features, text_features, embedding_features, pairs, weight, group_id, group_weight, subgroup_id, pairs_weight, baseline, feature_names, thread_count)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1136</span><span class="s2"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1137</span><span class="s2"> </span>
+
+<span class="nn">_catboost.pyx</span> in <span class="ni">_catboost._PoolBase._init_pool</span><span class="nt">()</span>
+
+<span class="nn">_catboost.pyx</span> in <span class="ni">_catboost._PoolBase._init_pool</span><span class="nt">()</span>
+
+<span class="nn">_catboost.pyx</span> in <span class="ni">_catboost._PoolBase._init_objects_order_layout_pool</span><span class="nt">()</span>
+
+<span class="nn">_catboost.pyx</span> in <span class="ni">_catboost._PoolBase._set_label_objects_order</span><span class="nt">()</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/abc.py</span> in <span class="ni">__instancecheck__</span><span class="nt">(cls, instance)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span><span class="s2">             return _abc_register(cls, subclass)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">117</span><span class="s2">         def __instancecheck__(cls, instance):</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span><span class="s2">             &quot;&quot;&quot;</span><span class="n">Override</span> <span class="k">for</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span><span class="s2">             return _abc_instancecheck(cls, instance)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1991,7 +1970,7 @@ Tree 3
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">set_config</span>
 
-<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s2">&quot;diagram&quot;</span><span class="p">)</span> <span class="c1"># global setting </span>
+<span class="n">set_config</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s2">&quot;diagram&quot;</span><span class="p">)</span>  <span class="c1"># global setting</span>
 </pre></div>
 </div>
 </div>

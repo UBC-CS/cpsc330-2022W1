@@ -32,8 +32,9 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-make_num_tree_plot(
-    preprocessor, X_train, y_train, X_test, y_test, [1, 5, 10, 25, 50, 100, 200, 500]
-)
+for (name, model) in classifiers.items():
+    results[name] = mean_std_cross_val_scores(
+        model, X_train, y_train, return_train_score=True, scoring=scoring_metric
+    )
 -------------------
 
