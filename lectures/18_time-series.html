@@ -178,6 +178,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
   </a>
@@ -220,6 +225,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="21_communication.html">
    Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -801,14 +811,16 @@ Name: one, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">citibike</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">9</span> <span class="c1"># convert to POSIX time by dividing by 10**9</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">citibike</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">9</span>
+<span class="p">)</span>  <span class="c1"># convert to POSIX time by dividing by 10**9</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">citibike</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/295926807.py:1: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
-  X = citibike.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9 # convert to POSIX time by dividing by 10**9
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11256/4104756848.py:2: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+  citibike.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9
 </pre></div>
 </div>
 </div>
@@ -824,9 +836,9 @@ Name: one, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/1512548044.py:4: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11256/1512548044.py:4: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
   X_train = train_df.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9
-/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_73320/1512548044.py:5: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
+/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11256/1512548044.py:5: FutureWarning: casting datetime64[ns] values to int64 with .astype(...) is deprecated and will raise in a future version. Use .view(...) instead.
   X_test = test_df.index.astype(&quot;int64&quot;).values.reshape(-1, 1) // 10 ** 9
 </pre></div>
 </div>
@@ -1418,36 +1430,36 @@ Test-set R^2: 0.85
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001384</td>
-      <td>0.000318</td>
+      <td>0.001539</td>
+      <td>0.000299</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000537</td>
-      <td>0.000243</td>
+      <td>0.000547</td>
+      <td>0.000241</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000694</td>
-      <td>0.000316</td>
+      <td>0.000733</td>
+      <td>0.000259</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000741</td>
-      <td>0.000261</td>
+      <td>0.000631</td>
+      <td>0.000256</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001033</td>
-      <td>0.000267</td>
+      <td>0.000959</td>
+      <td>0.000271</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -4648,19 +4660,19 @@ Test score: 0.84
 <p>How about just summer/winter as a feature?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_season</span><span class="p">(</span><span class="n">month</span><span class="p">):</span> 
-    <span class="n">WINTER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;June&#39;</span><span class="p">,</span> <span class="s1">&#39;July&#39;</span><span class="p">,</span> <span class="s1">&#39;August&#39;</span><span class="p">]</span>
-    <span class="n">AUTUMN_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;March&#39;</span><span class="p">,</span> <span class="s1">&#39;April&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">]</span>
-    <span class="n">SUMMER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;December&#39;</span><span class="p">,</span> <span class="s1">&#39;January&#39;</span><span class="p">,</span><span class="s1">&#39;February&#39;</span><span class="p">]</span>
-    <span class="n">SPRING_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;September&#39;</span><span class="p">,</span> <span class="s1">&#39;October&#39;</span><span class="p">,</span> <span class="s1">&#39;November&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_season</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+    <span class="n">WINTER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;June&quot;</span><span class="p">,</span> <span class="s2">&quot;July&quot;</span><span class="p">,</span> <span class="s2">&quot;August&quot;</span><span class="p">]</span>
+    <span class="n">AUTUMN_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;March&quot;</span><span class="p">,</span> <span class="s2">&quot;April&quot;</span><span class="p">,</span> <span class="s2">&quot;May&quot;</span><span class="p">]</span>
+    <span class="n">SUMMER_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;December&quot;</span><span class="p">,</span> <span class="s2">&quot;January&quot;</span><span class="p">,</span> <span class="s2">&quot;February&quot;</span><span class="p">]</span>
+    <span class="n">SPRING_MONTHS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;September&quot;</span><span class="p">,</span> <span class="s2">&quot;October&quot;</span><span class="p">,</span> <span class="s2">&quot;November&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">WINTER_MONTHS</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s1">&#39;Winter&#39;</span>
+        <span class="k">return</span> <span class="s2">&quot;Winter&quot;</span>
     <span class="k">elif</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">AUTUMN_MONTHS</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s1">&#39;Autumn&#39;</span>
+        <span class="k">return</span> <span class="s2">&quot;Autumn&quot;</span>
     <span class="k">elif</span> <span class="n">month</span> <span class="ow">in</span> <span class="n">SUMMER_MONTHS</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s1">&#39;Summer&#39;</span>
-    <span class="k">else</span><span class="p">:</span> 
-        <span class="k">return</span> <span class="s1">&#39;Fall&#39;</span>
+        <span class="k">return</span> <span class="s2">&quot;Summer&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Fall&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -4996,7 +5008,7 @@ Test score: 0.84
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocess_features</span><span class="p">(</span>
     <span class="n">train_df</span><span class="p">,</span>
     <span class="n">test_df</span><span class="p">,</span>
-    <span class="n">numeric_features</span><span class="p">,</span> 
+    <span class="n">numeric_features</span><span class="p">,</span>
     <span class="n">categorical_features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Season&quot;</span><span class="p">],</span>
     <span class="n">drop_features</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Month&quot;</span><span class="p">],</span>
 <span class="p">)</span>
@@ -5714,12 +5726,16 @@ Test score: 0.84
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_lag_feature</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">orig_feature</span><span class="p">,</span> <span class="n">lag</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a new df with a new feature that&#39;s a lagged version of the original, where lag is an int.&quot;&quot;&quot;</span>
     <span class="c1"># note: pandas .shift() kind of does this for you already, but oh well I already wrote this code</span>
-    
+
     <span class="n">new_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">new_feature_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">_lag</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">orig_feature</span><span class="p">,</span> <span class="n">lag</span><span class="p">)</span>
     <span class="n">new_df</span><span class="p">[</span><span class="n">new_feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-    <span class="k">for</span> <span class="n">location</span><span class="p">,</span> <span class="n">df_location</span> <span class="ow">in</span> <span class="n">new_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Location&quot;</span><span class="p">):</span> <span class="c1"># Each location is its own time series</span>
-        <span class="n">new_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_location</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">lag</span><span class="p">:],</span><span class="n">new_feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_location</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="n">lag</span><span class="p">][</span><span class="n">orig_feature</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">for</span> <span class="n">location</span><span class="p">,</span> <span class="n">df_location</span> <span class="ow">in</span> <span class="n">new_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+        <span class="s2">&quot;Location&quot;</span>
+    <span class="p">):</span>  <span class="c1"># Each location is its own time series</span>
+        <span class="n">new_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_location</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">lag</span><span class="p">:],</span> <span class="n">new_feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_location</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="n">lag</span><span class="p">][</span>
+            <span class="n">orig_feature</span>
+        <span class="p">]</span><span class="o">.</span><span class="n">values</span>
     <span class="k">return</span> <span class="n">new_df</span>
 </pre></div>
 </div>
@@ -6553,7 +6569,7 @@ Test score: 0.85
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73320</span><span class="o">/</span><span class="mf">3220146892.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11256</span><span class="o">/</span><span class="mf">3220146892.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">retail_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/MRTSSM448USN.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DATE&quot;</span><span class="p">])</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">retail_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">]</span>
 

@@ -178,6 +178,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
   </a>
@@ -220,6 +225,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="21_communication.html">
    Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -832,7 +842,7 @@ Name: SeniorCitizen, dtype: int64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73977</span><span class="o">/</span><span class="mf">2961559258.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11280</span><span class="o">/</span><span class="mf">2961559258.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">);</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y)</span>
@@ -1035,7 +1045,7 @@ memory usage: 1.1+ MB
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73977</span><span class="o">/</span><span class="mf">2516325513.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11280</span><span class="o">/</span><span class="mf">2516325513.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
 <span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
@@ -1222,7 +1232,9 @@ memory usage: 907.8+ KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">numeric_features</span>
-    <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="o">+</span> <span class="n">passthrough_features</span>
 <span class="p">)</span>
 </pre></div>
@@ -1269,23 +1281,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>MonthlyCharges</th>
       <th>TotalCharges</th>
-      <th>gender_Female</th>
-      <th>gender_Male</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
-      <th>TechSupport_No</th>
-      <th>TechSupport_No internet service</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
+      <th>StreamingTV_Yes</th>
+      <th>DeviceProtection_No</th>
       <th>...</th>
-      <th>MultipleLines_No</th>
-      <th>MultipleLines_No phone service</th>
-      <th>MultipleLines_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
+      <th>Dependents_No</th>
+      <th>Dependents_Yes</th>
       <th>SeniorCitizen</th>
     </tr>
   </thead>
@@ -1295,23 +1307,23 @@ memory usage: 907.8+ KB
       <td>0.707712</td>
       <td>0.185175</td>
       <td>0.513678</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
     </tr>
     <tr>
@@ -1321,21 +1333,21 @@ memory usage: 907.8+ KB
       <td>-0.979562</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1343,23 +1355,23 @@ memory usage: 907.8+ KB
       <td>-0.148349</td>
       <td>1.133562</td>
       <td>0.226789</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1369,21 +1381,21 @@ memory usage: 907.8+ KB
       <td>-0.950696</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
     </tr>
     <tr>
@@ -1391,19 +1403,19 @@ memory usage: 907.8+ KB
       <td>0.993065</td>
       <td>-0.183179</td>
       <td>0.433814</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1479,7 +1491,9 @@ memory usage: 907.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span><span class="n">dc</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+    <span class="n">dc</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1539,7 +1553,9 @@ memory usage: 907.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;logistic regression&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span><span class="n">lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;logistic regression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+    <span class="n">lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1571,7 +1587,7 @@ memory usage: 907.8+ KB
     <tr>
       <th>fit_time</th>
       <td>0.002 (+/- 0.000)</td>
-      <td>0.054 (+/- 0.005)</td>
+      <td>0.062 (+/- 0.009)</td>
     </tr>
     <tr>
       <th>score_time</th>
@@ -1617,7 +1633,9 @@ memory usage: 907.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;random forest&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;random forest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+    <span class="n">rf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1650,8 +1668,8 @@ memory usage: 907.8+ KB
     <tr>
       <th>fit_time</th>
       <td>0.002 (+/- 0.000)</td>
-      <td>0.054 (+/- 0.005)</td>
-      <td>0.314 (+/- 0.021)</td>
+      <td>0.062 (+/- 0.009)</td>
+      <td>0.294 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>score_time</th>
@@ -1663,7 +1681,7 @@ memory usage: 907.8+ KB
       <th>test_score</th>
       <td>0.741 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
-      <td>0.794 (+/- 0.011)</td>
+      <td>0.788 (+/- 0.009)</td>
     </tr>
     <tr>
       <th>train_score</th>
@@ -1682,8 +1700,8 @@ memory usage: 907.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3522,  390],
-       [ 725,  645]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3533,  379],
+       [ 731,  639]])
 </pre></div>
 </div>
 </div>
@@ -1835,8 +1853,12 @@ memory usage: 907.8+ KB
 <p>Let’s just consider the cases <em>for which we have the time</em>, to obtain the average subscription length.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_churn</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == &#39;Yes&#39;&quot;</span><span class="p">)</span> <span class="c1"># Consider only examples where the customers churned. </span>
-<span class="n">test_df_churn</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == &#39;Yes&#39;&quot;</span><span class="p">)</span> <span class="c1"># Consider only examples where the customers churned. </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df_churn</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;Churn == &#39;Yes&#39;&quot;</span>
+<span class="p">)</span>  <span class="c1"># Consider only examples where the customers churned.</span>
+<span class="n">test_df_churn</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+    <span class="s2">&quot;Churn == &#39;Yes&#39;&quot;</span>
+<span class="p">)</span>  <span class="c1"># Consider only examples where the customers churned.</span>
 <span class="n">train_df_churn</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -2050,7 +2072,7 @@ memory usage: 907.8+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessing_notenure</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
     <span class="p">(</span>
         <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">()),</span>
-        <span class="n">numeric_features</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="c1"># Getting rid of the tenure column</span>
+        <span class="n">numeric_features</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span>  <span class="c1"># Getting rid of the tenure column</span>
     <span class="p">),</span>
     <span class="p">(</span><span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">),</span> <span class="n">categorical_features</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">&quot;passthrough&quot;</span><span class="p">,</span> <span class="n">passthrough_features</span><span class="p">),</span>
@@ -2456,7 +2478,7 @@ memory usage: 907.8+ KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MonthlyCharges&quot;</span><span class="p">]</span>
 <span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;customerID&quot;</span><span class="p">,</span> <span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span>
-<span class="n">passthrough_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="s2">&quot;SeniorCitizen&quot;</span><span class="p">]</span> <span class="c1"># don&#39;t want to scale tenure</span>
+<span class="n">passthrough_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="s2">&quot;SeniorCitizen&quot;</span><span class="p">]</span>  <span class="c1"># don&#39;t want to scale tenure</span>
 <span class="n">target_column</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">]</span>
 <span class="c1"># the rest are categorical</span>
 <span class="n">categorical_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
@@ -2549,23 +2571,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>gender_Female</th>
-      <th>gender_Male</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
-      <th>TechSupport_No</th>
-      <th>...</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
       <th>StreamingTV_Yes</th>
-      <th>MultipleLines_No</th>
-      <th>MultipleLines_No phone service</th>
-      <th>MultipleLines_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>...</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
+      <th>Dependents_No</th>
+      <th>Dependents_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -2575,23 +2597,23 @@ memory usage: 907.8+ KB
       <td>50.0</td>
       <td>1.0</td>
       <td>0.185175</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>...</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>5707</th>
@@ -2601,21 +2623,21 @@ memory usage: 907.8+ KB
       <td>-0.641538</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3442</th>
@@ -2623,23 +2645,23 @@ memory usage: 907.8+ KB
       <td>29.0</td>
       <td>0.0</td>
       <td>1.133562</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3932</th>
@@ -2649,21 +2671,21 @@ memory usage: 907.8+ KB
       <td>0.458524</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>...</td>
+      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>6124</th>
@@ -2671,19 +2693,19 @@ memory usage: 907.8+ KB
       <td>57.0</td>
       <td>0.0</td>
       <td>-0.183179</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -2728,7 +2750,7 @@ memory usage: 907.8+ KB
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span><span class="o">==</span><span class="s2">&quot;No&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="s2">&quot;No&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2741,7 +2763,7 @@ memory usage: 907.8+ KB
 <p>What’s the average tenure?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="p">[</span><span class="s2">&quot;tenure&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2754,7 +2776,7 @@ memory usage: 907.8+ KB
 <p>What’s the average tenure of the people who churned?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == 1.0&quot;</span><span class="p">)[</span><span class="s1">&#39;tenure&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == 1.0&quot;</span><span class="p">)[</span><span class="s2">&quot;tenure&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2767,7 +2789,7 @@ memory usage: 907.8+ KB
 <p>What’s the average tenure of the people who did not churn?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == 0.0&quot;</span><span class="p">)[</span><span class="s1">&#39;tenure&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_df_surv</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Churn == 0.0&quot;</span><span class="p">)[</span><span class="s2">&quot;tenure&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -2890,7 +2912,7 @@ memory usage: 907.8+ KB
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
 <span class="ne">ConvergenceError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_73977</span><span class="o">/</span><span class="mf">2468730739.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11280</span><span class="o">/</span><span class="mf">2468730739.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">cph</span> <span class="o">=</span> <span class="n">lifelines</span><span class="o">.</span><span class="n">CoxPHFitter</span><span class="p">()</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">cph</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df_surv</span><span class="p">,</span> <span class="n">duration_col</span><span class="o">=</span><span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="n">event_col</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">);</span>
 
@@ -3061,14 +3083,14 @@ memory usage: 907.8+ KB
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#cph.baseline_hazard_ # baseline hazard</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cph.baseline_hazard_ # baseline hazard</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#cph.summary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cph.summary</span>
 </pre></div>
 </div>
 </div>
@@ -3093,7 +3115,7 @@ Name: Churn, dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tenure&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tenure&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3297,7 +3319,9 @@ Name: Churn, dtype: object
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">numeric_features</span>
-    <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="o">+</span> <span class="n">passthrough_features</span>
 <span class="p">)</span>
 </pre></div>
@@ -3406,7 +3430,7 @@ Name: Churn, dtype: object
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">cph</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -3509,25 +3533,25 @@ Name: MonthlyCharges, dtype: float64
       <th></th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>gender_Female</th>
-      <th>gender_Male</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
-      <th>TechSupport_No</th>
-      <th>TechSupport_No internet service</th>
-      <th>TechSupport_Yes</th>
-      <th>...</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
       <th>StreamingTV_Yes</th>
-      <th>MultipleLines_No</th>
-      <th>MultipleLines_No phone service</th>
-      <th>MultipleLines_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>DeviceProtection_No</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>...</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
+      <th>Dependents_No</th>
+      <th>Dependents_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -3537,38 +3561,40 @@ Name: MonthlyCharges, dtype: float64
       <td>-1.154900</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>1404</th>
       <td>0.0</td>
       <td>-1.383246</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -3576,21 +3602,19 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>5515</th>
       <td>0.0</td>
       <td>-1.514920</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -3607,49 +3631,49 @@ Name: MonthlyCharges, dtype: float64
       <th>3684</th>
       <td>0.0</td>
       <td>0.351852</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
+      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>7017</th>
       <td>0.0</td>
       <td>-1.471584</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -3685,23 +3709,23 @@ Name: MonthlyCharges, dtype: float64
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>gender_Female</th>
-      <th>gender_Male</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
-      <th>TechSupport_No</th>
-      <th>...</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>StreamingTV_No</th>
+      <th>StreamingTV_No internet service</th>
       <th>StreamingTV_Yes</th>
-      <th>MultipleLines_No</th>
-      <th>MultipleLines_No phone service</th>
-      <th>MultipleLines_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
+      <th>...</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
+      <th>Dependents_No</th>
+      <th>Dependents_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -3713,21 +3737,21 @@ Name: MonthlyCharges, dtype: float64
       <td>-1.154900</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>...</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>1404</th>
@@ -3735,14 +3759,16 @@ Name: MonthlyCharges, dtype: float64
       <td>35.0</td>
       <td>0.0</td>
       <td>-1.383246</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -3750,8 +3776,6 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>5515</th>
@@ -3759,11 +3783,11 @@ Name: MonthlyCharges, dtype: float64
       <td>18.0</td>
       <td>0.0</td>
       <td>-1.514920</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
@@ -3783,23 +3807,23 @@ Name: MonthlyCharges, dtype: float64
       <td>43.0</td>
       <td>0.0</td>
       <td>0.351852</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
+      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>7017</th>
@@ -3807,23 +3831,23 @@ Name: MonthlyCharges, dtype: float64
       <td>51.0</td>
       <td>0.0</td>
       <td>-1.471584</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -4027,7 +4051,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8641864810547808
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8641864810547806
 </pre></div>
 </div>
 </div>

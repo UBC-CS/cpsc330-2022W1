@@ -54,7 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 22: Deployment and conclusion" href="22_deployment-conclusion.html" />
     <link rel="prev" title="Lecture 20: Ethics" href="20_ethics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -180,6 +180,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
   </a>
@@ -222,6 +227,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -615,6 +625,7 @@
     <span class="n">OrdinalEncoder</span><span class="p">,</span>
     <span class="n">StandardScaler</span><span class="p">,</span>
 <span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
 </pre></div>
 </div>
@@ -1446,36 +1457,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MasVnrType&#39;,
- &#39;LandContour&#39;,
- &#39;Foundation&#39;,
- &#39;PavedDrive&#39;,
- &#39;Exterior2nd&#39;,
- &#39;MSSubClass&#39;,
- &#39;Condition2&#39;,
- &#39;MoSold&#39;,
- &#39;LotConfig&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Exterior1st&#39;,
  &#39;MSZoning&#39;,
- &#39;MiscFeature&#39;,
- &#39;BldgType&#39;,
- &#39;HouseStyle&#39;,
- &#39;Utilities&#39;,
- &#39;CentralAir&#39;,
- &#39;Exterior1st&#39;,
- &#39;Condition1&#39;,
- &#39;Street&#39;,
- &#39;RoofStyle&#39;,
- &#39;SaleCondition&#39;,
- &#39;Heating&#39;,
- &#39;Alley&#39;,
- &#39;RoofMatl&#39;,
- &#39;Electrical&#39;,
- &#39;GarageFinish&#39;,
- &#39;SaleType&#39;,
- &#39;Neighborhood&#39;,
  &#39;GarageType&#39;,
- &#39;LandSlope&#39;,
- &#39;LotShape&#39;]
+ &#39;Utilities&#39;,
+ &#39;Heating&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;Electrical&#39;,
+ &#39;LotConfig&#39;,
+ &#39;CentralAir&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;LandContour&#39;,
+ &#39;MoSold&#39;,
+ &#39;SaleType&#39;,
+ &#39;Condition1&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;BldgType&#39;,
+ &#39;Condition2&#39;,
+ &#39;Alley&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Street&#39;,
+ &#39;Foundation&#39;,
+ &#39;LotShape&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;LandSlope&#39;]
 </pre></div>
 </div>
 </div>
@@ -1522,7 +1533,33 @@
 <h3>Examining the preprocessed data<a class="headerlink" href="#examining-the-preprocessed-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">);</span> <span class="c1"># Calling fit to examine all the transformers.</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="c1"># Calling fit to examine all the transformers.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ColumnTransformer(transformers=[(&#39;drop&#39;, &#39;drop&#39;, [&#39;Id&#39;]),
+                                (&#39;pipeline-1&#39;,
+                                 Pipeline(steps=[(&#39;simpleimputer&#39;,
+                                                  SimpleImputer(strategy=&#39;median&#39;)),
+                                                 (&#39;standardscaler&#39;,
+                                                  StandardScaler())]),
+                                 [&#39;BedroomAbvGr&#39;, &#39;KitchenAbvGr&#39;, &#39;LotFrontage&#39;,
+                                  &#39;LotArea&#39;, &#39;OverallQual&#39;, &#39;OverallCond&#39;,
+                                  &#39;YearBuilt&#39;, &#39;YearRemodAdd&#39;, &#39;MasVnrArea&#39;,
+                                  &#39;BsmtFinSF1&#39;, &#39;BsmtFinSF2&#39;, &#39;BsmtUnfSF&#39;,
+                                  &#39;TotalBsmtSF&#39;, &#39;...
+                                 [&#39;Exterior1st&#39;, &#39;MSZoning&#39;, &#39;GarageType&#39;,
+                                  &#39;Utilities&#39;, &#39;Heating&#39;, &#39;Neighborhood&#39;,
+                                  &#39;Electrical&#39;, &#39;LotConfig&#39;, &#39;CentralAir&#39;,
+                                  &#39;RoofStyle&#39;, &#39;MiscFeature&#39;, &#39;LandContour&#39;,
+                                  &#39;MoSold&#39;, &#39;SaleType&#39;, &#39;Condition1&#39;,
+                                  &#39;Exterior2nd&#39;, &#39;HouseStyle&#39;, &#39;BldgType&#39;,
+                                  &#39;Condition2&#39;, &#39;Alley&#39;, &#39;MSSubClass&#39;,
+                                  &#39;MasVnrType&#39;, &#39;Street&#39;, &#39;Foundation&#39;,
+                                  &#39;LotShape&#39;, &#39;SaleCondition&#39;, &#39;GarageFinish&#39;,
+                                  &#39;PavedDrive&#39;, &#39;RoofMatl&#39;, &#39;LandSlope&#39;])])
 </pre></div>
 </div>
 </div>
@@ -1580,16 +1617,16 @@
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>GarageType_CarPort</th>
-      <th>GarageType_Detchd</th>
-      <th>GarageType_missing</th>
+      <th>RoofMatl_CompShg</th>
+      <th>RoofMatl_Membran</th>
+      <th>RoofMatl_Metal</th>
+      <th>RoofMatl_Roll</th>
+      <th>RoofMatl_Tar&amp;Grv</th>
+      <th>RoofMatl_WdShake</th>
+      <th>RoofMatl_WdShngl</th>
       <th>LandSlope_Gtl</th>
       <th>LandSlope_Mod</th>
       <th>LandSlope_Sev</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
     </tr>
   </thead>
   <tbody>
@@ -1606,14 +1643,14 @@
       <td>0.269972</td>
       <td>-0.961498</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1630,14 +1667,14 @@
       <td>-0.573129</td>
       <td>0.476092</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1654,14 +1691,14 @@
       <td>-0.573129</td>
       <td>1.227559</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1678,14 +1715,14 @@
       <td>-0.573129</td>
       <td>0.443419</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1702,10 +1739,10 @@
       <td>-0.573129</td>
       <td>0.354114</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1757,16 +1794,16 @@
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>GarageType_CarPort</th>
-      <th>GarageType_Detchd</th>
-      <th>GarageType_missing</th>
+      <th>RoofMatl_CompShg</th>
+      <th>RoofMatl_Membran</th>
+      <th>RoofMatl_Metal</th>
+      <th>RoofMatl_Roll</th>
+      <th>RoofMatl_Tar&amp;Grv</th>
+      <th>RoofMatl_WdShake</th>
+      <th>RoofMatl_WdShngl</th>
       <th>LandSlope_Gtl</th>
       <th>LandSlope_Mod</th>
       <th>LandSlope_Sev</th>
-      <th>LotShape_IR1</th>
-      <th>LotShape_IR2</th>
-      <th>LotShape_IR3</th>
-      <th>LotShape_Reg</th>
     </tr>
   </thead>
   <tbody>
@@ -1783,14 +1820,14 @@
       <td>0.438592</td>
       <td>-0.961498</td>
       <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1807,16 +1844,16 @@
       <td>-0.573129</td>
       <td>-0.961498</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1304</th>
@@ -1831,16 +1868,16 @@
       <td>0.084490</td>
       <td>-0.961498</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1372</th>
@@ -1855,16 +1892,16 @@
       <td>-0.573129</td>
       <td>1.162214</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1427</th>
@@ -1879,16 +1916,16 @@
       <td>-0.573129</td>
       <td>0.301838</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -2127,7 +2164,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="20_ethics.html" title="previous page">Lecture 20: Ethics</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
+    <a class='right-next' id="next-link" href="22_deployment-conclusion.html" title="next page">Lecture 22: Deployment and conclusion</a>
 
         </div>
         
