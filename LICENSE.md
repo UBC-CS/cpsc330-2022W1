@@ -1,4 +1,6 @@
-# Instructional Material
+# LICENSE
+
+## Instructional Material
 
 All instructional material in the `cpsc330` repository is made available under the **Attribution 4.0 International** ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)). 
 
@@ -36,7 +38,7 @@ Notices:
   rights such as publicity, privacy, or moral rights may limit how you
   use the material.
 
-# Software
+## Software
 
 Except where otherwise noted, the example programs and other software
 provided in the `cpsc330` repository are made available under the
