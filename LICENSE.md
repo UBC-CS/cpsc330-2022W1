@@ -17,8 +17,7 @@ license terms.
 Under the following terms:
 
 * **Attribution**---You must give appropriate credit (mentioning that
-  your work is derived from work that is Copyright © Varada Kolhatkar and Mike     
-  Gelbart, where practical, linking to http://cpsc330.com/), provide a [link to the
+  your work is derived from work that is Copyright © Varada Kolhatkar and Mike  Gelbart, where practical, linking to http://cpsc330.com/), provide a [link to the
   license][cc-by-human], and indicate if changes were made. You may do
   so in any reasonable manner, but not in any way that suggests the
   licensor endorses you or your use.
