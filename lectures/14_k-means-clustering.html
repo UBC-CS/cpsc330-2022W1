@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 14: Clustering &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +31,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 15: DBSCAN and Recommender Systems" href="15_recommender-systems.html" />
     <link rel="prev" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +79,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,9 +92,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Things you should know
  </span>
@@ -97,7 +106,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -235,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Attribution
  </span>
@@ -248,7 +257,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LICENSE.html">
-   LICENSE
+   Instructional Material
   </a>
  </li>
 </ul>
@@ -297,7 +306,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -332,12 +341,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -867,11 +876,549 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 14: Clustering</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-outcomes-a-name-lo-a">
+   Learning outcomes
+   <a name="lo">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsupervised-learning">
+   Unsupervised learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-machine-learning-from">
+     Types of machine learning from
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-learning">
+     Supervised learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#labeled-vs-unlabeled-data">
+     Labeled vs. Unlabeled data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Unsupervised learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-supervised-vs-unsupervised-learning">
+     Example: Supervised vs unsupervised learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#an-example-with-sklearn-toy-dataset">
+     An example with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+     toy dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#can-we-learn-without-targets">
+     Can we learn without targets?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-motivation">
+   Clustering motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-clustering">
+     Why clustering?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clustering">
+     Clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#input-and-possible-output">
+     Input and possible output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#is-there-a-notion-of-correct-grouping">
+     Is there a notion of “correct” grouping?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1">
+     Example 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2">
+     Example 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meaningful-groups-in-clustering">
+     Meaningful groups in clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-applications-data-exploration">
+     Common applications: Data exploration
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#common-applications-customer-segmentation">
+     Common applications: Customer segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#document-clustering">
+     Document clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarity-and-distances">
+     Similarity and distances
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-clustering-algorithm">
+   K-Means clustering algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-clustering">
+     K-Means clustering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-using-sklearn">
+     K-Means using
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kmeans-fit">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       fit
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#predict-of-kmeans">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       predict
+      </span>
+     </code>
+     of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-centers-in-k-means">
+     Cluster centers in  K-Means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-predictions-on-new-examples">
+     K-Means predictions on new examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-algorithm-main-idea">
+     K-Means algorithm: Main idea
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     K-Means clustering algorithm
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization">
+     Initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterative-process">
+     Iterative process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-find-closest-centers">
+     How to find closest centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     How to find closest centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-update-centers">
+     How to update centers?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-1-step-1">
+     Iteration 1: Step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-1-step-2">
+     Iteration 1: Step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-2-step-1">
+     Iteration 2: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-2-step-2">
+     Iteration 2: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-3-step-1">
+     Iteration 3: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-3-step-2">
+     Iteration 3: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-4-step-1">
+     Iteration 4: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-4-step-2">
+     Iteration 4: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-5-step-1">
+     Iteration 5: step 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iteration-5-step-2">
+     Iteration 5: step 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-to-stop">
+     When to stop?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Example 2
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Initialization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-feature-engineering-using-k-means">
+     (Optional) Feature engineering using K-Means
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#choosing-k-a-name-3-a">
+   Choosing K
+   <a name="3">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-tuning-for-k">
+     Hyperparameter tuning for K
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-1-the-elbow-method">
+     Method 1: The Elbow method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inertia">
+     Inertia
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-2-the-silhouette-method">
+     Method 2: The Silhouette method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-intra-cluster-distance-a">
+     Mean intra-cluster distance (
+     <span class="math notranslate nohighlight">
+      \(a\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mean-nearest-cluster-distance-b">
+     Mean nearest-cluster distance (
+     <span class="math notranslate nohighlight">
+      \(b\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#silhouette-distance-for-a-sample">
+     Silhouette distance for a sample
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-silhouette-scores-to-select-the-number-of-clusters">
+     Using Silhouette scores to select the number of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-to-look-for-in-these-plots">
+     What to look for in these plots?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comments-on-silhouette-scores">
+     Comments on Silhouette scores
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k-means-true-false-questions">
+     K-Means: True/False questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     K-Means: True/False questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-means-case-study-customer-segmentation">
+   K-Means case study: Customer segmentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-customer-segmentation">
+     What is customer segmentation?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#business-problem">
+     Business problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#information-of-the-dataset">
+     Information of the dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-eda">
+     Preliminary EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-exercises-for-you">
+     Practice exercises for you
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mini-exercises-for-you-answers">
+     Mini exercises for you (Answers)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-types-and-preprocessing">
+     Feature types and preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tuning-the-hyperparameter-n-clusters">
+     Tuning the hyperparameter
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_clusters
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-interpretation">
+     Cluster interpretation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#transactors">
+       Transactors
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#revolvers">
+       Revolvers
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vip-prime">
+       VIP/Prime
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#low-activity">
+       Low activity
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-on-interpretation-of-clusters">
+     More on interpretation of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practice-exercise-for-you">
+     Practice exercise for you
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-comments-and-summary">
+   Final comments and summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-comment-on-initialization">
+     A comment on initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-bad-initialization">
+     Example: Bad initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-better-initialization">
+     Example: Better initialization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-can-we-do-about-it">
+     What can we do about it?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#important-points-to-remember">
+     Important points to remember
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Important points to remember
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Important points to remember
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-class-discussion-a-name-questions-a">
+   Questions for class Discussion
+   <a name="questions">
+   </a>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-14-clustering">
+<div class="tex2jax_ignore mathjax_ignore section" id="lecture-14-clustering">
 <h1>Lecture 14: Clustering<a class="headerlink" href="#lecture-14-clustering" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
@@ -2896,7 +3443,69 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8950, 18)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_80737</span><span class="o">/</span><span class="mf">4097407329.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">creditcard_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/CC General.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">creditcard_df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHandles</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">         self.handles = get_handle(</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="s2">             src,</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="s2">             &quot;r&quot;,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">         if ioargs.encoding and &quot;b&quot; not in ioargs.mode:</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">             # Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">701</span><span class="s2">             handle = open(</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span><span class="s2">                 handle,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">                 ioargs.mode,</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/CC General.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -3357,125 +3966,125 @@ memory usage: 1.2+ MB
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>PAYMENTS</th>
+      <th>TENURE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>PURCHASES_TRX</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>BALANCE</th>
+      <th>CREDIT_LIMIT</th>
       <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
       <th>INSTALLMENTS_PURCHASES</th>
-      <th>CASH_ADVANCE_TRX</th>
-      <th>BALANCE_FREQUENCY</th>
-      <th>PURCHASES_TRX</th>
-      <th>PAYMENTS</th>
-      <th>BALANCE</th>
-      <th>CASH_ADVANCE_FREQUENCY</th>
-      <th>CREDIT_LIMIT</th>
-      <th>CASH_ADVANCE</th>
-      <th>ONEOFF_PURCHASES_FREQUENCY</th>
-      <th>TENURE</th>
-      <th>PRC_FULL_PAYMENT</th>
-      <th>PURCHASES_FREQUENCY</th>
       <th>ONEOFF_PURCHASES</th>
-      <th>MINIMUM_PAYMENTS</th>
-      <th>PURCHASES</th>
+      <th>CASH_ADVANCE</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>-3.109675e-01</td>
+      <td>-0.528979</td>
+      <td>0.360680</td>
+      <td>-0.249434</td>
+      <td>-0.476070</td>
+      <td>-0.525551</td>
+      <td>-0.675349</td>
+      <td>-0.511333</td>
+      <td>-0.678661</td>
+      <td>-0.424900</td>
+      <td>-0.806490</td>
+      <td>-0.731989</td>
+      <td>-0.960433</td>
       <td>-0.707313</td>
       <td>-0.349079</td>
-      <td>-0.476070</td>
-      <td>-0.249434</td>
-      <td>-0.511333</td>
-      <td>-0.528979</td>
-      <td>-0.731989</td>
-      <td>-0.675349</td>
-      <td>-0.960433</td>
-      <td>-0.466786</td>
-      <td>-0.678661</td>
-      <td>0.360680</td>
-      <td>-0.525551</td>
-      <td>-0.806490</td>
       <td>-0.356934</td>
-      <td>-3.109675e-01</td>
-      <td>-0.424900</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>8.931021e-02</td>
+      <td>0.818642</td>
+      <td>0.360680</td>
+      <td>0.134325</td>
+      <td>0.110074</td>
+      <td>0.234227</td>
+      <td>0.573963</td>
+      <td>-0.591796</td>
+      <td>-0.678661</td>
+      <td>-0.469552</td>
+      <td>-1.221758</td>
+      <td>0.786961</td>
+      <td>0.688639</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>0.110074</td>
-      <td>0.134325</td>
-      <td>-0.591796</td>
-      <td>0.818642</td>
-      <td>0.786961</td>
-      <td>0.573963</td>
-      <td>0.688639</td>
-      <td>2.605605</td>
-      <td>-0.678661</td>
-      <td>0.360680</td>
-      <td>0.234227</td>
-      <td>-1.221758</td>
       <td>-0.356934</td>
-      <td>8.931021e-02</td>
-      <td>-0.469552</td>
+      <td>2.605605</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>-1.016632e-01</td>
+      <td>-0.383805</td>
+      <td>0.360680</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>-0.525551</td>
+      <td>-0.675349</td>
+      <td>-0.109020</td>
+      <td>2.673451</td>
+      <td>-0.107668</td>
+      <td>1.269843</td>
+      <td>0.447135</td>
+      <td>0.826062</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>-0.476070</td>
-      <td>0.518084</td>
-      <td>-0.109020</td>
-      <td>-0.383805</td>
-      <td>0.447135</td>
-      <td>-0.675349</td>
-      <td>0.826062</td>
-      <td>-0.466786</td>
-      <td>2.673451</td>
-      <td>0.360680</td>
-      <td>-0.525551</td>
-      <td>1.269843</td>
       <td>0.108889</td>
-      <td>-1.016632e-01</td>
-      <td>-0.107668</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>4.878305e-17</td>
+      <td>-0.598688</td>
+      <td>0.360680</td>
+      <td>-1.016953</td>
+      <td>-0.329534</td>
+      <td>-0.525551</td>
+      <td>-0.258913</td>
+      <td>-0.551565</td>
+      <td>-0.399319</td>
+      <td>0.232058</td>
+      <td>-1.014125</td>
+      <td>0.049099</td>
+      <td>0.826062</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>-0.329534</td>
-      <td>-1.016953</td>
-      <td>-0.551565</td>
-      <td>-0.598688</td>
-      <td>0.049099</td>
-      <td>-0.258913</td>
-      <td>0.826062</td>
-      <td>-0.368653</td>
-      <td>-0.399319</td>
-      <td>0.360680</td>
-      <td>-0.525551</td>
-      <td>-1.014125</td>
       <td>0.546189</td>
-      <td>4.878305e-17</td>
-      <td>0.232058</td>
+      <td>-0.368653</td>
     </tr>
     <tr>
       <th>4</th>
+      <td>-2.657913e-01</td>
+      <td>-0.364368</td>
+      <td>0.360680</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>-0.525551</td>
+      <td>-0.675349</td>
+      <td>-0.551565</td>
+      <td>-0.399319</td>
+      <td>-0.462063</td>
+      <td>-1.014125</td>
+      <td>-0.358775</td>
+      <td>-0.905464</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>-0.476070</td>
-      <td>0.518084</td>
-      <td>-0.551565</td>
-      <td>-0.364368</td>
-      <td>-0.358775</td>
-      <td>-0.675349</td>
-      <td>-0.905464</td>
-      <td>-0.466786</td>
-      <td>-0.399319</td>
-      <td>0.360680</td>
-      <td>-0.525551</td>
-      <td>-1.014125</td>
       <td>-0.347294</td>
-      <td>-2.657913e-01</td>
-      <td>-0.462063</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3499,103 +4108,103 @@ memory usage: 1.2+ MB
     </tr>
     <tr>
       <th>8945</th>
+      <td>-3.498541e-01</td>
+      <td>-0.486217</td>
+      <td>-4.122768</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>1.183951</td>
+      <td>-0.675349</td>
+      <td>-0.350408</td>
+      <td>-0.678661</td>
+      <td>-0.333293</td>
+      <td>1.269843</td>
+      <td>-0.737950</td>
+      <td>-0.960433</td>
       <td>1.179833</td>
       <td>-0.132643</td>
-      <td>-0.476070</td>
-      <td>0.518084</td>
-      <td>-0.350408</td>
-      <td>-0.486217</td>
-      <td>-0.737950</td>
-      <td>-0.675349</td>
-      <td>-0.960433</td>
-      <td>-0.466786</td>
-      <td>-0.678661</td>
-      <td>-4.122768</td>
-      <td>1.183951</td>
-      <td>1.269843</td>
       <td>-0.356934</td>
-      <td>-3.498541e-01</td>
-      <td>-0.333293</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>8946</th>
+      <td>4.878305e-17</td>
+      <td>-0.503396</td>
+      <td>-4.122768</td>
+      <td>0.518084</td>
+      <td>-0.476070</td>
+      <td>-0.525551</td>
+      <td>-0.675349</td>
+      <td>-0.350408</td>
+      <td>-0.678661</td>
+      <td>-0.329136</td>
+      <td>1.269843</td>
+      <td>-0.742423</td>
+      <td>-0.960433</td>
       <td>1.179833</td>
       <td>-0.122823</td>
-      <td>-0.476070</td>
-      <td>0.518084</td>
-      <td>-0.350408</td>
-      <td>-0.503396</td>
-      <td>-0.742423</td>
-      <td>-0.675349</td>
-      <td>-0.960433</td>
-      <td>-0.466786</td>
-      <td>-0.678661</td>
-      <td>-4.122768</td>
-      <td>-0.525551</td>
-      <td>1.269843</td>
       <td>-0.356934</td>
-      <td>4.878305e-17</td>
-      <td>-0.329136</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>8947</th>
+      <td>-3.354655e-01</td>
+      <td>-0.570615</td>
+      <td>-4.122768</td>
+      <td>-0.185477</td>
+      <td>-0.476070</td>
+      <td>0.329200</td>
+      <td>-0.675349</td>
+      <td>-0.390639</td>
+      <td>-0.678661</td>
+      <td>-0.401965</td>
+      <td>0.854576</td>
+      <td>-0.740398</td>
+      <td>-0.960433</td>
       <td>0.760469</td>
       <td>-0.294893</td>
-      <td>-0.476070</td>
-      <td>-0.185477</td>
-      <td>-0.390639</td>
-      <td>-0.570615</td>
-      <td>-0.740398</td>
-      <td>-0.675349</td>
-      <td>-0.960433</td>
-      <td>-0.466786</td>
-      <td>-0.678661</td>
-      <td>-4.122768</td>
-      <td>0.329200</td>
-      <td>0.854576</td>
       <td>-0.356934</td>
-      <td>-3.354655e-01</td>
-      <td>-0.401965</td>
+      <td>-0.466786</td>
     </tr>
     <tr>
       <th>8948</th>
+      <td>-3.469065e-01</td>
+      <td>-0.580536</td>
+      <td>-4.122768</td>
+      <td>-0.185477</td>
+      <td>-0.182998</td>
+      <td>0.329200</td>
+      <td>0.157527</td>
+      <td>-0.591796</td>
+      <td>-0.678661</td>
+      <td>-0.469552</td>
+      <td>-1.221758</td>
+      <td>-0.745174</td>
+      <td>-1.097856</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>-0.182998</td>
-      <td>-0.185477</td>
-      <td>-0.591796</td>
-      <td>-0.580536</td>
-      <td>-0.745174</td>
-      <td>0.157527</td>
-      <td>-1.097856</td>
-      <td>-0.449352</td>
-      <td>-0.678661</td>
-      <td>-4.122768</td>
-      <td>0.329200</td>
-      <td>-1.221758</td>
       <td>-0.356934</td>
-      <td>-3.469065e-01</td>
-      <td>-0.469552</td>
+      <td>-0.449352</td>
     </tr>
     <tr>
       <th>8949</th>
+      <td>-3.329464e-01</td>
+      <td>-0.576869</td>
+      <td>-4.122768</td>
+      <td>-0.889033</td>
+      <td>-0.182998</td>
+      <td>-0.525551</td>
+      <td>0.990398</td>
+      <td>0.333524</td>
+      <td>1.556082</td>
+      <td>0.042146</td>
+      <td>0.439310</td>
+      <td>-0.572575</td>
+      <td>-0.905464</td>
       <td>-0.916995</td>
       <td>-0.454576</td>
-      <td>-0.182998</td>
-      <td>-0.889033</td>
-      <td>0.333524</td>
-      <td>-0.576869</td>
-      <td>-0.572575</td>
-      <td>0.990398</td>
-      <td>-0.905464</td>
-      <td>-0.406205</td>
-      <td>1.556082</td>
-      <td>-4.122768</td>
-      <td>-0.525551</td>
-      <td>0.439310</td>
       <td>0.301732</td>
-      <td>-3.329464e-01</td>
-      <td>0.042146</td>
+      <td>-0.406205</td>
     </tr>
   </tbody>
 </table>
@@ -3641,9 +4250,6 @@ memory usage: 1.2+ MB
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/14_k-means-clustering_202_0.png" src="../_images/14_k-means-clustering_202_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;Silhouette Plot of KMeans Clustering for 8950 Samples in 4 Centers&#39;}, xlabel=&#39;silhouette coefficient values&#39;, ylabel=&#39;cluster label&#39;&gt;
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -3658,9 +4264,6 @@ memory usage: 1.2+ MB
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/14_k-means-clustering_203_0.png" src="../_images/14_k-means-clustering_203_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;Silhouette Plot of KMeans Clustering for 8950 Samples in 5 Centers&#39;}, xlabel=&#39;silhouette coefficient values&#39;, ylabel=&#39;cluster label&#39;&gt;
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -3675,9 +4278,6 @@ memory usage: 1.2+ MB
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/14_k-means-clustering_204_0.png" src="../_images/14_k-means-clustering_204_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;Silhouette Plot of KMeans Clustering for 8950 Samples in 6 Centers&#39;}, xlabel=&#39;silhouette coefficient values&#39;, ylabel=&#39;cluster label&#39;&gt;
-</pre></div>
-</div>
 </div>
 </div>
 <ul class="simple">
@@ -3776,105 +4376,105 @@ memory usage: 1.2+ MB
   <thead>
     <tr>
       <th></th>
+      <th>MINIMUM_PAYMENTS</th>
+      <th>PAYMENTS</th>
+      <th>TENURE</th>
+      <th>BALANCE_FREQUENCY</th>
+      <th>CASH_ADVANCE_TRX</th>
+      <th>PRC_FULL_PAYMENT</th>
+      <th>CASH_ADVANCE_FREQUENCY</th>
+      <th>PURCHASES_TRX</th>
+      <th>ONEOFF_PURCHASES_FREQUENCY</th>
+      <th>PURCHASES</th>
+      <th>PURCHASES_FREQUENCY</th>
+      <th>BALANCE</th>
+      <th>CREDIT_LIMIT</th>
       <th>PURCHASES_INSTALLMENTS_FREQUENCY</th>
       <th>INSTALLMENTS_PURCHASES</th>
-      <th>CASH_ADVANCE_TRX</th>
-      <th>BALANCE_FREQUENCY</th>
-      <th>PURCHASES_TRX</th>
-      <th>PAYMENTS</th>
-      <th>BALANCE</th>
-      <th>CASH_ADVANCE_FREQUENCY</th>
-      <th>CREDIT_LIMIT</th>
-      <th>CASH_ADVANCE</th>
-      <th>ONEOFF_PURCHASES_FREQUENCY</th>
-      <th>TENURE</th>
-      <th>PRC_FULL_PAYMENT</th>
-      <th>PURCHASES_FREQUENCY</th>
       <th>ONEOFF_PURCHASES</th>
-      <th>MINIMUM_PAYMENTS</th>
-      <th>PURCHASES</th>
+      <th>CASH_ADVANCE</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>0.477421</td>
+      <td>1.919096</td>
+      <td>0.324140</td>
+      <td>0.462694</td>
+      <td>-0.170458</td>
+      <td>0.454703</td>
+      <td>-0.319096</td>
+      <td>3.003251</td>
+      <td>1.798653</td>
+      <td>3.125845</td>
+      <td>1.136338</td>
+      <td>0.954485</td>
+      <td>1.429882</td>
       <td>1.065918</td>
       <td>2.406470</td>
-      <td>-0.170458</td>
-      <td>0.462694</td>
-      <td>3.003251</td>
-      <td>1.919096</td>
-      <td>0.954485</td>
-      <td>-0.319096</td>
-      <td>1.429882</td>
-      <td>-0.155091</td>
-      <td>1.798653</td>
-      <td>0.324140</td>
-      <td>0.454703</td>
-      <td>1.136338</td>
       <td>2.713251</td>
-      <td>0.477421</td>
-      <td>3.125845</td>
+      <td>-0.155091</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>0.490910</td>
+      <td>0.603821</td>
+      <td>-0.097146</td>
+      <td>0.384753</td>
+      <td>1.617143</td>
+      <td>-0.406367</td>
+      <td>1.745948</td>
+      <td>-0.283580</td>
+      <td>-0.212939</td>
+      <td>-0.234638</td>
+      <td>-0.504848</td>
+      <td>1.459578</td>
+      <td>0.838968</td>
       <td>-0.450201</td>
       <td>-0.253747</td>
-      <td>1.617143</td>
-      <td>0.384753</td>
-      <td>-0.283580</td>
-      <td>0.603821</td>
-      <td>1.459578</td>
-      <td>1.745948</td>
-      <td>0.838968</td>
-      <td>1.688972</td>
-      <td>-0.212939</td>
-      <td>-0.097146</td>
-      <td>-0.406367</td>
-      <td>-0.504848</td>
       <td>-0.163914</td>
-      <td>0.490910</td>
-      <td>-0.234638</td>
+      <td>1.688972</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>-0.119249</td>
+      <td>-0.262060</td>
+      <td>-0.052972</td>
+      <td>-0.368944</td>
+      <td>-0.164607</td>
+      <td>-0.258866</td>
+      <td>-0.101500</td>
+      <td>-0.474987</td>
+      <td>-0.389437</td>
+      <td>-0.343190</td>
+      <td>-0.797823</td>
+      <td>-0.265552</td>
+      <td>-0.334417</td>
       <td>-0.714246</td>
       <td>-0.387798</td>
-      <td>-0.164607</td>
-      <td>-0.368944</td>
-      <td>-0.474987</td>
-      <td>-0.262060</td>
-      <td>-0.265552</td>
-      <td>-0.101500</td>
-      <td>-0.334417</td>
-      <td>-0.182691</td>
-      <td>-0.389437</td>
-      <td>-0.052972</td>
-      <td>-0.258866</td>
-      <td>-0.797823</td>
       <td>-0.230500</td>
-      <td>-0.119249</td>
-      <td>-0.343190</td>
+      <td>-0.182691</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>-0.091844</td>
+      <td>-0.138502</td>
+      <td>0.057744</td>
+      <td>0.242574</td>
+      <td>-0.360303</td>
+      <td>0.395041</td>
+      <td>-0.462599</td>
+      <td>0.296985</td>
+      <td>0.317153</td>
+      <td>0.109044</td>
+      <td>0.983721</td>
+      <td>-0.321688</td>
+      <td>-0.077298</td>
       <td>0.874138</td>
       <td>0.255904</td>
-      <td>-0.360303</td>
-      <td>0.242574</td>
-      <td>0.296985</td>
-      <td>-0.138502</td>
-      <td>-0.321688</td>
-      <td>-0.462599</td>
-      <td>-0.077298</td>
-      <td>-0.366373</td>
-      <td>0.317153</td>
-      <td>0.057744</td>
-      <td>0.395041</td>
-      <td>0.983721</td>
       <td>0.000926</td>
-      <td>-0.091844</td>
-      <td>0.109044</td>
+      <td>-0.366373</td>
     </tr>
   </tbody>
 </table>
@@ -4981,34 +5581,42 @@ memory usage: 1.2+ MB
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="13_feature-engineering-selection.html" title="previous page">Lecture 13: Feature engineering and feature selection</a>
-    <a class='right-next' id="next-link" href="15_recommender-systems.html" title="next page">Lecture 15: DBSCAN and Recommender Systems</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="13_feature-engineering-selection.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 13: Feature engineering and feature selection</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="15_recommender-systems.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 15: DBSCAN and Recommender Systems</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Varada Kolhatkar<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Varada Kolhatkar<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

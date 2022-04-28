@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 8: Hyperparameter Optimization and Optimization Bias &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +31,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 9: Classification Metrics" href="09_classification-metrics.html" />
     <link rel="prev" title="Lecture 7: Linear Models" href="07_linear-models.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +79,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,9 +92,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Things you should know
  </span>
@@ -97,7 +106,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -180,6 +189,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
   </a>
@@ -189,8 +203,48 @@
    Lecture 14: Clustering
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_recommender-systems.html">
+   Lecture 15: DBSCAN and Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_natural-language-processing.html">
+   Lecture 16: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_intro_to_computer-vision.html">
+   Lecture 17: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_time-series.html">
+   Lecture 18: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_survival-analysis.html">
+   Lecture 19: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_ethics.html">
+   Lecture 20: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_communication.html">
+   Lecture 21: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_deployment-conclusion.html">
+   Lecture 22: Deployment and conclusion
+  </a>
+ </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Attribution
  </span>
@@ -203,7 +257,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LICENSE.html">
-   LICENSE
+   Instructional Material
   </a>
  </li>
 </ul>
@@ -252,7 +306,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -287,12 +341,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -567,11 +621,294 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 8: Hyperparameter Optimization and Optimization Bias</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-plan-for-today">
+   Lecture plan for today
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-outcomes">
+     Learning outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-optimization-motivation">
+   Hyperparameter optimization motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#motivation">
+     Motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameters-the-problem">
+     Hyperparameters: the problem
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-ways-to-pick-hyperparameters">
+     Some ways to pick hyperparameters:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#manual-hyperparameter-optimization">
+       Manual hyperparameter optimization
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automated-hyperparameter-optimization">
+     Automated hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exhaustive-grid-search-sklearn-model-selection-gridsearchcv">
+   Exhaustive grid search:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn.model_selection.GridSearchCV
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-jobs-1">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_jobs=-1
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-syntax">
+     The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __
+      </span>
+     </code>
+     syntax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-parameter-grid-as-a-heatmap">
+     Visualizing the parameter grid as a heatmap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bad-range-for-hyperparameters">
+     Bad range for hyperparameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-range-for-hyperparameters-yields-better-results">
+     Different range for hyperparameters yields better results!
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#true-false">
+     True/False
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#problems-with-exhaustive-grid-search">
+     Problems with exhaustive grid search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#randomized-hyperparameter-search">
+   Randomized hyperparameter search
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n-iter">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       n_iter
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#range-of-c">
+     Range of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       C
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advantages-of-randomizedsearchcv">
+     Advantages of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RandomizedSearchCV
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Advantages of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RandomizedSearchCV
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fancier-methods-optional">
+   Fancier methods (optional)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-class-discussion-hyperparameter-optimization">
+     Questions for class discussion (hyperparameter optimization)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-bias-overfitting-of-the-validation-set">
+   Optimization bias/Overfitting of the validation set
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overfitting-of-the-validation-error">
+     Overfitting of the validation error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization-bias-of-parameter-learning">
+     Optimization bias of parameter learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization-bias-of-hyper-parameter-learning">
+     Optimization bias of hyper-parameter learning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-1-optimization-bias-optional">
+     Example 1: Optimization bias (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-2-optimization-bias-optional">
+     Example 2: Optimization bias (optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optimization-bias-on-the-spotify-dataset">
+     Optimization bias on the Spotify dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overfitting-of-the-validation-data">
+     Overfitting of the validation data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-need-a-test-set">
+     Why do we need a test set?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-test-score-is-much-lower-than-cv-score">
+     When test score is much lower than CV score
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#large-datasets-solve-many-of-these-problems">
+     Large datasets solve many of these problems
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-you">
+     ❓❓ Questions for you
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#would-you-trust-the-model">
+     Would you trust the model?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Would you trust the model?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Would you trust the model?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#final-comments-and-summary">
+   Final comments and summary
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Automated hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-readings-and-resources">
+   Optional readings and resources
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-8-hyperparameter-optimization-and-optimization-bias">
+<div class="tex2jax_ignore mathjax_ignore section" id="lecture-8-hyperparameter-optimization-and-optimization-bias">
 <h1>Lecture 8: Hyperparameter Optimization and Optimization Bias<a class="headerlink" href="#lecture-8-hyperparameter-optimization-and-optimization-bias" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
@@ -613,7 +950,7 @@
 <div class="section" id="lecture-plan-for-today">
 <h2>Lecture plan for today<a class="headerlink" href="#lecture-plan-for-today" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Announcements</p></li>
+<li><p>Announcements (~2 mins)</p></li>
 <li><p>Watch hyperparameter optimization video on your own: https://youtu.be/lMWdHZSZMk8</p></li>
 <li><p>Live lecturing on <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> and <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code>.</p></li>
 <li><p>Q&amp;A and exercises</p></li>
@@ -714,123 +1051,74 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_80636</span><span class="o">/</span><span class="mf">276523712.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">spotify_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/spotify.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">X_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;song_title&quot;</span><span class="p">,</span> <span class="s2">&quot;artist&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">y_spotify</span> <span class="o">=</span> <span class="n">spotify_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">X_spotify</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/util/_decorators.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>                     <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>                 <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="k">return</span> <span class="n">wrapper</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>acousticness</th>
-      <th>danceability</th>
-      <th>duration_ms</th>
-      <th>energy</th>
-      <th>instrumentalness</th>
-      <th>key</th>
-      <th>liveness</th>
-      <th>loudness</th>
-      <th>mode</th>
-      <th>speechiness</th>
-      <th>tempo</th>
-      <th>time_signature</th>
-      <th>valence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0102</td>
-      <td>0.833</td>
-      <td>204600</td>
-      <td>0.434</td>
-      <td>0.021900</td>
-      <td>2</td>
-      <td>0.1650</td>
-      <td>-8.795</td>
-      <td>1</td>
-      <td>0.4310</td>
-      <td>150.062</td>
-      <td>4.0</td>
-      <td>0.286</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.1990</td>
-      <td>0.743</td>
-      <td>326933</td>
-      <td>0.359</td>
-      <td>0.006110</td>
-      <td>1</td>
-      <td>0.1370</td>
-      <td>-10.401</td>
-      <td>1</td>
-      <td>0.0794</td>
-      <td>160.083</td>
-      <td>4.0</td>
-      <td>0.588</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0344</td>
-      <td>0.838</td>
-      <td>185707</td>
-      <td>0.412</td>
-      <td>0.000234</td>
-      <td>2</td>
-      <td>0.1590</td>
-      <td>-7.148</td>
-      <td>1</td>
-      <td>0.2890</td>
-      <td>75.044</td>
-      <td>4.0</td>
-      <td>0.173</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.6040</td>
-      <td>0.494</td>
-      <td>199413</td>
-      <td>0.338</td>
-      <td>0.510000</td>
-      <td>5</td>
-      <td>0.0922</td>
-      <td>-15.236</td>
-      <td>1</td>
-      <td>0.0261</td>
-      <td>86.468</td>
-      <td>4.0</td>
-      <td>0.230</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.1800</td>
-      <td>0.678</td>
-      <td>392893</td>
-      <td>0.561</td>
-      <td>0.512000</td>
-      <td>5</td>
-      <td>0.4390</td>
-      <td>-11.648</td>
-      <td>0</td>
-      <td>0.0694</td>
-      <td>174.004</td>
-      <td>4.0</td>
-      <td>0.904</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>     <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span> 
+<span class="ne">--&gt; </span><span class="mi">586</span>     <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span> 
+<span class="g g-Whitespace">    </span><span class="mi">588</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span> 
+<span class="g g-Whitespace">    </span><span class="mi">481</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">482</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span> 
+<span class="g g-Whitespace">    </span><span class="mi">484</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">809</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">810</span> 
+<span class="ne">--&gt; </span><span class="mi">811</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> 
+<span class="g g-Whitespace">    </span><span class="mi">813</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/readers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1038</span>             <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span>         <span class="c1"># error: Too many arguments for &quot;ParserBase&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1040</span>         <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">engine</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>  <span class="c1"># type: ignore[call-arg]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="k">def</span> <span class="nf">_failover_to_python</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> 
+<span class="g g-Whitespace">     </span><span class="mi">50</span>         <span class="c1"># open handles</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_open_handles</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> 
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ni">_open_handles</span><span class="nt">(self, src, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="n">Let</span> <span class="n">the</span> <span class="n">readers</span> <span class="nb">open</span> <span class="n">IOHandles</span> <span class="n">after</span> <span class="n">they</span> <span class="n">are</span> <span class="n">done</span> <span class="k">with</span> <span class="n">their</span> <span class="n">potential</span> <span class="n">raises</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">         self.handles = get_handle(</span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="s2">             src,</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span><span class="s2">             &quot;r&quot;,</span>
+
+<span class="nn">~/opt/miniconda3/envs/571/lib/python3.9/site-packages/pandas/io/common.py</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">         if ioargs.encoding and &quot;b&quot; not in ioargs.mode:</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2">             # Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">702</span><span class="s2">             handle = open(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2">                 handle,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2">                 ioargs.mode,</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/spotify.csv&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -885,7 +1173,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7210237870892063
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.71792204295906
 </pre></div>
 </div>
 </div>
@@ -913,8 +1201,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.045681
-score_time     0.023252
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.046841
+score_time     0.024420
 test_score     0.738998
 train_score    0.814011
 dtype: float64
@@ -968,20 +1256,10 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;C&#39;: 1, &#39;gamma&#39;: 0.1}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_score</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7439609253312309
 </pre></div>
 </div>
 </div>
@@ -999,94 +1277,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>gamma</th>
-      <th>mean_cv_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>15</th>
-      <td>1.0</td>
-      <td>0.100</td>
-      <td>0.743961</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>100.0</td>
-      <td>0.010</td>
-      <td>0.732792</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>10.0</td>
-      <td>0.100</td>
-      <td>0.729091</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>10.0</td>
-      <td>0.010</td>
-      <td>0.720391</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>100.0</td>
-      <td>0.100</td>
-      <td>0.711715</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>100.0</td>
-      <td>0.001</td>
-      <td>0.704284</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0.1</td>
-      <td>0.100</td>
-      <td>0.703034</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1.0</td>
-      <td>0.010</td>
-      <td>0.697473</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.1</td>
-      <td>0.010</td>
-      <td>0.678851</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>10.0</td>
-      <td>0.001</td>
-      <td>0.678244</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1104,12 +1294,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PolyCollection at 0x12dcb46a0&gt;
-</pre></div>
-</div>
-<img alt="../_images/08_hyperparameter-optimization_33_1.png" src="../_images/08_hyperparameter-optimization_33_1.png" />
-</div>
 </div>
 <ul class="simple">
 <li><p>We have 6 possible values for <code class="docutils literal notranslate"><span class="pre">C</span></code> and 6 possible values for <code class="docutils literal notranslate"><span class="pre">gamma</span></code>.</p></li>
@@ -1119,11 +1303,6 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36
 </pre></div>
 </div>
 </div>
@@ -1138,22 +1317,11 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
-                (&#39;svc&#39;, SVC(C=1, gamma=0.1))])
-</pre></div>
-</div>
-</div>
 </div>
 <p>And finally evaluate the performance of this model on the test set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipe_svm</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>  <span class="c1"># Final evaluation on the test data</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7376237623762376
 </pre></div>
 </div>
 </div>
@@ -1164,9 +1332,6 @@ dtype: float64
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">plot_grid_search_overview</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_41_0.png" src="../_images/08_hyperparameter-optimization_41_0.png" />
 </div>
 </div>
 <p>In this lecture we are going to talk about two such most commonly used automated optimizations methods from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
@@ -1194,7 +1359,7 @@ dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
-<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
+<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="o">**</span><span class="n">best_parameters</span><span class="p">))</span>
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
@@ -1225,14 +1390,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf {color: black;background-color: white;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf pre{padding: 0;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-toggleable {background-color: white;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-estimator:hover {background-color: #d4ebff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-item {z-index: 1;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-parallel-item:only-child::after {width: 0;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf div.sk-container {display: inline-block;position: relative;}</style><div id="sk-ce9b89c4-6bf0-4629-a63a-7a56d4862edf" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="342c72e4-081a-45ed-bebc-d81dc0f01af5" type="checkbox" ><label class="sk-toggleable__label" for="342c72e4-081a-45ed-bebc-d81dc0f01af5">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[('standardscaler', StandardScaler()),
-                                       ('svc', SVC())]),
-             n_jobs=-1,
-             param_grid={'svc__C': [0.001, 0.01, 0.1, 1.0, 10, 100],
-                         'svc__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100]},
-             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c204fd34-def6-4f93-b428-7e78a45f9886" type="checkbox" ><label class="sk-toggleable__label" for="c204fd34-def6-4f93-b428-7e78a45f9886">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="dd84396a-e2b3-47d3-b62f-f8ca44e154ac" type="checkbox" ><label class="sk-toggleable__label" for="dd84396a-e2b3-47d3-b62f-f8ca44e154ac">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <p>Fitting the <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> object</p>
 <ul class="simple">
@@ -1245,20 +1402,10 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7439609253312309
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__C&#39;: 1.0, &#39;svc__gamma&#39;: 0.1}
 </pre></div>
 </div>
 </div>
@@ -1274,581 +1421,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>...</th>
-      <th>26</th>
-      <th>27</th>
-      <th>28</th>
-      <th>29</th>
-      <th>30</th>
-      <th>31</th>
-      <th>32</th>
-      <th>33</th>
-      <th>34</th>
-      <th>35</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.102077</td>
-      <td>0.101776</td>
-      <td>0.101936</td>
-      <td>0.100462</td>
-      <td>0.102665</td>
-      <td>0.085305</td>
-      <td>0.100307</td>
-      <td>0.099319</td>
-      <td>0.098312</td>
-      <td>0.099805</td>
-      <td>...</td>
-      <td>0.102882</td>
-      <td>0.121972</td>
-      <td>0.126407</td>
-      <td>0.109056</td>
-      <td>0.089417</td>
-      <td>0.126121</td>
-      <td>0.207247</td>
-      <td>0.121748</td>
-      <td>0.126366</td>
-      <td>0.110171</td>
-    </tr>
-    <tr>
-      <th>std_fit_time</th>
-      <td>0.000361</td>
-      <td>0.00101</td>
-      <td>0.001228</td>
-      <td>0.000363</td>
-      <td>0.000339</td>
-      <td>0.00055</td>
-      <td>0.001344</td>
-      <td>0.001752</td>
-      <td>0.000429</td>
-      <td>0.001598</td>
-      <td>...</td>
-      <td>0.001225</td>
-      <td>0.000982</td>
-      <td>0.003249</td>
-      <td>0.002323</td>
-      <td>0.00162</td>
-      <td>0.002148</td>
-      <td>0.010032</td>
-      <td>0.000445</td>
-      <td>0.00268</td>
-      <td>0.001615</td>
-    </tr>
-    <tr>
-      <th>mean_score_time</th>
-      <td>0.05777</td>
-      <td>0.058461</td>
-      <td>0.060395</td>
-      <td>0.061385</td>
-      <td>0.05809</td>
-      <td>0.057506</td>
-      <td>0.06141</td>
-      <td>0.060934</td>
-      <td>0.059165</td>
-      <td>0.059915</td>
-      <td>...</td>
-      <td>0.039625</td>
-      <td>0.058926</td>
-      <td>0.059112</td>
-      <td>0.05937</td>
-      <td>0.046576</td>
-      <td>0.037343</td>
-      <td>0.03375</td>
-      <td>0.056823</td>
-      <td>0.06083</td>
-      <td>0.060957</td>
-    </tr>
-    <tr>
-      <th>std_score_time</th>
-      <td>0.001057</td>
-      <td>0.001336</td>
-      <td>0.001921</td>
-      <td>0.000491</td>
-      <td>0.001776</td>
-      <td>0.001548</td>
-      <td>0.000676</td>
-      <td>0.000278</td>
-      <td>0.000864</td>
-      <td>0.002208</td>
-      <td>...</td>
-      <td>0.001953</td>
-      <td>0.001986</td>
-      <td>0.001999</td>
-      <td>0.002231</td>
-      <td>0.000776</td>
-      <td>0.000904</td>
-      <td>0.001225</td>
-      <td>0.001125</td>
-      <td>0.001266</td>
-      <td>0.000359</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>...</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-      <td>10</td>
-      <td>100</td>
-      <td>100</td>
-      <td>100</td>
-      <td>100</td>
-      <td>100</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.001</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>10</td>
-      <td>100</td>
-      <td>0.001</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>...</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>10</td>
-      <td>100</td>
-      <td>0.001</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>10</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>params</th>
-      <td>{'svc__C': 0.001, 'svc__gamma': 0.001}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 1.0}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 10}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 100}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.001}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 1.0}</td>
-      <td>...</td>
-      <td>{'svc__C': 10, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 1.0}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 10}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 100}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.001}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 1.0}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 10}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 100}</td>
-    </tr>
-    <tr>
-      <th>split0_test_score</th>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>...</td>
-      <td>0.702786</td>
-      <td>0.671827</td>
-      <td>0.517028</td>
-      <td>0.504644</td>
-      <td>0.73065</td>
-      <td>0.73065</td>
-      <td>0.705882</td>
-      <td>0.671827</td>
-      <td>0.517028</td>
-      <td>0.504644</td>
-    </tr>
-    <tr>
-      <th>split1_test_score</th>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>...</td>
-      <td>0.767802</td>
-      <td>0.671827</td>
-      <td>0.510836</td>
-      <td>0.510836</td>
-      <td>0.708978</td>
-      <td>0.758514</td>
-      <td>0.76161</td>
-      <td>0.671827</td>
-      <td>0.510836</td>
-      <td>0.510836</td>
-    </tr>
-    <tr>
-      <th>split2_test_score</th>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>...</td>
-      <td>0.693498</td>
-      <td>0.662539</td>
-      <td>0.517028</td>
-      <td>0.50774</td>
-      <td>0.662539</td>
-      <td>0.71517</td>
-      <td>0.671827</td>
-      <td>0.662539</td>
-      <td>0.517028</td>
-      <td>0.50774</td>
-    </tr>
-    <tr>
-      <th>split3_test_score</th>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>...</td>
-      <td>0.736025</td>
-      <td>0.667702</td>
-      <td>0.515528</td>
-      <td>0.509317</td>
-      <td>0.723602</td>
-      <td>0.720497</td>
-      <td>0.708075</td>
-      <td>0.667702</td>
-      <td>0.515528</td>
-      <td>0.509317</td>
-    </tr>
-    <tr>
-      <th>split4_test_score</th>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>...</td>
-      <td>0.745342</td>
-      <td>0.68323</td>
-      <td>0.515528</td>
-      <td>0.509317</td>
-      <td>0.695652</td>
-      <td>0.73913</td>
-      <td>0.71118</td>
-      <td>0.68323</td>
-      <td>0.515528</td>
-      <td>0.509317</td>
-    </tr>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>...</td>
-      <td>0.729091</td>
-      <td>0.671425</td>
-      <td>0.51519</td>
-      <td>0.508371</td>
-      <td>0.704284</td>
-      <td>0.732792</td>
-      <td>0.711715</td>
-      <td>0.671425</td>
-      <td>0.51519</td>
-      <td>0.508371</td>
-    </tr>
-    <tr>
-      <th>std_test_score</th>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>...</td>
-      <td>0.027457</td>
-      <td>0.006819</td>
-      <td>0.002278</td>
-      <td>0.002105</td>
-      <td>0.024115</td>
-      <td>0.015284</td>
-      <td>0.028734</td>
-      <td>0.006819</td>
-      <td>0.002278</td>
-      <td>0.002105</td>
-    </tr>
-    <tr>
-      <th>rank_test_score</th>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>21</td>
-      <td>...</td>
-      <td>3</td>
-      <td>11</td>
-      <td>15</td>
-      <td>18</td>
-      <td>6</td>
-      <td>2</td>
-      <td>5</td>
-      <td>11</td>
-      <td>15</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>split0_train_score</th>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>...</td>
-      <td>0.923256</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.703876</td>
-      <td>0.80155</td>
-      <td>0.990698</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>split1_train_score</th>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>...</td>
-      <td>0.91938</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.712403</td>
-      <td>0.796899</td>
-      <td>0.987597</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>split2_train_score</th>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>...</td>
-      <td>0.925581</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.726357</td>
-      <td>0.813953</td>
-      <td>0.989147</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-    </tr>
-    <tr>
-      <th>split3_train_score</th>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>...</td>
-      <td>0.923315</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.710302</td>
-      <td>0.797831</td>
-      <td>0.984508</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-    </tr>
-    <tr>
-      <th>split4_train_score</th>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>...</td>
-      <td>0.915569</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.71495</td>
-      <td>0.793958</td>
-      <td>0.986057</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-      <td>0.999225</td>
-    </tr>
-    <tr>
-      <th>mean_train_score</th>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>...</td>
-      <td>0.92142</td>
-      <td>0.999535</td>
-      <td>0.999535</td>
-      <td>0.999535</td>
-      <td>0.713577</td>
-      <td>0.800838</td>
-      <td>0.987601</td>
-      <td>0.999535</td>
-      <td>0.999535</td>
-      <td>0.999535</td>
-    </tr>
-    <tr>
-      <th>std_train_score</th>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>...</td>
-      <td>0.00354</td>
-      <td>0.00038</td>
-      <td>0.00038</td>
-      <td>0.00038</td>
-      <td>0.007368</td>
-      <td>0.006992</td>
-      <td>0.002188</td>
-      <td>0.00038</td>
-      <td>0.00038</td>
-      <td>0.00038</td>
-    </tr>
-  </tbody>
-</table>
-<p>22 rows × 36 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1859,557 +1431,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rank_test_score</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>...</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.082431</td>
-      <td>0.126121</td>
-      <td>0.102882</td>
-      <td>0.081825</td>
-      <td>0.207247</td>
-      <td>0.089417</td>
-      <td>0.090268</td>
-      <td>0.083826</td>
-      <td>0.097946</td>
-      <td>0.087602</td>
-      <td>...</td>
-      <td>0.098312</td>
-      <td>0.099319</td>
-      <td>0.100307</td>
-      <td>0.085305</td>
-      <td>0.102665</td>
-      <td>0.100462</td>
-      <td>0.101936</td>
-      <td>0.101776</td>
-      <td>0.11366</td>
-      <td>0.097029</td>
-    </tr>
-    <tr>
-      <th>std_fit_time</th>
-      <td>0.000552</td>
-      <td>0.002148</td>
-      <td>0.001225</td>
-      <td>0.001291</td>
-      <td>0.010032</td>
-      <td>0.00162</td>
-      <td>0.001053</td>
-      <td>0.001327</td>
-      <td>0.002382</td>
-      <td>0.001027</td>
-      <td>...</td>
-      <td>0.000429</td>
-      <td>0.001752</td>
-      <td>0.001344</td>
-      <td>0.00055</td>
-      <td>0.000339</td>
-      <td>0.000363</td>
-      <td>0.001228</td>
-      <td>0.00101</td>
-      <td>0.000472</td>
-      <td>0.001277</td>
-    </tr>
-    <tr>
-      <th>mean_score_time</th>
-      <td>0.041534</td>
-      <td>0.037343</td>
-      <td>0.039625</td>
-      <td>0.041777</td>
-      <td>0.03375</td>
-      <td>0.046576</td>
-      <td>0.054464</td>
-      <td>0.048913</td>
-      <td>0.056651</td>
-      <td>0.050456</td>
-      <td>...</td>
-      <td>0.059165</td>
-      <td>0.060934</td>
-      <td>0.06141</td>
-      <td>0.057506</td>
-      <td>0.05809</td>
-      <td>0.061385</td>
-      <td>0.060395</td>
-      <td>0.058461</td>
-      <td>0.058625</td>
-      <td>0.05696</td>
-    </tr>
-    <tr>
-      <th>std_score_time</th>
-      <td>0.000649</td>
-      <td>0.000904</td>
-      <td>0.001953</td>
-      <td>0.001139</td>
-      <td>0.001225</td>
-      <td>0.000776</td>
-      <td>0.002104</td>
-      <td>0.000371</td>
-      <td>0.001154</td>
-      <td>0.000721</td>
-      <td>...</td>
-      <td>0.000864</td>
-      <td>0.000278</td>
-      <td>0.000676</td>
-      <td>0.001548</td>
-      <td>0.001776</td>
-      <td>0.000491</td>
-      <td>0.001921</td>
-      <td>0.001336</td>
-      <td>0.000907</td>
-      <td>0.001988</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>1.0</td>
-      <td>100</td>
-      <td>10</td>
-      <td>10</td>
-      <td>100</td>
-      <td>100</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>0.1</td>
-      <td>10</td>
-      <td>...</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.1</td>
-      <td>0.1</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>0.001</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>...</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>100</td>
-      <td>10</td>
-      <td>1.0</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>10</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>params</th>
-      <td>{'svc__C': 1.0, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 100, 'svc__gamma': 0.001}</td>
-      <td>{'svc__C': 0.1, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 1.0, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 0.1, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 10, 'svc__gamma': 0.001}</td>
-      <td>...</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 0.01, 'svc__gamma': 0.001}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 100}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 10}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 1.0}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 0.1}</td>
-      <td>{'svc__C': 0.001, 'svc__gamma': 0.01}</td>
-      <td>{'svc__C': 0.1, 'svc__gamma': 10}</td>
-      <td>{'svc__C': 0.1, 'svc__gamma': 100}</td>
-    </tr>
-    <tr>
-      <th>split0_test_score</th>
-      <td>0.755418</td>
-      <td>0.73065</td>
-      <td>0.702786</td>
-      <td>0.739938</td>
-      <td>0.705882</td>
-      <td>0.73065</td>
-      <td>0.705882</td>
-      <td>0.702786</td>
-      <td>0.693498</td>
-      <td>0.69969</td>
-      <td>...</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-    </tr>
-    <tr>
-      <th>split1_test_score</th>
-      <td>0.755418</td>
-      <td>0.758514</td>
-      <td>0.767802</td>
-      <td>0.733746</td>
-      <td>0.76161</td>
-      <td>0.708978</td>
-      <td>0.718266</td>
-      <td>0.705882</td>
-      <td>0.702786</td>
-      <td>0.674923</td>
-      <td>...</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-    </tr>
-    <tr>
-      <th>split2_test_score</th>
-      <td>0.712074</td>
-      <td>0.71517</td>
-      <td>0.693498</td>
-      <td>0.696594</td>
-      <td>0.671827</td>
-      <td>0.662539</td>
-      <td>0.690402</td>
-      <td>0.659443</td>
-      <td>0.653251</td>
-      <td>0.653251</td>
-      <td>...</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-      <td>0.50774</td>
-    </tr>
-    <tr>
-      <th>split3_test_score</th>
-      <td>0.754658</td>
-      <td>0.720497</td>
-      <td>0.736025</td>
-      <td>0.720497</td>
-      <td>0.708075</td>
-      <td>0.723602</td>
-      <td>0.692547</td>
-      <td>0.726708</td>
-      <td>0.664596</td>
-      <td>0.680124</td>
-      <td>...</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-      <td>0.506211</td>
-    </tr>
-    <tr>
-      <th>split4_test_score</th>
-      <td>0.742236</td>
-      <td>0.73913</td>
-      <td>0.745342</td>
-      <td>0.71118</td>
-      <td>0.71118</td>
-      <td>0.695652</td>
-      <td>0.708075</td>
-      <td>0.692547</td>
-      <td>0.680124</td>
-      <td>0.68323</td>
-      <td>...</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-      <td>0.509317</td>
-    </tr>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.743961</td>
-      <td>0.732792</td>
-      <td>0.729091</td>
-      <td>0.720391</td>
-      <td>0.711715</td>
-      <td>0.704284</td>
-      <td>0.703034</td>
-      <td>0.697473</td>
-      <td>0.678851</td>
-      <td>0.678244</td>
-      <td>...</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-    </tr>
-    <tr>
-      <th>std_test_score</th>
-      <td>0.016713</td>
-      <td>0.015284</td>
-      <td>0.027457</td>
-      <td>0.015566</td>
-      <td>0.028734</td>
-      <td>0.024115</td>
-      <td>0.010345</td>
-      <td>0.022019</td>
-      <td>0.018153</td>
-      <td>0.014994</td>
-      <td>...</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-      <td>0.000982</td>
-    </tr>
-    <tr>
-      <th>split0_train_score</th>
-      <td>0.827132</td>
-      <td>0.80155</td>
-      <td>0.923256</td>
-      <td>0.751938</td>
-      <td>0.990698</td>
-      <td>0.703876</td>
-      <td>0.730233</td>
-      <td>0.708527</td>
-      <td>0.675194</td>
-      <td>0.67907</td>
-      <td>...</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-    </tr>
-    <tr>
-      <th>split1_train_score</th>
-      <td>0.829457</td>
-      <td>0.796899</td>
-      <td>0.91938</td>
-      <td>0.757364</td>
-      <td>0.987597</td>
-      <td>0.712403</td>
-      <td>0.724806</td>
-      <td>0.700775</td>
-      <td>0.676744</td>
-      <td>0.682946</td>
-      <td>...</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-    </tr>
-    <tr>
-      <th>split2_train_score</th>
-      <td>0.83876</td>
-      <td>0.813953</td>
-      <td>0.925581</td>
-      <td>0.760465</td>
-      <td>0.989147</td>
-      <td>0.726357</td>
-      <td>0.737984</td>
-      <td>0.723256</td>
-      <td>0.683721</td>
-      <td>0.694574</td>
-      <td>...</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-      <td>0.507752</td>
-    </tr>
-    <tr>
-      <th>split3_train_score</th>
-      <td>0.831913</td>
-      <td>0.797831</td>
-      <td>0.923315</td>
-      <td>0.759876</td>
-      <td>0.984508</td>
-      <td>0.710302</td>
-      <td>0.729667</td>
-      <td>0.701007</td>
-      <td>0.681642</td>
-      <td>0.688613</td>
-      <td>...</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-      <td>0.508133</td>
-    </tr>
-    <tr>
-      <th>split4_train_score</th>
-      <td>0.832688</td>
-      <td>0.793958</td>
-      <td>0.915569</td>
-      <td>0.75213</td>
-      <td>0.986057</td>
-      <td>0.71495</td>
-      <td>0.725019</td>
-      <td>0.718048</td>
-      <td>0.680868</td>
-      <td>0.687064</td>
-      <td>...</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-      <td>0.507359</td>
-    </tr>
-    <tr>
-      <th>mean_train_score</th>
-      <td>0.83199</td>
-      <td>0.800838</td>
-      <td>0.92142</td>
-      <td>0.756355</td>
-      <td>0.987601</td>
-      <td>0.713577</td>
-      <td>0.729542</td>
-      <td>0.710323</td>
-      <td>0.679634</td>
-      <td>0.686453</td>
-      <td>...</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-    </tr>
-    <tr>
-      <th>std_train_score</th>
-      <td>0.003907</td>
-      <td>0.006992</td>
-      <td>0.00354</td>
-      <td>0.003679</td>
-      <td>0.002188</td>
-      <td>0.007368</td>
-      <td>0.004789</td>
-      <td>0.009034</td>
-      <td>0.003172</td>
-      <td>0.00525</td>
-      <td>...</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-      <td>0.000245</td>
-    </tr>
-  </tbody>
-</table>
-<p>21 rows × 36 columns</p>
-</div></div></div>
 </div>
 <p>Let’s only look at the most relevant rows.</p>
 <div class="cell docutils container">
@@ -2426,149 +1447,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rank_test_score</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>...</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-      <th>21</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.743961</td>
-      <td>0.732792</td>
-      <td>0.729091</td>
-      <td>0.720391</td>
-      <td>0.711715</td>
-      <td>0.704284</td>
-      <td>0.703034</td>
-      <td>0.697473</td>
-      <td>0.678851</td>
-      <td>0.678244</td>
-      <td>...</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>0.001</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>...</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>100</td>
-      <td>10</td>
-      <td>1.0</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>10</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>1.0</td>
-      <td>100</td>
-      <td>10</td>
-      <td>10</td>
-      <td>100</td>
-      <td>100</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>0.1</td>
-      <td>10</td>
-      <td>...</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.1</td>
-      <td>0.1</td>
-    </tr>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.082431</td>
-      <td>0.126121</td>
-      <td>0.102882</td>
-      <td>0.081825</td>
-      <td>0.207247</td>
-      <td>0.089417</td>
-      <td>0.090268</td>
-      <td>0.083826</td>
-      <td>0.097946</td>
-      <td>0.087602</td>
-      <td>...</td>
-      <td>0.098312</td>
-      <td>0.099319</td>
-      <td>0.100307</td>
-      <td>0.085305</td>
-      <td>0.102665</td>
-      <td>0.100462</td>
-      <td>0.101936</td>
-      <td>0.101776</td>
-      <td>0.11366</td>
-      <td>0.097029</td>
-    </tr>
-  </tbody>
-</table>
-<p>4 rows × 36 columns</p>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>Other than searching for best hyperparameter values, <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> also fits a new model on the whole training set with the parameters that yielded the best results.</p></li>
@@ -2577,11 +1455,6 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7376237623762376
 </pre></div>
 </div>
 </div>
@@ -2607,9 +1480,7 @@ dtype: float64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
-<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
-
-<span class="n">pipe_dt</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+<span class="n">pipe_svm</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">(</span><span class="o">**</span><span class="n">best_parameters</span><span class="p">))</span>
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;svc__gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
@@ -2629,14 +1500,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><style>#sk-121be742-809f-494b-a2c4-ecac99e62db0 {color: black;background-color: white;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 pre{padding: 0;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-toggleable {background-color: white;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-estimator:hover {background-color: #d4ebff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-item {z-index: 1;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-parallel-item:only-child::after {width: 0;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-121be742-809f-494b-a2c4-ecac99e62db0 div.sk-container {display: inline-block;position: relative;}</style><div id="sk-121be742-809f-494b-a2c4-ecac99e62db0" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="c6e02e40-effe-4104-b2a0-065fd9a8fea6" type="checkbox" ><label class="sk-toggleable__label" for="c6e02e40-effe-4104-b2a0-065fd9a8fea6">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=5,
-             estimator=Pipeline(steps=[('standardscaler', StandardScaler()),
-                                       ('svc', SVC())]),
-             n_jobs=-1,
-             param_grid={'svc__C': [0.001, 0.01, 0.1, 1.0, 10, 100],
-                         'svc__gamma': [0.001, 0.01, 0.1, 1.0, 10, 100]},
-             return_train_score=True)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="d9b2b2e0-a70e-41e0-b1d4-195f4bfe2314" type="checkbox" ><label class="sk-toggleable__label" for="d9b2b2e0-a70e-41e0-b1d4-195f4bfe2314">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="55a41d4b-e706-4591-92a5-a6b62d3b4e4a" type="checkbox" ><label class="sk-toggleable__label" for="55a41d4b-e706-4591-92a5-a6b62d3b4e4a">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 </div>
 <div class="section" id="visualizing-the-parameter-grid-as-a-heatmap">
@@ -2644,12 +1507,6 @@ dtype: float64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100],
- &#39;svc__C&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100]}
 </pre></div>
 </div>
 </div>
@@ -2669,9 +1526,6 @@ dtype: float64
 <span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_67_0.png" src="../_images/08_hyperparameter-optimization_67_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2722,9 +1576,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_72_0.png" src="../_images/08_hyperparameter-optimization_72_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="different-range-for-hyperparameters-yields-better-results">
@@ -2737,9 +1588,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_74_0.png" src="../_images/08_hyperparameter-optimization_74_0.png" />
-</div>
 </div>
 <p>It seems like we are getting even better cross-validation results with <code class="docutils literal notranslate"><span class="pre">C</span></code> = 2.0 and <code class="docutils literal notranslate"><span class="pre">gamma</span></code> = 0.1</p>
 <p>How about exploring different values of <code class="docutils literal notranslate"><span class="pre">C</span></code> close to 2.0?</p>
@@ -2750,9 +1598,6 @@ dtype: float64
 <span class="n">display_heatmap</span><span class="p">(</span><span class="n">param_grid4</span><span class="p">,</span> <span class="n">pipe_svm</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/08_hyperparameter-optimization_76_0.png" src="../_images/08_hyperparameter-optimization_76_0.png" />
 </div>
 </div>
 <p>That’s good! We are finding some more options for <code class="docutils literal notranslate"><span class="pre">C</span></code> where the accuracy is 0.75.
@@ -2812,15 +1657,6 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid size: 36
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100],
- &#39;svc__C&#39;: [0.001, 0.01, 0.1, 1.0, 10, 100]}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2846,93 +1682,6 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rank_test_score</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>6</th>
-      <th>6</th>
-      <th>6</th>
-      <th>6</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.732792</td>
-      <td>0.711715</td>
-      <td>0.678851</td>
-      <td>0.652824</td>
-      <td>0.508371</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-      <td>0.50775</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.01</td>
-      <td>0.1</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>100</td>
-      <td>0.001</td>
-      <td>0.1</td>
-      <td>100</td>
-      <td>100</td>
-      <td>0.001</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>100</td>
-      <td>100</td>
-      <td>0.1</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.01</td>
-      <td>0.001</td>
-      <td>0.1</td>
-    </tr>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.15498</td>
-      <td>0.255865</td>
-      <td>0.089326</td>
-      <td>0.095034</td>
-      <td>0.116903</td>
-      <td>0.079079</td>
-      <td>0.082891</td>
-      <td>0.087663</td>
-      <td>0.091671</td>
-      <td>0.121055</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="section" id="n-iter">
 <h3><code class="docutils literal notranslate"><span class="pre">n_iter</span></code><a class="headerlink" href="#n-iter" title="Permalink to this headline">¶</a></h3>
@@ -2988,26 +1737,10 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 5 folds for each of 100 candidates, totalling 500 fits
-</pre></div>
-</div>
-<div class="output text_html"><style>#sk-765e1c87-3a02-4f36-a340-258827e153ae {color: black;background-color: white;}#sk-765e1c87-3a02-4f36-a340-258827e153ae pre{padding: 0;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-toggleable {background-color: white;}#sk-765e1c87-3a02-4f36-a340-258827e153ae label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-estimator:hover {background-color: #d4ebff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-item {z-index: 1;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 2em;bottom: 0;left: 50%;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel-item {display: flex;flex-direction: column;position: relative;background-color: white;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-parallel-item:only-child::after {width: 0;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;position: relative;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-label label {font-family: monospace;font-weight: bold;background-color: white;display: inline-block;line-height: 1.2em;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-label-container {position: relative;z-index: 2;text-align: center;}#sk-765e1c87-3a02-4f36-a340-258827e153ae div.sk-container {display: inline-block;position: relative;}</style><div id="sk-765e1c87-3a02-4f36-a340-258827e153ae" class"sk-top-container"><div class="sk-container"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="ab4f7e63-fa77-4d8c-b79b-600b2fbab7f7" type="checkbox" ><label class="sk-toggleable__label" for="ab4f7e63-fa77-4d8c-b79b-600b2fbab7f7">RandomizedSearchCV</label><div class="sk-toggleable__content"><pre>RandomizedSearchCV(estimator=Pipeline(steps=[('standardscaler',
-                                              StandardScaler()),
-                                             ('svc', SVC())]),
-                   n_iter=100, n_jobs=-1,
-                   param_distributions={'svc__C': <scipy.stats._distn_infrastructure.rv_frozen object at 0x12ddf3970>,
-                                        'svc__gamma': <scipy.stats._distn_infrastructure.rv_frozen object at 0x12df393a0>},
-                   random_state=123, verbose=1)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="9523d550-c6ac-4a83-a1a0-9013641d364b" type="checkbox" ><label class="sk-toggleable__label" for="9523d550-c6ac-4a83-a1a0-9013641d364b">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="2b63d28a-40f8-4ba9-a90d-2aee22d2168e" type="checkbox" ><label class="sk-toggleable__label" for="2b63d28a-40f8-4ba9-a90d-2aee22d2168e">SVC</label><div class="sk-toggleable__content"><pre>SVC()</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_search</span><span class="o">.</span><span class="n">best_score_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7383804780493433
 </pre></div>
 </div>
 </div>
@@ -3026,149 +1759,6 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rank_test_score</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>9</th>
-      <th>...</th>
-      <th>82</th>
-      <th>82</th>
-      <th>82</th>
-      <th>82</th>
-      <th>82</th>
-      <th>96</th>
-      <th>96</th>
-      <th>96</th>
-      <th>96</th>
-      <th>96</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.73838</td>
-      <td>0.7359</td>
-      <td>0.735277</td>
-      <td>0.733415</td>
-      <td>0.731556</td>
-      <td>0.729716</td>
-      <td>0.729068</td>
-      <td>0.728454</td>
-      <td>0.72845</td>
-      <td>0.72845</td>
-      <td>...</td>
-      <td>0.508371</td>
-      <td>0.508371</td>
-      <td>0.508371</td>
-      <td>0.508371</td>
-      <td>0.508371</td>
-      <td>0.50713</td>
-      <td>0.50713</td>
-      <td>0.50713</td>
-      <td>0.50713</td>
-      <td>0.50713</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.00271</td>
-      <td>0.001946</td>
-      <td>0.00283</td>
-      <td>0.003148</td>
-      <td>0.003834</td>
-      <td>0.015524</td>
-      <td>0.00067</td>
-      <td>0.005593</td>
-      <td>0.00089</td>
-      <td>0.000458</td>
-      <td>...</td>
-      <td>33.017913</td>
-      <td>51.754341</td>
-      <td>126.722678</td>
-      <td>84.511472</td>
-      <td>120.952433</td>
-      <td>766.440217</td>
-      <td>739.685456</td>
-      <td>918.053216</td>
-      <td>263.398099</td>
-      <td>806.79529</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>3427.738338</td>
-      <td>6964.791856</td>
-      <td>2865.466167</td>
-      <td>4258.402903</td>
-      <td>7224.533826</td>
-      <td>1511.374523</td>
-      <td>3617.986556</td>
-      <td>2408.658977</td>
-      <td>7636.928414</td>
-      <td>9053.515757</td>
-      <td>...</td>
-      <td>5826.810879</td>
-      <td>7087.073954</td>
-      <td>6648.824488</td>
-      <td>6007.085678</td>
-      <td>957.225166</td>
-      <td>4830.442643</td>
-      <td>9019.213727</td>
-      <td>7049.688305</td>
-      <td>3370.763834</td>
-      <td>26.980646</td>
-    </tr>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.530393</td>
-      <td>0.661586</td>
-      <td>0.516298</td>
-      <td>0.705564</td>
-      <td>1.209967</td>
-      <td>0.868981</td>
-      <td>0.223368</td>
-      <td>0.657591</td>
-      <td>0.457631</td>
-      <td>0.312378</td>
-      <td>...</td>
-      <td>0.145141</td>
-      <td>0.128643</td>
-      <td>0.116022</td>
-      <td>0.120775</td>
-      <td>0.106368</td>
-      <td>0.101882</td>
-      <td>0.099418</td>
-      <td>0.100599</td>
-      <td>0.111976</td>
-      <td>0.101319</td>
-    </tr>
-  </tbody>
-</table>
-<p>4 rows × 100 columns</p>
-</div></div></div>
 </div>
 <ul class="simple">
 <li><p>This is a bit fancy. What’s nice is that you can have it concentrate more on certain values by setting the distribution.</p></li>
@@ -3311,22 +1901,6 @@ For example, in the context of <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1 tests is : 0.25
-The expected grade among the best of 2 tests is : 0.32
-The expected grade among the best of 10 tests is : 0.47
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 100 tests is : 0.62
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.73
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.82
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="example-2-optimization-bias-optional">
@@ -3368,24 +1942,6 @@ The expected grade among the best of 10 tests is : 0.47
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1 tests is : 0.25
-The expected grade among the best of 2 tests is : 0.27
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10 tests is : 0.32
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 100 tests is : 0.36
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 1000 tests is : 0.40
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The expected grade among the best of 10000 tests is : 0.43
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="optimization-bias-on-the-spotify-dataset">
@@ -3405,11 +1961,6 @@ The expected grade among the best of 2 tests is : 0.27
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(20, 13)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3417,124 +1968,6 @@ The expected grade among the best of 2 tests is : 0.27
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>acousticness</th>
-      <th>danceability</th>
-      <th>duration_ms</th>
-      <th>energy</th>
-      <th>instrumentalness</th>
-      <th>key</th>
-      <th>liveness</th>
-      <th>loudness</th>
-      <th>mode</th>
-      <th>speechiness</th>
-      <th>tempo</th>
-      <th>time_signature</th>
-      <th>valence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>130</th>
-      <td>0.055100</td>
-      <td>0.547</td>
-      <td>251093</td>
-      <td>0.643</td>
-      <td>0.000000</td>
-      <td>1</td>
-      <td>0.2670</td>
-      <td>-8.904</td>
-      <td>1</td>
-      <td>0.2270</td>
-      <td>143.064</td>
-      <td>4.0</td>
-      <td>0.1870</td>
-    </tr>
-    <tr>
-      <th>1687</th>
-      <td>0.000353</td>
-      <td>0.420</td>
-      <td>210240</td>
-      <td>0.929</td>
-      <td>0.000747</td>
-      <td>7</td>
-      <td>0.1220</td>
-      <td>-3.899</td>
-      <td>0</td>
-      <td>0.1210</td>
-      <td>127.204</td>
-      <td>4.0</td>
-      <td>0.3180</td>
-    </tr>
-    <tr>
-      <th>871</th>
-      <td>0.314000</td>
-      <td>0.430</td>
-      <td>193427</td>
-      <td>0.734</td>
-      <td>0.000286</td>
-      <td>9</td>
-      <td>0.0808</td>
-      <td>-10.043</td>
-      <td>0</td>
-      <td>0.1020</td>
-      <td>133.992</td>
-      <td>4.0</td>
-      <td>0.0537</td>
-    </tr>
-    <tr>
-      <th>1123</th>
-      <td>0.082100</td>
-      <td>0.725</td>
-      <td>246653</td>
-      <td>0.711</td>
-      <td>0.000000</td>
-      <td>10</td>
-      <td>0.0931</td>
-      <td>-4.544</td>
-      <td>1</td>
-      <td>0.0335</td>
-      <td>93.003</td>
-      <td>4.0</td>
-      <td>0.4760</td>
-    </tr>
-    <tr>
-      <th>1396</th>
-      <td>0.286000</td>
-      <td>0.616</td>
-      <td>236960</td>
-      <td>0.387</td>
-      <td>0.000000</td>
-      <td>9</td>
-      <td>0.2770</td>
-      <td>-6.079</td>
-      <td>0</td>
-      <td>0.0335</td>
-      <td>81.856</td>
-      <td>4.0</td>
-      <td>0.4700</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3553,21 +1986,6 @@ The expected grade among the best of 2 tests is : 0.27
 <span class="p">}</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grid size: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">.</span><span class="n">values</span><span class="p">())))))</span>
 <span class="n">param_grid</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Grid size: 900
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;svc__gamma&#39;: array([1.e-20, 1.e-19, 1.e-18, 1.e-17, 1.e-16, 1.e-15, 1.e-14, 1.e-13,
-        1.e-12, 1.e-11, 1.e-10, 1.e-09, 1.e-08, 1.e-07, 1.e-06, 1.e-05,
-        1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03,
-        1.e+04, 1.e+05, 1.e+06, 1.e+07, 1.e+08, 1.e+09]),
- &#39;svc__C&#39;: array([1.e-20, 1.e-19, 1.e-18, 1.e-17, 1.e-16, 1.e-15, 1.e-14, 1.e-13,
-        1.e-12, 1.e-11, 1.e-10, 1.e-09, 1.e-08, 1.e-07, 1.e-06, 1.e-05,
-        1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03,
-        1.e+04, 1.e+05, 1.e+06, 1.e+07, 1.e+08, 1.e+09])}
 </pre></div>
 </div>
 </div>
@@ -3596,149 +2014,6 @@ The expected grade among the best of 2 tests is : 0.27
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>rank_test_score</th>
-      <th>1</th>
-      <th>1</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>3</th>
-      <th>...</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>20</th>
-      <th>900</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>mean_test_score</th>
-      <td>0.8</td>
-      <td>0.8</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>0.75</td>
-      <td>...</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.65</td>
-      <td>0.55</td>
-    </tr>
-    <tr>
-      <th>param_svc__gamma</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.0</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>0.001</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>100000.0</td>
-      <td>1000000000.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>param_svc__C</th>
-      <td>1000000000.0</td>
-      <td>100000000.0</td>
-      <td>1000000000.0</td>
-      <td>10000.0</td>
-      <td>1000000.0</td>
-      <td>10000000.0</td>
-      <td>100000.0</td>
-      <td>1000.0</td>
-      <td>10000000.0</td>
-      <td>100000000.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1000000000.0</td>
-      <td>1000000000.0</td>
-    </tr>
-    <tr>
-      <th>mean_fit_time</th>
-      <td>0.004265</td>
-      <td>0.004124</td>
-      <td>0.003647</td>
-      <td>0.004307</td>
-      <td>0.004169</td>
-      <td>0.004061</td>
-      <td>0.003887</td>
-      <td>0.004123</td>
-      <td>0.004125</td>
-      <td>0.004241</td>
-      <td>...</td>
-      <td>0.002553</td>
-      <td>0.003841</td>
-      <td>0.004182</td>
-      <td>0.004119</td>
-      <td>0.00432</td>
-      <td>0.004063</td>
-      <td>0.003045</td>
-      <td>0.004154</td>
-      <td>0.002906</td>
-      <td>0.004103</td>
-    </tr>
-  </tbody>
-</table>
-<p>4 rows × 900 columns</p>
-</div></div></div>
 </div>
 <p>Given the results: one might claim that we found a model that performs with 0.8 accuracy on our dataset.</p>
 <ul class="simple">
@@ -3751,11 +2026,6 @@ The expected grade among the best of 2 tests is : 0.27
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6163366336633663
 </pre></div>
 </div>
 </div>
@@ -3775,11 +2045,6 @@ The expected grade among the best of 2 tests is : 0.27
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_big</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1997, 13)
 </pre></div>
 </div>
 </div>
@@ -3922,34 +2187,42 @@ The expected grade among the best of 2 tests is : 0.27
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="07_linear-models.html" title="previous page">Lecture 7: Linear Models</a>
-    <a class='right-next' id="next-link" href="09_classification-metrics.html" title="next page">Lecture 9: Classification Metrics</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="07_linear-models.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 7: Linear Models</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="09_classification-metrics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 9: Classification Metrics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Varada Kolhatkar<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Varada Kolhatkar<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

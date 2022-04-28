@@ -1,39 +1,116 @@
 Traceback (most recent call last):
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 627, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 89, in ensure_async
-    result = await obj
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/jupyter_client/channels.py", line 230, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
     executenb(
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 78, in wrapped
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
     return just_run(coro(*args, **kwargs))
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/util.py", line 57, in just_run
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
     return loop.run_until_complete(coro)
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
     return future.result()
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 846, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 651, in _async_poll_for_reply
-    await self._async_handle_timeout(timeout, cell)
-  File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/nbclient/client.py", line 701, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-Z_train, y_train, Z_valid, y_valid = get_features(
-    densenet, dataloaders["train"], dataloaders["val"]
-)
--------------------
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/kvarada/opt/miniconda3/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Attribution: [Code from PyTorch docs](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html?highlight=transfer%20learning)
+
+import copy
+import os
+import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+from torch.optim import lr_scheduler
+from torchvision import datasets, models, transforms
+
+data_transforms = {
+    "train": transforms.Compose(
+        [
+            transforms.RandomResizedCrop(224),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        ]
+    ),
+    "val": transforms.Compose(
+        [
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        ]
+    ),
+}
+data_dir = "data/hymenoptera_data"
+image_datasets = {
+    x: datasets.ImageFolder(os.path.join(data_dir, x), data_transforms[x])
+    for x in ["train", "val"]
+}
+dataloaders = {
+    x: torch.utils.data.DataLoader(
+        image_datasets[x], batch_size=4, shuffle=True, num_workers=4
+    )
+    for x in ["train", "val"]
+}
+dataset_sizes = {x: len(image_datasets[x]) for x in ["train", "val"]}
+class_names = image_datasets["train"].classes
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[0;32m/var/folders/ky/533nd9l512l5cmmk_kzmzj9m0000gp/T/ipykernel_80792/3398318130.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     33[0m }
+[1;32m     34[0m [0mdata_dir[0m [0;34m=[0m [0;34m"data/hymenoptera_data"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 35[0;31m image_datasets = {
+[0m[1;32m     36[0m     [0mx[0m[0;34m:[0m [0mdatasets[0m[0;34m.[0m[0mImageFolder[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mdata_dir[0m[0;34m,[0m [0mx[0m[0;34m)[0m[0;34m,[0m [0mdata_transforms[0m[0;34m[[0m[0mx[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     37[0m     [0;32mfor[0m [0mx[0m [0;32min[0m [0;34m[[0m[0;34m"train"[0m[0;34m,[0m [0;34m"val"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/var/folders/ky/533nd9l512l5cmmk_kzmzj9m0000gp/T/ipykernel_80792/3398318130.py[0m in [0;36m<dictcomp>[0;34m(.0)[0m
+[1;32m     34[0m [0mdata_dir[0m [0;34m=[0m [0;34m"data/hymenoptera_data"[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     35[0m image_datasets = {
+[0;32m---> 36[0;31m     [0mx[0m[0;34m:[0m [0mdatasets[0m[0;34m.[0m[0mImageFolder[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mpath[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0mdata_dir[0m[0;34m,[0m [0mx[0m[0;34m)[0m[0;34m,[0m [0mdata_transforms[0m[0;34m[[0m[0mx[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     37[0m     [0;32mfor[0m [0mx[0m [0;32min[0m [0;34m[[0m[0;34m"train"[0m[0;34m,[0m [0;34m"val"[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[1;32m     38[0m }
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py[0m in [0;36m__init__[0;34m(self, root, transform, target_transform, loader, is_valid_file)[0m
+[1;32m    308[0m             [0mis_valid_file[0m[0;34m:[0m [0mOptional[0m[0;34m[[0m[0mCallable[0m[0;34m[[0m[0;34m[[0m[0mstr[0m[0;34m][0m[0;34m,[0m [0mbool[0m[0;34m][0m[0;34m][0m [0;34m=[0m [0;32mNone[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    309[0m     ):
+[0;32m--> 310[0;31m         super(ImageFolder, self).__init__(root, loader, IMG_EXTENSIONS if is_valid_file is None else None,
+[0m[1;32m    311[0m                                           [0mtransform[0m[0;34m=[0m[0mtransform[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    312[0m                                           [0mtarget_transform[0m[0;34m=[0m[0mtarget_transform[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py[0m in [0;36m__init__[0;34m(self, root, loader, extensions, transform, target_transform, is_valid_file)[0m
+[1;32m    143[0m         super(DatasetFolder, self).__init__(root, transform=transform,
+[1;32m    144[0m                                             target_transform=target_transform)
+[0;32m--> 145[0;31m         [0mclasses[0m[0;34m,[0m [0mclass_to_idx[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mfind_classes[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mroot[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    146[0m         [0msamples[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mmake_dataset[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mroot[0m[0;34m,[0m [0mclass_to_idx[0m[0;34m,[0m [0mextensions[0m[0;34m,[0m [0mis_valid_file[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    147[0m [0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py[0m in [0;36mfind_classes[0;34m(self, directory)[0m
+[1;32m    219[0m             [0;34m([0m[0mTuple[0m[0;34m[[0m[0mList[0m[0;34m[[0m[0mstr[0m[0;34m][0m[0;34m,[0m [0mDict[0m[0;34m[[0m[0mstr[0m[0;34m,[0m [0mint[0m[0;34m][0m[0;34m][0m[0;34m)[0m[0;34m:[0m [0mList[0m [0mof[0m [0mall[0m [0mclasses[0m [0;32mand[0m [0mdictionary[0m [0mmapping[0m [0meach[0m [0;32mclass[0m [0mto[0m [0man[0m [0mindex[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    220[0m         """
+[0;32m--> 221[0;31m         [0;32mreturn[0m [0mfind_classes[0m[0;34m([0m[0mdirectory[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    222[0m [0;34m[0m[0m
+[1;32m    223[0m     [0;32mdef[0m [0m__getitem__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mindex[0m[0;34m:[0m [0mint[0m[0;34m)[0m [0;34m->[0m [0mTuple[0m[0;34m[[0m[0mAny[0m[0;34m,[0m [0mAny[0m[0;34m][0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py[0m in [0;36mfind_classes[0;34m(directory)[0m
+[1;32m     38[0m     [0mSee[0m [0;34m:[0m[0;32mclass[0m[0;34m:[0m[0;31m`[0m[0mDatasetFolder[0m[0;31m`[0m [0;32mfor[0m [0mdetails[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     39[0m     """
+[0;32m---> 40[0;31m     [0mclasses[0m [0;34m=[0m [0msorted[0m[0;34m([0m[0mentry[0m[0;34m.[0m[0mname[0m [0;32mfor[0m [0mentry[0m [0;32min[0m [0mos[0m[0;34m.[0m[0mscandir[0m[0;34m([0m[0mdirectory[0m[0;34m)[0m [0;32mif[0m [0mentry[0m[0;34m.[0m[0mis_dir[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     41[0m     [0;32mif[0m [0;32mnot[0m [0mclasses[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     42[0m         [0;32mraise[0m [0mFileNotFoundError[0m[0;34m([0m[0;34mf"Couldn't find any class folder in {directory}."[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'data/hymenoptera_data/train'
+FileNotFoundError: [Errno 2] No such file or directory: 'data/hymenoptera_data/train'
 

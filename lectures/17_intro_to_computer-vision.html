@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 17: Multi-class classification and introduction to computer vision &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +31,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 18: Time series" href="18_time-series.html" />
     <link rel="prev" title="Lecture 16: Introduction to natural language processing" href="16_natural-language-processing.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +79,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,9 +92,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Things you should know
  </span>
@@ -97,7 +106,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -235,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Attribution
  </span>
@@ -248,7 +257,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LICENSE.html">
-   LICENSE
+   Instructional Material
   </a>
  </li>
 </ul>
@@ -297,7 +306,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -332,12 +341,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -514,11 +523,196 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 17: Multi-class classification and introduction to computer vision</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lecture-plan">
+     Lecture plan
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recap">
+   Recap
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#true-false-questions">
+     True/False questions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#questions-for-discussion">
+     Questions for discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     True/False questions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-class-meta-strategies">
+   Multi-class, meta-strategies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-vs-rest">
+     One vs. Rest
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-vs-one-approach">
+     One Vs. One approach
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-vs-one-prediction">
+     One Vs. One prediction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-ovr-and-ovo-as-wrappers">
+     Using OVR and OVO as wrappers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#true-false">
+     True/False
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-class-classification-on-happydb-corpus">
+     Multi-class classification on HappyDB corpus
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-computer-vision">
+   Intro to computer vision
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-neural-networks">
+   Intro to neural networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#terminology">
+     Terminology
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-neural-networks">
+     Why neural networks?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Why neural networks?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-not-neural-networks">
+     Why not neural networks?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Why not neural networks?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deep-learning-software">
+     Deep learning software
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-networks-on-image-data">
+   Neural networks on image data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transfer-learning">
+   Transfer learning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-pre-trained-models-out-of-the-box">
+     Using pre-trained models out-of-the-box
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imagenet">
+     ImageNet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-pre-trained-models-as-feature-extractor">
+   Using pre-trained models as feature extractor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#todo">
+     TODO
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-cool-stuff">
+   Random cool stuff
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-17-multi-class-classification-and-introduction-to-computer-vision">
+<div class="tex2jax_ignore mathjax_ignore section" id="lecture-17-multi-class-classification-and-introduction-to-computer-vision">
 <h1>Lecture 17: Multi-class classification and introduction to computer vision<a class="headerlink" href="#lecture-17-multi-class-classification-and-introduction-to-computer-vision" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
@@ -836,10 +1030,10 @@ Intercept shape:  (3,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>531 ms ± 9.19 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>830 ms ± 80.5 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 With OVO wrapper
-0.8013333333333333
-0.74
+0.7893333333333333
+0.804
 </pre></div>
 </div>
 </div>
@@ -855,10 +1049,10 @@ With OVO wrapper
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77.8 ms ± 1.2 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>124 ms ± 7.6 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 With OVR wrapper
-0.736
-0.644
+0.7226666666666667
+0.72
 </pre></div>
 </div>
 </div>
@@ -1065,16 +1259,16 @@ Name: target, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.06452735e-01, 3.74990512e-02, 5.65452910e-02, 4.48402307e-02,
-        3.05695520e-02, 1.10315940e-01, 1.37772001e-02],
-       [4.51072728e-03, 9.89340344e-01, 5.83681077e-04, 3.70783018e-03,
-        2.90885763e-04, 6.37026425e-04, 9.29504857e-04],
-       [2.13263756e-03, 1.51560371e-02, 9.78843659e-01, 1.36500305e-03,
-        1.26026669e-03, 9.41813463e-04, 3.00582712e-04],
-       [1.13081731e-01, 9.17848470e-02, 2.38839233e-02, 5.06682251e-01,
-        7.30919639e-03, 2.49577231e-01, 7.68082098e-03],
-       [7.71875969e-02, 5.53222816e-01, 3.87142940e-02, 8.14779901e-02,
-        2.38187000e-02, 2.08421459e-01, 1.71571441e-02]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.06452350e-01, 3.74990393e-02, 5.65453786e-02, 4.48404275e-02,
+        3.05695489e-02, 1.10316033e-01, 1.37772223e-02],
+       [4.51072220e-03, 9.89340325e-01, 5.83682036e-04, 3.70785198e-03,
+        2.90885871e-04, 6.37026515e-04, 9.29506315e-04],
+       [2.13262817e-03, 1.51560064e-02, 9.78843702e-01, 1.36500542e-03,
+        1.26026360e-03, 9.41811814e-04, 3.00582342e-04],
+       [1.13081188e-01, 9.17845883e-02, 2.38838838e-02, 5.06683629e-01,
+        7.30917880e-03, 2.49576722e-01, 7.68081050e-03],
+       [7.71874349e-02, 5.53222817e-01, 3.87143039e-02, 8.14783598e-02,
+        2.38186787e-02, 2.08421258e-01, 1.71571479e-02]])
 </pre></div>
 </div>
 </div>
@@ -1149,16 +1343,16 @@ enjoy_the_moment       0.60      0.54      0.57       469
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.06452735e-01, 3.74990512e-02, 5.65452910e-02, 4.48402307e-02,
-        3.05695520e-02, 1.10315940e-01, 1.37772001e-02],
-       [4.51072728e-03, 9.89340344e-01, 5.83681077e-04, 3.70783018e-03,
-        2.90885763e-04, 6.37026425e-04, 9.29504857e-04],
-       [2.13263756e-03, 1.51560371e-02, 9.78843659e-01, 1.36500305e-03,
-        1.26026669e-03, 9.41813463e-04, 3.00582712e-04],
-       [1.13081731e-01, 9.17848470e-02, 2.38839233e-02, 5.06682251e-01,
-        7.30919639e-03, 2.49577231e-01, 7.68082098e-03],
-       [7.71875969e-02, 5.53222816e-01, 3.87142940e-02, 8.14779901e-02,
-        2.38187000e-02, 2.08421459e-01, 1.71571441e-02]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.06452350e-01, 3.74990393e-02, 5.65453786e-02, 4.48404275e-02,
+        3.05695489e-02, 1.10316033e-01, 1.37772223e-02],
+       [4.51072220e-03, 9.89340325e-01, 5.83682036e-04, 3.70785198e-03,
+        2.90885871e-04, 6.37026515e-04, 9.29506315e-04],
+       [2.13262817e-03, 1.51560064e-02, 9.78843702e-01, 1.36500542e-03,
+        1.26026360e-03, 9.41811814e-04, 3.00582342e-04],
+       [1.13081188e-01, 9.17845883e-02, 2.38838838e-02, 5.06683629e-01,
+        7.30917880e-03, 2.49576722e-01, 7.68081050e-03],
+       [7.71874349e-02, 5.53222817e-01, 3.87143039e-02, 8.14783598e-02,
+        2.38186787e-02, 2.08421258e-01, 1.71571479e-02]])
 </pre></div>
 </div>
 </div>
@@ -1273,9 +1467,9 @@ enjoy_the_moment       0.60      0.54      0.57       469
     </tr>
     <tr>
       <th>friends</th>
-      <td>-1.304139</td>
-      <td>0.052717</td>
-      <td>5.246050</td>
+      <td>-1.304138</td>
+      <td>0.052716</td>
+      <td>5.246049</td>
       <td>-1.992706</td>
       <td>0.328852</td>
       <td>-1.559691</td>
@@ -1286,7 +1480,7 @@ enjoy_the_moment       0.60      0.54      0.57       469
       <td>-1.327173</td>
       <td>-0.690690</td>
       <td>3.418162</td>
-      <td>-1.138269</td>
+      <td>-1.138268</td>
       <td>-0.078645</td>
       <td>-0.070318</td>
       <td>-0.113067</td>
@@ -1308,7 +1502,7 @@ enjoy_the_moment       0.60      0.54      0.57       469
       <td>2.770895</td>
       <td>-0.560367</td>
       <td>-0.093261</td>
-      <td>-0.415519</td>
+      <td>-0.415518</td>
       <td>-0.175651</td>
     </tr>
     <tr>
@@ -1335,7 +1529,7 @@ enjoy_the_moment       0.60      0.54      0.57       469
       <th>jogging</th>
       <td>-0.046356</td>
       <td>-0.319891</td>
-      <td>-0.909224</td>
+      <td>-0.909223</td>
       <td>-0.098751</td>
       <td>1.521339</td>
       <td>-0.130397</td>
@@ -1345,7 +1539,7 @@ enjoy_the_moment       0.60      0.54      0.57       469
       <th>telling</th>
       <td>-0.436985</td>
       <td>0.870927</td>
-      <td>-1.070988</td>
+      <td>-1.070989</td>
       <td>0.694236</td>
       <td>-0.066820</td>
       <td>0.038828</td>
@@ -1356,17 +1550,17 @@ enjoy_the_moment       0.60      0.54      0.57       469
       <td>-0.150849</td>
       <td>0.584471</td>
       <td>-1.184907</td>
-      <td>0.891982</td>
+      <td>0.891981</td>
       <td>-0.239564</td>
       <td>-0.453334</td>
-      <td>0.552201</td>
+      <td>0.552202</td>
     </tr>
     <tr>
       <th>boy</th>
-      <td>1.398698</td>
-      <td>0.288215</td>
+      <td>1.398697</td>
+      <td>0.288216</td>
       <td>-1.327457</td>
-      <td>0.138854</td>
+      <td>0.138855</td>
       <td>-0.261439</td>
       <td>-0.162193</td>
       <td>-0.074679</td>
@@ -1384,7 +1578,7 @@ enjoy_the_moment       0.60      0.54      0.57       469
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.589815667885921
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.589816305065756
 </pre></div>
 </div>
 </div>
@@ -1402,17 +1596,17 @@ enjoy_the_moment       0.60      0.54      0.57       469
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>friend       4.061111e+01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>friend       4.061112e+01
 friends      3.633082e+01
 husband      2.764457e+01
 wife         2.542291e+01
 son          2.361040e+01
                  ...     
-passport     8.788729e-12
-rang         8.788729e-12
-postman      8.788729e-12
-curiosity    8.788729e-12
-itching      8.788729e-12
+passport     8.842137e-12
+rang         8.842137e-12
+postman      8.842137e-12
+curiosity    8.842137e-12
+itching      8.842137e-12
 Length: 8060, dtype: float64
 </pre></div>
 </div>
@@ -1792,7 +1986,7 @@ Number of classes: 19
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11209/66211837.py:1: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ky/533nd9l512l5cmmk_kzmzj9m0000gp/T/ipykernel_80792/66211837.py:1: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   mask = np.zeros(people.target.shape, dtype=np.bool)
 </pre></div>
@@ -2256,6 +2450,55 @@ cellular telephone, cellular phone, cellphone, cell, mobile phone              0
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_80792</span><span class="o">/</span><span class="mf">3398318130.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="p">}</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/hymenoptera_data&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">35</span> <span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span>     <span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]</span>
+
+<span class="nn">/var/folders/ky/533nd9l512l5cmmk_kzmzj9m0000gp/T/ipykernel_80792/3398318130.py</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">data_dir</span> <span class="o">=</span> <span class="s2">&quot;data/hymenoptera_data&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="n">image_datasets</span> <span class="o">=</span> <span class="p">{</span>
+<span class="ne">---&gt; </span><span class="mi">36</span>     <span class="n">x</span><span class="p">:</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">data_transforms</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="s2">&quot;val&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="p">}</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py</span> in <span class="ni">__init__</span><span class="nt">(self, root, transform, target_transform, loader, is_valid_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span>             <span class="n">is_valid_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">310</span>         <span class="nb">super</span><span class="p">(</span><span class="n">ImageFolder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">loader</span><span class="p">,</span> <span class="n">IMG_EXTENSIONS</span> <span class="k">if</span> <span class="n">is_valid_file</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>                                           <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>                                           <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">,</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py</span> in <span class="ni">__init__</span><span class="nt">(self, root, loader, extensions, transform, target_transform, is_valid_file)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>         <span class="nb">super</span><span class="p">(</span><span class="n">DatasetFolder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>                                             <span class="n">target_transform</span><span class="o">=</span><span class="n">target_transform</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">145</span>         <span class="n">classes</span><span class="p">,</span> <span class="n">class_to_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_classes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">class_to_idx</span><span class="p">,</span> <span class="n">extensions</span><span class="p">,</span> <span class="n">is_valid_file</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span> 
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py</span> in <span class="ni">find_classes</span><span class="nt">(self, directory)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>             <span class="p">(</span><span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]):</span> <span class="n">List</span> <span class="n">of</span> <span class="nb">all</span> <span class="n">classes</span> <span class="ow">and</span> <span class="n">dictionary</span> <span class="n">mapping</span> <span class="n">each</span> <span class="k">class</span> <span class="nc">to</span> <span class="n">an</span> <span class="n">index</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="sd">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">221</span><span class="sd">         return find_classes(directory)</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="sd">     def __getitem__(self, index: int) -&gt; Tuple[Any, Any]:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torchvision/datasets/folder.py</span> in <span class="ni">find_classes</span><span class="nt">(directory)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">     See :class:`DatasetFolder` for details.</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="nn">---&gt; 40     classes = sorted(entry.name for entry</span> in <span class="ni">os.scandir(directory) if entry.is_dir</span><span class="nt">())</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">classes</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>         <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t find any class folder in </span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/hymenoptera_data/train&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2340,74 +2583,6 @@ First sample: (&#39;data/hymenoptera_data/train/ants/0013035.jpg&#39;, 0)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">Z_valid</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
     <span class="n">densenet</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s2">&quot;val&quot;</span><span class="p">]</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_11209</span><span class="o">/</span><span class="mf">187561414.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Z_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">Z_valid</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">get_features</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="n">densenet</span><span class="p">,</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span> <span class="n">dataloaders</span><span class="p">[</span><span class="s2">&quot;val&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="p">)</span>
-
-<span class="nn">/var/folders/80/kr9rkqfj4w78h49djkz8yy9r0000gp/T/ipykernel_11209/2711183936.py</span> in <span class="ni">get_features</span><span class="nt">(model, train_loader, valid_loader)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">Z_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">y_valid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">))</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>         <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>             <span class="n">Z_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">Z_train</span><span class="p">,</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>             <span class="n">y_train</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">521</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1173</span>                 <span class="c1"># no valid `self._rcvd_idx` is found (i.e., didn&#39;t break)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1174</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_persistent_workers</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1175</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_workers</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1176</span>                 <span class="k">raise</span> <span class="ne">StopIteration</span>
-<span class="g g-Whitespace">   </span><span class="mi">1177</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_shutdown_workers</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1299</span>                     <span class="c1"># wrong, we set a timeout and if the workers fail to join,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1300</span>                     <span class="c1"># they are killed in the `finally` block.</span>
-<span class="ne">-&gt; </span><span class="mi">1301</span>                     <span class="n">w</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">_utils</span><span class="o">.</span><span class="n">MP_STATUS_CHECK_INTERVAL</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1302</span>                 <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_queues</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1303</span>                     <span class="n">q</span><span class="o">.</span><span class="n">cancel_join_thread</span><span class="p">()</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/multiprocessing/process.py</span> in <span class="ni">join</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_pid</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">(),</span> <span class="s1">&#39;can only join a child process&#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;can only join a started process&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>         <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>             <span class="n">_children</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/multiprocessing/popen_fork.py</span> in <span class="ni">wait</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>             <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span>                 <span class="kn">from</span> <span class="nn">multiprocessing.connection</span> <span class="kn">import</span> <span class="n">wait</span>
-<span class="ne">---&gt; </span><span class="mi">40</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="n">wait</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">],</span> <span class="n">timeout</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>                     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>             <span class="c1"># This shouldn&#39;t block if wait() returned successfully.</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/multiprocessing/connection.py</span> in <span class="ni">wait</span><span class="nt">(object_list, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">934</span> 
-<span class="g g-Whitespace">    </span><span class="mi">935</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">936</span>                 <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">937</span>                 <span class="k">if</span> <span class="n">ready</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">938</span>                     <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">fileobj</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ready</span><span class="p">]</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/selectors.py</span> in <span class="ni">select</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">416</span>             <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span>         <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">418</span>             <span class="k">return</span> <span class="n">ready</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2535,34 +2710,42 @@ First sample: (&#39;data/hymenoptera_data/train/ants/0013035.jpg&#39;, 0)
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="16_natural-language-processing.html" title="previous page">Lecture 16: Introduction to natural language processing</a>
-    <a class='right-next' id="next-link" href="18_time-series.html" title="next page">Lecture 18: Time series</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="16_natural-language-processing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 16: Introduction to natural language processing</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="18_time-series.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 18: Time series</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Varada Kolhatkar<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Varada Kolhatkar<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

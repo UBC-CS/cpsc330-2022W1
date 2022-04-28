@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 16: Introduction to natural language processing &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,33 +31,38 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 17: Multi-class classification and introduction to computer vision" href="17_intro_to_computer-vision.html" />
     <link rel="prev" title="Lecture 15: DBSCAN and Recommender Systems" href="15_recommender-systems.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,6 +79,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -83,9 +92,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Things you should know
  </span>
@@ -97,7 +106,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -235,7 +244,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Attribution
  </span>
@@ -248,7 +257,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LICENSE.html">
-   LICENSE
+   Instructional Material
   </a>
  </li>
 </ul>
@@ -297,7 +306,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -332,12 +341,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#announcements">
@@ -816,11 +825,498 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 16: Introduction to natural language processing</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-natural-language-processing-nlp">
+   What is Natural Language Processing (NLP)?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     What is Natural Language Processing (NLP)?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-often-do-you-search-everyday">
+       How often do you search everyday?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     What is Natural Language Processing (NLP)?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#everyday-nlp-applications">
+     Everyday NLP applications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nlp-in-news">
+     NLP in news
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-nlp-hard">
+     Why is NLP hard?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-lexical-ambiguity">
+     Example: Lexical ambiguity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-referential-ambiguity">
+     Example: Referential ambiguity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ambiguous-news-headlines">
+     Ambiguous news headlines
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overall-goal">
+     Overall goal
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-embeddings">
+   Word Embeddings
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-do-we-care-about-word-representation">
+     Why do we care about word representation?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-meaning">
+     Word meaning
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-meaning-ml-and-nlp-view">
+     Word meaning: ML and NLP view
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#word-representations">
+   Word representations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-do-we-represent-words">
+     How do we represent words?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#need-a-representation-that-captures-relationships-between-words">
+     Need a representation that captures relationships between words.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#distributional-hypothesis">
+     Distributional hypothesis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-space-model">
+     Vector space model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#term-term-co-occurrence-matrix">
+     Term-term co-occurrence matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-word-vectors-and-similarity">
+     Visualizing word vectors and similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Visualizing word vectors and similarity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparse-vs-dense-word-vectors">
+     Sparse vs. dense word vectors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alternative">
+     Alternative
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word2vec">
+     Word2Vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#success-of-word2vec">
+     Success of Word2Vec
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-similar-words">
+     Finding similar words
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-similarity-scores-between-words">
+     Finding similarity scores between words
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples-of-semantic-and-syntactic-relationships">
+     Examples of semantic and syntactic relationships
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implicit-biases-and-stereotypes-in-word-embeddings">
+     Implicit biases and stereotypes in word embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-vectors-with-spacy">
+     Word vectors with spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representing-documents-using-word-embeddings">
+     Representing documents using word embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#averaging-embeddings">
+     Averaging embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#average-embeddings-with-spacy">
+     Average embeddings with spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarity-between-documents">
+     Similarity between documents
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#airline-sentiment-analysis-using-average-embedding-representation">
+     Airline sentiment analysis using average embedding representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bag-of-words-representation-for-sentiment-analysis">
+     Bag-of-words representation for sentiment analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentiment-analysis-with-average-embedding-representation">
+     Sentiment analysis with average embedding representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentiment-classification-using-average-embeddings">
+     Sentiment classification using average embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentiment-classification-using-advanced-sentence-representations">
+     Sentiment classification using advanced sentence representations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling">
+   Topic modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topic-modeling-motivation">
+     Topic modeling motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-a-corpus-of-news-articles">
+     Example: A corpus of news articles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-a-corpus-of-food-magazines">
+     Example: A corpus of food magazines
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-corpus-of-scientific-articles">
+     A corpus of scientific articles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Topic modeling motivation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Topic modeling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topic-modeling-input-and-output">
+     Topic modeling: Input and output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topic-modeling-example">
+     Topic modeling: Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Topic modeling: Example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Topic modeling: Input and output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topic-modeling-some-applications">
+     Topic modeling: Some applications
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#topic-modeling-toy-example">
+     Topic modeling toy example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling-pipeline">
+   Topic modeling pipeline
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-the-corpus">
+     Preprocessing the corpus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-lda-with-gensim">
+     Training LDA with gensim
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gensim-s-doc2bow">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Gensim
+      </span>
+     </code>
+     ’s
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       doc2bow
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Gensim
+      </span>
+     </code>
+     ’s
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       doc2bow
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examine-the-topics-and-topic-distribution-for-a-document-in-our-lda-model">
+     Examine the topics and topic distribution for a document in our LDA model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualize-topics">
+     Visualize topics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-topic-modeling-with-sklearn">
+     (Optional) Topic modeling with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       sklearn
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-text-preprocessing">
+   Basic text preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction">
+     Introduction
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tokenization">
+     Tokenization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tokenization-sentence-segmentation">
+     Tokenization: sentence segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentence-segmentation">
+     Sentence segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-tokenization">
+     Word tokenization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Word tokenization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-segmentation">
+     Word segmentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-and-tokens">
+     Types and tokens
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise-for-you">
+     Exercise for you
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-commonly-used-preprocessing-steps">
+     Other commonly used preprocessing steps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#punctuation-and-stopword-removal">
+     Punctuation and stopword removal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lemmatization">
+     Lemmatization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stemming">
+     Stemming
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-tools-for-preprocessing">
+     Other tools for preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spacy">
+     spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-typical-nlp-tasks">
+     Other typical NLP tasks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-named-entities-using-spacy">
+     Extracting named-entities using spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dependency-parsing-using-spacy">
+     Dependency parsing using spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#many-other-things-possible">
+     Many other things possible
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-16-introduction-to-natural-language-processing">
+<div class="tex2jax_ignore mathjax_ignore section" id="lecture-16-introduction-to-natural-language-processing">
 <h1>Lecture 16: Introduction to natural language processing<a class="headerlink" href="#lecture-16-introduction-to-natural-language-processing" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
@@ -1385,7 +1881,37 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of sentences in the corpus:  681
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PageError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_80777</span><span class="o">/</span><span class="mf">4015128425.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)):</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">sents</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">corpus</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sents</span><span class="p">)</span>
+<span class="nn">     11 print(&quot;Number of sentences</span> in <span class="ni">the corpus: &quot;, len</span><span class="nt">(sents))</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/wikipedia/wikipedia.py</span> in <span class="ni">page</span><span class="nt">(title, pageid, auto_suggest, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>         <span class="c1"># if there is no suggestion or search results, the page doesn&#39;t exist</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">276</span>     <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>   <span class="k">elif</span> <span class="n">pageid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>     <span class="k">return</span> <span class="n">WikipediaPage</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="n">pageid</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/wikipedia/wikipedia.py</span> in <span class="ni">__init__</span><span class="nt">(self, title, pageid, redirect, preload, original_title)</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>       <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Either a title or a pageid must be specified&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> 
+<span class="ne">--&gt; </span><span class="mi">299</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__load</span><span class="p">(</span><span class="n">redirect</span><span class="o">=</span><span class="n">redirect</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="n">preload</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span> 
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="k">if</span> <span class="n">preload</span><span class="p">:</span>
+
+<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/wikipedia/wikipedia.py</span> in <span class="ni">__load</span><span class="nt">(self, redirect, preload)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>     <span class="k">if</span> <span class="s1">&#39;missing&#39;</span> <span class="ow">in</span> <span class="n">page</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>       <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>         <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>       <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">raise</span> <span class="n">PageError</span><span class="p">(</span><span class="n">pageid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pageid</span><span class="p">)</span>
+
+<span class="ne">PageError</span>: Page id &quot;ever3st&quot; does not match any pages. Try another id!
 </pre></div>
 </div>
 </div>
@@ -1450,7 +1976,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
     <tr>
       <th>machu</th>
       <td>0</td>
-      <td>92</td>
+      <td>90</td>
       <td>1</td>
       <td>6</td>
       <td>2</td>
@@ -1473,7 +1999,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
     </tr>
     <tr>
       <th>picchu</th>
-      <td>92</td>
+      <td>90</td>
       <td>0</td>
       <td>1</td>
       <td>6</td>
@@ -1569,7 +2095,7 @@ The dot product between tall and official is 2.00 and cosine similarity is 0.82
     </tr>
   </tbody>
 </table>
-<p>5 rows × 5591 columns</p>
+<p>5 rows × 5581 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1711,80 +2237,6 @@ The dot product between tall and official is 0.00 and cosine similarity is 0.00
 <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
 
 <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">80</span><span class="o">/</span><span class="n">kr9rkqfj4w78h49djkz8yy9r0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_16765</span><span class="o">/</span><span class="mf">1679810779.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">google_news_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/downloader.py</span> in <span class="ni">load</span><span class="nt">(name, return_path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span>         <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">BASE_DIR</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span>         <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">503</span>         <span class="k">return</span> <span class="n">module</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span> 
-<span class="g g-Whitespace">    </span><span class="mi">505</span> 
-
-<span class="nn">~/gensim-data/word2vec-google-news-300/__init__.py</span> in <span class="ni">load_data</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="s1">&#39;word2vec-google-news-300&#39;</span><span class="p">,</span> <span class="s2">&quot;word2vec-google-news-300.gz&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">8</span>     <span class="n">model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="k">return</span> <span class="n">model</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1628</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1629</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1630</span><span class="sd">         return _load_word2vec_format(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span><span class="sd">             cls, fname, fvocab=fvocab, binary=binary, encoding=encoding, unicode_errors=unicode_errors,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1632</span><span class="sd">             limit=limit, datatype=datatype, no_header=no_header,</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_load_word2vec_format</span><span class="nt">(cls, fname, fvocab, binary, encoding, unicode_errors, limit, datatype, no_header, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1907</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1908</span><span class="sd">         if binary:</span>
-<span class="ne">-&gt; </span><span class="mi">1909</span><span class="sd">             _word2vec_read_binary(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1910</span><span class="sd">                 fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1911</span><span class="sd">             )</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_word2vec_read_binary</span><span class="nt">(fin, kv, counts, vocab_size, vector_size, datatype, unicode_errors, binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1802</span><span class="sd">         new_chunk = fin.read(binary_chunk_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1803</span><span class="sd">         chunk += new_chunk</span>
-<span class="ne">-&gt; </span><span class="mi">1804</span><span class="sd">         processed_words, chunk = _add_bytes_to_kv(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1805</span><span class="sd">             kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1806</span><span class="sd">         tot_processed_words += processed_words</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_bytes_to_kv</span><span class="nt">(kv, counts, chunk, vocab_size, vector_size, datatype, unicode_errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1788</span><span class="sd">         word = word.lstrip(&#39;\n&#39;)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1789</span><span class="sd">         vector = frombuffer(chunk, offset=i_vector, count=vector_size, dtype=REAL).astype(datatype)</span>
-<span class="ne">-&gt; </span><span class="mi">1790</span><span class="sd">         _add_word_to_kv(kv, counts, word, vector, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1791</span><span class="sd">         start = i_vector + bytes_per_vector</span>
-<span class="g g-Whitespace">   </span><span class="mi">1792</span><span class="sd">         processed_words += 1</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">_add_word_to_kv</span><span class="nt">(kv, counts, word, weights, vocab_size)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1768</span><span class="sd">         logger.warning(&quot;vocabulary file is incomplete: &#39;%s&#39; is missing&quot;, word)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1769</span><span class="sd">         word_count = None</span>
-<span class="ne">-&gt; </span><span class="mi">1770</span><span class="sd">     kv.set_vecattr(word, &#39;count&#39;, word_count)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1771</span><span class="sd"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1772</span><span class="sd"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">set_vecattr</span><span class="nt">(self, key, attr, val)</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span><span class="sd">         &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span>         <span class="bp">self</span><span class="o">.</span><span class="n">allocate_vecattrs</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">[</span><span class="n">attr</span><span class="p">],</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)])</span>
-<span class="ne">--&gt; </span><span class="mi">330</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="bp">self</span><span class="o">.</span><span class="n">expandos</span><span class="p">[</span><span class="n">attr</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span> 
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/gensim/models/keyedvectors.py</span> in <span class="ni">get_index</span><span class="nt">(self, key, default)</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span> 
-<span class="g g-Whitespace">    </span><span class="mi">387</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">388</span><span class="s2">         val = self.key_to_index.get(key, -1)</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span><span class="s2">         if val &gt;= 0:</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span><span class="s2">             return val</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -5451,34 +5903,42 @@ GPE means:  Countries, cities, states
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="15_recommender-systems.html" title="previous page">Lecture 15: DBSCAN and Recommender Systems</a>
-    <a class='right-next' id="next-link" href="17_intro_to_computer-vision.html" title="next page">Lecture 17: Multi-class classification and introduction to computer vision</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="15_recommender-systems.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 15: DBSCAN and Recommender Systems</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="17_intro_to_computer-vision.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lecture 17: Multi-class classification and introduction to computer vision</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Varada Kolhatkar<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Varada Kolhatkar<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

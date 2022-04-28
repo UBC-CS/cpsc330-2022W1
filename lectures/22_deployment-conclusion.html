@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 22: Deployment and conclusion &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,23 +31,25 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -55,7 +57,10 @@
     <link rel="next" title="Attributions" href="../attribution.html" />
     <link rel="prev" title="Lecture 21: Communication" href="21_communication.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -72,6 +77,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
       
       
@@ -81,9 +90,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Things you should know
  </span>
@@ -95,7 +104,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Lectures
  </span>
@@ -233,7 +242,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Attribution
  </span>
@@ -246,7 +255,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../LICENSE.html">
-   LICENSE
+   Instructional Material
   </a>
  </li>
 </ul>
@@ -295,7 +304,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -330,12 +339,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#imports">
@@ -507,7 +516,7 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#recipe-to-approach-a-supervised-learning-problem-with-tabular-data">
-     Recipe to approach a supervised learning problem with tabular data:
+     Recipe to approach a supervised learning problem with tabular data
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -537,11 +546,221 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 22: Deployment and conclusion</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-outline">
+   Lecture outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-exam">
+     Final exam
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-deployment-30-min">
+   Model deployment (30 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attribution">
+     Attribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#try-out-this-moment-predictor">
+     Try out this moment predictor
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-deployment">
+       What is deployment?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#requirements-i-already-did-these">
+       Requirements (I already did these)
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#demo-deploying-moment-classification-model">
+   Demo: Deploying moment classification model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-a-model">
+     Building a model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-on-the-full-corpus">
+     Training on the full corpus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#saving-the-model">
+     Saving the model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-our-saved-model">
+     Loading our saved model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-setting-up-a-directory-structure-and-environment">
+     (Optional) Setting up a directory structure and environment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-deployment">
+     Model deployment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-and-deploying-a-web-app">
+     Building and deploying a web app
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-app-on-local-server">
+     Web app on local server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-app-on-a-real-server">
+     Web app on a real server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heroku-set-up-i-already-did-these">
+     Heroku set-up (I already did these):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-the-web-application">
+     Testing the web application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#api-on-the-localhost">
+     API on the localhost
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sending-a-request-to-the-api">
+     Sending a request to the API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploying-the-api-on-a-server">
+     Deploying the API on a server
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-api-on-heroku">
+     Using the API on Heroku
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-10-min">
+   Break (10 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-review-conclusion-20-min">
+   Course review / conclusion (20 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Learning objectives
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-did-we-cover">
+     What did we cover?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-key-takeaways">
+     Some key takeaways
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recipe-to-approach-a-supervised-learning-problem-with-tabular-data">
+     Recipe to approach a supervised learning problem with tabular data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-would-i-do-differently">
+     What would I do differently?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#vs-340">
+       330 vs. 340
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion-farewell">
+   Conclusion &amp; farewell
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<div class="section" id="lecture-22-deployment-and-conclusion">
+<div class="tex2jax_ignore mathjax_ignore section" id="lecture-22-deployment-and-conclusion">
 <h1>Lecture 22: Deployment and conclusion<a class="headerlink" href="#lecture-22-deployment-and-conclusion" title="Permalink to this headline">¶</a></h1>
 <p>UBC 2020-21</p>
 <p>Instructor: Varada Kolhatkar</p>
@@ -596,7 +815,6 @@
 <li><p>No public Piazza posts</p></li>
 <li><p>More details will be posted on Piazza.</p></li>
 </ul>
-<p><br><br></p>
 </div>
 </div>
 <div class="section" id="model-deployment-30-min">
@@ -865,7 +1083,7 @@ Name: target, dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">return_prediction</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">text</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">text</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">prediction</span>
 </pre></div>
 </div>
@@ -1150,7 +1368,7 @@ Name: target, dtype: int64
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !curl -d &#39;{&quot;text&quot;:&quot;I love my students!&quot;}&#39; \</span>
 <span class="c1">#       -H &quot;Content-Type: application/json&quot; \</span>
-<span class="c1">#       -X POST https://moment-type-predictor-api.herokuapp.com</span>
+<span class="c1">#       -X POST https://moment-type-predictor-api.herokuapp.com/predict</span>
 </pre></div>
 </div>
 </div>
@@ -1240,7 +1458,7 @@ Name: target, dtype: int64
 <li><p>A bunch of models:</p>
 <ul>
 <li><p>baselines</p></li>
-<li><p>linear models (ridge, lasso, logistic regression)</p></li>
+<li><p>linear models (ridge, logistic regression)</p></li>
 <li><p>KNNs and RBF SVMs</p></li>
 <li><p>tree-based models (random forest, gradient boosted trees)</p></li>
 <li><p>Ensembles</p></li>
@@ -1275,31 +1493,35 @@ Name: target, dtype: int64
 </ul>
 </div>
 <div class="section" id="recipe-to-approach-a-supervised-learning-problem-with-tabular-data">
-<h3>Recipe to approach a supervised learning problem with tabular data:<a class="headerlink" href="#recipe-to-approach-a-supervised-learning-problem-with-tabular-data" title="Permalink to this headline">¶</a></h3>
+<h3>Recipe to approach a supervised learning problem with tabular data<a class="headerlink" href="#recipe-to-approach-a-supervised-learning-problem-with-tabular-data" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Have a long conversation with the stakeholder(s) who will be using your pipeline.</p></li>
 <li><p>Have a long conversation with the person(s) who collected the data.</p></li>
 <li><p>Think about the ethical implications - are you sure you want to do this project? If so, should ethics guide your approach?</p></li>
 <li><p>Random train-test split with fixed random seed; do not touch the test data until Step 16.</p></li>
 <li><p>Exploratory data analysis, outlier detection.</p></li>
-<li><p>Choose a scoring metric -&gt; higher values should make you &amp; your stakeholders happier.</p></li>
-<li><p>Fit a baseline model, e.g. <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> or <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code>.</p></li>
-<li><p>Create a preprocessing pipeline. May involve feature engineering. (This is usually a time-consuming step!)</p></li>
-<li><p>Try a linear model, e.g. <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> or <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>; tune hyperparameters with CV.</p></li>
-<li><p>Try other sensible model(s), e.g. LightGBM; tune hyperparameters with CV.</p></li>
+<li><p>Choose a scoring metric –&gt; higher values should make you and your stakeholder happier.</p></li>
+<li><p>Fit a baseline model, e.g., <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> or <code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code>.</p></li>
+<li><p>Create a preporcessing pipeline. This may involve feature engineering. (This is usually a time-consuming step.)</p></li>
+<li><p>Try a linear model. For example, <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> or <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>; tune hyperparameters with CV.</p></li>
+<li><p>Try other sensible models(s), e.g., <code class="docutils literal notranslate"><span class="pre">LightGBM</span></code>; tune hyperparameters with CV.</p></li>
 <li><p>For each model, look at sub-scores from the folds of cross-validation to get a sense of “error bars” on the scores.</p></li>
-<li><p>Pick a model that you like. Best CV score is a reasonable metric, though you may choose to favour simpler models.</p></li>
+<li><p>Pick a promising model. Best CV score is a reasonable metric, though you may choose to favour simpler models.</p></li>
 <li><p>Look at feature importances.</p></li>
-<li><p>(optional) Perform some more diagnostics like confusion matrix for classification, or “predicted vs. true” scatterplots for regression.</p></li>
-<li><p>(optional) Try to calibrate the uncertainty/confidence outputted by your model.</p></li>
+<li><p>(optional) Perform some more diagnostics like confusion matrix for classification or “predicted vs. true” scatterplots for regression.</p></li>
+<li><p>(optional) Try to calibrate the uncertainty or confidence outputted by your model.</p></li>
 <li><p>Test set evaluation.</p></li>
 <li><p>Question everything again: validity of results, bias/fairness of trained model, etc.</p></li>
 <li><p>Discuss your results with stakeholders.</p></li>
 <li><p>(optional) Retrain on all your data.</p></li>
-<li><p>Deployment &amp; integration.</p></li>
+<li><p>Deployment and integration.</p></li>
 <li><p>Profit?</p></li>
 </ol>
-<p>PS: the order of steps is approximate, and some steps may need to be repeated during prototyping, experimentation, and as needed over time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The order of steps is approximate, and some steps may need to be repeated during prototyping, experimentation, and as needed over time.</p>
+</div>
+<p><br><br></p>
 </div>
 <div class="section" id="what-would-i-do-differently">
 <h3>What would I do differently?<a class="headerlink" href="#what-would-i-do-differently" title="Permalink to this headline">¶</a></h3>
@@ -1308,6 +1530,7 @@ Name: target, dtype: int64
 <li><p>Add more interactive components in the lectures.</p></li>
 <li><p>Probably more pre-lecture videos.</p></li>
 <li><p>Cover outliers material.</p></li>
+<li><p>Some material on data collection.</p></li>
 <li><p>Allocate two lectures to time series data.</p></li>
 <li><p>Improve computer vision lecture material.</p></li>
 <li><p>Allocate one more lecture for ethics and communication.</p></li>
@@ -1360,34 +1583,42 @@ Name: target, dtype: int64
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="21_communication.html" title="previous page">Lecture 21: Communication</a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">Attributions</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="21_communication.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 21: Communication</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Varada Kolhatkar<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Varada Kolhatkar<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
