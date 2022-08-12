@@ -1,6 +1,11 @@
-# UBC CPSC 330: Applied Machine Learning (2021W1)
+# UBC CPSC 330: Applied Machine Learning (2022W1)
 
-This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2021). An earlier version from Sep-Dec 2020 can be found [here](https://github.com/UBC-CS/cpsc330/tree/v2.0).
+This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2022).
+You can find the earlier versions here: 
+- [Sep-Dec 2020 taught by Mike Gelbart](https://github.com/UBC-CS/cpsc330/tree/v2.0)
+- [Sep-Dec 2021 taught by Varada Kolhatkar](https://github.com/UBC-CS/cpsc330/tree/v3.0)
+- [Jan-April 2022 taught by Giulia Toti](https://github.com/UBC-CS/cpsc330-2021W2)
+- [May-June 2022 taught by Mehrdad Oveisi](https://github.com/UBC-CS/cpsc330-2022s)
 
 Instructor: Varada Kolhatkar
 
@@ -116,3 +121,18 @@ Your precautions will help reduce risk and keep everyone safer. In this class, t
 ## Official statement from UBC regarding the online learning experience:
 
 >*During this pandemic, the shift to online learning has greatly altered teaching and studying at UBC, including changes to health and safety considerations. Keep in mind that some UBC courses might cover topics that are censored or considered illegal by non-Canadian governments. This may include, but is not limited to, human rights, representative government, defamation, obscenity, gender or sexuality, and historical or current geopolitical controversies. If you are a student living abroad, you will be subject to the laws of your local jurisdiction, and your local authorities might limit your access to course material or take punitive action against you. UBC is strongly committed to academic freedom, but has no control over foreign authorities (please visit http://www.calendar.ubc.ca/vancouver/index.cfm?tree=3,33,86,0 for an articulation of the values of the University conveyed in the Senate Statement on Academic Freedom). Thus, we recognize that students will have legitimate reason to exercise caution in studying certain subjects. If you have concerns regarding your personal situation, consider postponing taking a course with manifest risks, until you are back on campus or reach out to your academic advisor to find substitute courses. For further information and support, please visit: http://academic.ubc.ca/support-resources/freedom-expression.*
+
+
+## Land Acknowledgement
+
+UBC’s Point Grey Campus is located on the traditional, ancestral, and unceded territory of the xwməθkwəy̓əm (Musqueam) peple. The land it is situated on has always been a place of learning for the Musqueam people, who for millennia have passed on their culture, history, and traditions from one generation to the next on this site.
+
+It is important that this recognition of Musqueam territory and our relationship with the Musqueam people does not appear as just a formality. Take a moment to appreciate the meaning behind the words we use:
+
+**TRADITIONAL** recognizes lands traditionally used and/or occupied by the Musqueam people or other First Nations in other parts of the country.
+
+**ANCESTRAL** recognizes land that is handed down from generation to generation.
+
+**UNCEDED** refers to land that was not turned over to the Crown (government) by a treaty or other agreement.
+
+As you begin your journey at UBC, take some time to learn about the history of this land and to honour its original inhabitants.
