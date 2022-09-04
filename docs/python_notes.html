@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>CPSC 330 Python notes &#8212; CPSC 330 Applied Machine Learning</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,19 +37,20 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -113,132 +127,6 @@ const thebe_selector_output = ".output, .cell_output"
    Lecture 1: Course Introduction
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/02_decision-trees.html">
-   Lecture 2: Terminology, Baselines, Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/03_ml-fundamentals.html">
-   Lecture 3: Machine Learning Fundamentals
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/04_kNNs-SVM-RBF.html">
-   Lecture 4:
-   <span class="math notranslate nohighlight">
-    \(k\)
-   </span>
-   -Nearest Neighbours and SVM RBFs
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/05_preprocessing-pipelines.html">
-   Lecture 5: Preprocessing and
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     sklearn
-    </span>
-   </code>
-   pipelines
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/06_column-transformer-text-feats.html">
-   Lecture 6:
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     sklearn
-    </span>
-   </code>
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     ColumnTransformer
-    </span>
-   </code>
-   and Text Features
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/07_linear-models.html">
-   Lecture 7: Linear Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/08_hyperparameter-optimization.html">
-   Lecture 8: Hyperparameter Optimization and Optimization Bias
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/09_classification-metrics.html">
-   Lecture 9: Classification Metrics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/10_regression-metrics.html">
-   Lecture 10: Regression Evaluation Metrics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/11_ensembles.html">
-   Lecture 11: Ensembles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/12_feat-importances.html">
-   Lecture 12: Feature importances
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/13_feature-engineering-selection.html">
-   Lecture 13: Feature engineering and feature selection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/14_k-means-clustering.html">
-   Lecture 14: Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/15_recommender-systems.html">
-   Lecture 15: DBSCAN and Recommender Systems
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/16_natural-language-processing.html">
-   Lecture 16: Introduction to natural language processing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/17_intro_to_computer-vision.html">
-   Lecture 17: Multi-class classification and introduction to computer vision
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/18_time-series.html">
-   Lecture 18: Time series
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/19_survival-analysis.html">
-   Lecture 19: Survival analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/20_ethics.html">
-   Lecture 20: Ethics
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/21_communication.html">
-   Lecture 21: Communication
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lectures/22_deployment-conclusion.html">
-   Lecture 22: Deployment and conclusion
-  </a>
- </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -259,91 +147,164 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/python_notes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/docs/python_notes.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2021-22<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/docs/python_notes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/docs/python_notes.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#about-this-document">
    About this document
@@ -557,12 +518,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>CPSC 330 Python notes</h1>
@@ -792,13 +752,14 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="cpsc-330-python-notes">
-<h1>CPSC 330 Python notes<a class="headerlink" href="#cpsc-330-python-notes" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="about-this-document">
-<h2>About this document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">¶</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-python-notes">
+<h1>CPSC 330 Python notes<a class="headerlink" href="#cpsc-330-python-notes" title="Permalink to this headline">#</a></h1>
+<section id="about-this-document">
+<h2>About this document<a class="headerlink" href="#about-this-document" title="Permalink to this headline">#</a></h2>
 <p>This document contains some Python lecture materials from the 1st offering of CPSC 330. We have decided to stop allocated lecture time to this topic and instead have this as reference material.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -808,9 +769,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plotting-with-matplotlib">
-<h2>Plotting with matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="plotting-with-matplotlib">
+<h2>Plotting with matplotlib<a class="headerlink" href="#plotting-with-matplotlib" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>We will use <a class="reference external" href="https://matplotlib.org/">matplotlib</a> as our plotting library.</p></li>
 <li><p>For those familiar with MATLAB, this package is based on MATLAB plotting.</p></li>
@@ -835,7 +796,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11f3a4400&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11643d720&gt;]
 </pre></div>
 </div>
 <img alt="../_images/python_notes_7_1.png" src="../_images/python_notes_7_1.png" />
@@ -897,9 +858,9 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="numpy-arrays">
-<h2>Numpy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numpy-arrays">
+<h2>Numpy arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">#</a></h2>
 <p>Basic numpy is covered in the posted videos, you are expected to have a basic knowledge of numpy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -941,8 +902,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.88404173, 0.31211638, 0.85023805],
-       [0.83086554, 0.47936331, 0.82277605]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.74440632, 0.43537984, 0.18751499],
+       [0.92512917, 0.89020563, 0.7207098 ]])
 </pre></div>
 </div>
 </div>
@@ -954,14 +915,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.31211638304652056
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.43537984281432096
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="numpy-array-shapes">
-<h2>Numpy array shapes<a class="headerlink" href="#numpy-array-shapes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="numpy-array-shapes">
+<h2>Numpy array shapes<a class="headerlink" href="#numpy-array-shapes" title="Permalink to this headline">#</a></h2>
 <p><strong>One of the most confusing things about numpy:</strong> what I call a “1-D array” can have 3 possible shapes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1060,9 +1021,9 @@ shape: (5, 1)
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="broadcasting-in-numpy">
-<h2>Broadcasting in numpy<a class="headerlink" href="#broadcasting-in-numpy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="broadcasting-in-numpy">
+<h2>Broadcasting in numpy<a class="headerlink" href="#broadcasting-in-numpy" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Arrays with different sizes cannot be directly used in arithmetic operations.</p></li>
 <li><p>Broadcasting describes how numpy treats arrays with different shapes during arithmetic operations.</p></li>
@@ -1105,8 +1066,8 @@ Pie sales (#):
 <li><p>How can we multiply these two arrays together?</p></li>
 </ul>
 <a class="reference internal image-reference" href="../_images/pies_loop.png"><img alt="../_images/pies_loop.png" src="../_images/pies_loop.png" style="width: 500px;" /></a>
-<div class="section" id="slowest-method-nested-loop">
-<h3>Slowest method: nested loop<a class="headerlink" href="#slowest-method-nested-loop" title="Permalink to this headline">¶</a></h3>
+<section id="slowest-method-nested-loop">
+<h3>Slowest method: nested loop<a class="headerlink" href="#slowest-method-nested-loop" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1125,9 +1086,9 @@ Pie sales (#):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="faster-method-vectorize-the-loop-over-rows">
-<h3>Faster method: vectorize the loop over rows<a class="headerlink" href="#faster-method-vectorize-the-loop-over-rows" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="faster-method-vectorize-the-loop-over-rows">
+<h3>Faster method: vectorize the loop over rows<a class="headerlink" href="#faster-method-vectorize-the-loop-over-rows" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1145,9 +1106,9 @@ Pie sales (#):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="no-loop-method-make-them-the-same-size-and-multiply-element-wise">
-<h3>No-loop method: make them the same size, and multiply element-wise<a class="headerlink" href="#no-loop-method-make-them-the-same-size-and-multiply-element-wise" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="no-loop-method-make-them-the-same-size-and-multiply-element-wise">
+<h3>No-loop method: make them the same size, and multiply element-wise<a class="headerlink" href="#no-loop-method-make-them-the-same-size-and-multiply-element-wise" title="Permalink to this headline">#</a></h3>
 <a class="reference internal image-reference" href="../_images/pies_broadcast.png"><img alt="../_images/pies_broadcast.png" src="../_images/pies_broadcast.png" style="width: 700px;" /></a>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1230,9 +1191,9 @@ Pie sales (#):
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="fastest-method-broadcasting">
-<h3>Fastest method: broadcasting<a class="headerlink" href="#fastest-method-broadcasting" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="fastest-method-broadcasting">
+<h3>Fastest method: broadcasting<a class="headerlink" href="#fastest-method-broadcasting" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cost</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">*</span> <span class="n">sales</span>
@@ -1251,9 +1212,9 @@ Pie sales (#):
 <li><p>numpy does the equivalent of <code class="docutils literal notranslate"><span class="pre">np.repeat()</span></code> for you - no need to do it explicitly</p></li>
 <li><p>It is debatable whether this code is more readable, but it is definitely faster.</p></li>
 </ul>
-</div>
-<div class="section" id="when-can-we-use-broadcasting">
-<h3>When can we use broadcasting?<a class="headerlink" href="#when-can-we-use-broadcasting" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="when-can-we-use-broadcasting">
+<h3>When can we use broadcasting?<a class="headerlink" href="#when-can-we-use-broadcasting" title="Permalink to this headline">#</a></h3>
 <p>Say we want to broadcast the following two arrays:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1323,7 +1284,7 @@ Pie sales (#):
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_96519</span><span class="o">/</span><span class="mf">1055238803.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nn">Input In [33],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">arr1</span> <span class="o">+</span> <span class="n">arr2</span>
 
 <span class="ne">ValueError</span>: operands could not be broadcast together with shapes (3,) (5,) 
@@ -1458,10 +1419,10 @@ The shape of a + b is: (5, 3)
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="introduction-to-pandas">
-<h2>Introduction to pandas<a class="headerlink" href="#introduction-to-pandas" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="introduction-to-pandas">
+<h2>Introduction to pandas<a class="headerlink" href="#introduction-to-pandas" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>The most popular Python library for tabular data structures</p></li>
 </ul>
@@ -1472,8 +1433,8 @@ The shape of a + b is: (5, 3)
 </div>
 </div>
 </div>
-<div class="section" id="pandas-series">
-<h3>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">¶</a></h3>
+<section id="pandas-series">
+<h3>Pandas Series<a class="headerlink" href="#pandas-series" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>A Series is like a NumPy array but with labels</p></li>
 <li><p>1-dimensional</p></li>
@@ -1671,10 +1632,10 @@ dtype: float64
 <li><p>Unlike ndarrays operations between Series (+, -, /, *) align values based on their <strong>LABELS</strong></p></li>
 <li><p>The result index will be the <strong><em>sorted union</em></strong> of the two indexes</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="pandas-dataframes">
-<h2>Pandas DataFrames<a class="headerlink" href="#pandas-dataframes" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="pandas-dataframes">
+<h2>Pandas DataFrames<a class="headerlink" href="#pandas-dataframes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>The primary Pandas data structure</p></li>
 <li><p>Really just a bunch of Series (with the same index labels) stuck together</p></li>
@@ -1791,8 +1752,8 @@ dtype: float64
 </table>
 </div></div></div>
 </div>
-<div class="section" id="indexing-dataframes">
-<h3>Indexing Dataframes<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">¶</a></h3>
+<section id="indexing-dataframes">
+<h3>Indexing Dataframes<a class="headerlink" href="#indexing-dataframes" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>There are three main ways to index a DataFrame:</p>
 <ol class="simple">
@@ -1851,8 +1812,8 @@ dtype: float64
 </table>
 </div></div></div>
 </div>
-<div class="section" id="notation">
-<h4><code class="docutils literal notranslate"><span class="pre">[]</span></code> notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h4>
+<section id="notation">
+<h4><code class="docutils literal notranslate"><span class="pre">[]</span></code> notation<a class="headerlink" href="#notation" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>you can index columns by single labels or lists of labels</p></li>
 </ul>
@@ -2220,9 +2181,9 @@ Name: CHN, dtype: int64
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="indexing-cheatsheet">
-<h4>Indexing cheatsheet<a class="headerlink" href="#indexing-cheatsheet" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="indexing-cheatsheet">
+<h4>Indexing cheatsheet<a class="headerlink" href="#indexing-cheatsheet" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">[]</span></code> accepts slices for row indexing or labels (single or list) for column indexing</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">.iloc[]</span></code> accepts integers for row/column indexing, and can be single values or lists</p></li>
@@ -2230,13 +2191,13 @@ Name: CHN, dtype: int64
 <li><p>for integer row/named column: <code class="docutils literal notranslate"><span class="pre">df.loc[df.index[#],</span> <span class="pre">'labels']</span></code></p></li>
 <li><p>for named row/integer column: <code class="docutils literal notranslate"><span class="pre">df.loc['labels',</span> <span class="pre">df.columns[#]]</span></code></p></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="break-5-min">
-<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="reading-from-csv">
-<h3>Reading from .csv<a class="headerlink" href="#reading-from-csv" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+</section>
+<section id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">#</a></h2>
+<section id="reading-from-csv">
+<h3>Reading from .csv<a class="headerlink" href="#reading-from-csv" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Most of the time you will be loading .csv files for use in pandas using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code></p></li>
 <li><p>Example dataset: a colleague’s cycling commute to/from UBC everyday</p></li>
@@ -2333,9 +2294,9 @@ Name: CHN, dtype: int64
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="reading-from-url">
-<h3>Reading from url<a class="headerlink" href="#reading-from-url" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="reading-from-url">
+<h3>Reading from url<a class="headerlink" href="#reading-from-url" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>you may also want to read directly from an url at times</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> accepts urls as input</p></li>
@@ -2430,18 +2391,18 @@ Name: CHN, dtype: int64
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="reading-from-other-formats">
-<h3>Reading from other formats<a class="headerlink" href="#reading-from-other-formats" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="reading-from-other-formats">
+<h3>Reading from other formats<a class="headerlink" href="#reading-from-other-formats" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pd.read_excel()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pd.read_html()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pd.read_json()</span></code></p></li>
 <li><p>etc</p></li>
 </ul>
-</div>
-<div class="section" id="dataframe-summaries">
-<h3>Dataframe summaries<a class="headerlink" href="#dataframe-summaries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="dataframe-summaries">
+<h3>Dataframe summaries<a class="headerlink" href="#dataframe-summaries" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
@@ -2685,9 +2646,9 @@ memory usage: 1.7+ KB
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="renaming-columns-with-df-rename">
-<h3>Renaming columns with <code class="docutils literal notranslate"><span class="pre">df.rename()</span></code><a class="headerlink" href="#renaming-columns-with-df-rename" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="renaming-columns-with-df-rename">
+<h3>Renaming columns with <code class="docutils literal notranslate"><span class="pre">df.rename()</span></code><a class="headerlink" href="#renaming-columns-with-df-rename" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -2904,8 +2865,8 @@ memory usage: 1.7+ KB
 </div>
 </div>
 </div>
-<div class="section" id="note">
-<h4>NOTE:<a class="headerlink" href="#note" title="Permalink to this headline">¶</a></h4>
+<section id="note">
+<h4>NOTE:<a class="headerlink" href="#note" title="Permalink to this headline">#</a></h4>
 <ul class="simple">
 <li><p>the pandas team discourages the use of <code class="docutils literal notranslate"><span class="pre">inplace</span></code> for a <a class="reference external" href="https://www.youtube.com/watch?v=hK6o_TDXXN8&amp;t=700">few reasons</a></p></li>
 <li><p>mostly because not all functions have the argument, hides memory copying, leads to hard-to-find bugs</p></li>
@@ -2998,10 +2959,10 @@ memory usage: 1.7+ KB
 </table>
 </div></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="adding-removing-columns-with-and-drop">
-<h3>Adding/removing columns with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-columns-with-and-drop" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="adding-removing-columns-with-and-drop">
+<h3>Adding/removing columns with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-columns-with-and-drop" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
@@ -3341,9 +3302,9 @@ memory usage: 1.7+ KB
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="adding-removing-rows-with-and-drop">
-<h3>Adding/removing rows with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-rows-with-and-drop" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="adding-removing-rows-with-and-drop">
+<h3>Adding/removing rows with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">drop()</span></code><a class="headerlink" href="#adding-removing-rows-with-and-drop" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
@@ -3865,9 +3826,9 @@ Name: 32, dtype: object
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="sorting-a-dataframe-with-df-sort-values">
-<h3>Sorting a dataframe with <code class="docutils literal notranslate"><span class="pre">df.sort_values()</span></code><a class="headerlink" href="#sorting-a-dataframe-with-df-sort-values" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="sorting-a-dataframe-with-df-sort-values">
+<h3>Sorting a dataframe with <code class="docutils literal notranslate"><span class="pre">df.sort_values()</span></code><a class="headerlink" href="#sorting-a-dataframe-with-df-sort-values" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/cycling_data.csv&#39;</span><span class="p">)</span>
@@ -4374,9 +4335,9 @@ Name: 32, dtype: object
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="filtering-a-dataframe-with-and-df-query">
-<h3>Filtering a dataframe with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">df.query()</span></code><a class="headerlink" href="#filtering-a-dataframe-with-and-df-query" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="filtering-a-dataframe-with-and-df-query">
+<h3>Filtering a dataframe with <code class="docutils literal notranslate"><span class="pre">[]</span></code> and <code class="docutils literal notranslate"><span class="pre">df.query()</span></code><a class="headerlink" href="#filtering-a-dataframe-with-and-df-query" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>we’ve already seen how to filter a dataframe using <code class="docutils literal notranslate"><span class="pre">[]</span></code>, <code class="docutils literal notranslate"><span class="pre">.loc</span></code> and <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> notation</p></li>
 <li><p>but what if we want more control?</p></li>
@@ -4650,9 +4611,9 @@ Name: 32, dtype: object
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="applying-functions-to-a-dataframe-with-df-apply-and-df-applymap">
-<h3>Applying functions to a dataframe with <code class="docutils literal notranslate"><span class="pre">df.apply()</span></code> and <code class="docutils literal notranslate"><span class="pre">df.applymap()</span></code><a class="headerlink" href="#applying-functions-to-a-dataframe-with-df-apply-and-df-applymap" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="applying-functions-to-a-dataframe-with-df-apply-and-df-applymap">
+<h3>Applying functions to a dataframe with <code class="docutils literal notranslate"><span class="pre">df.apply()</span></code> and <code class="docutils literal notranslate"><span class="pre">df.applymap()</span></code><a class="headerlink" href="#applying-functions-to-a-dataframe-with-df-apply-and-df-applymap" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>many common functions are built into Pandas as dataframe methods</p></li>
 <li><p>e.g., <code class="docutils literal notranslate"><span class="pre">df.mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.round()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.min()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.max()</span></code>, <code class="docutils literal notranslate"><span class="pre">df.sum()</span></code>, etc.</p></li>
@@ -5259,9 +5220,9 @@ memory usage: 1.7+ KB
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -5285,28 +5246,34 @@ memory usage: 1.7+ KB
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Varada Kolhatkar<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
