@@ -1,9 +1,8 @@
 # CPSC 330 grading policies
 
 ## General guidelines
-- All grading concerns and challenges must be reported on [Piazza](https://piazza.com/class/kt60nrdhu53454?cid=6) by posting it to the instructors. 
-- You must select the `grading_concerns` folder when you post your message. If you do not do it, we might not see your message. 
-- Clearly state your name, student number, the assessment, and your concern.
+- **Assignment grading concerns**: All grading concerns and challenges related to assignments must be reported opening a regrade request on [Gradescope](https://www.gradescope.ca/courses/7610). 
+- Exam grading concerns: All grading concerns and challenges related to the midterm must be reported on [Piazza](piazza.com/ubc.ca/winterterm12022/cpsc3301022022w1/home) by posting it to the instructors. You must select the `grading_concerns` folder when you post your message. If you do not do it, we might not see your message. Clearly state your name, student number, the assessment, and your concern.
 
 ## Grading concerns: time limit
 If you perceive a problem with your homework or exam grade, you have **one week** to raise a concern from the time that your grades were posted. After that, your grade is final.
