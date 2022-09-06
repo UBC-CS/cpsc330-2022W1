@@ -52,12 +52,14 @@ The grading scheme for the course is as follows:
 | Component   | Weight          | Location   |
 |-------------|-----------------|------------|
 | Syllabus quiz |   1%          | [Canvas](https://canvas.ubc.ca/courses/101888) | 
-| iClicker participation |   2% | [Canvas](https://canvas.ubc.ca/courses/78046) | 
+| iClicker participation |   2% | [iClicker Cloud](https://join.iclicker.com/3DP5H) | 
 | Assignments |     20%         | [Gradescope](https://www.gradescope.ca/courses/5032) |
 | Midterm     |     25%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
 | Final       |     52%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
 
 The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. 
+
+Regarding iClicker participation grade, it will be primarily for participation and not for correctness. That said, these questions are designed for your learning and try to put some effort when you answer them. 
 
 For the full policy on grades, see [this document](grades.md).
 
