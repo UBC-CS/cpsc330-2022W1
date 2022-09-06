@@ -19,8 +19,7 @@ from imageio import imread
 plt.rcParams["font.size"] = 16
 
 def classify_image(img, topn = 4):
-
-    clf = vgg16(pretrained=True)
+    clf = vgg16(weights='VGG16_Weights.DEFAULT')
     preprocess = transforms.Compose([
                  transforms.Resize(299),
                  transforms.CenterCrop(299),
