@@ -1,0 +1,1068 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw1/hw1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw1/hw1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-1-programming-with-python">
+   Homework 1: Programming with Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about-this-assignment">
+     About this assignment:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up">
+     Set-up
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#points">
+   Points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-loading-files-with-pandas">
+   Exercise 1: Loading files with Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-the-titanic-dataset">
+   Exercise 2: The Titanic dataset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     2(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     2(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     2(c)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d">
+     2(d)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e">
+     2(e)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f">
+     2(f)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g">
+     2(g)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#h">
+     2(h)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i">
+     2(i)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#j">
+     2(j)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k">
+     2(k)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l">
+     2(l)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m">
+     2(m)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n">
+     2(n)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-treasure-hunt">
+   Exercise 3: Treasure Hunt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-question">
+     Example question
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     3(c)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-1-programming-with-python">
+   Homework 1: Programming with Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#about-this-assignment">
+     About this assignment:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-up">
+     Set-up
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#points">
+   Points
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-loading-files-with-pandas">
+   Exercise 1: Loading files with Pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-the-titanic-dataset">
+   Exercise 2: The Titanic dataset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a">
+     2(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b">
+     2(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     2(c)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d">
+     2(d)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e">
+     2(e)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#f">
+     2(f)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#g">
+     2(g)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#h">
+     2(h)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i">
+     2(i)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#j">
+     2(j)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#k">
+     2(k)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#l">
+     2(l)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#m">
+     2(m)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#n">
+     2(n)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-treasure-hunt">
+   Exercise 3: Treasure Hunt
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-question">
+     Example question
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3(a)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     3(b)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     3(c)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-1-programming-with-python">
+<h2>Homework 1: Programming with Python<a class="headerlink" href="#homework-1-programming-with-python" title="Permalink to this headline">#</a></h2>
+<p><strong>Due date: Tuesday Sep 13, 2022 at 11:59pm.</strong></p>
+<section id="about-this-assignment">
+<h3>About this assignment:<a class="headerlink" href="#about-this-assignment" title="Permalink to this headline">#</a></h3>
+<p>The main purpose of this assignment is to check whether your programming knowledge is adequate to take CPSC 330. This assignment covers two python packages, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, which we’ll be using throughout the course. For some of you, Python/numpy/pandas will be familiar; for others, it will be new. Either way, if you find this assignment very difficult then that could be a sign that you will struggle later on in the course. While CPSC 330 is a machine learning course rather than a programming course, programming will be an essential part of it.</p>
+<p>Also, as part of this assignment you will likely need to consult the documentation for various Python packages we’re using. This is, of course, totally OK and in fact strongly encouraged. Reading and interpreting documentation is an important skill, and in fact is one of the skills this assignment is meant to assess. For Python refresher, check out <a class="reference external" href="https://ubc-cs.github.io/cpsc330/docs/python_notes.html">Python notes</a> and <a class="reference external" href="https://ubc-cs.github.io/cpsc330/docs/resources.html#python-resources">Python resources</a>.</p>
+</section>
+<section id="set-up">
+<h3>Set-up<a class="headerlink" href="#set-up" title="Permalink to this headline">#</a></h3>
+<p>In order to do this assignment, you will need to set up the CPSC 330 software stack, which is Python and Jupyter. For software install help, see <a class="reference external" href="https://ubc-cs.github.io/cpsc330/docs/setup.html">here</a>. One you have the software stack installed, you should be able to run the next cell, which imports some packages needed for the assignment.</p>
+</section>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="points">
+<h2>Points<a class="headerlink" href="#points" title="Permalink to this headline">#</a></h2>
+<p>Each question or sub-question will have a number of points allocated to it, which is indicated right below the question name.</p>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p>rubric={points:6}</p>
+<p>Follow the <a class="reference external" href="https://ubc-cs.github.io/cpsc330/docs/homework_instructions.html">CPSC 330 homework instructions</a>, which include information on how to do your assignment and how to submit your assignment.</p>
+<p><br><br></p>
+</section>
+<section id="exercise-1-loading-files-with-pandas">
+<h2>Exercise 1: Loading files with Pandas<a class="headerlink" href="#exercise-1-loading-files-with-pandas" title="Permalink to this headline">#</a></h2>
+<p>rubric={points:12}</p>
+<p>When working with tabular data, you will typically be creating Pandas dataframes by reading data from .csv files using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code>. The documentation for this function is available <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">here</a>.</p>
+<p>In the “data” folder in this homework repository there are 6 different .csv files named <code class="docutils literal notranslate"><span class="pre">wine_#.csv/.txt</span></code>. Look at each of these files and use <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> to load these data so that they resemble the following:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Bottle</p></th>
+<th class="text-align:center head"><p>Grape</p></th>
+<th class="text-align:center head"><p>Origin</p></th>
+<th class="text-align:center head"><p>Alcohol</p></th>
+<th class="text-align:center head"><p>pH</p></th>
+<th class="text-align:center head"><p>Colour</p></th>
+<th class="text-align:center head"><p>Aroma</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>Chardonnay</p></td>
+<td class="text-align:center"><p>Australia</p></td>
+<td class="text-align:center"><p>14.23</p></td>
+<td class="text-align:center"><p>3.51</p></td>
+<td class="text-align:center"><p>White</p></td>
+<td class="text-align:center"><p>Floral</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>2</p></td>
+<td class="text-align:center"><p>Pinot Grigio</p></td>
+<td class="text-align:center"><p>Italy</p></td>
+<td class="text-align:center"><p>13.20</p></td>
+<td class="text-align:center"><p>3.30</p></td>
+<td class="text-align:center"><p>White</p></td>
+<td class="text-align:center"><p>Fruity</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>3</p></td>
+<td class="text-align:center"><p>Pinot Blanc</p></td>
+<td class="text-align:center"><p>France</p></td>
+<td class="text-align:center"><p>13.16</p></td>
+<td class="text-align:center"><p>3.16</p></td>
+<td class="text-align:center"><p>White</p></td>
+<td class="text-align:center"><p>Citrus</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>4</p></td>
+<td class="text-align:center"><p>Shiraz</p></td>
+<td class="text-align:center"><p>Chile</p></td>
+<td class="text-align:center"><p>14.91</p></td>
+<td class="text-align:center"><p>3.39</p></td>
+<td class="text-align:center"><p>Red</p></td>
+<td class="text-align:center"><p>Berry</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>5</p></td>
+<td class="text-align:center"><p>Malbec</p></td>
+<td class="text-align:center"><p>Argentina</p></td>
+<td class="text-align:center"><p>13.83</p></td>
+<td class="text-align:center"><p>3.28</p></td>
+<td class="text-align:center"><p>Red</p></td>
+<td class="text-align:center"><p>Fruity</p></td>
+</tr>
+</tbody>
+</table>
+<p>You are provided with tests that use <code class="docutils literal notranslate"><span class="pre">df.equals()</span></code> to check that all the dataframes are identical. If you’re in a situation where the two dataframes look identical but <code class="docutils literal notranslate"><span class="pre">df.equals()</span></code> is returning <code class="docutils literal notranslate"><span class="pre">False</span></code>, it may be an issue of types - try checking <code class="docutils literal notranslate"><span class="pre">df.index</span></code>, <code class="docutils literal notranslate"><span class="pre">df.columns</span></code>, or <code class="docutils literal notranslate"><span class="pre">df.info()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df5</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">df6</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span><span class="p">,</span> <span class="n">df5</span><span class="p">,</span> <span class="n">df6</span><span class="p">]):</span>
+    <span class="k">assert</span> <span class="n">df1</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;df1 not equal to df</span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All tests passed.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span><span class="p">,</span> <span class="n">df5</span><span class="p">,</span> <span class="n">df6</span><span class="p">]):</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="k">assert</span> <span class="n">df1</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;df1 not equal to df</span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All tests passed.&quot;</span><span class="p">)</span>
+
+<span class="ne">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;equals&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="exercise-2-the-titanic-dataset">
+<h2>Exercise 2: The Titanic dataset<a class="headerlink" href="#exercise-2-the-titanic-dataset" title="Permalink to this headline">#</a></h2>
+<p>The file <em>titanic.csv</em> contains data of 1309 passengers who were on the Titanic’s unfortunate voyage. For each passenger, the following data are recorded:</p>
+<ul class="simple">
+<li><p>survival - Survival (0 = No; 1 = Yes)</p></li>
+<li><p>class - Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)</p></li>
+<li><p>name - Name</p></li>
+<li><p>sex - Sex</p></li>
+<li><p>age - Age</p></li>
+<li><p>sibsp - Number of Siblings/Spouses Aboard</p></li>
+<li><p>parch - Number of Parents/Children Aboard</p></li>
+<li><p>ticket - Ticket Number</p></li>
+<li><p>fare - Passenger Fare</p></li>
+<li><p>cabin - Cabin</p></li>
+<li><p>embarked - Port of Embarkation (C = Cherbourg; Q = Queenstown; S = Southampton)</p></li>
+<li><p>boat - Lifeboat (if survived)</p></li>
+<li><p>body - Body number (if did not survive and body was recovered)</p></li>
+</ul>
+<p>In this exercise you will perform a number of wrangling operations to manipulate and extract subsets of the data.</p>
+<p>Note: many popular datasets have sex as a feature where the possible values are male and female. This representation reflects how the data were collected and is not meant to imply that, for example, gender is binary.</p>
+<section id="a">
+<h3>2(a)<a class="headerlink" href="#a" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p>Load the <code class="docutils literal notranslate"><span class="pre">titanic.csv</span></code> dataset into a pandas dataframe named <code class="docutils literal notranslate"><span class="pre">titanic_df</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic_df</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">titanic_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="s2">&quot;pclass&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;survived&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;age&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sibsp&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;parch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ticket&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fare&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cabin&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;embarked&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;boat&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;body&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;home.dest&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">),</span> <span class="s2">&quot;All required columns are not present&quot;</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">titanic_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1309</span><span class="p">,</span> <span class="s2">&quot;Wrong number of rows in dataframe&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b">
+<h3>2(b)<a class="headerlink" href="#b" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>The column names <code class="docutils literal notranslate"><span class="pre">sibsp</span></code> and <code class="docutils literal notranslate"><span class="pre">parch</span></code> are not very descriptive. Use <code class="docutils literal notranslate"><span class="pre">df.rename()</span></code> to rename these columns to <code class="docutils literal notranslate"><span class="pre">siblings_spouses</span></code> and <code class="docutils literal notranslate"><span class="pre">parents_children</span></code> respectively.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;siblings_spouses&quot;</span><span class="p">,</span> <span class="s2">&quot;parents_children&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span>
+    <span class="n">titanic_df</span><span class="o">.</span><span class="n">columns</span>
+<span class="p">),</span> <span class="s2">&quot;Column names were not changed properly&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="c">
+<h3>2(c)<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>We will practice indexing different subsets of the dataframe in the following questions.</p>
+<p>Select the column <code class="docutils literal notranslate"><span class="pre">age</span></code> using single bracket notation <code class="docutils literal notranslate"><span class="pre">[]</span></code>. What type of object is returned?</p>
+</section>
+<section id="d">
+<h3>2(d)<a class="headerlink" href="#d" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>Now select the <code class="docutils literal notranslate"><span class="pre">age</span></code> using double bracket notation <code class="docutils literal notranslate"><span class="pre">[[]]</span></code>. What type of object is returned?</p>
+</section>
+<section id="e">
+<h3>2(e)<a class="headerlink" href="#e" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p>Select the columns <code class="docutils literal notranslate"><span class="pre">pclass</span></code>, <code class="docutils literal notranslate"><span class="pre">survived</span></code>, and <code class="docutils literal notranslate"><span class="pre">age</span></code> using a single line of code.</p>
+</section>
+<section id="f">
+<h3>2(f)<a class="headerlink" href="#f" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> method to obtain the first 5 rows of the columns <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code> using a single line of code.</p>
+</section>
+<section id="g">
+<h3>2(g)<a class="headerlink" href="#g" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>Now use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> method to obtain the first 5 rows of the columns <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">sex</span></code> and <code class="docutils literal notranslate"><span class="pre">age</span></code> using a single line of code.</p>
+</section>
+<section id="h">
+<h3>2(h)<a class="headerlink" href="#h" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>How many passengers survived (<code class="docutils literal notranslate"><span class="pre">survived</span> <span class="pre">=</span> <span class="pre">1</span></code>) the disaster? Hint: try using <code class="docutils literal notranslate"><span class="pre">df.query()</span></code> or <code class="docutils literal notranslate"><span class="pre">[]</span></code> notation to subset the dataframe and then <code class="docutils literal notranslate"><span class="pre">df.shape</span></code> to check its size.</p>
+</section>
+<section id="i">
+<h3>2(i)<a class="headerlink" href="#i" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p>How many passengers that survived the disaster (<code class="docutils literal notranslate"><span class="pre">survived</span> <span class="pre">=</span> <span class="pre">1</span></code>) were over 60 years of age?</p>
+</section>
+<section id="j">
+<h3>2(j)<a class="headerlink" href="#j" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p>What was the lowest and highest fare paid to board the titanic? Store your answers as floats in the variables <code class="docutils literal notranslate"><span class="pre">lowest</span></code> and <code class="docutils literal notranslate"><span class="pre">highest</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lowest</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">highest</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="k">
+<h3>2(k)<a class="headerlink" href="#k" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p>Sort the dataframe by fare paid (most to least).</p>
+</section>
+<section id="l">
+<h3>2(l)<a class="headerlink" href="#l" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p>Save the sorted dataframe to a .csv file called ‘titanic_fares.csv’ using <code class="docutils literal notranslate"><span class="pre">to_csv()</span></code>.</p>
+</section>
+<section id="m">
+<h3>2(m)<a class="headerlink" href="#m" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>Create a scatter plot of fare (y-axis) vs. age (x-axis). Make sure to follow the <a class="reference external" href="https://github.com/UBC-CS/cpsc330/blob/master/docs/homework_instructions.md#figures">guidelines on figures</a>. You are welcome to use pandas built-in plotting or <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+</section>
+<section id="n">
+<h3>2(n)<a class="headerlink" href="#n" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>Create a bar plot of <code class="docutils literal notranslate"><span class="pre">embarked</span></code> values.</p>
+<blockquote>
+<div><p>Make sure to name the axes and give a title to your plot.</p>
+</div></blockquote>
+<p><br><br></p>
+</section>
+</section>
+<section id="exercise-3-treasure-hunt">
+<h2>Exercise 3: Treasure Hunt<a class="headerlink" href="#exercise-3-treasure-hunt" title="Permalink to this headline">#</a></h2>
+<p>In this exercise, we will generate various collections of objects either as a list, a tuple, or a dictionary. Your task is to inspect the objects and look for treasure, which in our case is a particular object: <strong>the character “T”</strong>.</p>
+<p><strong>Your tasks:</strong></p>
+<p>For each of the following cases, index into the Python object to obtain the “T” (for Treasure).</p>
+<blockquote>
+<div><p>Please do not modify the original line of code that generates <code class="docutils literal notranslate"><span class="pre">x</span></code> (though you are welcome to copy it). You are welcome to answer this question “manually” or by writing code - whatever works for you. However, your submission should always end with a line of code that prints out <code class="docutils literal notranslate"><span class="pre">'T'</span></code> at the end (because you’ve found it).</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">string</span>
+
+<span class="n">letters</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first one is done for you as an example.</p>
+<section id="example-question">
+<h3>Example question<a class="headerlink" href="#example-question" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nothing&quot;</span><span class="p">,</span> <span class="p">{</span><span class="o">-</span><span class="n">i</span><span class="p">:</span> <span class="n">l</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">letters</span><span class="p">)})</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example answer</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">19</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Note: In these questions, the goal is not to understand the code itself, which may be confusing. Instead, try to probe the types of the various objects. For example <code class="docutils literal notranslate"><span class="pre">type(x)</span></code> reveals that <code class="docutils literal notranslate"><span class="pre">x</span></code> is a tuple, and <code class="docutils literal notranslate"><span class="pre">len(x)</span></code> reveals that it has two elements. Element 0 just contains “nothing”, but element 1 contains more stuff, hence <code class="docutils literal notranslate"><span class="pre">x[1]</span></code>. Then we can again probe <code class="docutils literal notranslate"><span class="pre">type(x[1])</span></code> and see that it’s a dictionary. If you <code class="docutils literal notranslate"><span class="pre">print(x[1])</span></code> you’ll see that the letter “T” corresponds to the key -19, hence <code class="docutils literal notranslate"><span class="pre">x[1][-19]</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="id1">
+<h3>3(a)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="n">letters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">letters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>3(b)<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">26</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">26</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;T&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h3>3(c)<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do not modify this cell</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">26</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">string</span><span class="o">.</span><span class="n">ascii_lowercase</span><span class="p">[(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">n</span><span class="p">]:</span> <span class="p">[[</span><span class="n">letters</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="k">if</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">i</span> <span class="k">else</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="submission-instructions">
+<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">#</a></h2>
+<p><strong>PLEASE READ:</strong> When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+</ol>
+<p><img alt="" src="../../_images/eva-congrats.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
