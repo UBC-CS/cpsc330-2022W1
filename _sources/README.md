@@ -51,7 +51,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures in the first half of the course. All the videos are available on YouTube and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, I'll summarize important points and focus on demos, iClickers, and Q&A. 
 
-- I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them in the [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
+I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them in the [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
 
 | Date  | Topic |  Assigned videos | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
