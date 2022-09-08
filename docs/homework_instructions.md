@@ -3,7 +3,7 @@
 You will be submitting your homework assignments on Gradescope. Check out [Gradescope Student Guide](https://lthub.ubc.ca/guides/gradescope-student-guide/). 
 
 ## Accessing homework assignments
-Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330) under the `hw` folder. Once it's available, I'll make an announcement on [Piazza](https://piazza.com/class/kt60nrdhu53454). The assignment will generally consist of a Jupyter notebook along with necessary code and data or links to download the data. You will have to setup your computer so that you can work on these assignments locally. See this document for [setup instructions](setup.md).       
+Every homework assignment will be made available on the [course GitHub page](https://github.com/UBC-CS/cpsc330) under the `hw` folder. Once it's available, I'll make an announcement on Piazza. The assignment will generally consist of a Jupyter notebook along with necessary code and data or links to download the data. You will have to setup your computer so that you can work on these assignments locally. See this document for [setup instructions](setup.md).       
 
 ## How to submit
 
@@ -39,7 +39,7 @@ In most assignments, you will be asked to produce plots/figures. When including 
 - Regardless of your image formats, all text must be big enough to read without straining or zooming. Please be careful about this for axis labels, legends, titles, etc. Avoid tiny text!
 
 ## Partners
-**You must work alone for Assignment 1.** For Assignment 2 onwards, I might consider allowing group submissions. (I'll update the instructions soon.) 
+**You must work alone for hw1 and hw2.** For hw3 onwards, I might consider allowing group submissions. (I'll update the instructions soon.) 
 
 ## Late submissions
 By default late submissions will not be accepted. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole.
