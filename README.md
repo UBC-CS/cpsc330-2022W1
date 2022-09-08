@@ -11,24 +11,23 @@ Instructor: Varada Kolhatkar
 
 ## License
 
-© 2021 Varada Kolhatkar and Mike Gelbart
+© 2022 Varada Kolhatkar and Mike Gelbart
 
 Software licensed under [the MIT License](https://spdx.org/licenses/MIT.html), non-software content licensed under [the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/). See the [license file](LICENSE.md) for more information.
 
 ## Important links
 
+* [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Course GitHub page](https://github.com/UBC-CS/cpsc330)
 * [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html)
+* [iClicker Cloud](https://join.iclicker.com/3DP5H)
+* [Canvas](https://canvas.ubc.ca/courses/101888): You will find Gradescope, Piazza, and Panopto links in Canvas
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
-* [Canvas link](https://canvas.ubc.ca/courses/101888)
-* [Class + office hours calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html)
 * [Syllabus / administrative info](docs/course_info.md)
-* [Piazza](https://piazza.com/class/l6pflbyug1230c) (this is where all announcements will be made)
 * [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
-* [Past exams](https://github.com/UBC-CS/cpsc330/tree/master/exams)
 
 ## Deliverable due dates (tentative)
-Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. 
+Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. I'll also add the due dates in the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). If you find inconsistencies in due dates, follow the due date from  the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).     
 
 |Assessment  | Due date |  Where to find? | Where to submit? | 
 |-------|-----------|-----------|-----------|
@@ -48,13 +47,13 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 ## Lecture schedule (tentative)
 
-**Live lectures**: The lectures will be in-person in **[DMP 310](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See [this Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). 
+**Live lectures**: The lectures will be in-person in **[DMP 310](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See [the Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The lectures will be live streamed. You can find the link to Panopto folder in Canvas. That said, consider the recordings a backup resource and do not completely rely on it. You will get a lot more out of the course if you show up in person.     
 
-**Lectures**: 
-- Try to watch the "Pre-watch" videos before each lecture. 
-- I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them on the [Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
+This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures in the first half of the course. All the videos are available on YouTube and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, I'll summarize important points and focus on demos, iClickers, and Q&A. 
 
-| Date  | Topic |  Assigned videos and datasets | vs. CPSC 340 |
+- I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them in the [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
+
+| Date  | Topic |  Assigned videos | vs. CPSC 340 |
 |-------|-----------|-------------------------|------------------|
 | Sep 6 | _UBC Imagine Day - no class_ | | 
 | Sep 8 | [Course intro](lectures/01_intro.ipynb) | 📹 Pre-watch: [1.0](https://youtu.be/-1hTcS5ZE4w) | n/a |
@@ -105,7 +104,7 @@ Your precautions will help reduce risk and keep everyone safer. In this class, t
 - Before each class, I'll also try to post some [videos on YouTube](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) to facilitate hybrid learning. 
 - There will be at least a few office hours which will be held online. 
 
-In general, everyone is struggling to some extent, as we are working on this course during the global pandemic. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
+We are working on this course during the global pandemic. In general, everyone is struggling to some extent. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
 
 Here are some ground rules:
 
