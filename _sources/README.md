@@ -27,7 +27,7 @@ Software licensed under [the MIT License](https://spdx.org/licenses/MIT.html), n
 * [Other course documents](https://github.com/UBC-CS/cpsc330/tree/master/docs)
 
 ## Deliverable due dates (tentative)
-Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. I'll also add the due dates in the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). If you find inconsistencies in due dates, follow the due date from  the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).     
+Usually the homework assignments will be due on Mondays (except next week) and will be released on Tuesdays. I'll also add the due dates in the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). If you find inconsistencies in due dates, follow the due date in the Calendar. For this course, we'll assume that the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) is always right!      
 
 |Assessment  | Due date |  Where to find? | Where to submit? | 
 |-------|-----------|-----------|-----------|
@@ -47,9 +47,9 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 
 ## Lecture schedule (tentative)
 
-**Live lectures**: The lectures will be in-person in **[DMP 310](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**. See [the Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The lectures will be live streamed. You can find the link to Panopto folder in Canvas. That said, consider the recordings a backup resource and do not completely rely on it. You will get a lot more out of the course if you show up in person.     
+**Live lectures**: The lectures will be in-person in **[DMP 310](http://www.maps.ubc.ca/PROD/index.php) from 11am to 12:20pm**, as marked in [the Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The lectures will be live streamed. You can find the link of Panopto videos in Canvas. That said, consider the recordings a backup resource and do not completely rely on it. You will get a lot more out of the course if you show up in person. 
 
-This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures in the first half of the course. All the videos are available on YouTube and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, I'll summarize important points and focus on demos, iClickers, and Q&A. 
+This course will be run in a semi flipped classroom format. There will be pre-watch videos for many lectures, at least in the first half of the course. All the videos are available on [YouTube](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) and are posted in the schedule below. Try to watch the assigned videos before the corresponding lecture. During the lecture, I'll summarize the important points from the videos and focus on demos, iClickers, and Q&A. 
 
 I'll be developing lecture notes directly in this repository. So if you check them before the lecture, they might be in a draft form. Once they are finalized, I'll post them in the [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html). 
 
@@ -101,7 +101,6 @@ Your precautions will help reduce risk and keep everyone safer. In this class, t
 - All homework assignments can be done and handed in online. 
 - All exams will be held online. (But you need to be present in the classroom to write the exam unless there is a legitimate reason for not doing so.)  
 - Most of the class activity will be video recorded and will be made available to you. 
-- Before each class, I'll also try to post some [videos on YouTube](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) to facilitate hybrid learning. 
 - There will be at least a few office hours which will be held online. 
 
 We are working on this course during the global pandemic. In general, everyone is struggling to some extent. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
