@@ -16,9 +16,10 @@ When there are updates in the repository, you can update the local copy using th
 git pull
 ```
 
+
 ## Python and Conda
 
-We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.9). **Python 2 is not supported in this course.**
+We will be using Python for this course because it is open source and widely used in machine learning and data science. We will use Python 3 (in particular 3.10). **Python 2 is not supported in this course.**
 
 We recommend the Miniconda Python distribution because it comes bundled with a bunch of useful packages (NumPy, SciPy, scikit-learn, Jupyter notebook) pre-installed. You can [download Miniconda from their website](https://docs.conda.io/en/latest/miniconda.html) that is suitable for your operating system. For example, I downloaded [Miniconda3 MaxOSX 64-bit pkg](https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.pkg) on my macOS.  
 
@@ -41,7 +42,7 @@ conda --version
 which should return something like: 
 
 ```
-conda 4.10.3
+conda 4.12.0
 ```
 
 Now, type 
@@ -50,7 +51,7 @@ Now, type
 python --version
 ``` 
 
-which should return Python 3.9.0 or greater. 
+which should return Python 3.10.0 or greater. 
 
 
 ### Windows
@@ -67,9 +68,9 @@ Type the following to check that your Python installation is working:
 python --version
 ```
 
-which should return Python 3.9.0 or greater. 
+which should return Python 3.10.0 or greater. 
 
-_Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.9._
+_Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.10._
 
 
 ## Installing Python packages

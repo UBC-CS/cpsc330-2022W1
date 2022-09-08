@@ -1,6 +1,6 @@
 # How to ask for help
 
-We will use [Piazza](https://piazza.com/ubc.ca/) for general questions as well as your specific questions about grades.
+We will use Piazza for general questions as well as your specific questions about grades.
 
 Aside from all the standard UBC policies and guidelines, here are some additional points about how you're expected to use these platforms.
 
