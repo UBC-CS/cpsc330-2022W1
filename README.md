@@ -21,6 +21,7 @@ Software licensed under [the MIT License](https://spdx.org/licenses/MIT.html), n
 * [Course GitHub page](https://github.com/UBC-CS/cpsc330)
 * [Course Jupyter book](https://ubc-cs.github.io/cpsc330/README.html)
 * [iClicker Cloud](https://join.iclicker.com/3DP5H)
+* [Piazza](piazza.com/ubc.ca/winterterm12022/cpsc3301022022w1/home)
 * [Canvas](https://canvas.ubc.ca/courses/101888): You will find Gradescope, Piazza, and Panopto links in Canvas
 * [Course videos YouTube channel](https://www.youtube.com/playlist?list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM)
 * [Syllabus / administrative info](docs/course_info.md)
