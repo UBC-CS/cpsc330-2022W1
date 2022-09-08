@@ -15,10 +15,8 @@ Application of machine learning tools, with an emphasis on solving practical pro
 |----------|--------|------|
 | Tue/Thu  | 11:00-12:20  | DMP 310 |
 
-**Tutorials**:
-The tutorials for this class will be run by the TAs and will be in the office hour format. This information will be updated in the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
-
-**Office hours**: See the [calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html).
+**Tutorials and office hours**:
+For tutorial and office hours time and locations check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html). The tutorials for this class will be run by the TAs and will be in the office hour format. The tutorials are **optional**. That said, you will have more one-on-one time with the TAs and you are likely learn more about the material if you take advantage of this time. 
 
 ## Teaching Team
 
@@ -45,7 +43,7 @@ In practice, the prerequisite is familiarity with Python programming.
 
 **Auditing**: If the course is full, we cannot accommodate official auditors. If there is space and you would like to audit the course, please contact the instructor. All UBC students are welcome to audit the course unofficially. 
 
-## Grading
+## Grading scheme
  
 The grading scheme for the course is as follows:
 
@@ -57,27 +55,31 @@ The grading scheme for the course is as follows:
 | Midterm     |     25%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
 | Final       |     52%         | [Canvas](https://canvas.ubc.ca/courses/78046)     |
 
-The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not yet finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. 
 
-Regarding iClicker participation grade, it will be primarily for participation and not for correctness. That said, these questions are designed for your learning and try to put some effort when you answer them. 
+### iClicker 
 
-For the full policy on grades, see [this document](grades.md).
+The iClicker participation grade will be primarily for participation and not for correctness. That said, these questions are designed for your learning and try to put some effort when you answer them. 
 
-I understand that grades are important for you for several reasons. But try not to focus too much on grades. You will have a better learning experience if you focus more on learning the material well. In general, for the grading scheme I wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
+### Assignments
+
+The plan is that most of the assignments will contribute equally towards the overall Assignments grade. However, this is not finalized yet. For example, the last assignment ends up particularly short or long due to timing. Furthermore, I will drop your lowest homework grade. By default late submissions will not be accepted. The rationale is that we will be posting the solutions shortly after the assignment deadline, and we cannot accept submissions after the solutions are posted. I do not like this, but I believe the overall policy is best for the class as a whole. See [this document](homework_instructions.md) for more detailed instructions on submitting homework. 
+
+For the full policy on grades, see [this document](grades.md). I understand that grades are important for you for several reasons. But try not to focus too much on them. You will have a better learning experience (and you'll be happier in life in general :)) if you focus more on learning the material well. For the grading scheme I wish we could use [this](https://youtu.be/HdHlfiOAJyE?t=3771).
+
+
+### Midterm
+
+Check the [Calendar](https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html) for midterm date and time. The exam is likely to be open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. **Also, all answers should be in your own words. Copy-pasting code snippets or sentences or long phrases from the lecture notes or the internet is considered plagiarism.** The exam will be on Canvas and you will have 75 minutes to complete it.
+
+**Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, or anticipate missing the midterm exam, please see the Academic concessions section above. In most cases, if you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
+
+### Final exam
+
+The final exam will be held during the exam period. The exam is likely to be open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. 
 
 ## Academic concessions
 
 UBC has a [policy on academic concession](https://senate.ubc.ca/sites/senate.ubc.ca/files/downloads/20190515_V_135_Academic_Concession-Approved.pdf) for cases in which a student may be unable to complete coursework. According to this policy, grounds for academic concession can be illness, conflicting responsibilities, or compassionate grounds. Examples of compassionate grounds, from the above policy, include "a traumatic event experienced by the student, a family member, or a close friend; an act of sexual assault or other sexual misconduct experienced by the student, a family member, or a close friend; a death in the family or of a close friend." If you would like to request an academic concession, please fill out the [academic concession form](https://github.com/UBC-CS/cpsc330/blob/master/docs/ConcessionForm.pdf), clearly specify what kind of concession are you asking for, and email it to the instructor as soon as possible. You may be asked for further documentation. The instructor will evaluate the situation and make a decision on whether to grant the concession and, if so, how to proceed.
-
-## Midterm
-
-The midterm exam will take place on **October 27, 2022** during class time. The exam is open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. **Also, all answers should be in your own words. Copy-pasting code snippets or sentences or long phrases from the lecture notes or the internet is considered plagiarism.** The exam will be on Canvas and you will have 75 minutes to complete it.
-
-**Missed midterm exam**. There is no makeup midterm exam. If you miss the midterm exam, or anticipate missing the midterm exam, please see the Academic concessions section above. In most cases, if you have missed the midterm exam for a justified reason, the weight of the midterm component of the course will be transferred to the final exam.
-
-## Final exam
-
-The final exam will be held during the exam period. The exam is likely to be open book, meaning you are allowed to consult course materials, the internet, etc. However, you are NOT allowed to communicate with anyone else in any way during the exam. 
 
 ## Code of conduct
 
@@ -87,7 +89,7 @@ The final exam will be held during the exam period. The exam is likely to be ope
 - If you commit to working with a partner on an assignment, do your fair share of the work.
 - If you have a problem or complaint, let the instructor(s) know immediately. Maybe we can fix it!
 
-### [Covid Safety at UBC](https://srs.ubc.ca/covid-19/ubc-campus-rules-guidance-documents/#COVID-19%20Campus%20Rules)
+## [Covid Safety at UBC](https://srs.ubc.ca/covid-19/ubc-campus-rules-guidance-documents/#COVID-19%20Campus%20Rules)
 
 Please read [Covid Campus Rules](https://srs.ubc.ca/covid-19/ubc-campus-rules-guidance-documents/#COVID-19%20Campus%20Rules).  
 
@@ -106,7 +108,7 @@ Your precautions will help reduce risk and keep everyone safer. In this class, t
 - Before each class, I'll also try to post some [videos on YouTube](https://www.youtube.com/watch?v=-1hTcS5ZE4w&list=PLHofvQE1VlGtZoAULxcHb7lOsMved0CuM) to facilitate hybrid learning. 
 - There will be at least a few office hours which will be held online. 
 
-In general, everyone is struggling to some extent, as we are working on this course during the global pandemic. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
+We are working on this course during the global pandemic and everyone is struggling to some extent. If you tell me you are having trouble, I am not going to judge you or think less of you. I hope you will extend me the same grace!
 
 Here are some ground rules:
 
