@@ -74,7 +74,7 @@ I'll be developing lecture notes directly in this repository. So if you check th
 | Oct 25 | _Midterm review_  |  |
 | Oct 27 | **Midterm**  |  |
 | Nov 1 |   [Clustering](lectures/14_k-means-clustering.ipynb) |  📹 Pre-watch: [14.1](https://youtu.be/caAuUAXwpb8), [14.2](https://youtu.be/s6AvSZ1_l7I), [14.3](https://youtu.be/M5ilrhcL0oY)  | less depth |
-| Nov 2 |   [More clustering]() |  📹 Pre-watch: [15.1](https://youtu.be/1ZwITQyWpkY), [15.2](https://youtu.be/T4NLsrUaRtg), [15.3](https://youtu.be/NM8lFKFZ2IU)   | less depth |
+| Nov 3 |   [More clustering]() |  📹 Pre-watch: [15.1](https://youtu.be/1ZwITQyWpkY), [15.2](https://youtu.be/T4NLsrUaRtg), [15.3](https://youtu.be/NM8lFKFZ2IU)   | less depth |
 | Nov 8 |   [Simple recommender systems](lectures/15_recommender-systems.ipynb) | | less depth ||
 | Nov 10 | _Midterm break - no class_  |  |
 | Nov 15 |  [Text data, embeddings, topic modeling](lectures/16_natural-language-processing.ipynb)  | 📹 Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY), [16.2](https://youtu.be/7W5Q8gzNPBc)  |   new |
