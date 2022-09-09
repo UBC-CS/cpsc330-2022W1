@@ -70,7 +70,7 @@ python --version
 
 which should return Python 3.9.7 or greater. 
 
-_Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.10._
+_Note: If instead you see Python 2.7.X you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the /opt directory), and try the installation again, selecting Python 3.9.7._
 
 
 ## Installing Python packages
