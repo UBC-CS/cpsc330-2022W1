@@ -17,7 +17,9 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-plot_fruit_tree()
+plot_tree_decision_boundary_and_tree(
+    tr, X[['supportive_colleagues', 'coffee_machine']], y, x_label="supportive_colleagues", y_label="coffee_machine"
+)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
@@ -57,15 +59,28 @@ File [0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/subprocess.py:1845[0m,
 The above exception was the direct cause of the following exception:
 
 [0;31mExecutableNotFound[0m                        Traceback (most recent call last)
-Input [0;32mIn [47][0m, in [0;36m<cell line: 1>[0;34m()[0m
-[0;32m----> 1[0m [43mplot_fruit_tree[49m[43m([49m[43m)[49m
+Input [0;32mIn [14][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0m [43mplot_tree_decision_boundary_and_tree[49m[43m([49m
+[1;32m      2[0m [43m    [49m[43mtr[49m[43m,[49m[43m [49m[43mX[49m[43m[[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43msupportive_colleagues[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mcoffee_machine[39;49m[38;5;124;43m'[39;49m[43m][49m[43m][49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mx_label[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43msupportive_colleagues[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43my_label[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mcoffee_machine[39;49m[38;5;124;43m"[39;49m
+[1;32m      3[0m [43m)[49m
 
-File [0;32m~/CS/2022-23/330/cpsc330/lectures/code/./plotting_functions.py:66[0m, in [0;36mplot_fruit_tree[0;34m(ax)[0m
-[1;32m     64[0m mygraph[38;5;241m.[39medge([38;5;124m"[39m[38;5;124m2[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m5[39m[38;5;124m"[39m, label[38;5;241m=[39m[38;5;124m"[39m[38;5;124mTrue[39m[38;5;124m"[39m)
-[1;32m     65[0m mygraph[38;5;241m.[39medge([38;5;124m"[39m[38;5;124m2[39m[38;5;124m"[39m, [38;5;124m"[39m[38;5;124m6[39m[38;5;124m"[39m, label[38;5;241m=[39m[38;5;124m"[39m[38;5;124mFalse[39m[38;5;124m"[39m)
-[0;32m---> 66[0m [43mmygraph[49m[38;5;241;43m.[39;49m[43mrender[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mtmp[39;49m[38;5;124;43m"[39;49m[43m)[49m
-[1;32m     67[0m ax[38;5;241m.[39mimshow(imread([38;5;124m"[39m[38;5;124mtmp.png[39m[38;5;124m"[39m))
-[1;32m     68[0m ax[38;5;241m.[39mset_axis_off()
+File [0;32m~/CS/2022-23/330/cpsc330/lectures/code/./plotting_functions.py:41[0m, in [0;36mplot_tree_decision_boundary_and_tree[0;34m(model, X, y, height, width, x_label, y_label, eps)[0m
+[1;32m     33[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots(
+[1;32m     34[0m     [38;5;241m1[39m,
+[1;32m     35[0m     [38;5;241m2[39m,
+[0;32m   (...)[0m
+[1;32m     38[0m     gridspec_kw[38;5;241m=[39m{[38;5;124m"[39m[38;5;124mwidth_ratios[39m[38;5;124m"[39m: [[38;5;241m1.5[39m, [38;5;241m2[39m]},
+[1;32m     39[0m )
+[1;32m     40[0m plot_tree_decision_boundary(model, X, y, x_label, y_label, eps, ax[38;5;241m=[39max[[38;5;241m0[39m])
+[0;32m---> 41[0m ax[[38;5;241m1[39m][38;5;241m.[39mimshow([43mtree_image[49m[43m([49m[43mX[49m[38;5;241;43m.[39;49m[43mcolumns[49m[43m,[49m[43m [49m[43mmodel[49m[43m)[49m)
+[1;32m     42[0m ax[[38;5;241m1[39m][38;5;241m.[39mset_axis_off()
+[1;32m     43[0m plt[38;5;241m.[39mshow()
+
+File [0;32m~/CS/2022-23/330/cpsc330/lectures/code/./utils.py:82[0m, in [0;36mtree_image[0;34m(feature_names, tree)[0m
+[1;32m     80[0m graph [38;5;241m=[39m graphviz[38;5;241m.[39mSource(dot, [38;5;28mformat[39m[38;5;241m=[39m[38;5;124m"[39m[38;5;124mpng[39m[38;5;124m"[39m)
+[1;32m     81[0m fout [38;5;241m=[39m [38;5;124m"[39m[38;5;124mtmp[39m[38;5;124m"[39m
+[0;32m---> 82[0m [43mgraph[49m[38;5;241;43m.[39;49m[43mrender[49m[43m([49m[43mfout[49m[43m)[49m
+[1;32m     83[0m [38;5;28;01mreturn[39;00m imread(fout [38;5;241m+[39m [38;5;124m"[39m[38;5;124m.png[39m[38;5;124m"[39m)
 
 File [0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/_tools.py:171[0m, in [0;36mdeprecate_positional_args.<locals>.decorator.<locals>.wrapper[0;34m(*args, **kwargs)[0m
 [1;32m    162[0m     wanted [38;5;241m=[39m [38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;241m.[39mjoin([38;5;124mf[39m[38;5;124m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[38;5;124m=[39m[38;5;132;01m{[39;00mvalue[38;5;132;01m!r}[39;00m[38;5;124m'[39m

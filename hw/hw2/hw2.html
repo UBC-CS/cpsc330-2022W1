@@ -1,0 +1,1405 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw2/hw2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw2/hw2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-2-decision-trees-and-machine-learning-fundamentals">
+   Homework 2: Decision trees and machine learning fundamentals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-2-and-3">
+     Associated lectures: Lectures 2 and 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-the-data-set">
+   Introducing the data set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploratory-data-analysis">
+   Exercise 1: Exploratory data analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-data">
+     1.1 Loading the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#number-of-training-and-test-examples">
+     1.2 Number of training and test examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-eda">
+     1.3 Preliminary EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-histograms">
+     1.4 Plotting histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identical-histograms">
+     1.5 Identical histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-columns-to-include">
+     1.6 Which columns to include?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-using-sklearn-to-build-a-decision-tree-classifier">
+   Exercise 2: Using sklearn to build a decision tree classifier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-x-and-y">
+     2.1 Creating
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       X
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       y
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.6
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-hyperparameters">
+   Exercise 3: Hyperparameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     3.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#max-depth-and-the-fundamental-tradeoff">
+     3.2
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       max_depth
+      </span>
+     </code>
+     and the fundamental tradeoff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#picking-a-reasonable-value-for-max-depth">
+     3.3 Picking a reasonable value for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       max_depth
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-assessment-on-the-test-set">
+     3.4 Final assessment on the test set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis">
+     3.5 Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-4-conceptual-questions">
+   Exercise 4: Conceptual questions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-2-decision-trees-and-machine-learning-fundamentals">
+   Homework 2: Decision trees and machine learning fundamentals
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-2-and-3">
+     Associated lectures: Lectures 2 and 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introducing-the-data-set">
+   Introducing the data set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploratory-data-analysis">
+   Exercise 1: Exploratory data analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-data">
+     1.1 Loading the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#number-of-training-and-test-examples">
+     1.2 Number of training and test examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-eda">
+     1.3 Preliminary EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-histograms">
+     1.4 Plotting histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identical-histograms">
+     1.5 Identical histograms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-columns-to-include">
+     1.6 Which columns to include?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-using-sklearn-to-build-a-decision-tree-classifier">
+   Exercise 2: Using sklearn to build a decision tree classifier
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-x-and-y">
+     2.1 Creating
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       X
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       y
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     2.2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     2.3
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2.4
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.6
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-hyperparameters">
+   Exercise 3: Hyperparameters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     3.1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#max-depth-and-the-fundamental-tradeoff">
+     3.2
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       max_depth
+      </span>
+     </code>
+     and the fundamental tradeoff
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#picking-a-reasonable-value-for-max-depth">
+     3.3 Picking a reasonable value for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       max_depth
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-assessment-on-the-test-set">
+     3.4 Final assessment on the test set
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysis">
+     3.5 Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-4-conceptual-questions">
+   Exercise 4: Conceptual questions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
+<span class="kn">import</span> <span class="nn">otter</span>
+<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;hw2.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-2-decision-trees-and-machine-learning-fundamentals">
+<h2>Homework 2: Decision trees and machine learning fundamentals<a class="headerlink" href="#homework-2-decision-trees-and-machine-learning-fundamentals" title="Permalink to this headline">#</a></h2>
+<section id="associated-lectures-lectures-2-and-3">
+<h3>Associated lectures: <a class="reference external" href="https://ubc-cs.github.io/cpsc330/README.html">Lectures 2 and 3</a><a class="headerlink" href="#associated-lectures-lectures-2-and-3" title="Permalink to this headline">#</a></h3>
+<p><strong>Due date: See the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a></strong>.</p>
+</section>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p>rubric={points:3}</p>
+<p>Follow the <a class="reference external" href="https://github.com/UBC-CS/cpsc330/blob/master/docs/homework_instructions.md">homework submission instructions</a>.</p>
+<p>You are welcome to broadly discuss questions with your classmates but your final answers must be your own. <strong>We are not allowing group submission for this homework assignment.</strong></p>
+<p><strong>Important</strong>: In this assignment we are using autograder so that you can get feedback on your solutions. For the autograder to work, you need to install <code class="docutils literal notranslate"><span class="pre">otter</span></code> in the course environment as follows.</p>
+<p>Go to the command line/terminal, activate the course conda environment, and install otter-grader.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```
+conda activate cpsc330
+pip install otter-grader
+```
+</pre></div>
+</div>
+<p>The cell at the top of the notebook will throw an error if you do not install <code class="docutils literal notranslate"><span class="pre">otter-grader</span></code>.</p>
+<p><br><br></p>
+</section>
+<section id="introducing-the-data-set">
+<h2>Introducing the data set<a class="headerlink" href="#introducing-the-data-set" title="Permalink to this headline">#</a></h2>
+<p>For this lab you’ll be using Kaggle’s <a class="reference external" href="https://www.kaggle.com/geomack/spotifyclassification/home">Spotify Song Attributes</a> dataset. The dataset contains a number of features of songs from 2017 and a binary variable <code class="docutils literal notranslate"><span class="pre">target</span></code> that represents whether the user liked the song (encoded as 1) or not (encoded as 0). See the documentation of all the features <a class="reference external" href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/">here</a>.</p>
+<p>This dataset is publicly available on Kaggle, and you will have to download it yourself. Follow the steps below to get the data CSV.</p>
+<ol class="simple">
+<li><p>If you do not have an account with <a class="reference external" href="https://www.kaggle.com/">Kaggle</a>, you will first need to create one (it’s free).</p></li>
+<li><p>Login to your account and <a class="reference external" href="https://www.kaggle.com/geomack/spotifyclassification/download">download</a> the dataset.</p></li>
+<li><p>Unzip the data file if needed, then rename it to <code class="docutils literal notranslate"><span class="pre">spotify.csv</span></code>, and move it under the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory.</p></li>
+</ol>
+<p><br><br></p>
+</section>
+<section id="exercise-1-exploratory-data-analysis">
+<h2>Exercise 1: Exploratory data analysis<a class="headerlink" href="#exercise-1-exploratory-data-analysis" title="Permalink to this headline">#</a></h2>
+<section id="loading-the-data">
+<h3>1.1 Loading the data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Read in the data CSV and store it as a pandas dataframe named <code class="docutils literal notranslate"><span class="pre">spotify_df</span></code>. The first column (index=0) of the .csv file should be set as the index.</p>
+<div class="alert alert-warning">
+<p>Solution_1.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_df</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q1.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><p><strong style='color: red;'><pre style='display: inline;'>q1.1</pre> results:</strong></p><p><strong><pre style='display: inline;'>q1.1 - 1</pre> result:</strong></p><pre>    Trying:
+        assert isinstance(spotify_df, pd.DataFrame), "The DataFrame is not loaded correctly"
+    Expecting nothing
+    **********************************************************************
+    Line 1, in q1.1 0
+    Failed example:
+        assert isinstance(spotify_df, pd.DataFrame), "The DataFrame is not loaded correctly"
+    Exception raised:
+        Traceback (most recent call last):
+          File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/doctest.py", line 1350, in __run
+            exec(compile(example.source, filename, "single",
+          File "<doctest q1.1 0[0]>", line 1, in <module>
+            assert isinstance(spotify_df, pd.DataFrame), "The DataFrame is not loaded correctly"
+        AssertionError: The DataFrame is not loaded correctly
+    Trying:
+        assert spotify_df.shape == (2017, 16), "The DataFrame has the wrong shape"
+    Expecting nothing
+    **********************************************************************
+    Line 2, in q1.1 0
+    Failed example:
+        assert spotify_df.shape == (2017, 16), "The DataFrame has the wrong shape"
+    Exception raised:
+        Traceback (most recent call last):
+          File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/doctest.py", line 1350, in __run
+            exec(compile(example.source, filename, "single",
+          File "<doctest q1.1 0[1]>", line 1, in <module>
+            assert spotify_df.shape == (2017, 16), "The DataFrame has the wrong shape"
+        AttributeError: 'NoneType' object has no attribute 'shape'
+    Trying:
+        assert spotify_df.index.dtype == "int64", "Your index dtype is incorrect"
+    Expecting nothing
+    **********************************************************************
+    Line 3, in q1.1 0
+    Failed example:
+        assert spotify_df.index.dtype == "int64", "Your index dtype is incorrect"
+    Exception raised:
+        Traceback (most recent call last):
+          File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/doctest.py", line 1350, in __run
+            exec(compile(example.source, filename, "single",
+          File "<doctest q1.1 0[2]>", line 1, in <module>
+            assert spotify_df.index.dtype == "int64", "Your index dtype is incorrect"
+        AttributeError: 'NoneType' object has no attribute 'index'
+    Trying:
+        assert np.isclose(spotify_df.valence.sum(), 1002.0759), "The DataFrame is not loaded correctly"
+    Expecting nothing
+    **********************************************************************
+    Line 4, in q1.1 0
+    Failed example:
+        assert np.isclose(spotify_df.valence.sum(), 1002.0759), "The DataFrame is not loaded correctly"
+    Exception raised:
+        Traceback (most recent call last):
+          File "/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/doctest.py", line 1350, in __run
+            exec(compile(example.source, filename, "single",
+          File "<doctest q1.1 0[3]>", line 1, in <module>
+            assert np.isclose(spotify_df.valence.sum(), 1002.0759), "The DataFrame is not loaded correctly"
+        AttributeError: 'NoneType' object has no attribute 'valence'
+</pre></div></div>
+</div>
+<p><br><br></p>
+</section>
+<section id="number-of-training-and-test-examples">
+<h3>1.2 Number of training and test examples<a class="headerlink" href="#number-of-training-and-test-examples" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Run the following line of code to split the data. How many training and test examples do we have? Store them in variables <code class="docutils literal notranslate"><span class="pre">n_train_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_test_samples</span></code> below.</p>
+<blockquote>
+<div><p>Note: we are setting the <code class="docutils literal notranslate"><span class="pre">random_state</span></code> so that everyone has the same split, which is required by the autograder.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">spotify_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">spotify_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">321</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_split.py:2447,</span> in <span class="ni">train_test_split</span><span class="nt">(test_size, train_size, random_state, shuffle, stratify, *arrays)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2443</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;At least one array required as input&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2445</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">indexable</span><span class="p">(</span><span class="o">*</span><span class="n">arrays</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2447</span> <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> <span class="n">n_train</span><span class="p">,</span> <span class="n">n_test</span> <span class="o">=</span> <span class="n">_validate_shuffle_split</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2449</span>     <span class="n">n_samples</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">train_size</span><span class="p">,</span> <span class="n">default_test_size</span><span class="o">=</span><span class="mf">0.25</span>
+<span class="g g-Whitespace">   </span><span class="mi">2450</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2452</span> <span class="k">if</span> <span class="n">shuffle</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/validation.py:321,</span> in <span class="ni">_num_samples</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">321</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="ne">TypeError</span>: Expected sequence or array-like, got &lt;class &#39;NoneType&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please provide numeric values</span>
+<span class="n">n_train_samples</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">n_test_samples</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q1.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="preliminary-eda">
+<h3>1.3 Preliminary EDA<a class="headerlink" href="#preliminary-eda" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:3}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Store the output of <code class="docutils literal notranslate"><span class="pre">describe()</span></code> <strong>on the training split</strong> in the variable <code class="docutils literal notranslate"><span class="pre">spotify_summary</span></code> below and print it out.</p></li>
+<li><p>Store the feature with the smallest range as a string in <code class="docutils literal notranslate"><span class="pre">smallest_range_features</span></code> variable below.</p></li>
+</ol>
+<blockquote>
+<div><p>Hint: You can subtract the min value from the max value of the column to get the range.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Note that <code class="docutils literal notranslate"><span class="pre">describe</span></code> returns another DataFrame.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_1.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_summary</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smallest_range_feature</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q1.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="plotting-histograms">
+<h3>1.4 Plotting histograms<a class="headerlink" href="#plotting-histograms" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p>The starter code below produces histograms for the <code class="docutils literal notranslate"><span class="pre">loudness</span></code> feature which shows the distribution of the feature values in the training set, separated for positive (target=1, i.e., user liked the song) and negative (target=0, i.e., user disliked the song) examples. There are two different histograms, one for target = 0 and one for target = 1, and they are overlaid on top of each other. The histogram shows that extremely quiet songs tend to be disliked (more blue bars than orange on the left) and very loud songs also tend to be disliked (more blue than orange on the far right).</p>
+<blockquote>
+<div><p>Note: I am using pandas plotting here. You can also use matplotlib if you wish.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feat</span> <span class="o">=</span> <span class="s2">&quot;loudness&quot;</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;target&quot;</span><span class="p">)[</span><span class="n">feat</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">feat</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of &quot;</span> <span class="o">+</span> <span class="n">feat</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Your tasks:</strong></p>
+<p>Create histograms for the following features in the order below.</p>
+<ul class="simple">
+<li><p>acousticness</p></li>
+<li><p>danceability</p></li>
+<li><p>tempo</p></li>
+<li><p>energy</p></li>
+<li><p>valence</p></li>
+</ul>
+<blockquote>
+<div><p>To adhere to the <a class="reference external" href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY (Don’t Repeat Yourself)</a> principle, make sure you use a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop for your plotting, rather than repeating the plotting code 4 times. For this to work, I used <code class="docutils literal notranslate"><span class="pre">plt.show()</span></code> at the end of your loop, which draws the figure and resets the canvas for your next plot.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_1.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="identical-histograms">
+<h3>1.5 Identical histograms<a class="headerlink" href="#identical-histograms" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Let’s say that, for a particular feature, the histograms of that feature are identical for the two target classes. Does that mean the feature is not useful for predicting the target class?</p>
+<div class="alert alert-warning">
+<p>Solution_1.5</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="which-columns-to-include">
+<h3>1.6 Which columns to include?<a class="headerlink" href="#which-columns-to-include" title="Permalink to this headline">#</a></h3>
+<p>rubric={reasoning:4}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Note that the dataset includes two free text features labeled <code class="docutils literal notranslate"><span class="pre">song_title</span></code> and <code class="docutils literal notranslate"><span class="pre">artist</span></code>. Do you think these features could be useful in predicting whether the user liked the song or not? Would there be any difficulty in using them in your model?</p>
+<div class="alert alert-warning">
+<p>Solution_1.6</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+</section>
+</section>
+<section id="exercise-2-using-sklearn-to-build-a-decision-tree-classifier">
+<h2>Exercise 2: Using sklearn to build a decision tree classifier<a class="headerlink" href="#exercise-2-using-sklearn-to-build-a-decision-tree-classifier" title="Permalink to this headline">#</a></h2>
+<hr>
+Recall that in machine learning what we care about is generalization; we want to build models that generalize well on unseen examples. One way to approximate generalization error is by splitting the data into train and test splits, building and tuning the model only using the train split, and carrying out the final assessment on the test split. <p><br><br></p>
+<section id="creating-x-and-y">
+<h3>2.1 Creating <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code><a class="headerlink" href="#creating-x-and-y" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> from <code class="docutils literal notranslate"><span class="pre">train_df</span></code> and <code class="docutils literal notranslate"><span class="pre">test_df</span></code> and store them as <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>, respectively. Skip the <code class="docutils literal notranslate"><span class="pre">song_title</span></code> and <code class="docutils literal notranslate"><span class="pre">artist</span></code> columns for now.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id1">
+<h3>2.2<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> with <code class="docutils literal notranslate"><span class="pre">random_state=123</span></code> and store it in a variable called <code class="docutils literal notranslate"><span class="pre">spotify_tree</span></code>.</p></li>
+<li><p>Fit the the decision tree classifier.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spotify_tree</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id2">
+<h3>2.3<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to predict the class of the first example in your <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and store the prediction in a variable called <code class="docutils literal notranslate"><span class="pre">pred</span></code> and compare it with the “true” class from <code class="docutils literal notranslate"><span class="pre">y_train</span></code>.</p></li>
+</ol>
+<blockquote>
+<div><p>Hint: you can grab the first example with <code class="docutils literal notranslate"><span class="pre">X_train.iloc[[0]]</span></code>.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id3">
+<h3>2.4<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> function on your training set to compute the 10-fold cross-validation accuracy of your tree. Store the mean cross-validation accuracy in a variable called <code class="docutils literal notranslate"><span class="pre">mean_cv_score</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_cv_score</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="id4">
+<h3>2.5<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:3}</p>
+<p>The above is useful, but we would like to see the training accuracy as well.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Compute the 10-fold cross-validation again but this time using the <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> function with <code class="docutils literal notranslate"><span class="pre">return_train_score=True</span></code> and save the results in a variable called <code class="docutils literal notranslate"><span class="pre">scores_df</span></code> as a pandas dataframe.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.5</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="id5">
+<h3>2.6<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Inspect the 10 sub-scores from the 10 folds of cross-validation. How does this inform the trustworthiness of your mean cross-validation score?</p></li>
+<li><p>Do you see a significant difference between the training scores and the cross-validation scores? Briefly discuss in 1 to 2 sentences.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.6</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-3-hyperparameters">
+<h2>Exercise 3: Hyperparameters<a class="headerlink" href="#exercise-3-hyperparameters" title="Permalink to this headline">#</a></h2>
+<p>In this exercise, you’ll experiment with the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter of the decision tree classifier. See the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"><code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> documentation</a> for more details.</p>
+<section id="id6">
+<h3>3.1<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:10}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Explore the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter. Run 10-fold cross-validation for trees with different values of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> given below.</p></li>
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, get both the mean train accuracy and the mean cross-validation accuracy.</p></li>
+<li><p>Make a plot with <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> on the <em>x</em>-axis and the train and cross-validation scores on the <em>y</em>-axis. That is, your plot should have two curves, one for train and one for cross-validation. Include a legend to specify which is which. Store the plot in a variable called <code class="docutils literal notranslate"><span class="pre">max_depth_plot</span></code> for autograding.</p></li>
+</ol>
+<blockquote>
+<div><p>Note: generally speaking (for all assignments) you are welcome to copy/paste code directly from the lecture notes, though I ask that you add a small citation (e.g. “Adapted from lecture 2”) if you do so.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">depths</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_3.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># max_depth_plot: the figure plotted for this exercise</span>
+<span class="n">max_depth_plot</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="max-depth-and-the-fundamental-tradeoff">
+<h3>3.2 <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> and the fundamental tradeoff<a class="headerlink" href="#max-depth-and-the-fundamental-tradeoff" title="Permalink to this headline">#</a></h3>
+<p>rubric={reasoning:2}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Discuss how changing the <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> hyperparameter affects the training and cross-validation accuracy.</p>
+<div class="alert alert-warning">
+<p>Solution_3.2</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+</section>
+<section id="picking-a-reasonable-value-for-max-depth">
+<h3>3.3 Picking a reasonable value for <code class="docutils literal notranslate"><span class="pre">max_depth</span></code><a class="headerlink" href="#picking-a-reasonable-value-for-max-depth" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<p>From these results, what value for max_depth would you pick as the optimal value? Store it in the variable called <code class="docutils literal notranslate"><span class="pre">best_max_depth</span></code> below.</p>
+<div class="alert alert-warning">
+<p>Solution_3.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_max_depth</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="final-assessment-on-the-test-set">
+<h3>3.4 Final assessment on the test set<a class="headerlink" href="#final-assessment-on-the-test-set" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:3}</p>
+<p>Let’s use the test set now (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>) to examine if our cross-validation score from the previous exercise is trustworthy.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Train a decision tree classifier using the optimal <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> you chose in the previous exercise on the entire training set (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>)</p></li>
+<li><p>Compute the score on the test set (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>) and store it in a variable called <code class="docutils literal notranslate"><span class="pre">test_score</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_score</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3.4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="analysis">
+<h3>3.5 Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>How do the test scores compare to the cross-validation scores? Briefly discuss.</p></li>
+<li><p>Why can’t you simply pick the value of <code class="docutils literal notranslate"><span class="pre">max_depth</span></code> that gives the best accuracy on the training data? (Answer in maximum 2 to 3 sentences.)</p></li>
+<li><p>Do you think that the max_depth you chose would generalize to other “spotify” datasets (i.e., data on other spotify users)?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.5</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+</section>
+<section id="exercise-4-conceptual-questions">
+<h2>Exercise 4: Conceptual questions<a class="headerlink" href="#exercise-4-conceptual-questions" title="Permalink to this headline">#</a></h2>
+<p>rubric={points:3}</p>
+<p>Consider the dataset below, which has <span class="math notranslate nohighlight">\(6\)</span> examples and <span class="math notranslate nohighlight">\(2\)</span> features:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}X = \begin{bmatrix}5 &amp; 2\\4 &amp; 3\\  2 &amp; 2\\ 10 &amp; 10\\ 9 &amp; -1\\ 9&amp; 9\end{bmatrix}, \quad y = \begin{bmatrix}-1\\-1\\+1\\+1\\+1\\+1\end{bmatrix}.\end{split}\]</div>
+<ol class="simple">
+<li><p>Say we fit a decision stump (depth 1 decision tree) and the first split is on the first feature (left column) being less than 5.5. What would we predict in the “true” and “false” cases here?</p></li>
+<li><p>What training accuracy would the above stump get on this data set?</p></li>
+<li><p>Can we obtain 100% accuracy with a single decision stump in this particular example?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_4</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+<section id="submission-instructions">
+<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">#</a></h2>
+<p><strong>PLEASE READ:</strong> When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Make sure to access Gradescope via <a class="reference external" href="https://canvas.ubc.ca/courses/101888">Canvas</a>. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+<li><p>Make sure that the plots and output are rendered properly in your submitted file. If the .ipynb file is too big and doesn’t render on Gradescope, also upload a pdf or html in addition to the .ipynb so that the TAs can view your submission on Gradescope.</p></li>
+</ol>
+<p>Congratulations on working with your first machine learning model! Well done 👏👏!</p>
+<p><img alt="" src="../../_images/eva-well-done1.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
