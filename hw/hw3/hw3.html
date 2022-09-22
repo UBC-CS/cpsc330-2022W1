@@ -1,0 +1,1678 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw3/hw3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw3/hw3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-3-preprocessing">
+   Homework 3: Preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-4-5-6">
+     Associated lectures: Lectures 4, 5, 6
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-a-name-in-a">
+   Introduction
+   <a name="in">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-introducing-the-dataset">
+   Exercise 1: Introducing the dataset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-splitting">
+     1.1 Data splitting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-exploratory-data-analysis-eda-a-name-2-a">
+   Exercise 2: Exploratory data analysis (EDA)
+   <a name="2">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describe-method">
+     2.1
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       describe()
+      </span>
+     </code>
+     method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-features">
+     2.2 Visualizing features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identify-transformations-to-apply">
+     2.3 Identify transformations to apply
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identify-feature-types">
+     2.4 Identify feature types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-baseline-models">
+   Exercise 3: Baseline models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#separating-feature-vectors-and-targets">
+     3.1 Separating feature vectors and targets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dummy-classifier">
+     3.2 Dummy classifier
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     3.3 Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-4-preprocessing">
+   Exercise 4: Preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-ordinal-features">
+     4.1 Preprocessing ordinal features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-binary-features">
+     4.2 Preprocessing binary features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-categorical-features">
+     4.3 Preprocessing categorical features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-column-transformer">
+     4.4 Creating a column transformer.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-5-building-models">
+   Exercise 5: Building models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trying-different-classifiers">
+     5.1 Trying different classifiers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.2 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-optimization">
+     5.3 Hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-6-evaluating-on-the-test-set">
+   Exercise 6: Evaluating on the test set
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scoring-on-the-unseen-test-set">
+     6.1 Scoring on the unseen test set
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-7-short-answer-questions">
+   Exercise 7: Short answer questions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#knns-toy-example">
+     7.1 kNNs toy example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     7.2 Preprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-3-preprocessing">
+   Homework 3: Preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-4-5-6">
+     Associated lectures: Lectures 4, 5, 6
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-a-name-in-a">
+   Introduction
+   <a name="in">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-introducing-the-dataset">
+   Exercise 1: Introducing the dataset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-splitting">
+     1.1 Data splitting
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-exploratory-data-analysis-eda-a-name-2-a">
+   Exercise 2: Exploratory data analysis (EDA)
+   <a name="2">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describe-method">
+     2.1
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       describe()
+      </span>
+     </code>
+     method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-features">
+     2.2 Visualizing features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identify-transformations-to-apply">
+     2.3 Identify transformations to apply
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identify-feature-types">
+     2.4 Identify feature types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-baseline-models">
+   Exercise 3: Baseline models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#separating-feature-vectors-and-targets">
+     3.1 Separating feature vectors and targets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dummy-classifier">
+     3.2 Dummy classifier
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     3.3 Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-4-preprocessing">
+   Exercise 4: Preprocessing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-ordinal-features">
+     4.1 Preprocessing ordinal features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-binary-features">
+     4.2 Preprocessing binary features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-categorical-features">
+     4.3 Preprocessing categorical features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-column-transformer">
+     4.4 Creating a column transformer.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-5-building-models">
+   Exercise 5: Building models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#trying-different-classifiers">
+     5.1 Trying different classifiers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     5.2 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperparameter-optimization">
+     5.3 Hyperparameter optimization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-6-evaluating-on-the-test-set">
+   Exercise 6: Evaluating on the test set
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scoring-on-the-unseen-test-set">
+     6.1 Scoring on the unseen test set
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-7-short-answer-questions">
+   Exercise 7: Short answer questions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#knns-toy-example">
+     7.1 kNNs toy example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     7.2 Preprocessing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
+<span class="kn">import</span> <span class="nn">otter</span>
+<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;hw3.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-3-preprocessing">
+<h2>Homework 3: Preprocessing<a class="headerlink" href="#homework-3-preprocessing" title="Permalink to this headline">#</a></h2>
+<section id="associated-lectures-lectures-4-5-6">
+<h3>Associated lectures: <a class="reference external" href="https://ubc-cs.github.io/cpsc330/README.html">Lectures 4, 5, 6</a><a class="headerlink" href="#associated-lectures-lectures-4-5-6" title="Permalink to this headline">#</a></h3>
+<p><strong>Due date: See the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</strong></p>
+</section>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha1</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_validate</span><span class="p">,</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OrdinalEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:6}
+<p>Follow the <a class="reference external" href="https://github.com/UBC-CS/cpsc330/blob/master/docs/homework_instructions.md">homework submission instructions</a>.</p>
+<p><strong>You may work with a partner on this homework and submit your assignment as a group.</strong> Below are some instructions on working as a group.</p>
+<ul class="simple">
+<li><p>The maximum group size is 2.</p></li>
+<li><p>Use group work as an opportunity to collaborate and learn new things from each other.</p></li>
+<li><p>Be respectful to each other and make sure you understand all the concepts in the assignment well.</p></li>
+<li><p>It’s your responsibility to make sure that the assignment is submitted by one of the group members before the deadline.</p></li>
+<li><p>You can find the instructions on how to do group submission on Gradescope <a class="reference external" href="https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members">here</a>.</p></li>
+</ul>
+<p><em>Note: The assignments will get gradually more open-ended as we progress through the course. In many cases, there won’t be a single correct solution. Sometimes you will have to make your own choices and your own decisions (for example, on what parameter values to use when they are not explicitly provided in the instructions). Use your own judgment in such cases and justify your choices, if necessary.</em></p>
+</section>
+<section id="introduction-a-name-in-a">
+<h2>Introduction <a name="in"></a><a class="headerlink" href="#introduction-a-name-in-a" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>A crucial step when using machine learning algorithms on real-world datasets is preprocessing. This homework will give you some practice of data preprocessing and building a supervised machine learning pipeline on a real-world dataset.</p>
+<p><br><br></p>
+</section>
+<section id="exercise-1-introducing-the-dataset">
+<h2>Exercise 1: Introducing the dataset<a class="headerlink" href="#exercise-1-introducing-the-dataset" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>In this lab, you will be working on <a class="reference external" href="https://www.kaggle.com/uciml/adult-census-income">the adult census dataset</a>. Download the CSV and save it as <code class="docutils literal notranslate"><span class="pre">adult.csv</span></code> under the data folder in this homework folder.</p>
+<p>This is a classification dataset and the classification task is to predict whether income exceeds 50K per year or not based on the census data. You can find more information on the dataset and features <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Adult">here</a>.</p>
+<p>The starter code below loads the data CSV (assuming that it is saved as <code class="docutils literal notranslate"><span class="pre">adult.csv</span></code> under the data folder).</p>
+<p><em>Note that many popular datasets have sex as a feature where the possible values are male and female. This representation reflects how the data were collected and is not meant to imply that, for example, gender is binary.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/adult.csv&quot;</span><span class="p">)</span>
+<span class="n">census_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">census_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/adult.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">census_df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/util/_decorators.py:211,</span> in <span class="ni">deprecate_kwarg.&lt;locals&gt;._deprecate_kwarg.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">kwargs</span><span class="p">[</span><span class="n">new_arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_arg_value</span>
+<span class="ne">--&gt; </span><span class="mi">211</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/util/_decorators.py:317,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()),</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">317</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:950,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">948</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">950</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:605,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">605</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1442,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1439</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1441</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1442</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1729,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1727</span>     <span class="n">is_text</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1728</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1729</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1730</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1731</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1732</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1733</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1734</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1735</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1736</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1739</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:857,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">852</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">853</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">856</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">857</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/adult.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<section id="data-splitting">
+<h3>1.1 Data splitting<a class="headerlink" href="#data-splitting" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p>In order to avoid violation of the golden rule, the first step before we do anything is splitting the data.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Split the data into <code class="docutils literal notranslate"><span class="pre">train_df</span></code> (40%) and <code class="docutils literal notranslate"><span class="pre">test_df</span></code> (60%) with <code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">123</span></code>. Keep the target column (<code class="docutils literal notranslate"><span class="pre">income</span></code>) in the splits so that we can use it in the exploratory data analysis.</p></li>
+</ol>
+<p><em>Usually having more data for training is a good idea. But here I’m using 40%/60% split because running cross-validation with this dataset can take a while on a modest laptop. A smaller training data means it won’t take too long to train the model on your laptop. A side advantage of this would be that with a bigger test split, we’ll have a more reliable estimate of the model performance!</em></p>
+<div class="alert alert-warning">
+<p>Solution_1.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q1.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+</section>
+<section id="exercise-2-exploratory-data-analysis-eda-a-name-2-a">
+<h2>Exercise 2: Exploratory data analysis (EDA) <a name="2"></a><a class="headerlink" href="#exercise-2-exploratory-data-analysis-eda-a-name-2-a" title="Permalink to this headline">#</a></h2>
+<hr><p>Let’s examine our <code class="docutils literal notranslate"><span class="pre">train_df</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see some missing values represented with a “?”. Probably these were the questions not answered by some people during the census.  Usually <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> or <code class="docutils literal notranslate"><span class="pre">.info()</span></code> methods would give you information on missing values. But here, they won’t pick “?” as missing values because they are encoded as strings instead of an actual NaN in Python. So let’s replace them with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> before we carry out EDA. If you do not do it, you’ll encounter an error later on when you try to pass this data to a classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The “?” symbols are now replaced with NaN values.</p>
+<p><br><br></p>
+<section id="describe-method">
+<h3>2.1 <code class="docutils literal notranslate"><span class="pre">describe()</span></code> method<a class="headerlink" href="#describe-method" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Examine the output of <code class="docutils literal notranslate"><span class="pre">train_df.describe()</span></code> with <code class="docutils literal notranslate"><span class="pre">include='all'</span></code> argument and store it in a variable called <code class="docutils literal notranslate"><span class="pre">census_summary</span></code>.</p></li>
+<li><p>What is the highest hours per week someone reported? Store it in a variable called <code class="docutils literal notranslate"><span class="pre">max_hours_per_week</span></code>.</p></li>
+<li><p>What is the most frequently occurring occupation in this dataset? Store it in a variable called <code class="docutils literal notranslate"><span class="pre">most_freq_occupation</span></code>.</p></li>
+<li><p>Store the column names of the columns with missing values as a list in a variable called <code class="docutils literal notranslate"><span class="pre">missing_vals_cols</span></code>.</p></li>
+<li><p>Store the column names of all numeric-looking columns as a list in a variable called <code class="docutils literal notranslate"><span class="pre">numeric_cols</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">census_summary</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_hours_per_week</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">most_freq_occupation</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing_vals_cols</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sorting the lists for the autograder</span>
+<span class="n">missing_vals_cols</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">numeric_cols</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="visualizing-features">
+<h3>2.2 Visualizing features<a class="headerlink" href="#visualizing-features" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Visualize the histograms of numeric features.</p></li>
+<li><p>From the visualizations, which features seem relevant for the given prediction task?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.2</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="identify-transformations-to-apply">
+<h3>2.3 Identify transformations to apply<a class="headerlink" href="#identify-transformations-to-apply" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:13}</p>
+<p>Before passing this data to a machine learning model, we need to apply some transformations on different features. Below we are providing possible transformations which can be applied on each column in <code class="docutils literal notranslate"><span class="pre">census_df</span></code>.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Write your justification or explanation for each row in the explanation column. An example explanation is given for the age column.</p></li>
+</ol>
+<blockquote>
+<div><p>Note: This question is a bit open-ended. If you do not agree with the provided transformation, feel free to argue your case in the explanation. That said, in this assignment, go with the transformations provided below.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2.3</p>
+</div><table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Transformation</p></th>
+<th class="head"><p>Explanation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>age</p></td>
+<td><p>scaling</p></td>
+<td><p>A numeric feature with no missing values. Good idea to apply scaling, as the range of values (17 to 90) is quite different compared to other numeric features.</p></td>
+</tr>
+<tr class="row-odd"><td><p>workclass</p></td>
+<td><p>imputation, one-hot encoding</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>fnlwgt</p></td>
+<td><p>drop</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>education</p></td>
+<td><p>ordinal encoding</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>education.num</p></td>
+<td><p>drop</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>marital.status</p></td>
+<td><p>one-hot encoding</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>occupation</p></td>
+<td><p>imputation, one-hot encoding</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>relationship</p></td>
+<td><p>one-hot encoding</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>race</p></td>
+<td><p>drop</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>sex</p></td>
+<td><p>one-hot encoding with “binary=True”</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>capital.gain</p></td>
+<td><p>scaling</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>capital.loss</p></td>
+<td><p>scaling</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>hours.per.week</p></td>
+<td><p>scaling</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>native.country</p></td>
+<td><p>imputation, one-hot encoding</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+</section>
+<section id="identify-feature-types">
+<h3>2.4 Identify feature types<a class="headerlink" href="#identify-feature-types" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Based on the types of transformations you want to apply on the features, identify different feature types and store them in the variables below as lists.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fill in the lists below.</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ordinal_features</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">binary_features</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">drop_features</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;income&quot;</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sorting all the lists above for the autograder</span>
+<span class="n">numeric_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">categorical_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">ordinal_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">binary_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">drop_features</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q2.4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-3-baseline-models">
+<h2>Exercise 3: Baseline models<a class="headerlink" href="#exercise-3-baseline-models" title="Permalink to this headline">#</a></h2>
+<section id="separating-feature-vectors-and-targets">
+<h3>3.1 Separating feature vectors and targets<a class="headerlink" href="#separating-feature-vectors-and-targets" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code> from <code class="docutils literal notranslate"><span class="pre">train_df</span></code> and <code class="docutils literal notranslate"><span class="pre">test_df</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="dummy-classifier">
+<h3>3.2 Dummy classifier<a class="headerlink" href="#dummy-classifier" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Carry out 5-fold cross-validation using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> function with <code class="docutils literal notranslate"><span class="pre">return_train_scores=True</span></code> and store the results as a dataframe named <code class="docutils literal notranslate"><span class="pre">dummy_df</span></code> where each row corresponds to the results from a cross-validation fold.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_df</span> <span class="o">=</span> <span class="kc">None</span> 
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q3.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="discussion">
+<h3>3.3 Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Hopefully, you were able to run cross-validation with dummy classifier successfully in the question above. At this point, if you train <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html"><code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <code class="docutils literal notranslate"><span class="pre">SVC</span></code></a> model on <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code> would it work? Why or why not?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.3</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-4-preprocessing">
+<h2>Exercise 4: Preprocessing<a class="headerlink" href="#exercise-4-preprocessing" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>In this dataset, we have different types of features: numeric features, an ordinal feature, categorical features, and a binary feature. We want to apply different transformations on different columns and therefore we need a column transformer. In this exercise, first, we’ll define different transformations on different types of features and then will create a <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>. For example, the code below creates a <code class="docutils literal notranslate"><span class="pre">numeric_transformer</span></code> for numeric features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the exercises below, you’ll create transformers for other types of features.</p>
+<p><br><br></p>
+<section id="preprocessing-ordinal-features">
+<h3>4.1 Preprocessing ordinal features<a class="headerlink" href="#preprocessing-ordinal-features" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a transformer called <code class="docutils literal notranslate"><span class="pre">ordinal_transformer</span></code> for our ordinal features.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_4.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_transformer</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q4.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="preprocessing-binary-features">
+<h3>4.2 Preprocessing binary features<a class="headerlink" href="#preprocessing-binary-features" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a transformer called <code class="docutils literal notranslate"><span class="pre">binary_transformer</span></code> for our binary features.</p></li>
+</ol>
+<blockquote>
+<div><p><em>Note that many popular datasets have sex as a feature where the possible values are male and female. This representation reflects how the data were collected and is not meant to imply that, for example, gender is binary.</em></p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_4.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_transformer</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q4.2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="preprocessing-categorical-features">
+<h3>4.3 Preprocessing categorical features<a class="headerlink" href="#preprocessing-categorical-features" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:4}</p>
+<p>In Exercise 2.3, we saw that there are 3 categorical features with missing values. So first we need to impute the missing values and then encode these features with one-hot encoding. For the purpose of this assignment, let’s just have imputation as the first step for all categorical features even when they do not have missing values. This should be OK because if a feature doesn’t have any missing value,  imputation won’t be applied.</p>
+<p>If we want to apply more than one transformation on a set of features, we need to create a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html"><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a>. For example, for categorical features we can create a <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> with first step as imputation and the second step as one-hot encoding.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html"><code class="docutils literal notranslate"><span class="pre">make_pipeline</span></code></a> called <code class="docutils literal notranslate"><span class="pre">categorical_transformer</span></code> for our categorical features with two steps: <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> for imputation with <code class="docutils literal notranslate"><span class="pre">strategy=&quot;constant&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">fill_value=&quot;missing&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">OneHotEncoder</span></code> with <code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> for one-hot encoding.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_4.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_transformer</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q4.3&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="creating-a-column-transformer">
+<h3>4.4 Creating a column transformer.<a class="headerlink" href="#creating-a-column-transformer" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:7}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> named <code class="docutils literal notranslate"><span class="pre">preprocessor</span></code> using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html"><code class="docutils literal notranslate"><span class="pre">make_column_transformer</span></code></a> with the transformers defined in the previous exercises. Use the sequence below in the column transformer and add a “drop” step for the <code class="docutils literal notranslate"><span class="pre">drop_features</span></code> in the end.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numeric_transformer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ordinal_transformer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binary_transformer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">categorical_transformer</span></code></p></li>
+</ul>
+</li>
+<li><p>Transform the data by calling <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on the training set and save it as a dataframe in a variable called <code class="docutils literal notranslate"><span class="pre">transformed_df</span></code>. How many new columns have been created in the preprocessed data in comparison to the original <code class="docutils literal notranslate"><span class="pre">X_train</span></code>? Store the difference between the number of columns in <code class="docutils literal notranslate"><span class="pre">transformed_df</span></code> and <code class="docutils literal notranslate"><span class="pre">X_train</span></code> in a variable called <code class="docutils literal notranslate"><span class="pre">n_new_cols</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_4.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformed_df</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">n_new_cols</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q4.4&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-5-building-models">
+<h2>Exercise 5: Building models<a class="headerlink" href="#exercise-5-building-models" title="Permalink to this headline">#</a></h2>
+<p>Now that we have preprocessed features, we are ready to build models. Below, I’m providing the function we used in class which returns mean cross-validation score along with standard deviation for a given model. Use it to keep track of your results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># dictionary to store all the results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean_std_cross_val_scores</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns mean and std of cross validation</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model :</span>
+<span class="sd">        scikit-learn model</span>
+<span class="sd">    X_train : numpy array or pandas DataFrame</span>
+<span class="sd">        X in the training data</span>
+<span class="sd">    y_train :</span>
+<span class="sd">        y in the training data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        pandas Series with mean scores from cross_validation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">mean_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">std_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="n">out_col</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mean_scores</span><span class="p">)):</span>
+        <span class="n">out_col</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;%0.3f (+/- %0.3f)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mean_scores</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">std_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">out_col</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">mean_scores</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Below I’m showing an example where I call <code class="docutils literal notranslate"><span class="pre">mean_std_cross_val_scores</span></code> with <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code>. The function calls <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code> with the passed arguments and returns a series with mean cross-validation results and std of cross-validation. When you train new models, you can just add the results of these models in <code class="docutils literal notranslate"><span class="pre">results_dict</span></code>, which can be easily converted to a dataframe so that you can have a table with all your results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baseline model</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+
+<span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">123</span><span class="p">)</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">dummy</span><span class="p">)</span>
+<span class="n">results_dict</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
+    <span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results_dict</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">results_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+<section id="trying-different-classifiers">
+<h3>5.1 Trying different classifiers<a class="headerlink" href="#trying-different-classifiers" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:10}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>For each of the models in the starter code below:</p>
+<ul class="simple">
+<li><p>Define a pipeline with two steps: <code class="docutils literal notranslate"><span class="pre">preprocessor</span></code> from 4.4 and the model as your classifier.</p></li>
+<li><p>Carry out 5-fold cross-validation with the pipeline and get the mean cross-validation scores with std by calling the <code class="docutils literal notranslate"><span class="pre">mean_std_cross_val_scores</span></code> function above.</p></li>
+<li><p>Store the results in a dataframe called <code class="docutils literal notranslate"><span class="pre">income_pred_results_df</span></code> with the model names in the <code class="docutils literal notranslate"><span class="pre">models</span></code> dictionary below as the index and each row representing results returned by <code class="docutils literal notranslate"><span class="pre">mean_std_cross_val_scores</span></code> function above. In other words, <code class="docutils literal notranslate"><span class="pre">income_pred_results_df</span></code> should look similar to the <code class="docutils literal notranslate"><span class="pre">results_df</span></code> dataframe above with more rows for the models below.</p></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<div><p>This might take a while to run. Be patient!</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;decision tree&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+    <span class="s2">&quot;kNN&quot;</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">(),</span>
+    <span class="s2">&quot;RBF SVM&quot;</span><span class="p">:</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_5.1</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="id1">
+<h3>5.2 Discussion<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Examine the train and validation accuracies and <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">score</span></code> times for all the models in the results above. How do the validation accuracies compare to the <code class="docutils literal notranslate"><span class="pre">DummyClassifier</span></code> model? Which model has the best validation accuracy? Which model is the fastest one? Which model is overfitting the most and the least?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_5.2</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="hyperparameter-optimization">
+<h3>5.3 Hyperparameter optimization<a class="headerlink" href="#hyperparameter-optimization" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:10}</p>
+<p>In this exercise, you’ll carry out hyperparameter optimization for the hyperparameter <code class="docutils literal notranslate"><span class="pre">C</span></code> of SVC RBF classifier. In practice, you’ll carry out hyperparameter optimization for all different hyperparameters of the most promising classifiers. For the purpose of this assignment, we’ll only do it for the <code class="docutils literal notranslate"><span class="pre">SVC</span></code> classifier with one hyperparameter, namely <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">C</span></code> value in the <code class="docutils literal notranslate"><span class="pre">param_grid</span></code> below:</p>
+<ul class="simple">
+<li><p>Create a pipeline object with two steps: preprocessor from 4.4 and <code class="docutils literal notranslate"><span class="pre">SVC</span></code> classifier with the <code class="docutils literal notranslate"><span class="pre">C</span></code> value.</p></li>
+<li><p>Carry out 5-fold cross validation with the pipeline.</p></li>
+<li><p>Store the results in <code class="docutils literal notranslate"><span class="pre">results_dict</span></code> and display results as a pandas DataFrame.</p></li>
+</ul>
+</li>
+<li><p>Which hyperparameter value seems to be performing the best? Store it in a variable called <code class="docutils literal notranslate"><span class="pre">best_C</span></code>. (Since this question is not autograded, please store the value directly as a number, something like <code class="docutils literal notranslate"><span class="pre">best_C</span> <span class="pre">=</span> <span class="pre">0.001</span></code>, if <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">0.001</span></code> is giving you the best CV score.) Is it different than the default value for the hyperparameter used by <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>?</p></li>
+</ol>
+<blockquote>
+<div><p>Note: Running this will take a while. Please be patient.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)}</span>
+<span class="n">param_grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_5.3</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_C</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-6-evaluating-on-the-test-set">
+<h2>Exercise 6: Evaluating on the test set<a class="headerlink" href="#exercise-6-evaluating-on-the-test-set" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>Now that we have a best performing model, it’s time to assess our model on the set aside test set. In this exercise, you’ll examine whether the results you obtained using cross-validation on the train set are consistent with the results on the test set.</p>
+<section id="scoring-on-the-unseen-test-set">
+<h3>6.1 Scoring on the unseen test set<a class="headerlink" href="#scoring-on-the-unseen-test-set" title="Permalink to this headline">#</a></h3>
+<p>rubric={autograde:4}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a pipeline named <code class="docutils literal notranslate"><span class="pre">final_pipeline</span></code> with the preprocessor from 4.4 as the first step and the best performing SVC model from 5.4 as the second step.</p></li>
+<li><p>Train the pipeline on the entire training set <code class="docutils literal notranslate"><span class="pre">X_train</span></code> and <code class="docutils literal notranslate"><span class="pre">y_train</span></code>.</p></li>
+<li><p>Score the pipeline on <code class="docutils literal notranslate"><span class="pre">X_test</span></code> and <code class="docutils literal notranslate"><span class="pre">y_test</span></code> and store the score in a variable called <code class="docutils literal notranslate"><span class="pre">test_score</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_6.1</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final_pipeline</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">test_score</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grader</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;q6.1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-7-short-answer-questions">
+<h2>Exercise 7: Short answer questions<a class="headerlink" href="#exercise-7-short-answer-questions" title="Permalink to this headline">#</a></h2>
+<!-- BEGIN QUESTION -->
+<section id="knns-toy-example">
+<h3>7.1 kNNs toy example<a class="headerlink" href="#knns-toy-example" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>Suppose you want to get predictions using the <span class="math notranslate nohighlight">\(k\)</span>-nearest neighbour algorithm on the toy dataset below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} X = \begin{bmatrix}5 &amp; 2\\4 &amp; -2\\  2 &amp; 2\\ 10 &amp; 10\\ 9 &amp; -1\\ 9&amp; 9\end{bmatrix}, \quad y = \begin{bmatrix}0\\0\\1\\1\\1\\2\end{bmatrix}.\end{split}\]</div>
+<p>Suppose you are given a new data point <span class="math notranslate nohighlight">\(x=\begin{bmatrix} 0\\0\end{bmatrix}\)</span>.</p>
+<ol class="simple">
+<li><p>What would the model predict when <span class="math notranslate nohighlight">\(k=1\)</span>?</p></li>
+<li><p>What would the model predict when <span class="math notranslate nohighlight">\(k=3\)</span>?</p></li>
+<li><p>What would the model predict when <span class="math notranslate nohighlight">\(k=3\)</span> if we were doing regression rather than classification?</p></li>
+</ol>
+<p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="preprocessing">
+<h3>7.2 Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:8}</p>
+<ol class="simple">
+<li><p>What is the problem with calling <code class="docutils literal notranslate"><span class="pre">fit_transform</span></code> on your test data with <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code>?</p></li>
+<li><p>Why is it important to follow the Golden Rule? If you violate it, will that give you a worse classifier?</p></li>
+<li><p>What are two advantages of using sklearn Pipelines?</p></li>
+<li><p>When is it appropriate to use sklearn <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code>?</p></li>
+</ol>
+<p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="submission-instructions">
+<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">#</a></h2>
+<p><strong>PLEASE READ:</strong> When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+</ol>
+<p>Congratulations on finishing the homework! This was a tricky one but I hope you are feeling good after working on it. You are now ready to build a simple supervised machine learning pipeline on real-world datasets! Well done :clap:!</p>
+<p><img alt="" src="../../_images/eva-well-done2.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
