@@ -39,6 +39,10 @@ Courses:
 - <https://www.coursera.org/learn/principles-of-computing-1>
 - <https://github.com/dabeaz-course/practical-python/blob/main/README.md>
 
+### Visualization
+
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/index.html): General principles of visualization independent of programming language.
+
 ### Online courses
 
 *[Introduction to Machine Learning](https://ml-learn.mds.ubc.ca/) by Key Capabilities for Data Science program*
