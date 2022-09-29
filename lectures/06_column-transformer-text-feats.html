@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -3590,6 +3592,321 @@ memory usage: 1.9+ KB
 <p>Now let’s incorporate ordinal encoding of <code class="docutils literal notranslate"><span class="pre">class_attendance</span></code> in our column transformer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>enjoy_course</th>
+      <th>ml_experience</th>
+      <th>major</th>
+      <th>class_attendance</th>
+      <th>university_years</th>
+      <th>lab1</th>
+      <th>lab2</th>
+      <th>lab3</th>
+      <th>lab4</th>
+      <th>quiz1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>92</td>
+      <td>93.0</td>
+      <td>84</td>
+      <td>91</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Mechanical Engineering</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>94</td>
+      <td>90.0</td>
+      <td>80</td>
+      <td>83</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>78</td>
+      <td>85.0</td>
+      <td>83</td>
+      <td>80</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Excellent</td>
+      <td>3</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>92</td>
+      <td>91</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>4</td>
+      <td>77</td>
+      <td>83.0</td>
+      <td>90</td>
+      <td>92</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>no</td>
+      <td>1</td>
+      <td>Economics</td>
+      <td>Good</td>
+      <td>5</td>
+      <td>70</td>
+      <td>73.0</td>
+      <td>68</td>
+      <td>74</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>80</td>
+      <td>88.0</td>
+      <td>89</td>
+      <td>88</td>
+      <td>91</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Mechanical Engineering</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>95</td>
+      <td>93.0</td>
+      <td>69</td>
+      <td>79</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Linguistics</td>
+      <td>Average</td>
+      <td>2</td>
+      <td>97</td>
+      <td>90.0</td>
+      <td>94</td>
+      <td>82</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Mathematics</td>
+      <td>Average</td>
+      <td>4</td>
+      <td>95</td>
+      <td>82.0</td>
+      <td>94</td>
+      <td>94</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Good</td>
+      <td>3</td>
+      <td>98</td>
+      <td>86.0</td>
+      <td>95</td>
+      <td>95</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Physics</td>
+      <td>Average</td>
+      <td>1</td>
+      <td>95</td>
+      <td>88.0</td>
+      <td>93</td>
+      <td>92</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Physics</td>
+      <td>Excellent</td>
+      <td>2</td>
+      <td>98</td>
+      <td>96.0</td>
+      <td>96</td>
+      <td>99</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Mechanical Engineering</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>95</td>
+      <td>94.0</td>
+      <td>96</td>
+      <td>95</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Mathematics</td>
+      <td>Poor</td>
+      <td>3</td>
+      <td>95</td>
+      <td>90.0</td>
+      <td>93</td>
+      <td>95</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>no</td>
+      <td>1</td>
+      <td>Computer Science</td>
+      <td>Good</td>
+      <td>3</td>
+      <td>92</td>
+      <td>85.0</td>
+      <td>67</td>
+      <td>94</td>
+      <td>92</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>yes</td>
+      <td>0</td>
+      <td>Computer Science</td>
+      <td>Average</td>
+      <td>5</td>
+      <td>75</td>
+      <td>91.0</td>
+      <td>93</td>
+      <td>86</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Economics</td>
+      <td>Average</td>
+      <td>3</td>
+      <td>86</td>
+      <td>89.0</td>
+      <td>65</td>
+      <td>86</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>no</td>
+      <td>1</td>
+      <td>Biology</td>
+      <td>Good</td>
+      <td>2</td>
+      <td>91</td>
+      <td>NaN</td>
+      <td>90</td>
+      <td>88</td>
+      <td>82</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>no</td>
+      <td>0</td>
+      <td>Psychology</td>
+      <td>Poor</td>
+      <td>2</td>
+      <td>77</td>
+      <td>94.0</td>
+      <td>87</td>
+      <td>81</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>yes</td>
+      <td>1</td>
+      <td>Linguistics</td>
+      <td>Excellent</td>
+      <td>4</td>
+      <td>96</td>
+      <td>92.0</td>
+      <td>92</td>
+      <td>96</td>
+      <td>87</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_feats</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;university_years&quot;</span><span class="p">,</span>
     <span class="s2">&quot;lab1&quot;</span><span class="p">,</span>
@@ -4241,36 +4558,36 @@ ValueError: Found unknown categories [&#39;Biology&#39;] in column 0 during tran
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003020</td>
-      <td>0.001671</td>
+      <td>0.003108</td>
+      <td>0.001540</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.002614</td>
-      <td>0.001520</td>
+      <td>0.002711</td>
+      <td>0.001479</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.002534</td>
-      <td>0.001657</td>
+      <td>0.002557</td>
+      <td>0.001444</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.002578</td>
-      <td>0.001483</td>
+      <td>0.002651</td>
+      <td>0.001556</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.002519</td>
-      <td>0.006704</td>
+      <td>0.002645</td>
+      <td>0.006495</td>
       <td>NaN</td>
       <td>1.000000</td>
     </tr>
@@ -4423,36 +4740,36 @@ Name: major, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.002942</td>
-      <td>0.001638</td>
+      <td>0.003135</td>
+      <td>0.001546</td>
       <td>1.00</td>
       <td>0.937500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.002669</td>
-      <td>0.001458</td>
+      <td>0.002706</td>
+      <td>0.001466</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.002509</td>
-      <td>0.001447</td>
+      <td>0.002513</td>
+      <td>0.001444</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.002512</td>
-      <td>0.001456</td>
+      <td>0.002510</td>
+      <td>0.001453</td>
       <td>0.75</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.002527</td>
-      <td>0.001456</td>
+      <td>0.002510</td>
+      <td>0.001461</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -4726,36 +5043,36 @@ Name: enjoy_course, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.003390</td>
-      <td>0.001980</td>
+      <td>0.003453</td>
+      <td>0.001977</td>
       <td>1.00</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.002990</td>
-      <td>0.001733</td>
+      <td>0.002991</td>
+      <td>0.001767</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.002891</td>
-      <td>0.001736</td>
+      <td>0.002893</td>
+      <td>0.001720</td>
       <td>0.50</td>
       <td>1.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.003003</td>
-      <td>0.001794</td>
+      <td>0.002930</td>
+      <td>0.001750</td>
       <td>1.00</td>
       <td>0.941176</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.002986</td>
-      <td>0.001784</td>
+      <td>0.002859</td>
+      <td>0.001713</td>
       <td>0.75</td>
       <td>1.000000</td>
     </tr>
@@ -5700,7 +6017,7 @@ Name: ocean_proximity, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
       <td>0.000 (+/- 0.000)</td>
       <td>-0.001 (+/- 0.001)</td>
       <td>0.000 (+/- 0.000)</td>
@@ -5814,7 +6131,7 @@ Name: ocean_proximity, dtype: int64
   <tbody>
     <tr>
       <th>dummy</th>
-      <td>0.001 (+/- 0.000)</td>
+      <td>0.000 (+/- 0.000)</td>
       <td>0.000 (+/- 0.000)</td>
       <td>-0.001 (+/- 0.001)</td>
       <td>0.000 (+/- 0.000)</td>
@@ -5882,14 +6199,14 @@ Name: ocean_proximity, dtype: int64
     <tr>
       <th>imp + scaling + ohe + KNN</th>
       <td>0.017 (+/- 0.001)</td>
-      <td>0.129 (+/- 0.011)</td>
+      <td>0.128 (+/- 0.012)</td>
       <td>0.706 (+/- 0.015)</td>
       <td>0.806 (+/- 0.015)</td>
     </tr>
     <tr>
       <th>imp + scaling + ohe + SVR (default)</th>
-      <td>5.869 (+/- 0.048)</td>
-      <td>2.108 (+/- 0.014)</td>
+      <td>5.822 (+/- 0.028)</td>
+      <td>2.102 (+/- 0.008)</td>
       <td>-0.049 (+/- 0.012)</td>
       <td>-0.048 (+/- 0.001)</td>
     </tr>
@@ -5950,21 +6267,21 @@ Name: ocean_proximity, dtype: int64
     <tr>
       <th>imp + scaling + ohe + KNN</th>
       <td>0.017 (+/- 0.001)</td>
-      <td>0.129 (+/- 0.011)</td>
+      <td>0.128 (+/- 0.012)</td>
       <td>0.706 (+/- 0.015)</td>
       <td>0.806 (+/- 0.015)</td>
     </tr>
     <tr>
       <th>imp + scaling + ohe + SVR (default)</th>
-      <td>5.869 (+/- 0.048)</td>
-      <td>2.108 (+/- 0.014)</td>
+      <td>5.822 (+/- 0.028)</td>
+      <td>2.102 (+/- 0.008)</td>
       <td>-0.049 (+/- 0.012)</td>
       <td>-0.048 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>imp + scaling + ohe + SVR (C=10000)</th>
-      <td>5.314 (+/- 0.027)</td>
-      <td>2.104 (+/- 0.006)</td>
+      <td>5.310 (+/- 0.050)</td>
+      <td>2.094 (+/- 0.001)</td>
       <td>0.708 (+/- 0.011)</td>
       <td>0.713 (+/- 0.017)</td>
     </tr>
@@ -7428,6 +7745,252 @@ The value at cell 3,27 is: 1
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>acousticness</th>
+      <th>danceability</th>
+      <th>duration_ms</th>
+      <th>energy</th>
+      <th>instrumentalness</th>
+      <th>key</th>
+      <th>liveness</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>valence</th>
+      <th>song_title</th>
+      <th>artist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1505</th>
+      <td>0.004770</td>
+      <td>0.585</td>
+      <td>214740</td>
+      <td>0.614</td>
+      <td>0.000155</td>
+      <td>10</td>
+      <td>0.0762</td>
+      <td>-5.594</td>
+      <td>0</td>
+      <td>0.0370</td>
+      <td>114.059</td>
+      <td>4.0</td>
+      <td>0.2730</td>
+      <td>Cool for the Summer</td>
+      <td>Demi Lovato</td>
+    </tr>
+    <tr>
+      <th>813</th>
+      <td>0.114000</td>
+      <td>0.665</td>
+      <td>216728</td>
+      <td>0.513</td>
+      <td>0.303000</td>
+      <td>0</td>
+      <td>0.1220</td>
+      <td>-7.314</td>
+      <td>1</td>
+      <td>0.3310</td>
+      <td>100.344</td>
+      <td>3.0</td>
+      <td>0.0373</td>
+      <td>Damn Son Where'd You Find This? (feat. Kelly Holiday) - Markus Maximus Remix</td>
+      <td>Markus Maximus</td>
+    </tr>
+    <tr>
+      <th>615</th>
+      <td>0.030200</td>
+      <td>0.798</td>
+      <td>216585</td>
+      <td>0.481</td>
+      <td>0.000000</td>
+      <td>7</td>
+      <td>0.1280</td>
+      <td>-10.488</td>
+      <td>1</td>
+      <td>0.3140</td>
+      <td>127.136</td>
+      <td>4.0</td>
+      <td>0.6400</td>
+      <td>Trill Hoe</td>
+      <td>Western Tink</td>
+    </tr>
+    <tr>
+      <th>319</th>
+      <td>0.106000</td>
+      <td>0.912</td>
+      <td>194040</td>
+      <td>0.317</td>
+      <td>0.000208</td>
+      <td>6</td>
+      <td>0.0723</td>
+      <td>-12.719</td>
+      <td>0</td>
+      <td>0.0378</td>
+      <td>99.346</td>
+      <td>4.0</td>
+      <td>0.9490</td>
+      <td>Who Is He (And What Is He to You?)</td>
+      <td>Bill Withers</td>
+    </tr>
+    <tr>
+      <th>320</th>
+      <td>0.021100</td>
+      <td>0.697</td>
+      <td>236456</td>
+      <td>0.905</td>
+      <td>0.893000</td>
+      <td>6</td>
+      <td>0.1190</td>
+      <td>-7.787</td>
+      <td>0</td>
+      <td>0.0339</td>
+      <td>119.977</td>
+      <td>4.0</td>
+      <td>0.3110</td>
+      <td>Acamar</td>
+      <td>Frankey</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>0.001060</td>
+      <td>0.584</td>
+      <td>274404</td>
+      <td>0.932</td>
+      <td>0.002690</td>
+      <td>1</td>
+      <td>0.1290</td>
+      <td>-3.501</td>
+      <td>1</td>
+      <td>0.3330</td>
+      <td>74.976</td>
+      <td>4.0</td>
+      <td>0.2110</td>
+      <td>Like A Bitch - Kill The Noise Remix</td>
+      <td>Kill The Noise</td>
+    </tr>
+    <tr>
+      <th>1346</th>
+      <td>0.000021</td>
+      <td>0.535</td>
+      <td>203500</td>
+      <td>0.974</td>
+      <td>0.000149</td>
+      <td>10</td>
+      <td>0.2630</td>
+      <td>-3.566</td>
+      <td>0</td>
+      <td>0.1720</td>
+      <td>116.956</td>
+      <td>4.0</td>
+      <td>0.4310</td>
+      <td>Flag of the Beast</td>
+      <td>Emmure</td>
+    </tr>
+    <tr>
+      <th>1406</th>
+      <td>0.503000</td>
+      <td>0.410</td>
+      <td>256333</td>
+      <td>0.648</td>
+      <td>0.000000</td>
+      <td>7</td>
+      <td>0.2190</td>
+      <td>-4.469</td>
+      <td>1</td>
+      <td>0.0362</td>
+      <td>60.391</td>
+      <td>4.0</td>
+      <td>0.3420</td>
+      <td>Don't You Cry For Me</td>
+      <td>Cobi</td>
+    </tr>
+    <tr>
+      <th>1389</th>
+      <td>0.705000</td>
+      <td>0.894</td>
+      <td>222307</td>
+      <td>0.161</td>
+      <td>0.003300</td>
+      <td>4</td>
+      <td>0.3120</td>
+      <td>-14.311</td>
+      <td>1</td>
+      <td>0.0880</td>
+      <td>104.968</td>
+      <td>4.0</td>
+      <td>0.8180</td>
+      <td>장가갈 수 있을까 Can I Get Married?</td>
+      <td>Coffeeboy</td>
+    </tr>
+    <tr>
+      <th>1534</th>
+      <td>0.623000</td>
+      <td>0.470</td>
+      <td>394920</td>
+      <td>0.156</td>
+      <td>0.187000</td>
+      <td>2</td>
+      <td>0.1040</td>
+      <td>-17.036</td>
+      <td>1</td>
+      <td>0.0399</td>
+      <td>118.176</td>
+      <td>4.0</td>
+      <td>0.0591</td>
+      <td>Blue Ballad</td>
+      <td>Phil Woods</td>
+    </tr>
+  </tbody>
+</table>
+<p>1613 rows × 15 columns</p>
+</div></div></div>
+</div>
 <p>Let’s look at the distribution of values in the <code class="docutils literal notranslate"><span class="pre">song_title</span></code> column.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -7930,21 +8493,11 @@ Name: song_title, Length: 1579, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>506
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">earth_index_in_df</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span> <span class="o">+</span> <span class="n">earth_index_vocab</span>
 <span class="n">earth_index_in_df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>519
 </pre></div>
 </div>
 </div>
@@ -7956,49 +8509,6 @@ Name: song_title, Length: 1579, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>dutchie</th>
-      <th>dynamite</th>
-      <th>earth</th>
-      <th>easy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1851</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1948</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -8006,22 +8516,10 @@ Name: song_title, Length: 1579, dtype: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Int64Index([1851, 1948], dtype=&#39;int64&#39;)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">earth_songs</span><span class="o">.</span><span class="n">index</span><span class="p">][</span><span class="s2">&quot;song_title&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1851             Softest Place On Earth
-1948    Earth Song - Remastered Version
-Name: song_title, dtype: object
 </pre></div>
 </div>
 </div>
@@ -8075,36 +8573,36 @@ Name: song_title, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.076400</td>
-      <td>0.010748</td>
+      <td>0.072466</td>
+      <td>0.010175</td>
       <td>0.749226</td>
       <td>0.867442</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.043234</td>
-      <td>0.008872</td>
+      <td>0.042533</td>
+      <td>0.008576</td>
       <td>0.758514</td>
       <td>0.862016</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.042121</td>
-      <td>0.008731</td>
+      <td>0.042001</td>
+      <td>0.008400</td>
       <td>0.712074</td>
       <td>0.865116</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.042337</td>
-      <td>0.008682</td>
+      <td>0.042183</td>
+      <td>0.008433</td>
       <td>0.739130</td>
       <td>0.856700</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.042840</td>
-      <td>0.008822</td>
+      <td>0.042611</td>
+      <td>0.008532</td>
       <td>0.729814</td>
       <td>0.855151</td>
     </tr>
@@ -8119,8 +8617,8 @@ Name: song_title, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.049386
-score_time     0.009171
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.048359
+score_time     0.008823
 test_score     0.737752
 train_score    0.861285
 dtype: float64
@@ -8176,36 +8674,36 @@ Let’s examine what numbers we get when we don’t include it.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.049121</td>
-      <td>0.017146</td>
+      <td>0.052305</td>
+      <td>0.015823</td>
       <td>0.758514</td>
       <td>0.810078</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.028789</td>
-      <td>0.011994</td>
+      <td>0.028127</td>
+      <td>0.011657</td>
       <td>0.749226</td>
       <td>0.810078</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.028246</td>
-      <td>0.011725</td>
+      <td>0.027568</td>
+      <td>0.011486</td>
       <td>0.705882</td>
       <td>0.821705</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.028076</td>
-      <td>0.011715</td>
+      <td>0.028079</td>
+      <td>0.011453</td>
       <td>0.748447</td>
       <td>0.815647</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.028438</td>
-      <td>0.011681</td>
+      <td>0.028299</td>
+      <td>0.011559</td>
       <td>0.732919</td>
       <td>0.812548</td>
     </tr>
@@ -8220,8 +8718,8 @@ Let’s examine what numbers we get when we don’t include it.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.032534
-score_time     0.012852
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.032876
+score_time     0.012396
 test_score     0.738998
 train_score    0.814011
 dtype: float64
@@ -8363,36 +8861,36 @@ Name: artist, dtype: int64
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.071740</td>
-      <td>0.011740</td>
+      <td>0.072561</td>
+      <td>0.012046</td>
       <td>0.755418</td>
       <td>0.870543</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.044131</td>
-      <td>0.009463</td>
+      <td>0.045093</td>
+      <td>0.009635</td>
       <td>0.761610</td>
       <td>0.864341</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.043544</td>
-      <td>0.009344</td>
+      <td>0.044447</td>
+      <td>0.009478</td>
       <td>0.712074</td>
       <td>0.868217</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.043772</td>
-      <td>0.009247</td>
+      <td>0.044590</td>
+      <td>0.009452</td>
       <td>0.742236</td>
       <td>0.865995</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.044168</td>
-      <td>0.009398</td>
+      <td>0.044693</td>
+      <td>0.009572</td>
       <td>0.732919</td>
       <td>0.858249</td>
     </tr>
@@ -8407,8 +8905,8 @@ Name: artist, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.049471
-score_time     0.009838
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.050277
+score_time     0.010037
 test_score     0.740851
 train_score    0.865469
 dtype: float64
@@ -8426,13 +8924,13 @@ dtype: float64
 <h3>(iClicker) Exercise 6.2<a class="headerlink" href="#iclicker-exercise-6-2" title="Permalink to this headline">#</a></h3>
 <p><strong>iClicker cloud join link: https://join.iclicker.com/3DP5H</strong></p>
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
-<li><p>Creating groups of rarely occurring categories might overfit the model.</p></li>
-<li><p>As you increase the value for <code class="docutils literal notranslate"><span class="pre">max_features</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> the training score is likely to go up.</p></li>
-<li><p>Suppose you are encoding text data using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>. If you encounter a word in the validation or the test split that’s not available in the training data, we’ll get an error.</p></li>
-<li><p>In the code below, inside <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>, each fold might have slightly different number of features (columns) in the fold.</p></li>
-</ol>
+<ul class="simple">
+<li><p>(A) <code class="docutils literal notranslate"><span class="pre">handle_unknown=&quot;ignore&quot;</span></code> would treat all unknown categories equally.</p></li>
+<li><p>(B) Creating groups of rarely occurring categories might overfit the model.</p></li>
+<li><p>(C) As you increase the value for <code class="docutils literal notranslate"><span class="pre">max_features</span></code> hyperparameter of <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> the training score is likely to go up.</p></li>
+<li><p>(D) Suppose you are encoding text data using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>. If you encounter a word in the validation or the test split that’s not available in the training data, we’ll get an error.</p></li>
+<li><p>(E) In the code below, inside <code class="docutils literal notranslate"><span class="pre">cross_validate</span></code>, each fold might have slightly different number of features (columns) in the fold.</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="p">(</span><span class="n">CountVectorizer</span><span class="p">(),</span> <span class="n">SVC</span><span class="p">())</span>
 <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
