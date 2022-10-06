@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -474,6 +472,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toy-example">
+     Toy example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interim-summary">
      Interim summary
     </a>
@@ -783,6 +786,11 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toy-example">
+     Toy example
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interim-summary">
      Interim summary
     </a>
@@ -1024,15 +1032,6 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Changing global matplotlib settings for confusion matrix.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;xtick.labelsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;ytick.labelsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-
-<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1567,7 +1566,7 @@ memory usage: 48.7 MB
 <li><p>We could scale <code class="docutils literal notranslate"><span class="pre">Amount</span></code>.</p></li>
 <li><p>Do we want to scale time?</p>
 <ul>
-<li><p>In this lecture we’ll do it’s probably not the best thing to do.</p></li>
+<li><p>In this lecture, we’ll just drop the Time feature.</p></li>
 <li><p>We’ll learn about time series briefly later in the course.</p></li>
 </ul>
 </li>
@@ -1575,8 +1574,8 @@ memory usage: 48.7 MB
 <p>Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> for train and test splits.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_big</span><span class="p">,</span> <span class="n">y_train_big</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
-<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]),</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_big</span><span class="p">,</span> <span class="n">y_train_big</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;Time&quot;</span><span class="p">]),</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;Time&quot;</span><span class="p">]),</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;Class&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1606,8 +1605,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.006417
-score_time     0.000756
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.007696
+score_time     0.000765
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1653,10 +1652,10 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.319738
-score_time     0.003221
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.305509
+score_time     0.003650
 test_score     0.999176
-train_score    0.999249
+train_score    0.999235
 dtype: float64
 </pre></div>
 </div>
@@ -1686,10 +1685,10 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
 
 <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">disp</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -1702,7 +1701,7 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_36_0.png" src="../_images/09_classification-metrics_36_0.png" />
+<img alt="../_images/09_classification-metrics_35_0.png" src="../_images/09_classification-metrics_35_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1716,7 +1715,7 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_37_0.png" src="../_images/09_classification-metrics_37_0.png" />
+<img alt="../_images/09_classification-metrics_36_0.png" src="../_images/09_classification-metrics_36_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1823,7 +1822,7 @@ $<span class="math notranslate nohighlight">\(\frac{\text{correct predictions}}{
 $<span class="math notranslate nohighlight">\( recall = \frac{TP}{TP+FN} = \frac{TP}{\#positives} \)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -1835,7 +1834,7 @@ $<span class="math notranslate nohighlight">\( recall = \frac{TP}{TP+FN} = \frac
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_51_0.png" src="../_images/09_classification-metrics_51_0.png" />
+<img alt="../_images/09_classification-metrics_50_0.png" src="../_images/09_classification-metrics_50_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1861,7 +1860,7 @@ Recall: 0.6275
 \[ precision = \frac{TP}{TP+FP}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -1873,7 +1872,7 @@ Recall: 0.6275
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_54_0.png" src="../_images/09_classification-metrics_54_0.png" />
+<img alt="../_images/09_classification-metrics_53_0.png" src="../_images/09_classification-metrics_53_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2117,6 +2116,44 @@ weighted avg       1.00      1.00      1.00     59810
 </ul>
 <p>Which one is relevant when depends upon whether you think each class should have the same weight or each sample should have the same weight.</p>
 </section>
+<section id="toy-example">
+<h3>Toy example<a class="headerlink" href="#toy-example" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">target_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;class 0&#39;</span><span class="p">,</span> <span class="s1">&#39;class 1&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+     class 0       0.75      1.00      0.86         3
+     class 1       1.00      0.50      0.67         2
+
+    accuracy                           0.80         5
+   macro avg       0.88      0.75      0.76         5
+weighted avg       0.85      0.80      0.78         5
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>weighted average is weighted by the proportion of examples in a particular class. So for the toy example above:</p></li>
+<li><p>weighted_average precision: 3/5 * 0.75 + 2/5 * 1.00 = 0.85</p></li>
+<li><p>weighted_average recall: 3/5 * 1.00 + 2/5 * 0.5 = 0.80</p></li>
+<li><p>weighted_average f1-score: 3/5 * 0.86 + 2/5 * 0.67 = 0.78</p></li>
+</ul>
+<ul class="simple">
+<li><p>macro average gives equal weight to both classes. So for the toy example above:</p></li>
+<li><p>macro average precision: 0.5 * 0.75 + 0.5 * 1.00 =0. 875</p></li>
+<li><p>macro average recall: 0.5 * 1.00 + 0.5 * 0.5 =0. 75</p></li>
+<li><p>macro average f1-score: 0.5 * 0.75 + 0.5 * 1.00 =0.765</p></li>
+</ul>
+</section>
 <section id="interim-summary">
 <h3>Interim summary<a class="headerlink" href="#interim-summary" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
@@ -2193,34 +2230,34 @@ weighted avg       1.00      1.00      1.00     59810
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.413436</td>
-      <td>0.019395</td>
-      <td>0.999147</td>
-      <td>0.999367</td>
-      <td>0.711864</td>
-      <td>0.783726</td>
-      <td>0.617647</td>
-      <td>0.675277</td>
-      <td>0.840000</td>
-      <td>0.933673</td>
+      <td>0.441003</td>
+      <td>0.021978</td>
+      <td>0.999097</td>
+      <td>0.999360</td>
+      <td>0.694915</td>
+      <td>0.782979</td>
+      <td>0.602941</td>
+      <td>0.678967</td>
+      <td>0.820000</td>
+      <td>0.924623</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.417315</td>
-      <td>0.018982</td>
-      <td>0.999298</td>
-      <td>0.999329</td>
-      <td>0.766667</td>
-      <td>0.770878</td>
-      <td>0.676471</td>
-      <td>0.664207</td>
-      <td>0.884615</td>
-      <td>0.918367</td>
+      <td>0.433131</td>
+      <td>0.018118</td>
+      <td>0.999223</td>
+      <td>0.999317</td>
+      <td>0.739496</td>
+      <td>0.766595</td>
+      <td>0.647059</td>
+      <td>0.660517</td>
+      <td>0.862745</td>
+      <td>0.913265</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.403896</td>
-      <td>0.018690</td>
+      <td>0.402674</td>
+      <td>0.021558</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -2232,29 +2269,29 @@ weighted avg       1.00      1.00      1.00     59810
     </tr>
     <tr>
       <th>3</th>
-      <td>0.426960</td>
-      <td>0.023101</td>
+      <td>0.403166</td>
+      <td>0.018205</td>
       <td>0.999172</td>
-      <td>0.999279</td>
+      <td>0.999254</td>
       <td>0.697248</td>
-      <td>0.753747</td>
+      <td>0.742981</td>
       <td>0.558824</td>
-      <td>0.649446</td>
+      <td>0.634686</td>
       <td>0.926829</td>
-      <td>0.897959</td>
+      <td>0.895833</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.406884</td>
-      <td>0.019509</td>
-      <td>0.999172</td>
-      <td>0.999223</td>
-      <td>0.702703</td>
-      <td>0.731602</td>
+      <td>0.390885</td>
+      <td>0.018943</td>
+      <td>0.999147</td>
+      <td>0.999216</td>
+      <td>0.696429</td>
+      <td>0.728850</td>
       <td>0.582090</td>
-      <td>0.621324</td>
-      <td>0.886364</td>
-      <td>0.889474</td>
+      <td>0.617647</td>
+      <td>0.866667</td>
+      <td>0.888889</td>
     </tr>
   </tbody>
 </table>
@@ -2274,7 +2311,7 @@ weighted avg       1.00      1.00      1.00     59810
 <p><strong>Select all of the following statements which are TRUE.</strong></p>
 <ul class="simple">
 <li><p>(A) In medical diagnosis, false positives are likely to be more damaging than false negatives (assume “positive” means the person has a disease, “negative” means they don’t).</p></li>
-<li><p>(B) In spam classification, false positives are more damaging than false negatives (assume “positive” means the email is spam, “negative” means they it’s not).</p></li>
+<li><p>(B) In spam classification, false positives are more damaging than false negatives (assume “positive” means the email is spam, “negative” means it’s not).</p></li>
 <li><p>(C) If method A gets a higher accuracy than method B, that means its precision is also higher.</p></li>
 <li><p>(D) If method A gets a higher accuracy than method B, that means its recall is also higher.</p></li>
 </ul>
@@ -2399,10 +2436,10 @@ weighted avg       1.00      1.00      1.00     59810
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
            0       1.00      1.00      1.00     59708
-           1       0.78      0.76      0.77       102
+           1       0.77      0.76      0.77       102
 
     accuracy                           1.00     59810
-   macro avg       0.89      0.88      0.89     59810
+   macro avg       0.89      0.88      0.88     59810
 weighted avg       1.00      1.00      1.00     59810
 </pre></div>
 </div>
@@ -2438,6 +2475,36 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">threshold</span><span class="p">):</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Threshold: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">),</span><span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f1 score: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">interactive</span>
+
+<span class="n">interactive</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "36fdccb22e9040629085a19859637383"}
+</script></div>
+</div>
+<p>Let’s view P and R for different thresholds as a dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;threshold&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;f1 score&quot;</span><span class="p">:</span> <span class="p">[]}</span>
 <span class="k">for</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="n">thresholds</span><span class="p">:</span>
     <span class="n">preds</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span>
@@ -2445,13 +2512,7 @@ weighted avg       1.00      1.00      1.00     59810
     <span class="n">pr_dict</span><span class="p">[</span><span class="s2">&quot;precision&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
     <span class="n">pr_dict</span><span class="p">[</span><span class="s2">&quot;recall&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
     <span class="n">pr_dict</span><span class="p">[</span><span class="s2">&quot;f1 score&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pr_dict</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pr_dict</span><span class="p">)</span>    
 </pre></div>
 </div>
 </div>
@@ -2491,23 +2552,23 @@ weighted avg       1.00      1.00      1.00     59810
     <tr>
       <th>1</th>
       <td>0.1</td>
-      <td>0.780000</td>
-      <td>0.764706</td>
       <td>0.772277</td>
+      <td>0.764706</td>
+      <td>0.768473</td>
     </tr>
     <tr>
       <th>2</th>
       <td>0.2</td>
-      <td>0.795699</td>
-      <td>0.725490</td>
-      <td>0.758974</td>
+      <td>0.793478</td>
+      <td>0.715686</td>
+      <td>0.752577</td>
     </tr>
     <tr>
       <th>3</th>
       <td>0.3</td>
-      <td>0.819277</td>
-      <td>0.666667</td>
-      <td>0.735135</td>
+      <td>0.814815</td>
+      <td>0.647059</td>
+      <td>0.721311</td>
     </tr>
     <tr>
       <th>4</th>
@@ -2533,23 +2594,23 @@ weighted avg       1.00      1.00      1.00     59810
     <tr>
       <th>7</th>
       <td>0.7</td>
-      <td>0.892308</td>
-      <td>0.568627</td>
-      <td>0.694611</td>
+      <td>0.893939</td>
+      <td>0.578431</td>
+      <td>0.702381</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.8</td>
-      <td>0.901639</td>
-      <td>0.539216</td>
-      <td>0.674847</td>
+      <td>0.903226</td>
+      <td>0.549020</td>
+      <td>0.682927</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.9</td>
-      <td>0.894737</td>
-      <td>0.500000</td>
-      <td>0.641509</td>
+      <td>0.892857</td>
+      <td>0.490196</td>
+      <td>0.632911</td>
     </tr>
   </tbody>
 </table>
@@ -2604,7 +2665,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_102_0.png" src="../_images/09_classification-metrics_102_0.png" />
+<img alt="../_images/09_classification-metrics_107_0.png" src="../_images/09_classification-metrics_107_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2652,6 +2713,19 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 </div>
+<p>You can also use the following handy function of <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> to get the PR curve and the corresponding AP score.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">PrecisionRecallDisplay</span>
+
+<span class="n">PrecisionRecallDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_classification-metrics_114_0.png" src="../_images/09_classification-metrics_114_0.png" />
+</div>
+</div>
 </section>
 <section id="ap-vs-f1-score">
 <h3>AP vs. F1-score<a class="headerlink" href="#ap-vs-f1-score" title="Permalink to this headline">#</a></h3>
@@ -2670,6 +2744,7 @@ weighted avg       1.00      1.00      1.00     59810
 <ul class="simple">
 <li><p>Different classifiers might work well in different parts of the curve, i.e., at different operating points.</p></li>
 <li><p>We can compare PR curves of different classifiers to understand these differences.</p></li>
+<li><p>Let’s create PR curves for SVC and Logistic Regression.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2716,7 +2791,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59740
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59049
 </pre></div>
 </div>
 </div>
@@ -2732,7 +2807,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((59740,), (59741,), (59741,))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((59049,), (59050,), (59050,))
 </pre></div>
 </div>
 </div>
@@ -2803,7 +2878,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_124_0.png" src="../_images/09_classification-metrics_124_0.png" />
+<img alt="../_images/09_classification-metrics_131_0.png" src="../_images/09_classification-metrics_131_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2823,7 +2898,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f1_score of logistic regression: 0.736
-f1_score of svc: 0.734
+f1_score of svc: 0.726
 </pre></div>
 </div>
 </div>
@@ -2845,7 +2920,7 @@ f1_score of svc: 0.734
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average precision of logistic regression: 0.757
-Average precision of SVC: 0.789
+Average precision of SVC: 0.790
 </pre></div>
 </div>
 </div>
@@ -2887,7 +2962,7 @@ $<span class="math notranslate nohighlight">\( TPR = \frac{TP}{TP + FP}, FPR  = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_132_0.png" src="../_images/09_classification-metrics_132_0.png" />
+<img alt="../_images/09_classification-metrics_139_0.png" src="../_images/09_classification-metrics_139_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2947,7 +3022,7 @@ $<span class="math notranslate nohighlight">\( TPR = \frac{TP}{TP + FP}, FPR  = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_137_0.png" src="../_images/09_classification-metrics_137_0.png" />
+<img alt="../_images/09_classification-metrics_144_0.png" src="../_images/09_classification-metrics_144_0.png" />
 </div>
 </div>
 </section>
@@ -2961,12 +3036,15 @@ $<span class="math notranslate nohighlight">\( TPR = \frac{TP}{TP + FP}, FPR  = 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
 
 <span class="n">roc_lr</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC for SVC: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">roc_lr</span><span class="p">))</span>
+<span class="n">roc_svc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">pipe_svc</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_valid</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC for LR: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">roc_lr</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC for SVC: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">roc_svc</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for SVC: 0.969
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AUC for LR: 0.970
+AUC for SVC: 0.938
 </pre></div>
 </div>
 </div>
@@ -2981,6 +3059,19 @@ $<span class="math notranslate nohighlight">\( TPR = \frac{TP}{TP + FP}, FPR  = 
 <p class="admonition-title">Important</p>
 <p>For classification problems with imbalanced classes, using AP score or AUC is often much more meaningful than using accuracy.</p>
 </div>
+<p>Similar to <code class="docutils literal notranslate"><span class="pre">PrecisionRecallCurveDisplay</span></code>, there is a <code class="docutils literal notranslate"><span class="pre">RocCurveDisplay</span></code> function in sklearn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">RocCurveDisplay</span>
+
+<span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">pipe_lr</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_classification-metrics_150_0.png" src="../_images/09_classification-metrics_150_0.png" />
+</div>
+</div>
 </section>
 <section id="let-s-look-at-all-the-scores-at-once">
 <h3>Let’s look at all the scores at once<a class="headerlink" href="#let-s-look-at-all-the-scores-at-once" title="Permalink to this headline">#</a></h3>
@@ -2994,14 +3085,14 @@ $<span class="math notranslate nohighlight">\( TPR = \frac{TP}{TP + FP}, FPR  = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.459893
-score_time                0.034596
-test_accuracy             0.999212
-test_f1                   0.724369
-test_recall               0.610536
-test_precision            0.894228
-test_roc_auc              0.967438
-test_average_precision    0.744030
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time                  0.414918
+score_time                0.035045
+test_accuracy             0.999182
+test_f1                   0.714290
+test_recall               0.601712
+test_precision            0.881915
+test_roc_auc              0.967228
+test_average_precision    0.744074
 dtype: float64
 </pre></div>
 </div>
@@ -3087,10 +3178,10 @@ weighted avg       1.00      1.00      1.00     59810
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
    non-fraud       1.00      1.00      1.00     59708
-       fraud       0.78      0.76      0.77       102
+       fraud       0.77      0.76      0.77       102
 
     accuracy                           1.00     59810
-   macro avg       0.89      0.88      0.89     59810
+   macro avg       0.89      0.88      0.88     59810
 weighted avg       1.00      1.00      1.00     59810
 </pre></div>
 </div>
@@ -3155,7 +3246,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe_lr</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -3167,7 +3258,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_156_0.png" src="../_images/09_classification-metrics_156_0.png" />
+<img alt="../_images/09_classification-metrics_165_0.png" src="../_images/09_classification-metrics_165_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -3189,7 +3280,7 @@ weighted avg       1.00      1.00      1.00     59810
     <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="p">)</span>
 <span class="n">pipe_lr_weight</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe_lr_weight</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -3201,7 +3292,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_159_0.png" src="../_images/09_classification-metrics_159_0.png" />
+<img alt="../_images/09_classification-metrics_168_0.png" src="../_images/09_classification-metrics_168_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3229,7 +3320,7 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
     <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s2">&quot;balanced&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">pipe_lr_balanced</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span>
+<span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe_lr_balanced</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
     <span class="n">y_valid</span><span class="p">,</span>
@@ -3241,7 +3332,7 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/09_classification-metrics_162_0.png" src="../_images/09_classification-metrics_162_0.png" />
+<img alt="../_images/09_classification-metrics_171_0.png" src="../_images/09_classification-metrics_171_0.png" />
 </div>
 </div>
 <p>We have reduced false negatives but we have many more false positives now …</p>
@@ -3305,43 +3396,43 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
   <tbody>
     <tr>
       <th>fit_time</th>
-      <td>0.440138</td>
-      <td>0.431449</td>
+      <td>0.419086</td>
+      <td>0.391090</td>
     </tr>
     <tr>
       <th>score_time</th>
-      <td>0.035901</td>
-      <td>0.033918</td>
+      <td>0.033834</td>
+      <td>0.035405</td>
     </tr>
     <tr>
       <th>test_accuracy</th>
-      <td>0.999212</td>
-      <td>0.973626</td>
+      <td>0.999182</td>
+      <td>0.973210</td>
     </tr>
     <tr>
       <th>test_f1</th>
-      <td>0.724369</td>
-      <td>0.103831</td>
+      <td>0.714290</td>
+      <td>0.101817</td>
     </tr>
     <tr>
       <th>test_recall</th>
-      <td>0.610536</td>
-      <td>0.896883</td>
+      <td>0.601712</td>
+      <td>0.891001</td>
     </tr>
     <tr>
       <th>test_precision</th>
-      <td>0.894228</td>
-      <td>0.055119</td>
+      <td>0.881915</td>
+      <td>0.054009</td>
     </tr>
     <tr>
       <th>test_roc_auc</th>
-      <td>0.967438</td>
-      <td>0.970881</td>
+      <td>0.967228</td>
+      <td>0.970505</td>
     </tr>
     <tr>
       <th>test_average_precision</th>
-      <td>0.744030</td>
-      <td>0.730627</td>
+      <td>0.744074</td>
+      <td>0.730368</td>
     </tr>
   </tbody>
 </table>
