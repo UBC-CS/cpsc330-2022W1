@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 8: Hyperparameter Optimization and Optimization Bias" href="08_hyperparameter-optimization.html" />
     <link rel="prev" title="Lecture 6: sklearn ColumnTransformer and Text Features" href="06_column-transformer-text-feats.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -182,6 +182,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
   </a>
  </li>
 </ul>
@@ -643,6 +648,11 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#demo-model-interpretation-of-linear-classifiers">
    Demo: Model interpretation of linear classifiers
   </a>
@@ -1013,6 +1023,11 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#demo-model-interpretation-of-linear-classifiers">
    Demo: Model interpretation of linear classifiers
   </a>
@@ -1139,8 +1154,13 @@ title="Print to PDF"
 <section id="announcements">
 <h3>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Homework 3 was due last night.</p></li>
-<li><p>Homework 4 will be released today (Due date: Oct 11th because Monday Oct 10th is a holiday.)</p></li>
+<li><p>Homework 3 is due on Oct 3rd.</p></li>
+<li><p>Friday is a holiday. So no tutorial this Friday.</p></li>
+<li><p>Scheduled extra office hours this week.</p>
+<ul>
+<li><p>Check the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</p></li>
+</ul>
+</li>
 </ul>
 </section>
 </section>
@@ -1157,8 +1177,7 @@ title="Print to PDF"
 <li><p>Explain the advantages of getting probability scores instead of hard predictions during classification;</p></li>
 <li><p>Broadly describe linear SVMs</p></li>
 <li><p>Explain how can you interpret model predictions using coefficients learned by a linear model;</p></li>
-<li><p>Explain the advantages and limitations of linear classifiers</p></li>
-<li><p>Carry out multi-class classification using OVR and OVO strategies.</p></li>
+<li><p>Explain the advantages and limitations of linear classifiers.</p></li>
 </ul>
 <p><br><br></p>
 </section>
@@ -1438,7 +1457,7 @@ $<span class="math notranslate nohighlight">\(\hat{y} = w_1x_1 + b\)</span>$</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>  <span class="c1"># DO NOT USE IT</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>  <span class="c1"># DO NOT USE IT IN THIS COURSE</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>  <span class="c1"># USE THIS INSTEAD</span>
 </pre></div>
 </div>
@@ -1712,36 +1731,36 @@ It can be downloaded/loaded using the
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001807</td>
-      <td>0.000242</td>
+      <td>0.001833</td>
+      <td>0.000237</td>
       <td>0.599492</td>
       <td>0.608050</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001629</td>
-      <td>0.000194</td>
+      <td>0.001634</td>
+      <td>0.000195</td>
       <td>0.613507</td>
       <td>0.604619</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001612</td>
-      <td>0.000200</td>
+      <td>0.001621</td>
+      <td>0.000191</td>
       <td>0.598100</td>
       <td>0.608468</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001765</td>
-      <td>0.000774</td>
+      <td>0.001592</td>
+      <td>0.000198</td>
       <td>0.612621</td>
       <td>0.604797</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001601</td>
-      <td>0.000192</td>
+      <td>0.001593</td>
+      <td>0.000186</td>
       <td>0.601790</td>
       <td>0.606902</td>
     </tr>
@@ -1987,7 +2006,7 @@ It can be downloaded/loaded using the
 <li><p>(A) Increasing the hyperparameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> of <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> is likely to decrease model complexity.</p></li>
 <li><p>(B) <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> can be used with datasets that have multiple features.</p></li>
 <li><p>(C) With Ridge, we learn one coefficient per training example.</p></li>
-<li><p>(D) If you train a linear regression model on a 2-dimensional problem (2 features), the model will be a two dimensional plane.</p></li>
+<li><p>(D) If you train a linear regression model on a 2-dimensional problem (2 features), the model will learn 3 parameters: one for each feature and one for the bias term.</p></li>
 </ul>
 <p><br><br><br><br></p>
 </section>
@@ -2402,7 +2421,7 @@ It got a bit <b>boring</b> at times but the direction was <b>excellent</b> and t
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x14aaadf00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.graphs.Digraph at 0x146d6b910&gt;
 </pre></div>
 </div>
 </div>
@@ -2435,14 +2454,14 @@ It got a bit <b>boring</b> at times but the direction was <b>excellent</b> and t
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3b6afbb7b7d04aa787a501d5c49df366"}
+{"version_major": 2, "version_minor": 0, "model_id": "8948f4594fc54dab908676495ba9707d"}
 </script></div>
 </div>
 <p>In our case, for values for the coefficient of <em>boring</em> &lt; -3.36, the prediction would be negative.</p>
 <p>A linear model learns these coefficients or weights from the training data!</p>
 <p>So a linear classifier is a linear function of the input <code class="docutils literal notranslate"><span class="pre">X</span></code>, followed by a threshold.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d0ee44b-b270-40fa-92dd-690fd401c1c5">
-<span class="eqno">(1)<a class="headerlink" href="#equation-9d0ee44b-b270-40fa-92dd-690fd401c1c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdd34529-5241-49ab-9a02-edac3393fc77">
+<span class="eqno">(1)<a class="headerlink" href="#equation-cdd34529-5241-49ab-9a02-edac3393fc77" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \begin{split}
 z =&amp; w_1x_1 + \dots + w_dx_d + b\\
 =&amp; w^Tx + b
@@ -2575,36 +2594,36 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000124</td>
-      <td>0.000180</td>
+      <td>0.000159</td>
+      <td>0.000199</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000084</td>
-      <td>0.000121</td>
+      <td>0.000098</td>
+      <td>0.000169</td>
       <td>0.588235</td>
       <td>0.601504</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000087</td>
-      <td>0.000115</td>
+      <td>0.000090</td>
+      <td>0.000118</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000077</td>
-      <td>0.000109</td>
+      <td>0.000084</td>
+      <td>0.000112</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000077</td>
-      <td>0.000109</td>
+      <td>0.000078</td>
+      <td>0.000111</td>
       <td>0.606061</td>
       <td>0.597015</td>
     </tr>
@@ -2651,35 +2670,35 @@ z =&amp; w_1x_1 + \dots + w_dx_d + b\\
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001743</td>
-      <td>0.000121</td>
+      <td>0.001725</td>
+      <td>0.000116</td>
       <td>0.852941</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.001316</td>
-      <td>0.000094</td>
+      <td>0.001339</td>
+      <td>0.000093</td>
       <td>0.823529</td>
       <td>0.827068</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.001195</td>
-      <td>0.000095</td>
+      <td>0.001194</td>
+      <td>0.000089</td>
       <td>0.696970</td>
       <td>0.858209</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.001241</td>
-      <td>0.000090</td>
+      <td>0.001255</td>
+      <td>0.000088</td>
       <td>0.787879</td>
       <td>0.843284</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.001234</td>
+      <td>0.001246</td>
       <td>0.000087</td>
       <td>0.939394</td>
       <td>0.805970</td>
@@ -3684,6 +3703,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{1+e^{-x}}\)</span>$</p></
 <li><p>(C) For linear classifier trained on <span class="math notranslate nohighlight">\(d\)</span> features, the decision boundary is a <span class="math notranslate nohighlight">\(d-1\)</span>-dimensional hyperparlane.</p></li>
 <li><p>(D) A linear model is likely to be uncertain about the data points close to the decision boundary.</p></li>
 </ul>
+<p><br><br><br><br></p>
 </section>
 <section id="linear-svm">
 <h3>Linear SVM<a class="headerlink" href="#linear-svm" title="Permalink to this headline">#</a></h3>
@@ -3723,7 +3743,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{1+e^{-x}}\)</span>$</p></
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_162_0.png" src="../_images/07_linear-models_162_0.png" />
+<img alt="../_images/07_linear-models_163_0.png" src="../_images/07_linear-models_163_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3766,8 +3786,12 @@ Model intercept: [10.8869838]
 <li><p>Note that the coefficients and intercept are slightly different for logistic regression.</p></li>
 <li><p>This is because the <code class="docutils literal notranslate"><span class="pre">fit</span></code> for linear SVM and logistic regression are different.</p></li>
 </ul>
-<p><br><br><br><br></p>
 </section>
+</section>
+<section id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">#</a></h2>
+<p><img alt="" src="../_images/eva-coffee.png" /></p>
+<p><br><br><br><br></p>
 </section>
 <section id="demo-model-interpretation-of-linear-classifiers">
 <h2>Demo: Model interpretation of linear classifiers<a class="headerlink" href="#demo-model-interpretation-of-linear-classifiers" title="Permalink to this headline">#</a></h2>
@@ -3987,36 +4011,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.001157</td>
-      <td>0.000840</td>
+      <td>0.001065</td>
+      <td>0.000839</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000931</td>
-      <td>0.000784</td>
+      <td>0.000908</td>
+      <td>0.000756</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000914</td>
-      <td>0.000765</td>
+      <td>0.000890</td>
+      <td>0.000754</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000876</td>
+      <td>0.000869</td>
       <td>0.000759</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000945</td>
-      <td>0.000884</td>
+      <td>0.000886</td>
+      <td>0.000786</td>
       <td>0.505</td>
       <td>0.505</td>
     </tr>
@@ -4065,36 +4089,36 @@ Model intercept: [10.8869838]
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.405318</td>
-      <td>0.065639</td>
+      <td>0.415330</td>
+      <td>0.065780</td>
       <td>0.847</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.391350</td>
-      <td>0.065198</td>
+      <td>0.443096</td>
+      <td>0.064885</td>
       <td>0.832</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.406408</td>
-      <td>0.065581</td>
+      <td>0.407039</td>
+      <td>0.066188</td>
       <td>0.842</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.392439</td>
-      <td>0.062501</td>
+      <td>0.399030</td>
+      <td>0.062957</td>
       <td>0.853</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.473091</td>
-      <td>0.064636</td>
+      <td>0.407311</td>
+      <td>0.064549</td>
       <td>0.839</td>
       <td>1.0</td>
     </tr>
@@ -4238,6 +4262,18 @@ Model intercept: [10.8869838]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;countvectorizer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
 <span class="n">coeffs</span> <span class="o">=</span> <span class="n">pipe_lr</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;logisticregression&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;00&#39;, &#39;000&#39;, &#39;01&#39;, ..., &#39;zorak&#39;, &#39;zorro&#39;, &#39;â½&#39;], dtype=object)
 </pre></div>
 </div>
 </div>
@@ -4411,15 +4447,15 @@ Model intercept: [10.8869838]
 <ul class="simple">
 <li><p>The coefficients make sense!</p></li>
 </ul>
-<p>Let’s visualize the top 10 features.</p>
+<p>Let’s visualize the top 20 features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mglearn</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">visualize_coefficients</span><span class="p">(</span><span class="n">coeffs</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">n_top_features</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_204_0.png" src="../_images/07_linear-models_204_0.png" />
+<img alt="../_images/07_linear-models_207_0.png" src="../_images/07_linear-models_207_0.png" />
 </div>
 </div>
 <p>Let’s explore prediction of the following new review.</p>
@@ -4641,7 +4677,7 @@ Model intercept: [10.8869838]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_222_0.png" src="../_images/07_linear-models_222_0.png" />
+<img alt="../_images/07_linear-models_225_0.png" src="../_images/07_linear-models_225_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -4734,7 +4770,7 @@ Prediction probability: 1.0000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_232_0.png" src="../_images/07_linear-models_232_0.png" />
+<img alt="../_images/07_linear-models_235_0.png" src="../_images/07_linear-models_235_0.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with <strong>positive</strong> coefficients win in this case!</p>
@@ -4799,7 +4835,7 @@ Prediction probability: 0.0000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/07_linear-models_238_0.png" src="../_images/07_linear-models_238_0.png" />
+<img alt="../_images/07_linear-models_241_0.png" src="../_images/07_linear-models_241_0.png" />
 </div>
 </div>
 <p>The review has both positive and negative words but the words with negative coefficients win in this case!</p>
@@ -4901,7 +4937,7 @@ Prediction probability: 0.0000
 
 
 <script type="application/vnd.jupyter.widget-state+json">
-{"state": {"acf4e20e2cae43e793ce8ab69df0f856": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "bc26bedd1b7149f780e0e01155b6eea6": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "7776234698854583b5921f0b8f0fc720": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "w_0", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_acf4e20e2cae43e793ce8ab69df0f856", "max": 2.0, "min": -6.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.5, "style": "IPY_MODEL_bc26bedd1b7149f780e0e01155b6eea6", "tabbable": null, "tooltip": null, "value": -1.4}}, "456ac8f6eefb4bef9c125e40d7d6a1cb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3b6afbb7b7d04aa787a501d5c49df366": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_7776234698854583b5921f0b8f0fc720", "IPY_MODEL_91f308fa55e943c8a16713648a381ab0"], "layout": "IPY_MODEL_456ac8f6eefb4bef9c125e40d7d6a1cb", "tabbable": null, "tooltip": null}}, "d09eccf4a3e2475f89a7966be6197ce6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "91f308fa55e943c8a16713648a381ab0": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_d09eccf4a3e2475f89a7966be6197ce6", "msg_id": "", "outputs": [{"output_type": "stream", "name": "stdout", "text": "[-1.4, 1.93, 1.43]\nWeighted sum of the input features = 1.960, y_hat = pos\n"}, {"output_type": "error", "ename": "ExecutableNotFound", "evalue": "failed to execute PosixPath('dot'), make sure the Graphviz executables are on your systems' PATH", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:79\u001b[0m, in \u001b[0;36mrun_check\u001b[0;34m(cmd, input_lines, encoding, quiet, **kwargs)\u001b[0m\n\u001b[1;32m     78\u001b[0m         kwargs[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mstdout\u001b[39m\u001b[38;5;124m'\u001b[39m] \u001b[38;5;241m=\u001b[39m kwargs[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mstderr\u001b[39m\u001b[38;5;124m'\u001b[39m] \u001b[38;5;241m=\u001b[39m subprocess\u001b[38;5;241m.\u001b[39mPIPE\n\u001b[0;32m---> 79\u001b[0m     proc \u001b[38;5;241m=\u001b[39m \u001b[43m_run_input_lines\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43minput_lines\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mkwargs\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     80\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:99\u001b[0m, in \u001b[0;36m_run_input_lines\u001b[0;34m(cmd, input_lines, kwargs)\u001b[0m\n\u001b[1;32m     98\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_run_input_lines\u001b[39m(cmd, input_lines, \u001b[38;5;241m*\u001b[39m, kwargs):\n\u001b[0;32m---> 99\u001b[0m     popen \u001b[38;5;241m=\u001b[39m \u001b[43msubprocess\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mPopen\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mstdin\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43msubprocess\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mPIPE\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    101\u001b[0m     stdin_write \u001b[38;5;241m=\u001b[39m popen\u001b[38;5;241m.\u001b[39mstdin\u001b[38;5;241m.\u001b[39mwrite\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/subprocess.py:969\u001b[0m, in \u001b[0;36mPopen.__init__\u001b[0;34m(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask, pipesize)\u001b[0m\n\u001b[1;32m    966\u001b[0m             \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mstderr \u001b[38;5;241m=\u001b[39m io\u001b[38;5;241m.\u001b[39mTextIOWrapper(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mstderr,\n\u001b[1;32m    967\u001b[0m                     encoding\u001b[38;5;241m=\u001b[39mencoding, errors\u001b[38;5;241m=\u001b[39merrors)\n\u001b[0;32m--> 969\u001b[0m     \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_execute_child\u001b[49m\u001b[43m(\u001b[49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mexecutable\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mpreexec_fn\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mclose_fds\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    970\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mpass_fds\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcwd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43menv\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    971\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mstartupinfo\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcreationflags\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mshell\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    972\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mp2cread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mp2cwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    973\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mc2pread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mc2pwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    974\u001b[0m \u001b[43m                        \u001b[49m\u001b[43merrread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43merrwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    975\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mrestore_signals\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    976\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mgid\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mgids\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43muid\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mumask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    977\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mstart_new_session\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    978\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m:\n\u001b[1;32m    979\u001b[0m     \u001b[38;5;66;03m# Cleanup if the child failed starting.\u001b[39;00m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/subprocess.py:1845\u001b[0m, in \u001b[0;36mPopen._execute_child\u001b[0;34m(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)\u001b[0m\n\u001b[1;32m   1844\u001b[0m         err_msg \u001b[38;5;241m=\u001b[39m os\u001b[38;5;241m.\u001b[39mstrerror(errno_num)\n\u001b[0;32m-> 1845\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m child_exception_type(errno_num, err_msg, err_filename)\n\u001b[1;32m   1846\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m child_exception_type(err_msg)\n", "\u001b[0;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: PosixPath('dot')", "\nThe above exception was the direct cause of the following exception:\n", "\u001b[0;31mExecutableNotFound\u001b[0m                        Traceback (most recent call last)", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/formatters.py:973\u001b[0m, in \u001b[0;36mMimeBundleFormatter.__call__\u001b[0;34m(self, obj, include, exclude)\u001b[0m\n\u001b[1;32m    970\u001b[0m     method \u001b[38;5;241m=\u001b[39m get_real_method(obj, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mprint_method)\n\u001b[1;32m    972\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m method \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[0;32m--> 973\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mmethod\u001b[49m\u001b[43m(\u001b[49m\u001b[43minclude\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43minclude\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mexclude\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mexclude\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    974\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m    975\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98\u001b[0m, in \u001b[0;36mJupyterIntegration._repr_mimebundle_\u001b[0;34m(self, include, exclude, **_)\u001b[0m\n\u001b[1;32m     96\u001b[0m include \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(include) \u001b[38;5;28;01mif\u001b[39;00m include \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m {\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jupyter_mimetype}\n\u001b[1;32m     97\u001b[0m include \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(exclude \u001b[38;5;129;01mor\u001b[39;00m [])\n\u001b[0;32m---> 98\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m {mimetype: \u001b[38;5;28mgetattr\u001b[39m(\u001b[38;5;28mself\u001b[39m, method_name)()\n\u001b[1;32m     99\u001b[0m         \u001b[38;5;28;01mfor\u001b[39;00m mimetype, method_name \u001b[38;5;129;01min\u001b[39;00m MIME_TYPES\u001b[38;5;241m.\u001b[39mitems()\n\u001b[1;32m    100\u001b[0m         \u001b[38;5;28;01mif\u001b[39;00m mimetype \u001b[38;5;129;01min\u001b[39;00m include}\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98\u001b[0m, in \u001b[0;36m<dictcomp>\u001b[0;34m(.0)\u001b[0m\n\u001b[1;32m     96\u001b[0m include \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(include) \u001b[38;5;28;01mif\u001b[39;00m include \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m {\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jupyter_mimetype}\n\u001b[1;32m     97\u001b[0m include \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(exclude \u001b[38;5;129;01mor\u001b[39;00m [])\n\u001b[0;32m---> 98\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m {mimetype: \u001b[38;5;28;43mgetattr\u001b[39;49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmethod_name\u001b[49m\u001b[43m)\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     99\u001b[0m         \u001b[38;5;28;01mfor\u001b[39;00m mimetype, method_name \u001b[38;5;129;01min\u001b[39;00m MIME_TYPES\u001b[38;5;241m.\u001b[39mitems()\n\u001b[1;32m    100\u001b[0m         \u001b[38;5;28;01mif\u001b[39;00m mimetype \u001b[38;5;129;01min\u001b[39;00m include}\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:112\u001b[0m, in \u001b[0;36mJupyterIntegration._repr_image_svg_xml\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    110\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_repr_image_svg_xml\u001b[39m(\u001b[38;5;28mself\u001b[39m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m \u001b[38;5;28mstr\u001b[39m:\n\u001b[1;32m    111\u001b[0m     \u001b[38;5;124;03m\"\"\"Return the rendered graph as SVG string.\"\"\"\u001b[39;00m\n\u001b[0;32m--> 112\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mpipe\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43msvg\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mSVG_ENCODING\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:104\u001b[0m, in \u001b[0;36mPipe.pipe\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m     55\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mpipe\u001b[39m(\u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m     56\u001b[0m          \u001b[38;5;28mformat\u001b[39m: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m     57\u001b[0m          renderer: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m     61\u001b[0m          engine: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m     62\u001b[0m          encoding: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m typing\u001b[38;5;241m.\u001b[39mUnion[\u001b[38;5;28mbytes\u001b[39m, \u001b[38;5;28mstr\u001b[39m]:\n\u001b[1;32m     63\u001b[0m     \u001b[38;5;124;03m\"\"\"Return the source piped through the Graphviz layout command.\u001b[39;00m\n\u001b[1;32m     64\u001b[0m \n\u001b[1;32m     65\u001b[0m \u001b[38;5;124;03m    Args:\u001b[39;00m\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    102\u001b[0m \u001b[38;5;124;03m        '<?xml version='\u001b[39;00m\n\u001b[1;32m    103\u001b[0m \u001b[38;5;124;03m    \"\"\"\u001b[39;00m\n\u001b[0;32m--> 104\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_legacy\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[1;32m    105\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mrenderer\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mrenderer\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    106\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mformatter\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mformatter\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    107\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mneato_no_op\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mneato_no_op\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    108\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    109\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mengine\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mengine\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    110\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/_tools.py:171\u001b[0m, in \u001b[0;36mdeprecate_positional_args.<locals>.decorator.<locals>.wrapper\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    162\u001b[0m     wanted \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m'\u001b[39m\u001b[38;5;124m, \u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;241m.\u001b[39mjoin(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mname\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m=\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mvalue\u001b[38;5;132;01m!r}\u001b[39;00m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    163\u001b[0m                        \u001b[38;5;28;01mfor\u001b[39;00m name, value \u001b[38;5;129;01min\u001b[39;00m deprecated\u001b[38;5;241m.\u001b[39mitems())\n\u001b[1;32m    164\u001b[0m     warnings\u001b[38;5;241m.\u001b[39mwarn(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mThe signature of \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mfunc\u001b[38;5;241m.\u001b[39m\u001b[38;5;18m__name__\u001b[39m\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m will be reduced\u001b[39m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    165\u001b[0m                   \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m to \u001b[39m\u001b[38;5;132;01m{\u001b[39;00msupported_number\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m positional args\u001b[39m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    166\u001b[0m                   \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m \u001b[39m\u001b[38;5;132;01m{\u001b[39;00m\u001b[38;5;28mlist\u001b[39m(supported)\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m: pass \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mwanted\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    167\u001b[0m                   \u001b[38;5;124m'\u001b[39m\u001b[38;5;124m as keyword arg(s)\u001b[39m\u001b[38;5;124m'\u001b[39m,\n\u001b[1;32m    168\u001b[0m                   stacklevel\u001b[38;5;241m=\u001b[39mstacklevel,\n\u001b[1;32m    169\u001b[0m                   category\u001b[38;5;241m=\u001b[39mcategory)\n\u001b[0;32m--> 171\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mfunc\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:121\u001b[0m, in \u001b[0;36mPipe._pipe_legacy\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m    112\u001b[0m \u001b[38;5;129m@_tools\u001b[39m\u001b[38;5;241m.\u001b[39mdeprecate_positional_args(supported_number\u001b[38;5;241m=\u001b[39m\u001b[38;5;241m2\u001b[39m)\n\u001b[1;32m    113\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_pipe_legacy\u001b[39m(\u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m    114\u001b[0m                  \u001b[38;5;28mformat\u001b[39m: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    119\u001b[0m                  engine: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m    120\u001b[0m                  encoding: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m typing\u001b[38;5;241m.\u001b[39mUnion[\u001b[38;5;28mbytes\u001b[39m, \u001b[38;5;28mstr\u001b[39m]:\n\u001b[0;32m--> 121\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_future\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[1;32m    122\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mrenderer\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mrenderer\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    123\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mformatter\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mformatter\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    124\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mneato_no_op\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mneato_no_op\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    125\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    126\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mengine\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mengine\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    127\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:149\u001b[0m, in \u001b[0;36mPipe._pipe_future\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m    146\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m encoding \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m    147\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m codecs\u001b[38;5;241m.\u001b[39mlookup(encoding) \u001b[38;5;129;01mis\u001b[39;00m codecs\u001b[38;5;241m.\u001b[39mlookup(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mencoding):\n\u001b[1;32m    148\u001b[0m         \u001b[38;5;66;03m# common case: both stdin and stdout need the same encoding\u001b[39;00m\n\u001b[0;32m--> 149\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_lines_string\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    150\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m    151\u001b[0m         raw \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_pipe_lines(\u001b[38;5;241m*\u001b[39margs, input_encoding\u001b[38;5;241m=\u001b[39m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mencoding, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/piping.py:212\u001b[0m, in \u001b[0;36mpipe_lines_string\u001b[0;34m(engine, format, input_lines, encoding, renderer, formatter, neato_no_op, quiet)\u001b[0m\n\u001b[1;32m    206\u001b[0m cmd \u001b[38;5;241m=\u001b[39m dot_command\u001b[38;5;241m.\u001b[39mcommand(engine, \u001b[38;5;28mformat\u001b[39m,\n\u001b[1;32m    207\u001b[0m                           renderer\u001b[38;5;241m=\u001b[39mrenderer,\n\u001b[1;32m    208\u001b[0m                           formatter\u001b[38;5;241m=\u001b[39mformatter,\n\u001b[1;32m    209\u001b[0m                           neato_no_op\u001b[38;5;241m=\u001b[39mneato_no_op)\n\u001b[1;32m    210\u001b[0m kwargs \u001b[38;5;241m=\u001b[39m {\u001b[38;5;124m'\u001b[39m\u001b[38;5;124minput_lines\u001b[39m\u001b[38;5;124m'\u001b[39m: input_lines, \u001b[38;5;124m'\u001b[39m\u001b[38;5;124mencoding\u001b[39m\u001b[38;5;124m'\u001b[39m: encoding}\n\u001b[0;32m--> 212\u001b[0m proc \u001b[38;5;241m=\u001b[39m \u001b[43mexecute\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mrun_check\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcapture_output\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43;01mTrue\u001b[39;49;00m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    213\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m proc\u001b[38;5;241m.\u001b[39mstdout\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:84\u001b[0m, in \u001b[0;36mrun_check\u001b[0;34m(cmd, input_lines, encoding, quiet, **kwargs)\u001b[0m\n\u001b[1;32m     82\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mOSError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m     83\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m e\u001b[38;5;241m.\u001b[39merrno \u001b[38;5;241m==\u001b[39m errno\u001b[38;5;241m.\u001b[39mENOENT:\n\u001b[0;32m---> 84\u001b[0m         \u001b[38;5;28;01mraise\u001b[39;00m ExecutableNotFound(cmd) \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01me\u001b[39;00m\n\u001b[1;32m     85\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m\n\u001b[1;32m     87\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m quiet \u001b[38;5;129;01mand\u001b[39;00m proc\u001b[38;5;241m.\u001b[39mstderr:\n", "\u001b[0;31mExecutableNotFound\u001b[0m: failed to execute PosixPath('dot'), make sure the Graphviz executables are on your systems' PATH"]}, {"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<graphviz.graphs.Digraph at 0x14aaaf8b0>"}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}
+{"state": {"15f3925d3fa84263a681257ccfaa2d84": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "4e9fdebeeff442f08f3274c1cf161a04": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "1c15ac0a27164f39a32696984f64c355": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "w_0", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_15f3925d3fa84263a681257ccfaa2d84", "max": 2.0, "min": -6.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.5, "style": "IPY_MODEL_4e9fdebeeff442f08f3274c1cf161a04", "tabbable": null, "tooltip": null, "value": -1.4}}, "637b025334634338b9fccbda6bc4650a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8948f4594fc54dab908676495ba9707d": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_1c15ac0a27164f39a32696984f64c355", "IPY_MODEL_6a37f404481a4d25815940071acbf0ed"], "layout": "IPY_MODEL_637b025334634338b9fccbda6bc4650a", "tabbable": null, "tooltip": null}}, "d4e48448d2ac4ff7bbf2fcefd0ee9138": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6a37f404481a4d25815940071acbf0ed": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_d4e48448d2ac4ff7bbf2fcefd0ee9138", "msg_id": "", "outputs": [{"output_type": "stream", "name": "stdout", "text": "[-1.4, 1.93, 1.43]\nWeighted sum of the input features = 1.960, y_hat = pos\n"}, {"output_type": "error", "ename": "ExecutableNotFound", "evalue": "failed to execute PosixPath('dot'), make sure the Graphviz executables are on your systems' PATH", "traceback": ["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:79\u001b[0m, in \u001b[0;36mrun_check\u001b[0;34m(cmd, input_lines, encoding, quiet, **kwargs)\u001b[0m\n\u001b[1;32m     78\u001b[0m         kwargs[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mstdout\u001b[39m\u001b[38;5;124m'\u001b[39m] \u001b[38;5;241m=\u001b[39m kwargs[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mstderr\u001b[39m\u001b[38;5;124m'\u001b[39m] \u001b[38;5;241m=\u001b[39m subprocess\u001b[38;5;241m.\u001b[39mPIPE\n\u001b[0;32m---> 79\u001b[0m     proc \u001b[38;5;241m=\u001b[39m \u001b[43m_run_input_lines\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43minput_lines\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mkwargs\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     80\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:99\u001b[0m, in \u001b[0;36m_run_input_lines\u001b[0;34m(cmd, input_lines, kwargs)\u001b[0m\n\u001b[1;32m     98\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_run_input_lines\u001b[39m(cmd, input_lines, \u001b[38;5;241m*\u001b[39m, kwargs):\n\u001b[0;32m---> 99\u001b[0m     popen \u001b[38;5;241m=\u001b[39m \u001b[43msubprocess\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mPopen\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mstdin\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43msubprocess\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mPIPE\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    101\u001b[0m     stdin_write \u001b[38;5;241m=\u001b[39m popen\u001b[38;5;241m.\u001b[39mstdin\u001b[38;5;241m.\u001b[39mwrite\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/subprocess.py:969\u001b[0m, in \u001b[0;36mPopen.__init__\u001b[0;34m(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask, pipesize)\u001b[0m\n\u001b[1;32m    966\u001b[0m             \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mstderr \u001b[38;5;241m=\u001b[39m io\u001b[38;5;241m.\u001b[39mTextIOWrapper(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mstderr,\n\u001b[1;32m    967\u001b[0m                     encoding\u001b[38;5;241m=\u001b[39mencoding, errors\u001b[38;5;241m=\u001b[39merrors)\n\u001b[0;32m--> 969\u001b[0m     \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_execute_child\u001b[49m\u001b[43m(\u001b[49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mexecutable\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mpreexec_fn\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mclose_fds\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    970\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mpass_fds\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcwd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43menv\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    971\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mstartupinfo\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcreationflags\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mshell\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    972\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mp2cread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mp2cwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    973\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mc2pread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mc2pwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    974\u001b[0m \u001b[43m                        \u001b[49m\u001b[43merrread\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43merrwrite\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    975\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mrestore_signals\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    976\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mgid\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mgids\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43muid\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mumask\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    977\u001b[0m \u001b[43m                        \u001b[49m\u001b[43mstart_new_session\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    978\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m:\n\u001b[1;32m    979\u001b[0m     \u001b[38;5;66;03m# Cleanup if the child failed starting.\u001b[39;00m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/subprocess.py:1845\u001b[0m, in \u001b[0;36mPopen._execute_child\u001b[0;34m(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)\u001b[0m\n\u001b[1;32m   1844\u001b[0m         err_msg \u001b[38;5;241m=\u001b[39m os\u001b[38;5;241m.\u001b[39mstrerror(errno_num)\n\u001b[0;32m-> 1845\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m child_exception_type(errno_num, err_msg, err_filename)\n\u001b[1;32m   1846\u001b[0m \u001b[38;5;28;01mraise\u001b[39;00m child_exception_type(err_msg)\n", "\u001b[0;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: PosixPath('dot')", "\nThe above exception was the direct cause of the following exception:\n", "\u001b[0;31mExecutableNotFound\u001b[0m                        Traceback (most recent call last)", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/IPython/core/formatters.py:973\u001b[0m, in \u001b[0;36mMimeBundleFormatter.__call__\u001b[0;34m(self, obj, include, exclude)\u001b[0m\n\u001b[1;32m    970\u001b[0m     method \u001b[38;5;241m=\u001b[39m get_real_method(obj, \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mprint_method)\n\u001b[1;32m    972\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m method \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[0;32m--> 973\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mmethod\u001b[49m\u001b[43m(\u001b[49m\u001b[43minclude\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43minclude\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mexclude\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mexclude\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    974\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m\n\u001b[1;32m    975\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98\u001b[0m, in \u001b[0;36mJupyterIntegration._repr_mimebundle_\u001b[0;34m(self, include, exclude, **_)\u001b[0m\n\u001b[1;32m     96\u001b[0m include \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(include) \u001b[38;5;28;01mif\u001b[39;00m include \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m {\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jupyter_mimetype}\n\u001b[1;32m     97\u001b[0m include \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(exclude \u001b[38;5;129;01mor\u001b[39;00m [])\n\u001b[0;32m---> 98\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m {mimetype: \u001b[38;5;28mgetattr\u001b[39m(\u001b[38;5;28mself\u001b[39m, method_name)()\n\u001b[1;32m     99\u001b[0m         \u001b[38;5;28;01mfor\u001b[39;00m mimetype, method_name \u001b[38;5;129;01min\u001b[39;00m MIME_TYPES\u001b[38;5;241m.\u001b[39mitems()\n\u001b[1;32m    100\u001b[0m         \u001b[38;5;28;01mif\u001b[39;00m mimetype \u001b[38;5;129;01min\u001b[39;00m include}\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:98\u001b[0m, in \u001b[0;36m<dictcomp>\u001b[0;34m(.0)\u001b[0m\n\u001b[1;32m     96\u001b[0m include \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(include) \u001b[38;5;28;01mif\u001b[39;00m include \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m \u001b[38;5;28;01melse\u001b[39;00m {\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_jupyter_mimetype}\n\u001b[1;32m     97\u001b[0m include \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m=\u001b[39m \u001b[38;5;28mset\u001b[39m(exclude \u001b[38;5;129;01mor\u001b[39;00m [])\n\u001b[0;32m---> 98\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m {mimetype: \u001b[38;5;28;43mgetattr\u001b[39;49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmethod_name\u001b[49m\u001b[43m)\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m     99\u001b[0m         \u001b[38;5;28;01mfor\u001b[39;00m mimetype, method_name \u001b[38;5;129;01min\u001b[39;00m MIME_TYPES\u001b[38;5;241m.\u001b[39mitems()\n\u001b[1;32m    100\u001b[0m         \u001b[38;5;28;01mif\u001b[39;00m mimetype \u001b[38;5;129;01min\u001b[39;00m include}\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/jupyter_integration.py:112\u001b[0m, in \u001b[0;36mJupyterIntegration._repr_image_svg_xml\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    110\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_repr_image_svg_xml\u001b[39m(\u001b[38;5;28mself\u001b[39m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m \u001b[38;5;28mstr\u001b[39m:\n\u001b[1;32m    111\u001b[0m     \u001b[38;5;124;03m\"\"\"Return the rendered graph as SVG string.\"\"\"\u001b[39;00m\n\u001b[0;32m--> 112\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mpipe\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43msvg\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mSVG_ENCODING\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:104\u001b[0m, in \u001b[0;36mPipe.pipe\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m     55\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21mpipe\u001b[39m(\u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m     56\u001b[0m          \u001b[38;5;28mformat\u001b[39m: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m     57\u001b[0m          renderer: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m     61\u001b[0m          engine: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m     62\u001b[0m          encoding: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m typing\u001b[38;5;241m.\u001b[39mUnion[\u001b[38;5;28mbytes\u001b[39m, \u001b[38;5;28mstr\u001b[39m]:\n\u001b[1;32m     63\u001b[0m     \u001b[38;5;124;03m\"\"\"Return the source piped through the Graphviz layout command.\u001b[39;00m\n\u001b[1;32m     64\u001b[0m \n\u001b[1;32m     65\u001b[0m \u001b[38;5;124;03m    Args:\u001b[39;00m\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    102\u001b[0m \u001b[38;5;124;03m        '<?xml version='\u001b[39;00m\n\u001b[1;32m    103\u001b[0m \u001b[38;5;124;03m    \"\"\"\u001b[39;00m\n\u001b[0;32m--> 104\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_legacy\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[1;32m    105\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mrenderer\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mrenderer\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    106\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mformatter\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mformatter\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    107\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mneato_no_op\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mneato_no_op\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    108\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    109\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mengine\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mengine\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    110\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/_tools.py:171\u001b[0m, in \u001b[0;36mdeprecate_positional_args.<locals>.decorator.<locals>.wrapper\u001b[0;34m(*args, **kwargs)\u001b[0m\n\u001b[1;32m    162\u001b[0m     wanted \u001b[38;5;241m=\u001b[39m \u001b[38;5;124m'\u001b[39m\u001b[38;5;124m, \u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;241m.\u001b[39mjoin(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mname\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m=\u001b[39m\u001b[38;5;132;01m{\u001b[39;00mvalue\u001b[38;5;132;01m!r}\u001b[39;00m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    163\u001b[0m                        \u001b[38;5;28;01mfor\u001b[39;00m name, value \u001b[38;5;129;01min\u001b[39;00m deprecated\u001b[38;5;241m.\u001b[39mitems())\n\u001b[1;32m    164\u001b[0m     warnings\u001b[38;5;241m.\u001b[39mwarn(\u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mThe signature of \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mfunc\u001b[38;5;241m.\u001b[39m\u001b[38;5;18m__name__\u001b[39m\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m will be reduced\u001b[39m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    165\u001b[0m                   \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m to \u001b[39m\u001b[38;5;132;01m{\u001b[39;00msupported_number\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m positional args\u001b[39m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    166\u001b[0m                   \u001b[38;5;124mf\u001b[39m\u001b[38;5;124m'\u001b[39m\u001b[38;5;124m \u001b[39m\u001b[38;5;132;01m{\u001b[39;00m\u001b[38;5;28mlist\u001b[39m(supported)\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m: pass \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mwanted\u001b[38;5;132;01m}\u001b[39;00m\u001b[38;5;124m'\u001b[39m\n\u001b[1;32m    167\u001b[0m                   \u001b[38;5;124m'\u001b[39m\u001b[38;5;124m as keyword arg(s)\u001b[39m\u001b[38;5;124m'\u001b[39m,\n\u001b[1;32m    168\u001b[0m                   stacklevel\u001b[38;5;241m=\u001b[39mstacklevel,\n\u001b[1;32m    169\u001b[0m                   category\u001b[38;5;241m=\u001b[39mcategory)\n\u001b[0;32m--> 171\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[43mfunc\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:121\u001b[0m, in \u001b[0;36mPipe._pipe_legacy\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m    112\u001b[0m \u001b[38;5;129m@_tools\u001b[39m\u001b[38;5;241m.\u001b[39mdeprecate_positional_args(supported_number\u001b[38;5;241m=\u001b[39m\u001b[38;5;241m2\u001b[39m)\n\u001b[1;32m    113\u001b[0m \u001b[38;5;28;01mdef\u001b[39;00m \u001b[38;5;21m_pipe_legacy\u001b[39m(\u001b[38;5;28mself\u001b[39m,\n\u001b[1;32m    114\u001b[0m                  \u001b[38;5;28mformat\u001b[39m: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[0;32m   (...)\u001b[0m\n\u001b[1;32m    119\u001b[0m                  engine: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m,\n\u001b[1;32m    120\u001b[0m                  encoding: typing\u001b[38;5;241m.\u001b[39mOptional[\u001b[38;5;28mstr\u001b[39m] \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;01mNone\u001b[39;00m) \u001b[38;5;241m-\u001b[39m\u001b[38;5;241m>\u001b[39m typing\u001b[38;5;241m.\u001b[39mUnion[\u001b[38;5;28mbytes\u001b[39m, \u001b[38;5;28mstr\u001b[39m]:\n\u001b[0;32m--> 121\u001b[0m     \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_future\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mformat\u001b[39;49m\u001b[43m,\u001b[49m\n\u001b[1;32m    122\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mrenderer\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mrenderer\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    123\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mformatter\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mformatter\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    124\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mneato_no_op\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mneato_no_op\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    125\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    126\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mengine\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mengine\u001b[49m\u001b[43m,\u001b[49m\n\u001b[1;32m    127\u001b[0m \u001b[43m                             \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m)\u001b[49m\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/piping.py:149\u001b[0m, in \u001b[0;36mPipe._pipe_future\u001b[0;34m(self, format, renderer, formatter, neato_no_op, quiet, engine, encoding)\u001b[0m\n\u001b[1;32m    146\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m encoding \u001b[38;5;129;01mis\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[1;32m    147\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m codecs\u001b[38;5;241m.\u001b[39mlookup(encoding) \u001b[38;5;129;01mis\u001b[39;00m codecs\u001b[38;5;241m.\u001b[39mlookup(\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mencoding):\n\u001b[1;32m    148\u001b[0m         \u001b[38;5;66;03m# common case: both stdin and stdout need the same encoding\u001b[39;00m\n\u001b[0;32m--> 149\u001b[0m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43m_pipe_lines_string\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43margs\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mencoding\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mencoding\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    150\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[1;32m    151\u001b[0m         raw \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39m_pipe_lines(\u001b[38;5;241m*\u001b[39margs, input_encoding\u001b[38;5;241m=\u001b[39m\u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mencoding, \u001b[38;5;241m*\u001b[39m\u001b[38;5;241m*\u001b[39mkwargs)\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/piping.py:212\u001b[0m, in \u001b[0;36mpipe_lines_string\u001b[0;34m(engine, format, input_lines, encoding, renderer, formatter, neato_no_op, quiet)\u001b[0m\n\u001b[1;32m    206\u001b[0m cmd \u001b[38;5;241m=\u001b[39m dot_command\u001b[38;5;241m.\u001b[39mcommand(engine, \u001b[38;5;28mformat\u001b[39m,\n\u001b[1;32m    207\u001b[0m                           renderer\u001b[38;5;241m=\u001b[39mrenderer,\n\u001b[1;32m    208\u001b[0m                           formatter\u001b[38;5;241m=\u001b[39mformatter,\n\u001b[1;32m    209\u001b[0m                           neato_no_op\u001b[38;5;241m=\u001b[39mneato_no_op)\n\u001b[1;32m    210\u001b[0m kwargs \u001b[38;5;241m=\u001b[39m {\u001b[38;5;124m'\u001b[39m\u001b[38;5;124minput_lines\u001b[39m\u001b[38;5;124m'\u001b[39m: input_lines, \u001b[38;5;124m'\u001b[39m\u001b[38;5;124mencoding\u001b[39m\u001b[38;5;124m'\u001b[39m: encoding}\n\u001b[0;32m--> 212\u001b[0m proc \u001b[38;5;241m=\u001b[39m \u001b[43mexecute\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mrun_check\u001b[49m\u001b[43m(\u001b[49m\u001b[43mcmd\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mcapture_output\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[38;5;28;43;01mTrue\u001b[39;49;00m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mquiet\u001b[49m\u001b[38;5;241;43m=\u001b[39;49m\u001b[43mquiet\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[38;5;241;43m*\u001b[39;49m\u001b[43mkwargs\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    213\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m proc\u001b[38;5;241m.\u001b[39mstdout\n", "File \u001b[0;32m~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/graphviz/backend/execute.py:84\u001b[0m, in \u001b[0;36mrun_check\u001b[0;34m(cmd, input_lines, encoding, quiet, **kwargs)\u001b[0m\n\u001b[1;32m     82\u001b[0m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mOSError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m     83\u001b[0m     \u001b[38;5;28;01mif\u001b[39;00m e\u001b[38;5;241m.\u001b[39merrno \u001b[38;5;241m==\u001b[39m errno\u001b[38;5;241m.\u001b[39mENOENT:\n\u001b[0;32m---> 84\u001b[0m         \u001b[38;5;28;01mraise\u001b[39;00m ExecutableNotFound(cmd) \u001b[38;5;28;01mfrom\u001b[39;00m \u001b[38;5;21;01me\u001b[39;00m\n\u001b[1;32m     85\u001b[0m     \u001b[38;5;28;01mraise\u001b[39;00m\n\u001b[1;32m     87\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m \u001b[38;5;129;01mnot\u001b[39;00m quiet \u001b[38;5;129;01mand\u001b[39;00m proc\u001b[38;5;241m.\u001b[39mstderr:\n", "\u001b[0;31mExecutableNotFound\u001b[0m: failed to execute PosixPath('dot'), make sure the Graphviz executables are on your systems' PATH"]}, {"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<graphviz.graphs.Digraph at 0x1474dd720>"}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}
 </script>
 
 
@@ -4939,10 +4975,10 @@ Prediction probability: 0.0000
             <p class="prev-next-title">Lecture 6: <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> and Text Features</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <a class='right-next' id="next-link" href="08_hyperparameter-optimization.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attributions</p>
+        <p class="prev-next-title">Lecture 8: Hyperparameter Optimization and Optimization Bias</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
