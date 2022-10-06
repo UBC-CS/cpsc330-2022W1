@@ -36,7 +36,7 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | Syllabus quiz | Sept 19, 11:59pm  | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) | 
 | hw2 | Sept 19, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)| 
 | hw3 | Oct 03, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw4 | TBD  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+| hw4 | Oct 11, 11:59pm  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
 | hw5 | TBD |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
 | **Midterm** | Oct 27, during class time | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) | 
 | hw6 | TBD |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
