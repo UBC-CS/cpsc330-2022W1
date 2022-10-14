@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 10: Regression Evaluation Metrics" href="10_regression-metrics.html" />
     <link rel="prev" title="Lecture 8: Hyperparameter Optimization and Optimization Bias" href="08_hyperparameter-optimization.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -192,6 +192,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensembles.html">
+   Lecture 11: Ensembles
   </a>
  </li>
 </ul>
@@ -1607,8 +1617,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.006250
-score_time     0.000763
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.006998
+score_time     0.000768
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1654,8 +1664,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.310004
-score_time     0.003248
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.312425
+score_time     0.003767
 test_score     0.999176
 train_score    0.999235
 dtype: float64
@@ -2232,8 +2242,8 @@ weighted avg       0.85      0.80      0.78         5
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.434848</td>
-      <td>0.018889</td>
+      <td>0.432824</td>
+      <td>0.021603</td>
       <td>0.999097</td>
       <td>0.999360</td>
       <td>0.694915</td>
@@ -2245,8 +2255,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>1</th>
-      <td>0.437686</td>
-      <td>0.018697</td>
+      <td>0.449702</td>
+      <td>0.018768</td>
       <td>0.999223</td>
       <td>0.999317</td>
       <td>0.739496</td>
@@ -2258,8 +2268,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>2</th>
-      <td>0.445591</td>
-      <td>0.018459</td>
+      <td>0.409828</td>
+      <td>0.019040</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -2271,8 +2281,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>3</th>
-      <td>0.378722</td>
-      <td>0.018275</td>
+      <td>0.424100</td>
+      <td>0.019647</td>
       <td>0.999172</td>
       <td>0.999254</td>
       <td>0.697248</td>
@@ -2284,8 +2294,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>4</th>
-      <td>0.400617</td>
-      <td>0.021934</td>
+      <td>0.444488</td>
+      <td>0.018972</td>
       <td>0.999147</td>
       <td>0.999216</td>
       <td>0.696429</td>
@@ -2501,7 +2511,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "513837af19b94895940f3d2f3a97a774"}
+{"version_major": 2, "version_minor": 0, "model_id": "c1438bf6031844bcadffd96229789564"}
 </script></div>
 </div>
 <p>Let’s view P and R for different thresholds as a dataframe.</p>
@@ -3234,14 +3244,6 @@ weighted avg       1.00      1.00      1.00     59810
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html&quot;</span>
-<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=650&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
     <span class="n">pipe_lr</span><span class="p">,</span>
     <span class="n">X_valid</span><span class="p">,</span>
@@ -3469,10 +3471,10 @@ If ‘balanced’, class weights will be given by n_samples / (n_classes * np.bi
             <p class="prev-next-title">Lecture 8: Hyperparameter Optimization and Optimization Bias</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <a class='right-next' id="next-link" href="10_regression-metrics.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attributions</p>
+        <p class="prev-next-title">Lecture 10: Regression Evaluation Metrics</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
