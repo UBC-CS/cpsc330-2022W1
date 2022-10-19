@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw5/hw5.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw5/hw5.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-5-putting-it-all-together">
+   Homework 5: Putting it all together
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-all-material-till-lecture-13">
+     Associated lectures: All material till lecture 13
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions-a-name-si-a">
+   Submission instructions
+   <a name="si">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-a-name-in-a">
+   Introduction
+   <a name="in">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tips">
+     Tips
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessment">
+     Assessment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-final-note">
+     A final note
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pick-your-problem-and-explain-the-prediction-problem-a-name-1-a">
+   1. Pick your problem and explain the prediction problem
+   <a name="1">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-splitting-a-name-2-a">
+   2. Data splitting
+   <a name="2">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eda-a-name-3-a">
+   3. EDA
+   <a name="3">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-4-feature-engineering-a-name-4-a">
+   (Optional) 4. Feature engineering
+   <a name="4">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing-and-transformations-a-name-5-a">
+   5. Preprocessing and transformations
+   <a name="5">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseline-model-a-name-6-a">
+   6. Baseline model
+   <a name="6">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-models-a-name-7-a">
+   7. Linear models
+   <a name="7">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#different-models-a-name-8-a">
+   8. Different models
+   <a name="8">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-9-feature-selection-a-name-9-a">
+   (Optional) 9. Feature selection
+   <a name="9">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-optimization-a-name-10-a">
+   10. Hyperparameter optimization
+   <a name="10">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpretation-and-feature-importances-a-name-1-a">
+   11. Interpretation and feature importances
+   <a name="1">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results-on-the-test-set-a-name-12-a">
+   12. Results on the test set
+   <a name="12">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-results-a-name-13-a">
+   13. Summary of results
+   <a name="13">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-14-your-takeaway-a-name-15-a">
+   (Optional) 14. Your takeaway
+   <a name="15">
+   </a>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-5-putting-it-all-together">
+   Homework 5: Putting it all together
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-all-material-till-lecture-13">
+     Associated lectures: All material till lecture 13
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of contents
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions-a-name-si-a">
+   Submission instructions
+   <a name="si">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-a-name-in-a">
+   Introduction
+   <a name="in">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tips">
+     Tips
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessment">
+     Assessment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-final-note">
+     A final note
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pick-your-problem-and-explain-the-prediction-problem-a-name-1-a">
+   1. Pick your problem and explain the prediction problem
+   <a name="1">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-splitting-a-name-2-a">
+   2. Data splitting
+   <a name="2">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eda-a-name-3-a">
+   3. EDA
+   <a name="3">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-4-feature-engineering-a-name-4-a">
+   (Optional) 4. Feature engineering
+   <a name="4">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing-and-transformations-a-name-5-a">
+   5. Preprocessing and transformations
+   <a name="5">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#baseline-model-a-name-6-a">
+   6. Baseline model
+   <a name="6">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-models-a-name-7-a">
+   7. Linear models
+   <a name="7">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#different-models-a-name-8-a">
+   8. Different models
+   <a name="8">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-9-feature-selection-a-name-9-a">
+   (Optional) 9. Feature selection
+   <a name="9">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperparameter-optimization-a-name-10-a">
+   10. Hyperparameter optimization
+   <a name="10">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpretation-and-feature-importances-a-name-1-a">
+   11. Interpretation and feature importances
+   <a name="1">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results-on-the-test-set-a-name-12-a">
+   12. Results on the test set
+   <a name="12">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-results-a-name-13-a">
+   13. Summary of results
+   <a name="13">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-14-your-takeaway-a-name-15-a">
+   (Optional) 14. Your takeaway
+   <a name="15">
+   </a>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
+<span class="kn">import</span> <span class="nn">otter</span>
+<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;hw5.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-5-putting-it-all-together">
+<h2>Homework 5: Putting it all together<a class="headerlink" href="#homework-5-putting-it-all-together" title="Permalink to this headline">#</a></h2>
+<section id="associated-lectures-all-material-till-lecture-13">
+<h3>Associated lectures: All material till lecture 13<a class="headerlink" href="#associated-lectures-all-material-till-lecture-13" title="Permalink to this headline">#</a></h3>
+<p><strong>Due date: See the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</strong></p>
+</section>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="#si">Submission instructions</a></p></li>
+<li><p><a class="reference external" href="#1">Understanding the problem</a></p></li>
+<li><p><a class="reference external" href="#2">Data splitting</a></p></li>
+<li><p><a class="reference external" href="#3">EDA</a></p></li>
+<li><p>(Optional) <a class="reference external" href="#4">Feature engineering</a></p></li>
+<li><p><a class="reference external" href="#5">Preprocessing and transformations</a></p></li>
+<li><p><a class="reference external" href="#6">Baseline model</a></p></li>
+<li><p><a class="reference external" href="#7">Linear models</a></p></li>
+<li><p><a class="reference external" href="#8">Different models</a></p></li>
+<li><p>(Optional) <a class="reference external" href="#9">Feature selection</a></p></li>
+<li><p><a class="reference external" href="#10">Hyperparameter optimization</a></p></li>
+<li><p><a class="reference external" href="#11">Interpretation and feature importances</a></p></li>
+<li><p><a class="reference external" href="#12">Results on the test set</a></p></li>
+<li><p><a class="reference external" href="#13">Summary of the results</a></p></li>
+<li><p>(Optional) <a class="reference external" href="#15">Your takeaway from the course</a></p></li>
+</ol>
+</section>
+<section id="submission-instructions-a-name-si-a">
+<h2>Submission instructions <a name="si"></a><a class="headerlink" href="#submission-instructions-a-name-si-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:4}
+<p>You will receive marks for correctly submitting this assignment. To submit this assignment, follow the instructions below:</p>
+<ul class="simple">
+<li><p><strong>You may work on this assignment in a group (group size &lt;= 4) and submit your assignment as a group.</strong></p></li>
+<li><p>Below are some instructions on working as a group.</p>
+<ul>
+<li><p>The maximum group size is 4.</p></li>
+<li><p>You can choose your own group members.</p></li>
+<li><p>Use group work as an opportunity to collaborate and learn new things from each other.</p></li>
+<li><p>Be respectful to each other and make sure you understand all the concepts in the assignment well.</p></li>
+<li><p>It’s your responsibility to make sure that the assignment is submitted by one of the group members before the deadline. <a class="reference external" href="https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members">Here</a> are some instructions on adding group members in Gradescope.</p></li>
+</ul>
+</li>
+<li><p>Be sure to follow the <a class="reference external" href="https://ubc-mds.github.io/resources_pages/general_lab_instructions/">general lab instructions</a>.</p></li>
+<li><p>Upload the .ipynb file to Gradescope.</p></li>
+<li><p><strong>If the .ipynb file is too big or doesn’t render on Gradescope for some reason, also upload a pdf or html in addition to the .ipynb.</strong></p></li>
+<li><p>Make sure that your plots/output are rendered properly in Gradescope.</p></li>
+</ul>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="introduction-a-name-in-a">
+<h2>Introduction <a name="in"></a><a class="headerlink" href="#introduction-a-name-in-a" title="Permalink to this headline">#</a></h2>
+<p>In this homework you will be working on an open-ended mini-project, where you will put all the different things you have learned so far together to solve an interesting problem.</p>
+<p>A few notes and tips when you work on this mini-project:</p>
+<section id="tips">
+<h3>Tips<a class="headerlink" href="#tips" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>This mini-project is open-ended, and while working on it, there might be some situations where you’ll have to use your own judgment and make your own decisions (as you would be doing when you work as a data scientist). Make sure you explain your decisions whenever necessary.</p></li>
+<li><p><strong>Do not include everything you ever tried in your submission</strong> – it’s fine just to have your final code. That said, your code should be reproducible and well-documented. For example, if you chose your hyperparameters based on some hyperparameter optimization experiment, you should leave in the code for that experiment so that someone else could re-run it and obtain the same hyperparameters, rather than mysteriously just setting the hyperparameters to some (carefully chosen) values in your code.</p></li>
+<li><p>If you realize that you are repeating a lot of code try to organize it in functions. Clear presentation of your code, experiments, and results is the key to be successful in this lab. You may use code from lecture notes or previous lab solutions with appropriate attributions.</p></li>
+</ol>
+</section>
+<section id="assessment">
+<h3>Assessment<a class="headerlink" href="#assessment" title="Permalink to this headline">#</a></h3>
+<p>We plan to grade fairly and leniently. We don’t have some secret target score that you need to achieve to get a good grade. <strong>You’ll be assessed on demonstration of mastery of course topics, clear presentation, and the quality of your analysis and results.</strong> For example, if you just have a bunch of code and no text or figures, that’s not good. If you do a bunch of sane things and get a lower accuracy than your friend, don’t sweat it.</p>
+</section>
+<section id="a-final-note">
+<h3>A final note<a class="headerlink" href="#a-final-note" title="Permalink to this headline">#</a></h3>
+<p>Finally, this style of this “project” question is different from other assignments. It’ll be up to you to decide when you’re “done” – in fact, this is one of the hardest parts of real projects. But please don’t spend WAY too much time on this… perhaps “a few hours” (15-20 hours???) is a good guideline for this project . Of course if you’re having fun you’re welcome to spend as much time as you want! But, if so, try not to do it out of perfectionism or getting the best possible grade. Do it because you’re learning and enjoying it. Students from the past cohorts have found such kind of labs useful and fun and I hope you enjoy it as well.</p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+</section>
+<section id="pick-your-problem-and-explain-the-prediction-problem-a-name-1-a">
+<h2>1. Pick your problem and explain the prediction problem <a name="1"></a><a class="headerlink" href="#pick-your-problem-and-explain-the-prediction-problem-a-name-1-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:3}
+<p>In this mini project, you will be working on a classification problem of predicting whether a credit card client will default or not.
+For this problem, you will use <a class="reference external" href="https://www.kaggle.com/uciml/default-of-credit-card-clients-dataset">Default of Credit Card Clients Dataset</a>. In this data set, there are 30,000 examples and 24 features, and the goal is to estimate whether a person will default (fail to pay) their credit card bills; this column is labeled “default.payment.next.month” in the data. The rest of the columns can be used as features. You may take some ideas and compare your results with <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0957417407006719">the associated research paper</a>, which is available through <a class="reference external" href="https://www.library.ubc.ca/">the UBC library</a>.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Spend some time understanding the problem and what each feature means. You can find this information in the documentation on <a class="reference external" href="https://www.kaggle.com/uciml/default-of-credit-card-clients-dataset">the dataset page on Kaggle</a>. Write a few sentences on your initial thoughts on the problem and the dataset.</p></li>
+<li><p>Download the dataset and read it as a pandas dataframe.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="data-splitting-a-name-2-a">
+<h2>2. Data splitting <a name="2"></a><a class="headerlink" href="#data-splitting-a-name-2-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Split the data into train (70%) and test (30%) portions with <code class="docutils literal notranslate"><span class="pre">random_state=123</span></code>.</p></li>
+</ol>
+<blockquote>
+<div><p>If your computer cannot handle training on 70% training data, make the test split bigger.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="eda-a-name-3-a">
+<h2>3. EDA <a name="3"></a><a class="headerlink" href="#eda-a-name-3-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:10}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Perform exploratory data analysis on the train set.</p></li>
+<li><p>Include at least two summary statistics and two visualizations that you find useful, and accompany each one with a sentence explaining it.</p></li>
+<li><p>Summarize your initial observations about the data.</p></li>
+<li><p>Pick appropriate metric/metrics for assessment.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="optional-4-feature-engineering-a-name-4-a">
+<h2>(Optional) 4. Feature engineering <a name="4"></a><a class="headerlink" href="#optional-4-feature-engineering-a-name-4-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:1}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Carry out feature engineering. In other words, extract new features relevant for the problem and work with your new feature set in the following exercises. You may have to go back and forth between feature engineering and preprocessing.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_4</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="preprocessing-and-transformations-a-name-5-a">
+<h2>5. Preprocessing and transformations <a name="5"></a><a class="headerlink" href="#preprocessing-and-transformations-a-name-5-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:10}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Identify different feature types and the transformations you would apply on each feature type.</p></li>
+<li><p>Define a column transformer, if necessary.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_5</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="baseline-model-a-name-6-a">
+<h2>6. Baseline model <a name="6"></a><a class="headerlink" href="#baseline-model-a-name-6-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Try <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s baseline model and report results.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_6</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="linear-models-a-name-7-a">
+<h2>7. Linear models <a name="7"></a><a class="headerlink" href="#linear-models-a-name-7-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:10}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Try a linear model as a first real attempt.</p></li>
+<li><p>Carry out hyperparameter tuning to explore different values for the complexity hyperparameter.</p></li>
+<li><p>Report cross-validation scores along with standard deviation.</p></li>
+<li><p>Summarize your results.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_7</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="different-models-a-name-8-a">
+<h2>8. Different models <a name="8"></a><a class="headerlink" href="#different-models-a-name-8-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:12}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Try at least 3 other models aside from a linear model. One of these models should be a tree-based ensemble model.</p></li>
+<li><p>Summarize your results in terms of overfitting/underfitting and fit and score times. Can you beat a linear model?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_8</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="optional-9-feature-selection-a-name-9-a">
+<h2>(Optional) 9. Feature selection <a name="9"></a><a class="headerlink" href="#optional-9-feature-selection-a-name-9-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p><strong>Your tasks:</strong></p>
+<p>Make some attempts to select relevant features. You may try <code class="docutils literal notranslate"><span class="pre">RFECV</span></code> or forward selection for this. Do the results improve with feature selection? Summarize your results. If you see improvements in the results, keep feature selection in your pipeline. If not, you may abandon it in the next exercises.</p>
+<div class="alert alert-warning">
+<p>Solution_9</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="hyperparameter-optimization-a-name-10-a">
+<h2>10. Hyperparameter optimization <a name="10"></a><a class="headerlink" href="#hyperparameter-optimization-a-name-10-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:10}
+<p><strong>Your tasks:</strong></p>
+<p>Make some attempts to optimize hyperparameters for the models you’ve tried and summarize your results. In at least one case you should be optimizing multiple hyperparameters for a single model. You may use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s methods for hyperparameter optimization or fancier Bayesian optimization methods.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">GridSearchCV</a></p></li>
+<li><p><a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html">RandomizedSearchCV</a></p></li>
+<li><p><a class="reference external" href="https://github.com/scikit-optimize/scikit-optimize">scikit-optimize</a></p></li>
+</ul>
+<div class="alert alert-warning">
+<p>Solution_10</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="interpretation-and-feature-importances-a-name-1-a">
+<h2>11. Interpretation and feature importances <a name="1"></a><a class="headerlink" href="#interpretation-and-feature-importances-a-name-1-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:10}
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Use the methods we saw in class (e.g., <code class="docutils literal notranslate"><span class="pre">eli5</span></code>, <code class="docutils literal notranslate"><span class="pre">shap</span></code>) (or any other methods of your choice) to examine the most important features of one of the non-linear models.</p></li>
+<li><p>Summarize your observations.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_11</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="results-on-the-test-set-a-name-12-a">
+<h2>12. Results on the test set <a name="12"></a><a class="headerlink" href="#results-on-the-test-set-a-name-12-a" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>rubric={points:10}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Try your best performing model on the test data and report test scores.</p></li>
+<li><p>Do the test scores agree with the validation scores from before? To what extent do you trust your results? Do you think you’ve had issues with optimization bias?</p></li>
+<li><p>Take one or two test predictions and explain these individual predictions (e.g., with SHAP force plots).</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_12</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="summary-of-results-a-name-13-a">
+<h2>13. Summary of results <a name="13"></a><a class="headerlink" href="#summary-of-results-a-name-13-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:12}
+<p>Imagine that you want to present the summary of these results to your boss and co-workers.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a table summarizing important results.</p></li>
+<li><p>Write concluding remarks.</p></li>
+<li><p>Discuss other ideas that you did not try but could potentially improve the performance/interpretability .</p></li>
+<li><p>Report your final test score along with the metric you used at the top of this notebook in the <a class="reference external" href="#si">Submission instructions section</a>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_13</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="optional-14-your-takeaway-a-name-15-a">
+<h2>(Optional) 14. Your takeaway <a name="15"></a><a class="headerlink" href="#optional-14-your-takeaway-a-name-15-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p><strong>Your tasks:</strong></p>
+<p>What is your biggest takeaway from the supervised machine learning material we have learned so far? Please write thoughtful answers.</p>
+<div class="alert alert-warning">
+<p>Solution_14</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<p><strong>PLEASE READ BEFORE YOU SUBMIT:</strong></p>
+<p>When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+<li><p>Make sure that the plots and output are rendered properly in your submitted file. If the .ipynb file is too big and doesn’t render on Gradescope, also upload a pdf or html in addition to the .ipynb so that the TAs can view your submission on Gradescope.</p></li>
+</ol>
+<p>Congratulations on finishing this project. This was a tricky one but you did it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;img/eva-well-done.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/hw5_62_0.png" src="../../_images/hw5_62_0.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
