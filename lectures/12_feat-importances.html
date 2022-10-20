@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 13: Feature engineering and feature selection" href="13_feature-engineering-selection.html" />
     <link rel="prev" title="Lecture 11: Ensembles" href="11_ensembles.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -205,6 +205,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
   </a>
  </li>
 </ul>
@@ -439,8 +444,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-feature-correlations">
-     Simple feature correlations
+    <a class="reference internal nav-link" href="#simplefeature-correlations">
+     SimpleFeature correlations
     </a>
    </li>
   </ul>
@@ -716,8 +721,8 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simple-feature-correlations">
-     Simple feature correlations
+    <a class="reference internal nav-link" href="#simplefeature-correlations">
+     SimpleFeature correlations
     </a>
    </li>
   </ul>
@@ -1343,36 +1348,36 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Foundation&#39;,
- &#39;Street&#39;,
- &#39;MSZoning&#39;,
- &#39;SaleType&#39;,
- &#39;MSSubClass&#39;,
- &#39;Neighborhood&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Alley&#39;,
+ &#39;CentralAir&#39;,
+ &#39;HouseStyle&#39;,
  &#39;LandContour&#39;,
- &#39;BldgType&#39;,
- &#39;RoofStyle&#39;,
+ &#39;Electrical&#39;,
+ &#39;MSZoning&#39;,
  &#39;SaleCondition&#39;,
  &#39;Exterior2nd&#39;,
- &#39;MasVnrType&#39;,
- &#39;Condition2&#39;,
+ &#39;LandSlope&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;MSSubClass&#39;,
  &#39;Condition1&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;SaleType&#39;,
+ &#39;Condition2&#39;,
+ &#39;Neighborhood&#39;,
  &#39;RoofMatl&#39;,
+ &#39;BldgType&#39;,
  &#39;MoSold&#39;,
  &#39;Utilities&#39;,
- &#39;HouseStyle&#39;,
- &#39;LotConfig&#39;,
- &#39;GarageType&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;Heating&#39;,
  &#39;MiscFeature&#39;,
+ &#39;Street&#39;,
  &#39;PavedDrive&#39;,
- &#39;CentralAir&#39;,
- &#39;GarageFinish&#39;,
- &#39;Exterior1st&#39;,
- &#39;LandSlope&#39;,
  &#39;LotShape&#39;,
- &#39;Electrical&#39;,
- &#39;Alley&#39;,
- &#39;Heating&#39;]
+ &#39;Foundation&#39;,
+ &#39;GarageType&#39;]
 </pre></div>
 </div>
 </div>
@@ -1503,16 +1508,16 @@ title="Print to PDF"
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>Electrical_missing</th>
-      <th>Alley_Grvl</th>
-      <th>Alley_Pave</th>
-      <th>Alley_missing</th>
-      <th>Heating_Floor</th>
-      <th>Heating_GasA</th>
-      <th>Heating_GasW</th>
-      <th>Heating_Grav</th>
-      <th>Heating_OthW</th>
-      <th>Heating_Wall</th>
+      <th>Foundation_Slab</th>
+      <th>Foundation_Stone</th>
+      <th>Foundation_Wood</th>
+      <th>GarageType_2Types</th>
+      <th>GarageType_Attchd</th>
+      <th>GarageType_Basment</th>
+      <th>GarageType_BuiltIn</th>
+      <th>GarageType_CarPort</th>
+      <th>GarageType_Detchd</th>
+      <th>GarageType_missing</th>
     </tr>
   </thead>
   <tbody>
@@ -1532,9 +1537,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1556,9 +1561,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1580,9 +1585,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1604,12 +1609,12 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1628,9 +1633,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1676,9 +1681,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1700,7 +1705,7 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1724,9 +1729,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1748,12 +1753,12 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1772,12 +1777,12 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -1832,32 +1837,32 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.021172</td>
-      <td>0.005283</td>
+      <td>0.017497</td>
+      <td>0.005161</td>
       <td>0.834450</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.022378</td>
-      <td>0.005565</td>
+      <td>0.017654</td>
+      <td>0.005069</td>
       <td>0.810031</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.020618</td>
-      <td>0.005146</td>
+      <td>0.018408</td>
+      <td>0.006562</td>
       <td>0.831653</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.018790</td>
-      <td>0.005062</td>
+      <td>0.018091</td>
+      <td>0.006158</td>
       <td>0.843537</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.020058</td>
-      <td>0.005336</td>
+      <td>0.017756</td>
+      <td>0.005217</td>
       <td>0.548802</td>
     </tr>
   </tbody>
@@ -1872,8 +1877,8 @@ title="Print to PDF"
 <li><p>If the model is bad interpretability does not make sense.</p></li>
 </ul>
 </section>
-<section id="simple-feature-correlations">
-<h3>Simple feature correlations<a class="headerlink" href="#simple-feature-correlations" title="Permalink to this headline">#</a></h3>
+<section id="simplefeature-correlations">
+<h3>SimpleFeature correlations<a class="headerlink" href="#simplefeature-correlations" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Let’s look at the correlations between various features with other features and the target in our encoded data (first row/column).</p></li>
 <li><p>In simple terms here is how you can interpret correlations between two variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>:</p>
@@ -2252,7 +2257,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Foundation&#39;, &#39;Street&#39;, &#39;MSZoning&#39;, &#39;SaleType&#39;, &#39;MSSubClass&#39;, &#39;Neighborhood&#39;, &#39;LandContour&#39;, &#39;BldgType&#39;, &#39;RoofStyle&#39;, &#39;SaleCondition&#39;, &#39;Exterior2nd&#39;, &#39;MasVnrType&#39;, &#39;Condition2&#39;, &#39;Condition1&#39;, &#39;RoofMatl&#39;, &#39;MoSold&#39;, &#39;Utilities&#39;, &#39;HouseStyle&#39;, &#39;LotConfig&#39;, &#39;GarageType&#39;, &#39;MiscFeature&#39;, &#39;PavedDrive&#39;, &#39;CentralAir&#39;, &#39;GarageFinish&#39;, &#39;Exterior1st&#39;, &#39;LandSlope&#39;, &#39;LotShape&#39;, &#39;Electrical&#39;, &#39;Alley&#39;, &#39;Heating&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;RoofStyle&#39;, &#39;LotConfig&#39;, &#39;Alley&#39;, &#39;CentralAir&#39;, &#39;HouseStyle&#39;, &#39;LandContour&#39;, &#39;Electrical&#39;, &#39;MSZoning&#39;, &#39;SaleCondition&#39;, &#39;Exterior2nd&#39;, &#39;LandSlope&#39;, &#39;Exterior1st&#39;, &#39;MSSubClass&#39;, &#39;Condition1&#39;, &#39;GarageFinish&#39;, &#39;SaleType&#39;, &#39;Condition2&#39;, &#39;Neighborhood&#39;, &#39;RoofMatl&#39;, &#39;BldgType&#39;, &#39;MoSold&#39;, &#39;Utilities&#39;, &#39;MasVnrType&#39;, &#39;Heating&#39;, &#39;MiscFeature&#39;, &#39;Street&#39;, &#39;PavedDrive&#39;, &#39;LotShape&#39;, &#39;Foundation&#39;, &#39;GarageType&#39;]
 </pre></div>
 </div>
 </div>
@@ -2591,7 +2596,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094063
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094048
 </pre></div>
 </div>
 </div>
@@ -3404,27 +3409,27 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.006 (+/- 0.001)</td>
       <td>0.004 (+/- 0.000)</td>
-      <td>0.629 (+/- 0.005)</td>
-      <td>0.631 (+/- 0.001)</td>
+      <td>0.632 (+/- 0.005)</td>
+      <td>0.630 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.286 (+/- 0.120)</td>
-      <td>0.013 (+/- 0.002)</td>
+      <td>1.055 (+/- 0.068)</td>
+      <td>0.013 (+/- 0.001)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.036 (+/- 0.041)</td>
-      <td>0.079 (+/- 0.002)</td>
+      <td>1.028 (+/- 0.008)</td>
+      <td>0.078 (+/- 0.001)</td>
       <td>0.848 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.313 (+/- 0.270)</td>
-      <td>0.022 (+/- 0.002)</td>
+      <td>0.118 (+/- 0.003)</td>
+      <td>0.020 (+/- 0.002)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
@@ -3852,7 +3857,7 @@ Name: income, dtype: float64
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x121ff75e0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x127564df0&gt;
 </pre></div>
 </div>
 </div>
@@ -5895,10 +5900,10 @@ n===t._wrapperState.initialValue&&(e.value=n)}});t.exports=l},function(t,e,n){"u
             <p class="prev-next-title">Lecture 11: Ensembles</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <a class='right-next' id="next-link" href="13_feature-engineering-selection.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attributions</p>
+        <p class="prev-next-title">Lecture 13: Feature engineering and feature selection</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

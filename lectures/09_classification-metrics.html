@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -202,6 +200,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="11_ensembles.html">
    Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
   </a>
  </li>
 </ul>
@@ -1617,8 +1625,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.006998
-score_time     0.000768
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.007269
+score_time     0.000888
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1664,8 +1672,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.312425
-score_time     0.003767
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.313271
+score_time     0.003319
 test_score     0.999176
 train_score    0.999235
 dtype: float64
@@ -2242,8 +2250,8 @@ weighted avg       0.85      0.80      0.78         5
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.432824</td>
-      <td>0.021603</td>
+      <td>0.417908</td>
+      <td>0.020347</td>
       <td>0.999097</td>
       <td>0.999360</td>
       <td>0.694915</td>
@@ -2255,8 +2263,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>1</th>
-      <td>0.449702</td>
-      <td>0.018768</td>
+      <td>0.433109</td>
+      <td>0.018553</td>
       <td>0.999223</td>
       <td>0.999317</td>
       <td>0.739496</td>
@@ -2268,8 +2276,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>2</th>
-      <td>0.409828</td>
-      <td>0.019040</td>
+      <td>0.405317</td>
+      <td>0.019792</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -2281,8 +2289,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>3</th>
-      <td>0.424100</td>
-      <td>0.019647</td>
+      <td>0.383288</td>
+      <td>0.018641</td>
       <td>0.999172</td>
       <td>0.999254</td>
       <td>0.697248</td>
@@ -2294,8 +2302,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>4</th>
-      <td>0.444488</td>
-      <td>0.018972</td>
+      <td>0.380166</td>
+      <td>0.019993</td>
       <td>0.999147</td>
       <td>0.999216</td>
       <td>0.696429</td>
@@ -2511,7 +2519,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c1438bf6031844bcadffd96229789564"}
+{"version_major": 2, "version_minor": 0, "model_id": "b398b09932ab4d309751f0401f0dbbad"}
 </script></div>
 </div>
 <p>Let’s view P and R for different thresholds as a dataframe.</p>
@@ -3242,6 +3250,14 @@ weighted avg       1.00      1.00      1.00     59810
 <blockquote>
 <div><p>Weights associated with classes in the form {class_label: weight}. If not given, all classes are supposed to have weight one.</p>
 </div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html&quot;</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;iframe src=</span><span class="si">%s</span><span class="s2"> width=1000 height=650&gt;&lt;/iframe&gt;&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span>
