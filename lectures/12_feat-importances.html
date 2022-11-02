@@ -214,6 +214,11 @@ const thebe_selector_output = ".output, .cell_output"
    Lecture 13: Feature engineering and feature selection
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_K-Means.html">
+   Lecture 15: K-Means Clustering
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1350,36 +1355,36 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MSZoning&#39;,
- &#39;Condition1&#39;,
- &#39;Utilities&#39;,
- &#39;Heating&#39;,
- &#39;Exterior1st&#39;,
- &#39;LotConfig&#39;,
- &#39;MasVnrType&#39;,
- &#39;Foundation&#39;,
- &#39;MoSold&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Foundation&#39;,
  &#39;SaleCondition&#39;,
- &#39;BldgType&#39;,
- &#39;LotShape&#39;,
- &#39;MiscFeature&#39;,
+ &#39;GarageFinish&#39;,
  &#39;LandContour&#39;,
- &#39;PavedDrive&#39;,
- &#39;Street&#39;,
- &#39;Condition2&#39;,
- &#39;GarageType&#39;,
- &#39;Exterior2nd&#39;,
+ &#39;RoofStyle&#39;,
  &#39;HouseStyle&#39;,
  &#39;MSSubClass&#39;,
+ &#39;Street&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;LotConfig&#39;,
+ &#39;Utilities&#39;,
  &#39;Neighborhood&#39;,
- &#39;GarageFinish&#39;,
- &#39;RoofMatl&#39;,
- &#39;Alley&#39;,
- &#39;Electrical&#39;,
- &#39;LandSlope&#39;,
- &#39;RoofStyle&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;LotShape&#39;,
+ &#39;MiscFeature&#39;,
+ &#39;BldgType&#39;,
+ &#39;Heating&#39;,
+ &#39;MSZoning&#39;,
+ &#39;CentralAir&#39;,
  &#39;SaleType&#39;,
- &#39;CentralAir&#39;]
+ &#39;Exterior2nd&#39;,
+ &#39;MoSold&#39;,
+ &#39;Alley&#39;,
+ &#39;Condition1&#39;,
+ &#39;LandSlope&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Condition2&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;GarageType&#39;,
+ &#39;Electrical&#39;]
 </pre></div>
 </div>
 </div>
@@ -1510,16 +1515,16 @@ title="Print to PDF"
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>SaleType_CWD</th>
-      <th>SaleType_Con</th>
-      <th>SaleType_ConLD</th>
-      <th>SaleType_ConLI</th>
-      <th>SaleType_ConLw</th>
-      <th>SaleType_New</th>
-      <th>SaleType_Oth</th>
-      <th>SaleType_WD</th>
-      <th>CentralAir_N</th>
-      <th>CentralAir_Y</th>
+      <th>GarageType_BuiltIn</th>
+      <th>GarageType_CarPort</th>
+      <th>GarageType_Detchd</th>
+      <th>GarageType_missing</th>
+      <th>Electrical_FuseA</th>
+      <th>Electrical_FuseF</th>
+      <th>Electrical_FuseP</th>
+      <th>Electrical_Mix</th>
+      <th>Electrical_SBrkr</th>
+      <th>Electrical_missing</th>
     </tr>
   </thead>
   <tbody>
@@ -1543,9 +1548,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>767</th>
@@ -1567,9 +1572,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>429</th>
@@ -1591,9 +1596,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1139</th>
@@ -1610,6 +1615,7 @@ title="Print to PDF"
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1617,7 +1623,6 @@ title="Print to PDF"
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>558</th>
@@ -1639,9 +1644,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1687,9 +1692,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1122</th>
@@ -1708,12 +1713,12 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1346</th>
@@ -1735,9 +1740,9 @@ title="Print to PDF"
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1406</th>
@@ -1754,6 +1759,7 @@ title="Print to PDF"
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1761,7 +1767,6 @@ title="Print to PDF"
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
     </tr>
     <tr>
       <th>1389</th>
@@ -1778,6 +1783,7 @@ title="Print to PDF"
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1785,7 +1791,6 @@ title="Print to PDF"
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -1839,32 +1844,32 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.021194</td>
-      <td>0.005328</td>
+      <td>0.019652</td>
+      <td>0.005337</td>
       <td>0.834450</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.027572</td>
-      <td>0.005867</td>
+      <td>0.018645</td>
+      <td>0.005298</td>
       <td>0.810031</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.017448</td>
-      <td>0.005140</td>
+      <td>0.025227</td>
+      <td>0.005292</td>
       <td>0.831653</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.018390</td>
-      <td>0.007739</td>
+      <td>0.021973</td>
+      <td>0.005986</td>
       <td>0.843537</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.018684</td>
-      <td>0.005158</td>
+      <td>0.022323</td>
+      <td>0.005151</td>
       <td>0.548802</td>
     </tr>
   </tbody>
@@ -2259,7 +2264,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MSZoning&#39;, &#39;Condition1&#39;, &#39;Utilities&#39;, &#39;Heating&#39;, &#39;Exterior1st&#39;, &#39;LotConfig&#39;, &#39;MasVnrType&#39;, &#39;Foundation&#39;, &#39;MoSold&#39;, &#39;SaleCondition&#39;, &#39;BldgType&#39;, &#39;LotShape&#39;, &#39;MiscFeature&#39;, &#39;LandContour&#39;, &#39;PavedDrive&#39;, &#39;Street&#39;, &#39;Condition2&#39;, &#39;GarageType&#39;, &#39;Exterior2nd&#39;, &#39;HouseStyle&#39;, &#39;MSSubClass&#39;, &#39;Neighborhood&#39;, &#39;GarageFinish&#39;, &#39;RoofMatl&#39;, &#39;Alley&#39;, &#39;Electrical&#39;, &#39;LandSlope&#39;, &#39;RoofStyle&#39;, &#39;SaleType&#39;, &#39;CentralAir&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Foundation&#39;, &#39;SaleCondition&#39;, &#39;GarageFinish&#39;, &#39;LandContour&#39;, &#39;RoofStyle&#39;, &#39;HouseStyle&#39;, &#39;MSSubClass&#39;, &#39;Street&#39;, &#39;Exterior1st&#39;, &#39;LotConfig&#39;, &#39;Utilities&#39;, &#39;Neighborhood&#39;, &#39;MasVnrType&#39;, &#39;LotShape&#39;, &#39;MiscFeature&#39;, &#39;BldgType&#39;, &#39;Heating&#39;, &#39;MSZoning&#39;, &#39;CentralAir&#39;, &#39;SaleType&#39;, &#39;Exterior2nd&#39;, &#39;MoSold&#39;, &#39;Alley&#39;, &#39;Condition1&#39;, &#39;LandSlope&#39;, &#39;PavedDrive&#39;, &#39;Condition2&#39;, &#39;RoofMatl&#39;, &#39;GarageType&#39;, &#39;Electrical&#39;]
 </pre></div>
 </div>
 </div>
@@ -2598,7 +2603,7 @@ Name: ExterQual, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.35671809404
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5109.356718094066
 </pre></div>
 </div>
 </div>
@@ -3521,27 +3526,27 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.006 (+/- 0.001)</td>
       <td>0.004 (+/- 0.000)</td>
-      <td>0.632 (+/- 0.009)</td>
-      <td>0.635 (+/- 0.004)</td>
+      <td>0.629 (+/- 0.005)</td>
+      <td>0.632 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>1.095 (+/- 0.054)</td>
+      <td>1.047 (+/- 0.076)</td>
       <td>0.012 (+/- 0.000)</td>
       <td>0.849 (+/- 0.005)</td>
       <td>0.850 (+/- 0.001)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>1.042 (+/- 0.030)</td>
-      <td>0.081 (+/- 0.001)</td>
+      <td>1.027 (+/- 0.008)</td>
+      <td>0.079 (+/- 0.001)</td>
       <td>0.848 (+/- 0.006)</td>
       <td>0.979 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LightGBM</th>
-      <td>0.205 (+/- 0.092)</td>
-      <td>0.022 (+/- 0.003)</td>
+      <td>0.123 (+/- 0.004)</td>
+      <td>0.020 (+/- 0.000)</td>
       <td>0.872 (+/- 0.004)</td>
       <td>0.888 (+/- 0.000)</td>
     </tr>
@@ -3969,7 +3974,7 @@ Name: income, dtype: float64
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x15431a650&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x123eb3910&gt;
 </pre></div>
 </div>
 </div>

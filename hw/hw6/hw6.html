@@ -1,0 +1,1417 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/15_K-Means.html">
+   Lecture 15: K-Means Clustering
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw6/hw6.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw6/hw6.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-6-clustering">
+   Homework 6: Clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-15-and-16">
+     Associated lectures: Lectures 15 and 16
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports-a-name-im-a">
+   Imports
+   <a name="im">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions-a-name-si-a">
+   Submission instructions
+   <a name="si">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-document-clustering-warm-up">
+   Exercise 1: Document clustering warm-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-many-clusters">
+     1.1 How many clusters?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kmeans-with-bag-of-words-representation">
+     1.2
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+     with bag-of-words representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentence-embedding-representation">
+     1.3 Sentence embedding representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dbscan-with-cosine-distance">
+     1.4 DBSCAN with cosine distance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     1.5 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-clusters">
+     1.6 Visualizing clusters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-food-com-recipes">
+   Exercise 2: Food.com recipes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#longest-and-shorted-recipe-names">
+     2.1 Longest and shorted recipe names
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-eda">
+     2.2 More EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representing-recipe-names">
+     2.3 Representing recipe names
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-k-means-on-food-com-recipe-names">
+   Exercise 3: K-Means on Food.com recipe names
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-k-for-k-means">
+     3.1 Choosing K for K-Means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.2 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling-recipe-names-from-clusters">
+     3.3 Sampling recipe names from clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-interpretation-of-clusters">
+     3.4 Manual interpretation of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dendrogram">
+     3.5 Dendrogram
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-6-clustering">
+   Homework 6: Clustering
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#associated-lectures-lectures-15-and-16">
+     Associated lectures: Lectures 15 and 16
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports-a-name-im-a">
+   Imports
+   <a name="im">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions-a-name-si-a">
+   Submission instructions
+   <a name="si">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-document-clustering-warm-up">
+   Exercise 1: Document clustering warm-up
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-many-clusters">
+     1.1 How many clusters?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kmeans-with-bag-of-words-representation">
+     1.2
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       KMeans
+      </span>
+     </code>
+     with bag-of-words representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sentence-embedding-representation">
+     1.3 Sentence embedding representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dbscan-with-cosine-distance">
+     1.4 DBSCAN with cosine distance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     1.5 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-clusters">
+     1.6 Visualizing clusters
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-food-com-recipes">
+   Exercise 2: Food.com recipes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#longest-and-shorted-recipe-names">
+     2.1 Longest and shorted recipe names
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-eda">
+     2.2 More EDA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representing-recipe-names">
+     2.3 Representing recipe names
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-k-means-on-food-com-recipe-names">
+   Exercise 3: K-Means on Food.com recipe names
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-k-for-k-means">
+     3.1 Choosing K for K-Means
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.2 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sampling-recipe-names-from-clusters">
+     3.3 Sampling recipe names from clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-interpretation-of-clusters">
+     3.4 Manual interpretation of clusters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dendrogram">
+     3.5 Dendrogram
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
+<span class="kn">import</span> <span class="nn">otter</span>
+<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;hw6.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-6-clustering">
+<h2>Homework 6: Clustering<a class="headerlink" href="#homework-6-clustering" title="Permalink to this headline">#</a></h2>
+<section id="associated-lectures-lectures-15-and-16">
+<h3>Associated lectures: Lectures 15 and 16<a class="headerlink" href="#associated-lectures-lectures-15-and-16" title="Permalink to this headline">#</a></h3>
+<p><strong>Due date: See the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</strong></p>
+</section>
+</section>
+<section id="imports-a-name-im-a">
+<h2>Imports <a name="im"></a><a class="headerlink" href="#imports-a-name-im-a" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">DBSCAN</span><span class="p">,</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_colwidth&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br><br><br></p>
+</section>
+<section id="submission-instructions-a-name-si-a">
+<h2>Submission instructions <a name="si"></a><a class="headerlink" href="#submission-instructions-a-name-si-a" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p>You will receive marks for correctly submitting this assignment. To submit this assignment, follow the instructions below:</p>
+<ul class="simple">
+<li><p><strong>You may work on this assignment in a group (group size &lt;= 4) and submit your assignment as a group.</strong></p></li>
+<li><p>Below are some instructions on working as a group.</p>
+<ul>
+<li><p>The maximum group size is 4.</p></li>
+<li><p>You can choose your own group members.</p></li>
+<li><p>Use group work as an opportunity to collaborate and learn new things from each other.</p></li>
+<li><p>Be respectful to each other and make sure you understand all the concepts in the assignment well.</p></li>
+<li><p>It’s your responsibility to make sure that the assignment is submitted by one of the group members before the deadline. <a class="reference external" href="https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members">Here</a> are some instructions on adding group members in Gradescope.</p></li>
+</ul>
+</li>
+<li><p>Be sure to follow the <a class="reference external" href="https://ubc-mds.github.io/resources_pages/general_lab_instructions/">general lab instructions</a>.</p></li>
+<li><p>Upload the .ipynb file to Gradescope.</p></li>
+<li><p><strong>If the .ipynb file is too big or doesn’t render on Gradescope for some reason, also upload a pdf or html in addition to the .ipynb.</strong></p></li>
+<li><p>Make sure that your plots/output are rendered properly in Gradescope.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="exercise-1-document-clustering-warm-up">
+<h2>Exercise 1: Document clustering warm-up<a class="headerlink" href="#exercise-1-document-clustering-warm-up" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>In this homework, we will explore a popular application of clustering called <a class="reference external" href="https://en.wikipedia.org/wiki/Document_clustering"><strong>document clustering</strong></a>. A large amount of unlabeled text data is available out there (e.g., news, recipes, online Q&amp;A, tweets), and clustering is a commonly used technique to organize this data in a meaningful way.</p>
+<p>As a warm up, in this exercise, you will cluster sentences from a toy corpus. Later in the homework, you will work with a real corpus.</p>
+<p>The code below extracts introductory sentences of Wikipedia articles on a set of queries. To run the code successfully, you will need the <code class="docutils literal notranslate"><span class="pre">wikipedia</span></code> package installed in the course environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">cpsc330s</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">wikipedia</span>
+</pre></div>
+</div>
+<p><strong>Your tasks:</strong></p>
+<p>Run the code below which</p>
+<ul class="simple">
+<li><p>extracts content of Wikipedia articles on a set of queries</p></li>
+<li><p>tokenizes the text (i.e., separates sentences) and</p></li>
+<li><p>stores the 2nd sentence in each article as a document representing that article</p></li>
+</ul>
+<blockquote>
+<div><p>Feel free to experiment with Wikipedia queries of your choice. But stick to the provided list for the final submission so that it’s easier for the TAs to grade your submission.</p>
+</div></blockquote>
+<blockquote>
+<div><p>For tokenization we are using the <code class="docutils literal notranslate"><span class="pre">nltk</span></code> package. If you do not have this package in the course environment, you will have to install it.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">cpsc330</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">anaconda</span> <span class="n">nltk</span>
+</pre></div>
+</div>
+<p>Even if you have the package installed via the course <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment, you might have to download <code class="docutils literal notranslate"><span class="pre">nltk</span></code> pre-trained models, which can be done with the code below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;punkt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /Users/kvarada/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
+
+<span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;hummus food&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bread food&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;artificial intelligence&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;unsupervised learning&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;football sport&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ice hockey&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">wiki_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;wiki query&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;n_words&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">content</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">wiki_dict</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">wiki_dict</span><span class="p">[</span><span class="s2">&quot;n_words&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+    <span class="n">wiki_dict</span><span class="p">[</span><span class="s2">&quot;wiki query&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">queries</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">wiki_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">wiki_dict</span><span class="p">)</span>
+<span class="n">wiki_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">wikipedia</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="s2">&quot;hummus food&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="s2">&quot;bread food&quot;</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="s2">&quot;ice hockey&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="p">]</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;wikipedia&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our toy corpus has six toy documents (<code class="docutils literal notranslate"><span class="pre">text</span></code> column in the dataframe) extracted from Wikipedia queries.</p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+<section id="how-many-clusters">
+<h3>1.1 How many clusters?<a class="headerlink" href="#how-many-clusters" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:1}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>If you are asked to cluster the documents from this toy corpus manually, how many clusters would you identify and how would you label each cluster?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1.1</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="kmeans-with-bag-of-words-representation">
+<h3>1.2 <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> with bag-of-words representation<a class="headerlink" href="#kmeans-with-bag-of-words-representation" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>Before we pass text to machine learning models, we need to encode it to a numeric representation. We will try two representations: bag-of-words representation and sentence embedding representation. First, let’s try our good old friend, bag-of-words.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create bag-of-words representation using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html"><code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code></a> with <code class="docutils literal notranslate"><span class="pre">stop_words='english'</span></code> for the <code class="docutils literal notranslate"><span class="pre">text</span></code> column in <code class="docutils literal notranslate"><span class="pre">wiki_df</span></code> above.</p></li>
+<li><p>Cluster the documents with this representation and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"><code class="docutils literal notranslate"><span class="pre">KMeans</span></code> clustering</a> with the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code> (for reproducibility)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>=the number of clusters you identified in 1.1</p></li>
+</ul>
+</li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">countvec</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># A variable for `CountVectorizer` object</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmeans_wiki</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># KMeans object</span>
+<span class="n">kmeans_labels</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># list</span>
+
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="sentence-embedding-representation">
+<h3>1.3 Sentence embedding representation<a class="headerlink" href="#sentence-embedding-representation" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>As we have seen before, bag-of-words representation is limited in that it does not take into account word ordering and context. There are other richer and more expressive representations of text, and we are going to use one such representation in this homework. We will call it <strong>sentence embedding representation</strong>. We’ll use <a class="reference external" href="https://www.sbert.net/index.html">sentence transformer</a> to extract these representations. At this point it’s enough to know that this is an alternative representation of text which usually works better than simple bag-of-words representation. We will talk a bit more about embedding representations in the coming weeks. To use sentence transformer, you need to install <code class="docutils literal notranslate"><span class="pre">sentence-transformers</span></code> in the course conda environment to run the code below.</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span> <span class="pre">conda-forge</span> <span class="pre">sentence-transformers</span></code></p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Run the code below to create sentence embedding representation of documents in our toy corpus.</p></li>
+<li><p>Cluster the documents with this representation (<code class="docutils literal notranslate"><span class="pre">emb_sents</span></code>) and <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> with the following arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">random_state=42</span></code> (for reproducibility)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>=the number of clusters you identified in 1.1</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+
+<span class="n">embedder</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s2">&quot;paraphrase-distilroberta-base-v1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emb_sents</span> <span class="o">=</span> <span class="n">embedder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">wiki_df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+<span class="n">emb_sent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">emb_sents</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">wiki_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">emb_sent_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="dbscan-with-cosine-distance">
+<h3>1.4 DBSCAN with cosine distance<a class="headerlink" href="#dbscan-with-cosine-distance" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:4}</p>
+<p>Let’s try <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html"><code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code></a> on our toy dataset. K-Means is kind of bound to the Euclidean distance because it is based on the notion of means. With <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> we can try different distance metrics. In the context of text, <a class="reference external" href="https://scikit-learn.org/stable/modules/metrics.html#cosine-similarity">cosine similarities</a> or cosine distances tend to work better. Given vectors <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, the <strong>cosine distance</strong> between the vectors is defined as:</p>
+<div class="math notranslate nohighlight">
+\[distance_{cosine}(u,v) = 1 - (\frac{u \cdot v}{\left\lVert u\right\rVert_2 \left\lVert v\right\rVert_2})\]</div>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Cluster documents in our toy corpus encoded with sentence embedding representation (<code class="docutils literal notranslate"><span class="pre">emb_sents</span></code>) and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html?highlight=dbscan#sklearn.cluster.DBSCAN">DBSCAN</a> with <code class="docutils literal notranslate"><span class="pre">metric='cosine'</span></code>.</p></li>
+</ol>
+<blockquote>
+<div><p><em>Note: You will have to set appropriate values for the hyperparamters <code class="docutils literal notranslate"><span class="pre">eps</span></code> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code> to get meaningful clusters, as default values for these hyperparameters are unlikely to work on this toy dataset.</em></p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_1.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="discussion">
+<h3>1.5 Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:4}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Reflect and comment on the clusters identified by each of the methods you explored in 1.2, 1.3, and 1.4. Are these methods doing a reasonable job in clustering the sentences in our toy corpus? Do the clustering results change with the representation you use?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1.5</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="visualizing-clusters">
+<h3>1.6 Visualizing clusters<a class="headerlink" href="#visualizing-clusters" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>One thing we can do with unlabeled data is visualizing it. That said, our data is high dimensional and high-dimensional data is hard to visualize. For example, in sentence embedding representation, each example is represented with 768 dimensions. One way to visualize high-dimensional data is by applying dimensionality reduction to get the most important (2 or 3) components of the dataset and visualizing this low-dimensional data.</p>
+<p>Given data as a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array and corresponding cluster assignments, the <code class="docutils literal notranslate"><span class="pre">plot_umap_clusters</span></code> function below transforms the data by applying dimensionality reduction technique called <a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a> to it and plots the transformed data with different colours for different clusters.</p>
+<blockquote>
+<div><p><em>Note: At this point we are using this function only for visualization and you are not expected to understand the UMAP part.</em></p>
+</div></blockquote>
+<p>You’ll have to install the <code class="docutils literal notranslate"><span class="pre">umap-learn</span></code> package in the course conda environment either with <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span></code>, as described in the <a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/index.html">documentation</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">cpsc330</span>
+<span class="o">&gt;</span> <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">umap</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">cpsc330</span>
+<span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">umap</span><span class="o">-</span><span class="n">learn</span>
+</pre></div>
+</div>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Visualize the clusters created by the three methods above using <code class="docutils literal notranslate"><span class="pre">plot_umap_clusters</span></code> function below:</p>
+<ul class="simple">
+<li><p>KMeans with bag-of-words representation</p></li>
+<li><p>KMeans with sentence embedding representation</p></li>
+<li><p>DBSCAN with sentence embedding representation</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">umap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_umap_clusters</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">cluster_labels</span><span class="p">,</span>
+    <span class="n">raw_sents</span><span class="o">=</span><span class="n">wiki_df</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+    <span class="n">show_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;UMAP visualization&quot;</span><span class="p">,</span>
+    <span class="n">ignore_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carry out dimensionality reduction using UMAP and plot 2-dimensional clusters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    data : numpy array</span>
+<span class="sd">        data as a numpy array</span>
+<span class="sd">    cluster_labels : list</span>
+<span class="sd">        cluster labels for each row in the dataset</span>
+<span class="sd">    raw_sents : list</span>
+<span class="sd">        the original raw sentences for labeling datapoints</span>
+<span class="sd">    show_labels : boolean</span>
+<span class="sd">        whether you want to show labels for points or not (default: False)</span>
+<span class="sd">    size : int</span>
+<span class="sd">        size of points in the scatterplot</span>
+<span class="sd">    n_neighbors : int</span>
+<span class="sd">        n_neighbors hyperparameter of UMAP. See the documentation.</span>
+<span class="sd">    title : str</span>
+<span class="sd">        title for the visualization plot</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -----------</span>
+<span class="sd">    None. Shows the clusters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>  <span class="c1"># reduce dimensionality</span>
+    <span class="n">umap_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">Z</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;dim1&quot;</span><span class="p">,</span> <span class="s2">&quot;dim2&quot;</span><span class="p">])</span>
+    <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cluster_labels</span>
+
+    <span class="k">if</span> <span class="n">ignore_noise</span><span class="p">:</span>
+        <span class="n">umap_df</span> <span class="o">=</span> <span class="n">umap_df</span><span class="p">[</span><span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">])</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim1&quot;</span><span class="p">],</span>
+        <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim2&quot;</span><span class="p">],</span>
+        <span class="n">c</span><span class="o">=</span><span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;cluster&quot;</span><span class="p">],</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;tab20b&quot;</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">size</span><span class="p">,</span>
+        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+        <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">legend</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">scatter</span><span class="o">.</span><span class="n">legend_elements</span><span class="p">(),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Clusters&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">show_labels</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">umap_df</span><span class="p">[</span><span class="s2">&quot;dim2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">raw_sents</span><span class="p">):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">txt</span><span class="o">.</span><span class="n">split</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]),</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.4</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-2-food-com-recipes">
+<h2>Exercise 2: <a class="reference external" href="https://www.food.com/">Food.com</a> recipes<a class="headerlink" href="#exercise-2-food-com-recipes" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>Now that we have applied document clustering on a toy dataset, let’s cluster sentences from a real corpus. In this lab we will work with a sample of <a class="reference external" href="https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions">Kaggle’s Food.com recipes corpus</a>. This corpus contains 180K+ recipes and 700K+ recipe reviews. In this homework, we’ll only focus on recipes and <strong>not</strong> on recipe reviews. The recipes are present in <code class="docutils literal notranslate"><span class="pre">RAW_recipes.csv</span></code>. Our goal is to find main categories or groupings of recipes based on their names.</p>
+<p><strong>Your tasks:</strong></p>
+<ul class="simple">
+<li><p>Download <a class="reference external" href="https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_recipes.csv"><code class="docutils literal notranslate"><span class="pre">RAW_recipes.csv</span></code></a> and put it in the homework folder under the data folder. As usual, do not push the CSV in your repository.</p></li>
+<li><p>Run the code below. The dataset is quite large, and in this assignment, for speed, you will work with a sample of the dataset. The function <code class="docutils literal notranslate"><span class="pre">get_recipes_sample</span></code> below carries out some preliminary preprocessing and returns a sample of the recipes with most frequent tags.</p></li>
+</ul>
+<blockquote>
+<div><p><em>Note: Depending upon the capacity of your computer, feel free to increase or decrease the size of this sample by changing the value for <code class="docutils literal notranslate"><span class="pre">n_tags</span></code>.</em></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orig_recipes_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/RAW_recipes.csv&quot;</span><span class="p">)</span>
+<span class="n">orig_recipes_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_recipes_sample</span><span class="p">(</span><span class="n">orig_recipes_df</span><span class="p">,</span> <span class="n">n_tags</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">min_len</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">orig_recipes_df</span> <span class="o">=</span> <span class="n">orig_recipes_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>  <span class="c1"># Remove rows with NaNs.</span>
+    <span class="n">orig_recipes_df</span> <span class="o">=</span> <span class="n">orig_recipes_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+        <span class="s2">&quot;name&quot;</span>
+    <span class="p">)</span>  <span class="c1"># Remove rows with duplicate names.</span>
+    <span class="c1"># Remove rows where recipe names are too short (&lt; 5 characters).</span>
+    <span class="n">orig_recipes_df</span> <span class="o">=</span> <span class="n">orig_recipes_df</span><span class="p">[</span><span class="n">orig_recipes_df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">min_len</span><span class="p">]</span>
+    <span class="c1"># Only consider the rows where tags are one of the most frequent n tags.</span>
+    <span class="n">first_n</span> <span class="o">=</span> <span class="n">orig_recipes_df</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[</span><span class="mi">0</span><span class="p">:</span><span class="n">n_tags</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">recipes_df</span> <span class="o">=</span> <span class="n">orig_recipes_df</span><span class="p">[</span><span class="n">orig_recipes_df</span><span class="p">[</span><span class="s2">&quot;tags&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">first_n</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">recipes_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recipes_df</span> <span class="o">=</span> <span class="n">get_recipes_sample</span><span class="p">(</span><span class="n">orig_recipes_df</span><span class="p">)</span>
+<span class="n">recipes_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">recipes_df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<p><strong>In the rest of the homework, we will use <code class="docutils literal notranslate"><span class="pre">recipes_df</span></code> above, which is a subset of the original dataset.</strong></p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+<section id="longest-and-shorted-recipe-names">
+<h3>2.1 Longest and shorted recipe names<a class="headerlink" href="#longest-and-shorted-recipe-names" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Print the shortest and longest recipe names (length in terms of number of characters) from <code class="docutils literal notranslate"><span class="pre">recipes_df</span></code>.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="more-eda">
+<h3>2.2 More EDA<a class="headerlink" href="#more-eda" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a word cloud for the recipe names. You can use <a class="reference external" href="https://github.com/amueller/word_cloud">the <code class="docutils literal notranslate"><span class="pre">wordcloud</span></code> package</a> for this, which you will have to install in the course environment.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="representing-recipe-names">
+<h3>2.3 Representing recipe names<a class="headerlink" href="#representing-recipe-names" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p>The next step is creating a representation of recipe names.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Similar to Exercise 1, create sentence embedding representation of recipe names (<code class="docutils literal notranslate"><span class="pre">name</span></code> column in <code class="docutils literal notranslate"><span class="pre">recipes_df</span></code>).  For the rest of the homework, we’ll stick to the sentence embedding representation of recipe names.</p></li>
+</ol>
+<blockquote>
+<div><p><em>If you create a dataframe with sentence embedding representation, set the index to <code class="docutils literal notranslate"><span class="pre">recipes_df.index</span></code> so that the indices match with the indices of the sample we are working with.</em><br />
+<em>This might take a while to run.</em></p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-3-k-means-on-food-com-recipe-names">
+<h2>Exercise 3: K-Means on Food.com recipe names<a class="headerlink" href="#exercise-3-k-means-on-food-com-recipe-names" title="Permalink to this headline">#</a></h2>
+<!-- BEGIN QUESTION -->
+<section id="choosing-k-for-k-means">
+<h3>3.1 Choosing K for K-Means<a class="headerlink" href="#choosing-k-for-k-means" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:6}</p>
+<p>For K-Means you need to specify the number of clusters in advance, which is often challenging to do on real datasets. As we saw in the lecture, there is no definitive method to select the number of clusters. That said, there are some approaches which may help us with this process. In this exercise, you’ll explore three such approaches.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Consider a reasonable range of K (<code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>) values and visualize the Elbow plot.</p></li>
+<li><p>Consider a reasonable range of K (<code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>) and visualize the clusters created by K-Means by using <code class="docutils literal notranslate"><span class="pre">plot_umap_clusters</span></code> function from Exercise 1.</p></li>
+</ol>
+<blockquote>
+<div><p>You may use the <a class="reference external" href="https://www.scikit-yb.org/en/latest/"><code class="docutils literal notranslate"><span class="pre">yellowbrick</span></code></a> package for visualizing the Elbow plot.</p>
+</div></blockquote>
+<blockquote>
+<div><p>The range of K or <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code> values does not have to be the same in the cases above.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Use the default value of <code class="docutils literal notranslate"><span class="pre">show_labels=False</span></code> when you call function <code class="docutils literal notranslate"><span class="pre">plot_umap_clusters</span></code>, as we do not want to display labels of thousands of data points.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_3.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="id1">
+<h3>3.2 Discussion<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:4}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Comment on your results from 3.1. Are the plots above useful in narrowing down the range of values for <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>? Based on these visualizations, what value or a range of values seems reasonable for <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code> in this problem?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.2</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="sampling-recipe-names-from-clusters">
+<h3>3.3 Sampling recipe names from clusters<a class="headerlink" href="#sampling-recipe-names-from-clusters" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p>It’s likely that with the methods in the previous exercises you did not get a satisfactory answer on how many clusters should be appropriate for this problem. One of the most important steps in clustering is manual interpretation of clusters. In this exercise, you will examine some samples from different clusters given by K-Means, which might give you a better understanding on the number of clusters and whether the clusters make sense or not.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Based on your answer in Exercise 3.1 and 3.2, pick one or two reasonable values for <code class="docutils literal notranslate"><span class="pre">n_clusters</span></code> and train <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> with those values and <code class="docutils literal notranslate"><span class="pre">random_state=42</span></code>.</p></li>
+<li><p>Sample some examples (e.g., 10 to 15 recipe names) from each cluster and show the sampled recipes for each cluster.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.3</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="manual-interpretation-of-clusters">
+<h3>3.4 Manual interpretation of clusters<a class="headerlink" href="#manual-interpretation-of-clusters" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Do you see a clear distinction between clusters? What topics/themes do to see in different clusters?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3.4</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="dendrogram">
+<h3>3.5 Dendrogram<a class="headerlink" href="#dendrogram" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:3}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Show a dendrogram with <code class="docutils literal notranslate"><span class="pre">p=10</span></code> and <code class="docutils literal notranslate"><span class="pre">truncate_mode=level</span></code> on sentence embeddings of recipes with average linkage and <code class="docutils literal notranslate"><span class="pre">metric=&quot;cosine&quot;</span></code>.</p></li>
+<li><p>Briefly comment on the results.</p></li>
+</ol>
+<blockquote>
+<div><p><em>Note: Try orientation=”left” of <code class="docutils literal notranslate"><span class="pre">dendrogram</span></code> for better readability of the dendrogram.</em></p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_3.5</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+<p><strong>PLEASE READ BEFORE YOU SUBMIT:</strong></p>
+<p>When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Push all your work to your GitHub lab repository.</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+<li><p>Make sure that the plots and output are rendered properly in your submitted file. If the .ipynb file is too big and doesn’t render on Gradescope, also upload a pdf or html in addition to the .ipynb so that the TAs can view your submission on Gradescope.</p></li>
+</ol>
+<p><img alt="" src="../../_images/eva-well-done4.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw6"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -66,8 +66,8 @@ I'll be developing lecture notes directly in this repository. So if you check th
 | Sep 29 | [Linear models](lectures/07_linear-models.ipynb) | 📹  Pre-watch: [7.1](https://youtu.be/HXd1U2q4VFA), [7.2](https://youtu.be/56L5z_t22qE), [7.3](https://youtu.be/_OAK5KiGLg0) | less depth |
 | Oct 04 | [Hyperparameter optimization, overfitting the validation set](lectures/08_hyperparameter-optimization.ipynb) | 📹 Pre-watch: [8.1](https://youtu.be/lMWdHZSZMk8), [8.2](https://youtu.be/Z9a9XZ0vQv0) |   different|
 | Oct 06 | [Evaluation metrics for classification](lectures/09_classification-metrics.ipynb)  | 📹  Reference: [9.2](https://youtu.be/ZCuCErW5lI8), [9.3](https://youtu.be/XkCTUuoH23c),[9.4](https://youtu.be/jHaKRCFb6Qw) | more depth |
-| Oct 11 | [Regression metrics](lectures/10_regression-metrics) |  📹 Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ) |   more depth on metrics less depth on regression|
-| Oct 13 | [Ensembles](lecture/11_ensembles.ipynb) |  📹 Pre-watch: [11.1](https://youtu.be/8litm1H7DLo), [11.2](https://youtu.be/EkFkY9QB2Hw) | similar |
+| Oct 11 | [Regression metrics](lectures/10_regression-metrics.ipynb) |  📹 Pre-watch: [10.1](https://youtu.be/lgGTKLwNgkQ) |   more depth on metrics less depth on regression|
+| Oct 13 | [Ensembles](lectures/11_ensembles.ipynb) |  📹 Pre-watch: [11.1](https://youtu.be/8litm1H7DLo), [11.2](https://youtu.be/EkFkY9QB2Hw) | similar |
 | Oct 18 | [Feature importances, model interpretation](lectures/12_feat-importances.ipynb) | 📹 Pre-watch: [12.1](https://youtu.be/xfICsGL7DXE),[12.2](https://youtu.be/tiSN18OmZOo)| feature importances is new, feature engineering is new |
 | Oct 20 |   [Feature engineering and feature selection](lectures/13_feature-engineering-selection.ipynb) | None | less depth |
 | | | |

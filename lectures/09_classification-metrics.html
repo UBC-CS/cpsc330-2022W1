@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -210,6 +212,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_K-Means.html">
+   Lecture 15: K-Means Clustering
   </a>
  </li>
 </ul>
@@ -1625,8 +1632,8 @@ memory usage: 48.7 MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.007269
-score_time     0.000888
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.007194
+score_time     0.001109
 test_score     0.998302
 train_score    0.998302
 dtype: float64
@@ -1672,8 +1679,8 @@ Name: Class, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.313271
-score_time     0.003319
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.336111
+score_time     0.003636
 test_score     0.999176
 train_score    0.999235
 dtype: float64
@@ -2250,8 +2257,8 @@ weighted avg       0.85      0.80      0.78         5
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.417908</td>
-      <td>0.020347</td>
+      <td>0.615250</td>
+      <td>0.020488</td>
       <td>0.999097</td>
       <td>0.999360</td>
       <td>0.694915</td>
@@ -2263,8 +2270,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>1</th>
-      <td>0.433109</td>
-      <td>0.018553</td>
+      <td>0.459395</td>
+      <td>0.018667</td>
       <td>0.999223</td>
       <td>0.999317</td>
       <td>0.739496</td>
@@ -2276,8 +2283,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>2</th>
-      <td>0.405317</td>
-      <td>0.019792</td>
+      <td>0.444607</td>
+      <td>0.018964</td>
       <td>0.999273</td>
       <td>0.999216</td>
       <td>0.743363</td>
@@ -2289,8 +2296,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>3</th>
-      <td>0.383288</td>
-      <td>0.018641</td>
+      <td>0.398432</td>
+      <td>0.019647</td>
       <td>0.999172</td>
       <td>0.999254</td>
       <td>0.697248</td>
@@ -2302,8 +2309,8 @@ weighted avg       0.85      0.80      0.78         5
     </tr>
     <tr>
       <th>4</th>
-      <td>0.380166</td>
-      <td>0.019993</td>
+      <td>0.454339</td>
+      <td>0.020603</td>
       <td>0.999147</td>
       <td>0.999216</td>
       <td>0.696429</td>
@@ -2519,7 +2526,7 @@ weighted avg       1.00      1.00      1.00     59810
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b398b09932ab4d309751f0401f0dbbad"}
+{"version_major": 2, "version_minor": 0, "model_id": "30b7246086394c6686370238c58e2523"}
 </script></div>
 </div>
 <p>Let’s view P and R for different thresholds as a dataframe.</p>

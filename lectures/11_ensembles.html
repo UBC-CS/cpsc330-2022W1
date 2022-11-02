@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 12: Feature importances" href="12_feat-importances.html" />
@@ -208,6 +210,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_K-Means.html">
+   Lecture 15: K-Means Clustering
   </a>
  </li>
 </ul>
@@ -1341,12 +1348,12 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.003 (+/- 0.000)</td>
       <td>0.002 (+/- 0.000)</td>
-      <td>0.631 (+/- 0.008)</td>
-      <td>0.635 (+/- 0.004)</td>
+      <td>0.636 (+/- 0.012)</td>
+      <td>0.633 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.063 (+/- 0.001)</td>
+      <td>0.063 (+/- 0.002)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.811 (+/- 0.002)</td>
       <td>1.000 (+/- 0.000)</td>
@@ -1423,20 +1430,20 @@ Name: income, dtype: float64
       <th>Dummy</th>
       <td>0.003 (+/- 0.000)</td>
       <td>0.002 (+/- 0.000)</td>
-      <td>0.631 (+/- 0.008)</td>
-      <td>0.635 (+/- 0.004)</td>
+      <td>0.636 (+/- 0.012)</td>
+      <td>0.633 (+/- 0.003)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.063 (+/- 0.001)</td>
+      <td>0.063 (+/- 0.002)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.811 (+/- 0.002)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Random forests</th>
-      <td>0.519 (+/- 0.280)</td>
-      <td>0.030 (+/- 0.002)</td>
+      <td>0.432 (+/- 0.349)</td>
+      <td>0.028 (+/- 0.002)</td>
       <td>0.852 (+/- 0.004)</td>
       <td>1.000 (+/- 0.000)</td>
     </tr>
@@ -1589,11 +1596,11 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
   <tbody>
     <tr>
       <th>age</th>
-      <td>-1.435957</td>
+      <td>0.104647</td>
     </tr>
     <tr>
       <th>fnlwgt</th>
-      <td>-0.041868</td>
+      <td>-0.060646</td>
     </tr>
     <tr>
       <th>capital.gain</th>
@@ -1605,7 +1612,7 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
     </tr>
     <tr>
       <th>hours.per.week</th>
-      <td>-0.284112</td>
+      <td>-0.445158</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1792,7 +1799,7 @@ Prediction by random forest:  [&#39;&lt;=50K&#39;]
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x121367d90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x1520f7ac0&gt;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
@@ -1938,7 +1945,7 @@ Tree 2
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x122398670&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x1531ec1c0&gt;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
@@ -2084,7 +2091,7 @@ Tree 3
 <span class="ne">ExecutableNotFound</span>: failed to execute PosixPath(&#39;dot&#39;), make sure the Graphviz executables are on your systems&#39; PATH
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x1223987c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;graphviz.sources.Source at 0x15325fb20&gt;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>prediction [0.]
@@ -2345,12 +2352,17 @@ Tree 3
 <span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">975</span>     <span class="k">return</span> <span class="bp">self</span>
 
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/tree/_classes.py:222,</span> in <span class="ni">BaseDecisionTree.fit</span><span class="nt">(self, X, y, sample_weight, check_input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_outputs_</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="n">classes_k</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[:,</span> <span class="n">k</span><span class="p">],</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">222</span>     <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classes_k</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classes_k</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y_encoded</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/tree/_classes.py:458,</span> in <span class="ni">BaseDecisionTree.fit</span><span class="nt">(self, X, y, sample_weight, check_input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="n">builder</span> <span class="o">=</span> <span class="n">BestFirstTreeBuilder</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span>         <span class="n">splitter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span>         <span class="n">min_samples_split</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span>         <span class="bp">self</span><span class="o">.</span><span class="n">min_impurity_decrease</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">458</span> <span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree_</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_outputs_</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">is_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span>     <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_classes_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

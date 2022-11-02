@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -210,6 +212,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="13_feature-engineering-selection.html">
    Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_K-Means.html">
+   Lecture 15: K-Means Clustering
   </a>
  </li>
 </ul>
@@ -1722,36 +1729,36 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Exterior1st&#39;,
- &#39;Condition2&#39;,
- &#39;LandSlope&#39;,
- &#39;GarageFinish&#39;,
- &#39;Condition1&#39;,
- &#39;BldgType&#39;,
- &#39;Exterior2nd&#39;,
- &#39;HouseStyle&#39;,
- &#39;MSSubClass&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;GarageFinish&#39;,
  &#39;MasVnrType&#39;,
+ &#39;LandContour&#39;,
+ &#39;Foundation&#39;,
+ &#39;SaleType&#39;,
  &#39;CentralAir&#39;,
- &#39;Electrical&#39;,
- &#39;Street&#39;,
+ &#39;Condition2&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;Utilities&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;RoofMatl&#39;,
  &#39;RoofStyle&#39;,
- &#39;Heating&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;LandSlope&#39;,
+ &#39;Electrical&#39;,
+ &#39;GarageType&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Alley&#39;,
+ &#39;MoSold&#39;,
+ &#39;Condition1&#39;,
+ &#39;Street&#39;,
+ &#39;LotShape&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;BldgType&#39;,
+ &#39;LotConfig&#39;,
  &#39;MiscFeature&#39;,
  &#39;MSZoning&#39;,
- &#39;Neighborhood&#39;,
- &#39;LandContour&#39;,
- &#39;Alley&#39;,
- &#39;RoofMatl&#39;,
- &#39;SaleCondition&#39;,
- &#39;LotShape&#39;,
- &#39;MoSold&#39;,
- &#39;GarageType&#39;,
- &#39;Foundation&#39;,
- &#39;PavedDrive&#39;,
- &#39;LotConfig&#39;,
- &#39;SaleType&#39;,
- &#39;Utilities&#39;]
+ &#39;Heating&#39;]
 </pre></div>
 </div>
 </div>
@@ -1893,16 +1900,16 @@ memory usage: 841.8+ KB
       <th>MasVnrArea</th>
       <th>BsmtFinSF1</th>
       <th>...</th>
-      <th>SaleType_CWD</th>
-      <th>SaleType_Con</th>
-      <th>SaleType_ConLD</th>
-      <th>SaleType_ConLI</th>
-      <th>SaleType_ConLw</th>
-      <th>SaleType_New</th>
-      <th>SaleType_Oth</th>
-      <th>SaleType_WD</th>
-      <th>Utilities_AllPub</th>
-      <th>Utilities_NoSeWa</th>
+      <th>MSZoning_FV</th>
+      <th>MSZoning_RH</th>
+      <th>MSZoning_RL</th>
+      <th>MSZoning_RM</th>
+      <th>Heating_Floor</th>
+      <th>Heating_GasA</th>
+      <th>Heating_GasW</th>
+      <th>Heating_Grav</th>
+      <th>Heating_OthW</th>
+      <th>Heating_Wall</th>
     </tr>
   </thead>
   <tbody>
@@ -1921,13 +1928,13 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1945,13 +1952,13 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1969,13 +1976,13 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1993,13 +2000,13 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2017,13 +2024,13 @@ memory usage: 841.8+ KB
       <td>...</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -2112,71 +2119,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000668</td>
-      <td>0.000144</td>
+      <td>0.000795</td>
+      <td>0.000134</td>
       <td>-0.003547</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000420</td>
-      <td>0.000100</td>
+      <td>0.000402</td>
+      <td>0.000092</td>
       <td>-0.001266</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000393</td>
-      <td>0.000088</td>
+      <td>0.000395</td>
+      <td>0.000086</td>
       <td>-0.011767</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000379</td>
-      <td>0.000088</td>
+      <td>0.000376</td>
+      <td>0.000083</td>
       <td>-0.006744</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000378</td>
-      <td>0.000083</td>
+      <td>0.000390</td>
+      <td>0.000082</td>
       <td>-0.076533</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.000377</td>
-      <td>0.000081</td>
+      <td>0.000375</td>
+      <td>0.000082</td>
       <td>-0.003133</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.000387</td>
-      <td>0.000084</td>
+      <td>0.000394</td>
+      <td>0.000083</td>
       <td>-0.000397</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.000393</td>
-      <td>0.000087</td>
+      <td>0.000376</td>
+      <td>0.000082</td>
       <td>-0.003785</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.000384</td>
-      <td>0.000084</td>
+      <td>0.000405</td>
+      <td>0.000083</td>
       <td>-0.001740</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.000385</td>
-      <td>0.000083</td>
+      <td>0.000383</td>
+      <td>0.000084</td>
       <td>-0.000117</td>
       <td>0.0</td>
     </tr>
@@ -2229,71 +2236,71 @@ memory usage: 841.8+ KB
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.021518</td>
-      <td>0.004481</td>
+      <td>0.019790</td>
+      <td>0.004309</td>
       <td>0.861355</td>
       <td>0.911906</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.019185</td>
-      <td>0.004317</td>
+      <td>0.018925</td>
+      <td>0.004247</td>
       <td>0.812301</td>
       <td>0.913861</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.019558</td>
-      <td>0.004467</td>
+      <td>0.018718</td>
+      <td>0.005556</td>
       <td>0.775283</td>
       <td>0.915963</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.019241</td>
-      <td>0.004197</td>
+      <td>0.019506</td>
+      <td>0.004274</td>
       <td>0.874519</td>
       <td>0.910849</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.020196</td>
-      <td>0.004205</td>
+      <td>0.025123</td>
+      <td>0.004378</td>
       <td>0.851969</td>
       <td>0.911622</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.018773</td>
-      <td>0.004194</td>
+      <td>0.019724</td>
+      <td>0.004314</td>
       <td>0.826198</td>
       <td>0.910176</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.018795</td>
-      <td>0.004149</td>
+      <td>0.020867</td>
+      <td>0.005377</td>
       <td>0.825533</td>
       <td>0.913781</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.018792</td>
-      <td>0.004161</td>
+      <td>0.018738</td>
+      <td>0.004226</td>
       <td>0.872238</td>
       <td>0.910071</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>0.019247</td>
-      <td>0.004171</td>
+      <td>0.018906</td>
+      <td>0.004196</td>
       <td>0.196663</td>
       <td>0.921448</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>0.018891</td>
-      <td>0.004175</td>
+      <td>0.019130</td>
+      <td>0.004192</td>
       <td>0.890474</td>
       <td>0.908221</td>
     </tr>
@@ -2415,7 +2422,7 @@ memory usage: 841.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.10647423257, 30791.092505420656)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(390726.1064742326, 30791.092505420773)
 </pre></div>
 </div>
 </div>
@@ -2486,12 +2493,12 @@ memory usage: 841.8+ KB
       <td>11704.053037</td>
     </tr>
     <tr>
-      <th>185</th>
+      <th>135</th>
       <td>Neighborhood_NridgHt</td>
       <td>9662.969631</td>
     </tr>
     <tr>
-      <th>184</th>
+      <th>134</th>
       <td>Neighborhood_NoRidge</td>
       <td>9497.598615</td>
     </tr>
@@ -2506,27 +2513,27 @@ memory usage: 841.8+ KB
       <td>...</td>
     </tr>
     <tr>
-      <th>201</th>
+      <th>144</th>
       <td>RoofMatl_ClyTile</td>
       <td>-3992.399179</td>
     </tr>
     <tr>
-      <th>194</th>
+      <th>58</th>
       <td>LandContour_Bnk</td>
       <td>-5001.996997</td>
     </tr>
     <tr>
-      <th>177</th>
+      <th>127</th>
       <td>Neighborhood_Gilbert</td>
       <td>-5197.585536</td>
     </tr>
     <tr>
-      <th>174</th>
+      <th>124</th>
       <td>Neighborhood_CollgCr</td>
       <td>-5467.463086</td>
     </tr>
     <tr>
-      <th>176</th>
+      <th>126</th>
       <td>Neighborhood_Edwards</td>
       <td>-5796.508529</td>
     </tr>
@@ -2624,7 +2631,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636103
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636105
 </pre></div>
 </div>
 </div>
@@ -2652,7 +2659,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636103
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636105
 </pre></div>
 </div>
 </div>
@@ -2674,7 +2681,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.104
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8732304733636.105
 </pre></div>
 </div>
 </div>
@@ -2693,7 +2700,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774613
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774617
 </pre></div>
 </div>
 </div>
@@ -2745,7 +2752,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636103
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636105
 </pre></div>
 </div>
 </div>
@@ -2757,7 +2764,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636103
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>873230473.3636105
 </pre></div>
 </div>
 </div>
@@ -2781,7 +2788,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8279622258827067
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8279622258827065
 </pre></div>
 </div>
 </div>
@@ -2804,7 +2811,7 @@ Name: SalePrice, Length: 1314, dtype: bool
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774613
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29550.473318774617
 </pre></div>
 </div>
 </div>
@@ -2891,7 +2898,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10093121294225238
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10093121294225234
 </pre></div>
 </div>
 </div>
@@ -2911,7 +2918,7 @@ Name: SalePrice, Length: 1314, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10093121294225238
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10093121294225234
 </pre></div>
 </div>
 </div>
