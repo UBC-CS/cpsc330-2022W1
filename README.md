@@ -37,12 +37,14 @@ Usually the homework assignments will be due on Mondays (except next week) and w
 | hw2 | Sept 19, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)| 
 | hw3 | Oct 03, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
 | hw4 | Oct 11, 11:59pm  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw5 | TBD |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| **Midterm** | Oct 27, during class time | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) | 
-| hw6 | TBD |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw7 | TBD  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| hw8 | TBD |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
-| **Final exam** | TBD | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) |
+| **Midterm** | Oct 27, during class time | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas]
+| hw5 | Oct 31, 11:59pm |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+(https://canvas.ubc.ca/courses/101888) | 
+| hw6 | November 10th |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+| hw7 | November 22nd  |   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+| hw8 | November 29th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+| hw9 | December 6th|   [Github repo](https://github.com/UBC-CS/cpsc330/tree/master/hw/) | [Gradescope](https://www.gradescope.ca/courses/7610)|  
+| **Final exam** | December 15th | [Canvas](https://canvas.ubc.ca/courses/101888) | [Canvas](https://canvas.ubc.ca/courses/101888) |
 
 
 
@@ -73,11 +75,11 @@ I'll be developing lecture notes directly in this repository. So if you check th
 | | | |
 | Oct 25 | _Midterm review_  |  |
 | Oct 27 | **Midterm**  |  |
-| Nov 1 |   [Clustering](lectures/14_k-means-clustering.ipynb) |  📹 Pre-watch: [14.1](https://youtu.be/caAuUAXwpb8), [14.2](https://youtu.be/s6AvSZ1_l7I), [14.3](https://youtu.be/M5ilrhcL0oY)  | less depth |
-| Nov 3 |   [More clustering]() |  📹 Pre-watch: [15.1](https://youtu.be/1ZwITQyWpkY), [15.2](https://youtu.be/T4NLsrUaRtg), [15.3](https://youtu.be/NM8lFKFZ2IU)   | less depth |
-| Nov 8 |   [Simple recommender systems](lectures/15_recommender-systems.ipynb) | | less depth ||
+| Nov 1 |   [Clustering](lectures/15_k-Means.ipynb) |  📹 Pre-watch: [14.1](https://youtu.be/caAuUAXwpb8), [14.2](https://youtu.be/s6AvSZ1_l7I), [14.3](https://youtu.be/M5ilrhcL0oY)  | less depth |
+| Nov 3 |   [More clustering](16_DBSCAN-hierarchical.ipynb) |  📹 Pre-watch: [15.1](https://youtu.be/1ZwITQyWpkY), [15.2](https://youtu.be/T4NLsrUaRtg), [15.3](https://youtu.be/NM8lFKFZ2IU)   | less depth |
+| Nov 8 |   [Simple recommender systems](lectures/17_recommender-systems.ipynb) | | less depth ||
 | Nov 10 | _Midterm break - no class_  |  |
-| Nov 15 |  [Text data, embeddings, topic modeling](lectures/16_natural-language-processing.ipynb)  | 📹 Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY), [16.2](https://youtu.be/7W5Q8gzNPBc)  |   new |
+| Nov 15 |  [Text data, embeddings, topic modeling](lectures/18_natural-language-processing.ipynb)  | 📹 Pre-watch: [16.1](https://youtu.be/GTC_iLPCjdY), [16.2](https://youtu.be/7W5Q8gzNPBc)  |   new |
 | Nov 17 | [Neural networks and computer vision](lectures/17_intro_to_computer-vision.ipynb) | |   less depth |
 | Nov 22 | [Time series data](lectures/18_time-series.ipynb) | (Optional) [Humour: The Problem with Time & Timezones](https://www.youtube.com/watch?v=-5wpm-gesOY) | new |
 | Nov 24 | [Survival analysis](lectures/19_survival-analysis.ipynb) | 📹 (Optional but highly recommended)[Calling Bullshit 4.1: Right Censoring](https://www.youtube.com/watch?v=ITWQ5psx9Sw)|   new |
