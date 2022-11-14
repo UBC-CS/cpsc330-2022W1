@@ -31,7 +31,8 @@ class CooccurrenceMatrix:
                 # set the index to the size of the vocabulary. 
                 i = self.vocab.setdefault(token, len(self.vocab))
                 
-                # Consider the context words depending upon the context window 
+                # Consider window_size context words on the left and 
+                # on window_size context words on the right. 
                 start = max(0, target_index - self.window_size)
                 end = min(len(tokens), target_index + self.window_size + 1)
                 
@@ -45,8 +46,11 @@ class CooccurrenceMatrix:
                         continue
                     data.append(1.0); row.append(i); col.append(j);
         self.cooccurrence_matrix = csr_matrix((data,(row,col)))
-        return self.vocab, self.cooccurrence_matrix
-            
+        return self.cooccurrence_matrix        
+
+    def get_feature_names(self):
+        return list(self.vocab.keys())    
+        
     def get_word_vector(self, word):
         """
         Given a word returns the word vector associated with 
