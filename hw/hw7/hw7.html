@@ -1,0 +1,1285 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CPSC 330 - Applied Machine Learning &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/15_K-Means.html">
+   Lecture 15: K-Means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/16_DBSCAN-hierarchical.html">
+   Lecture 16: DBSCAN and Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/17_recommender-systems.html">
+   Lecture 17: Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/18_natural-language-processing.html">
+   Lecture 18: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../lectures/19_intro_to_computer-vision.html">
+   Lecture 19: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/hw/hw7/hw7.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/hw/hw7/hw7.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-7-word-embeddings-and-topic-modeling">
+   Homework 7: Word embeddings and topic modeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploring-pre-trained-word-embeddings-a-name-1-a">
+   Exercise 1:  Exploring pre-trained word embeddings
+   <a name="1">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-similarity-using-pre-trained-embeddings">
+     1.1 Word similarity using pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.2 Word similarity using pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stereotypes-and-biases-in-embeddings">
+     1.3 Stereotypes and biases in embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     1.4 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-with-pre-trained-embeddings">
+     1.5 Classification with pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.6 Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-topic-modeling">
+   Exercise 2: Topic modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-using-spacy">
+     2.1 Preprocessing using spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#justification">
+     2.2 Justification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-topic-model-using-sklearn-s-latentdirichletallocation">
+     2.3 Build a topic model using sklearn’s LatentDirichletAllocation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-word-topic-association">
+     2.4 Exploring word topic association
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-document-topic-association">
+     2.5 Exploring document topic association
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-short-answer-questions">
+   Exercise 3: Short answer questions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CPSC 330 - Applied Machine Learning</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-7-word-embeddings-and-topic-modeling">
+   Homework 7: Word embeddings and topic modeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submission-instructions">
+   Submission instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-1-exploring-pre-trained-word-embeddings-a-name-1-a">
+   Exercise 1:  Exploring pre-trained word embeddings
+   <a name="1">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#word-similarity-using-pre-trained-embeddings">
+     1.1 Word similarity using pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1.2 Word similarity using pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stereotypes-and-biases-in-embeddings">
+     1.3 Stereotypes and biases in embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion">
+     1.4 Discussion
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-with-pre-trained-embeddings">
+     1.5 Classification with pre-trained embeddings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.6 Discussion
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-2-topic-modeling">
+   Exercise 2: Topic modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-using-spacy">
+     2.1 Preprocessing using spaCy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#justification">
+     2.2 Justification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#build-a-topic-model-using-sklearn-s-latentdirichletallocation">
+     2.3 Build a topic model using sklearn’s LatentDirichletAllocation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-word-topic-association">
+     2.4 Exploring word topic association
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-document-topic-association">
+     2.5 Exploring document topic association
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise-3-short-answer-questions">
+   Exercise 3: Short answer questions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize Otter</span>
+<span class="kn">import</span> <span class="nn">otter</span>
+<span class="n">grader</span> <span class="o">=</span> <span class="n">otter</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="s2">&quot;hw7.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="cpsc-330-applied-machine-learning">
+<h1>CPSC 330 - Applied Machine Learning<a class="headerlink" href="#cpsc-330-applied-machine-learning" title="Permalink to this headline">#</a></h1>
+<section id="homework-7-word-embeddings-and-topic-modeling">
+<h2>Homework 7: Word embeddings and topic modeling<a class="headerlink" href="#homework-7-word-embeddings-and-topic-modeling" title="Permalink to this headline">#</a></h2>
+<p><strong>Due date: See the <a class="reference external" href="https://htmlpreview.github.io/?https://github.com/UBC-CS/cpsc330/blob/master/docs/calendar.html">Calendar</a>.</strong></p>
+</section>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+    <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span>
+                                                         <span class="o">^</span>
+<span class="ne">SyntaxError</span>: trailing comma not allowed without surrounding parentheses
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+</section>
+<section id="submission-instructions">
+<h2>Submission instructions<a class="headerlink" href="#submission-instructions" title="Permalink to this headline">#</a></h2>
+<hr>
+rubric={points:2}
+<p>You will receive marks for correctly submitting this assignment. To submit this assignment, follow the instructions below:</p>
+<ul class="simple">
+<li><p><strong>You may work on this assignment in a group (group size &lt;= 4) and submit your assignment as a group.</strong></p></li>
+<li><p>Below are some instructions on working as a group.</p>
+<ul>
+<li><p>The maximum group size is 4.</p></li>
+<li><p>You can choose your own group members.</p></li>
+<li><p>Use group work as an opportunity to collaborate and learn new things from each other.</p></li>
+<li><p>Be respectful to each other and make sure you understand all the concepts in the assignment well.</p></li>
+<li><p>It’s your responsibility to make sure that the assignment is submitted by one of the group members before the deadline. <a class="reference external" href="https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members">Here</a> are some instructions on adding group members in Gradescope.</p></li>
+</ul>
+</li>
+<li><p>Upload the .ipynb file to Gradescope.</p></li>
+<li><p><strong>If the .ipynb file is too big or doesn’t render on Gradescope for some reason, also upload a pdf or html in addition to the .ipynb.</strong></p></li>
+<li><p>Make sure that your plots/output are rendered properly in Gradescope.</p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+<section id="exercise-1-exploring-pre-trained-word-embeddings-a-name-1-a">
+<h2>Exercise 1:  Exploring pre-trained word embeddings <a name="1"></a><a class="headerlink" href="#exercise-1-exploring-pre-trained-word-embeddings-a-name-1-a" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>In lecture 18, we talked about natural language processing (NLP). Using pre-trained word embeddings is very common in NLP. It has been shown that pre-trained word embeddings work well on a variety of text classification tasks. These embeddings are created by training a model like Word2Vec on a huge corpus of text such as a dump of Wikipedia or a dump of the web crawl.</p>
+<p>A number of pre-trained word embeddings are available out there. Some popular ones are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nlp.stanford.edu/projects/glove/">GloVe</a></p>
+<ul>
+<li><p>trained using <a class="reference external" href="https://nlp.stanford.edu/pubs/glove.pdf">the GloVe algorithm</a></p></li>
+<li><p>published by Stanford University</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://fasttext.cc/docs/en/pretrained-vectors.html">fastText pre-trained embeddings for 294 languages</a></p>
+<ul>
+<li><p>trained using the fastText algorithm</p></li>
+<li><p>published by Facebook</p></li>
+</ul>
+</li>
+</ul>
+<p>In this exercise, you will be exploring GloVe Wikipedia pre-trained embeddings. The code below loads the word vectors trained on Wikipedia using an algorithm called Glove. You’ll need <code class="docutils literal notranslate"><span class="pre">gensim</span></code> package in your cpsc330 conda environment to run the code below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">conda</span> <span class="n">activate</span> <span class="n">cpsc330</span>
+<span class="o">&gt;</span> <span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">anaconda</span> <span class="n">gensim</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">import</span> <span class="nn">gensim.downloader</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">gensim</span><span class="o">.</span><span class="n">downloader</span><span class="o">.</span><span class="n">info</span><span class="p">()[</span><span class="s2">&quot;models&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will take a while to run when you run it for the first time.</span>
+<span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
+
+<span class="n">glove_wiki_vectors</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;glove-wiki-gigaword-100&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">glove_wiki_vectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 400,000 word vectors in this pre-trained model.</p>
+<p>Now that we have GloVe Wiki vectors loaded in <code class="docutils literal notranslate"><span class="pre">glove_wiki_vectors</span></code>, let’s explore the embeddings.</p>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+<section id="word-similarity-using-pre-trained-embeddings">
+<h3>1.1 Word similarity using pre-trained embeddings<a class="headerlink" href="#word-similarity-using-pre-trained-embeddings" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ul class="simple">
+<li><p>Come up with a list of 4 words of your choice and find similar words to these words in <code class="docutils literal notranslate"><span class="pre">glove_wiki_vectors</span></code> embeddings.</p></li>
+</ul>
+<div class="alert alert-warning">
+<p>Solution_1.1</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="id1">
+<h3>1.2 Word similarity using pre-trained embeddings<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Calculate cosine similarity for the following word pairs (<code class="docutils literal notranslate"><span class="pre">word_pairs</span></code>) using the <a class="reference external" href="https://radimrehurek.com/gensim/models/keyedvectors.html?highlight=similarity#gensim.models.keyedvectors.KeyedVectors.similarity"><code class="docutils literal notranslate"><span class="pre">similarity</span></code></a> method of <code class="docutils literal notranslate"><span class="pre">glove_wiki_vectors</span></code>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word_pairs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;coast&quot;</span><span class="p">,</span> <span class="s2">&quot;shore&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;clothes&quot;</span><span class="p">,</span> <span class="s2">&quot;closet&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;old&quot;</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;smart&quot;</span><span class="p">,</span> <span class="s2">&quot;intelligent&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">,</span> <span class="s2">&quot;lawyer&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.2</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="stereotypes-and-biases-in-embeddings">
+<h3>1.3 Stereotypes and biases in embeddings<a class="headerlink" href="#stereotypes-and-biases-in-embeddings" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:6}</p>
+<p>Word vectors contain lots of useful information. But they also contain stereotypes and biases of the texts they were trained on. In the lecture, we saw an example of gender bias in Google News word embeddings. Here we are using pre-trained embeddings trained on Wikipedia data.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Explore whether there are any worrisome biases or stereotypes present in these embeddings or not by trying out at least 4 examples. You can use the following two methods or other methods of your choice to explore what kind of stereotypes and biases are encoded in these embeddings.</p>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">analogy</span></code> function below which gives word analogies (an example shown below)</p></li>
+<li><p><a class="reference external" href="https://radimrehurek.com/gensim/models/keyedvectors.html?highlight=similarity#gensim.models.keyedvectors.KeyedVectors.similarity">similarity</a> or <a class="reference external" href="https://radimrehurek.com/gensim/models/keyedvectors.html?highlight=distance#gensim.models.keyedvectors.KeyedVectors.distances">distance</a> methods (an example is shown below)</p></li>
+</ul>
+</li>
+<li><p>Discuss your observations.</p></li>
+</ol>
+<blockquote>
+<div><p>Note that most of the recent embeddings are de-biased. But you might still observe some biases in them. Also, not all stereotypes present in pre-trained embeddings are necessarily bad. But you should be aware of them when you use them in your models.</p>
+</div></blockquote>
+<p>An example of using analogy to explore biases and stereotypes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">analogy</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">,</span> <span class="n">word3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">glove_wiki_vectors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns analogy word using the given model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    --------------</span>
+<span class="sd">    word1 : (str)</span>
+<span class="sd">        word1 in the analogy relation</span>
+<span class="sd">    word2 : (str)</span>
+<span class="sd">        word2 in the analogy relation</span>
+<span class="sd">    word3 : (str)</span>
+<span class="sd">        word3 in the analogy relation</span>
+<span class="sd">    model :</span>
+<span class="sd">        word embedding model</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ---------------</span>
+<span class="sd">        pd.dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2"> :: </span><span class="si">%s</span><span class="s2"> : ?&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">,</span> <span class="n">word3</span><span class="p">))</span>
+    <span class="n">sim_words</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="n">word3</span><span class="p">,</span> <span class="n">word2</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="n">word1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sim_words</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Analogy word&quot;</span><span class="p">,</span> <span class="s2">&quot;Score&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analogy</span><span class="p">(</span><span class="s2">&quot;man&quot;</span><span class="p">,</span> <span class="s2">&quot;doctor&quot;</span><span class="p">,</span> <span class="s2">&quot;woman&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>An example of using similarity between words to explore biases and stereotypes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glove_wiki_vectors</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="s2">&quot;rich&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">glove_wiki_vectors</span><span class="o">.</span><span class="n">similarity</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;rich&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.3</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="discussion">
+<h3>1.4 Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:4}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Based on your exploration above, comment on the overall quality of these pre-trained embeddings.</p></li>
+<li><p>In the lecture, we saw that our pre-trained word embedding model output an analogy that reinforced a gender stereotype. Give an example of how using such a model could cause harm in the real world.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1.4</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="classification-with-pre-trained-embeddings">
+<h3>1.5 Classification with pre-trained embeddings<a class="headerlink" href="#classification-with-pre-trained-embeddings" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:8}</p>
+<p>In lecture 18, we saw that you can conveniently get word vectors with <code class="docutils literal notranslate"><span class="pre">spaCy</span></code> with <code class="docutils literal notranslate"><span class="pre">en_core_web_md</span></code> model. In this exercise, you’ll use word embeddings in multi-class text classification task. We will use <a class="reference external" href="https://www.kaggle.com/ritresearch/happydb">HappyDB</a> corpus which contains about 100,000 happy moments classified into 7 categories: <em>affection, exercise, bonding, nature, leisure, achievement, enjoy_the_moment</em>. The data was crowd-sourced via <a class="reference external" href="https://www.mturk.com/">Amazon Mechanical Turk</a>. The ground truth label is not available for all examples, and in this lab, we’ll only use the examples where ground truth is available (~15,000 examples).</p>
+<ul class="simple">
+<li><p>Download the data from <a class="reference external" href="https://www.kaggle.com/ritresearch/happydb">here</a>.</p></li>
+<li><p>Unzip the file and copy it under data/ directory in this homework directory.</p></li>
+</ul>
+<p>The code below reads the data CSV (assuming that it’s present in the current directory as <em>cleaned_hm.csv</em>),  cleans it up a bit, and splits it into train and test splits.</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Train logistic regression with bag-of-words features (<code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code>) and show <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html">classification report</a> on the test set.</p></li>
+<li><p>Train logistic regression with average embedding representation extracted using spaCy and show <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html">classification report</a> on the test set. (You can refer to lecture 18 notes for this.)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/cleaned_hm.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sample_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">sample_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_df</span> <span class="o">=</span> <span class="n">sample_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cleaned_hm&quot;</span><span class="p">:</span> <span class="s2">&quot;moment&quot;</span><span class="p">,</span> <span class="s2">&quot;ground_truth_category&quot;</span><span class="p">:</span> <span class="s2">&quot;target&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">sample_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;moment&quot;</span><span class="p">],</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;moment&quot;</span><span class="p">],</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You need <code class="docutils literal notranslate"><span class="pre">spacy</span></code> to run the code below. If it’s not in your course conda environment, you need to install it.</p>
+<blockquote>
+<div><p>conda install -c conda-forge spacy</p>
+</div></blockquote>
+<p>You also need to download the following language model.</p>
+<blockquote>
+<div><p>python -m spacy download en_core_web_md</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_md&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-warning">
+<p>Solution_1.5</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="id2">
+<h3>1.6 Discussion<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:6}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Briefly explain the difference between using <code class="docutils literal notranslate"><span class="pre">CountVectorizer</span></code> vs. average-embedding approach for text classification.</p></li>
+<li><p>Which representation among these two would be more interpretable? Why?</p></li>
+<li><p>Are we using any transfer learning here? If yes, are you observing any benefits of transfer learning? Briefly discuss.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_1.6</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="exercise-2-topic-modeling">
+<h2>Exercise 2: Topic modeling<a class="headerlink" href="#exercise-2-topic-modeling" title="Permalink to this headline">#</a></h2>
+<p>The overarching goal of topic modeling is understanding high-level themes in a large collection of texts in an unsupervised way.</p>
+<p>In this exercise you will explore topics in a subset of <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="https://scikit-learn.org/0.19/datasets/twenty_newsgroups.html">20 newsgroups text dataset</a> using <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <code class="docutils literal notranslate"><span class="pre">LatentDirichletAllocation</span></code> (LDA) model.</p>
+<p>Usually, topic modeling is used for discovering abstract “topics” that occur in a collection of documents when you do not know the actual topics present in the documents. But 20 newsgroups text dataset is labeled with categories (e.g., sports, hardware, religion), and you will be able to cross-check the topics discovered by your model with these available topics.</p>
+<p>The starter code below loads the train and test portion of the data and convert the train portion into a pandas DataFrame. For speed, we will only consider documents with the following 8 categories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cats</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;rec.sport.hockey&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;rec.sport.baseball&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;soc.religion.christian&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;alt.atheism&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;comp.graphics&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;comp.windows.x&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;talk.politics.mideast&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;talk.politics.guns&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># We&#39;ll only consider these categories out of 20 categories for speed.</span>
+
+<span class="n">newsgroups_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;footers&quot;</span><span class="p">,</span> <span class="s2">&quot;quotes&quot;</span><span class="p">),</span> <span class="n">categories</span><span class="o">=</span><span class="n">cats</span>
+<span class="p">)</span>
+<span class="n">X_news_train</span><span class="p">,</span> <span class="n">y_news_train</span> <span class="o">=</span> <span class="n">newsgroups_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">newsgroups_train</span><span class="o">.</span><span class="n">target</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_news_train</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_news_train</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;target_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">newsgroups_train</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">target</span><span class="p">]</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">newsgroups_train</span><span class="o">.</span><span class="n">target</span>
+<span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newsgroups_train</span><span class="o">.</span><span class="n">target_names</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+<section id="preprocessing-using-spacy">
+<h3>2.1 Preprocessing using <a class="reference external" href="https://spacy.io/">spaCy</a><a class="headerlink" href="#preprocessing-using-spacy" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:8}</p>
+<p>In this exercise you’ll prepare the data for topic modeling using <a class="reference external" href="https://spacy.io/">spaCy</a>. Preprocessing is a crucial step before training an LDA model and it markedly affects topic modeling results. So let’s carry out preprocessing.</p>
+<p><strong>Your tasks:</strong></p>
+<p>Write code to carry out preprocessing of the “text” column in the dataframe above and store the preprocessed text in a new column called “text_pp” in the dataframe.</p>
+<p>Note that there is no such thing as “perfect” preprocessing. You’ll have to make your own judgments and decisions on which tokens are more informative and which ones are less informative for the given task. Some common text preprocessing steps for topic modeling are:</p>
+<ul class="simple">
+<li><p>getting rid of slashes or other weird characters</p></li>
+<li><p>sentence segmentation and tokenization</p></li>
+<li><p>getting rid of urls and email addresses</p></li>
+<li><p>getting rid of other fairly unique tokens which are not going to help us in topic modeling</p></li>
+<li><p>excluding stopwords and punctuation</p></li>
+<li><p>lemmatization</p></li>
+</ul>
+<p>You might have to go back and forth between the preprocessing and topic modeling and interpretation steps in the next exercises.</p>
+<blockquote>
+<div><p>Check out <a class="reference external" href="https://spacy.io/api/token#attributes">these available attributes</a> for <code class="docutils literal notranslate"><span class="pre">token</span></code> in spaCy which might help you with preprocessing.</p>
+</div></blockquote>
+<blockquote>
+<div><p>You can also get rid of words with specific POS tags. <a class="reference external" href="https://spacy.io/api/annotation/#pos-en">Here</a> is the list of part-of-speech tags used in spaCy.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Note that preprocessing the corpus might take some time. So here are a couple of suggestions: 1) During the debugging phase, work on a smaller subset of the data. 2) Once you’re done with the preprocessing part, you might want to save the preprocessed data so that you don’t run the preprocessing part every time you run the notebook.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2_1</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="justification">
+<h3>2.2 Justification<a class="headerlink" href="#justification" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:2}</p>
+<p><strong>Your tasks:</strong></p>
+<p>Outline the preprocessing steps you carried out in the previous exercise and provide a brief justification for these steps.</p>
+<div class="alert alert-warning">
+<p>Solution_2_2</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="build-a-topic-model-using-sklearn-s-latentdirichletallocation">
+<h3>2.3 Build a topic model using sklearn’s LatentDirichletAllocation<a class="headerlink" href="#build-a-topic-model-using-sklearn-s-latentdirichletallocation" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:4}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Create a topic model on the preprocessed data using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html">sklearn’s <code class="docutils literal notranslate"><span class="pre">LatentDirichletAllocation</span></code></a>. Pick a reasonable number for <code class="docutils literal notranslate"><span class="pre">n_components</span></code>, i.e., number of topics and briefly justify your choice.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2_3</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="exploring-word-topic-association">
+<h3>2.4 Exploring word topic association<a class="headerlink" href="#exploring-word-topic-association" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Show top 10 words for each of your topics and suggest labels for each of the topics (similar to how we came up with labels “health and nutrition”, “fashion”, and “machine learning” in the toy example we saw in class).</p></li>
+</ol>
+<blockquote>
+<div><p>If your topics do not make much sense, you might have to go back to preprocessing in Exercise 2.1, improve it, and train your LDA model again.</p>
+</div></blockquote>
+<div class="alert alert-warning">
+<p>Solution_2_4</p>
+</div><!-- END QUESTION -->
+<p><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+<section id="exploring-document-topic-association">
+<h3>2.5 Exploring document topic association<a class="headerlink" href="#exploring-document-topic-association" title="Permalink to this headline">#</a></h3>
+<p>rubric={points:5}</p>
+<p><strong>Your tasks:</strong></p>
+<ol class="simple">
+<li><p>Show the document topic assignment of the first five documents from <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+<li><p>Comment on the document topic assignment of the model.</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_2_5</p>
+</div><!-- END QUESTION -->
+<p><br><br><br><br></p>
+<!-- BEGIN QUESTION -->
+</section>
+</section>
+<section id="exercise-3-short-answer-questions">
+<h2>Exercise 3: Short answer questions<a class="headerlink" href="#exercise-3-short-answer-questions" title="Permalink to this headline">#</a></h2>
+<hr>
+<p>rubric={points:6}</p>
+<ol class="simple">
+<li><p>In lecture 19, we talked about multi-class classification. Comment on how each model in the list below might be handling multiclass classification. Check <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> documentation for each of these models when you answer this question.</p>
+<ul class="simple">
+<li><p>Decision Tree</p></li>
+<li><p>KNN</p></li>
+<li><p>Random Forest</p></li>
+<li><p>Logistic Regression</p></li>
+<li><p>SVM RBF</p></li>
+</ul>
+</li>
+<li><p>What is transfer learning in natural language processing or computer vision? Briefly explain.</p></li>
+<li><p>In Lecture 19 we briefly discussed how neural networks are sort of like <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code>s, in the sense that they involve multiple sequential transformations of the data, finally resulting in the prediction. Why was this property useful when it came to transfer learning?</p></li>
+</ol>
+<div class="alert alert-warning">
+<p>Solution_3</p>
+</div><p><em>Type your answer here, replacing this text.</em></p>
+<!-- END QUESTION -->
+<p><br><br><br><br></p>
+<p><strong>PLEASE READ BEFORE YOU SUBMIT:</strong></p>
+<p>When you are ready to submit your assignment do the following:</p>
+<ol class="simple">
+<li><p>Run all cells in your notebook to make sure there are no errors by doing <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">-&gt;</span> <span class="pre">Restart</span> <span class="pre">Kernel</span> <span class="pre">and</span> <span class="pre">Clear</span> <span class="pre">All</span> <span class="pre">Outputs</span></code> and then <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">-&gt;</span> <span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Cells</span></code>.</p></li>
+<li><p>Notebooks with cell execution numbers out of order or not starting from “1” will have marks deducted. Notebooks without the output displayed may not be graded at all (because we need to see the output in order to grade your work).</p></li>
+<li><p>Upload the assignment using Gradescope’s drag and drop tool. Check out this <a class="reference external" href="https://lthub.ubc.ca/guides/gradescope-student-guide/">Gradescope Student Guide</a> if you need help with Gradescope submission.</p></li>
+<li><p>Make sure that the plots and output are rendered properly in your submitted file. If the .ipynb file is too big and doesn’t render on Gradescope, also upload a pdf or html in addition to the .ipynb so that the TAs can view your submission on Gradescope.</p></li>
+</ol>
+<p><img alt="" src="../../_images/eva-well-done5.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./hw/hw7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
