@@ -51,8 +51,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -217,6 +215,31 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="15_K-Means.html">
    Lecture 15: K-Means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_DBSCAN-hierarchical.html">
+   Lecture 16: DBSCAN and Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_recommender-systems.html">
+   Lecture 17: Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_natural-language-processing.html">
+   Lecture 18: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_intro_to_computer-vision.html">
+   Lecture 19: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_time-series.html">
+   Lecture 20: Time series
   </a>
  </li>
 </ul>
@@ -1068,7 +1091,6 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">OrdinalEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 </pre></div>
 </div>
 </div>
@@ -1536,7 +1558,7 @@ Name: Sentiment, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.465 (+/- 0.015)</td>
+      <td>0.450 (+/- 0.028)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
@@ -2243,14 +2265,14 @@ DATE means:  Absolute or relative dates or periods
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.465 (+/- 0.015)</td>
+      <td>0.450 (+/- 0.028)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LR (more feats)</th>
-      <td>0.465 (+/- 0.022)</td>
+      <td>0.468 (+/- 0.020)</td>
       <td>0.009 (+/- 0.000)</td>
       <td>0.689 (+/- 0.007)</td>
       <td>0.998 (+/- 0.001)</td>
@@ -2882,8 +2904,8 @@ The ____ was running.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.001459
-score_time     0.000122
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.001401
+score_time     0.000117
 test_score     0.968233
 train_score    0.987681
 dtype: float64
@@ -2933,8 +2955,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.054129
-score_time     0.004437
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.054750
+score_time     0.004442
 test_score     0.950564
 train_score    0.974480
 dtype: float64
@@ -2955,8 +2977,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.052758
-score_time     0.004329
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.052626
+score_time     0.004303
 test_score     0.950564
 train_score    0.974480
 dtype: float64
@@ -3100,8 +3122,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.369691
-score_time     0.002680
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.359585
+score_time     0.002665
 test_score     0.943609
 train_score    1.000000
 dtype: float64
@@ -3168,8 +3190,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.590258
-score_time     0.002654
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.600743
+score_time     0.002611
 test_score     0.933020
 train_score    1.000000
 dtype: float64
@@ -3194,8 +3216,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       2.005701
-score_time     0.002627
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.983430
+score_time     0.002608
 test_score     0.950627
 train_score    1.000000
 dtype: float64
