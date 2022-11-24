@@ -32,11 +32,10 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-from sklearn.ensemble import RandomForestClassifier
+from yellowbrick.model_selection import rfecv
+from sklearn.metrics import r2_score
 from sklearn.model_selection import StratifiedKFold
 
-from yellowbrick.model_selection import rfecv
-cv = StratifiedKFold(5)
-visualizer = rfecv(LogisticRegression(max_iter=2000), X=X_train, y=y_train, cv=cv, scoring='f1_weighted')
+visualizer = rfecv(Ridge(), X=X_train_enc, y=y_train, cv=5, scoring='r2')
 -------------------
 

@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="next" title="Lecture 21: Survival analysis" href="21_survival-analysis.html" />
     <link rel="prev" title="Lecture 19: Multi-class classification and introduction to computer vision" href="19_intro_to_computer-vision.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -238,6 +238,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lecture 20: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_survival-analysis.html">
+   Lecture 21: Survival analysis
   </a>
  </li>
 </ul>
@@ -2278,7 +2283,7 @@ Test-set R^2: 0.68
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train-set R^2: 0.96
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test-set R^2: 0.80
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test-set R^2: 0.79
 </pre></div>
 </div>
 <img alt="../_images/20_time-series_94_2.png" src="../_images/20_time-series_94_2.png" />
@@ -2374,36 +2379,36 @@ Test-set R^2: 0.68
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000552</td>
-      <td>0.000166</td>
+      <td>0.000490</td>
+      <td>0.000133</td>
       <td>0.642676</td>
       <td>0.873182</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.000453</td>
-      <td>0.000104</td>
+      <td>0.000326</td>
+      <td>0.000094</td>
       <td>0.828405</td>
       <td>0.874305</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.000417</td>
-      <td>0.000091</td>
+      <td>0.000383</td>
+      <td>0.000087</td>
       <td>0.773851</td>
       <td>0.901262</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.000401</td>
-      <td>0.000088</td>
+      <td>0.000384</td>
+      <td>0.000084</td>
       <td>0.696712</td>
       <td>0.889429</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.000420</td>
-      <td>0.000084</td>
+      <td>0.000413</td>
+      <td>0.000085</td>
       <td>0.892733</td>
       <td>0.863889</td>
     </tr>
@@ -2868,6 +2873,156 @@ Test-set R^2: 0.68
 <p>Given this, we can now predict the sales</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retail_test_5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>sales</th>
+      <th>sales-1</th>
+      <th>sales-2</th>
+      <th>sales-3</th>
+      <th>sales-4</th>
+      <th>sales-5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>289</th>
+      <td>2016-02-01</td>
+      <td>19032</td>
+      <td>15775.0</td>
+      <td>33590.0</td>
+      <td>23175.0</td>
+      <td>20794.0</td>
+      <td>19266.0</td>
+    </tr>
+    <tr>
+      <th>290</th>
+      <td>2016-03-01</td>
+      <td>21581</td>
+      <td>19032.0</td>
+      <td>15775.0</td>
+      <td>33590.0</td>
+      <td>23175.0</td>
+      <td>20794.0</td>
+    </tr>
+    <tr>
+      <th>291</th>
+      <td>2016-04-01</td>
+      <td>20514</td>
+      <td>21581.0</td>
+      <td>19032.0</td>
+      <td>15775.0</td>
+      <td>33590.0</td>
+      <td>23175.0</td>
+    </tr>
+    <tr>
+      <th>292</th>
+      <td>2016-05-01</td>
+      <td>21774</td>
+      <td>20514.0</td>
+      <td>21581.0</td>
+      <td>19032.0</td>
+      <td>15775.0</td>
+      <td>33590.0</td>
+    </tr>
+    <tr>
+      <th>293</th>
+      <td>2016-06-01</td>
+      <td>20274</td>
+      <td>21774.0</td>
+      <td>20514.0</td>
+      <td>21581.0</td>
+      <td>19032.0</td>
+      <td>15775.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>364</th>
+      <td>2022-05-01</td>
+      <td>26831</td>
+      <td>25904.0</td>
+      <td>25622.0</td>
+      <td>20509.0</td>
+      <td>18113.0</td>
+      <td>39375.0</td>
+    </tr>
+    <tr>
+      <th>365</th>
+      <td>2022-06-01</td>
+      <td>25031</td>
+      <td>26831.0</td>
+      <td>25904.0</td>
+      <td>25622.0</td>
+      <td>20509.0</td>
+      <td>18113.0</td>
+    </tr>
+    <tr>
+      <th>366</th>
+      <td>2022-07-01</td>
+      <td>25214</td>
+      <td>25031.0</td>
+      <td>26831.0</td>
+      <td>25904.0</td>
+      <td>25622.0</td>
+      <td>20509.0</td>
+    </tr>
+    <tr>
+      <th>367</th>
+      <td>2022-08-01</td>
+      <td>26376</td>
+      <td>25214.0</td>
+      <td>25031.0</td>
+      <td>26831.0</td>
+      <td>25904.0</td>
+      <td>25622.0</td>
+    </tr>
+    <tr>
+      <th>368</th>
+      <td>2022-09-01</td>
+      <td>23941</td>
+      <td>26376.0</td>
+      <td>25214.0</td>
+      <td>25031.0</td>
+      <td>26831.0</td>
+      <td>25904.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">retail_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">retail_test_5</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="s2">&quot;sales&quot;</span><span class="p">]))</span>
 <span class="n">preds</span>
 </pre></div>
@@ -3023,7 +3178,7 @@ Test-set R^2: 0.68
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/20_time-series_131_0.png" src="../_images/20_time-series_131_0.png" />
+<img alt="../_images/20_time-series_132_0.png" src="../_images/20_time-series_132_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4215,7 +4370,7 @@ Name: Date, dtype: datetime64[ns]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/20_time-series_172_0.png" src="../_images/20_time-series_172_0.png" />
+<img alt="../_images/20_time-series_173_0.png" src="../_images/20_time-series_173_0.png" />
 </div>
 </div>
 <p>We’re learning relationships from the blue part; predicting only using features in the red part from the day before.</p>
@@ -5208,324 +5363,6 @@ Test score: 0.84
   </tbody>
 </table>
 <p>5 rows × 23 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Date</th>
-      <th>Location</th>
-      <th>MinTemp</th>
-      <th>MaxTemp</th>
-      <th>Rainfall</th>
-      <th>Evaporation</th>
-      <th>Sunshine</th>
-      <th>WindGustDir</th>
-      <th>WindGustSpeed</th>
-      <th>WindDir9am</th>
-      <th>...</th>
-      <th>Humidity9am</th>
-      <th>Humidity3pm</th>
-      <th>Pressure9am</th>
-      <th>Pressure3pm</th>
-      <th>Cloud9am</th>
-      <th>Cloud3pm</th>
-      <th>Temp9am</th>
-      <th>Temp3pm</th>
-      <th>RainToday</th>
-      <th>RainTomorrow</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>45587</th>
-      <td>2007-11-01</td>
-      <td>Canberra</td>
-      <td>8.0</td>
-      <td>24.3</td>
-      <td>0.0</td>
-      <td>3.4</td>
-      <td>6.3</td>
-      <td>NW</td>
-      <td>30.0</td>
-      <td>SW</td>
-      <td>...</td>
-      <td>68.0</td>
-      <td>29.0</td>
-      <td>1019.7</td>
-      <td>1015.0</td>
-      <td>7.0</td>
-      <td>7.0</td>
-      <td>14.4</td>
-      <td>23.6</td>
-      <td>No</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>45588</th>
-      <td>2007-11-02</td>
-      <td>Canberra</td>
-      <td>14.0</td>
-      <td>26.9</td>
-      <td>3.6</td>
-      <td>4.4</td>
-      <td>9.7</td>
-      <td>ENE</td>
-      <td>39.0</td>
-      <td>E</td>
-      <td>...</td>
-      <td>80.0</td>
-      <td>36.0</td>
-      <td>1012.4</td>
-      <td>1008.4</td>
-      <td>5.0</td>
-      <td>3.0</td>
-      <td>17.5</td>
-      <td>25.7</td>
-      <td>Yes</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>45589</th>
-      <td>2007-11-03</td>
-      <td>Canberra</td>
-      <td>13.7</td>
-      <td>23.4</td>
-      <td>3.6</td>
-      <td>5.8</td>
-      <td>3.3</td>
-      <td>NW</td>
-      <td>85.0</td>
-      <td>N</td>
-      <td>...</td>
-      <td>82.0</td>
-      <td>69.0</td>
-      <td>1009.5</td>
-      <td>1007.2</td>
-      <td>8.0</td>
-      <td>7.0</td>
-      <td>15.4</td>
-      <td>20.2</td>
-      <td>Yes</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>45590</th>
-      <td>2007-11-04</td>
-      <td>Canberra</td>
-      <td>13.3</td>
-      <td>15.5</td>
-      <td>39.8</td>
-      <td>7.2</td>
-      <td>9.1</td>
-      <td>NW</td>
-      <td>54.0</td>
-      <td>WNW</td>
-      <td>...</td>
-      <td>62.0</td>
-      <td>56.0</td>
-      <td>1005.5</td>
-      <td>1007.0</td>
-      <td>2.0</td>
-      <td>7.0</td>
-      <td>13.5</td>
-      <td>14.1</td>
-      <td>Yes</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>45591</th>
-      <td>2007-11-05</td>
-      <td>Canberra</td>
-      <td>7.6</td>
-      <td>16.1</td>
-      <td>2.8</td>
-      <td>5.6</td>
-      <td>10.6</td>
-      <td>SSE</td>
-      <td>50.0</td>
-      <td>SSE</td>
-      <td>...</td>
-      <td>68.0</td>
-      <td>49.0</td>
-      <td>1018.3</td>
-      <td>1018.5</td>
-      <td>7.0</td>
-      <td>7.0</td>
-      <td>11.1</td>
-      <td>15.4</td>
-      <td>Yes</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>57415</th>
-      <td>2015-06-30</td>
-      <td>Ballarat</td>
-      <td>-0.3</td>
-      <td>10.5</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>S</td>
-      <td>26.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>99.0</td>
-      <td>63.0</td>
-      <td>1029.5</td>
-      <td>1027.7</td>
-      <td>NaN</td>
-      <td>8.0</td>
-      <td>4.7</td>
-      <td>9.3</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>119911</th>
-      <td>2015-06-30</td>
-      <td>PerthAirport</td>
-      <td>10.1</td>
-      <td>23.5</td>
-      <td>0.0</td>
-      <td>3.2</td>
-      <td>5.8</td>
-      <td>NNE</td>
-      <td>31.0</td>
-      <td>NE</td>
-      <td>...</td>
-      <td>48.0</td>
-      <td>33.0</td>
-      <td>1023.6</td>
-      <td>1021.7</td>
-      <td>7.0</td>
-      <td>6.0</td>
-      <td>13.3</td>
-      <td>22.2</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>60455</th>
-      <td>2015-06-30</td>
-      <td>Bendigo</td>
-      <td>0.3</td>
-      <td>11.4</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>W</td>
-      <td>19.0</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>89.0</td>
-      <td>56.0</td>
-      <td>1029.3</td>
-      <td>1027.4</td>
-      <td>8.0</td>
-      <td>7.0</td>
-      <td>6.4</td>
-      <td>10.5</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>66473</th>
-      <td>2015-06-30</td>
-      <td>MelbourneAirport</td>
-      <td>3.2</td>
-      <td>13.2</td>
-      <td>0.0</td>
-      <td>0.8</td>
-      <td>3.9</td>
-      <td>N</td>
-      <td>20.0</td>
-      <td>N</td>
-      <td>...</td>
-      <td>91.0</td>
-      <td>50.0</td>
-      <td>1029.6</td>
-      <td>1027.3</td>
-      <td>2.0</td>
-      <td>7.0</td>
-      <td>5.3</td>
-      <td>11.9</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>144733</th>
-      <td>2015-06-30</td>
-      <td>Uluru</td>
-      <td>6.8</td>
-      <td>21.1</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>ESE</td>
-      <td>35.0</td>
-      <td>ESE</td>
-      <td>...</td>
-      <td>81.0</td>
-      <td>35.0</td>
-      <td>1028.6</td>
-      <td>1025.2</td>
-      <td>3.0</td>
-      <td>NaN</td>
-      <td>10.6</td>
-      <td>20.2</td>
-      <td>No</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
-<p>107502 rows × 23 columns</p>
 </div></div></div>
 </div>
 <ul class="simple">
@@ -8201,10 +8038,10 @@ Test score: 0.85
             <p class="prev-next-title">Lecture 19: Multi-class classification and introduction to computer vision</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <a class='right-next' id="next-link" href="21_survival-analysis.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attributions</p>
+        <p class="prev-next-title">Lecture 21: Survival analysis</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

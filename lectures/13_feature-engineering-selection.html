@@ -242,6 +242,11 @@ const thebe_selector_output = ".output, .cell_output"
    Lecture 20: Time series
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_survival-analysis.html">
+   Lecture 21: Survival analysis
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -1558,7 +1563,7 @@ Name: Sentiment, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.450 (+/- 0.028)</td>
+      <td>0.445 (+/- 0.016)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
@@ -2265,14 +2270,14 @@ DATE means:  Absolute or relative dates or periods
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.450 (+/- 0.028)</td>
+      <td>0.445 (+/- 0.016)</td>
       <td>0.007 (+/- 0.000)</td>
       <td>0.413 (+/- 0.011)</td>
       <td>0.999 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>LR (more feats)</th>
-      <td>0.468 (+/- 0.020)</td>
+      <td>0.462 (+/- 0.025)</td>
       <td>0.009 (+/- 0.000)</td>
       <td>0.689 (+/- 0.007)</td>
       <td>0.998 (+/- 0.001)</td>
@@ -2904,8 +2909,8 @@ The ____ was running.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.001401
-score_time     0.000117
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.001411
+score_time     0.000119
 test_score     0.968233
 train_score    0.987681
 dtype: float64
@@ -2955,8 +2960,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.054750
-score_time     0.004442
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.054690
+score_time     0.004420
 test_score     0.950564
 train_score    0.974480
 dtype: float64
@@ -2977,8 +2982,8 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.052626
-score_time     0.004303
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.052603
+score_time     0.004309
 test_score     0.950564
 train_score    0.974480
 dtype: float64
@@ -3016,6 +3021,708 @@ dtype: float64
 </ul>
 </li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+
+<span class="kn">from</span> <span class="nn">yellowbrick.model_selection</span> <span class="kn">import</span> <span class="n">rfecv</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">visualizer</span> <span class="o">=</span> <span class="n">rfecv</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1_weighted&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:444: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">52</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">yellowbrick.model_selection</span> <span class="kn">import</span> <span class="n">rfecv</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">visualizer</span> <span class="o">=</span> <span class="n">rfecv</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">),</span> <span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1_weighted&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/yellowbrick/model_selection/rfecv.py:357,</span> in <span class="ni">rfecv</span><span class="nt">(estimator, X, y, ax, step, groups, cv, scoring, show, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="n">oz</span> <span class="o">=</span> <span class="n">RFECV</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>     <span class="n">estimator</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="n">show</span>
+<span class="g g-Whitespace">    </span><span class="mi">354</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span> <span class="c1"># Fit and show the visualizer</span>
+<span class="ne">--&gt; </span><span class="mi">357</span> <span class="n">oz</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span> <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>     <span class="n">oz</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/yellowbrick/model_selection/rfecv.py:197,</span> in <span class="ni">RFECV.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">195</span> <span class="k">for</span> <span class="n">n_features_to_select</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_feature_subsets_</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="n">rfe</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">n_features_to_select</span><span class="o">=</span><span class="n">n_features_to_select</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">197</span>     <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">rfe</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">cv_params</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">199</span> <span class="c1"># Convert scores to array</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv_scores_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:515,</span> in <span class="ni">cross_val_score</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">512</span> <span class="c1"># To ensure multimetric format is not supported</span>
+<span class="g g-Whitespace">    </span><span class="mi">513</span> <span class="n">scorer</span> <span class="o">=</span> <span class="n">check_scoring</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">515</span> <span class="n">cv_results</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">516</span>     <span class="n">estimator</span><span class="o">=</span><span class="n">estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">517</span>     <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span>     <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>     <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>     <span class="n">scoring</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">scorer</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span>     <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span>     <span class="n">fit_params</span><span class="o">=</span><span class="n">fit_params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">526</span>     <span class="n">error_score</span><span class="o">=</span><span class="n">error_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span> <span class="k">return</span> <span class="n">cv_results</span><span class="p">[</span><span class="s2">&quot;test_score&quot;</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:266,</span> in <span class="ni">cross_validate</span><span class="nt">(estimator, X, y, groups, scoring, cv, n_jobs, verbose, fit_params, pre_dispatch, return_train_score, return_estimator, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span> <span class="c1"># We clone the estimator to make sure that all the folds are</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span> <span class="c1"># independent, and that it is pickle-able.</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span> <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">266</span> <span class="n">results</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_and_score</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>         <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">269</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">270</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span>         <span class="n">scorers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span>         <span class="n">train</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span>         <span class="n">test</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>         <span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span>         <span class="n">fit_params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>         <span class="n">return_train_score</span><span class="o">=</span><span class="n">return_train_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="n">return_times</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">return_estimator</span><span class="o">=</span><span class="n">return_estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">280</span>         <span class="n">error_score</span><span class="o">=</span><span class="n">error_score</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">281</span>     <span class="p">)</span>
+<span class="nn">    282     for train, test</span> in <span class="ni">cv.split</span><span class="nt">(X, y, groups)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">285</span> <span class="n">_warn_or_raise_about_fit_failures</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="c1"># For callabe scoring, the return type is only know after calling. If the</span>
+<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="c1"># return type is a dictionary, the error scores can now be inserted with</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="c1"># the correct key.</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1046,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1046</span> <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span>     <span class="k">pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="k">if</span> <span class="n">pre_dispatch</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span> <span class="ow">or</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>     <span class="c1"># The iterable was consumed all at once by the above for loop.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span>     <span class="c1"># No need to wait for async callbacks to trigger to</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>     <span class="c1"># consumption.</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:861,</span> in <span class="ni">Parallel.dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:779,</span> in <span class="ni">Parallel._dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>     <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>     <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="c1"># called before we get here, causing self._jobs to</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="c1"># grow. To ensure correct results ordering, .insert is</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="c1"># used (rather than .append) in the following line</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">job_idx</span><span class="p">,</span> <span class="n">job</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:208,</span> in <span class="ni">SequentialBackend.apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:572,</span> in <span class="ni">ImmediateResult.__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">BatchedCalls.__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/fixes.py:117,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">117</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/model_selection/_validation.py:686,</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">686</span>         <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="c1"># Note fit time as time until error</span>
+<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/feature_selection/_rfe.py:235,</span> in <span class="ni">RFE.fit</span><span class="nt">(self, X, y, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="sd">&quot;&quot;&quot;Fit the RFE model and then the underlying estimator on the selected features.</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="sd">         Fitted estimator.</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">235</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/feature_selection/_rfe.py:296,</span> in <span class="ni">RFE._fit</span><span class="nt">(self, X, y, step_score, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting estimator with </span><span class="si">%d</span><span class="s2"> features.&quot;</span> <span class="o">%</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">support_</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">296</span> <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="n">features</span><span class="p">],</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> <span class="c1"># Get importance and rank them</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span> <span class="n">importances</span> <span class="o">=</span> <span class="n">_get_feature_importances</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>     <span class="n">estimator</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>     <span class="bp">self</span><span class="o">.</span><span class="n">importance_getter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>     <span class="n">transform_func</span><span class="o">=</span><span class="s2">&quot;square&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span> <span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:1233,</span> in <span class="ni">LogisticRegression.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1230</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1231</span>     <span class="n">n_threads</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1233</span> <span class="n">fold_coefs_</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span> <span class="n">prefer</span><span class="o">=</span><span class="n">prefer</span><span class="p">)(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1234</span>     <span class="n">path_func</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1235</span>         <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span>         <span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1237</span>         <span class="n">pos_class</span><span class="o">=</span><span class="n">class_</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1238</span>         <span class="n">Cs</span><span class="o">=</span><span class="p">[</span><span class="n">C_</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span>         <span class="n">l1_ratio</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l1_ratio</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span>         <span class="n">fit_intercept</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1241</span>         <span class="n">tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1242</span>         <span class="n">verbose</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1243</span>         <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1244</span>         <span class="n">multi_class</span><span class="o">=</span><span class="n">multi_class</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1245</span>         <span class="n">max_iter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1246</span>         <span class="n">class_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1247</span>         <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1248</span>         <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1249</span>         <span class="n">coef</span><span class="o">=</span><span class="n">warm_start_coef_</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1250</span>         <span class="n">penalty</span><span class="o">=</span><span class="n">penalty</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1251</span>         <span class="n">max_squared_sum</span><span class="o">=</span><span class="n">max_squared_sum</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1252</span>         <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1253</span>         <span class="n">n_threads</span><span class="o">=</span><span class="n">n_threads</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1254</span>     <span class="p">)</span>
+<span class="nn">   1255     for class_, warm_start_coef_</span> in <span class="ni">zip</span><span class="nt">(classes_, warm_start_coef)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1256</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1258</span> <span class="n">fold_coefs_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">n_iter_</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">fold_coefs_</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1259</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">n_iter_</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1043,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1034</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1035</span>     <span class="c1"># Only set self._iterating to True if at least a batch</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span>     <span class="c1"># was dispatched. In particular this covers the edge</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="c1"># was very quick and its callback already dispatched all the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="c1"># remaining jobs.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">1043</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span>     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:861,</span> in <span class="ni">Parallel.dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:779,</span> in <span class="ni">Parallel._dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>     <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>     <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="c1"># called before we get here, causing self._jobs to</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="c1"># grow. To ensure correct results ordering, .insert is</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="c1"># used (rather than .append) in the following line</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">job_idx</span><span class="p">,</span> <span class="n">job</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:208,</span> in <span class="ni">SequentialBackend.apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:572,</span> in <span class="ni">ImmediateResult.__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">BatchedCalls.__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/fixes.py:117,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">117</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_logistic.py:436,</span> in <span class="ni">_logistic_regression_path</span><span class="nt">(X, y, pos_class, Cs, fit_intercept, max_iter, tol, verbose, solver, coef, class_weight, dual, penalty, intercept_scaling, multi_class, random_state, check_input, max_squared_sum, sample_weight, l1_ratio, n_threads)</span>
+<span class="g g-Whitespace">    </span><span class="mi">432</span> <span class="n">l2_reg_strength</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">C</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span> <span class="n">iprint</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">][</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">435</span> <span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">436</span> <span class="n">opt_res</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">437</span>     <span class="n">func</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="n">w0</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>     <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>     <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">,</span> <span class="n">l2_reg_strength</span><span class="p">,</span> <span class="n">n_threads</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;iprint&quot;</span><span class="p">:</span> <span class="n">iprint</span><span class="p">,</span> <span class="s2">&quot;gtol&quot;</span><span class="p">:</span> <span class="n">tol</span><span class="p">,</span> <span class="s2">&quot;maxiter&quot;</span><span class="p">:</span> <span class="n">max_iter</span><span class="p">},</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span> <span class="n">n_iter_i</span> <span class="o">=</span> <span class="n">_check_optimize_result</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span>     <span class="n">solver</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>     <span class="n">opt_res</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>     <span class="n">max_iter</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">448</span>     <span class="n">extra_warning_msg</span><span class="o">=</span><span class="n">_LOGISTIC_SOLVER_CONVERGENCE_MSG</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">449</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="n">w0</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">opt_res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">opt_res</span><span class="o">.</span><span class="n">fun</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_minimize.py:699,</span> in <span class="ni">minimize</span><span class="nt">(fun, x0, args, method, jac, hess, hessp, bounds, constraints, tol, callback, options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">696</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_newtoncg</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">hess</span><span class="p">,</span> <span class="n">hessp</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>                              <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;l-bfgs-b&#39;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">699</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_lbfgsb</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>                            <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> <span class="k">elif</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;tnc&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">_minimize_tnc</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">callback</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>                         <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_lbfgsb_py.py:362,</span> in <span class="ni">_minimize_lbfgsb</span><span class="nt">(fun, x0, args, jac, bounds, disp, maxcor, ftol, gtol, eps, maxfun, maxiter, iprint, callback, maxls, finite_diff_rel_step, **unknown_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span> <span class="n">task_str</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span> <span class="k">if</span> <span class="n">task_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;FG&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">358</span>     <span class="c1"># The minimization routine wants f and g at the current x.</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="c1"># Note that interruptions due to maxfun are postponed</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>     <span class="c1"># until the completion of the current minimization iteration.</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="c1"># Overwrite f and g:</span>
+<span class="ne">--&gt; </span><span class="mi">362</span>     <span class="n">f</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">func_and_grad</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span> <span class="k">elif</span> <span class="n">task_str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;NEW_X&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>     <span class="c1"># new iteration</span>
+<span class="g g-Whitespace">    </span><span class="mi">365</span>     <span class="n">n_iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_differentiable_functions.py:285,</span> in <span class="ni">ScalarFunction.fun_and_grad</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_update_x_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">285</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">286</span> <span class="bp">self</span><span class="o">.</span><span class="n">_update_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_differentiable_functions.py:251,</span> in <span class="ni">ScalarFunction._update_fun</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="k">def</span> <span class="nf">_update_fun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">251</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_fun_impl</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>         <span class="bp">self</span><span class="o">.</span><span class="n">f_updated</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_differentiable_functions.py:155,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.update_fun</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="k">def</span> <span class="nf">update_fun</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">155</span>     <span class="bp">self</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">fun_wrapped</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_differentiable_functions.py:137,</span> in <span class="ni">ScalarFunction.__init__.&lt;locals&gt;.fun_wrapped</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="bp">self</span><span class="o">.</span><span class="n">nfev</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="c1"># Send a copy because the user may overwrite it.</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> <span class="c1"># Overwriting results in undefined behaviour because</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="c1"># fun(self.x) will change self.x, with the two no longer linked.</span>
+<span class="ne">--&gt; </span><span class="mi">137</span> <span class="n">fx</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span> <span class="c1"># Make sure the function returns a true scalar</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">fx</span><span class="p">):</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_optimize.py:76,</span> in <span class="ni">MemoizeJac.__call__</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="sd">&quot;&quot;&quot; returns the the function value &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">76</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_compute_if_needed</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/scipy/optimize/_optimize.py:70,</span> in <span class="ni">MemoizeJac._compute_if_needed</span><span class="nt">(self, x, *args)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>     <span class="n">fg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="bp">self</span><span class="o">.</span><span class="n">jac</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/linear_model/_linear_loss.py:202,</span> in <span class="ni">LinearModelLoss.loss_gradient</span><span class="nt">(self, coef, X, y, sample_weight, l2_reg_strength, n_threads)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="n">grad</span><span class="p">[:</span><span class="n">n_features</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">grad_per_sample</span> <span class="o">+</span> <span class="n">l2_reg_strength</span> <span class="o">*</span> <span class="n">weights</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>         <span class="n">grad</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">grad_per_sample</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="n">loss</span> <span class="o">+=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">l2_reg_strength</span> <span class="o">*</span> <span class="n">squared_norm</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/numpy/core/_methods.py:46,</span> in <span class="ni">_sum</span><span class="nt">(a, axis, dtype, out, keepdims, initial, where)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="k">def</span> <span class="nf">_amin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>           <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">return</span> <span class="n">umr_minimum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">46</span> <span class="k">def</span> <span class="nf">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>          <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="k">return</span> <span class="n">umr_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="k">def</span> <span class="nf">_prod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">51</span>           <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+<img alt="../_images/13_feature-engineering-selection_118_25.png" src="../_images/13_feature-engineering-selection_118_25.png" />
+</div>
+</div>
 </section>
 <section id="rfe-algorithm">
 <h3>RFE algorithm<a class="headerlink" href="#rfe-algorithm" title="Permalink to this headline">#</a></h3>
@@ -3045,12 +3752,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([16, 12, 19, 13, 23, 20, 10,  1,  9, 22,  2, 25,  5,  7, 15,  4, 26,
-       18, 21,  8,  1,  1,  1,  6, 14, 24,  3,  1, 17, 11])
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3058,23 +3759,10 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False False False False False False False  True False False False False
- False False False False False False False False  True  True  True False
- False False False  True False False]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;selected features: &quot;</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">rfe</span><span class="o">.</span><span class="n">support_</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>selected features:  [&#39;mean concave points&#39; &#39;worst radius&#39; &#39;worst texture&#39; &#39;worst perimeter&#39;
- &#39;worst concave points&#39;]
 </pre></div>
 </div>
 </div>
@@ -3096,18 +3784,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[False  True False  True False False  True  True  True False  True False
-  True  True False  True False False False  True  True  True  True  True
- False False  True  True False  True]
-[&#39;mean texture&#39; &#39;mean area&#39; &#39;mean concavity&#39; &#39;mean concave points&#39;
- &#39;mean symmetry&#39; &#39;radius error&#39; &#39;perimeter error&#39; &#39;area error&#39;
- &#39;compactness error&#39; &#39;fractal dimension error&#39; &#39;worst radius&#39;
- &#39;worst texture&#39; &#39;worst perimeter&#39; &#39;worst area&#39; &#39;worst concavity&#39;
- &#39;worst concave points&#39; &#39;worst fractal dimension&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3118,15 +3794,6 @@ dtype: float64
 <span class="p">)</span>
 
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">rfe_pipe</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       0.359585
-score_time     0.002665
-test_score     0.943609
-train_score    1.000000
-dtype: float64
 </pre></div>
 </div>
 </div>
@@ -3189,15 +3856,6 @@ dtype: float64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.600743
-score_time     0.002611
-test_score     0.933020
-train_score    1.000000
-dtype: float64
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3212,15 +3870,6 @@ dtype: float64
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">cross_validate</span><span class="p">(</span><span class="n">pipe_forward</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fit_time       1.983430
-score_time     0.002608
-test_score     0.950627
-train_score    1.000000
-dtype: float64
 </pre></div>
 </div>
 </div>

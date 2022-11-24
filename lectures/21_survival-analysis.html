@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lecture 19: Survival analysis &#8212; CPSC 330 Applied Machine Learning</title>
+    <title>Lecture 21: Survival analysis &#8212; CPSC 330 Applied Machine Learning</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,6 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 20: Time series" href="20_time-series.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -121,7 +123,7 @@ const thebe_selector_output = ".output, .cell_output"
   Lectures
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_intro.html">
    Lecture 1: Course Introduction
@@ -236,6 +238,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="20_time-series.html">
    Lecture 20: Time series
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 21: Survival analysis
   </a>
  </li>
 </ul>
@@ -432,8 +439,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customer-churn-our-standard-approach-10-min">
-   Customer churn: our standard approach (10 min)
+  <a class="reference internal nav-link" href="#customer-churn-our-standard-approach">
+   Customer churn: our standard approach
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -454,8 +461,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#censoring-and-survival-analysis-15-min">
-   Censoring and survival analysis (15 min)
+  <a class="reference internal nav-link" href="#censoring-and-survival-analysis">
+   Censoring and survival analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -493,18 +500,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kaplan-meier-survival-curve-10-min">
-   Kaplan-Meier survival curve (10 min)
+  <a class="reference internal nav-link" href="#kaplan-meier-survival-curve">
+   Kaplan-Meier survival curve
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cox-proportional-hazards-model-10-min">
-   Cox proportional hazards model (10 min)
+  <a class="reference internal nav-link" href="#cox-proportional-hazards-model">
+   Cox proportional hazards model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prediction-10-min">
-   Prediction (10 min)
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -530,11 +537,6 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#true-false-questions">
-   True/False questions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -548,7 +550,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lecture 19: Survival analysis</h1>
+                <h1>Lecture 21: Survival analysis</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -574,8 +576,8 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customer-churn-our-standard-approach-10-min">
-   Customer churn: our standard approach (10 min)
+  <a class="reference internal nav-link" href="#customer-churn-our-standard-approach">
+   Customer churn: our standard approach
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -596,8 +598,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#censoring-and-survival-analysis-15-min">
-   Censoring and survival analysis (15 min)
+  <a class="reference internal nav-link" href="#censoring-and-survival-analysis">
+   Censoring and survival analysis
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -635,18 +637,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#kaplan-meier-survival-curve-10-min">
-   Kaplan-Meier survival curve (10 min)
+  <a class="reference internal nav-link" href="#kaplan-meier-survival-curve">
+   Kaplan-Meier survival curve
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cox-proportional-hazards-model-10-min">
-   Cox proportional hazards model (10 min)
+  <a class="reference internal nav-link" href="#cox-proportional-hazards-model">
+   Cox proportional hazards model
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prediction-10-min">
-   Prediction (10 min)
+  <a class="reference internal nav-link" href="#prediction">
+   Prediction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -672,11 +674,6 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#true-false-questions">
-   True/False questions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -692,9 +689,9 @@ title="Print to PDF"
               <div>
                 
   <p><img alt="" src="../_images/330-banner.png" /></p>
-<section class="tex2jax_ignore mathjax_ignore" id="lecture-19-survival-analysis">
-<h1>Lecture 19: Survival analysis<a class="headerlink" href="#lecture-19-survival-analysis" title="Permalink to this headline">#</a></h1>
-<p>UBC 2020-21</p>
+<section class="tex2jax_ignore mathjax_ignore" id="lecture-21-survival-analysis">
+<h1>Lecture 21: Survival analysis<a class="headerlink" href="#lecture-21-survival-analysis" title="Permalink to this headline">#</a></h1>
+<p>UBC 2022-23</p>
 <p>Instructor: Varada Kolhatkar</p>
 <section id="imports">
 <h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
@@ -708,7 +705,7 @@ title="Print to PDF"
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">RandomForestRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">Ridge</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">plot_confusion_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">cross_val_predict</span><span class="p">,</span>
     <span class="n">cross_val_score</span><span class="p">,</span>
@@ -723,7 +720,7 @@ title="Print to PDF"
     <span class="n">StandardScaler</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
 
 <span class="c1"># does lifelines try to mess with this?</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">10</span>
@@ -742,13 +739,15 @@ title="Print to PDF"
 <section id="announcements">
 <h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>hw8 released, due December 7th 11:59pm</p></li>
-<li><p>Next lecture on Ethics is likely to be a guest lecture by one of my colleagues who has taught Ethics in the MDS program.</p></li>
+<li><p>HW8 released, due November 29th 11:59pm.</p></li>
+<li><p>Only one more homework left, which is going to be on communication, where you’ll be writing a blog post.</p></li>
+<li><p>Next lecture on Ethics is going to be a guest lecture by <a class="reference external" href="https://www.gtoti.com/">Giulia Toti</a>, who is currently teaching <a class="reference external" href="https://www.cs.ubc.ca/course-section/cpsc-430-102-2022w">Computer and Society</a> course and who has taught CPSC 330 before.</p></li>
 </ul>
 </section>
 <section id="learning-objectives">
 <h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
+<li><p>Explain what is right-censored data.</p></li>
 <li><p>Explain the problem with treating right-censored data the same as “regular” data.</p></li>
 <li><p>Determine whether survival analysis is an appropriate tool for a given problem.</p></li>
 <li><p>Apply survival analysis in Python using the <code class="docutils literal notranslate"><span class="pre">lifelines</span></code> package.</p></li>
@@ -757,13 +756,13 @@ title="Print to PDF"
 <li><p>Make predictions for existing individuals and interpret these predictions.</p></li>
 </ul>
 </section>
-<section id="customer-churn-our-standard-approach-10-min">
-<h2>Customer churn: our standard approach (10 min)<a class="headerlink" href="#customer-churn-our-standard-approach-10-min" title="Permalink to this headline">#</a></h2>
+<section id="customer-churn-our-standard-approach">
+<h2>Customer churn: our standard approach<a class="headerlink" href="#customer-churn-our-standard-approach" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
-<li><p>In hw5 you looked at a dataset about <a class="reference external" href="https://en.wikipedia.org/wiki/Customer_attrition">customer churn</a>.</p></li>
-<li><p>In hw5, the dataset was interesting because it’s unbalanced (most customers stay). We used typical binary classification approach on the dataset.</p></li>
-<li><p>Today we’ll look at a different customer churn <a class="reference external" href="https://www.kaggle.com/blastchar/telco-customer-churn">dataset</a>, because it has a feature we need - time!</p></li>
-<li><p>We’ll explore the time aspect of the dataset today.</p></li>
+<li><p>Imagine that you are working for a subscription-based telecom company.</p></li>
+<li><p>You want to come up with retention strategies for different customer segments.</p></li>
+<li><p>So you want to model the “time to churn” to understand different factors affecting customer churn.</p></li>
+<li><p>Suppose you are given this dataset <a class="reference external" href="https://www.kaggle.com/blastchar/telco-customer-churn">Customer Churn Dataset</a>, which is collected at a fixed time.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -774,85 +773,179 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/WA_Fn-UseC_-Telco-Customer-Churn.csv&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/util/_decorators.py:311,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">307</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">arguments</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">311</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:678,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">663</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">664</span>     <span class="n">dialect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="n">delimiter</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span>     <span class="n">defaults</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;delimiter&quot;</span><span class="p">:</span> <span class="s2">&quot;,&quot;</span><span class="p">},</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">678</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:575,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">572</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span> <span class="c1"># Create the parser.</span>
-<span class="ne">--&gt; </span><span class="mi">575</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="k">return</span> <span class="n">parser</span>
-
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:932,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">929</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">931</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">932</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1216,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1212</span>     <span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;rb&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1213</span> <span class="c1"># error: No overload variant of &quot;get_handle&quot; matches argument types</span>
-<span class="g g-Whitespace">   </span><span class="mi">1214</span> <span class="c1"># &quot;Union[str, PathLike[str], ReadCsvBuffer[bytes], ReadCsvBuffer[str]]&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1215</span> <span class="c1"># , &quot;str&quot;, &quot;bool&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;, &quot;Any&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1216</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>  <span class="c1"># type: ignore[call-overload]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1217</span>     <span class="n">f</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1218</span>     <span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1219</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1220</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1221</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1222</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1223</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1224</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-<span class="g g-Whitespace">   </span><span class="mi">1225</span> <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1226</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1227</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
-
-<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/io/common.py:786,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">785</span>         <span class="c1"># Encoding</span>
-<span class="ne">--&gt; </span><span class="mi">786</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">787</span>             <span class="n">handle</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>         <span class="c1"># Binary mode</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/WA_Fn-UseC_-Telco-Customer-Churn.csv&#39;
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>customerID</th>
+      <th>gender</th>
+      <th>SeniorCitizen</th>
+      <th>Partner</th>
+      <th>Dependents</th>
+      <th>tenure</th>
+      <th>PhoneService</th>
+      <th>MultipleLines</th>
+      <th>InternetService</th>
+      <th>OnlineSecurity</th>
+      <th>...</th>
+      <th>DeviceProtection</th>
+      <th>TechSupport</th>
+      <th>StreamingTV</th>
+      <th>StreamingMovies</th>
+      <th>Contract</th>
+      <th>PaperlessBilling</th>
+      <th>PaymentMethod</th>
+      <th>MonthlyCharges</th>
+      <th>TotalCharges</th>
+      <th>Churn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6464</th>
+      <td>4726-DLWQN</td>
+      <td>Male</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No</td>
+      <td>50</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Bank transfer (automatic)</td>
+      <td>70.35</td>
+      <td>3454.6</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>5707</th>
+      <td>4537-DKTAL</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>No</td>
+      <td>...</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>No</td>
+      <td>Electronic check</td>
+      <td>45.55</td>
+      <td>84.4</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3442</th>
+      <td>0468-YRPXN</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>No</td>
+      <td>No</td>
+      <td>29</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Credit card (automatic)</td>
+      <td>98.80</td>
+      <td>2807.1</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3932</th>
+      <td>1304-NECVQ</td>
+      <td>Female</td>
+      <td>1</td>
+      <td>No</td>
+      <td>No</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>Fiber optic</td>
+      <td>No</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Month-to-month</td>
+      <td>Yes</td>
+      <td>Electronic check</td>
+      <td>78.55</td>
+      <td>149.55</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>6124</th>
+      <td>7153-CHRBV</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>57</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>DSL</td>
+      <td>Yes</td>
+      <td>...</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>No</td>
+      <td>One year</td>
+      <td>Yes</td>
+      <td>Mailed check</td>
+      <td>59.30</td>
+      <td>3274.35</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
-</div>
-</div>
-<p>We can treat this as a binary classification problem where we want to predict <code class="docutils literal notranslate"><span class="pre">Churn</span></code> (yes/no) from these other columns.</p>
+<ul class="simple">
+<li><p>We are interested in predicting customer churn: the “Churn” column.</p></li>
+<li><p>How will you approach this problem with the approaches we have seen so far?</p></li>
+<li><p>How about treating this as a binary classification problem where we want to predict <code class="docutils literal notranslate"><span class="pre">Churn</span></code> (yes/no) from these -other columns.</p></li>
+<li><p>Before we look into survival analysis, let’s just treat it as a binary classification model where we want to predict whether a customer churned or not.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
@@ -973,153 +1066,170 @@ Name: SeniorCitizen, dtype: int64
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_25627</span><span class="o">/</span><span class="mf">2961559258.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">);</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span>         <span class="c1"># we use fit_transform to make sure to set sparse_output_ (for which we</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span>         <span class="c1"># need the transformed data) to have consistent output type in predict</span>
-<span class="ne">--&gt; </span><span class="mi">470</span>         <span class="bp">self</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="k">return</span> <span class="bp">self</span>
-<span class="g g-Whitespace">    </span><span class="mi">472</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:657,</span> in <span class="ni">ColumnTransformer.fit</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">639</span> <span class="sd">&quot;&quot;&quot;Fit all transformers using X.</span>
+<span class="g g-Whitespace">    </span><span class="mi">640</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">641</span><span class="sd"> Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">653</span><span class="sd">     This estimator.</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span> <span class="c1"># we use fit_transform to make sure to set sparse_output_ (for which we</span>
+<span class="g g-Whitespace">    </span><span class="mi">656</span> <span class="c1"># need the transformed data) to have consistent output type in predict</span>
+<span class="ne">--&gt; </span><span class="mi">657</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="k">return</span> <span class="bp">self</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_remainder</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span> 
-<span class="ne">--&gt; </span><span class="mi">507</span>         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_fit_transform_one</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span> 
-<span class="g g-Whitespace">    </span><span class="mi">509</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:690,</span> in <span class="ni">ColumnTransformer.fit_transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">    </span><span class="mi">687</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_column_callables</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_remainder</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">690</span> <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_fit_transform_one</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">692</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">693</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_update_fitted_transformers</span><span class="p">([])</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">_fit_transform</span><span class="nt">(self, X, y, func, fitted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">432</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">fitted</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span> <span class="n">replace_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">433</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">434</span>             <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">435</span>                 <span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span>
-<span class="g g-Whitespace">    </span><span class="mi">436</span>                     <span class="n">transformer</span><span class="o">=</span><span class="n">clone</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fitted</span> <span class="k">else</span> <span class="n">trans</span><span class="p">,</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:621,</span> in <span class="ni">ColumnTransformer._fit_transform</span><span class="nt">(self, X, y, func, fitted, column_as_strings)</span>
+<span class="g g-Whitespace">    </span><span class="mi">615</span> <span class="n">transformers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span>         <span class="n">fitted</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span> <span class="n">replace_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">column_as_strings</span><span class="o">=</span><span class="n">column_as_strings</span>
+<span class="g g-Whitespace">    </span><span class="mi">618</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">621</span>     <span class="k">return</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>         <span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>             <span class="n">transformer</span><span class="o">=</span><span class="n">clone</span><span class="p">(</span><span class="n">trans</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fitted</span> <span class="k">else</span> <span class="n">trans</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">624</span>             <span class="n">X</span><span class="o">=</span><span class="n">_safe_indexing</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span>             <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span>             <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span>             <span class="n">message_clsname</span><span class="o">=</span><span class="s2">&quot;ColumnTransformer&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span>             <span class="n">message</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_message</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">transformers</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>         <span class="p">)</span>
+<span class="nn">    630         for idx, (name, trans, column, weight)</span> in <span class="ni">enumerate</span><span class="nt">(transformers, 1)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">633</span>     <span class="k">if</span> <span class="s2">&quot;Expected 2D array, got 1D array instead&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1039</span>             <span class="c1"># remaining jobs.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1040</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="ne">-&gt; </span><span class="mi">1041</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1042</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1043</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1043,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1034</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1035</span>     <span class="c1"># Only set self._iterating to True if at least a batch</span>
+<span class="g g-Whitespace">   </span><span class="mi">1036</span>     <span class="c1"># was dispatched. In particular this covers the edge</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="c1"># was very quick and its callback already dispatched all the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1041</span>     <span class="c1"># remaining jobs.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">1043</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1046</span>     <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span>                 <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">859</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>                 <span class="k">return</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:861,</span> in <span class="ni">Parallel.dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="k">return</span> <span class="kc">True</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">775</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">776</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">777</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">778</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">779</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:779,</span> in <span class="ni">Parallel._dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>     <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>     <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="c1"># called before we get here, causing self._jobs to</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="c1"># grow. To ensure correct results ordering, .insert is</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="c1"># used (rather than .append) in the following line</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">job_idx</span><span class="p">,</span> <span class="n">job</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:208,</span> in <span class="ni">SequentialBackend.apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">570</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">571</span>         <span class="c1"># arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">572</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">573</span> 
-<span class="g g-Whitespace">    </span><span class="mi">574</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:572,</span> in <span class="ni">ImmediateResult.__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">BatchedCalls.__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">260</span>         <span class="c1"># change the default number of processes to -1</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">262</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">263</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/fixes.py:117,</span> in <span class="ni">_FuncWrapper.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">117</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span>     <span class="k">with</span> <span class="n">_print_elapsed_time</span><span class="p">(</span><span class="n">message_clsname</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span>         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="s1">&#39;fit_transform&#39;</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">754</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span>             <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/pipeline.py:870,</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">with</span> <span class="n">_print_elapsed_time</span><span class="p">(</span><span class="n">message_clsname</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="s2">&quot;fit_transform&quot;</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">870</span>         <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/base.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">697</span>         <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span>             <span class="c1"># fit method of arity 1 (unsupervised transformation)</span>
-<span class="ne">--&gt; </span><span class="mi">699</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span>             <span class="c1"># fit method of arity 2 (supervised transformation)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:867,</span> in <span class="ni">TransformerMixin.fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">863</span> <span class="c1"># non-optimized default implementation; override when a better</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span> <span class="c1"># method is possible for a given clustering algorithm</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span> <span class="k">if</span> <span class="n">y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>     <span class="c1"># fit method of arity 1 (unsupervised transformation)</span>
+<span class="ne">--&gt; </span><span class="mi">867</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># fit method of arity 2 (supervised transformation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/preprocessing/_data.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>         <span class="c1"># Reset internal state before fitting</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">730</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">731</span> 
-<span class="g g-Whitespace">    </span><span class="mi">732</span>     <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/preprocessing/_data.py:809,</span> in <span class="ni">StandardScaler.fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">807</span> <span class="c1"># Reset internal state before fitting</span>
+<span class="g g-Whitespace">    </span><span class="mi">808</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">809</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/preprocessing/_data.py</span> in <span class="ni">partial_fit</span><span class="nt">(self, X, y, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">764</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">765</span><span class="s2">         first_call = not hasattr(self, &quot;n_samples_seen_&quot;)</span>
-<span class="ne">--&gt; </span><span class="mi">766</span><span class="s2">         X = self._validate_data(X, accept_sparse=(&#39;csr&#39;, &#39;csc&#39;),</span>
-<span class="g g-Whitespace">    </span><span class="mi">767</span><span class="s2">                                 estimator=self, dtype=FLOAT_DTYPES,</span>
-<span class="g g-Whitespace">    </span><span class="mi">768</span><span class="s2">                                 force_all_finite=&#39;allow-nan&#39;, reset=first_call)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/preprocessing/_data.py:844,</span> in <span class="ni">StandardScaler.partial_fit</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">812</span> <span class="sd">&quot;&quot;&quot;Online computation of mean and std on X for later scaling.</span>
+<span class="g g-Whitespace">    </span><span class="mi">813</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">814</span><span class="sd"> All of X is processed as a single batch. This is intended for cases</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">841</span><span class="sd">     Fitted scaler.</span>
+<span class="g g-Whitespace">    </span><span class="mi">842</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">843</span> <span class="n">first_call</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;n_samples_seen_&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">844</span> <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_data</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">845</span>     <span class="n">X</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">846</span>     <span class="n">accept_sparse</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;csr&quot;</span><span class="p">,</span> <span class="s2">&quot;csc&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">847</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">FLOAT_DTYPES</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">848</span>     <span class="n">force_all_finite</span><span class="o">=</span><span class="s2">&quot;allow-nan&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">849</span>     <span class="n">reset</span><span class="o">=</span><span class="n">first_call</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">850</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">851</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">853</span> <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/base.py</span> in <span class="ni">_validate_data</span><span class="nt">(self, X, y, reset, validate_separately, **check_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">419</span><span class="s2">             out = X</span>
-<span class="g g-Whitespace">    </span><span class="mi">420</span><span class="s2">         elif isinstance(y, str) and y == &#39;no_validation&#39;:</span>
-<span class="ne">--&gt; </span><span class="mi">421</span><span class="s2">             X = check_array(X, **check_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">422</span><span class="s2">             out = X</span>
-<span class="g g-Whitespace">    </span><span class="mi">423</span><span class="s2">         else:</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/base.py:577,</span> in <span class="ni">BaseEstimator._validate_data</span><span class="nt">(self, X, y, reset, validate_separately, **check_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">575</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Validation should be done on X, y or both.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span> <span class="k">elif</span> <span class="ow">not</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="n">no_val_y</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">577</span>     <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">check_params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span>     <span class="n">out</span> <span class="o">=</span> <span class="n">X</span>
+<span class="g g-Whitespace">    </span><span class="mi">579</span> <span class="k">elif</span> <span class="n">no_val_X</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">no_val_y</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ni">inner_f</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span><span class="s2">             extra_args = len(args) - len(all_args)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="s2">             if extra_args &lt;= 0:</span>
-<span class="ne">---&gt; </span><span class="mi">63</span><span class="s2">                 return f(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">65</span><span class="s2">             # extra_args &gt; 0</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/validation.py:856,</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">854</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="s2">&quot;unsafe&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">855</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">856</span>         <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">857</span> <span class="k">except</span> <span class="n">ComplexWarning</span> <span class="k">as</span> <span class="n">complex_warning</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>         <span class="s2">&quot;Complex data not supported</span><span class="se">\n</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="p">)</span> <span class="kn">from</span> <span class="nn">complex_warning</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/sklearn/utils/validation.py</span> in <span class="ni">check_array</span><span class="nt">(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">671</span><span class="s2">                     array = array.astype(dtype, casting=&quot;unsafe&quot;, copy=False)</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span><span class="s2">                 else:</span>
-<span class="ne">--&gt; </span><span class="mi">673</span><span class="s2">                     array = np.asarray(array, order=order, dtype=dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span><span class="s2">             except ComplexWarning as complex_warning:</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span><span class="s2">                 raise ValueError(&quot;Complex data not supported</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/numpy/core/_asarray.py</span> in <span class="ni">asarray</span><span class="nt">(a, dtype, order, like)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="s2">         return _asarray_with_like(a, dtype=dtype, order=order, like=like)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">102</span><span class="s2">     return array(a, dtype, copy=False, order=order)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="s2"> </span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">__array__</span><span class="nt">(self, dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1991</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1992</span><span class="s2">     def __array__(self, dtype: NpDtype | None = None) -&gt; np.ndarray:</span>
-<span class="ne">-&gt; </span><span class="mi">1993</span><span class="s2">         return np.asarray(self._values, dtype=dtype)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1994</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1995</span><span class="s2">     def __array_wrap__(</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/numpy/core/_asarray.py</span> in <span class="ni">asarray</span><span class="nt">(a, dtype, order, like)</span>
-<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="s2">         return _asarray_with_like(a, dtype=dtype, order=order, like=like)</span>
-<span class="g g-Whitespace">    </span><span class="mi">101</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">102</span><span class="s2">     return array(a, dtype, copy=False, order=order)</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="s2"> </span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/generic.py:2064,</span> in <span class="ni">NDFrame.__array__</span><span class="nt">(self, dtype)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2063</span> <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">DTypeLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2064</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: could not convert string to float: &#39;&#39;
 </pre></div>
@@ -1176,57 +1286,65 @@ memory usage: 1.1+ MB
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_25627</span><span class="o">/</span><span class="mf">2516325513.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/generic.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5813</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">5814</span>             <span class="c1"># else, only a single dtype is given</span>
-<span class="ne">-&gt; </span><span class="mi">5815</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5816</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">5817</span> 
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/generic.py:5912,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5905</span>     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">   </span><span class="mi">5906</span>         <span class="bp">self</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="nn">   5907         for i</span> in <span class="ni">range(len</span><span class="nt">(self.columns))</span>
+<span class="g g-Whitespace">   </span><span class="mi">5908</span>     <span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">5910</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5911</span>     <span class="c1"># else, only a single dtype is given</span>
+<span class="ne">-&gt; </span><span class="mi">5912</span>     <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5913</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5915</span> <span class="c1"># GH 33113: handle empty frame or series</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span> 
-<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">418</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">419</span> 
-<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/internals/managers.py:419,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> <span class="k">def</span> <span class="nf">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">errors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;raise&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">419</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="s2">&quot;astype&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/internals/managers.py</span> in <span class="ni">apply</span><span class="nt">(self, f, align_keys, ignore_failures, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>                     <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span>                 <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">327</span>                     <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span>             <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">NotImplementedError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_failures</span><span class="p">:</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/internals/managers.py:304,</span> in <span class="ni">BaseBlockManager.apply</span><span class="nt">(self, f, align_keys, ignore_failures, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">304</span>         <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span> <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">NotImplementedError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">ignore_failures</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/internals/blocks.py</span> in <span class="ni">astype</span><span class="nt">(self, dtype, copy, errors)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span>         <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span> 
-<span class="ne">--&gt; </span><span class="mi">592</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array_safe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">593</span> 
-<span class="g g-Whitespace">    </span><span class="mi">594</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">maybe_coerce_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/internals/blocks.py:580,</span> in <span class="ni">Block.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span><span class="sd"> Coerce to the new dtype.</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span><span class="sd"> Block</span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">578</span> <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
+<span class="ne">--&gt; </span><span class="mi">580</span> <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array_safe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span> <span class="n">new_values</span> <span class="o">=</span> <span class="n">maybe_coerce_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">583</span> <span class="n">newb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_block</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/dtypes/cast.py</span> in <span class="ni">astype_array_safe</span><span class="nt">(values, dtype, copy, errors)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1307</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1308</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1309</span>         <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1310</span>     <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1311</span>         <span class="c1"># e.g. astype_nansafe can fail on object-dtype of strings</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/dtypes/cast.py:1292,</span> in <span class="ni">astype_array_safe</span><span class="nt">(values, dtype, copy, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1289</span>     <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">numpy_dtype</span>
+<span class="g g-Whitespace">   </span><span class="mi">1291</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1292</span>     <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1293</span> <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1294</span>     <span class="c1"># e.g. astype_nansafe can fail on object-dtype of strings</span>
+<span class="g g-Whitespace">   </span><span class="mi">1295</span>     <span class="c1">#  trying to convert to float</span>
+<span class="g g-Whitespace">   </span><span class="mi">1296</span>     <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;ignore&quot;</span><span class="p">:</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/dtypes/cast.py</span> in <span class="ni">astype_array</span><span class="nt">(values, dtype, copy)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1255</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1256</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1257</span>         <span class="n">values</span> <span class="o">=</span> <span class="n">astype_nansafe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1258</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1259</span>     <span class="c1"># in pandas we don&#39;t store numpy str dtypes, so convert to object</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/dtypes/cast.py:1237,</span> in <span class="ni">astype_array</span><span class="nt">(values, dtype, copy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1234</span>     <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1236</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1237</span>     <span class="n">values</span> <span class="o">=</span> <span class="n">astype_nansafe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1239</span> <span class="c1"># in pandas we don&#39;t store numpy str dtypes, so convert to object</span>
+<span class="g g-Whitespace">   </span><span class="mi">1240</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/pandas/core/dtypes/cast.py</span> in <span class="ni">astype_nansafe</span><span class="nt">(arr, dtype, copy, skipna)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1199</span>     <span class="k">if</span> <span class="n">copy</span> <span class="ow">or</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1200</span>         <span class="c1"># Explicit copy, or required since NumPy can&#39;t view from / to object.</span>
-<span class="ne">-&gt; </span><span class="mi">1201</span>         <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1202</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1203</span>     <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/pandas/core/dtypes/cast.py:1181,</span> in <span class="ni">astype_nansafe</span><span class="nt">(arr, dtype, copy, skipna)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1177</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1179</span> <span class="k">if</span> <span class="n">copy</span> <span class="ow">or</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span> <span class="ow">or</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1180</span>     <span class="c1"># Explicit copy, or required since NumPy can&#39;t view from / to object.</span>
+<span class="ne">-&gt; </span><span class="mi">1181</span>     <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1183</span> <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
 
 <span class="ne">ValueError</span>: could not convert string to float: &#39;&#39;
 </pre></div>
@@ -1364,7 +1482,7 @@ memory usage: 907.8+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">numeric_features</span>
     <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
     <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="o">+</span> <span class="n">passthrough_features</span>
 <span class="p">)</span>
@@ -1412,23 +1530,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>MonthlyCharges</th>
       <th>TotalCharges</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>...</th>
-      <th>PhoneService_Yes</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>TechSupport_No</th>
+      <th>...</th>
+      <th>gender_Male</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>DeviceProtection_No</th>
-      <th>DeviceProtection_No internet service</th>
-      <th>DeviceProtection_Yes</th>
       <th>SeniorCitizen</th>
     </tr>
   </thead>
@@ -1438,23 +1556,23 @@ memory usage: 907.8+ KB
       <td>0.707712</td>
       <td>0.185175</td>
       <td>0.513678</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
     </tr>
     <tr>
@@ -1467,17 +1585,17 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -1486,20 +1604,20 @@ memory usage: 907.8+ KB
       <td>-0.148349</td>
       <td>1.133562</td>
       <td>0.226789</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1515,15 +1633,15 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1537,12 +1655,12 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1558,7 +1676,6 @@ memory usage: 907.8+ KB
 <p>5 rows × 45 columns</p>
 </div></div></div>
 </div>
-<p>Before we look into survival analysis, let’s just treat it as a binary classification model where we want to predict whether a customer churned or not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1625,7 +1742,7 @@ memory usage: 907.8+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;dummy&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
     <span class="n">dc</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -1648,29 +1765,38 @@ memory usage: 907.8+ KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>dummy</th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>fit_time</th>
-      <td>0.005 (+/- 0.001)</td>
-    </tr>
-    <tr>
-      <th>score_time</th>
-      <td>0.003 (+/- 0.001)</td>
-    </tr>
-    <tr>
-      <th>test_score</th>
+      <th>dummy</th>
+      <td>0.001 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.000)</td>
       <td>0.741 (+/- 0.000)</td>
-    </tr>
-    <tr>
-      <th>train_score</th>
       <td>0.741 (+/- 0.000)</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<p>Dummy model scores are pretty good because we have class imbalance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No     3912
+Yes    1370
+Name: Churn, dtype: int64
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="logisticregression">
@@ -1687,7 +1813,7 @@ memory usage: 907.8+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;logistic regression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
     <span class="n">lr</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -1710,29 +1836,25 @@ memory usage: 907.8+ KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>dummy</th>
-      <th>logistic regression</th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>fit_time</th>
-      <td>0.005 (+/- 0.001)</td>
-      <td>0.129 (+/- 0.045)</td>
-    </tr>
-    <tr>
-      <th>score_time</th>
-      <td>0.003 (+/- 0.001)</td>
-      <td>0.016 (+/- 0.002)</td>
-    </tr>
-    <tr>
-      <th>test_score</th>
+      <th>dummy</th>
+      <td>0.001 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.000)</td>
       <td>0.741 (+/- 0.000)</td>
+      <td>0.741 (+/- 0.000)</td>
+    </tr>
+    <tr>
+      <th>logistic regression</th>
+      <td>0.036 (+/- 0.004)</td>
+      <td>0.004 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
-    </tr>
-    <tr>
-      <th>train_score</th>
-      <td>0.741 (+/- 0.000)</td>
       <td>0.809 (+/- 0.002)</td>
     </tr>
   </tbody>
@@ -1752,12 +1874,17 @@ memory usage: 907.8+ KB
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>Logistic regression beats the dummy model.</p></li>
+<li><p>But it seems like we have many false negatives.</p></li>
+</ul>
 </section>
 <section id="randomforestclassifier">
 <h3>RandomForestClassifier<a class="headerlink" href="#randomforestclassifier" title="Permalink to this headline">#</a></h3>
+<p>Let’s try random forest model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">())</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rf</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">preprocessor</span><span class="p">,</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1767,7 +1894,7 @@ memory usage: 907.8+ KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;random forest&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_std_cross_val_scores</span><span class="p">(</span>
     <span class="n">rf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -1790,34 +1917,32 @@ memory usage: 907.8+ KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>dummy</th>
-      <th>logistic regression</th>
-      <th>random forest</th>
+      <th>fit_time</th>
+      <th>score_time</th>
+      <th>test_score</th>
+      <th>train_score</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>fit_time</th>
-      <td>0.005 (+/- 0.001)</td>
-      <td>0.129 (+/- 0.045)</td>
-      <td>0.608 (+/- 0.102)</td>
-    </tr>
-    <tr>
-      <th>score_time</th>
-      <td>0.003 (+/- 0.001)</td>
-      <td>0.016 (+/- 0.002)</td>
-      <td>0.049 (+/- 0.009)</td>
-    </tr>
-    <tr>
-      <th>test_score</th>
+      <th>dummy</th>
+      <td>0.001 (+/- 0.000)</td>
+      <td>0.001 (+/- 0.000)</td>
       <td>0.741 (+/- 0.000)</td>
+      <td>0.741 (+/- 0.000)</td>
+    </tr>
+    <tr>
+      <th>logistic regression</th>
+      <td>0.036 (+/- 0.004)</td>
+      <td>0.004 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
-      <td>0.790 (+/- 0.013)</td>
+      <td>0.809 (+/- 0.002)</td>
     </tr>
     <tr>
-      <th>train_score</th>
-      <td>0.741 (+/- 0.000)</td>
-      <td>0.809 (+/- 0.002)</td>
+      <th>random forest</th>
+      <td>0.235 (+/- 0.004)</td>
+      <td>0.017 (+/- 0.001)</td>
+      <td>0.788 (+/- 0.011)</td>
       <td>0.998 (+/- 0.000)</td>
     </tr>
   </tbody>
@@ -1831,32 +1956,43 @@ memory usage: 907.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3529,  383],
-       [ 719,  651]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3535,  377],
+       [ 740,  630]])
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>This is was we did in hw5.</p></li>
-<li><p>What’s wrong with this approach?</p></li>
+<li><p>Random forest is not improving the scores.</p></li>
 </ul>
-<p>And now the rest of the class is about what is wrong with what we just did!</p>
-<p><br><br></p>
+<ul class="simple">
+<li><p>We might decide to do hyperparamter optimization to further improve the score.</p></li>
+<li><p>But after trying out all the usual things should we be happy with the scores?</p></li>
+<li><p>Are we doing anything fundamentally wrong when we treat this problem as a binary classification?
+<br><br><br><br><br><br><br></p></li>
+</ul>
+<p>The rest of the class is about what is wrong with what we just did!</p>
 </section>
 </section>
-<section id="censoring-and-survival-analysis-15-min">
-<h2>Censoring and survival analysis (15 min)<a class="headerlink" href="#censoring-and-survival-analysis-15-min" title="Permalink to this headline">#</a></h2>
+<section id="censoring-and-survival-analysis">
+<h2>Censoring and survival analysis<a class="headerlink" href="#censoring-and-survival-analysis" title="Permalink to this headline">#</a></h2>
 <section id="time-to-event-and-censoring">
 <h3>Time to event and censoring<a class="headerlink" href="#time-to-event-and-censoring" title="Permalink to this headline">#</a></h3>
-<p>Imagine that you want to analyze <em>the time until an event occurs</em>. For example,</p>
 <ul class="simple">
-<li><p>the time until a disease kills its host.</p></li>
-<li><p>the time until a piece of equipment breaks.</p></li>
-<li><p>the time that someone unemployed will take to land a new job.</p></li>
-<li><p>the time until a customer leaves a subscription service (this dataset).</p></li>
+<li><p>When we treat the problem as a binary classification problem, we predict whether a customer would churn or not at a particular point in time, when the data was collected.</p></li>
+<li><p>If a customer has not churned yet, wouldn’t it be more useful to understand when they are likely to churn so that we can offer them promotions etc?</p></li>
+<li><p>Here we are actually interested in the time till the event of churn occurs.</p></li>
 </ul>
-<p>In our example, instead of predicting the binary label churn or no churn, it will be more useful to when the customer is likely to churn (the time until churn happens) so that we can take some action.</p>
+<p>There are many situations where you want to analyze <strong>the time until an event occurs</strong>. For example,</p>
+<ul class="simple">
+<li><p>the time until a customer leaves a subscription service (this dataset)</p></li>
+<li><p>the time until a disease kills its host</p></li>
+<li><p>the time until a piece of equipment breaks</p></li>
+<li><p>the time that someone unemployed will take to land a new job</p></li>
+<li><p>the time until you wait for your turn to get a surgery</p></li>
+</ul>
+<p>Although this branch of statistics is usually referred to as <strong>Survival Analysis</strong>, the event in question does not need to be related to actual “survival”. The important thing is to understand that we are interested in <strong>the time until something happens</strong>, or whether or not something will happen in a certain time frame.</p>
+<p>In our dataset there is a column called “tenure”, which encodes this temporal aspect of the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[[</span><span class="s2">&quot;tenure&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1910,9 +2046,13 @@ memory usage: 907.8+ KB
 </table>
 </div></div></div>
 </div>
-<p>The tenure column is the number of months the customer has stayed with the company.</p>
-<p>Although this branch of statistics is usually referred to as <strong>Survival Analysis</strong>, the event in question does not need to be related to actual “survival”. The important thing is to understand that we are interested in <strong>the time until something happens</strong>, or whether or not something will happen in a certain time frame.</p>
-<p><strong>Question:</strong> But why is this different? Can’t you just use the techniques you learned so far (e.g., regression models) to predict the time? Take a minute to think about this.</p>
+<ul class="simple">
+<li><p>The tenure column is the number of months the customer has stayed with the company.</p></li>
+<li><p>But we only have information about this till the point we collected the data.</p></li>
+</ul>
+<p><strong>Question:</strong> But why is this different? Can’t you just use the techniques you learned so far (e.g., regression models) to predict the time (tenure in our case)? Take a minute to think about this.
+What could be possible scenarios for the duration column?</p>
+<p><br><br><br><br><br><br></p>
 <p>The answer would be yes if you could observe the actual time in all occurrences, but you usually cannot. Frequently, there will be some kind of <strong>censoring</strong> which will not allow you to observe the exact time that the event happened for all units/individuals that are being studied.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2299,7 +2439,7 @@ memory usage: 907.8+ KB
 </div>
 <p>What will be wrong with our estimated survival times? Will they be too low or too high?
 <br><br><br><br><br><br><br></p>
-<p>On average they will be <strong>underestimates</strong> (too small), because we are ignoring the currently subscribed (un-churned) customers. Our dataset is a biased sample of those who churned within the time window of the data collection. Long-time subscribers were more likely to be removed from the dataset! This is a common mistake - see the <a class="reference external" href="https://www.youtube.com/watch?v=ITWQ5psx9Sw">Calling Bullshit video</a> I posted on the README!</p>
+<p>On average they will be <strong>underestimates</strong> (too small), because we are ignoring the currently subscribed (un-churned) customers. Our dataset is a biased sample of those who churned within the time window of the data collection. Long-time subscribers were more likely to be removed from the dataset! This is a common mistake - see the <a class="reference external" href="https://www.youtube.com/watch?v=ITWQ5psx9Sw">Calling Bullshit video</a> from the README!</p>
 <p><br><br></p>
 </section>
 <section id="approach-2-assume-everyone-churns-right-now">
@@ -2591,8 +2731,8 @@ memory usage: 907.8+ KB
 <h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">#</a></h2>
 <p><img alt="" src="../_images/eva-coffee.png" /></p>
 </section>
-<section id="kaplan-meier-survival-curve-10-min">
-<h2>Kaplan-Meier survival curve (10 min)<a class="headerlink" href="#kaplan-meier-survival-curve-10-min" title="Permalink to this headline">#</a></h2>
+<section id="kaplan-meier-survival-curve">
+<h2>Kaplan-Meier survival curve<a class="headerlink" href="#kaplan-meier-survival-curve" title="Permalink to this headline">#</a></h2>
 <p>Before we do anything further, I want to modify our dataset slightly:</p>
 <ol class="simple">
 <li><p>I’m going to drop the <code class="docutils literal notranslate"><span class="pre">TotalCharges</span></code> (yes, after all that work fixing it) because it’s a bit of a strange feature.</p></li>
@@ -2654,7 +2794,7 @@ memory usage: 907.8+ KB
     <span class="o">+</span> <span class="n">passthrough_features</span>
     <span class="o">+</span> <span class="n">numeric_features</span>
     <span class="o">+</span> <span class="n">preprocessing_final</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
     <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="p">)</span>
 </pre></div>
@@ -2702,23 +2842,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>...</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>...</th>
+      <th>gender_Female</th>
+      <th>gender_Male</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>DeviceProtection_No</th>
-      <th>DeviceProtection_No internet service</th>
-      <th>DeviceProtection_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -2728,23 +2868,23 @@ memory usage: 907.8+ KB
       <td>50.0</td>
       <td>1.0</td>
       <td>0.185175</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>5707</th>
@@ -2757,17 +2897,17 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -2776,20 +2916,20 @@ memory usage: 907.8+ KB
       <td>29.0</td>
       <td>0.0</td>
       <td>1.133562</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -2805,15 +2945,15 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -2827,12 +2967,12 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2862,7 +3002,7 @@ memory usage: 907.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf</span><span class="o">.</span><span class="n">survival_function_</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf</span><span class="o">.</span><span class="n">survival_function_</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Survival function of customer churn&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time with service (months)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Survival probability&quot;</span><span class="p">);</span>
@@ -2870,7 +3010,7 @@ memory usage: 907.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_105_0.png" src="../_images/21_survival-analysis_105_0.png" />
+<img alt="../_images/21_survival-analysis_108_0.png" src="../_images/21_survival-analysis_108_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2879,18 +3019,6 @@ memory usage: 907.8+ KB
 <li><p>For example, after 20 months the probability of survival is ~0.8.</p></li>
 <li><p>Over time it’s going down.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="s2">&quot;No&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7406285497917455
-</pre></div>
-</div>
-</div>
-</div>
 <p>What’s the average tenure?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2936,13 +3064,14 @@ memory usage: 907.8+ KB
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="p">[</span><span class="n">y_train</span> <span class="o">==</span> <span class="s2">&quot;No&quot;</span><span class="p">][</span><span class="s2">&quot;tenure&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">train_df_surv</span><span class="p">[</span><span class="n">train_df_surv</span><span class="p">[</span><span class="s1">&#39;Churn&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">][</span><span class="s2">&quot;tenure&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;months&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_115_0.png" src="../_images/21_survival-analysis_115_0.png" />
+<img alt="../_images/21_survival-analysis_117_0.png" src="../_images/21_survival-analysis_117_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2959,7 +3088,7 @@ memory usage: 907.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_118_0.png" src="../_images/21_survival-analysis_118_0.png" />
+<img alt="../_images/21_survival-analysis_120_0.png" src="../_images/21_survival-analysis_120_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -2995,7 +3124,7 @@ memory usage: 907.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_122_0.png" src="../_images/21_survival-analysis_122_0.png" />
+<img alt="../_images/21_survival-analysis_124_0.png" src="../_images/21_survival-analysis_124_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3004,8 +3133,8 @@ memory usage: 907.8+ KB
 </ul>
 <p><br><br></p>
 </section>
-<section id="cox-proportional-hazards-model-10-min">
-<h2>Cox proportional hazards model (10 min)<a class="headerlink" href="#cox-proportional-hazards-model-10-min" title="Permalink to this headline">#</a></h2>
+<section id="cox-proportional-hazards-model">
+<h2>Cox proportional hazards model<a class="headerlink" href="#cox-proportional-hazards-model" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>We haven’t been incorporating other features in the model so far.</p></li>
 <li><p>The Cox proportional hazards model is a commonly used model that allows us to interpret how features influence a censored tenure/duration.</p></li>
@@ -3016,100 +3145,13 @@ memory usage: 907.8+ KB
 <div class="cell tag_raises-exception docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cph</span> <span class="o">=</span> <span class="n">lifelines</span><span class="o">.</span><span class="n">CoxPHFitter</span><span class="p">()</span>
-<span class="n">cph</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df_surv</span><span class="p">,</span> <span class="n">duration_col</span><span class="o">=</span><span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="n">event_col</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">LinAlgError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">_newton_rhapson_for_efron_model</span><span class="nt">(self, X, T, E, weights, entries, initial_point, step_size, precision, show_progress, max_steps)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1517</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1518</span>                 <span class="n">inv_h_dot_g_T</span> <span class="o">=</span> <span class="n">spsolve</span><span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">assume_a</span><span class="o">=</span><span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1519</span>             <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">LinAlgError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/scipy/linalg/basic.py</span> in <span class="ni">solve</span><span class="nt">(a, b, sym_pos, lower, overwrite_a, overwrite_b, debug, check_finite, assume_a, transposed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span>                            <span class="n">overwrite_b</span><span class="o">=</span><span class="n">overwrite_b</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">253</span>         <span class="n">_solve_check</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="n">rcond</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">pocon</span><span class="p">(</span><span class="n">lu</span><span class="p">,</span> <span class="n">anorm</span><span class="p">)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/scipy/linalg/basic.py</span> in <span class="ni">_solve_check</span><span class="nt">(n, info, lamch, rcond)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="k">elif</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">info</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">29</span>         <span class="k">raise</span> <span class="n">LinAlgError</span><span class="p">(</span><span class="s1">&#39;Matrix is singular.&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> 
-
-<span class="ne">LinAlgError</span>: Matrix is singular.
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">ConvergenceError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">ky</span><span class="o">/</span><span class="mi">533</span><span class="n">nd9l512l5cmmk_kzmzj9m0000gp</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_25627</span><span class="o">/</span><span class="mf">2468730739.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">cph</span> <span class="o">=</span> <span class="n">lifelines</span><span class="o">.</span><span class="n">CoxPHFitter</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">cph</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_df_surv</span><span class="p">,</span> <span class="n">duration_col</span><span class="o">=</span><span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="n">event_col</span><span class="o">=</span><span class="s2">&quot;Churn&quot;</span><span class="p">);</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/utils/__init__.py</span> in <span class="ni">f</span><span class="nt">(model, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>             <span class="bp">cls</span><span class="o">.</span><span class="n">set_censoring_type</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">54</span>             <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span> 
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="k">return</span> <span class="n">f</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">fit</span><span class="nt">(self, df, duration_col, event_col, show_progress, initial_point, strata, step_size, weights_col, cluster_col, robust, batch_mode, timeline, formula, entry_col)</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">288</span><span class="sd">         self.strata = utils.coalesce(strata, self.strata)</span>
-<span class="ne">--&gt; </span><span class="mi">289</span><span class="sd">         self._model = self._fit_model(</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span><span class="sd">             df,</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span><span class="sd">             duration_col,</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">_fit_model</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span><span class="sd">     def _fit_model(self, *args, **kwargs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">609</span><span class="sd">         if self.baseline_estimation_method == &quot;breslow&quot;:</span>
-<span class="ne">--&gt; </span><span class="mi">610</span><span class="sd">             return self._fit_model_breslow(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">611</span><span class="sd">         elif self.baseline_estimation_method == &quot;spline&quot;:</span>
-<span class="g g-Whitespace">    </span><span class="mi">612</span><span class="sd">             return self._fit_model_spline(*args, **kwargs)</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">_fit_model_breslow</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">621</span><span class="sd">         )</span>
-<span class="g g-Whitespace">    </span><span class="mi">622</span><span class="sd">         if utils.CensoringType.is_right_censoring(self):</span>
-<span class="ne">--&gt; </span><span class="mi">623</span><span class="sd">             model.fit(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">624</span><span class="sd">             return model</span>
-<span class="g g-Whitespace">    </span><span class="mi">625</span><span class="sd">         else:</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/utils/__init__.py</span> in <span class="ni">f</span><span class="nt">(model, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span><span class="sd">         def f(model, *args, **kwargs):</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span><span class="sd">             cls.set_censoring_type(model, cls.RIGHT)</span>
-<span class="ne">---&gt; </span><span class="mi">54</span><span class="sd">             return function(model, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="sd">         return f</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">fit</span><span class="nt">(self, df, duration_col, event_col, show_progress, initial_point, strata, step_size, weights_col, cluster_col, robust, batch_mode, timeline, formula, entry_col)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1249</span><span class="sd">         )</span>
-<span class="g g-Whitespace">   </span><span class="mi">1250</span><span class="sd"> </span>
-<span class="ne">-&gt; </span><span class="mi">1251</span><span class="sd">         params_, ll_, variance_matrix_, baseline_hazard_, baseline_cumulative_hazard_, model = self._fit_model(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1252</span><span class="sd">             X_norm,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1253</span><span class="sd">             T,</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">_fit_model</span><span class="nt">(self, X, T, E, weights, entries, initial_point, step_size, show_progress)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1377</span><span class="sd">         show_progress: bool = True,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1378</span><span class="sd">     ):</span>
-<span class="ne">-&gt; </span><span class="mi">1379</span><span class="sd">         beta_, ll_, hessian_ = self._newton_rhapson_for_efron_model(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1380</span><span class="sd">             X, T, E, weights, entries, initial_point=initial_point, step_size=step_size, show_progress=show_progress</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span><span class="sd">         )</span>
-
-<span class="nn">~/opt/miniconda3/envs/cpsc330/lib/python3.9/site-packages/lifelines/fitters/coxph_fitter.py</span> in <span class="ni">_newton_rhapson_for_efron_model</span><span class="nt">(self, X, T, E, weights, entries, initial_point, step_size, precision, show_progress, max_steps)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1525</span><span class="sd">                     )</span>
-<span class="g g-Whitespace">   </span><span class="mi">1526</span><span class="sd">                 elif isinstance(e, LinAlgError):</span>
-<span class="ne">-&gt; </span><span class="mi">1527</span><span class="sd">                     raise exceptions.ConvergenceError(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1528</span><span class="sd">                         &quot;&quot;&quot;</span><span class="n">Convergence</span> <span class="n">halted</span> <span class="n">due</span> <span class="n">to</span> <span class="n">matrix</span> <span class="n">inversion</span> <span class="n">problems</span><span class="o">.</span> <span class="n">Suspicion</span> <span class="ow">is</span> <span class="n">high</span> <span class="n">collinearity</span><span class="o">.</span> <span class="p">{</span><span class="mi">0</span><span class="p">}</span><span class="s2">&quot;&quot;&quot;.format(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1529</span><span class="s2">                             CONVERGENCE_DOCS</span>
-
-<span class="ne">ConvergenceError</span>: Convergence halted due to matrix inversion problems. Suspicion is high collinearity. Please see the following tips in the lifelines documentation: https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-modelMatrix is singular.
+<span class="c1"># cph.fit(train_df_surv, duration_col=&quot;tenure&quot;, event_col=&quot;Churn&quot;);</span>
 </pre></div>
 </div>
 </div>
 </div>
 <ul class="simple">
-<li><p>Ok, going that <a class="reference external" href="https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-model">that URL</a>, it seems the easiest solution is to add a penalizer.</p>
+<li><p>Ok, going to <a class="reference external" href="https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-model">this URL</a>, it seems the easiest solution is to add a penalizer.</p>
 <ul>
 <li><p>FYI this is related to switching from <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> to <code class="docutils literal notranslate"><span class="pre">Ridge</span></code>.</p></li>
 <li><p>Adding <code class="docutils literal notranslate"><span class="pre">drop='first'</span></code> on our OHE might have helped with this.</p></li>
@@ -3162,7 +3204,7 @@ memory usage: 907.8+ KB
   <tbody>
     <tr>
       <th>Contract_Month-to-month</th>
-      <td>0.812874</td>
+      <td>0.812875</td>
     </tr>
     <tr>
       <th>OnlineSecurity_No</th>
@@ -3198,11 +3240,11 @@ memory usage: 907.8+ KB
     </tr>
     <tr>
       <th>Contract_One year</th>
-      <td>-0.351822</td>
+      <td>-0.351821</td>
     </tr>
     <tr>
       <th>Contract_Two year</th>
-      <td>-0.776425</td>
+      <td>-0.776427</td>
     </tr>
   </tbody>
 </table>
@@ -3221,12 +3263,220 @@ memory usage: 907.8+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cph.summary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cph</span><span class="o">.</span><span class="n">summary</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>coef</th>
+      <th>exp(coef)</th>
+      <th>se(coef)</th>
+      <th>coef lower 95%</th>
+      <th>coef upper 95%</th>
+      <th>exp(coef) lower 95%</th>
+      <th>exp(coef) upper 95%</th>
+      <th>cmp to</th>
+      <th>z</th>
+      <th>p</th>
+      <th>-log2(p)</th>
+    </tr>
+    <tr>
+      <th>covariate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>SeniorCitizen</th>
+      <td>-0.019556</td>
+      <td>0.980634</td>
+      <td>0.057254</td>
+      <td>-0.131773</td>
+      <td>0.092660</td>
+      <td>0.876540</td>
+      <td>1.097088</td>
+      <td>0.0</td>
+      <td>-0.341571</td>
+      <td>7.326741e-01</td>
+      <td>0.448757</td>
+    </tr>
+    <tr>
+      <th>MonthlyCharges</th>
+      <td>-0.003185</td>
+      <td>0.996820</td>
+      <td>0.040129</td>
+      <td>-0.081837</td>
+      <td>0.075467</td>
+      <td>0.921422</td>
+      <td>1.078387</td>
+      <td>0.0</td>
+      <td>-0.079377</td>
+      <td>9.367329e-01</td>
+      <td>0.094290</td>
+    </tr>
+    <tr>
+      <th>OnlineBackup_No</th>
+      <td>0.298561</td>
+      <td>1.347917</td>
+      <td>0.067781</td>
+      <td>0.165713</td>
+      <td>0.431408</td>
+      <td>1.180234</td>
+      <td>1.539424</td>
+      <td>0.0</td>
+      <td>4.404809</td>
+      <td>1.058770e-05</td>
+      <td>16.527251</td>
+    </tr>
+    <tr>
+      <th>OnlineBackup_No internet service</th>
+      <td>-0.057267</td>
+      <td>0.944342</td>
+      <td>0.100970</td>
+      <td>-0.255165</td>
+      <td>0.140631</td>
+      <td>0.774789</td>
+      <td>1.150999</td>
+      <td>0.0</td>
+      <td>-0.567169</td>
+      <td>5.705995e-01</td>
+      <td>0.809450</td>
+    </tr>
+    <tr>
+      <th>OnlineBackup_Yes</th>
+      <td>-0.282600</td>
+      <td>0.753821</td>
+      <td>0.069192</td>
+      <td>-0.418213</td>
+      <td>-0.146987</td>
+      <td>0.658222</td>
+      <td>0.863305</td>
+      <td>0.0</td>
+      <td>-4.084314</td>
+      <td>4.420730e-05</td>
+      <td>14.465356</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Contract_Month-to-month</th>
+      <td>0.812875</td>
+      <td>2.254380</td>
+      <td>0.069188</td>
+      <td>0.677268</td>
+      <td>0.948482</td>
+      <td>1.968493</td>
+      <td>2.581787</td>
+      <td>0.0</td>
+      <td>11.748725</td>
+      <td>7.169269e-32</td>
+      <td>103.459873</td>
+    </tr>
+    <tr>
+      <th>Contract_One year</th>
+      <td>-0.351821</td>
+      <td>0.703406</td>
+      <td>0.077761</td>
+      <td>-0.504231</td>
+      <td>-0.199412</td>
+      <td>0.603970</td>
+      <td>0.819213</td>
+      <td>0.0</td>
+      <td>-4.524364</td>
+      <td>6.057732e-06</td>
+      <td>17.332791</td>
+    </tr>
+    <tr>
+      <th>Contract_Two year</th>
+      <td>-0.776427</td>
+      <td>0.460047</td>
+      <td>0.081167</td>
+      <td>-0.935512</td>
+      <td>-0.617342</td>
+      <td>0.392385</td>
+      <td>0.539376</td>
+      <td>0.0</td>
+      <td>-9.565746</td>
+      <td>1.113949e-21</td>
+      <td>69.604807</td>
+    </tr>
+    <tr>
+      <th>PaperlessBilling_No</th>
+      <td>-0.075063</td>
+      <td>0.927685</td>
+      <td>0.068817</td>
+      <td>-0.209943</td>
+      <td>0.059816</td>
+      <td>0.810631</td>
+      <td>1.061641</td>
+      <td>0.0</td>
+      <td>-1.090765</td>
+      <td>2.753764e-01</td>
+      <td>1.860523</td>
+    </tr>
+    <tr>
+      <th>PaperlessBilling_Yes</th>
+      <td>0.075063</td>
+      <td>1.077953</td>
+      <td>0.068817</td>
+      <td>-0.059816</td>
+      <td>0.209943</td>
+      <td>0.941938</td>
+      <td>1.233608</td>
+      <td>0.0</td>
+      <td>1.090765</td>
+      <td>2.753764e-01</td>
+      <td>1.860523</td>
+    </tr>
+  </tbody>
+</table>
+<p>43 rows × 11 columns</p>
+</div></div></div>
 </div>
 <p>Could we have gotten this type of information out of sklearn?</p>
+<ul class="simple">
+<li><p>Yes, but the above approach is more appropriate for such problems.</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -3408,8 +3658,8 @@ Name: Churn, dtype: object
 <p>I’m redefining feature types and our preprocessor for our sanity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MonthlyCharges&quot;</span><span class="p">,</span> <span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span>
-<span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;customerID&quot;</span><span class="p">,</span> <span class="s2">&quot;tenure&quot;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MonthlyCharges&quot;</span><span class="p">]</span>
+<span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;customerID&quot;</span><span class="p">,</span> <span class="s2">&quot;tenure&quot;</span><span class="p">,</span> <span class="s2">&quot;TotalCharges&quot;</span><span class="p">]</span>
 <span class="n">passthrough_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SeniorCitizen&quot;</span><span class="p">]</span>
 <span class="n">target_column</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">]</span>
 <span class="c1"># the rest are categorical</span>
@@ -3451,7 +3701,7 @@ Name: Churn, dtype: object
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">numeric_features</span>
     <span class="o">+</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
-    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
     <span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="o">+</span> <span class="n">passthrough_features</span>
 <span class="p">)</span>
@@ -3501,51 +3751,51 @@ Name: Churn, dtype: object
   <tbody>
     <tr>
       <th>Contract_Month-to-month</th>
-      <td>0.787653</td>
+      <td>1.117063</td>
     </tr>
     <tr>
       <th>InternetService_Fiber optic</th>
-      <td>0.600509</td>
+      <td>0.522513</td>
     </tr>
     <tr>
       <th>OnlineSecurity_No</th>
-      <td>0.291008</td>
-    </tr>
-    <tr>
-      <th>StreamingTV_Yes</th>
-      <td>0.258659</td>
+      <td>0.349206</td>
     </tr>
     <tr>
       <th>PaymentMethod_Electronic check</th>
-      <td>0.251646</td>
+      <td>0.311261</td>
+    </tr>
+    <tr>
+      <th>OnlineBackup_No</th>
+      <td>0.253954</td>
     </tr>
     <tr>
       <th>...</th>
       <td>...</td>
     </tr>
     <tr>
-      <th>MultipleLines_No</th>
-      <td>-0.169654</td>
+      <th>MonthlyCharges</th>
+      <td>-0.172977</td>
+    </tr>
+    <tr>
+      <th>OnlineSecurity_Yes</th>
+      <td>-0.242936</td>
     </tr>
     <tr>
       <th>PaymentMethod_Credit card (automatic)</th>
-      <td>-0.204406</td>
+      <td>-0.260652</td>
     </tr>
     <tr>
       <th>InternetService_DSL</th>
-      <td>-0.461593</td>
-    </tr>
-    <tr>
-      <th>TotalCharges</th>
-      <td>-0.743315</td>
+      <td>-0.416242</td>
     </tr>
     <tr>
       <th>Contract_Two year</th>
-      <td>-0.765519</td>
+      <td>-1.019200</td>
     </tr>
   </tbody>
 </table>
-<p>44 rows × 1 columns</p>
+<p>43 rows × 1 columns</p>
 </div></div></div>
 </div>
 <ul class="simple">
@@ -3561,13 +3811,13 @@ Name: Churn, dtype: object
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">cph</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_147_0.png" src="../_images/21_survival-analysis_147_0.png" />
+<img alt="../_images/21_survival-analysis_149_0.png" src="../_images/21_survival-analysis_149_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3597,7 +3847,7 @@ Name: Churn, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_150_0.png" src="../_images/21_survival-analysis_150_0.png" />
+<img alt="../_images/21_survival-analysis_152_0.png" src="../_images/21_survival-analysis_152_0.png" />
 </div>
 </div>
 <p>Now let’s look at the survival plots for the people with different MonthlyCharges.</p>
@@ -3608,7 +3858,7 @@ Name: Churn, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_152_0.png" src="../_images/21_survival-analysis_152_0.png" />
+<img alt="../_images/21_survival-analysis_154_0.png" src="../_images/21_survival-analysis_154_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -3631,8 +3881,8 @@ Name: MonthlyCharges, dtype: float64
 <p>If your monthly charges are huge, it takes this to the extreme and thinks you’ll basically never churn.</p>
 <p><br><br><br><br></p>
 </section>
-<section id="prediction-10-min">
-<h2>Prediction (10 min)<a class="headerlink" href="#prediction-10-min" title="Permalink to this headline">#</a></h2>
+<section id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>We can use survival analysis to make predictions as well.</p></li>
 <li><p>Here is the expected number of months to churn for the first 5 customers in the test set:</p></li>
@@ -3664,25 +3914,25 @@ Name: MonthlyCharges, dtype: float64
       <th></th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
-      <th>...</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>TechSupport_No</th>
+      <th>TechSupport_No internet service</th>
+      <th>...</th>
+      <th>gender_Female</th>
+      <th>gender_Male</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>DeviceProtection_No</th>
-      <th>DeviceProtection_No internet service</th>
-      <th>DeviceProtection_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -3690,24 +3940,24 @@ Name: MonthlyCharges, dtype: float64
       <th>941</th>
       <td>0.0</td>
       <td>-1.154900</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -3717,20 +3967,20 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3744,17 +3994,17 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3767,20 +4017,20 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
     </tr>
     <tr>
       <th>7017</th>
@@ -3789,20 +4039,20 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3840,23 +4090,23 @@ Name: MonthlyCharges, dtype: float64
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>StreamingMovies_No</th>
-      <th>StreamingMovies_No internet service</th>
-      <th>StreamingMovies_Yes</th>
-      <th>Partner_No</th>
-      <th>Partner_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>...</th>
-      <th>PhoneService_No</th>
-      <th>PhoneService_Yes</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
+      <th>...</th>
+      <th>gender_Female</th>
+      <th>gender_Male</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
       <th>PaperlessBilling_No</th>
       <th>PaperlessBilling_Yes</th>
-      <th>DeviceProtection_No</th>
-      <th>DeviceProtection_No internet service</th>
-      <th>DeviceProtection_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -3866,22 +4116,22 @@ Name: MonthlyCharges, dtype: float64
       <td>13.0</td>
       <td>0.0</td>
       <td>-1.154900</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -3893,18 +4143,18 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3921,14 +4171,14 @@ Name: MonthlyCharges, dtype: float64
       <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3943,18 +4193,18 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
     </tr>
     <tr>
       <th>7017</th>
@@ -3965,18 +4215,18 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -3993,11 +4243,11 @@ Name: MonthlyCharges, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>941     35.206731
-1404    69.023078
-5515    68.608555
-3684    27.565069
-7017    67.890922
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>941     35.206724
+1404    69.023086
+5515    68.608565
+3684    27.565062
+7017    67.890933
 dtype: float64
 </pre></div>
 </div>
@@ -4013,7 +4263,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_164_0.png" src="../_images/21_survival-analysis_164_0.png" />
+<img alt="../_images/21_survival-analysis_166_0.png" src="../_images/21_survival-analysis_166_0.png" />
 </div>
 </div>
 <p>From <code class="docutils literal notranslate"><span class="pre">predict_survival_function</span></code> documentation:</p>
@@ -4096,23 +4346,23 @@ dtype: float64
     </tr>
     <tr>
       <th>68.0</th>
-      <td>0.429635</td>
+      <td>0.429634</td>
     </tr>
     <tr>
       <th>69.0</th>
-      <td>0.429635</td>
+      <td>0.429634</td>
     </tr>
     <tr>
       <th>70.0</th>
-      <td>0.429635</td>
+      <td>0.429634</td>
     </tr>
     <tr>
       <th>71.0</th>
-      <td>0.429635</td>
+      <td>0.429634</td>
     </tr>
     <tr>
       <th>72.0</th>
-      <td>0.429635</td>
+      <td>0.429634</td>
     </tr>
   </tbody>
 </table>
@@ -4136,7 +4386,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_171_0.png" src="../_images/21_survival-analysis_171_0.png" />
+<img alt="../_images/21_survival-analysis_173_0.png" src="../_images/21_survival-analysis_173_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4160,7 +4410,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21_survival-analysis_174_0.png" src="../_images/21_survival-analysis_174_0.png" />
+<img alt="../_images/21_survival-analysis_176_0.png" src="../_images/21_survival-analysis_176_0.png" />
 </div>
 </div>
 <ul class="simple">
@@ -4171,6 +4421,7 @@ dtype: float64
 </li>
 <li><p>With regular supervised learning, tenure was a feature and we could only predict whether or not they had churned by then.</p></li>
 </ul>
+<p><br><br></p>
 </section>
 <section id="evaluation">
 <h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h2>
@@ -4182,7 +4433,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8641864810547806
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8641864337292489
 </pre></div>
 </div>
 </div>
@@ -4194,7 +4445,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.7277855153568582
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.7277854625841886
 </pre></div>
 </div>
 </div>
@@ -4207,7 +4458,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8625886620148505
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8625888648969532
 </pre></div>
 </div>
 </div>
@@ -4219,7 +4470,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8625886620148505
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8625888648969532
 </pre></div>
 </div>
 </div>
@@ -4283,7 +4534,7 @@ dtype: float64
 <li><p>Sub-types within right censoring</p>
 <ul>
 <li><p>Did everyone join at the same time?</p></li>
-<li><p>Other there other reasons the data might be censored at random times, e.g. the person died?</p></li>
+<li><p>Other reasons the data might be censored at random times, e.g. the person died?</p></li>
 </ul>
 </li>
 <li><p>Left censoring</p></li>
@@ -4306,14 +4557,6 @@ dtype: float64
 <li><p>KM model -&gt; doesn’t look at features</p></li>
 <li><p>CPH model -&gt; like linear regression, does look at the features</p></li>
 </ul>
-</section>
-<section id="true-false-questions">
-<h2>True/False questions<a class="headerlink" href="#true-false-questions" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
-<li><p>If all customers joined a service at the same time (hypothetically), then censoring would not be an issue.</p></li>
-<li><p>The Cox proportional hazards model (<code class="docutils literal notranslate"><span class="pre">cph</span></code> above) assumes the effect of a feature is the same for all customers and over all time.</p></li>
-<li><p>Survival analysis can be useful even without a “deployment” stage.</p></li>
-</ol>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
@@ -4359,6 +4602,20 @@ dtype: float64
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="20_time-series.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 20: Time series</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
