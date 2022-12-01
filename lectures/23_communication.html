@@ -1,0 +1,2737 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lecture 23: Communication &#8212; CPSC 330 Applied Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Attributions" href="../attribution.html" />
+    <link rel="prev" title="Lecture 22: Ethics" href="22_ethics.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/UBC-CS-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CPSC 330 Applied Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Things you should know
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/README.html">
+   CPSC 330 Documents
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_intro.html">
+   Lecture 1: Course Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_decision-trees.html">
+   Lecture 2: Terminology, Baselines, Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_ml-fundamentals.html">
+   Lecture 3: Machine Learning Fundamentals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_kNNs-SVM-RBF.html">
+   Lecture 4:
+   <span class="math notranslate nohighlight">
+    \(k\)
+   </span>
+   -Nearest Neighbours and SVM RBFs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_preprocessing-pipelines.html">
+   Lecture 5: Preprocessing and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   pipelines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_column-transformer-text-feats.html">
+   Lecture 6:
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     sklearn
+    </span>
+   </code>
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     ColumnTransformer
+    </span>
+   </code>
+   and Text Features
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_linear-models.html">
+   Lecture 7: Linear Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08_hyperparameter-optimization.html">
+   Lecture 8: Hyperparameter Optimization and Optimization Bias
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09_classification-metrics.html">
+   Lecture 9: Classification Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10_regression-metrics.html">
+   Lecture 10: Regression Evaluation Metrics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11_ensembles.html">
+   Lecture 11: Ensembles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12_feat-importances.html">
+   Lecture 12: Feature importances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="13_feature-engineering-selection.html">
+   Lecture 13: Feature engineering and feature selection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="15_K-Means.html">
+   Lecture 15: K-Means Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="16_DBSCAN-hierarchical.html">
+   Lecture 16: DBSCAN and Hierarchical Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="17_recommender-systems.html">
+   Lecture 17: Recommender Systems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="18_natural-language-processing.html">
+   Lecture 18: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_intro_to_computer-vision.html">
+   Lecture 19: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_time-series.html">
+   Lecture 20: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_survival-analysis.html">
+   Lecture 21: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_ethics.html">
+   Lecture 22: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 23: Communication
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Attribution
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../attribution.html">
+   Attributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../LICENSE.html">
+   LICENSE
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Varada Kolhatkar, CPSC 330 2022-23<br>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/UBC-CS/cpsc330/master?urlpath=tree/lectures/23_communication.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/lectures/23_communication.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-should-we-care-about-effective-communication">
+     Why should we care about effective communication?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-the-problems-with-the-following">
+     What are the problems with the following?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-issues-in-ml-related-communication">
+     Main issues in ML-related communication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activity-explaining-gridsearchcv-15-min">
+   Activity: explaining
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GridSearchCV
+    </span>
+   </code>
+   (15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-1">
+     Explanation 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-2">
+     Explanation 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-questions">
+     Discussion questions:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles-of-good-explanations-15-min">
+   Principles of good explanations (~15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts-then-labels-not-the-other-way-around">
+     Concepts
+     <em>
+      then
+     </em>
+     labels, not the other way around
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottom-up-explanations">
+     Bottom-up explanations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-ideas-in-small-chunks">
+     New ideas in small chunks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reuse-your-running-examples">
+     Reuse your running examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approach-from-all-angles">
+     Approach from all angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-experimenting-show-the-results-asap">
+     When experimenting, show the results asap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you">
+     Interesting to you != useful to the reader (aka it’s not about you)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-and-decision-making-5-min">
+   ML and decision-making (5 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decisions-involve-a-few-key-pieces">
+     Decisions involve a few key pieces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-this-inform-you-as-an-ml-practitioner">
+     How does this inform you as an ML practitioner?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">
+   Confidence and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     predict_proba
+    </span>
+   </code>
+   (20 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">
+     What does this mean for us, when we’re trying to make claims about our data?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-credences-mean-in-practical-terms">
+     What do credences mean in practical terms?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">
+     It’s easy enough to evaluate how good we are at being right…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">
+     What does this have to do with applied ML?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preferences-in-logisticregression">
+     Preferences in
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       LogisticRegression
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-your-results">
+   Visualizing your results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset">
+     Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-separate-x-and-y">
+     Let’s separate
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       X
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       y
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-types">
+     Feature types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-feature-transformations">
+     Applying feature transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examining-the-preprocessed-data">
+     Examining the preprocessed data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-random-forests-and-gradient-boosted-trees">
+     Training random forests and gradient boosted trees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-this-confusing-misleading">
+     Why is this confusing/misleading?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rf-better-than-gb">
+     RF better than GB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gb-better-than-rf">
+     GB better than RF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equally-good">
+     Equally good
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#things-to-watch-out-for">
+     Things to watch out for
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-did-we-learn-today">
+   What did we learn today?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principles-of-effective-communication">
+     Principles of effective communication
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture 23: Communication</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imports">
+   Imports
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning objectives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#announcements">
+   Announcements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-should-we-care-about-effective-communication">
+     Why should we care about effective communication?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-the-problems-with-the-following">
+     What are the problems with the following?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-issues-in-ml-related-communication">
+     Main issues in ML-related communication
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#activity-explaining-gridsearchcv-15-min">
+   Activity: explaining
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     GridSearchCV
+    </span>
+   </code>
+   (15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-1">
+     Explanation 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#explanation-2">
+     Explanation 2
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#discussion-questions">
+     Discussion questions:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles-of-good-explanations-15-min">
+   Principles of good explanations (~15 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts-then-labels-not-the-other-way-around">
+     Concepts
+     <em>
+      then
+     </em>
+     labels, not the other way around
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bottom-up-explanations">
+     Bottom-up explanations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-ideas-in-small-chunks">
+     New ideas in small chunks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reuse-your-running-examples">
+     Reuse your running examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approach-from-all-angles">
+     Approach from all angles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#when-experimenting-show-the-results-asap">
+     When experimenting, show the results asap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you">
+     Interesting to you != useful to the reader (aka it’s not about you)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ml-and-decision-making-5-min">
+   ML and decision-making (5 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decisions-involve-a-few-key-pieces">
+     Decisions involve a few key pieces
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-does-this-inform-you-as-an-ml-practitioner">
+     How does this inform you as an ML practitioner?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#break-5-min">
+   Break (5 min)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#confidence-and-predict-proba-20-min">
+   Confidence and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     predict_proba
+    </span>
+   </code>
+   (20 min)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">
+     What does this mean for us, when we’re trying to make claims about our data?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-do-credences-mean-in-practical-terms">
+     What do credences mean in practical terms?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">
+     It’s easy enough to evaluate how good we are at being right…
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-does-this-have-to-do-with-applied-ml">
+     What does this have to do with applied ML?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preferences-in-logisticregression">
+     Preferences in
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       LogisticRegression
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-your-results">
+   Visualizing your results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset">
+     Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-separate-x-and-y">
+     Let’s separate
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       X
+      </span>
+     </code>
+     and
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       y
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-types">
+     Feature types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-feature-transformations">
+     Applying feature transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examining-the-preprocessed-data">
+     Examining the preprocessed data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-random-forests-and-gradient-boosted-trees">
+     Training random forests and gradient boosted trees
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-this-confusing-misleading">
+     Why is this confusing/misleading?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rf-better-than-gb">
+     RF better than GB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gb-better-than-rf">
+     GB better than RF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#equally-good">
+     Equally good
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#things-to-watch-out-for">
+     Things to watch out for
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-did-we-learn-today">
+   What did we learn today?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principles-of-effective-communication">
+     Principles of effective communication
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <p><img alt="" src="../_images/330-banner.png" /></p>
+<section class="tex2jax_ignore mathjax_ignore" id="lecture-23-communication">
+<h1>Lecture 23: Communication<a class="headerlink" href="#lecture-23-communication" title="Permalink to this headline">#</a></h1>
+<p>UBC 2022-23</p>
+<p>Instructor: Varada Kolhatkar</p>
+<section id="imports">
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">TransformedTargetRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span><span class="p">,</span> <span class="n">DummyRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">log_loss</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GridSearchCV</span><span class="p">,</span>
+    <span class="n">cross_val_score</span><span class="p">,</span>
+    <span class="n">cross_validate</span><span class="p">,</span>
+    <span class="n">train_test_split</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MinMaxScaler</span><span class="p">,</span>
+    <span class="n">OneHotEncoder</span><span class="p">,</span>
+    <span class="n">OrdinalEncoder</span><span class="p">,</span>
+    <span class="n">StandardScaler</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;font.size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>When communicating about applied ML, tailor an explanation to the intended audience.</p></li>
+<li><p>Apply best practices of technical communication, such as bottom-up explanations and reader-centric writing.</p></li>
+<li><p>Given an ML problem, analyze the decision being made and the objectives.</p></li>
+<li><p>Avoid the pitfall of thinking about ML as coding in isolation; build the habit of relating your work to the surrounding context and stakeholders.</p></li>
+<li><p>Interpret a confidence score or credence, e.g. what does it mean to be 5% confident that a statement is true.</p></li>
+<li><p>Maintain a healthy skepticism of <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> scores and their possible interpretation as credences.</p></li>
+<li><p>Be careful and precise when communicating confidence to stakeholders in an ML project.</p></li>
+<li><p>Identify misleading visualizations.</p></li>
+</ul>
+</section>
+<section id="announcements">
+<h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>hw9 (last one) due on December 7th at 11:59pm</p></li>
+<li><p>My OH today is moved from 12:45 to 3pm.</p></li>
+<li><p>Information on the final exam is posted on <a class="reference external" href="https://piazza.com/class/l6pflbyug1230c/post/568">Piazza</a>.</p></li>
+<li><p>Almost there, hang in there!</p></li>
+</ul>
+</section>
+<section id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The first part of this lecture is adapted from <a class="reference external" href="https://github.com/UBC-MDS/DSCI_542_comm-arg">DSCI 542</a>, created by <a class="reference external" href="https://davidklaing.com/">David Laing</a>.</p></li>
+<li><p>The visualization component of this lecture benefitted from discussions with <a class="reference external" href="http://firas.moosvi.com/">Firas Moosvi</a> about his course, <a class="reference external" href="https://github.com/UBC-MDS/DSCI_531_viz-1">DSCI 531</a>.</p></li>
+</ul>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
+<section id="why-should-we-care-about-effective-communication">
+<h3>Why should we care about effective communication?<a class="headerlink" href="#why-should-we-care-about-effective-communication" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Most ML practitioners work in an organization with &gt;1 people.</p></li>
+<li><p>There will very likely be stakeholders other than yourself.</p></li>
+<li><p>Some of them might not have any background in ML or computer science.</p></li>
+<li><p>If your ML model is going to automate some important decisions in the organization you need to be able to explain</p>
+<ul>
+<li><p>What does a particular result mean?</p></li>
+<li><p>When does the model work?</p></li>
+<li><p>What are the risks? When does it fail?</p></li>
+<li><p>Why the model made a certain prediction for a particular example?</p></li>
+<li><p>What are the consequences of using your model?</p></li>
+</ul>
+</li>
+<li><p>If you are able to convince your manager that using is model is beneficial, then only there are chances of your work going in production.</p></li>
+<li><p>That said, you want to be honest when discussing the aspects above. If you mis-communicate the performance of your model, people will find out when the deployed model does not quite give similar performance.</p></li>
+</ul>
+</section>
+<section id="what-are-the-problems-with-the-following">
+<h3>What are the problems with the following?<a class="headerlink" href="#what-are-the-problems-with-the-following" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../_images/ml-communication.png" /></p>
+<ul class="simple">
+<li><p>Does “accuracy” here refer to the accuracy in ML?</p></li>
+<li><p>Is there class imbalance?</p></li>
+<li><p>Are they reporting numbers on the training data or validation or test data?</p></li>
+</ul>
+</section>
+<section id="main-issues-in-ml-related-communication">
+<h3>Main issues in ML-related communication<a class="headerlink" href="#main-issues-in-ml-related-communication" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Overstating one’s results / unable to articulate the limitations</p></li>
+<li><p>Unable to explain the predictions</p></li>
+<li><p>Can we trust test error?</p></li>
+<li><p>Why did a particular model (e.g., CatBoost) make that prediction?</p></li>
+<li><p>What does it mean if <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> outputs 0.9?</p></li>
+</ul>
+<p>These issues are there because these things are actually very hard to explain!</p>
+<p><br><br></p>
+</section>
+</section>
+<section id="activity-explaining-gridsearchcv-15-min">
+<h2>Activity: explaining <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> (15 min)<a class="headerlink" href="#activity-explaining-gridsearchcv-15-min" title="Permalink to this headline">#</a></h2>
+<p>Below are two possible explanations of <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> pitched to different audiences. Read them both and then follow the instructions at the end.</p>
+<section id="explanation-1">
+<h3>Explanation 1<a class="headerlink" href="#explanation-1" title="Permalink to this headline">#</a></h3>
+<p>Machine learning algorithms, like an airplane’s cockpit, typically involve a bunch of knobs and switches that need to be set.</p>
+<p><img alt="" src="https://i.pinimg.com/236x/ea/43/f3/ea43f3c7f3a8c92d884ce012c77628fd--cockpit-gauges.jpg" /></p>
+<p>For example, check out the documentation of the popular random forest algorithm <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">here</a>. Here’s a list of the function arguments, along with their default values (from the documentation):</p>
+<blockquote>
+<div><p>class sklearn.ensemble.RandomForestClassifier(n_estimators=100, criterion=’gini’, max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=’auto’, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, bootstrap=True, oob_score=False, n_jobs=None, random_state=None, verbose=0, warm_start=False, class_weight=None, ccp_alpha=0.0, max_samples=None)</p>
+</div></blockquote>
+<p>Holy cow, that’s a lot of knobs and switches! As a machine learning practitioner, how am I supposed to choose <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>? Should I leave it at the default of 100? Or try 1000? What about <code class="docutils literal notranslate"><span class="pre">criterion</span></code> or <code class="docutils literal notranslate"><span class="pre">class_weight</span></code> for that matter? Should I trust the defaults?</p>
+<p>Enter <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">GridSearchCV</a> to save the day. The general strategy here is to choose the settings that perform best on the specific task of interest. So I can’t say <code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code> is better than <code class="docutils literal notranslate"><span class="pre">n_estimators=1000</span></code> without knowing what problem I’m working on. For a specific problem, you usually have a numerical score that measures performance. <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> is part of the popular <a class="reference external" href="https://scikit-learn.org/">scikit-learn</a> Python machine learning library. It works by searching over various settings and tells you which one worked best on your problem.</p>
+<p>The “grid” in “grid search” comes from the fact that tries all possible combinations on a grid. For example, if you want it to consider setting <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> to 100, 150 or 200, and you want it to consider setting <code class="docutils literal notranslate"><span class="pre">criterion</span></code> to <code class="docutils literal notranslate"><span class="pre">'gini'</span></code> or <code class="docutils literal notranslate"><span class="pre">'entropy'</span></code>, then it will search over all 6 possible combinations in a grid of 3 possible values by 2 possible values:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">criterion='gini'</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">criterion='entropy'</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=150</span></code></p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators=200</span></code></p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here is a code sample that uses <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> to select from the 6 options we just mentioned. The problem being solved is classifying images of handwritten digits into the 10 digit categories (0-9). I chose this because the dataset is conveniently built in to scikit-learn:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="c1"># load a dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span>
+
+<span class="c1"># set up the grid search</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+    <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="s2">&quot;criterion&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;gini&quot;</span><span class="p">,</span> <span class="s2">&quot;entropy&quot;</span><span class="p">]},</span>
+<span class="p">)</span>
+
+<span class="c1"># run the grid search</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;criterion&#39;: &#39;gini&#39;, &#39;n_estimators&#39;: 100}
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we can see from the output above, the grid search selected <code class="docutils literal notranslate"><span class="pre">criterion='gini',</span> <span class="pre">n_estimators=100</span></code>, which was one of our 6 options above (specifically Option 1).</p>
+<p>By the way, these “knobs” we’ve been setting are called [<em>hyperparameters</em>](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning) and the process of setting these hyperparameters automatically is called <a class="reference external" href="https://en.wikipedia.org/wiki/Hyperparameter_optimization"><em>hyperparameter optimization</em></a> or <em>hyperparameter tuning</em>.</p>
+<p>~400 words, not including code.</p>
+<p><br><br><br><br><br><br></p>
+</section>
+<section id="explanation-2">
+<h3>Explanation 2<a class="headerlink" href="#explanation-2" title="Permalink to this headline">#</a></h3>
+<p>https://medium.com/datadriveninvestor/an-introduction-to-grid-search-ff57adcc0998</p>
+<p>~400 words, not including code.</p>
+<p><br><br><br><br><br><br></p>
+</section>
+<section id="discussion-questions">
+<h3>Discussion questions:<a class="headerlink" href="#discussion-questions" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>What do you like about each explanation?</p></li>
+<li><p>What do you dislike about each explanation?</p></li>
+<li><p>What do you think is the intended audience for each explanation?</p></li>
+<li><p>Which explanation do you think is more effective overall for someone on Day 1 of CPSC 330?</p></li>
+<li><p>Each explanation has an image. Which one is more effective? What are the pros/cons?</p></li>
+<li><p>Each explanation has some sample code. Which one is more effective? What are the pros/cons?</p></li>
+</ul>
+<p>After you’re done reading, take ~5 min to consider the discussion questions above. Paste your answer to <strong>at least one</strong> of the above questions in the <a class="reference external" href="https://docs.google.com/document/d/1BJEpMm6luVOTcbC1Qth74jP40S1jErXumR6KbhnJeZM/edit#heading=h.m3ko02t7yq5b">Google doc</a> under the appropriate question heading.</p>
+</section>
+</section>
+<section id="principles-of-good-explanations-15-min">
+<h2>Principles of good explanations (~15 min)<a class="headerlink" href="#principles-of-good-explanations-15-min" title="Permalink to this headline">#</a></h2>
+<section id="concepts-then-labels-not-the-other-way-around">
+<h3>Concepts <em>then</em> labels, not the other way around<a class="headerlink" href="#concepts-then-labels-not-the-other-way-around" title="Permalink to this headline">#</a></h3>
+<p>The first explanation start with an analogy for the concept (and the label is left until the very end):</p>
+<blockquote>
+<div><p>Machine learning algorithms, like an airplane’s cockpit, typically involve a bunch of knobs and switches that need to be set.</p>
+</div></blockquote>
+<p>In the second explanation, the first sentence is wasted on anyone who doesn’t already know what “hyperparameter tuning” means:</p>
+<blockquote>
+<div><p>Grid search is the process of performing hyper parameter tuning in order to determine the optimal values for a given model.</p>
+</div></blockquote>
+<p>The effectiveness of these different statements depend on your audience.</p>
+<p>See <a class="reference external" href="https://www.youtube.com/watch?v=px_4TxC2mXU">this video</a>:</p>
+<blockquote>
+<div><p>I learned very early the difference between knowing the name of something and knowing something.” - Richard Feynman.</p>
+</div></blockquote>
+</section>
+<section id="bottom-up-explanations">
+<h3>Bottom-up explanations<a class="headerlink" href="#bottom-up-explanations" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_knowledge">Curse of Knowledge</a> leads to <em>top-down</em> explanations:</p>
+<p><img alt="" src="../_images/top_down.png" /></p>
+<ul class="simple">
+<li><p>When you know something well, you think about things in the context of all your knowledge.</p></li>
+<li><p>Those lacking the context, or frame of mind, cannot easily understand.</p></li>
+</ul>
+<p>There is another way: <em>bottom-up</em> explanations:</p>
+<p><img alt="" src="../_images/bottom_up.png" /></p>
+<p>When you’re brand new to a concept, you benefit from analogies, concrete examples and familiar patterns.</p>
+</section>
+<section id="new-ideas-in-small-chunks">
+<h3>New ideas in small chunks<a class="headerlink" href="#new-ideas-in-small-chunks" title="Permalink to this headline">#</a></h3>
+<p>The first explanation has a hidden conceptual skeleton:</p>
+<ol class="simple">
+<li><p>The concept of setting a bunch of values.</p></li>
+<li><p>Random forest example.</p></li>
+<li><p>The problem / pain point.</p></li>
+<li><p>The solution.</p></li>
+<li><p>How it works - high level.</p></li>
+<li><p>How it works - written example.</p></li>
+<li><p>How it works - code example.</p></li>
+<li><p>The name of what we were discussing all this time.</p></li>
+</ol>
+</section>
+<section id="reuse-your-running-examples">
+<h3>Reuse your running examples<a class="headerlink" href="#reuse-your-running-examples" title="Permalink to this headline">#</a></h3>
+<p>Effective explanations often use the same example throughout the text and code. This helps readers follow the line of reasoning.</p>
+</section>
+<section id="approach-from-all-angles">
+<h3>Approach from all angles<a class="headerlink" href="#approach-from-all-angles" title="Permalink to this headline">#</a></h3>
+<p>When we’re trying to draw mental boundaries around a concept, it’s helpful to see examples on all sides of those boundaries. If we were writing a longer explanation, it might have been better to show more, e.g.</p>
+<ul class="simple">
+<li><p>Performance with and without hyperparameter tuning.</p></li>
+<li><p>Other types of hyperparameter tuning (e.g. <code class="docutils literal notranslate"><span class="pre">RandomizedSearchCV</span></code>).</p></li>
+</ul>
+</section>
+<section id="when-experimenting-show-the-results-asap">
+<h3>When experimenting, show the results asap<a class="headerlink" href="#when-experimenting-show-the-results-asap" title="Permalink to this headline">#</a></h3>
+<p>The first explanation shows the output of the code, whereas the second does not. This is easy to do and makes a big difference.</p>
+</section>
+<section id="interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you">
+<h3>Interesting to you != useful to the reader (aka it’s not about you)<a class="headerlink" href="#interesting-to-you-useful-to-the-reader-aka-it-s-not-about-you" title="Permalink to this headline">#</a></h3>
+<p>Here is something which was deleted from the explanation:</p>
+<blockquote>
+<div><p>Some hyperparameters, like <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> are numeric. Numeric hyperparameters are like the knobs in the cockpit: you can tune them continuously. <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> is numeric. Categorical hyperparameters are like the switches in the cockpit: they can take on (two or more) distinct values. <code class="docutils literal notranslate"><span class="pre">criterion</span></code> is categorical.</p>
+</div></blockquote>
+<p>It’s a very elegant analogy! But is it helpful?</p>
+<p>And furthermore, what is my hidden motivation for wanting to include it? Elegance, art, and the pursuit of higher beauty? Or <em>making myself look smart</em>? So maybe another name for this principle could be <strong>It’s not about you.</strong></p>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="ml-and-decision-making-5-min">
+<h2>ML and decision-making (5 min)<a class="headerlink" href="#ml-and-decision-making-5-min" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>There is often a wide gap between what people care about and what ML can do.</p></li>
+<li><p>To understand what ML can do, let’s think about what <strong>decisions</strong> will be made using ML.</p></li>
+</ul>
+<section id="decisions-involve-a-few-key-pieces">
+<h3>Decisions involve a few key pieces<a class="headerlink" href="#decisions-involve-a-few-key-pieces" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The <strong>decision variable</strong>: the variable that is manipulated through the decision.</p>
+<ul>
+<li><p>E.g. how much should I sell my house for? (numeric)</p></li>
+<li><p>E.g. should I sell my house? (categorical)</p></li>
+</ul>
+</li>
+<li><p>The decision-maker’s <strong>objectives</strong>: the variables that the decision-maker ultimately cares about, and wishes to manipulate indirectly through the decision variable.</p>
+<ul>
+<li><p>E.g. my total profit, time to sale, etc.</p></li>
+</ul>
+</li>
+<li><p>The <strong>context</strong>: the variables that mediate the relationship between the decision variable and the objectives.</p>
+<ul>
+<li><p>E.g. the housing market, cost of marketing it, my timeline, etc.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="how-does-this-inform-you-as-an-ml-practitioner">
+<h3>How does this inform you as an ML practitioner?<a class="headerlink" href="#how-does-this-inform-you-as-an-ml-practitioner" title="Permalink to this headline">#</a></h3>
+<p>Questions you have to answer:</p>
+<ul class="simple">
+<li><p>Who is the decision maker?</p></li>
+<li><p>What are their objectives?</p></li>
+<li><p>What are their alternatives?</p></li>
+<li><p>What is their context?</p></li>
+<li><p>What data do I need?</p></li>
+</ul>
+</section>
+</section>
+<section id="break-5-min">
+<h2>Break (5 min)<a class="headerlink" href="#break-5-min" title="Permalink to this headline">#</a></h2>
+<p><img alt="" src="../_images/eva-coffee.png" /></p>
+<p><br><br></p>
+</section>
+<section id="confidence-and-predict-proba-20-min">
+<h2>Confidence and <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> (20 min)<a class="headerlink" href="#confidence-and-predict-proba-20-min" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>What does it mean to be “confident” in your results?</p></li>
+<li><p>When you perform analysis, you are responsible for many judgment calls.</p></li>
+<li><p><a class="reference external" href="https://fivethirtyeight.com/features/science-isnt-broken/#part1">Your results will be different than others’</a>.</p></li>
+<li><p>As you make these judgments and start to form conclusions, how can you recognize your own uncertainties about the data so that you can communicate confidently?</p></li>
+</ul>
+<section id="what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data">
+<h3>What does this mean for us, when we’re trying to make claims about our data?<a class="headerlink" href="#what-does-this-mean-for-us-when-we-re-trying-to-make-claims-about-our-data" title="Permalink to this headline">#</a></h3>
+<p>Let’s imagine that the following claim is true:</p>
+<blockquote>
+<div><p>Vancouver has the highest cost of living of all cities in Canada.</p>
+</div></blockquote>
+<p>Now let’s consider a few beliefs we could hold:</p>
+<ol class="simple">
+<li><p>Vancouver has the highest cost of living of all cities in Canada. <strong>I am 95% sure of this.</strong></p></li>
+<li><p>Vancouver has the highest cost of living of all cities in Canada. <strong>I am 55% sure of this.</strong></p></li>
+</ol>
+<p>The part is bold is called a <a class="reference external" href="https://en.wikipedia.org/wiki/Credence_(statistics)">credence</a>. Which belief is better?</p>
+<p>But what if it’s actually Toronto that has the highest cost of living in Canada?</p>
+<ol class="simple">
+<li><p>Vancouver has the highest cost of living of all cities in Canada. <strong>I am 95% sure of this.</strong></p></li>
+<li><p>Vancouver has the highest cost of living of all cities in Canada. <strong>I am 55% sure of this.</strong></p></li>
+</ol>
+<p>Which belief is better now?</p>
+<p><strong>Conclusion: We don’t just want to be right. We want to be confident when we’re right and hesitant when we’re wrong.</strong></p>
+</section>
+<section id="what-do-credences-mean-in-practical-terms">
+<h3>What do credences mean in practical terms?<a class="headerlink" href="#what-do-credences-mean-in-practical-terms" title="Permalink to this headline">#</a></h3>
+<p>One of two things:</p>
+<ul class="simple">
+<li><p><strong>I would accept a bet at these odds.</strong> 99% sure means, “For the chance of winning \<span class="math notranslate nohighlight">\(1, I would bet \\\)</span>99 that I’m right about this.” 75% sure means, “For the chance of winning \<span class="math notranslate nohighlight">\(25, I would bet \\\)</span>75 that I’m right about this.”</p></li>
+<li><p><strong>Long-run frequency of correctness.</strong> 99% sure means, “For every 100 predictions I make at this level of confidence, I would expect only 1 of them to be incorrect.” 75% sure means, “For every 100 predictions I make at this level of confidence, I would expect about 25 of them to be incorrect.”</p></li>
+</ul>
+</section>
+<section id="it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right">
+<h3>It’s easy enough to evaluate how good we are at being right…<a class="headerlink" href="#it-s-easy-enough-to-evaluate-how-good-we-are-at-being-right" title="Permalink to this headline">#</a></h3>
+<p>But if we want to evaluate <em>how good we are at knowing how right we are</em>?</p>
+<p>We would need to keep of not just the correctness of our predictions, but also our confidence in those predictions.</p>
+</section>
+<section id="what-does-this-have-to-do-with-applied-ml">
+<h3>What does this have to do with applied ML?<a class="headerlink" href="#what-does-this-have-to-do-with-applied-ml" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>What if you <code class="docutils literal notranslate"><span class="pre">predict</span></code> that a credit card transaction is fraudulent?</p>
+<ul>
+<li><p>We probably want <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> a lot of the time.</p></li>
+</ul>
+</li>
+<li><p>What if <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code> is 0.95 in that case?</p>
+<ul>
+<li><p>How confident are YOU?</p></li>
+</ul>
+</li>
+<li><p>What if you forecast that avocado prices will go up next week?</p>
+<ul>
+<li><p>How confident are you there?</p></li>
+</ul>
+</li>
+<li><p>Or what if you predict a house price to be \$800k?</p>
+<ul>
+<li><p>That is not even a true/false statement.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="preferences-in-logisticregression">
+<h3>Preferences in <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code><a class="headerlink" href="#preferences-in-logisticregression" title="Permalink to this headline">#</a></h3>
+<p>When you call <code class="docutils literal notranslate"><span class="pre">fit</span></code> for <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> it has similar preferences:
+<br>
+<span style="color:green"><strong>correct and confident</strong></span> <br> <strong>&gt;</strong> <span style="color:cyan"> <strong>correct and hesitant</strong> </span>  <br> <strong>&gt;</strong> <span style="color:orange"><strong>incorrect and hesitant</strong></span> <br> <strong>&gt;</strong>  <span style="color:red"><strong>incorrect and confident</strong></span></p>
+<ul class="simple">
+<li><p>This is a “loss” or “error” function like mean squared error, so lower values are better.</p></li>
+<li><p>When you call <code class="docutils literal notranslate"><span class="pre">fit</span></code> it tries to minimize this metric.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Consider the following made-up classification example where target (true <code class="docutils literal notranslate"><span class="pre">y</span></code>) is binary: -1 or 1.</p></li>
+<li><p>The true <span class="math notranslate nohighlight">\(y\)</span> (<code class="docutils literal notranslate"><span class="pre">y_true</span></code>) and models raw scores (<span class="math notranslate nohighlight">\(w^Tx_i\)</span>) are given to you.</p></li>
+<li><p>You want to figure out how do you want to punish the mistakes made by the current model.</p></li>
+<li><p>How will you punish the model in each case?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;raw score ($w^Tx_i$)&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.51</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mf">12.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">18.0</span><span class="p">],</span>
+    <span class="s2">&quot;correct? (yes/no)&quot;</span><span class="p">:[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;confident/hesitant?&quot;</span><span class="p">:[</span><span class="s2">&quot;confident&quot;</span><span class="p">,</span> <span class="s2">&quot;hesitant&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;loss&quot;</span><span class="p">:[</span><span class="s2">&quot;None&quot;</span><span class="p">,</span> <span class="s2">&quot;small&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>y_true</th>
+      <th>raw score ($w^Tx_i$)</th>
+      <th>correct? (yes/no)</th>
+      <th>confident/hesitant?</th>
+      <th>loss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>10.00</td>
+      <td>yes</td>
+      <td>confident</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.51</td>
+      <td>yes</td>
+      <td>hesitant</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>-0.10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>-10.00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1</td>
+      <td>-12.00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-1</td>
+      <td>-1.00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-1</td>
+      <td>0.40</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-1</td>
+      <td>18.00</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_loss_diagram</span><span class="p">(</span><span class="n">labels_inside</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span> <span class="c1"># From Mike&#39;s notebook: https://github.com/UBC-CS/cpsc340-2020w2/blob/main/lectures/19_linear-classifiers-fit.ipynb        </span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$y_iw^T x_i$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;loss&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.025</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+
+    <span class="k">if</span> <span class="n">labels_inside</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.95</span><span class="p">,</span> <span class="mf">2.73</span><span class="p">,</span> <span class="s2">&quot;incorrect prediction&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span> <span class="c1"># 2.68</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">2.73</span><span class="p">,</span> <span class="s2">&quot;correct prediction&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.95</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="s2">&quot;incorrect prediction&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span> <span class="c1"># 2.68</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="s2">&quot;correct prediction&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plot_loss_diagram</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">grid</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;logistic loss&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/23_communication_59_0.png" src="../_images/23_communication_59_0.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>When you are confident and correct, the loss is much smaller</p></li>
+<li><p>When you are hesitant and correct, the loss is a bit higher</p></li>
+<li><p>If you are hesitant and incorrect the loss is even higher</p></li>
+<li><p>If you are confident and incorrect the loss is quite high.</p></li>
+<li><p>Your loss goes to 0 as you approach 100% confidence in the correct answer.</p></li>
+<li><p>Your loss goes to infinity as you approach 100% confidence in the incorrect answer.</p></li>
+<li><p>The above picture shows loss for one example.</p></li>
+<li><p>The real <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> takes summations of losses over all examples.</p></li>
+</ul>
+<p>Some nice examples:</p>
+<ul class="simple">
+<li><p>(Optional) See also the very related <a class="reference external" href="https://terrytao.wordpress.com/2016/06/01/how-to-assign-partial-credit-on-an-exam-of-true-false-questions/">How to assign partial credit on an exam of true-false questions?</a></p></li>
+<li><p><a class="reference external" href="https://slatestarcodex.com/2019/01/22/2018-predictions-calibration-results/">Scott Alexander</a></p>
+<ul>
+<li><p>Look at how the plot starts at 50%. That is because being 40% confident of “X” is the same as being 60% confident of “not X”.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.gjopen.com/">Good Judgment Project</a></p></li>
+</ul>
+<p><br><br><br><br></p>
+</section>
+</section>
+<section id="visualizing-your-results">
+<h2>Visualizing your results<a class="headerlink" href="#visualizing-your-results" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Very powerful but at the same time can be misleading if not done properly.</p></li>
+</ul>
+<p>Pre-viewing review from <a class="reference external" href="https://www.youtube.com/watch?v=T-5aLbNeGo0&amp;list=PLPnZfvKID1Sje5jWxt-4CSZD7bUI4gSPS&amp;index=30&amp;t=0s">Calling BS visualization videos</a>:</p>
+<ul class="simple">
+<li><p>Dataviz in the popular media.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/T-5aLbNeGo0?t=367">modern NYT</a></p></li>
+</ul>
+</li>
+<li><p>Misleading axes.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/9pNWVMxaFuM?t=299">vaccines</a></p></li>
+</ul>
+</li>
+<li><p>Manipulating bin sizes.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/zAg1wsYfwsM?t=196">tax dollars</a></p></li>
+</ul>
+</li>
+<li><p>Dataviz ducks.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/rmii1hfP6d4?t=169">drinking water</a></p></li>
+<li><p>“look how clever we are about design” -&gt; making it about me instead of about you (see last class)</p></li>
+</ul>
+</li>
+<li><p>Glass slippers.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/59teS0SUHtI?t=285">internet marketing tree</a></p></li>
+</ul>
+</li>
+<li><p>The principle of proportional ink.</p>
+<ul>
+<li><p>e.g. <a class="reference external" href="https://youtu.be/oNhusd3xFC4?t=147">most read books</a></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.darkhorseanalytics.com/blog/data-looks-better-naked">Demo of cleaning up a plot</a></p></li>
+<li><p><a class="reference external" href="https://serialmentor.com/dataviz/proportional-ink.html">Principle of proportional ink</a> from a viz textbook.</p></li>
+</ul>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">#</a></h3>
+<p>We’ll be using <a class="reference external" href="https://www.kaggle.com/c/home-data-for-ml-course/">Kaggle House Prices dataset</a>, which we used in lecture 10. As usual, to run this notebook you’ll need to download the data. For this dataset, train and test have already been separated. We’ll be working with the train portion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/housing-kaggle/train.csv&quot;</span><span class="p">)</span>
+<span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Id</th>
+      <th>MSSubClass</th>
+      <th>MSZoning</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>Street</th>
+      <th>Alley</th>
+      <th>LotShape</th>
+      <th>LandContour</th>
+      <th>Utilities</th>
+      <th>...</th>
+      <th>PoolArea</th>
+      <th>PoolQC</th>
+      <th>Fence</th>
+      <th>MiscFeature</th>
+      <th>MiscVal</th>
+      <th>MoSold</th>
+      <th>YrSold</th>
+      <th>SaleType</th>
+      <th>SaleCondition</th>
+      <th>SalePrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>302</th>
+      <td>303</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>118.0</td>
+      <td>13704</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>1</td>
+      <td>2006</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>205000</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>768</td>
+      <td>50</td>
+      <td>RL</td>
+      <td>75.0</td>
+      <td>12508</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Shed</td>
+      <td>1300</td>
+      <td>7</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>160000</td>
+    </tr>
+    <tr>
+      <th>429</th>
+      <td>430</td>
+      <td>20</td>
+      <td>RL</td>
+      <td>130.0</td>
+      <td>11457</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2009</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>175000</td>
+    </tr>
+    <tr>
+      <th>1139</th>
+      <td>1140</td>
+      <td>30</td>
+      <td>RL</td>
+      <td>98.0</td>
+      <td>8731</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR1</td>
+      <td>Lvl</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>5</td>
+      <td>2007</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>144000</td>
+    </tr>
+    <tr>
+      <th>558</th>
+      <td>559</td>
+      <td>60</td>
+      <td>RL</td>
+      <td>57.0</td>
+      <td>21872</td>
+      <td>Pave</td>
+      <td>NaN</td>
+      <td>IR2</td>
+      <td>HLS</td>
+      <td>AllPub</td>
+      <td>...</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>8</td>
+      <td>2008</td>
+      <td>WD</td>
+      <td>Normal</td>
+      <td>175000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 81 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1314, 81)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="let-s-separate-x-and-y">
+<h3>Let’s separate <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code><a class="headerlink" href="#let-s-separate-x-and-y" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
+
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">])</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">test_df</span><span class="p">[</span><span class="s2">&quot;SalePrice&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="feature-types">
+<h3>Feature types<a class="headerlink" href="#feature-types" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We have mixed feature types and a bunch of missing values.</p></li>
+<li><p>Now, let’s identify feature types and transformations.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">drop_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Id&quot;</span><span class="p">]</span>
+<span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BedroomAbvGr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KitchenAbvGr&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LotFrontage&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LotArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OverallQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OverallCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YearBuilt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YearRemodAdd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MasVnrArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinSF1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinSF2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtUnfSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TotalBsmtSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;1stFlrSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2ndFlrSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LowQualFinSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GrLivArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFullBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtHalfBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FullBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HalfBath&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TotRmsAbvGrd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fireplaces&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageYrBlt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageCars&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;WoodDeckSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;OpenPorchSF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EnclosedPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3SsnPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ScreenPorch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PoolArea&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MiscVal&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;YrSold&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_features_reg</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;ExterQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ExterCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;HeatingQC&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;KitchenQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;FireplaceQu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageQual&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GarageCond&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;PoolQC&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordering</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Po&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Gd&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ex&quot;</span><span class="p">,</span>
+<span class="p">]</span>  <span class="c1"># if N/A it will just impute something, per below</span>
+<span class="n">ordering_ordinal_reg</span> <span class="o">=</span> <span class="p">[</span><span class="n">ordering</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
+<span class="n">ordering_ordinal_reg</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;],
+ [&#39;Po&#39;, &#39;Fa&#39;, &#39;TA&#39;, &#39;Gd&#39;, &#39;Ex&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ordinal_features_oth</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;BsmtExposure&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinType1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;BsmtFinType2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Functional&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Fence&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">ordering_ordinal_oth</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="s2">&quot;Mn&quot;</span><span class="p">,</span> <span class="s2">&quot;Av&quot;</span><span class="p">,</span> <span class="s2">&quot;Gd&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;Unf&quot;</span><span class="p">,</span> <span class="s2">&quot;LwQ&quot;</span><span class="p">,</span> <span class="s2">&quot;Rec&quot;</span><span class="p">,</span> <span class="s2">&quot;BLQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ALQ&quot;</span><span class="p">,</span> <span class="s2">&quot;GLQ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;Sal&quot;</span><span class="p">,</span> <span class="s2">&quot;Sev&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj2&quot;</span><span class="p">,</span> <span class="s2">&quot;Maj1&quot;</span><span class="p">,</span> <span class="s2">&quot;Mod&quot;</span><span class="p">,</span> <span class="s2">&quot;Min2&quot;</span><span class="p">,</span> <span class="s2">&quot;Min1&quot;</span><span class="p">,</span> <span class="s2">&quot;Typ&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span> <span class="s2">&quot;MnWw&quot;</span><span class="p">,</span> <span class="s2">&quot;GdWo&quot;</span><span class="p">,</span> <span class="s2">&quot;MnPrv&quot;</span><span class="p">,</span> <span class="s2">&quot;GdPrv&quot;</span><span class="p">],</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The remaining features are categorical features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">categorical_features</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">numeric_features</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_reg</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">ordinal_features_oth</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">drop_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">categorical_features</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;MiscFeature&#39;,
+ &#39;RoofStyle&#39;,
+ &#39;HouseStyle&#39;,
+ &#39;RoofMatl&#39;,
+ &#39;Alley&#39;,
+ &#39;LandContour&#39;,
+ &#39;PavedDrive&#39;,
+ &#39;Exterior1st&#39;,
+ &#39;Condition1&#39;,
+ &#39;Exterior2nd&#39;,
+ &#39;SaleCondition&#39;,
+ &#39;SaleType&#39;,
+ &#39;GarageFinish&#39;,
+ &#39;Utilities&#39;,
+ &#39;BldgType&#39;,
+ &#39;Neighborhood&#39;,
+ &#39;MSZoning&#39;,
+ &#39;Electrical&#39;,
+ &#39;Street&#39;,
+ &#39;LotShape&#39;,
+ &#39;Foundation&#39;,
+ &#39;LotConfig&#39;,
+ &#39;MSSubClass&#39;,
+ &#39;Heating&#39;,
+ &#39;LandSlope&#39;,
+ &#39;GarageType&#39;,
+ &#39;MasVnrType&#39;,
+ &#39;CentralAir&#39;,
+ &#39;MoSold&#39;,
+ &#39;Condition2&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-feature-transformations">
+<h3>Applying feature transformations<a class="headerlink" href="#applying-feature-transformations" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Since we have mixed feature types, let’s use <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> to apply different transformations on different features types.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span><span class="p">,</span> <span class="n">make_column_transformer</span>
+
+<span class="n">numeric_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">),</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="n">ordinal_transformer_reg</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span>
+    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="n">ordering_ordinal_reg</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">ordinal_transformer_oth</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;most_frequent&quot;</span><span class="p">),</span>
+    <span class="n">OrdinalEncoder</span><span class="p">(</span><span class="n">categories</span><span class="o">=</span><span class="n">ordering_ordinal_oth</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span>
+    <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;constant&quot;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span>
+    <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">make_column_transformer</span><span class="p">(</span>
+    <span class="p">(</span><span class="s2">&quot;drop&quot;</span><span class="p">,</span> <span class="n">drop_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">numeric_transformer</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ordinal_transformer_reg</span><span class="p">,</span> <span class="n">ordinal_features_reg</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">ordinal_transformer_oth</span><span class="p">,</span> <span class="n">ordinal_features_oth</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="examining-the-preprocessed-data">
+<h3>Examining the preprocessed data<a class="headerlink" href="#examining-the-preprocessed-data" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="c1"># Calling fit to examine all the transformers.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                (&#x27;pipeline-1&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;,
+                                  &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                  &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
+                                  &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
+                                  &#x27;TotalBsmtSF&#x27;, &#x27;...
+                                 [&#x27;MiscFeature&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Alley&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;PavedDrive&#x27;, &#x27;Exterior1st&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;Exterior2nd&#x27;, &#x27;SaleCondition&#x27;, &#x27;SaleType&#x27;,
+                                  &#x27;GarageFinish&#x27;, &#x27;Utilities&#x27;, &#x27;BldgType&#x27;,
+                                  &#x27;Neighborhood&#x27;, &#x27;MSZoning&#x27;, &#x27;Electrical&#x27;,
+                                  &#x27;Street&#x27;, &#x27;LotShape&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;LotConfig&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;,
+                                  &#x27;LandSlope&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;MoSold&#x27;, &#x27;Condition2&#x27;])])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(transformers=[(&#x27;drop&#x27;, &#x27;drop&#x27;, [&#x27;Id&#x27;]),
+                                (&#x27;pipeline-1&#x27;,
+                                 Pipeline(steps=[(&#x27;simpleimputer&#x27;,
+                                                  SimpleImputer(strategy=&#x27;median&#x27;)),
+                                                 (&#x27;standardscaler&#x27;,
+                                                  StandardScaler())]),
+                                 [&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;,
+                                  &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;,
+                                  &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;,
+                                  &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;,
+                                  &#x27;TotalBsmtSF&#x27;, &#x27;...
+                                 [&#x27;MiscFeature&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;,
+                                  &#x27;RoofMatl&#x27;, &#x27;Alley&#x27;, &#x27;LandContour&#x27;,
+                                  &#x27;PavedDrive&#x27;, &#x27;Exterior1st&#x27;, &#x27;Condition1&#x27;,
+                                  &#x27;Exterior2nd&#x27;, &#x27;SaleCondition&#x27;, &#x27;SaleType&#x27;,
+                                  &#x27;GarageFinish&#x27;, &#x27;Utilities&#x27;, &#x27;BldgType&#x27;,
+                                  &#x27;Neighborhood&#x27;, &#x27;MSZoning&#x27;, &#x27;Electrical&#x27;,
+                                  &#x27;Street&#x27;, &#x27;LotShape&#x27;, &#x27;Foundation&#x27;,
+                                  &#x27;LotConfig&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;,
+                                  &#x27;LandSlope&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;,
+                                  &#x27;CentralAir&#x27;, &#x27;MoSold&#x27;, &#x27;Condition2&#x27;])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>[&#x27;Id&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">drop</label><div class="sk-toggleable__content"><pre>drop</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-1</label><div class="sk-toggleable__content"><pre>[&#x27;BedroomAbvGr&#x27;, &#x27;KitchenAbvGr&#x27;, &#x27;LotFrontage&#x27;, &#x27;LotArea&#x27;, &#x27;OverallQual&#x27;, &#x27;OverallCond&#x27;, &#x27;YearBuilt&#x27;, &#x27;YearRemodAdd&#x27;, &#x27;MasVnrArea&#x27;, &#x27;BsmtFinSF1&#x27;, &#x27;BsmtFinSF2&#x27;, &#x27;BsmtUnfSF&#x27;, &#x27;TotalBsmtSF&#x27;, &#x27;1stFlrSF&#x27;, &#x27;2ndFlrSF&#x27;, &#x27;LowQualFinSF&#x27;, &#x27;GrLivArea&#x27;, &#x27;BsmtFullBath&#x27;, &#x27;BsmtHalfBath&#x27;, &#x27;FullBath&#x27;, &#x27;HalfBath&#x27;, &#x27;TotRmsAbvGrd&#x27;, &#x27;Fireplaces&#x27;, &#x27;GarageYrBlt&#x27;, &#x27;GarageCars&#x27;, &#x27;GarageArea&#x27;, &#x27;WoodDeckSF&#x27;, &#x27;OpenPorchSF&#x27;, &#x27;EnclosedPorch&#x27;, &#x27;3SsnPorch&#x27;, &#x27;ScreenPorch&#x27;, &#x27;PoolArea&#x27;, &#x27;MiscVal&#x27;, &#x27;YrSold&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;median&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-2</label><div class="sk-toggleable__content"><pre>[&#x27;ExterQual&#x27;, &#x27;ExterCond&#x27;, &#x27;BsmtQual&#x27;, &#x27;BsmtCond&#x27;, &#x27;HeatingQC&#x27;, &#x27;KitchenQual&#x27;, &#x27;FireplaceQu&#x27;, &#x27;GarageQual&#x27;, &#x27;GarageCond&#x27;, &#x27;PoolQC&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;],
+                           [&#x27;Po&#x27;, &#x27;Fa&#x27;, &#x27;TA&#x27;, &#x27;Gd&#x27;, &#x27;Ex&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-3</label><div class="sk-toggleable__content"><pre>[&#x27;BsmtExposure&#x27;, &#x27;BsmtFinType1&#x27;, &#x27;BsmtFinType2&#x27;, &#x27;Functional&#x27;, &#x27;Fence&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(strategy=&#x27;most_frequent&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">OrdinalEncoder</label><div class="sk-toggleable__content"><pre>OrdinalEncoder(categories=[[&#x27;NA&#x27;, &#x27;No&#x27;, &#x27;Mn&#x27;, &#x27;Av&#x27;, &#x27;Gd&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;Unf&#x27;, &#x27;LwQ&#x27;, &#x27;Rec&#x27;, &#x27;BLQ&#x27;, &#x27;ALQ&#x27;, &#x27;GLQ&#x27;],
+                           [&#x27;Sal&#x27;, &#x27;Sev&#x27;, &#x27;Maj2&#x27;, &#x27;Maj1&#x27;, &#x27;Mod&#x27;, &#x27;Min2&#x27;, &#x27;Min1&#x27;,
+                            &#x27;Typ&#x27;],
+                           [&#x27;NA&#x27;, &#x27;MnWw&#x27;, &#x27;GdWo&#x27;, &#x27;MnPrv&#x27;, &#x27;GdPrv&#x27;]])</pre></div></div></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">pipeline-4</label><div class="sk-toggleable__content"><pre>[&#x27;MiscFeature&#x27;, &#x27;RoofStyle&#x27;, &#x27;HouseStyle&#x27;, &#x27;RoofMatl&#x27;, &#x27;Alley&#x27;, &#x27;LandContour&#x27;, &#x27;PavedDrive&#x27;, &#x27;Exterior1st&#x27;, &#x27;Condition1&#x27;, &#x27;Exterior2nd&#x27;, &#x27;SaleCondition&#x27;, &#x27;SaleType&#x27;, &#x27;GarageFinish&#x27;, &#x27;Utilities&#x27;, &#x27;BldgType&#x27;, &#x27;Neighborhood&#x27;, &#x27;MSZoning&#x27;, &#x27;Electrical&#x27;, &#x27;Street&#x27;, &#x27;LotShape&#x27;, &#x27;Foundation&#x27;, &#x27;LotConfig&#x27;, &#x27;MSSubClass&#x27;, &#x27;Heating&#x27;, &#x27;LandSlope&#x27;, &#x27;GarageType&#x27;, &#x27;MasVnrType&#x27;, &#x27;CentralAir&#x27;, &#x27;MoSold&#x27;, &#x27;Condition2&#x27;]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">SimpleImputer</label><div class="sk-toggleable__content"><pre>SimpleImputer(fill_value=&#x27;missing&#x27;, strategy=&#x27;constant&#x27;)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown=&#x27;ignore&#x27;, sparse=False)</pre></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ohe_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">named_transformers_</span><span class="p">[</span><span class="s2">&quot;pipeline-4&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">&quot;onehotencoder&quot;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">categorical_features</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">new_columns</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">numeric_features</span> <span class="o">+</span> <span class="n">ordinal_features_reg</span> <span class="o">+</span> <span class="n">ordinal_features_oth</span> <span class="o">+</span> <span class="n">ohe_columns</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/kvarada/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+<span class="p">)</span>
+<span class="n">X_train_enc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>MasVnrArea</th>
+      <th>BsmtFinSF1</th>
+      <th>...</th>
+      <th>MoSold_11</th>
+      <th>MoSold_12</th>
+      <th>Condition2_Artery</th>
+      <th>Condition2_Feedr</th>
+      <th>Condition2_Norm</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>302</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>2.312501</td>
+      <td>0.381428</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>0.993969</td>
+      <td>0.840492</td>
+      <td>0.269972</td>
+      <td>-0.961498</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>767</th>
+      <td>1.372763</td>
+      <td>-0.222647</td>
+      <td>0.260890</td>
+      <td>0.248457</td>
+      <td>-0.054669</td>
+      <td>1.285467</td>
+      <td>-1.026793</td>
+      <td>0.016525</td>
+      <td>-0.573129</td>
+      <td>0.476092</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>429</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>2.885044</td>
+      <td>0.131607</td>
+      <td>-0.054669</td>
+      <td>-0.512408</td>
+      <td>0.563314</td>
+      <td>0.161931</td>
+      <td>-0.573129</td>
+      <td>1.227559</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1139</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>1.358264</td>
+      <td>-0.171468</td>
+      <td>-0.773017</td>
+      <td>-0.512408</td>
+      <td>-1.689338</td>
+      <td>-1.679877</td>
+      <td>-0.573129</td>
+      <td>0.443419</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>558</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>-0.597924</td>
+      <td>1.289541</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>0.828332</td>
+      <td>0.598149</td>
+      <td>-0.573129</td>
+      <td>0.354114</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 263 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_enc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">new_columns</span>
+<span class="p">)</span>
+<span class="n">X_test_enc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BedroomAbvGr</th>
+      <th>KitchenAbvGr</th>
+      <th>LotFrontage</th>
+      <th>LotArea</th>
+      <th>OverallQual</th>
+      <th>OverallCond</th>
+      <th>YearBuilt</th>
+      <th>YearRemodAdd</th>
+      <th>MasVnrArea</th>
+      <th>BsmtFinSF1</th>
+      <th>...</th>
+      <th>MoSold_11</th>
+      <th>MoSold_12</th>
+      <th>Condition2_Artery</th>
+      <th>Condition2_Feedr</th>
+      <th>Condition2_Norm</th>
+      <th>Condition2_PosA</th>
+      <th>Condition2_PosN</th>
+      <th>Condition2_RRAe</th>
+      <th>Condition2_RRAn</th>
+      <th>Condition2_RRNn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>147</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>-0.025381</td>
+      <td>-0.085415</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>0.993969</td>
+      <td>0.792023</td>
+      <td>0.438592</td>
+      <td>-0.961498</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>676</th>
+      <td>1.372763</td>
+      <td>4.348569</td>
+      <td>-0.454788</td>
+      <td>-0.074853</td>
+      <td>-1.491366</td>
+      <td>-3.209221</td>
+      <td>-2.351883</td>
+      <td>-1.679877</td>
+      <td>-0.573129</td>
+      <td>-0.961498</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1304</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>-1.790721</td>
+      <td>-0.768279</td>
+      <td>0.663680</td>
+      <td>-0.512408</td>
+      <td>1.093350</td>
+      <td>0.937429</td>
+      <td>0.084490</td>
+      <td>-0.961498</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1372</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>0.260890</td>
+      <td>-0.058176</td>
+      <td>0.663680</td>
+      <td>0.386530</td>
+      <td>0.894587</td>
+      <td>0.646617</td>
+      <td>-0.573129</td>
+      <td>1.162214</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1427</th>
+      <td>0.154795</td>
+      <td>-0.222647</td>
+      <td>-0.454788</td>
+      <td>0.073016</td>
+      <td>-0.773017</td>
+      <td>0.386530</td>
+      <td>-0.861157</td>
+      <td>-1.679877</td>
+      <td>-0.573129</td>
+      <td>0.301838</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 263 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((1314, 80), (146, 80))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-random-forests-and-gradient-boosted-trees">
+<h3>Training random forests and gradient boosted trees<a class="headerlink" href="#training-random-forests-and-gradient-boosted-trees" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s compare sklearn’s <code class="docutils literal notranslate"><span class="pre">GradientBoostingRegressor</span></code> to <code class="docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code> for different values of <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_estimators_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">score_rf_train</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">score_rf_test</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">score_gb_train</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="n">score_gb_test</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">n_estimators</span> <span class="ow">in</span> <span class="n">n_estimators_values</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">n_estimators</span><span class="p">)</span>
+    <span class="n">rf</span> <span class="o">=</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
+        <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>
+        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">score_rf_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+    <span class="n">score_rf_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+    <span class="n">gb</span> <span class="o">=</span> <span class="n">TransformedTargetRegressor</span><span class="p">(</span>
+        <span class="n">GradientBoostingRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">),</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">,</span>
+        <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">gb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">score_gb_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gb</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train_enc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+    <span class="n">score_gb_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gb</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_enc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>300
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is a low-quality plot that is confusing and perhaps downright misleading:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_rf_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rf train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_rf_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rf test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_gb_train</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;gb train&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_gb_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;gb test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n estimators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/23_communication_92_0.png" src="../_images/23_communication_92_0.png" />
+</div>
+</div>
+</section>
+<section id="why-is-this-confusing-misleading">
+<h3>Why is this confusing/misleading?<a class="headerlink" href="#why-is-this-confusing-misleading" title="Permalink to this headline">#</a></h3>
+<p>Let’s create some visualizations.</p>
+<ul class="simple">
+<li><p>Create a visualization that makes RF look better than GB.</p></li>
+<li><p>Create a visualization that makes GB look better than RF.</p></li>
+<li><p>Create a visualization that makes RF and GB look equally good.</p></li>
+</ul>
+<p>You can create your own misleading example and copy or screenshot it and paste it into the <a class="reference external" href="https://docs.google.com/document/d/1y4YMSAWQGRFFn8ig0pAs5TJR5h2jKnvtY97HN-rEkyE/edit">Google Doc</a>.</p>
+<p>Here are some misleading plots.</p>
+</section>
+<section id="rf-better-than-gb">
+<h3>RF better than GB<a class="headerlink" href="#rf-better-than-gb" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nmax</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># plt.plot(n_estimators_values[:nmax], score_rf_train[:nmax], label=&quot;rf train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">score_rf_test</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rf test&quot;</span><span class="p">)</span>
+<span class="c1"># plt.plot(n_estimators_values[:nmax], score_gb_train[:nmax], label=&quot;gb train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">score_gb_test</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;gb test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n estimators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;for most values of n_estimators, RF is betteR!!&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/23_communication_96_0.png" src="../_images/23_communication_96_0.png" />
+</div>
+</div>
+</section>
+<section id="gb-better-than-rf">
+<h3>GB better than RF<a class="headerlink" href="#gb-better-than-rf" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.plot(n_estimators_values, score_rf_train, label=&quot;rf train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_rf_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rf test&quot;</span><span class="p">)</span>
+<span class="c1"># plt.ylabel(&quot;$R^2$ score&quot;);</span>
+<span class="c1"># plt.legend();</span>
+<span class="c1"># plt.subplot(2,1,2)</span>
+<span class="c1"># plt.plot(n_estimators_values, score_gb_train, label=&quot;gb train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">,</span> <span class="n">score_gb_test</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;gb test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n estimators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;GB better!!!&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/23_communication_98_0.png" src="../_images/23_communication_98_0.png" />
+</div>
+</div>
+</section>
+<section id="equally-good">
+<h3>Equally good<a class="headerlink" href="#equally-good" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nmax</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># plt.plot(n_estimators_values, score_rf_train, label=&quot;rf train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">score_rf_test</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rf test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;RF $R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="c1"># plt.plot(n_estimators_values, score_gb_train, label=&quot;gb train&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n_estimators_values</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="n">score_gb_test</span><span class="p">[:</span><span class="n">nmax</span><span class="p">],</span> <span class="s2">&quot;--r&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;gb test&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;n estimators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;GB $R^2$ score&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">))</span>
+<span class="c1">#plt.ylim((-0.01, 0.70))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Both equally good!!!&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/23_communication_100_0.png" src="../_images/23_communication_100_0.png" />
+</div>
+</div>
+</section>
+<section id="things-to-watch-out-for">
+<h3>Things to watch out for<a class="headerlink" href="#things-to-watch-out-for" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Chopping off the x-axis</p></li>
+<li><p>Saturate the axes</p></li>
+<li><p>Bar chart for a cherry-picked values</p></li>
+<li><p>Different y-axes</p></li>
+</ul>
+<p><strong>Be critical of your visualizations and try to make them as honest as possible.</strong></p>
+<p><br><br></p>
+</section>
+</section>
+<section id="what-did-we-learn-today">
+<h2>What did we learn today?<a class="headerlink" href="#what-did-we-learn-today" title="Permalink to this headline">#</a></h2>
+<section id="principles-of-effective-communication">
+<h3>Principles of effective communication<a class="headerlink" href="#principles-of-effective-communication" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Concepts then labels, not the other way around.</p></li>
+<li><p>Bottom-up explanations.</p></li>
+<li><p>New ideas in small chunks.</p></li>
+<li><p>Reuse your running examples.</p></li>
+<li><p>Approaches from all angles.</p></li>
+<li><p>When experimenting, show the results asap.</p></li>
+<li><p><strong>It’s not about you.</strong></p></li>
+</ul>
+<ul class="simple">
+<li><p>Decision variables, objectives, and context.</p></li>
+<li><p>How does ML fit in?</p></li>
+<li><p>Expressing your confidence about the results</p></li>
+<li><p>Misleading visualizations.</p></li>
+</ul>
+<p>Have a great weekend!</p>
+<p><img alt="" src="../_images/eva-seeyou.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-cpsc330-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-cpsc330-py",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-cpsc330-py'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="22_ethics.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 22: Ethics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../attribution.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Attributions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Varada Kolhatkar<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
