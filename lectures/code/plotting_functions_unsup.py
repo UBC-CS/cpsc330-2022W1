@@ -7,6 +7,13 @@ import plotly.graph_objs as go
 import plotly.offline as pyo
 from plotly.subplots import make_subplots
 from sklearn.cluster import KMeans, DBSCAN
+from scipy.spatial import distance
+from sklearn.datasets import make_blobs
+from matplotlib.patches import Circle
+from sklearn.linear_model import Lasso
+from sklearn.metrics import silhouette_samples, silhouette_score
+import matplotlib.cm as cm
+from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
 from random import randint
 from scipy.cluster.hierarchy import average, complete, dendrogram, ward
 from sklearn.decomposition import PCA
@@ -881,3 +888,378 @@ def plot_swiss_roll(X, colour, swiss_tsne):
     plt.xticks([]), plt.yticks([])
     plt.title("Projected data with t-SNE")
     plt.show()            
+    
+def plot_update_centroid(data, w, h, new_centroids, centroids, dist):
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+    plt.figure(figsize=(w, h))
+    plt.scatter(data.iloc[:, 0], data.iloc[:, 1],
+                c=colors[np.argmin(dist, 1)])
+    plt.scatter(centroids[:, 0], centroids[:, 1], s=300,
+                marker='*', color=['black', 'blue', 'red'])
+    plt.xlabel("$X_1$", fontdict={'fontsize': w})
+    plt.ylabel("$X_2$", fontdict={'fontsize': w})
+    plt.title("Update the centroids - Step #2", fontdict={'fontsize': w+h})
+    plt.scatter(new_centroids[:, 0], new_centroids[:, 1],
+                s=300, marker='*', color=['black', 'blue', 'red'])
+
+    aux = new_centroids-(centroids+(new_centroids-centroids)*0.9)
+    aux = np.linalg.norm(aux, axis=1)
+    for i in range(0, 3):
+        plt.arrow(centroids[i, 0], centroids[i, 1],
+                  (new_centroids[i, 0]-centroids[i, 0])*0.8,
+                  (new_centroids[i, 1]-centroids[i, 1])*0.8,
+                  head_width=.1, head_length=aux[i], fc=colors[i], ec=colors[i])
+
+def plot_unsup(data, w, h, title=None):
+    """
+    Function to generate unsupervised plot.
+
+    Parameters:
+    -----------
+    data: pd.DataFrame
+        A pandas dataframe with X1 and X2 coordinate. If more than two
+        coordinates, only the first two will be used.
+    w: int
+        Width of the plot
+    h: int
+        height of the plot
+    title: str
+        the tile of the plot
+    """
+
+    plt.figure(figsize=(w, h))
+    ax = plt.gca()
+    plt.scatter(data.iloc[:, 0], data.iloc[:, 1])
+    plt.title(title, fontdict={'fontsize': 1.2*(w + h)})
+    plt.xlabel(data.columns[0], fontsize=1.2*w)
+    plt.ylabel(data.columns[1], fontsize=1.2*w)
+
+def plot_sup(data, w, h, title=None):
+    """
+    Function to generate unsupervised plot.
+
+    Parameters:
+    -----------
+    data: pd.DataFrame
+        A pandas dataframe with X1 and X2 coordinate. If more than two
+        coordinates, only the first two will be used.
+    w: int
+        Width of the plot
+    h: int
+        height of the plot
+    title: str
+        the tile of the plot
+    """    
+    # Colors to be used (upt to 5 classes)
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+    
+    col_names = data.columns.to_numpy()
+    target_names = data['target'].to_numpy()
+
+    # Getting numerical values for the classes labels
+    target = np.unique(data['target'].to_numpy(), return_inverse=True)
+
+    # Getting X1 and X2
+    data = data.iloc[:, 0:2].to_numpy()
+    
+    plt.figure(figsize=(w, h))
+    plt.title(title, fontdict={'fontsize': 1.2*(w + h)})
+    ax = plt.gca()
+    for i, label in enumerate(target[0]):
+        plt.scatter(data[target_names == label, 0],
+                    data[target_names == label, 1],
+                    c=colors[i], label=label)
+    
+
+    
+def plot_sup_x_unsup(data, w, h):
+    """
+        Function to generate a supervised vs unsupervised plot.
+
+        Parameters:
+        -----------
+        data: pd.DataFrame
+            A pandas dataframe with X1 and X2 coordinate, and a target column
+            for the classes.
+        w: int
+            Width of the plot
+        h: int
+            height of the plot
+    """
+    # Colors to be used (upt to 5 classes)
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+
+    # Getting the column and classes' names
+    col_names = data.columns.to_numpy()
+    target_names = data['target'].to_numpy()
+
+    # Getting numerical values for the classes labels
+    target = np.unique(data['target'].to_numpy(), return_inverse=True)
+
+    # Getting X1 and X2
+    data = data.iloc[:, 0:2].to_numpy()
+
+    # Creates the Figure
+    plt.figure(0, figsize=(w, h))
+
+    # Create two subplots
+    plt.subplots_adjust(right=2.5)
+
+    # Get the first subplot, which is the Supervised one.
+    plt.subplot(1, 2, 1)
+    ax = plt.gca()
+    for i, label in enumerate(target[0]):
+        plt.scatter(data[target_names == label, 0],
+                    data[target_names == label, 1],
+                    c=colors[i], label=label)
+
+    # Creates the legend
+    plt.legend(loc='best', fontsize=22, frameon=True)
+
+    # Name the axes and creates title
+    plt.xlabel(col_names[0], fontsize=1.5*(w + h))
+    plt.ylabel(col_names[1], fontsize=1.5*(w + h))
+    plt.title("Supervised", fontdict={'fontsize': 2 * (w + h)})
+
+#     ax.set_xticklabels(ax.get_xticks(), fontdict={'fontsize': w + h})
+#     ax.set_yticklabels(ax.get_yticks(), fontdict={'fontsize': w + h})
+
+    # Creates the unsupervised subplot.
+    plt.subplot(1, 2, 2)
+    ax = plt.gca()
+    plt.scatter(data[:, 0], data[:, 1])
+    plt.title("Unsupervised", fontdict={'fontsize': 2 * (w + h)})
+    plt.xlabel(col_names[0], fontsize=1.5*(w + h))
+    plt.ylabel(col_names[1], fontsize=1.5*(w + h))
+#     ax.set_xticklabels(ax.get_xticks(), fontdict={'fontsize': w + h})
+#     ax.set_yticklabels(ax.get_yticks(), fontdict={'fontsize': w + h})
+
+
+def plot_deck(group_by, w, h):
+    """
+    Parameters:
+    -----------
+       group_by: str: ['cards', 'color', 'suits']
+         How to group the cards
+       w: int
+         Width of the plot
+       h: int
+         height of the plot
+    """
+
+    values = np.array(np.arange(1, 14))
+    suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
+    colors = np.array(["black", "red"])
+    cards = np.zeros((52, 3), dtype=int)
+    cards[:, 0] = np.array(list(range(1, 14)) * 4)  # Value
+    cards[:, 1] = np.repeat([1, 2, 3, 4], 13)       # Suits
+    cards[:, 2] = np.repeat([1, 2], 26)             # Color
+
+    fig, ax = plt.subplots(figsize=(w, h))
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.set_xticks(values)
+    ax.set_xticklabels(["A", "2", "3", "4",
+                        "5", "6", "7", "8",
+                        "9", "10", "J", "Q", "K"],
+                       fontsize=16)
+    ax.axis("equal")
+
+    if group_by == 'cards':
+        ax.scatter(cards[:, 0], cards[:, 1])
+        ax.set_xlabel("Value", fontsize=20)
+        ax.set_ylabel("Suits", fontsize=20)
+        ax.set_yticks(range(1, 5))
+        ax.set_yticklabels(suits, fontsize=16)
+
+    if group_by == 'color':
+        e1 = np.zeros((52,))
+        e1[0:52:2] = .08
+        ax.scatter(cards[:, 0] + e1, cards[:, 2])
+        ax.set_xlabel("Value", fontsize=20)
+        ax.set_ylabel("Color", fontsize=20)
+        ax.set_yticks(range(1, 3))
+        ax.set_yticklabels(colors, fontsize=16)
+
+    if group_by == 'suits':
+        # just adding some noise to separate the points
+        e1 = np.random.normal(scale=.05, size=52)
+        e2 = np.random.normal(scale=.05, size=52)
+        ax.scatter(cards[:, 1] + e1, cards[:, 2] + e2)
+        ax.set_xlabel("Suits", fontsize=20)
+        ax.set_ylabel("Color", fontsize=20)
+        ax.set_xticks(range(1, 5))
+        ax.set_xticklabels(suits, fontsize=16)
+        ax.set_yticks(range(1, 3))
+        ax.set_yticklabels(colors, fontsize=16)
+        
+def plot_iterative(data, w, h, starting_centroid):
+    k = starting_centroid.shape[0]
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+    x = data.iloc[:, 0:2].to_numpy()
+    plt.figure(figsize=(w, h))
+    centroids = starting_centroid.copy()
+    for i in range(0, 5):
+        dist = distance.cdist(x, centroids)
+        u = np.zeros((k, x.shape[0]))
+        u[np.argmin(dist, axis=1), range(0, data.shape[0])] = 1
+        new_centroids = u @ x / np.sum(u, 1)[:, None]
+        plt.scatter(centroids[:, 0], centroids[:, 1], s=300,
+                    marker='*', color=['black', 'blue', 'red'])
+        plt.scatter(new_centroids[:, 0], new_centroids[:, 1],
+                    s=200, marker='*', color=['black', 'blue', 'red'])
+
+        aux = new_centroids-(centroids+(new_centroids-centroids)*0.9)
+        aux = np.linalg.norm(aux, axis=1)
+        for i in range(0, 3):
+            if aux[i] > .005:
+                plt.arrow(centroids[i, 0], centroids[i, 1],
+                          (new_centroids[i, 0]-centroids[i, 0])*0.8,
+                          (new_centroids[i, 1]-centroids[i, 1])*0.8,
+                          head_width=.1, head_length=aux[i], fc=colors[i], ec=colors[i])
+        centroids = new_centroids
+
+    plt.scatter(x[:, 0], x[:, 1], c=colors[np.argmin(dist, 1)], alpha=.25)
+    plt.xlabel(data.columns[0], fontdict={'fontsize': w})
+    plt.ylabel(data.columns[1], fontdict={'fontsize': w})
+    plt.title("Iterative process", fontdict={'fontsize': w+h})
+
+
+def plot_silhouette_dist(w, h):
+
+    n = 30
+    df, target = make_blobs(n_samples=n,
+                            n_features=2,
+                            centers=[[0, 0], [1, 1], [2.5, 0]],
+                            cluster_std=.15,
+                            random_state=1)
+
+    colors = np.array(['black', 'blue', 'red'])
+
+    plt.figure(figsize=(w, h))
+    ax = plt.gca()
+    ax.set_ylim(-.45, 1.4)
+    ax.set_xlim(-.25, 2.8)
+    plt.scatter(df[:, 0], df[:, 1], c=colors[target])
+
+    p = 1
+    for i in range(0, n):
+        plt.plot((df[p, 0], df[i, 0]), (df[p, 1], df[i, 1]),
+                 linewidth=.7, c=colors[target[i]])
+
+    plt.scatter(df[p, 0], df[p, 1], c="green", zorder=10, s=200)
+
+    c1 = Circle((.1, -.12), 0.27, fill=False, linewidth=2, color='black')
+    c2 = Circle((1.03, 1.04), 0.27, fill=False, linewidth=2, color='blue')
+    c3 = Circle((2.48, 0.1), 0.27, fill=False, linewidth=2, color='red')
+    ax.add_artist(c1)
+    ax.add_artist(c2)
+    ax.add_artist(c3)
+    plt.xlabel("X1", fontdict={'fontsize': w})
+    plt.ylabel("X2", fontdict={'fontsize': w})
+    plt.title("Distances for silhouette", fontdict={'fontsize': w+h})        
+    
+def plot_intial_center(data, centroids, w, h, title=None):
+    """
+    Plot the initial centroids.
+
+    Parameters:
+    -----------
+    data: pd.DataFrame
+        A pandas dataframe with X1 and X2 coordinate. If more than two
+        coordinates, only the first two will be used.
+    centroids: pd.DataFrame
+        A pandas dataframe composed by k rows of data, chosen randomly. (where k 
+        stands for the number of clusters)
+    w: int
+        width of the plot
+    h: int
+        height of the plot
+    title: str
+        the tile of the plot
+    """
+    n_clusters = centroids.shape[0]
+
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+    data = data.iloc[:, 0:2]
+    centroids = centroids.to_numpy()
+    plt.figure(figsize=(w, h))
+    plt.scatter(data.iloc[:, 0], data.iloc[:, 1], marker='o')
+    plt.scatter(centroids[:, 0], centroids[:, 1], s=250,
+                marker='*', color=colors[0:n_clusters])
+    plt.xlabel(data.columns[0], fontdict={'fontsize': w})
+    plt.ylabel(data.columns[1], fontdict={'fontsize': w})
+    plt.title(title, fontdict={'fontsize': (w + h)})
+    ax = plt.gca()
+    #ax.set_xticklabels(ax.get_xticks(), fontdict={'fontsize': 0.8*w})
+    #ax.set_yticklabels(ax.get_yticks(), fontdict={'fontsize': 0.8*w})
+
+def plot_first_assignment(data, centroids, dist, w, h):
+    """
+    Plot the points after the first assignment.
+
+    Parameters:
+    -----------
+    data: pd.DataFrame
+        A pandas dataframe with X1 and X2 coordinate. If more than two
+        coordinates, only the first two will be used.
+    centroids: pd.DataFrame
+        A pandas dataframe composed by k rows of data, chosen randomly. (where k 
+        stands for the number of clusters)
+    dist: a matrix of distance of each point to all the centroids. 
+          [See scipy.spatial.distance.cdist]
+    w: int
+        width of the plot
+    h: int
+        height of the plot
+    """
+
+    k = centroids.shape[0]
+    colors = np.array(['black', 'blue', 'red', 'green', 'purple'])
+
+    plt.figure(figsize=(w, h))
+    plt.scatter(data.iloc[:, 0], data.iloc[:, 1],
+                c=colors[np.argmin(dist, 1)])
+    plt.scatter(centroids.iloc[:, 0],
+                centroids.iloc[:, 1],
+                s=300, marker='*', color=colors[0:k])
+    plt.xlabel(data.columns[0], fontdict={'fontsize': w})
+    plt.ylabel(data.columns[1], fontdict={'fontsize': w})
+
+    plt.title("First round of assignment - Step #1",
+              fontdict={'fontsize': w+h})
+
+def plot_silhouette_dist(w, h):
+
+    n = 30
+    df, target = make_blobs(n_samples=n,
+                            n_features=2,
+                            centers=[[0, 0], [1, 1], [2.5, 0]],
+                            cluster_std=.15,
+                            random_state=1)
+
+    colors = np.array(['black', 'blue', 'red'])
+
+    plt.figure(figsize=(w, h))
+    ax = plt.gca()
+    ax.set_ylim(-.45, 1.4)
+    ax.set_xlim(-.25, 2.8)
+    plt.scatter(df[:, 0], df[:, 1], c=colors[target])
+
+    p = 1
+    for i in range(0, n):
+        plt.plot((df[p, 0], df[i, 0]), (df[p, 1], df[i, 1]),
+                 linewidth=.7, c=colors[target[i]])
+
+    plt.scatter(df[p, 0], df[p, 1], c="green", zorder=10, s=200)
+
+    c1 = Circle((.1, -.12), 0.27, fill=False, linewidth=2, color='black')
+    c2 = Circle((1.03, 1.04), 0.27, fill=False, linewidth=2, color='blue')
+    c3 = Circle((2.48, 0.1), 0.27, fill=False, linewidth=2, color='red')
+    ax.add_artist(c1)
+    ax.add_artist(c2)
+    ax.add_artist(c3)
+    plt.xlabel("X1", fontdict={'fontsize': w})
+    plt.ylabel("X2", fontdict={'fontsize': w})
+    plt.title("Distances for silhouette", fontdict={'fontsize': w+h})    
+    
