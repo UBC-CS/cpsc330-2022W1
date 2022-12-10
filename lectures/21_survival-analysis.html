@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lecture 22: Ethics" href="22_ethics.html" />
@@ -211,6 +213,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="14_midterm-review.html">
+   Lecture 14: Midterm review
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="15_K-Means.html">
    Lecture 15: K-Means Clustering
   </a>
@@ -253,6 +260,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="23_communication.html">
    Lecture 23: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24_deployment-conclusion.html">
+   Lecture 24: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -1540,23 +1552,23 @@ memory usage: 907.8+ KB
       <th>tenure</th>
       <th>MonthlyCharges</th>
       <th>TotalCharges</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>Partner_No</th>
+      <th>Partner_Yes</th>
+      <th>OnlineBackup_No</th>
+      <th>OnlineBackup_No internet service</th>
+      <th>...</th>
       <th>InternetService_DSL</th>
       <th>InternetService_Fiber optic</th>
       <th>InternetService_No</th>
-      <th>OnlineBackup_No</th>
-      <th>OnlineBackup_No internet service</th>
-      <th>OnlineBackup_Yes</th>
       <th>DeviceProtection_No</th>
-      <th>...</th>
-      <th>Dependents_Yes</th>
-      <th>PaperlessBilling_No</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingTV_No</th>
-      <th>StreamingTV_No internet service</th>
-      <th>StreamingTV_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>DeviceProtection_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
       <th>SeniorCitizen</th>
     </tr>
   </thead>
@@ -1569,13 +1581,11 @@ memory usage: 907.8+ KB
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1583,6 +1593,8 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
     </tr>
     <tr>
@@ -1595,11 +1607,11 @@ memory usage: 907.8+ KB
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1614,23 +1626,23 @@ memory usage: 907.8+ KB
       <td>-0.148349</td>
       <td>1.133562</td>
       <td>0.226789</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1638,20 +1650,20 @@ memory usage: 907.8+ KB
       <td>-1.248999</td>
       <td>0.458524</td>
       <td>-0.950696</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1662,23 +1674,23 @@ memory usage: 907.8+ KB
       <td>0.993065</td>
       <td>-0.183179</td>
       <td>0.433814</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -1862,7 +1874,7 @@ Name: Churn, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.038 (+/- 0.002)</td>
+      <td>0.038 (+/- 0.004)</td>
       <td>0.004 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
       <td>0.809 (+/- 0.002)</td>
@@ -1943,16 +1955,16 @@ Name: Churn, dtype: int64
     </tr>
     <tr>
       <th>logistic regression</th>
-      <td>0.038 (+/- 0.002)</td>
+      <td>0.038 (+/- 0.004)</td>
       <td>0.004 (+/- 0.000)</td>
       <td>0.804 (+/- 0.013)</td>
       <td>0.809 (+/- 0.002)</td>
     </tr>
     <tr>
       <th>random forest</th>
-      <td>0.230 (+/- 0.006)</td>
+      <td>0.236 (+/- 0.003)</td>
       <td>0.016 (+/- 0.000)</td>
-      <td>0.789 (+/- 0.012)</td>
+      <td>0.786 (+/- 0.008)</td>
       <td>0.998 (+/- 0.000)</td>
     </tr>
   </tbody>
@@ -1966,8 +1978,8 @@ Name: Churn, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3527,  385],
-       [ 737,  633]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3534,  378],
+       [ 728,  642]])
 </pre></div>
 </div>
 </div>
@@ -2852,23 +2864,23 @@ What could be possible scenarios for the duration column?</p>
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>Partner_No</th>
+      <th>Partner_Yes</th>
+      <th>OnlineBackup_No</th>
+      <th>...</th>
+      <th>StreamingTV_Yes</th>
       <th>InternetService_DSL</th>
       <th>InternetService_Fiber optic</th>
       <th>InternetService_No</th>
-      <th>OnlineBackup_No</th>
-      <th>OnlineBackup_No internet service</th>
-      <th>OnlineBackup_Yes</th>
-      <th>...</th>
-      <th>Dependents_No</th>
-      <th>Dependents_Yes</th>
-      <th>PaperlessBilling_No</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingTV_No</th>
-      <th>StreamingTV_No internet service</th>
-      <th>StreamingTV_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
+      <th>DeviceProtection_No</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>DeviceProtection_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -2881,13 +2893,11 @@ What could be possible scenarios for the duration column?</p>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2895,6 +2905,8 @@ What could be possible scenarios for the duration column?</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>5707</th>
@@ -2907,11 +2919,11 @@ What could be possible scenarios for the duration column?</p>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>1.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -2926,23 +2938,23 @@ What could be possible scenarios for the duration column?</p>
       <td>29.0</td>
       <td>0.0</td>
       <td>1.133562</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
     </tr>
     <tr>
       <th>3932</th>
@@ -2950,20 +2962,20 @@ What could be possible scenarios for the duration column?</p>
       <td>2.0</td>
       <td>1.0</td>
       <td>0.458524</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -2974,23 +2986,23 @@ What could be possible scenarios for the duration column?</p>
       <td>57.0</td>
       <td>0.0</td>
       <td>-0.183179</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -3335,7 +3347,7 @@ What could be possible scenarios for the duration column?</p>
       <td>1.097088</td>
       <td>0.0</td>
       <td>-0.341571</td>
-      <td>0.732674</td>
+      <td>7.326741e-01</td>
       <td>0.448757</td>
     </tr>
     <tr>
@@ -3349,50 +3361,50 @@ What could be possible scenarios for the duration column?</p>
       <td>1.078387</td>
       <td>0.0</td>
       <td>-0.079377</td>
-      <td>0.936733</td>
+      <td>9.367329e-01</td>
       <td>0.094290</td>
     </tr>
     <tr>
-      <th>InternetService_DSL</th>
-      <td>-0.161001</td>
-      <td>0.851291</td>
-      <td>0.072286</td>
-      <td>-0.302679</td>
-      <td>-0.019324</td>
-      <td>0.738836</td>
-      <td>0.980862</td>
+      <th>Contract_Month-to-month</th>
+      <td>0.812875</td>
+      <td>2.254380</td>
+      <td>0.069188</td>
+      <td>0.677268</td>
+      <td>0.948482</td>
+      <td>1.968493</td>
+      <td>2.581787</td>
       <td>0.0</td>
-      <td>-2.227289</td>
-      <td>0.025928</td>
-      <td>5.269347</td>
+      <td>11.748725</td>
+      <td>7.169269e-32</td>
+      <td>103.459873</td>
     </tr>
     <tr>
-      <th>InternetService_Fiber optic</th>
-      <td>0.186869</td>
-      <td>1.205470</td>
-      <td>0.071515</td>
-      <td>0.046702</td>
-      <td>0.327037</td>
-      <td>1.047810</td>
-      <td>1.386853</td>
+      <th>Contract_One year</th>
+      <td>-0.351821</td>
+      <td>0.703406</td>
+      <td>0.077761</td>
+      <td>-0.504231</td>
+      <td>-0.199412</td>
+      <td>0.603970</td>
+      <td>0.819213</td>
       <td>0.0</td>
-      <td>2.612998</td>
-      <td>0.008975</td>
-      <td>6.799845</td>
+      <td>-4.524364</td>
+      <td>6.057732e-06</td>
+      <td>17.332791</td>
     </tr>
     <tr>
-      <th>InternetService_No</th>
-      <td>-0.057267</td>
-      <td>0.944342</td>
-      <td>0.100970</td>
-      <td>-0.255165</td>
-      <td>0.140631</td>
-      <td>0.774789</td>
-      <td>1.150999</td>
+      <th>Contract_Two year</th>
+      <td>-0.776427</td>
+      <td>0.460047</td>
+      <td>0.081167</td>
+      <td>-0.935512</td>
+      <td>-0.617342</td>
+      <td>0.392385</td>
+      <td>0.539376</td>
       <td>0.0</td>
-      <td>-0.567169</td>
-      <td>0.570599</td>
-      <td>0.809450</td>
+      <td>-9.565746</td>
+      <td>1.113949e-21</td>
+      <td>69.604807</td>
     </tr>
     <tr>
       <th>...</th>
@@ -3409,7 +3421,7 @@ What could be possible scenarios for the duration column?</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>StreamingTV_No internet service</th>
+      <th>DeviceProtection_No internet service</th>
       <td>-0.057267</td>
       <td>0.944342</td>
       <td>0.100970</td>
@@ -3419,39 +3431,39 @@ What could be possible scenarios for the duration column?</p>
       <td>1.150999</td>
       <td>0.0</td>
       <td>-0.567169</td>
-      <td>0.570599</td>
+      <td>5.705995e-01</td>
       <td>0.809450</td>
     </tr>
     <tr>
-      <th>StreamingTV_Yes</th>
-      <td>-0.008830</td>
-      <td>0.991209</td>
-      <td>0.068706</td>
-      <td>-0.143491</td>
-      <td>0.125831</td>
-      <td>0.866328</td>
-      <td>1.134090</td>
+      <th>DeviceProtection_Yes</th>
+      <td>-0.154556</td>
+      <td>0.856795</td>
+      <td>0.069302</td>
+      <td>-0.290385</td>
+      <td>-0.018727</td>
+      <td>0.747975</td>
+      <td>0.981447</td>
       <td>0.0</td>
-      <td>-0.128522</td>
-      <td>0.897736</td>
-      <td>0.155637</td>
+      <td>-2.230194</td>
+      <td>2.573457e-02</td>
+      <td>5.280148</td>
     </tr>
     <tr>
-      <th>OnlineSecurity_No</th>
-      <td>0.311151</td>
-      <td>1.364995</td>
-      <td>0.069644</td>
-      <td>0.174652</td>
-      <td>0.447650</td>
-      <td>1.190832</td>
-      <td>1.564631</td>
+      <th>StreamingMovies_No</th>
+      <td>0.110985</td>
+      <td>1.117378</td>
+      <td>0.068042</td>
+      <td>-0.022375</td>
+      <td>0.244344</td>
+      <td>0.977873</td>
+      <td>1.276784</td>
       <td>0.0</td>
-      <td>4.467755</td>
-      <td>0.000008</td>
-      <td>16.948901</td>
+      <td>1.631122</td>
+      <td>1.028647e-01</td>
+      <td>3.281180</td>
     </tr>
     <tr>
-      <th>OnlineSecurity_No internet service</th>
+      <th>StreamingMovies_No internet service</th>
       <td>-0.057267</td>
       <td>0.944342</td>
       <td>0.100970</td>
@@ -3461,22 +3473,22 @@ What could be possible scenarios for the duration column?</p>
       <td>1.150999</td>
       <td>0.0</td>
       <td>-0.567169</td>
-      <td>0.570599</td>
+      <td>5.705995e-01</td>
       <td>0.809450</td>
     </tr>
     <tr>
-      <th>OnlineSecurity_Yes</th>
-      <td>-0.330346</td>
-      <td>0.718675</td>
-      <td>0.072881</td>
-      <td>-0.473189</td>
-      <td>-0.187502</td>
-      <td>0.623012</td>
-      <td>0.829027</td>
+      <th>StreamingMovies_Yes</th>
+      <td>-0.070898</td>
+      <td>0.931556</td>
+      <td>0.068689</td>
+      <td>-0.205527</td>
+      <td>0.063730</td>
+      <td>0.814218</td>
+      <td>1.065805</td>
       <td>0.0</td>
-      <td>-4.532694</td>
-      <td>0.000006</td>
-      <td>17.389655</td>
+      <td>-1.032161</td>
+      <td>3.019969e-01</td>
+      <td>1.727394</td>
     </tr>
   </tbody>
 </table>
@@ -3924,25 +3936,25 @@ Name: MonthlyCharges, dtype: float64
       <th></th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
-      <th>InternetService_DSL</th>
-      <th>InternetService_Fiber optic</th>
-      <th>InternetService_No</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>Partner_No</th>
+      <th>Partner_Yes</th>
       <th>OnlineBackup_No</th>
       <th>OnlineBackup_No internet service</th>
       <th>OnlineBackup_Yes</th>
+      <th>...</th>
+      <th>StreamingTV_Yes</th>
+      <th>InternetService_DSL</th>
+      <th>InternetService_Fiber optic</th>
+      <th>InternetService_No</th>
       <th>DeviceProtection_No</th>
       <th>DeviceProtection_No internet service</th>
-      <th>...</th>
-      <th>Dependents_No</th>
-      <th>Dependents_Yes</th>
-      <th>PaperlessBilling_No</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingTV_No</th>
-      <th>StreamingTV_No internet service</th>
-      <th>StreamingTV_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
+      <th>DeviceProtection_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -3953,15 +3965,15 @@ Name: MonthlyCharges, dtype: float64
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -3977,16 +3989,16 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4004,13 +4016,13 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4022,19 +4034,19 @@ Name: MonthlyCharges, dtype: float64
       <th>3684</th>
       <td>0.0</td>
       <td>0.351852</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4049,16 +4061,16 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4100,23 +4112,23 @@ Name: MonthlyCharges, dtype: float64
       <th>tenure</th>
       <th>SeniorCitizen</th>
       <th>MonthlyCharges</th>
+      <th>Contract_Month-to-month</th>
+      <th>Contract_One year</th>
+      <th>Contract_Two year</th>
+      <th>Partner_No</th>
+      <th>Partner_Yes</th>
+      <th>OnlineBackup_No</th>
+      <th>...</th>
+      <th>StreamingTV_Yes</th>
       <th>InternetService_DSL</th>
       <th>InternetService_Fiber optic</th>
       <th>InternetService_No</th>
-      <th>OnlineBackup_No</th>
-      <th>OnlineBackup_No internet service</th>
-      <th>OnlineBackup_Yes</th>
-      <th>...</th>
-      <th>Dependents_No</th>
-      <th>Dependents_Yes</th>
-      <th>PaperlessBilling_No</th>
-      <th>PaperlessBilling_Yes</th>
-      <th>StreamingTV_No</th>
-      <th>StreamingTV_No internet service</th>
-      <th>StreamingTV_Yes</th>
-      <th>OnlineSecurity_No</th>
-      <th>OnlineSecurity_No internet service</th>
-      <th>OnlineSecurity_Yes</th>
+      <th>DeviceProtection_No</th>
+      <th>DeviceProtection_No internet service</th>
+      <th>DeviceProtection_Yes</th>
+      <th>StreamingMovies_No</th>
+      <th>StreamingMovies_No internet service</th>
+      <th>StreamingMovies_Yes</th>
     </tr>
   </thead>
   <tbody>
@@ -4129,13 +4141,13 @@ Name: MonthlyCharges, dtype: float64
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4153,14 +4165,14 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4182,9 +4194,9 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4198,17 +4210,17 @@ Name: MonthlyCharges, dtype: float64
       <td>43.0</td>
       <td>0.0</td>
       <td>0.351852</td>
+      <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -4225,14 +4237,14 @@ Name: MonthlyCharges, dtype: float64
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -4443,7 +4455,7 @@ dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.8641864337292489
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.864186433729249
 </pre></div>
 </div>
 </div>

@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -213,6 +215,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="14_midterm-review.html">
+   Lecture 14: Midterm review
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="15_K-Means.html">
    Lecture 15: K-Means Clustering
   </a>
@@ -230,6 +237,36 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="18_natural-language-processing.html">
    Lecture 18: Introduction to natural language processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="19_intro_to_computer-vision.html">
+   Lecture 19: Multi-class classification and introduction to computer vision
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="20_time-series.html">
+   Lecture 20: Time series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21_survival-analysis.html">
+   Lecture 21: Survival analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="22_ethics.html">
+   Lecture 22: Ethics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="23_communication.html">
+   Lecture 23: Communication
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="24_deployment-conclusion.html">
+   Lecture 24: Deployment and conclusion
   </a>
  </li>
 </ul>
@@ -3905,10 +3942,10 @@ Number of movies (M)               : 7
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
 
                   Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    5.2840  5.2976  5.2770  5.2530  5.3011  5.2826  0.0172  
-MAE (testset)     4.2007  4.2183  4.1961  4.1777  4.2099  4.2005  0.0137  
-Fit time          0.16    0.17    0.16    0.17    0.16    0.16    0.00    
-Test time         0.06    0.06    0.11    0.06    0.06    0.07    0.02    
+RMSE (testset)    5.2693  5.3097  5.2736  5.2910  5.2784  5.2844  0.0146  
+MAE (testset)     4.1764  4.2332  4.1939  4.2154  4.1934  4.2024  0.0197  
+Fit time          0.15    0.16    0.15    0.16    0.15    0.15    0.00    
+Test time         0.06    0.06    0.12    0.06    0.06    0.07    0.02    
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -3938,38 +3975,38 @@ Test time         0.06    0.06    0.11    0.06    0.06    0.07    0.02
   <tbody>
     <tr>
       <th>0</th>
-      <td>5.284040</td>
-      <td>4.200749</td>
-      <td>0.164862</td>
-      <td>0.056013</td>
+      <td>5.269276</td>
+      <td>4.176376</td>
+      <td>0.148071</td>
+      <td>0.058017</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>5.297639</td>
-      <td>4.218311</td>
-      <td>0.169759</td>
-      <td>0.055545</td>
+      <td>5.309708</td>
+      <td>4.233168</td>
+      <td>0.156714</td>
+      <td>0.059459</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>5.276984</td>
-      <td>4.196076</td>
-      <td>0.159372</td>
-      <td>0.112628</td>
+      <td>5.273571</td>
+      <td>4.193858</td>
+      <td>0.148110</td>
+      <td>0.115085</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>5.252958</td>
-      <td>4.177700</td>
-      <td>0.167477</td>
-      <td>0.056105</td>
+      <td>5.291018</td>
+      <td>4.215390</td>
+      <td>0.155817</td>
+      <td>0.057614</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>5.301136</td>
-      <td>4.209873</td>
-      <td>0.158955</td>
-      <td>0.055345</td>
+      <td>5.278368</td>
+      <td>4.193396</td>
+      <td>0.147950</td>
+      <td>0.056509</td>
     </tr>
   </tbody>
 </table>
@@ -3987,78 +4024,116 @@ Test time         0.06    0.06    0.11    0.06    0.06    0.07    0.02
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Evaluating RMSE, MAE of algorithm SVD on 5 split(s).
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">load_builtin</span><span class="p">(</span><span class="s2">&quot;jester&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">algo</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">measures</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;RMSE&quot;</span><span class="p">,</span> <span class="s2">&quot;MAE&quot;</span><span class="p">],</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-                  Fold 1  Fold 2  Fold 3  Fold 4  Fold 5  Mean    Std     
-RMSE (testset)    4.5967  4.5820  4.5874  4.5928  4.6093  4.5936  0.0092  
-MAE (testset)     3.3347  3.3197  3.3206  3.3329  3.3439  3.3304  0.0091  
-Fit time          2.59    2.92    2.75    2.95    2.82    2.81    0.13    
-Test time         1.46    1.37    1.44    1.44    1.22    1.39    0.09    
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:108,</span> in <span class="ni">cross_validate</span><span class="nt">(algo, data, measures, cv, return_train_measures, n_jobs, pre_dispatch, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">get_cv</span><span class="p">(</span><span class="n">cv</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span> <span class="n">delayed_list</span> <span class="o">=</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="n">delayed</span><span class="p">(</span><span class="n">fit_and_score</span><span class="p">)(</span><span class="n">algo</span><span class="p">,</span> <span class="n">trainset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">measures</span><span class="p">,</span> <span class="n">return_train_measures</span><span class="p">)</span>
+<span class="nn">    106     for (trainset, testset)</span> in <span class="ni">cv.split</span><span class="nt">(data)</span>
+<span class="g g-Whitespace">    </span><span class="mi">107</span> <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">108</span> <span class="n">out</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">pre_dispatch</span><span class="o">=</span><span class="n">pre_dispatch</span><span class="p">)(</span><span class="n">delayed_list</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span> <span class="p">(</span><span class="n">test_measures_dicts</span><span class="p">,</span> <span class="n">train_measures_dicts</span><span class="p">,</span> <span class="n">fit_times</span><span class="p">,</span> <span class="n">test_times</span><span class="p">)</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">out</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> <span class="n">test_measures</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:1046,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1046</span> <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1047</span>     <span class="k">pass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span> <span class="k">if</span> <span class="n">pre_dispatch</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span> <span class="ow">or</span> <span class="n">n_jobs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>     <span class="c1"># The iterable was consumed all at once by the above for loop.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span>     <span class="c1"># No need to wait for async callbacks to trigger to</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>     <span class="c1"># consumption.</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:861,</span> in <span class="ni">Parallel.dispatch_one_batch</span><span class="nt">(self, iterator)</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">861</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>     <span class="k">return</span> <span class="kc">True</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:779,</span> in <span class="ni">Parallel._dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span>     <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">779</span>     <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span>     <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>     <span class="c1"># called before we get here, causing self._jobs to</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>     <span class="c1"># grow. To ensure correct results ordering, .insert is</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>     <span class="c1"># used (rather than .append) in the following line</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">job_idx</span><span class="p">,</span> <span class="n">job</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:208,</span> in <span class="ni">SequentialBackend.apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span> <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/_parallel_backends.py:572,</span> in <span class="ni">ImmediateResult.__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">570</span>     <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">571</span>     <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">572</span>     <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">BatchedCalls.__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/joblib/parallel.py:262,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Set the default nested backend to self._backend but do not set the</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="c1"># change the default number of processes to -1</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>     <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">262</span>         <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">263</span>                 <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/model_selection/validation.py:176,</span> in <span class="ni">fit_and_score</span><span class="nt">(algo, trainset, testset, measures, return_train_measures)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_fit</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="n">start_test</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">176</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">algo</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">testset</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="n">test_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_test</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span> <span class="k">if</span> <span class="n">return_train_measures</span><span class="p">:</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:160,</span> in <span class="ni">AlgoBase.test</span><span class="nt">(self, testset, verbose)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="ne">--&gt; </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
+
+<span class="nn">File ~/opt/miniconda3/envs/cpsc330/lib/python3.10/site-packages/surprise/prediction_algorithms/algo_base.py:161,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="sd">&quot;&quot;&quot;Test the algorithm on given testset, i.e. estimate all the ratings</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span><span class="sd"> in the given testset.</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd">     that contains all the estimated ratings.</span>
+<span class="g g-Whitespace">    </span><span class="mi">157</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">159</span> <span class="c1"># The ratings are translated back to their original scale.</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="n">predictions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="ne">--&gt; </span><span class="mi">161</span>     <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span>     <span class="k">for</span> <span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">r_ui_trans</span><span class="p">)</span> <span class="ow">in</span> <span class="n">testset</span>
+<span class="g g-Whitespace">    </span><span class="mi">163</span> <span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="k">return</span> <span class="n">predictions</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>test_rmse</th>
-      <th>test_mae</th>
-      <th>fit_time</th>
-      <th>test_time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>4.596680</td>
-      <td>3.334700</td>
-      <td>2.592672</td>
-      <td>1.456805</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>4.582022</td>
-      <td>3.319740</td>
-      <td>2.923627</td>
-      <td>1.374307</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4.587422</td>
-      <td>3.320599</td>
-      <td>2.753254</td>
-      <td>1.442646</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4.592835</td>
-      <td>3.332950</td>
-      <td>2.947575</td>
-      <td>1.438642</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4.609258</td>
-      <td>3.343944</td>
-      <td>2.824487</td>
-      <td>1.224039</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+</div>
 </div>
 <p><br><br><br><br></p>
 </section>
