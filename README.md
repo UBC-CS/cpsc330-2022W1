@@ -1,5 +1,7 @@
 # UBC CPSC 330: Applied Machine Learning (2022W1)
 
+YOU ARE VIEWING AN OLDER VERSION OF THIS COURSE. PLEASE GO TO [THIS PAGE](https://github.com/UBC-CS/cpsc330-2023W1) FOR THE MOST UP-TO-DATE VERSION
+
 This is the course homepage for CPSC 330: Applied Machine Learning at the University of British Columbia. You are looking at the current version (Sep-Dec 2022).
 You can find the earlier versions here: 
 - [Sep-Dec 2020 taught by Mike Gelbart](https://github.com/UBC-CS/cpsc330/tree/v2.0)
